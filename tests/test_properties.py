@@ -117,7 +117,9 @@ def test_build_mixture_validacion_x_y_par_binario_no_soportado():
     for x_invalida in (0.0, 1.0, -0.1):
         with pytest.raises(ValueError):
             pya._build_mixture(x_invalida)
+    fake_fluids_list = MagicMock(Ammonia="Ammonia", Water="Water")
     with patch.object(pya, "UnitConverter", lambda: FakeConverter()), \
+            patch.object(pya, "FluidsList", fake_fluids_list), \
             patch.object(pya, "Mixture",
                          MagicMock(side_effect=ValueError("Could not match the binary pair"))):
         with pytest.raises(PropertyRangeError):
