@@ -1,41 +1,29 @@
 """UI Streamlit de la app del ciclo Kalina KSC-11 (punto de entrada).
 
 Tarea 2026-09-17-ui-streamlit. Interfaz en español para público poco
-familiarizado con software académico: entradas con unidades y tooltips, UNA
-simulación por clic (el motor NH3-H2O real tarda ~8-9 min por corrida),
+familiarizado con software académico: los parámetros se definen en el área
+principal (grilla 2×2 con símbolos LaTeX y unidades) y la barra lateral es el
+panel de ejecución (motor de propiedades, aviso de tiempo y botón). UNA
+simulación por clic (el motor NH3-H2O real tarda ~8-9 min por corrida);
 resultados (estados, energías, exergía), descarga de Excel y gráficas, y la
 sección de sensibilidad reservada como "próximamente". El cálculo se lanza
 SOLO al pulsar el botón y queda guardado en `st.session_state` — Streamlit
 re-ejecuta el script en cada interacción. Ejecutar: `streamlit run app.py`.
-Los valores por defecto y el esquema de campos viven en `src/ui_helpers.py`.
+Los valores por defecto y el esquema de campos viven en `src/ui_helpers.py`;
+el renderizado de los inputs y del panel de ejecución en `src/ui_inputs.py`.
 """
 
 from __future__ import annotations
 
 import streamlit as st
 
-from src import ui_helpers
+from src import ui_helpers, ui_inputs
 from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
 from src.exergy import calcular_exergia
 from src.export_excel import generar_excel
 from src.plots import grafico_balance_energia, grafico_exergia_destruida
 from src.properties.adapter import PropertyRangeError
 from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
-
-
-def _campo(etiqueta, unidad, ayuda, valor, vmin, vmax, paso, formato):
-    """Campo numérico de Streamlit con unidad visible y tooltip en español."""
-    return st.number_input(
-        f"{etiqueta} [{unidad}]", min_value=vmin, max_value=vmax,
-        value=valor, step=paso, format=formato, help=ayuda)
-
-
-def _rendir_campos(campos):
-    """Crea los campos numéricos en orden (widgets estables entre reruns)."""
-    return {
-        clave: _campo(etiqueta, unidad, ayuda, default, vmin, vmax, paso, fmt)
-        for clave, etiqueta, unidad, ayuda, default, vmin, vmax, paso, fmt in campos
-    }
 
 
 def _limpiar_resultados():
@@ -149,28 +137,16 @@ def main() -> None:
         "Análisis **energético y exergético** (exergía física, sin química) de un "
         "ciclo Kalina KSC-11 con mezcla NH₃-H₂O: el calor de la fuente se convierte "
         "en potencia neta en la turbina y el resto se rechaza al sumidero. UNA "
-        "simulación por clic — configure los parámetros a la izquierda."
+        "simulación por clic — configure los parámetros arriba y ejecútela desde "
+        "la barra lateral."
     )
+
+    vals = ui_inputs.renderizar_inputs()
 
     with st.sidebar:
-        st.header("Parámetros del ciclo")
-        vals = _rendir_campos(ui_helpers.CAMPOS_CICLO)
-        st.header("Estado muerto (exergía)")
-        vals.update(_rendir_campos(ui_helpers.CAMPOS_ESTADO))
-        st.header("Motor de propiedades")
-        backend_sel = st.selectbox(
-            "Backend de propiedades", ui_helpers.BACKENDS, index=0,
-            help="AmmoniaWaterAdapter es el único motor que soporta la mezcla "
-                 "NH3-H2O en este entorno.")
-        st.caption("IAPWSAdapter (agua pura) y PyfluidsAdapter (CoolProp) no "
-                   "cubren la mezcla NH3-H2O; se listan solo como referencia.")
+        backend_sel, ejecutar = ui_inputs.renderizar_panel_ejecucion()
 
-    st.markdown(
-        "⏱️ **El cálculo con el motor de propiedades real puede tardar varios "
-        "minutos (~8-9 min). No cierres esta pestaña ni pulses el botón de nuevo "
-        "mientras corre.**"
-    )
-    if st.button("Ejecutar simulación", type="primary", width="stretch"):
+    if ejecutar:
         _ejecutar(vals, backend_sel)
 
     if "resultado_ciclo" in st.session_state:

@@ -1,0 +1,10 @@
+# Tema visual de la UI del ciclo Kalina KSC-11.
+# Sobrio y académico: papel blanco, tinta oscura, serif y un azul acero
+# discreto como color primario. Sin modo oscuro ni ornamentos de marketing.
+[theme]
+base = "light"
+primaryColor = "#1F4E79"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F3EE"
+textColor = "#1F2430"
+font = "serif"
