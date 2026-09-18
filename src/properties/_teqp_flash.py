@@ -107,10 +107,52 @@ def flash_TP(T: float, P: float):
         return [np.log(a * phiL[0]) - np.log(b * phiV[0]),
                np.log((1 - a) * phiL[1]) - np.log((1 - b) * phiV[1])]
 
-    sol, _, ier, _ = fsolve(F, list(raoult), full_output=True, xtol=1e-12)
-    if ier != 1 or not (0 < sol[0] < sol[1] < 1):
-        return None
-    return float(sol[0]), float(sol[1])
+    # fsolve puede fallar de forma aislada en un punto rodeado de puntos que sí
+    # convergen bien (visto en integración real: T=378.015 falla, T=378.010 y
+    # 378.020 no — ver TASK_CONTEXT 2026-09-18). No es un límite físico, es
+    # sensibilidad numérica a la semilla exacta; un reintento con la semilla
+    # perturbada basta (mismo espíritu que el arranque tibio de
+    # `_nh3h2o_engine.flash_TP`, sin su tabla de caché completa).
+    for factor in (1.0, 1.01, 0.99, 1.05):
+        seed = [raoult[0] * factor, raoult[1] * factor]
+        seed = [min(max(v, 1e-4), 1 - 1e-4) for v in seed]
+        sol, _, ier, _ = fsolve(F, seed, full_output=True, xtol=1e-12)
+        if ier == 1 and 0 < sol[0] < sol[1] < 1:
+            return float(sol[0]), float(sol[1])
+    return None
+
+
+def _fase_monofasica(T: float, P: float, x: float) -> str:
+    """Decide 'liquido'/'vapor' SIN probar una raíz de densidad a ciegas.
+
+    Corrección de un bug real (ver TASK_CONTEXT 2026-09-18): `rho_liquido`
+    puede encontrar una raíz densa espuria de la isoterma (el lazo de
+    van der Waals descrito ahí) incluso muy dentro de la región de vapor
+    sobrecalentado, y como esa búsqueda nunca lanza excepción en ese caso,
+    un "probar líquido, si falla probar vapor" acepta la raíz falsa
+    silenciosamente. Igual que `_kalina_flash.estado`: usa T contra las
+    Tsat de los puros como criterio barato, y solo cuando T cae dentro de
+    la banda donde puede existir la campana bifásica recurre a comparar P
+    contra bubbleP/dewP a esa T (criterio caro pero inequívoco).
+    """
+    Ta, Tw = ng.Tsat_pure(P)
+    if not (Ta + 0.3 < T < Tw - 0.3):
+        return "liquido" if T <= Ta else "vapor"
+    Pb, _, okb = bubbleP(T, x)
+    Pd, _, okd = dewP(T, x)
+    # Margen relativo: bubbleP/dewP son ellas mismas soluciones aproximadas
+    # (sustitucion sucesiva, tol=1e-10 mas el residuo de rho_liquido/rho_vapor),
+    # no exactas; comparar con igualdad estricta falla por unos pocos Pa en el
+    # borde de la campana (visto en integracion real, ver TASK_CONTEXT
+    # 2026-09-18: P a 0.0035% de Pd se rechazaba). 1e-3 relativo es holgado
+    # frente a ese residuo medido.
+    tol = 1e-3
+    if okb and P >= Pb * (1.0 - tol):
+        return "liquido"
+    if okd and P <= Pd * (1.0 + tol):
+        return "vapor"
+    raise ValueError(
+        f"equilibrio no resoluble en T={T:.2f} K, P={P:.5g} Pa, x={x:.4f}")
 
 
 def estado(T: float, P: float, x: float) -> dict:
@@ -118,8 +160,9 @@ def estado(T: float, P: float, x: float) -> dict:
 
     Mismo criterio que `_kalina_flash.estado`: si (T,P) cae en la región
     bifásica del flash y x queda entre las composiciones de equilibrio,
-    interpola por regla de la palanca; si no, resuelve como monofásico
-    (probando líquido y luego vapor).
+    interpola por regla de la palanca; si no, resuelve como monofásico,
+    decidiendo la fase explícitamente (ver `_fase_monofasica`) antes de
+    buscar la raíz de densidad correspondiente.
     """
     par = flash_TP(T, P)
     if par is not None:
@@ -131,11 +174,7 @@ def estado(T: float, P: float, x: float) -> dict:
             q = (x - xL) / (xV - xL)
             return dict(h=q * hV + (1 - q) * hL, s=q * sV + (1 - q) * sL,
                        q=q, fase="bifasico")
-    try:
-        rho = ng.rho_liquido(T, P, x)
-        return dict(h=ng.h_molar(T, rho, x), s=ng.s_molar(T, rho, x),
-                   q=0.0, fase="liquido")
-    except ValueError:
-        rho = ng.rho_vapor(T, P, x)
-        return dict(h=ng.h_molar(T, rho, x), s=ng.s_molar(T, rho, x),
-                   q=1.0, fase="vapor")
+    fase = _fase_monofasica(T, P, x)
+    rho = ng.rho_liquido(T, P, x) if fase == "liquido" else ng.rho_vapor(T, P, x)
+    return dict(h=ng.h_molar(T, rho, x), s=ng.s_molar(T, rho, x),
+               q=(0.0 if fase == "liquido" else 1.0), fase=fase)

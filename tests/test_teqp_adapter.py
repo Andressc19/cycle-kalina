@@ -18,6 +18,7 @@ from pathlib import Path
 
 import pytest
 
+from src.cycle_solver import resolver_ciclo
 from src.properties.adapter import PropertyBackend, PropertyRangeError
 from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
 from src.properties.teqp_adapter import TeqpAdapter
@@ -121,6 +122,27 @@ def test_presion_no_positiva_lanza_valueerror(teqp_b):
 def test_equilibrio_fuera_de_la_campana_lanza_propertyrangeerror(teqp_b):
     with pytest.raises(PropertyRangeError):
         teqp_b.equilibrio_liquido_vapor(3000.0, 200.0)
+
+
+def test_resolver_ciclo_completo_con_teqp_adapter():
+    """Regresión: resolver_ciclo end-to-end recorre estados/temperaturas que
+    ninguno de los tests puntuales cubre (bracket de Brent, sustitución
+    sucesiva de T10, estados de válvula/regenerador en cascada). Encontró
+    dos bugs reales en integración (ver TASK_CONTEXT 2026-09-18): una raíz
+    de densidad "líquida" espuria en vapor sobrecalentado, y una falla
+    aislada de convergencia de `flash_TP` en un punto rodeado de puntos que
+    sí convergen — ambos corregidos en `_teqp_flash.py`. No compara contra
+    el motor real (tardaría ~8-15 min); solo verifica que converge y que el
+    resultado es físicamente plausible.
+    """
+    backend = TeqpAdapter(x=0.5)
+    res = resolver_ciclo(
+        backend, P_alta=3000.0, P_baja=400.0, T_fuente=470.0,
+        T_sumidero=300.032917, x_b=0.5, m_b=1.0, eta_t=0.85, eta_p=0.75,
+        eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80)
+    assert 0.0 < res["eta"] < 1.0
+    assert res["Wnet"] > 0.0
+    assert len(res["estados"]) == 10
 
 
 _MODULOS_NUEVOS = [
