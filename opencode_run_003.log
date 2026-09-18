@@ -1,0 +1,435 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead AGENTS.md
+[0m✱ [0mGlob "**/*.py"[90m 31 matches[0m
+[0m→ [0mRead README.md
+[0m
+[0m$ [0mgit log --oneline -10 && git status
+fatal: your current branch 'master' does not have any commits yet
+[0m
+[0m→ [0mRead tests/test_components.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/components/separador.py
+[0m→ [0mRead src/components/turbina.py
+[0m→ [0mRead src/components/hrvg.py
+[0m→ [0mRead src/components/__init__.py
+[0m→ [0mRead src/components/regenerador.py
+[0m→ [0mRead src/components/absorbedor.py
+[0m→ [0mRead src/components/valvula.py
+[0m→ [0mRead src/components/condensador.py
+[0m→ [0mRead src/components/bomba.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead tests/test_ammonia_water_adapter.py
+[0m→ [0mRead tests/test_properties.py
+[0m→ [0mRead src/properties/_nh3h2o_engine.py[90m [limit=60][0m
+[0m→ [0mRead src/__init__.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead tests/test_cycle_solver.py
+[0m
+[0m$ [0mcat pyproject.toml 2>/dev/null; echo "---REQ---"; cat requirements.txt; echo "---PYTEST---"; cat pytest.ini setup.cfg tox.ini 2>/dev/null
+---REQ---
+# Dependencias del proyecto ciclo Kalina KSC-11 (Python 3.13.x)
+# Instalación recomendada:  python -m venv .venv && .venv\Scripts\pip install -r requirements.txt
+# El camino real de la mezcla NH3-H2O es el motor iapws portado
+# (src/properties/_nh3h2o_engine.py + _kalina_flash.py, ver CONTEXT.md).
+iapws==1.5.5
+numpy
+scipy
+pandas
+openpyxl
+matplotlib
+streamlit
+pytest
+pytest-cov
+
+# Opcional (solo referencia/futuro): pyfluids/CoolProp NO cubre la mezcla NH3-H2O
+# en este equipo (falta REFPROP/NIST, ver CONTEXT.md). PyfluidsAdapter se conserva
+# como referencia; no se instala por defecto.
+# pyfluids>=4.0.0---PYTEST---
+[0m
+[0m$ [0mls -la; echo "---"; ls .venv/Scripts 2>/dev/null | head; echo "---py---"; python --version 2>&1; python -c "import pytest, iapws; print('ok', pytest.__version__)" 2>&1
+total 246
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 15:10 .
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:09 ..
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 15:07 .git
+-rw-r--r-- 1 Usuario 197121   233 Sep 17 14:32 .gitignore
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:24 .opencode
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:33 .pytest_cache
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:24 .venv
+-rw-r--r-- 1 Usuario 197121  2088 Sep 17 14:22 AGENTS.md
+-rw-r--r-- 1 Usuario 197121  6693 Sep 17 14:43 CONTEXT.md
+-rw-r--r-- 1 Usuario 197121  8661 Sep 17 14:06 Kalina_ksc_11_tercero.md
+-rw-r--r-- 1 Usuario 197121  3849 Sep 17 14:54 README.md
+-rw-r--r-- 1 Usuario 197121  8387 Sep 17 15:10 TASK_CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   640 Sep 17 14:31 app.py
+-rw-r--r-- 1 Usuario 197121 98340 Sep 17 14:36 opencode_run_001.log
+-rw-r--r-- 1 Usuario 197121 66685 Sep 17 15:07 opencode_run_002.log
+-rw-r--r-- 1 Usuario 197121  2172 Sep 17 15:12 opencode_run_003.log
+-rw-r--r-- 1 Usuario 197121   609 Sep 17 14:50 requirements.txt
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:33 src
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:54 tests
+---
+Activate.ps1
+activate
+activate.bat
+activate.fish
+coverage-3.13.exe
+coverage.exe
+coverage3.exe
+deactivate.bat
+pip.exe
+pip3.13.exe
+---py---
+Python 3.13.7
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pytest, iapws; print('ok', pytest.__version__)
+    ^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pytest'
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "import pytest, iapws, scipy, numpy; print('ok', pytest.__version__, iapws.__version__)"
+ok 9.1.1 1.5.5
+[0m
+[0m→ [0mRead Kalina_ksc_11_tercero.md
+[0m
+[0m# [0mTodos
+[•] Crear src/state.py con EstadoTermo
+[ ] Implementar los 8 componentes en src/components/
+[ ] Implementar tests/test_components.py con backend mockeado
+[ ] Actualizar README.md (arquitectura/componentes)
+[ ] Correr pytest tests/test_components.py y suite completa
+[0m
+I have the full picture. Let me set up a task list and start implementing.
+[0m← [0mWrite src/state.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/hrvg.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/separador.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/turbina.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/regenerador.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/valvula.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/absorbedor.py
+Wrote file successfully.
+[0m
+[0m→ [0mRead src/components/absorbedor.py
+[0m
+[0m← [0mWrite src/components/condensador.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/bomba.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/test_components.py
+Wrote file successfully.
+[0m
+Now the test file with a deterministic mocked backend:
+[0m← [0mWrite src/components/__init__.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/__init__.py
+Wrote file successfully.
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_components.py -v
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 29 items
+
+tests/test_components.py::test_estado_termo_es_contenedor_con_valores_por_defecto PASSED [  3%]
+tests/test_components.py::test_hrvg_efectividad PASSED                   [  6%]
+tests/test_components.py::test_separador_regla_de_la_palanca PASSED      [ 10%]
+tests/test_components.py::test_separador_sin_caudal_deja_m_en_none PASSED [ 13%]
+tests/test_components.py::test_separador_propaga_excepcion_del_backend PASSED [ 17%]
+tests/test_components.py::test_turbina_eficiencia_isentropica PASSED     [ 20%]
+tests/test_components.py::test_turbina_sin_caudal_normaliza_wt_por_unidad_de_masa PASSED [ 24%]
+tests/test_components.py::test_regenerador_efectividad_y_lado_frio_pass_through PASSED [ 27%]
+tests/test_components.py::test_valvula_isoentalpica PASSED               [ 31%]
+tests/test_components.py::test_absorbedor_mezcla_adiabatica PASSED       [ 34%]
+tests/test_components.py::test_condensador_efectividad PASSED            [ 37%]
+tests/test_components.py::test_bomba_eficiencia_isentropica PASSED       [ 41%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/state.py] PASSED [ 44%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/hrvg.py] PASSED [ 48%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/separador.py] PASSED [ 51%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/turbina.py] PASSED [ 55%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/regenerador.py] PASSED [ 58%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/valvula.py] PASSED [ 62%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/absorbedor.py] PASSED [ 65%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/condensador.py] PASSED [ 68%]
+tests/test_components.py::test_archivos_dentro_del_limite_de_200_lineas[src/components/bomba.py] PASSED [ 72%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/hrvg.py] PASSED [ 75%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/separador.py] PASSED [ 79%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/turbina.py] PASSED [ 82%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/regenerador.py] PASSED [ 86%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/valvula.py] PASSED [ 89%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/absorbedor.py] PASSED [ 93%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/condensador.py] PASSED [ 96%]
+tests/test_components.py::test_componentes_no_importan_backends_concretos[src/components/bomba.py] PASSED [100%]
+
+============================= 29 passed in 0.15s ==============================
+[0m
+Now update the README:
+[0m← [0mEdit README.md
+Index: D:\Desktop\ciclo_kalina_tercero\README.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\README.md
++++ D:\Desktop\ciclo_kalina_tercero\README.md
+@@ -3,22 +3,44 @@
+ Aplicación Python para el análisis energético y exergético (exergía física, sin
+ exergía química) de un ciclo Kalina KSC-11 con mezcla NH3-H2O como fluido de
+ trabajo, con sensibilidad paramétrica, gráficas matplotlib y exportación a Excel.
+ 
+-## Estado actual (scaffold — primer paso)
++## Estado actual
+ 
+-Solo existe la **capa de propiedades** (patrón adapter) y la estructura del
+-proyecto. Todo lo demás es un stub explícito con `# TODO(tarea futura)`:
++Existen la **capa de propiedades** (patrón adapter), el tipo compartido
++`EstadoTermo` y los **8 componentes** del ciclo, cada uno probado de forma
++aislada con un `PropertyBackend` mockeado. El resto son stubs con
++`# TODO(tarea futura)`:
+ 
+ | Qué | Estado |
+ |---|---|
+ | `src/properties/` — interfaz `PropertyBackend` + adapters | ✅ Implementado y probado |
+-| `src/components/` (8 componentes del ciclo) | ⏳ Stub |
++| `src/state.py` — `EstadoTermo` (punto del ciclo) | ✅ Implementado |
++| `src/components/` (8 componentes del ciclo) | ✅ Implementado y probado |
+ | `src/cycle_solver.py`, `src/exergy.py` | ⏳ Stub |
+ | `src/sensitivity.py`, `src/export_excel.py`, `src/plots.py` | ⏳ Stub |
+ | `app.py` (UI Streamlit) | ⏳ Stub |
+-| `tests/` (componentes, solver, exergía, sensibilidad, export) | ⏳ Placeholders vacíos |
++| `tests/` (solver, exergía, sensibilidad, export) | ⏳ Placeholders vacíos |
+ 
++### Arquitectura de componentes
++
++Cada componente es una **función pura** `resolver(...)` que consume
++`EstadoTermo` de entrada, un `PropertyBackend` (solo la interfaz, nunca un
++backend concreto) y sus parámetros propios, y devuelve `EstadoTermo`(s) de
++salida más las cantidades de energía relevantes en kW. Su topología sigue el
++mapa de estados de `CONTEXT.md`:
++
++| Módulo | Estados | Método |
++|---|---|---|
++| `src/components/hrvg.py` | 1 → 2 | efectividad `ε_HRVG` |
++| `src/components/separador.py` | 2 → 3 + 5 | separador ideal (equilibrio L-V, regla de la palanca) |
++| `src/components/turbina.py` | 3 → 4 | eficiencia isentrópica `η_t` |
++| `src/components/regenerador.py` | 5 → 6 (y 10 pass-through) | efectividad `ε_reg` |
++| `src/components/valvula.py` | 6 → 7 | isoentálpica (`h7 = h6`) |
++| `src/components/absorbedor.py` | 4 + 7 → 8 | mezcla adiabática (masa/especie/energía) |
++| `src/components/condensador.py` | 8 → 9 | efectividad `ε_cond` |
++| `src/components/bomba.py` | 9 → 10 | eficiencia isentrópica `η_p` |
++
+ ## Estructura
+ 
+ ```
+ app.py                      UI Streamlit (futuro)
+
+[0m
+[0m← [0mEdit README.md
+Index: D:\Desktop\ciclo_kalina_tercero\README.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\README.md
++++ D:\Desktop\ciclo_kalina_tercero\README.md
+@@ -51,15 +51,17 @@
+     _kalina_flash.py        Flash T,P,w -> h,s,fase,q + inversión h/s -> T
+     ammonia_water_adapter.py Mezcla NH3-H2O — CAMINO REAL (motor portado)
+     pyfluids_adapter.py     Mezcla NH3-H2O vía pyfluids (SOLO referencia)
+     iapws_adapter.py        Agua pura vía IAPWS-IF97 (iapws 1.5.5)
++  state.py                  EstadoTermo (punto del ciclo, dataclass)
+   components/               HRVG, separador, turbina, regenerador, válvula,
+-                            absorbedor, condensador, bomba (futuro)
++                            absorbedor, condensador, bomba (implementados)
+   cycle_solver.py, exergy.py, sensitivity.py, export_excel.py, plots.py (futuro)
+ tests/
+   test_properties.py        Tests de la capa de propiedades (mocks + humo)
+   test_ammonia_water_adapter.py  Tests del adapter de la mezcla (round-trips)
+-  test_components.py, ...   Placeholders (futuro)
++  test_components.py        Tests unitarios de los 8 componentes (backend fake)
++  test_cycle_solver.py, ... Placeholders (futuro)
+ requirements.txt
+ ```
+ 
+ Convenciones: Python 3.13.x, archivos `.py` ≤ 200 líneas (excepción: el motor
+
+[0m
+[0m← [0mEdit README.md
+Index: D:\Desktop\ciclo_kalina_tercero\README.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\README.md
++++ D:\Desktop\ciclo_kalina_tercero\README.md
+@@ -74,9 +74,9 @@
+ 
+ ```bash
+ python -m venv .venv
+ .venv\Scripts\pip install -r requirements.txt
+-.venv\Scripts\python -m pytest tests/test_properties.py tests/test_ammonia_water_adapter.py -v
++.venv\Scripts\python -m pytest tests/test_properties.py tests/test_ammonia_water_adapter.py tests/test_components.py -v
+ ```
+ 
+ Cobertura (futuro): `.venv\Scripts\python -m pytest --cov=src --cov-report=term-missing`.
+ 
+
+[0m
+Now run the full suite:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q
+...............................................s                         [100%]
+============================== warnings summary ===============================
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+47 passed, 1 skipped, 5 warnings in 46.61s
+[0m
+[0m$ [0mgit status --short; echo "---lineas---"; for f in src/state.py src/components/hrvg.py src/components/separador.py src/components/turbina.py src/components/regenerador.py src/components/valvula.py src/components/absorbedor.py src/components/condensador.py src/components/bomba.py tests/test_components.py; do printf "%4d  %s\n" "$(wc -l < "$f")" "$f"; done
+?? .gitignore
+?? .opencode/
+?? AGENTS.md
+?? CONTEXT.md
+?? Kalina_ksc_11_tercero.md
+?? README.md
+?? TASK_CONTEXT.md
+?? app.py
+?? opencode_run_001.log
+?? opencode_run_002.log
+?? opencode_run_003.log
+?? requirements.txt
+?? src/
+?? tests/
+---lineas---
+  33  src/state.py
+  49  src/components/hrvg.py
+  87  src/components/separador.py
+  46  src/components/turbina.py
+  60  src/components/regenerador.py
+  35  src/components/valvula.py
+  46  src/components/absorbedor.py
+  44  src/components/condensador.py
+  44  src/components/bomba.py
+ 255  tests/test_components.py
+[0m
+The test file exceeds the project-wide 200-line limit. Let me condense it:
+[0m← [0mWrite tests/test_components.py
+Wrote file successfully.
+[0m
+[0m$ [0mwc -l tests/test_components.py
+214 tests/test_components.py
+[0m
+[0m← [0mWrite tests/test_components.py
+Wrote file successfully.
+[0m
+[0m$ [0mwc -l tests/test_components.py && .venv/Scripts/python.exe -m pytest tests/test_components.py -q
+197 tests/test_components.py
+............                                                             [100%]
+12 passed in 0.09s
+[0m
+Now the full suite:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q
+..............................s                                          [100%]
+============================== warnings summary ===============================
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+30 passed, 1 skipped, 5 warnings in 47.14s
+[0m
+[0m# [0mTodos
+[✓] Crear src/state.py con EstadoTermo
+[✓] Implementar los 8 componentes en src/components/
+[✓] Implementar tests/test_components.py con backend mockeado
+[✓] Actualizar README.md (arquitectura/componentes)
+[✓] Correr pytest tests/test_components.py y suite completa
+[0m
+STATUS: done
+
+SUMMARY: Se creó `src/state.py` con el dataclass `EstadoTermo` y se implementaron completos los 8 componentes del ciclo Kalina KSC-11 como funciones puras `resolver(...)` que consumen `EstadoTermo`(s) + `PropertyBackend` (solo la interfaz) y devuelven estados de salida + energías en kW. Se implementó `tests/test_components.py` con un `PropertyBackend` fake determinista y se actualizó el README.
+
+FILES_CHANGED:
+- `src/state.py` (creado) — `EstadoTermo`.
+- `src/components/hrvg.py`, `separador.py`, `turbina.py`, `regenerador.py`, `valvula.py`, `absorbedor.py`, `condensador.py`, `bomba.py` (implementados).
+- `src/components/__init__.py` (actualizado el docstring, que decía que los módulos eran stubs; ver ASSUMPTIONS).
+- `tests/test_components.py` (implementado, 197 líneas).
+- `README.md` (sección "Estado actual" + nueva "Arquitectura de componentes", tabla de módulos/estados/método y comando de tests).
+
+No se tocó: `src/cycle_solver.py`, `src/exergy.py`, `src/sensitivity.py`, `src/export_excel.py`, `src/plots.py`, `app.py` ni nada de `src/properties/`.
+
+TESTS:
+- `tests/test_components.py`: 12 tests con `FakeBackend(PropertyBackend)` de leyes lineales (`h = T+10x+1e-3P`, `s = 0.01T+x`, `bubble_point = 400−100x`, `dew_point = 420−100x`), de modo que cada salida se calcula a mano y se compara con `pytest.approx`. Incluye: default del dataclass, cada componente, propagación de `PropertyRangeError` del backend en el separador, y dos tests de restricciones (≤200 líneas; ningún componente menciona `iapws`/adapters concretos).
+- Suite completa del proyecto.
+
+RESULTS:
+- `.venv\Scripts\python -m pytest tests/test_components.py -v` → **12 passed in 0.09s**.
+- `.venv\Scripts\python -m pytest tests/ -q` → **30 passed, 1 skipped, 5 warnings in 47.14s** (el skip es el humo real de pyfluids, pre-existente; los warnings son de `test_ammonia_water_adapter`, pre-existentes del motor `iapws`, no de esta tarea).
+- Verificación de fórmulas implementadas (cita por componente):
+  - `hrvg.py` → CONTEXT.md líneas 18-19: `h2 = h1 + ε·(h2,max − h1)`, `h2,max = h(P_alta, T_fuente, x_b)`; devuelve `{"Qi": m_b·(h2−h1)}`.
+  - `separador.py` → CONTEXT.md líneas 29-35: separador ideal, equilibrio L-V a la P,T de entrada + regla de la palanca (ver ASSUMPTIONS/UNRESOLVED).
+  - `turbina.py` → CONTEXT.md línea 55: `h4s = h(P_baja, s3, x3)`, `h4 = h3 − η_t·(h3−h4s)`.
+  - `regenerador.py` → CONTEXT.md líneas 20-21: `h6,min = h(P_alta, T10, x5)`, `h6 = h5 − ε_reg·(h5−h6,min)`.
+  - `valvula.py` → CONTEXT.md línea 49: `h7 = h6` (isoentálpica).
+  - `absorbedor.py` → CONTEXT.md líneas 39-45: `ṁ8 = ṁ4+ṁ7`, `x8 = (ṁ4x4+ṁ7x7)/ṁ8`, `h8 = (ṁ4h4+ṁ7h7)/ṁ8`.
+  - `condensador.py` → CONTEXT.md líneas 22-23: `h9,min = h(P_baja, T_sumidero, x_b)`, `h9 = h8 − ε_cond·(h8−h9,min)`; devuelve `{"Qout": m·(h8−h9)}`.
+  - `bomba.py` → CONTEXT.md línea 56: `h10s = h(P_alta, s9, x9)`, `h10 = h9 + (h10s−h9)/η_p`; devuelve `{"Wp": m·(h10−h9)}`.
+
+ERRORS: ninguno.
+
+ASSUMPTIONS:
+1. **Separador (interpretación principal)**: la interfaz `PropertyBackend` no expone un flash `(P,T)→composiciones`; solo `bubble_point(P,x)` y `dew_point(P,x)`. Se toman `P` y la `T` de la corriente de entrada como P,T de equilibrio y se **invierten numéricamente** ambas curvas por bisección (100 iteraciones) para hallar `x_líq` (burbuja) y `y_vap` (rocío), y se aplica la regla de la palanca sobre `z = entrada.x`. Si no hay cambio de signo se lanza `ValueError`; las excepciones del backend se propagan sin envolver.
+2. **Regenerador, lado frío**: CONTEXT.md solo define `h6` (lado caliente, estado 6); no hay fórmula para el estado 1. Se devuelve el lado frío **pass-through** (copia del estado 10), como TASK_CONTEXT permite explícitamente.
+3. **Regenerador, `dict`**: TASK_CONTEXT no especifica clave de energía para este componente; incluí `{"Qreg": m5·(h5−h6)}` (kW) porque el objetivo general la pide y sale directo de la fórmula dada (queda `None` si `m5` no está fijado). Válvula, absorbedor, separador devuelven `{}` (no hay Q/W externo).
+4. **`q`/`fase`**: la interfaz no expone título/fase, así que quedan `None` en todos los componentes salvo el separador, que sí conoce las fases saturadas (`q=1,"vapor"` y `q=0,"liquido"`).
+5. **`etiqueta`**: se asigna el número del mapa de estados de CONTEXT.md a cada salida ("2","3","4","5","6","7","8","9","10").
+6. **Absorbedor**: `P8 = entrada_turbina.P` (sin caída de presión; ambas entradas a `P_baja`).
+7. **Turbina/regenerador con `m=None`**: turbina normaliza `Wt = h3−h4` (kJ/kg, documentado en comentario); regenerador deja `Qreg=None`.
+8. Se actualizó el docstring de `src/components/__init__.py` (no estaba en `Files`) porque afirmaba que los 8 módulos eran stubs, lo que contradecía el criterio de aceptación 1.
+
+UNRESOLVED:
+1. **Separador**: no existe en la interfaz ningún método directo de equilibrio L-V `(P,T)`; la inversión por bisección es mi mejor interpretación. Si una tarea futura añade un método tipo `flash_TP`/`estado(P,T,x)` a `PropertyBackend`, conviene reemplazarla. La cota inferior de composición es `1e-6` (x debe estar en `(0,1)`).
+2. **Estado 1 (salida fría del regenerador)**: no hay fórmula en CONTEXT.md; queda como pass-through hasta que el director defina el método (p.ej. balance de energía o efectividad del lado frío).
+3. **Clave `"Qreg"`**: no fue especificada en TASK_CONTEXT; si el solver espera otro nombre, ajustar.
+4. `exergia_fisica` queda siempre `None` (es de la tarea de exergía, fuera de alcance aquí).
+5. No se requirió acceso web (`webfetch`), así que no aplica.
+
+RECOMMENDATIONS:
+- Para el siguiente task (`cycle_solver.py`): definir cómo se fija el estado 1 (cierra el lazo bomba→regenerador→HRVG) y confirmar la clave energética del regenerador antes de cablear el solver.
+- Considerar exponer en `PropertyBackend` un flash `(P,T,x)→(x_líq, y_vap, q)` para sustituir la inversión del separador (más rápido y directo con el motor real).
+- Al conectar el solver real, recordar que `quality` como entrada no está soportado por `AmmoniaWaterAdapter` (documentado en la tarea anterior): los componentes solo piden `h(P,T,x)` y `h(P,s,x)`, compatible.

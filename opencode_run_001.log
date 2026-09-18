@@ -1,0 +1,2084 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+Ahora leo el archivo de referencia `Kalina_ksc_11_tercero.md` (secciones 3 y 7) y reviso el estado actual del directorio.
+[0m✱ [0mGlob "*.md"[90m 4 matches[0m
+[0m
+[0m$ [0mls -la
+total 49
+drwxr-xr-x 1 Usuario 197121    0 Sep 17 14:23 .
+drwxr-xr-x 1 Usuario 197121    0 Sep 17 14:09 ..
+drwxr-xr-x 1 Usuario 197121    0 Sep 17 14:22 .git
+drwxr-xr-x 1 Usuario 197121    0 Sep 17 14:24 .opencode
+-rw-r--r-- 1 Usuario 197121 2088 Sep 17 14:22 AGENTS.md
+-rw-r--r-- 1 Usuario 197121 4699 Sep 17 14:23 CONTEXT.md
+-rw-r--r-- 1 Usuario 197121 8661 Sep 17 14:06 Kalina_ksc_11_tercero.md
+-rw-r--r-- 1 Usuario 197121 6453 Sep 17 14:23 TASK_CONTEXT.md
+-rw-r--r-- 1 Usuario 197121  436 Sep 17 14:24 opencode_run_001.log
+[0m
+[0m→ [0mRead Kalina_ksc_11_tercero.md
+[0m
+[0m$ [0mpython --version 2>&1; python -c "import sys; print(sys.executable)" 2>&1
+Python 3.13.7
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+[0m
+Contexto leído. Ahora verifico el entorno Python y los paquetes disponibles antes de escribir código.
+[0m$ [0mpython -c "import pyfluids; print('pyfluids', pyfluids.__version__ if hasattr(pyfluids,'__version__') else 'ok')" 2>&1; python -c "import iapws; print('iapws', iapws.__version__)" 2>&1; python -c "import pytest; print('pytest', pytest.__version__)" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pyfluids; print('pyfluids', pyfluids.__version__ if hasattr(pyfluids,'__version__') else 'ok')
+    ^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pyfluids'
+iapws 1.5.5
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pytest; print('pytest', pytest.__version__)
+    ^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'pytest'
+[0m
+Entorno: Python 3.13.7, `iapws 1.5.5` instalado globalmente, pero `pyfluids` y `pytest` no. Según las constraints, crearé un venv local para probar (documentado en RESULTS). Primero lo creo e instalo.
+[0m$ [0mpython -m venv .venv --system-site-packages && .venv/Scripts/python.exe -m pip --version
+pip 25.2 from D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\pip (python 3.13)
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pip install pytest pytest-cov pyfluids 2>&1 | tail -20
+Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting coverage>=7.10.6 (from coverage[toml]>=7.10.6->pytest-cov)
+  Downloading coverage-7.16.1-cp313-cp313-win_amd64.whl.metadata (8.4 kB)
+Requirement already satisfied: coolprop==8.0.0 in c:\users\usuario\appdata\local\programs\python\python313\lib\site-packages (from pyfluids) (8.0.0)
+Requirement already satisfied: numpy>=1.20 in c:\users\usuario\appdata\local\programs\python\python313\lib\site-packages (from coolprop==8.0.0->pyfluids) (2.4.6)
+Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading pytest_cov-7.1.0-py3-none-any.whl (22 kB)
+Downloading pyfluids-4.0.0-py3-none-any.whl (24 kB)
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading coverage-7.16.1-cp313-cp313-win_amd64.whl (226 kB)
+Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ---------------------------------------- 1.3/1.3 MB 11.9 MB/s  0:00:00
+Installing collected packages: pygments, pluggy, iniconfig, coverage, colorama, pytest, pyfluids, pytest-cov
+
+Successfully installed colorama-0.4.6 coverage-7.16.1 iniconfig-2.3.0 pluggy-1.6.0 pyfluids-4.0.0 pygments-2.21.0 pytest-9.1.1 pytest-cov-7.1.0
+
+[notice] A new release of pip is available: 25.2 -> 26.2.1
+[notice] To update, run: D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe -m pip install --upgrade pip
+[0m
+`pyfluids 4.0.0` instalado en el venv (CoolProp 8.0.0 ya estaba global). Ahora inspecciono la API real de pyfluids para la mezcla NH3-H2O, para implementar el adapter con llamadas correctas.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import pyfluids, inspect
+from pyfluids import Fluid, FluidsList, Input, InputUnit, Mixture
+print('pyfluids module file:', pyfluids.__file__)
+print()
+print('Mixture sig:', inspect.signature(Mixture.__init__))
+print()
+print('Mixture methods:', [m for m in dir(Mixture) if not m.startswith('_')])
+print()
+print('Input methods:', [m for m in dir(Input) if not m.startswith('_')])
+print()
+print('InputUnit:', [u for u in dir(InputUnit) if not u.startswith('_')])
+"
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+    from pyfluids import Fluid, FluidsList, Input, InputUnit, Mixture
+ImportError: cannot import name 'InputUnit' from 'pyfluids' (D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\pyfluids\__init__.py)
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import pyfluids
+print('pyfluids exports:', [n for n in dir(pyfluids) if not n.startswith('_')])
+"
+pyfluids exports: ['Config', 'ConfigBuilder', 'Fluid', 'FluidsList', 'HumidAir', 'Input', 'InputHumidAir', 'Mix', 'Mixture', 'OutputsValidator', 'Phases', 'UnitConverter', 'UnitsSystem', 'config', 'enums', 'fluids', 'humid_air', 'io']
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+from pyfluids import Mixture, Mix, Input, Fluid, FluidsList, Phases
+print('Mixture.__init__:', inspect.signature(Mixture.__init__))
+print('Mix attrs:', [n for n in dir(Mix) if not n.startswith('_')])
+print('Mixture methods:', [m for m in dir(Mixture) if not m.startswith('_')])
+print('Fluid methods:', [m for m in dir(Fluid) if not m.startswith('_')])
+print('Input attrs:', [n for n in dir(Input) if not n.startswith('_')])
+print('Phases:', [p for p in dir(Phases) if not p.startswith('_')])
+"
+Mixture.__init__: (self, fluids: 'list[FluidsList]', fractions: 'list[float]')
+Mix attrs: ['Mass', 'Volume']
+Mixture methods: ['as_dict', 'as_json', 'bubble_point_at_pressure', 'bubble_point_at_temperature', 'clone', 'compressibility', 'compression_to_pressure', 'conductivity', 'cooling_to_enthalpy', 'cooling_to_temperature', 'critical_pressure', 'critical_temperature', 'density', 'dew_point_at_pressure', 'dew_point_at_temperature', 'dynamic_viscosity', 'enthalpy', 'entropy', 'expansion_to_pressure', 'factory', 'fluids', 'fractions', 'freezing_temperature', 'heating_to_enthalpy', 'heating_to_temperature', 'internal_energy', 'isenthalpic_expansion_to_pressure', 'isentropic_compression_to_pressure', 'isentropic_expansion_to_pressure', 'kinematic_viscosity', 'max_pressure', 'max_temperature', 'min_pressure', 'min_temperature', 'mixing', 'molar_mass', 'phase', 'prandtl', 'pressure', 'quality', 'reset', 'sound_speed', 'specific_heat', 'specific_volume', 'specify_phase', 'surface_tension', 'temperature', 'triple_pressure', 'triple_temperature', 'two_phase_point_at_pressure', 'units_system', 'unspecify_phase', 'update', 'with_state']
+Fluid methods: ['as_dict', 'as_json', 'bubble_point_at_pressure', 'bubble_point_at_temperature', 'clone', 'compressibility', 'compression_to_pressure', 'conductivity', 'cooling_to_enthalpy', 'cooling_to_temperature', 'coolprop_backend', 'critical_pressure', 'critical_temperature', 'density', 'dew_point_at_pressure', 'dew_point_at_temperature', 'dynamic_viscosity', 'enthalpy', 'entropy', 'expansion_to_pressure', 'factory', 'fraction', 'freezing_temperature', 'heating_to_enthalpy', 'heating_to_temperature', 'internal_energy', 'isenthalpic_expansion_to_pressure', 'isentropic_compression_to_pressure', 'isentropic_expansion_to_pressure', 'kinematic_viscosity', 'max_pressure', 'max_temperature', 'min_pressure', 'min_temperature', 'mixing', 'molar_mass', 'name', 'phase', 'prandtl', 'pressure', 'quality', 'reset', 'sound_speed', 'specific_heat', 'specific_volume', 'specify_phase', 'surface_tension', 'temperature', 'triple_pressure', 'triple_temperature', 'two_phase_point_at_pressure', 'units_system', 'unspecify_phase', 'update', 'with_state']
+Input attrs: ['coolprop_key', 'density', 'enthalpy', 'entropy', 'internal_energy', 'pressure', 'quality', 'specific_volume', 'temperature', 'value']
+Phases: ['CriticalPoint', 'Gas', 'Liquid', 'NotImposed', 'Supercritical', 'SupercriticalGas', 'SupercriticalLiquid', 'TwoPhase', 'Unknown']
+[0m
+`pyfluids` 4.0.0 tiene `Mixture(fluids, fractions)` y métodos `bubble_point_at_pressure`/`dew_point_at_pressure`. Verifico unidades y firma de `with_state` con un cálculo real de la mezcla NH3-H2O.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+from pyfluids import Mixture, FluidsList, Input
+print('with_state sig:', inspect.signature(Mixture.with_state))
+print('update sig:', inspect.signature(Mixture.update))
+print('Input sig:', inspect.signature(Input.__init__) if hasattr(Input,'__init__') else 'n/a')
+import pyfluids.io as pio
+print([n for n in dir(pio) if not n.startswith('_')][:20])
+" 2>&1
+with_state sig: (self, first_input: 'Input', second_input: 'Input') -> 'Self'
+update sig: (self, first_input: 'Input', second_input: 'Input')
+Input sig: (self, coolprop_key: 'parameters', value: 'float')
+['Input', 'InputHumidAir', 'OutputsValidator', 'abstract_input', 'input', 'input_humid_air', 'outputs_validator']
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+from pyfluids import Mixture, FluidsList, Input
+import inspect
+print('Input.pressure:', inspect.signature(Input.pressure))
+print('Input.temperature:', inspect.signature(Input.temperature))
+print('Input.enthalpy:', inspect.signature(Input.enthalpy))
+print('Input.entropy:', inspect.signature(Input.entropy))
+print('Input.quality:', inspect.signature(Input.quality))
+m = Mixture([FluidsList.Ammonia, FluidsList.Water], [0.5, 0.5])
+st = m.with_state(Input.pressure(3000e3), Input.temperature(400.0))
+print('T:', st.temperature, 'P:', st.pressure, 'h:', st.enthalpy, 's:', st.entropy, 'phase:', st.phase)
+bp = m.bubble_point_at_pressure(3000e3)
+dp = m.dew_point_at_pressure(3000e3)
+print('bubble T:', bp.temperature, 'dew T:', dp.temperature)
+print('quality:', st.quality)
+" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 9, in <module>
+    m = Mixture([FluidsList.Ammonia, FluidsList.Water], [0.5, 0.5])
+  File "D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\pyfluids\fluids\mixture.py", line 56, in __init__
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: Invalid components mass fractions! Their sum should be equal to 100 %.
+Input.pressure: (value: 'float') -> 'Input'
+Input.temperature: (value: 'float') -> 'Input'
+Input.enthalpy: (value: 'float') -> 'Input'
+Input.entropy: (value: 'float') -> 'Input'
+Input.quality: (value: 'float') -> 'Input'
+[0m
+Detalle clave: las fracciones de `Mixture` deben sumar 100 (porcentaje), no 0–1. Verifico el cálculo completo.
+[0m$ [0m.venv/Scripts/python.exe -c "
+from pyfluids import Mixture, FluidsList, Input, Phases
+m = Mixture([FluidsList.Ammonia, FluidsList.Water], [50.0, 50.0])
+st = m.with_state(Input.pressure(3000e3), Input.temperature(400.0))
+print('T:', st.temperature, 'K; P:', st.pressure, 'Pa; h:', st.enthalpy, 'J/kg; s:', st.entropy, 'J/kgK; phase:', st.phase)
+bp = m.bubble_point_at_pressure(3000e3)
+dp = m.dew_point_at_pressure(3000e3)
+print('bubble T:', bp.temperature, 'dew T:', dp.temperature)
+print('quality:', st.quality)
+# prueba h -> T
+st2 = m.with_state(Input.pressure(3000e3), Input.enthalpy(st.enthalpy))
+print('T from Ph:', st2.temperature)
+# prueba P, T con x en el limite del rango de validez de CoolProp: P=3000 kPa T=400K es valido?
+" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+    m = Mixture([FluidsList.Ammonia, FluidsList.Water], [50.0, 50.0])
+  File "D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\pyfluids\fluids\mixture.py", line 61, in __init__
+    self._backend = AbstractState(
+                    ~~~~~~~~~~~~~^
+        self.__AVAILABLE_BACKEND,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+        "&".join(fluid.coolprop_name for fluid in self.__fluids),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+ValueError: Could not match the binary pair [7664-41-7,7732-18-5] - for now this is an error.
+[0m
+La mezcla NH3-H2O falla con el backend de pyfluids 4.0.0. Verifico qué backends de CoolProp soportan la mezcla directamente.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import CoolProp
+print('version', CoolProp.__version__)
+for backend in ['HEOS', 'BICUBIC', 'REFPROP', 'SRK', 'PR', 'INCOMP']:
+    try:
+        st = CoolProp.AbstractState(backend, 'Ammonia&Water')
+        print(backend, '-> OK, backends:', st.get_backend())
+    except Exception as e:
+        print(backend, '-> FAIL:', str(e)[:80])
+" 2>&1
+version 8.0.0
+HEOS -> FAIL: Could not match the binary pair [7664-41-7,7732-18-5] - for now this is an error
+BICUBIC -> FAIL: Could not match the binary pair [7664-41-7,7732-18-5] - for now this is an error
+REFPROP -> FAIL: You cannot use the REFPROPMixtureBackend.
+SRK -> FAIL: 'CoolProp.CoolProp.AbstractState' object has no attribute 'get_backend'
+PR -> FAIL: 'CoolProp.CoolProp.AbstractState' object has no attribute 'get_backend'
+INCOMP -> FAIL: For INCOMP backend, name vector must be one element long
+Good news: It is possible to use REFPROP on your system! However, the library 
+could not be loaded. Please make sure that REFPROP is available on your system.
+
+Neither found in current location nor found in system PATH.
+If you already obtained a copy of REFPROP from http://www.nist.gov/srd/, 
+add location of REFPROP to the PATH environment variable or your library path.
+
+In case you do not use Windows, have a look at https://github.com/jowr/librefprop.so 
+to find instructions on how to compile your own version of the REFPROP library.
+
+COOLPROP_REFPROP_ROOT: ?
+ALTERNATIVE_REFPROP_PATH: 
+ERROR: Could not load REFPROP (REFPRP64.dll) due to: 126. Make sure the library is in your system search path. In case you run 64bit Windows and you have a REFPROP license, try installing the 64bit DLL from NIST.
+[0m
+Hallo crítico: CoolProp 8.0.0 no soporta la mezcla binaria NH3-H2O con ningún backend disponible (HEOS/BICUBIC fallan; REFPROP requiere DLL licenciada de NIST). Voy a confirmar qué mezclas soporta realmente CoolProp para reportarlo con precisión.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import CoolProp
+# lista de nombres de fluidos y de mezclas conocidas
+print('fluids sample:', CoolProp.get_global_param_string('Fluids')[:200])
+keys = ['mixture_types', 'mixture_binary_pairs', 'pure_fluid_names', 'aliases']
+for k in keys:
+    try:
+        v = CoolProp.get_global_param_string(k)
+        print(k, '=', v[:300])
+    except Exception as e:
+        print(k, 'FAIL:', str(e)[:120])
+" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 4, in <module>
+    print('fluids sample:', CoolProp.get_global_param_string('Fluids')[:200])
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'CoolProp' has no attribute 'get_global_param_string'
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import CoolProp
+print([n for n in dir(CoolProp) if 'mixture' in n.lower() or 'fluid' in n.lower() or 'param' in n.lower()][:40])
+print([n for n in dir(CoolProp.CoolProp) if not n.startswith('_')])
+" 2>&1
+['FLUID_TYPE_INCOMPRESSIBLE_LIQUID', 'FLUID_TYPE_INCOMPRESSIBLE_SOLUTION', 'FLUID_TYPE_PSEUDOPURE', 'FLUID_TYPE_PURE', 'FLUID_TYPE_REFPROP', 'FLUID_TYPE_UNDEFINED', 'INVALID_PARAMETER', 'MIXTURE_STABILITY_ALGORITHM', 'OVERWRITE_FLUIDS', 'REFPROP_DONT_ESTIMATE_INTERACTION_PARAMETERS', 'REFPROP_IGNORE_ERROR_ESTIMATED_INTERACTION_PARAMETERS', '__fluids__', 'iundefined_parameter']
+['ALLOW_SVDSBTL_IN_PROPSSI', 'ALTERNATIVE_REFPROP_HMX_BNC_PATH', 'ALTERNATIVE_REFPROP_LIBRARY_PATH', 'ALTERNATIVE_REFPROP_PATH', 'ALTERNATIVE_SVDTABLES_DIRECTORY', 'ALTERNATIVE_TABLES_DIRECTORY', 'ASSUME_CRITICAL_POINT_STABLE', 'AbstractState', 'CRITICAL_SPLINES_ENABLED', 'CRITICAL_WITHIN_1UK', 'ChebyshevApproximation1D', 'ChebyshevExpansion', 'CriticalState', 'DONT_CHECK_PROPERTY_LIMITS', 'DmassHmass_INPUTS', 'DmassP_INPUTS', 'DmassQ_INPUTS', 'DmassQmass_INPUTS', 'DmassSmass_INPUTS', 'DmassT_INPUTS', 'DmassUmass_INPUTS', 'DmolarHmolar_INPUTS', 'DmolarP_INPUTS', 'DmolarQ_INPUTS', 'DmolarQmass_INPUTS', 'DmolarSmolar_INPUTS', 'DmolarT_INPUTS', 'DmolarUmolar_INPUTS', 'ENABLE_MELTING_CALORIC_HS', 'ENABLE_SUPERANCILLARIES', 'FLOAT_PUNCTUATION', 'FLUID_TYPE_INCOMPRESSIBLE_LIQUID', 'FLUID_TYPE_INCOMPRESSIBLE_SOLUTION', 'FLUID_TYPE_PSEUDOPURE', 'FLUID_TYPE_PURE', 'FLUID_TYPE_REFPROP', 'FLUID_TYPE_UNDEFINED', 'FluidsList', 'GuessesStructure', 'HAPropsSI', 'HAProps_Aux', 'HENRYS_LAW_TO_GENERATE_VLE_GUESSES', 'HSU_D_TWOPHASE_EOS_POLISH', 'HmassP_INPUTS', 'HmassQ_INPUTS', 'HmassQmass_INPUTS', 'HmassSmass_INPUTS', 'HmassT_INPUTS', 'HmolarP_INPUTS', 'HmolarQ_INPUTS', 'HmolarQmass_INPUTS', 'HmolarSmolar_INPUTS', 'HmolarT_INPUTS', 'INPUT_PAIR_INVALID', 'INVALID_PARAMETER', 'IntervalMatch', 'LIST_STRING_DELIMITER', 'MAXIMUM_TABLE_DIRECTORY_SIZE_IN_GB', 'MIXTURE_STABILITY_ALGORITHM', 'MonotonicExpansionMatch', 'NORMALIZE_GAS_CONSTANTS', 'OVERWRITE_BINARY_INTERACTION', 'OVERWRITE_DEPARTURE_FUNCTION', 'OVERWRITE_FLUIDS', 'PHASE_ENVELOPE_STARTING_PRESSURE_PA', 'PQ_INPUTS', 'PQmass_INPUTS', 'PSmass_INPUTS', 'PSmolar_INPUTS', 'PT_INPUTS', 'PUmass_INPUTS', 'PUmolar_INPUTS', 'PhaseEnvelopeData', 'PhaseSI', 'Props1SI', 'PropsSI', 'PropsSImulti', 'PyCriticalState', 'PyGuessesStructure', 'PyPhaseEnvelopeData', 'PySpinodalData', 'QSmass_INPUTS', 'QSmolar_INPUTS', 'QT_INPUTS', 'QmassSmass_INPUTS', 'QmassSmolar_INPUTS', 'QmassT_INPUTS', 'REFPROP_DONT_ESTIMATE_INTERACTION_PARAMETERS', 'REFPROP_ERROR_THRESHOLD', 'REFPROP_IGNORE_ERROR_ESTIMATED_INTERACTION_PARAMETERS', 'REFPROP_RESOLVE_COOLPROP_ALIASES', 'REFPROP_USE_GERG', 'REFPROP_USE_PENGROBINSON', 'R_U_CODATA', 'SAVE_RAW_TABLES', 'SPINODAL_MINIMUM_DELTA', 'SVDSBTL_SAMPLING_THREADS', 'SimpleState', 'SmassT_INPUTS', 'SmassUmass_INPUTS', 'SmolarT_INPUTS', 'SmolarUmolar_INPUTS', 'SpinodalData', 'SuperAncillary', 'TABULAR_NX', 'TABULAR_NY', 'TUmass_INPUTS', 'TUmolar_INPUTS', 'USE_GUESSES_IN_PROPSSI', 'VTPR_ALWAYS_RELOAD_LIBRARY', 'VTPR_UNIFAC_PATH', 'add_fluids_as_JSON', 'apply_simple_mixing_rule', 'cair_sat', 'config_key_description', 'configuration_keys', 'extract_backend', 'extract_fractions', 'fast_evaluate_internal_error', 'fast_evaluate_ok', 'fast_evaluate_out_of_range', 'fast_evaluate_status', 'fast_evaluate_two_phase_disallowed', 'fast_evaluate_unsupported_input', 'fast_evaluate_unsupported_output', 'fluid_types', 'generate_update_pair', 'get_BibTeXKey', 'get_REFPROPname', 'get_aliases', 'get_config_as_json_string', 'get_config_bool', 'get_config_double', 'get_config_int', 'get_config_string', 'get_debug_level', 'get_errstr', 'get_fluid_param_string', 'get_global_param_string', 'get_mixture_binary_pair_data', 'get_mixture_binary_pair_pcsaft', 'get_parameter_index', 'get_parameter_information', 'get_phase_index', 'iBvirial', 'iCp0mass', 'iCp0molar', 'iCpmass', 'iCpmolar', 'iCvirial', 'iCvmass', 'iCvmolar', 'iDelta', 'iDmass', 'iDmolar', 'iFH', 'iGWP100', 'iGWP20', 'iGWP500', 'iGmass', 'iGmolar', 'iGmolar_residual', 'iHH', 'iHelmholtzmass', 'iHelmholtzmolar', 'iHmass', 'iHmass_idealgas', 'iHmolar', 'iHmolar_idealgas', 'iHmolar_residual', 'iODP', 'iP', 'iPH', 'iPIP', 'iP_critical', 'iP_max', 'iP_min', 'iP_reducing', 'iP_triple', 'iPhase', 'iPrandtl', 'iQ', 'iQmass', 'iSmass', 'iSmass_idealgas', 'iSmolar', 'iSmolar_idealgas', 'iSmolar_residual', 'iT', 'iT_critical', 'iT_freeze', 'iT_max', 'iT_min', 'iT_reducing', 'iT_triple', 'iTau', 'iUmass', 'iUmass_idealgas', 'iUmolar', 'iUmolar_idealgas', 'iZ', 'iacentric_factor', 'ialpha0', 'ialphar', 'iconductivity', 'id2alpha0_ddelta2_consttau', 'id3alpha0_ddelta3_consttau', 'idBvirial_dT', 'idCvirial_dT', 'idalpha0_ddelta_consttau', 'idalpha0_dtau_constdelta', 'idalphar_ddelta_consttau', 'idalphar_dtau_constdelta', 'idipole_moment', 'ifraction_max', 'ifraction_min', 'ifundamental_derivative_of_gas_dynamics', 'igas_constant', 'iisentropic_expansion_coefficient', 'iisobaric_expansion_coefficient', 'iisothermal_compressibility', 'imolar_mass', 'input_pairs', 'iphase_critical_point', 'iphase_gas', 'iphase_liquid', 'iphase_not_imposed', 'iphase_supercritical', 'iphase_supercritical_gas', 'iphase_supercritical_liquid', 'iphase_twophase', 'iphase_unknown', 'irhomass_critical', 'irhomass_reducing', 'irhomolar_critical', 'irhomolar_reducing', 'is_trivial_parameter', 'ispeed_sound', 'isurface_tension', 'iundefined_parameter', 'iviscosity', 'parameters', 'phases', 'saturation_ancillary', 'set_config_as_json_string', 'set_config_bool', 'set_config_double', 'set_config_int', 'set_config_string', 'set_debug_level', 'set_departure_functions', 'set_interaction_parameters', 'set_mixture_binary_pair_data', 'set_mixture_binary_pair_pcsaft', 'set_predefined_mixtures', 'set_reference_state', 'set_reference_stateD', 'set_reference_stateS']
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import CoolProp
+print('fluids:', CoolProp.get_global_param_string('fluids'))
+for k in ['mixture_types','mix_names','mixture_binary_pairs','aliases']:
+    try:
+        print(k, ':', CoolProp.get_global_param_string(k))
+    except Exception as e:
+        print(k, 'FAIL:', str(e)[:100])
+" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+    print('fluids:', CoolProp.get_global_param_string('fluids'))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'CoolProp' has no attribute 'get_global_param_string'
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import CoolProp
+print('fluids:', CoolProp.CoolProp.get_global_param_string('fluids'))
+for k in ['predefined_mixtures','mixture_types','aliases']:
+    try:
+        print(k, ':', CoolProp.CoolProp.get_global_param_string(k))
+    except Exception as e:
+        print(k, 'FAIL:', str(e)[:100])
+" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+    print('fluids:', CoolProp.CoolProp.get_global_param_string('fluids'))
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+ValueError: Input parameter [fluids] is invalid
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import CoolProp
+for k in ['Fluids','predefined_mixtures','mixture_binary_pairs','aliases','surface_tension_fluids']:
+    try:
+        v = CoolProp.CoolProp.get_global_param_string(k)
+        print(k, ':', v[:400])
+        print()
+    except Exception as e:
+        print(k, 'FAIL:', str(e)[:90])
+" 2>&1
+Fluids FAIL: Input parameter [Fluids] is invalid
+predefined_mixtures : AIR.MIX,AMARILLO.MIX,Air.mix,Amarillo.mix,EKOFISK.MIX,Ekofisk.mix,GULFCOAST.MIX,GULFCOASTGAS(NIST1).MIX,GulfCoast.mix,GulfCoastGas(NIST1).mix,HIGHCO2.MIX,HIGHN2.MIX,HighCO2.mix,HighN2.mix,NATURALGASSAMPLE.MIX,NaturalGasSample.mix,R401A.MIX,R401A.mix,R401B.MIX,R401B.mix,R401C.MIX,R401C.mix,R402A.MIX,R402A.mix,R402B.MIX,R402B.mix,R403A.MIX,R403A.mix,R403B.MIX,R403B.mix,R404A.MIX,R404A.mix,R405A.MIX,
+
+mixture_binary_pairs FAIL: Input parameter [mixture_binary_pairs] is invalid
+aliases FAIL: Input parameter [aliases] is invalid
+surface_tension_fluids FAIL: Input parameter [surface_tension_fluids] is invalid
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import CoolProp
+v = CoolProp.CoolProp.get_global_param_string('predefined_mixtures')
+names = v.split(',')
+print('total predefined mixtures:', len(names))
+print('any ammonia/water?', [n for n in names if 'MMONIA' in n.upper() or 'WATER' in n.upper()])
+known = ['MIX', 'MIX2', 'MIX3']
+# buscar pares binarios soportados: verificar algunos conocidos
+for pair in ['Ammonia&Water', 'Water&Ammonia', 'R134a&R32', 'Methane&Ethane']:
+    try:
+        st = CoolProp.AbstractState('HEOS', pair)
+        print(pair, '-> OK')
+    except Exception as e:
+        print(pair, '-> FAIL:', str(e)[:60])
+" 2>&1
+total predefined mixtures: 294
+any ammonia/water? []
+Ammonia&Water -> FAIL: Could not match the binary pair [7664-41-7,7732-18-5] - for 
+Water&Ammonia -> FAIL: Could not match the binary pair [7664-41-7,7732-18-5] - for 
+R134a&R32 -> OK
+Methane&Ethane -> OK
+[0m
+Confirmado sin ambigüedad: CoolProp 8.0.0 no incluye el par binario NH3-H2O (solo lo daría REFPROP, cuya DLL licenciada no está presente). Reviso el código fuente de pyfluids para ver qué backends usa y cómo maneja el fallo.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import pyfluids.fluids.mixture as mm, inspect
+src = inspect.getsource(mm)
+print(src[:3000])
+"
+from __future__ import annotations
+
+from CoolProp import AbstractState
+
+from ..config import UnitsSystem
+from ..enums import FluidsList
+from .abstract_fluid import AbstractFluid
+
+__all__ = ["Mixture"]
+
+
+class Mixture(AbstractFluid):
+    """Mass-based mixture of pure fluids."""
+
+    __AVAILABLE_BACKEND = "HEOS"
+
+    def __init__(self, fluids: list[FluidsList], fractions: list[float]):
+        """
+        Mass-based mixture of pure fluids.
+
+        :param fluids: List of selected names of pure fluids.
+        :param fractions: List of mass-based fractions
+            [by default, %; you can change this using the configuration file].
+        :raises ValueError: If fluids or fractions are invalid.
+        """
+        super().__init__()
+        if len(fluids) != len(fractions):
+            raise ValueError(
+                "Invalid input! Fluids and fractions should be of the same length."
+            )
+        if not all(
+            fluid.pure and fluid.coolprop_backend == self.__AVAILABLE_BACKEND
+            for fluid in fluids
+        ):
+            raise ValueError(
+                "Invalid components! All of them should be "
+                f"a pure fluid with {self.__AVAILABLE_BACKEND} backend."
+            )
+        if not all(
+            0 < self._unit_converter.convert_decimal_fraction_to_si(fraction) < 1
+            for fraction in fractions
+        ):
+            fraction_range = (
+                "(0;100) %"
+                if self.units_system == UnitsSystem.SIWithCelsiusAndPercents
+                else "(0;1)"
+            )
+            raise ValueError(
+                "Invalid components mass fractions! "
+                f"All of them should be in {fraction_range}."
+            )
+        fractions_sum = (
+            100 if self.units_system == UnitsSystem.SIWithCelsiusAndPercents else 1
+        )
+        if abs(sum(fractions) - fractions_sum) > 1e-6:
+            raise ValueError(
+                "Invalid components mass fractions! "
+                f"Their sum should be equal to {fractions_sum}{self._fraction_unit}."
+            )
+        self.__fluids, self.__fractions = fluids, fractions
+        self._backend = AbstractState(
+            self.__AVAILABLE_BACKEND,
+            "&".join(fluid.coolprop_name for fluid in self.__fluids),
+        )
+        self._backend.set_mass_fractions(
+            [
+                self._unit_converter.convert_decimal_fraction_to_si(fraction)
+                for fraction in self.__fractions
+            ]
+        )
+
+    def factory(self) -> Mixture:
+        return Mixture(self.__fluids, self.__fractions)
+
+    @property
+    def fluids(self) -> list[FluidsList]:
+        """List of selected names of pure fluids."""
+        return self.__fluids
+
+    @property
+    def fractions(self) -> list[float]:
+        """
+        List of mass-based fractions
+        [by default, %; you can change this using the configuration file].
+        """
+        return self.__fractions
+
+    def __eq__(self, other: object) -> boo
+[0m
+pyfluids 4.0.0 usa `Mixture` con backend HEOS fijo — la mezcla NH3-H2O no es soportable aquí. Antes de escribir el adapter, inspecciono `UnitsSystem`/`config` para manejar correctamente la convención de fracciones.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+from pyfluids import UnitsSystem
+from pyfluids.config import config
+print('config:', config)
+print('UnitsSystem members:', [u for u in dir(UnitsSystem) if not u.startswith('_')])
+print('config units_system:', config.units_system)
+" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+    print('config units_system:', config.units_system)
+                                  ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'pyfluids.config.config' has no attribute 'units_system'. Did you mean: 'UnitsSystem'?
+config: <module 'pyfluids.config.config' from 'D:\\Desktop\\ciclo_kalina_tercero\\.venv\\Lib\\site-packages\\pyfluids\\config\\config.py'>
+UnitsSystem members: ['SI', 'SIWithCelsius', 'SIWithCelsiusAndPercents']
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect, pyfluids.config.config as cfg
+src = inspect.getsource(cfg)
+print(src[:2500])
+" 2>&1
+from __future__ import annotations
+
+import json
+import tomllib
+from configparser import ConfigParser
+from dataclasses import dataclass
+from os.path import abspath
+from pathlib import Path
+from typing import NoReturn, cast
+
+from .singleton import Singleton
+from .units_system import UnitsSystem
+
+__all__ = ["Config", "ConfigBuilder"]
+
+
+@dataclass
+class Config:
+    """pyfluids configuration."""
+
+    units_system: UnitsSystem = UnitsSystem.SIWithCelsiusAndPercents
+
+
+# noinspection PyBroadException
+class ConfigBuilder(metaclass=Singleton):
+    """pyfluids configuration builder."""
+
+    def __init__(self):
+        """pyfluids configuration builder."""
+        self.__config: Config | None = None
+        self.__config_names: list[str] = [
+            "pyfluids.ini",
+            "pyfluids.json",
+            "pyproject.toml",
+            "tox.ini",
+        ]
+
+    @property
+    def __current_path(self) -> Path:
+        return Path(abspath(Path.cwd()))
+
+    @property
+    def __config_file(self) -> Path | None:
+        for root in (self.__current_path, *self.__current_path.parents):
+            for config_name in self.__config_names:
+                path = root / config_name
+                if path.is_file():
+                    return path
+        return None
+
+    @property
+    def __config_data(self) -> str:
+        return cast(Path, self.__config_file).read_text(encoding="utf-8")
+
+    def build(self) -> Config:
+        """
+        Build pyfluids configuration.
+
+        If the configuration file is not found or an incorrect
+        configuration is found in the files "pyproject.toml" or "tox.ini",
+        returns the default configuration.
+
+        :raises ValueError: If configuration file is invalid.
+        """
+        if self.__config is not None:
+            return self.__config
+        if self.__config_file is None:
+            return self.__create_default_config()
+        if self.__config_file.suffix == ".ini":
+            return self.__load_config_from_ini_file()
+        if self.__config_file.suffix == ".json":
+            return self.__load_config_from_json_file()
+        return self.__load_config_from_toml_file()
+
+    def _reset(self):
+        self.__config = None
+
+    def __create_default_config(self) -> Config:
+        self.__config = Config()
+        return self.__config
+
+    def __create_config_from_dict(self, config_dict: dict) -> Config:
+        config_dict["units_system"] = UnitsSystem[config_dict["units_system"]]
+        self.__config = Config(**confi
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.fluids.abstract_fluid as af
+src = inspect.getsource(af)
+print(src[:6000])
+" 2>&1
+from __future__ import annotations
+
+import json
+from abc import ABC, abstractmethod
+from typing import Self, cast
+
+from CoolProp import AbstractState
+from CoolProp.CoolProp import generate_update_pair, parameters
+
+from ..config import UnitConverter, UnitsSystem
+from ..enums import Phases
+from ..io import Input, OutputsValidator
+
+
+class AbstractFluid(ABC):
+    """Base class of fluids."""
+
+    @abstractmethod
+    def __init__(self):
+        """Base class of fluids."""
+        self._backend: AbstractState
+        self._inputs: list[Input] = []
+        self.__compressibility: float | None = None
+        self.__conductivity: float | None = None
+        self.__critical_pressure: float | None = None
+        self.__critical_temperature: float | None = None
+        self.__density: float | None = None
+        self.__dynamic_viscosity: float | None = None
+        self.__enthalpy: float | None = None
+        self.__entropy: float | None = None
+        self.__freezing_temperature: float | None = None
+        self.__internal_energy: float | None = None
+        self.__max_pressure: float | None = None
+        self.__max_temperature: float | None = None
+        self.__min_pressure: float | None = None
+        self.__min_temperature: float | None = None
+        self.__molar_mass: float | None = None
+        self.__phase: Phases | None = None
+        self.__prandtl: float | None = None
+        self.__pressure: float | None = None
+        self.__quality: float | None = None
+        self.__sound_speed: float | None = None
+        self.__specific_heat: float | None = None
+        self.__surface_tension: float | None = None
+        self.__temperature: float | None = None
+        self.__triple_pressure: float | None = None
+        self.__triple_temperature: float | None = None
+        self.__specified_phase: Phases | None = None
+        self._unit_converter: UnitConverter = UnitConverter()
+        self._fraction_unit: str = (
+            " %" if self.units_system == UnitsSystem.SIWithCelsiusAndPercents else ""
+        )
+
+    @property
+    def units_system(self) -> UnitsSystem:
+        """Configured units system."""
+        return self._unit_converter.units_system
+
+    @property
+    def compressibility(self) -> float | None:
+        """Compressibility factor [-]."""
+        if self.__compressibility is None:
+            self.__compressibility = self._nullable_keyed_output(parameters.iZ)
+        return self.__compressibility
+
+    @property
+    def conductivity(self) -> float | None:
+        """Thermal conductivity [W/m/K]."""
+        if self.__conductivity is None:
+            self.__conductivity = self._nullable_keyed_output(parameters.iconductivity)
+        return self.__conductivity
+
+    @property
+    def critical_pressure(self) -> float | None:
+        """Absolute pressure at the critical point [Pa]."""
+        if self.__critical_pressure is None:
+            self.__critical_pressure = self._nullable_keyed_output(
+                parameters.iP_critical
+            )
+        return self.__critical_pressure
+
+    @property
+    def critical_temperature(self) -> float | None:
+        """
+        Temperature at the critical point
+        [by default, �C; you can change this using the configuration file].
+        """
+        if self.__critical_temperature is None:
+            value = self._nullable_keyed_output(parameters.iT_critical)
+            self.__critical_temperature = (
+                self._unit_converter.convert_temperature_from_si(value)
+                if value is not None
+                else None
+            )
+        return self.__critical_temperature
+
+    @property
+    def density(self) -> float:
+        """Mass density [kg/m3]."""
+        if self.__density is None:
+            self.__density = self._keyed_output(parameters.iDmass)
+        return self.__density
+
+    @property
+    def dynamic_viscosity(self) -> float | None:
+        """Dynamic viscosity [Pa*s]."""
+        if self.__dynamic_viscosity is None:
+            self.__dynamic_viscosity = self._nullable_keyed_output(
+                parameters.iviscosity
+            )
+        return self.__dynamic_viscosity
+
+    @property
+    def enthalpy(self) -> float:
+        """Mass specific enthalpy [J/kg]."""
+        if self.__enthalpy is None:
+            self.__enthalpy = self._keyed_output(parameters.iHmass)
+        return self.__enthalpy
+
+    @property
+    def entropy(self) -> float:
+        """Mass specific entropy [J/kg/K]."""
+        if self.__entropy is None:
+            self.__entropy = self._keyed_output(parameters.iSmass)
+        return self.__entropy
+
+    @property
+    def freezing_temperature(self) -> float | None:
+        """
+        Temperature at the freezing point (for incompressible fluids)
+        [by default, �C; you can change this using the configuration file].
+        """
+        if self.__freezing_temperature is None:
+            value = self._nullable_keyed_output(parameters.iT_freeze)
+            self.__freezing_temperature = (
+                self._unit_converter.convert_temperature_from_si(value)
+                if value is not None
+                else None
+            )
+        return self.__freezing_temperature
+
+    @property
+    def internal_energy(self) -> float:
+        """Mass specific internal energy [J/kg]."""
+        if self.__internal_energy is None:
+            self.__internal_energy = self._keyed_output(parameters.iUmass)
+        return self.__internal_energy
+
+    @property
+    def kinematic_viscosity(self) -> float | None:
+        """Kinematic viscosity [m2/s]."""
+        return (
+            None
+            if self.dynamic_viscosity is None
+            else self.dynamic_viscosity / self.density
+        )
+
+    @property
+    def max_pressure(self) -> float | None:
+        """Maximum pressure limit [Pa]."""
+        if self.__max_pressure is None:
+            self.__max_pressure = self._nullable_keyed_output(parameters.iP_max)
+        return self.__max_pressure
+
+    @property
+    def max_temperature(self) -> float
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.fluids.abstract_fluid as af
+src = inspect.getsource(af)
+i = src.find('def temperature')
+j = src.find('def bubble_point_at_pressure')
+print(src[i:j])
+" 2>&1
+def temperature(self) -> float:
+        """
+        Temperature
+        [by default, �C; you can change this using the configuration file].
+        """
+        if self.__temperature is None:
+            value = self._keyed_output(parameters.iT)
+            self.__temperature = (
+                self._unit_converter.convert_temperature_from_si(value)
+                if value is not None
+                else None
+            )
+        return self.__temperature
+
+    @property
+    def triple_pressure(self) -> float | None:
+        """Absolute pressure at the triple point [Pa]."""
+        if self.__triple_pressure is None:
+            self.__triple_pressure = self._nullable_keyed_output(parameters.iP_triple)
+        return self.__triple_pressure
+
+    @property
+    def triple_temperature(self) -> float | None:
+        """
+        Temperature at the triple point
+        [by default, �C; you can change this using the configuration file].
+        """
+        if self.__triple_temperature is None:
+            value = self._nullable_keyed_output(parameters.iT_triple)
+            self.__triple_temperature = (
+                self._unit_converter.convert_temperature_from_si(value)
+                if value is not None
+                else None
+            )
+        return self.__triple_temperature
+
+    @abstractmethod
+    def factory(self) -> AbstractFluid:
+        """Returns a new fluid instance with no defined state."""
+        raise NotImplementedError  # pragma: no cover
+
+    def clone(self) -> Self:
+        """Performs deep (full) copy of the fluid instance."""
+        return self.with_state(*self._inputs)
+
+    def with_state(self, first_input: Input, second_input: Input) -> Self:
+        """
+        Returns a new fluid instance with a defined state.
+
+        :param first_input: First input property.
+        :param second_input: Second input property.
+        :return: A new fluid instance with a defined state.
+        :raises ValueError: If input is invalid.
+        """
+        fluid = self.factory()
+        if self.__specified_phase is not None:
+            fluid.specify_phase(self.__specified_phase)
+        fluid.update(first_input, second_input)
+        return cast(Self, fluid)
+
+    def update(self, first_input: Input, second_input: Input):
+        """
+        Updates the state of the fluid.
+
+        :param first_input: First input property.
+        :param second_input: Second input property.
+        :raises ValueError: If input is invalid.
+        """
+        if first_input.coolprop_key == second_input.coolprop_key:
+            raise ValueError("Need to define 2 unique inputs!")
+        self.reset()
+        self._backend.update(
+            *generate_update_pair(
+                first_input.coolprop_key,
+                first_input.value,
+                second_input.coolprop_key,
+                second_input.value,
+            )
+        )
+        self._inputs = [first_input, second_input]
+
+    # noinspection DuplicatedCode
+    def reset(self):
+        """Resets all non-trivial properties."""
+        self._inputs.clear()
+        self.__compressibility = None
+        self.__conductivity = None
+        self.__density = None
+        self.__dynamic_viscosity = None
+        self.__enthalpy = None
+        self.__entropy = None
+        self.__internal_energy = None
+        self.__phase = None
+        self.__prandtl = None
+        self.__pressure = None
+        self.__quality = None
+        self.__sound_speed = None
+        self.__specific_heat = None
+        self.__surface_tension = None
+        self.__temperature = None
+
+    def specify_phase(self, phase: Phases) -> Self:
+        """
+        Specify the phase state for all further calculations.
+
+        :param phase: Phase state.
+        :return: Current fluid instance.
+        """
+        self._backend.specify_phase(phase.value)
+        self.__specified_phase = phase
+        return self
+
+    def unspecify_phase(self) -> Self:
+        """
+        Unspecify the phase state and go back to calculating it based on the inputs.
+
+        :return: Current fluid instance.
+        """
+        self._backend.unspecify_phase()
+        self.__specified_phase = None
+        return self
+
+    def isentropic_compression_to_pressure(self, pressure: float) -> Self:
+        """
+        The process of isentropic compression to given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If pressure is invalid.
+        """
+        if not pressure > self.pressure:
+            raise ValueError(
+                "Compressor outlet pressure should be higher than inlet pressure!"
+            )
+        return self.with_state(Input.pressure(pressure), Input.entropy(self.entropy))
+
+    def compression_to_pressure(
+        self, pressure: float, isentropic_efficiency: float
+    ) -> Self:
+        """
+        The process of compression to given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :param isentropic_efficiency: Compressor isentropic efficiency
+            [by default, %; you can change this using the configuration file].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If pressure or isentropic efficiency is invalid.
+        """
+        isentropic_efficiency = self._unit_converter.convert_decimal_fraction_to_si(
+            isentropic_efficiency
+        )
+        if not 0 < isentropic_efficiency < 1:
+            raise ValueError("Invalid compressor isentropic efficiency!")
+        return self.with_state(
+            Input.pressure(pressure),
+            Input.enthalpy(
+                self.enthalpy
+                + (
+                    self.isentropic_compression_to_pressure(pressure).enthalpy
+                    - self.enthalpy
+                )
+                / isentropic_efficiency
+            ),
+        )
+
+    def isenthalpic_expansion_to_pressure(self, pressure: float) -> Self:
+        """
+        The process of isenthalpic expansion to given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If pressure is invalid.
+        """
+        if not pressure < self.pressure:
+            raise ValueError(
+                "Expansion valve outlet pressure should be lower than inlet pressure!"
+            )
+        return self.with_state(Input.pressure(pressure), Input.enthalpy(self.enthalpy))
+
+    def isentropic_expansion_to_pressure(self, pressure: float) -> Self:
+        """
+        The process of isentropic expansion to given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If pressure is invalid.
+        """
+        if not pressure < self.pressure:
+            raise ValueError(
+                "Expander outlet pressure should be lower than inlet pressure!"
+            )
+        return self.with_state(Input.pressure(pressure), Input.entropy(self.entropy))
+
+    def expansion_to_pressure(
+        self, pressure: float, isentropic_efficiency: float
+    ) -> Self:
+        """
+        The process of expansion to given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :param isentropic_efficiency: Expander isentropic efficiency
+            [by default, %; you can change this using the configuration file].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If pressure or isentropic efficiency is invalid.
+        """
+        isentropic_efficiency = self._unit_converter.convert_decimal_fraction_to_si(
+            isentropic_efficiency
+        )
+        if not 0 < isentropic_efficiency < 1:
+            raise ValueError("Invalid expander isentropic efficiency!")
+        return self.with_state(
+            Input.pressure(pressure),
+            Input.enthalpy(
+                self.enthalpy
+                - (
+                    self.enthalpy
+                    - self.isentropic_expansion_to_pressure(pressure).enthalpy
+                )
+                * isentropic_efficiency
+            ),
+        )
+
+    def cooling_to_temperature(
+        self, temperature: float, pressure_drop: float = 0
+    ) -> Self:
+        """
+        The process of cooling to given temperature.
+
+        :param temperature: Temperature
+            [by default, �C; you can change this using the configuration file].
+        :param pressure_drop: Pressure drop in the heat exchanger (optional) [Pa].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If temperature or pressure drop is invalid.
+        """
+        if not temperature < self.temperature:
+            raise ValueError(
+                "During the cooling process, the temperature should decrease!"
+            )
+        return self.__heat_transfer_to_temperature(temperature, pressure_drop)
+
+    def cooling_to_enthalpy(self, enthalpy: float, pressure_drop: float = 0) -> Self:
+        """
+        The process of cooling to given enthalpy.
+
+        :param enthalpy: Enthalpy [J/kg].
+        :param pressure_drop: Pressure drop in the heat exchanger (optional) [Pa].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If enthalpy or pressure drop is invalid.
+        """
+        if not enthalpy < self.enthalpy:
+            raise ValueError(
+                "During the cooling process, the enthalpy should decrease!"
+            )
+        return self.__heat_transfer_to_enthalpy(enthalpy, pressure_drop)
+
+    def heating_to_temperature(
+        self, temperature: float, pressure_drop: float = 0
+    ) -> Self:
+        """
+        The process of heating to given temperature.
+
+        :param temperature: Temperature
+            [by default, �C; you can change this using the configuration file].
+        :param pressure_drop: Pressure drop in the heat exchanger (optional) [Pa].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If temperature or pressure drop is invalid.
+        """
+        if not temperature > self.temperature:
+            raise ValueError(
+                "During the heating process, the temperature should increase!"
+            )
+        return self.__heat_transfer_to_temperature(temperature, pressure_drop)
+
+    def heating_to_enthalpy(self, enthalpy: float, pressure_drop: float = 0) -> Self:
+        """
+        The process of heating to given enthalpy.
+
+        :param enthalpy: Enthalpy [J/kg].
+        :param pressure_drop: Pressure drop in the heat exchanger (optional) [Pa].
+        :return: The state of the fluid at the end of the process.
+        :raises ValueError: If enthalpy or pressure drop is invalid.
+        """
+        if not enthalpy > self.enthalpy:
+            raise ValueError(
+                "During the heating process, the enthalpy should increase!"
+            )
+        return self.__heat_transfer_to_enthalpy(enthalpy, pressure_drop)
+[0m
+Verifico cómo pyfluids convierte temperatura/presión en `Input` y en los métodos de punto de burbuja/rocío, para usar unidades de forma determinista.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.io.abstract_input as ai, pyfluids.io.input as ipt
+src = inspect.getsource(ai)
+print(src)
+" 2>&1
+from __future__ import annotations
+
+from abc import ABC, abstractmethod
+from typing import Generic, TypeVar
+
+Key = TypeVar("Key", bound=int | str)
+
+
+class AbstractInput(Generic[Key], ABC):
+    """Abstract CoolProp keyed input."""
+
+    @abstractmethod
+    def __init__(self, coolprop_key: Key, value: float):
+        """
+        Abstract CoolProp keyed input.
+
+        :param coolprop_key: CoolProp internal key.
+        :param value: Input value in SI units.
+        """
+        self.__coolprop_key, self.__value = coolprop_key, value
+
+    @property
+    def coolprop_key(self) -> Key:
+        """CoolProp internal key."""
+        return self.__coolprop_key
+
+    @property
+    def value(self) -> float:
+        """Input value in SI units."""
+        return self.__value
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, AbstractInput) and hash(self) == hash(other)
+
+    def __ne__(self, other: object) -> bool:
+        return not self.__eq__(other)
+
+    def __hash__(self) -> int:
+        return hash((self.coolprop_key, self.value))
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.io.input as ipt
+src = inspect.getsource(ipt)
+print(src)
+" 2>&1; .venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.io.input_humid_air as ih
+" 2>/dev/null; .venv/Scripts/python.exe -c "
+import pyfluids.fluids.abstract_fluid as af
+src = inspect.getsource(af)
+i = src.find('def bubble_point_at_pressure')
+j = src.find('def bubble_point_at_temperature')
+k = src.find('def two_phase_point_at_pressure')
+print(src[i:j])
+print()
+print('--- two_phase_point ---')
+print(src[k:k+700])
+"
+from __future__ import annotations
+
+from CoolProp.CoolProp import parameters
+
+from ..config import UnitConverter
+from .abstract_input import AbstractInput
+
+__all__ = ["Input"]
+
+
+class Input(AbstractInput[parameters]):
+    """CoolProp keyed input for fluids and mixtures."""
+
+    def __init__(self, coolprop_key: parameters, value: float):
+        """
+        CoolProp keyed input for fluids and mixtures.
+
+        :param coolprop_key: CoolProp internal key.
+        :param value: Input value in SI units.
+        """
+        super().__init__(coolprop_key, value)
+
+    @classmethod
+    def density(cls, value: float) -> Input:
+        """
+        Mass density.
+
+        :param value: The value of the input [kg/m3].
+        :return: Mass density for the input.
+        """
+        return cls(parameters.iDmass, value)
+
+    @classmethod
+    def enthalpy(cls, value: float) -> Input:
+        """
+        Mass specific enthalpy.
+
+        :param value: The value of the input [J/kg].
+        :return: Mass specific enthalpy for the input.
+        """
+        return cls(parameters.iHmass, value)
+
+    @classmethod
+    def entropy(cls, value: float) -> Input:
+        """
+        Mass specific entropy.
+
+        :param value: The value of the input [J/kg/K].
+        :return: Mass specific entropy for the input.
+        """
+        return cls(parameters.iSmass, value)
+
+    @classmethod
+    def internal_energy(cls, value: float) -> Input:
+        """
+        Mass specific internal energy.
+
+        :param value: The value of the input [J/kg].
+        :return: Mass specific internal energy for the input.
+        """
+        return cls(parameters.iUmass, value)
+
+    @classmethod
+    def pressure(cls, value: float) -> Input:
+        """
+        Absolute pressure.
+
+        :param value: The value of the input [Pa].
+        :return: Absolute pressure for the input.
+        """
+        return cls(parameters.iP, value)
+
+    @classmethod
+    def quality(cls, value: float) -> Input:
+        """
+        Mass vapor quality.
+
+        :param value: The value of the input
+            [by default, %; you can change this using the configuration file].
+        :return: Mass vapor quality for the input.
+        """
+        return cls(
+            parameters.iQmass, UnitConverter().convert_decimal_fraction_to_si(value)
+        )
+
+    @classmethod
+    def specific_volume(cls, value: float) -> Input:
+        """
+        Mass specific volume.
+
+        :param value: The value of the input [m3/kg].
+        :return: Mass specific volume for the input.
+        """
+        return cls(parameters.iDmass, 1 / value)
+
+    @classmethod
+    def temperature(cls, value: float) -> Input:
+        """
+        Temperature.
+
+        :param value: The value of the input
+            [by default, �C; you can change this using the configuration file].
+        :return: Temperature for the input.
+        """
+        return cls(parameters.iT, UnitConverter().convert_temperature_to_si(value))
+
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+    src = inspect.getsource(af)
+          ^^^^^^^
+NameError: name 'inspect' is not defined. Did you forget to import 'inspect'?
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.fluids.abstract_fluid as af
+src = inspect.getsource(af)
+i = src.find('def bubble_point_at_pressure')
+j = src.find('def dew_point_at_pressure')
+k = src.find('def phase')
+print(src[i:j+400])
+print('---')
+print(src[src.find('def dew_point_at_pressure'): src.find('def dew_point_at_temperature')+400])
+" 2>&1; .venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.config.units_system as us
+print(inspect.getsource(us))
+" 2>&1
+def bubble_point_at_pressure(self, pressure: float) -> Self:
+        """
+        Bubble point at given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :return: Bubble point at given pressure.
+        """
+        return self.with_state(Input.pressure(pressure), Input.quality(0))
+
+    def bubble_point_at_temperature(self, temperature: float) -> Self:
+        """
+        Bubble point at given temperature.
+
+        :param temperature: Temperature
+            [by default, �C; you can change this using the configuration file].
+        :return: Bubble point at given temperature.
+        """
+        return self.with_state(Input.temperature(temperature), Input.quality(0))
+
+    def dew_point_at_pressure(self, pressure: float) -> Self:
+        """
+        Dew point at given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :return: Dew point at given pressure.
+        """
+        return self.with_state(
+            Input.pressure(pressure),
+            Input.quality(
+                100 if self.units_system == UnitsSystem.SIWithCelsiusAndPercents else 1
+
+---
+def dew_point_at_pressure(self, pressure: float) -> Self:
+        """
+        Dew point at given pressure.
+
+        :param pressure: Absolute pressure [Pa].
+        :return: Dew point at given pressure.
+        """
+        return self.with_state(
+            Input.pressure(pressure),
+            Input.quality(
+                100 if self.units_system == UnitsSystem.SIWithCelsiusAndPercents else 1
+            ),
+        )
+
+    def dew_point_at_temperature(self, temperature: float) -> Self:
+        """
+        Dew point at given temperature.
+
+        :param temperature: Temperature
+            [by default, �C; you can change this using the configuration file].
+        :return: Dew point at given temperature.
+        """
+        return self.with_state(
+            Input.temperature(temperature),
+            Input.quality(
+from enum import Enum
+
+__all__ = ["UnitsSystem"]
+
+
+class UnitsSystem(Enum):
+    """List of available units systems."""
+
+    SI = "SI"
+    SIWithCelsius = "SIWithCelsius"
+    SIWithCelsiusAndPercents = "SIWithCelsiusAndPercents"
+
+    def __repr__(self) -> str:
+        return self.name
+
+    def __str__(self) -> str:
+        return self.name
+[0m
+Reviso `UnitConverter` de pyfluids para manejar la conversión K↔°C de forma config-independiente.
+[0m$ [0m.venv/Scripts/python.exe -c "
+import inspect
+import pyfluids.config.unit_converter as uc
+src = inspect.getsource(uc)
+print(src)
+" 2>&1
+from .config import Config, ConfigBuilder
+from .units_system import UnitsSystem
+
+__all__ = ["UnitConverter"]
+
+
+class UnitConverter:
+    """Unit converter."""
+
+    def __init__(self):
+        """Unit converter."""
+        self.__config: Config = ConfigBuilder().build()
+
+    @property
+    def units_system(self) -> UnitsSystem:
+        """Configured units system."""
+        return self.__config.units_system
+
+    def convert_temperature_from_si(self, value: float) -> float:
+        """
+        Convert temperature from SI to configured units system.
+
+        :param value: Temperature value.
+        :return: Converted value.
+        """
+        if self.units_system == UnitsSystem.SI:
+            return value
+        return value - 273.15
+
+    def convert_temperature_to_si(self, value: float) -> float:
+        """
+        Convert temperature from configured units system to SI.
+
+        :param value: Temperature value.
+        :return: Converted value.
+        """
+        if self.units_system == UnitsSystem.SI:
+            return value
+        return value + 273.15
+
+    def convert_decimal_fraction_from_si(self, value: float) -> float:
+        """
+        Convert decimal fraction from SI to configured units system.
+
+        :param value: Decimal fraction value.
+        :return: Converted value.
+        """
+        if self.units_system == UnitsSystem.SIWithCelsiusAndPercents:
+            return value * 1e2
+        return value
+
+    def convert_decimal_fraction_to_si(self, value: float) -> float:
+        """
+        Convert decimal fraction from configured units system to SI.
+
+        :param value: Decimal fraction value.
+        :return: Converted value.
+        """
+        if self.units_system == UnitsSystem.SIWithCelsiusAndPercents:
+            return value * 1e-2
+        return value
+[0m
+Reviso rápidamente el comportamiento real de `iapws.IAPWS97` (valores oficiales de validación IAPWS-IF97 y tipos de excepción en rangos inválidos) y confirmo `FluidsList.Ammonia/Water`.
+[0m$ [0m.venv/Scripts/python.exe -c "
+from iapws import IAPWS97
+# Valores oficiales de validacion IAPWS-IF97, Region 1: T=300 K, P=3 MPa
+st = IAPWS97(P=3.0, T=300.0)
+print('P=3MPa T=300K -> h=%.9f s=%.9f T=%.6f phase=%s x=%s' % (st.h, st.s, st.T, st.phase, st.x))
+st2 = IAPWS97(P=3.0, h=115.331273)
+print('from h -> T =', st2.T)
+st3 = IAPWS97(P=3.0, s=0.392294792)
+print('from s -> T =', st3.T)
+try:
+    IAPWS97(P=1.0, T=200.0)
+except Exception as e:
+    print('T=200K ->', type(e).__name__, str(e)[:80])
+try:
+    IAPWS97(P=1.0, h=99999.0)
+except Exception as e:
+    print('h huge ->', type(e).__name__, str(e)[:80])
+try:
+    IAPWS97(P=1.0, T=1200.0)
+except Exception as e:
+    print('T=1200 ->', type(e).__name__, str(e)[:80])
+" 2>&1
+P=3MPa T=300K -> h=115.331273021 s=0.392294792 T=300.000000 phase=Liquid x=0
+from h -> T = 299.9999999948626
+from s -> T = 299.99999997105516
+T=200K -> NotImplementedError Incoming out of bound
+h huge -> NotImplementedError Incoming out of bound
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+from pyfluids import FluidsList
+print('Ammonia:', FluidsList.Ammonia, '| Water:', FluidsList.Water)
+print('Ammonia pure:', FluidsList.Ammonia.pure, 'backend:', getattr(FluidsList.Ammonia, 'coolprop_backend', '?'))
+"
+Ammonia: Ammonia | Water: Water
+Ammonia pure: True backend: HEOS
+[0m
+[0m# [0mTodos
+[•] Crear scaffold: __init__.py, stubs de componentes/solver/exergía/UI/tests
+[ ] Implementar src/properties/adapter.py (PropertyBackend + PropertyRangeError)
+[ ] Implementar src/properties/pyfluids_adapter.py (NH3-H2O)
+[ ] Implementar src/properties/iapws_adapter.py (agua pura)
+[ ] Implementar tests/test_properties.py (mocks + humo real)
+[ ] requirements.txt, README.md, .gitignore
+[ ] Ejecutar pytest, verificar líneas ≤200 y criterios de aceptación
+[0m
+He confirmado: iapws reproduce exactamente los valores oficiales de validación IAPWS-IF97, y CoolProp 8.0.0 no soporta el par NH3-H2O (limitación del backend, no del código). Organizo el trabajo y escribo los archivos.
+[0m← [0mWrite src/__init__.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/properties/__init__.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/__init__.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/__init__.py
+Wrote file successfully.
+[0m
+Empiezo con el scaffold (paquetes e inicializadores):
+[0m← [0mWrite src/components/hrvg.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/separador.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/turbina.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/regenerador.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/valvula.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/absorbedor.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/condensador.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/components/bomba.py
+Wrote file successfully.
+[0m
+Ahora los stubs de componentes (todos con TODO explícito de tarea futura):
+[0m← [0mWrite src/cycle_solver.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/exergy.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/sensitivity.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/export_excel.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/plots.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite app.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/test_components.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/test_cycle_solver.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/test_exergy.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/test_sensitivity.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/test_export.py
+Wrote file successfully.
+[0m
+Ahora los stubs de módulos de alto nivel y la UI:
+[0m← [0mWrite src/properties/adapter.py
+Wrote file successfully.
+[0m
+Scaffold completo. Ahora la capa central: `adapter.py` con la interfaz abstracta y la excepción controlada.
+[0m← [0mWrite src/properties/pyfluids_adapter.py
+Wrote file successfully.
+[0m
+Ahora `pyfluids_adapter.py` — el adapter de la mezcla NH3-H2O sobre pyfluids/CoolProp, con import con guarda y conversión de unidades config-independiente:
+[0m← [0mEdit src/properties/pyfluids_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+@@ -26,9 +26,8 @@
+     FluidsList = Input = Mixture = UnitConverter = None
+ else:
+     _IMPORT_ERROR = None
+ 
+-ImportedFluid = FluidsList  # noqa: E501  (solo para que el linter sepa el tipo)
+ __all__ = ["PyfluidsAdapter"]
+ 
+ _PA_PER_KPA = 1000.0
+ _J_PER_KJ = 1000.0
+
+[0m
+[0m← [0mEdit src/properties/pyfluids_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+@@ -106,9 +106,9 @@
+     inputs.append(Input.enthalpy(h * _J_PER_KJ))
+ else:
+     raise ValueError(
+         f"{what}: estado mixto incompleto — se requiere (P, T), (P, s), "
+-        "(P, quality) o (P, h); con P en kPa[ y T en K]."
++        "(P, quality) o (P, h), con P en kPa y T en K."
+     )
+ try:
+     return mixture.with_state(*inputs)
+ except (ValueError, TypeError, KeyError, OverflowError) as exc:
+
+[0m
+Corrijo dos detalles en el adapter: una línea sobrante (`ImportedFluid`) y el mensaje de error con caracteres sueltos.
+[0m← [0mWrite src/properties/iapws_adapter.py
+Wrote file successfully.
+[0m
+Ahora `iapws_adapter.py` — agua pura vía IAPWS-IF97:
+[0m← [0mEdit src/properties/iapws_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\iapws_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\iapws_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\iapws_adapter.py
+@@ -75,9 +75,9 @@
+     try:
+         return IAPWS97(**kwargs)
+     except (ValueError, OverflowError, NotImplementedError) as exc:
+         raise PropertyRangeError(
+-            f"water: iapws no cubre el estado pedido {kwargs} "
++            f"agua pura: iapws no cubre el estado pedido {kwargs} "
+             f"(P en MPa, T en K). Detalle del backend: {exc}"
+         ) from exc
+ 
+ # -- interfaz PropertyBackend ---------------------------------------------
+
+[0m
+[0m← [0mWrite tests/test_properties.py
+Wrote file successfully.
+[0m
+Ahora los tests (mocks sin dependencia de backends reales + humo real). Cuidando el límite de 200 líneas:
+[0m← [0mWrite requirements.txt
+Wrote file successfully.
+[0m
+[0m← [0mWrite .gitignore
+Wrote file successfully.
+[0m
+[0m← [0mWrite README.md
+Wrote file successfully.
+[0m
+Ahora `requirements.txt`, `.gitignore` y `README.md`:
+[0m# [0mTodos
+[✓] Crear scaffold: __init__.py, stubs de componentes/solver/exergía/UI/tests
+[✓] Implementar src/properties/adapter.py (PropertyBackend + PropertyRangeError)
+[✓] Implementar src/properties/pyfluids_adapter.py (NH3-H2O)
+[✓] Implementar src/properties/iapws_adapter.py (agua pura)
+[✓] Implementar tests/test_properties.py (mocks + humo real)
+[✓] requirements.txt, README.md, .gitignore
+[•] Ejecutar pytest, verificar líneas ≤200 y criterios de aceptación
+[0m
+Verificación: ejecuto la suite de tests de `test_properties.py` con el venv local:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_properties.py -v 2>&1
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 20 items
+
+tests/test_properties.py::test_property_backend_es_abstracto PASSED      [  5%]
+tests/test_properties.py::test_property_range_error_es_excepcion PASSED  [ 10%]
+tests/test_properties.py::test_adapter_py_no_importa_backends PASSED     [ 15%]
+tests/test_properties.py::test_pyfluids_h_pt_convierte_unidades PASSED   [ 20%]
+tests/test_properties.py::test_pyfluids_h_ps_y_quality PASSED            [ 25%]
+tests/test_properties.py::test_pyfluids_s_pt PASSED                      [ 30%]
+tests/test_properties.py::test_pyfluids_T_from_Ph_y_Ps PASSED            [ 35%]
+tests/test_properties.py::test_pyfluids_bubble_y_dew PASSED              [ 40%]
+tests/test_properties.py::test_pyfluids_x_por_defecto_usa_composicion_de_instancia PASSED [ 45%]
+tests/test_properties.py::test_pyfluids_validaciones_y_estado_incompleto FAILED [ 50%]
+tests/test_properties.py::test_pyfluids_envuelve_error_del_backend PASSED [ 55%]
+tests/test_properties.py::test_build_mixture_envuelve_par_binario_no_soportado PASSED [ 60%]
+tests/test_properties.py::test_iapws_h_pt_convierte_kpa_a_mpa PASSED     [ 65%]
+tests/test_properties.py::test_iapws_h_ps_y_s_pt PASSED                  [ 70%]
+tests/test_properties.py::test_iapws_T_from_Ph_y_T_from_Ps PASSED        [ 75%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_y_quality PASSED     [ 80%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend PASSED [ 85%]
+tests/test_properties.py::test_iapws_estado_incompleto PASSED            [ 90%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 95%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [100%]
+
+================================== FAILURES ===================================
+_______________ test_pyfluids_validaciones_y_estado_incompleto ________________
+
+pf_env = <MagicMock id='2355275713232'>
+
+    def test_pyfluids_validaciones_y_estado_incompleto(pf_env):
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests\test_properties.py:154: Failed
+=========================== short test summary info ===========================
+FAILED tests/test_properties.py::test_pyfluids_validaciones_y_estado_incompleto
+=================== 1 failed, 18 passed, 1 skipped in 3.44s ===================
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -149,13 +149,17 @@
+     assert pya._build_mixture.call_args_list[0].args == (0.5,)
+     assert pya._build_mixture.call_args_list[1].args == (0.8,)
+ 
+ 
+-def test_pyfluids_validaciones_y_estado_incompleto(pf_env):
++def test_build_mixture_valida_x():
++    """Validación de x en la función real (no usa el fixture pf_env)."""
+     with pytest.raises(ValueError):
+         pya._build_mixture(0.0)
+     with pytest.raises(ValueError):
+         pya._build_mixture(1.0)
++
++
++def test_pyfluids_estado_incompleto_y_P_no_positiva(pf_env):
+     with pytest.raises(ValueError):
+         PyfluidsAdapter().h(3000.0)                 # sin T/s/quality/h
+     with pytest.raises(ValueError):
+         PyfluidsAdapter().h(0.0, T=450.0)           # P no positiva
+
+[0m
+Un fallo: `pf_env` parchea `_build_mixture`, así que las comprobaciones de x inválida llamaban al mock y no validaban. Separo esas comprobaciones en un test sin el fixture (la validación de x ocurre antes de tocar pyfluids, así funciona incluso sin la librería):
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_properties.py -v 2>&1
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 21 items
+
+tests/test_properties.py::test_property_backend_es_abstracto PASSED      [  4%]
+tests/test_properties.py::test_property_range_error_es_excepcion PASSED  [  9%]
+tests/test_properties.py::test_adapter_py_no_importa_backends PASSED     [ 14%]
+tests/test_properties.py::test_pyfluids_h_pt_convierte_unidades PASSED   [ 19%]
+tests/test_properties.py::test_pyfluids_h_ps_y_quality PASSED            [ 23%]
+tests/test_properties.py::test_pyfluids_s_pt PASSED                      [ 28%]
+tests/test_properties.py::test_pyfluids_T_from_Ph_y_Ps PASSED            [ 33%]
+tests/test_properties.py::test_pyfluids_bubble_y_dew PASSED              [ 38%]
+tests/test_properties.py::test_pyfluids_x_por_defecto_usa_composicion_de_instancia PASSED [ 42%]
+tests/test_properties.py::test_build_mixture_valida_x PASSED             [ 47%]
+tests/test_properties.py::test_pyfluids_estado_incompleto_y_P_no_positiva PASSED [ 52%]
+tests/test_properties.py::test_pyfluids_envuelve_error_del_backend PASSED [ 57%]
+tests/test_properties.py::test_build_mixture_envuelve_par_binario_no_soportado PASSED [ 61%]
+tests/test_properties.py::test_iapws_h_pt_convierte_kpa_a_mpa PASSED     [ 66%]
+tests/test_properties.py::test_iapws_h_ps_y_s_pt PASSED                  [ 71%]
+tests/test_properties.py::test_iapws_T_from_Ph_y_T_from_Ps PASSED        [ 76%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_y_quality PASSED     [ 80%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend PASSED [ 85%]
+tests/test_properties.py::test_iapws_estado_incompleto PASSED            [ 90%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 95%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [100%]
+
+======================== 20 passed, 1 skipped in 2.78s ========================
+[0m
+**20 passed, 1 skipped.** Ahora verifico los criterios de aceptación restantes: líneas por archivo, estructura completa y herencia de los adapters.
+[0m$ [0mfor f in app.py src/__init__.py src/properties/__init__.py src/properties/adapter.py src/properties/pyfluids_adapter.py src/properties/iapws_adapter.py src/components/__init__.py src/components/*.py src/cycle_solver.py src/exergy.py src/sensitivity.py src/export_excel.py src/plots.py tests/__init__.py tests/test_properties.py tests/test_components.py tests/test_cycle_solver.py tests/test_exergy.py tests/test_sensitivity.py tests/test_export.py; do n=$(wc -l < "$f"); echo "$n  $f"; done | sort -rn
+285  tests/test_properties.py
+159  src/properties/pyfluids_adapter.py
+112  src/properties/iapws_adapter.py
+82  src/properties/adapter.py
+15  app.py
+12  src/properties/__init__.py
+8  src/components/separador.py
+7  src/exergy.py
+7  src/cycle_solver.py
+7  src/__init__.py
+6  tests/test_components.py
+6  src/components/regenerador.py
+6  src/components/hrvg.py
+6  src/components/condensador.py
+6  src/components/absorbedor.py
+6  src/components/__init__.py
+6  src/components/__init__.py
+5  tests/test_cycle_solver.py
+5  src/sensitivity.py
+5  src/plots.py
+5  src/export_excel.py
+5  src/components/turbina.py
+5  src/components/bomba.py
+4  tests/test_sensitivity.py
+4  tests/test_export.py
+4  tests/test_exergy.py
+4  src/components/valvula.py
+0  tests/__init__.py
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest -q 2>&1 | tail -5
+....................s                                                    [100%]
+20 passed, 1 skipped in 2.85s
+[0m
+[0m→ [0mRead tests/__init__.py
+Dos hallazgos: (1) `tests/test_properties.py` tiene 285 líneas — **excede el límite de 200** del acceptance criterion 3; (2) `tests/__init__.py` reporta 0 líneas — verifico si quedó vacío. Reviso y compacto.
+[0m
+[0m← [0mWrite tests/test_properties.py
+Wrote file successfully.
+[0m
+`tests/__init__.py` está bien (docstring sin salto de línea final; `wc -l` reporta 0, no es problema). El real es `test_properties.py` con 285 líneas. Lo reescribo compacto para cumplir el límite de 200:
+[0m$ [0mwc -l tests/test_properties.py && .venv/Scripts/python.exe -m pytest tests/test_properties.py -v 2>&1 | tail -30
+238 tests/test_properties.py
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 17 items
+
+tests/test_properties.py::test_property_backend_es_abstracto PASSED      [  5%]
+tests/test_properties.py::test_property_range_error_y_adapter_py_sin_backends PASSED [ 11%]
+tests/test_properties.py::test_pyfluids_h_pt_convierte_unidades PASSED   [ 17%]
+tests/test_properties.py::test_pyfluids_h_ps_y_quality PASSED            [ 23%]
+tests/test_properties.py::test_pyfluids_s_pt PASSED                      [ 29%]
+tests/test_properties.py::test_pyfluids_T_from_Ph_y_Ps PASSED            [ 35%]
+tests/test_properties.py::test_pyfluids_bubble_y_dew PASSED              [ 41%]
+tests/test_properties.py::test_pyfluids_x_por_defecto_usa_composicion_de_instancia PASSED [ 47%]
+tests/test_properties.py::test_build_mixture_valida_x PASSED             [ 52%]
+tests/test_properties.py::test_pyfluids_estado_incompleto_pf PASSED      [ 58%]
+tests/test_properties.py::test_pyfluids_envuelve_error_del_backend PASSED [ 64%]
+tests/test_properties.py::test_build_mixture_envuelve_par_binario_no_soportado PASSED [ 70%]
+tests/test_properties.py::test_iapws_h_s_T_convierten_unidades PASSED    [ 76%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_quality_y_saturacion PASSED [ 82%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend_y_estado_incompleto PASSED [ 88%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 94%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [100%]
+
+======================== 16 passed, 1 skipped in 2.70s ========================
+[0m
+[0m← [0mWrite tests/test_properties.py
+Wrote file successfully.
+[0m
+Aún 238 líneas — recorto más (fusiono tests, elimino `FakeState`/`FakeInput` inline en el fixture):
+[0m$ [0mwc -l tests/test_properties.py && .venv/Scripts/python.exe -m pytest tests/test_properties.py -v 2>&1 | tail -25
+206 tests/test_properties.py
+tests/test_properties.py::test_pyfluids_estado_incompleto_y_envuelve_errores PASSED [ 50%]
+tests/test_properties.py::test_build_mixture_validacion_x_y_par_binario_no_soportado PASSED [ 58%]
+tests/test_properties.py::test_iapws_h_s_T_convierten_unidades PASSED    [ 66%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_quality_y_saturacion PASSED [ 75%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend_y_estado_incompleto PASSED [ 83%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 91%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [100%]
+
+================================== FAILURES ===================================
+___________________ test_pyfluids_h_s_T_convierten_unidades ___________________
+
+pf_env = <MagicMock id='2658606643728'>
+
+    def test_pyfluids_h_s_T_convierten_unidades(pf_env):
+        adapter = PyfluidsAdapter(x=0.5)
+        assert adapter.h(3000.0, T=450.0) == pytest.approx(400.0)
+        p_in, t_in = pf_env.with_state.call_args[0]
+>       assert (p_in.key, p_in.value) == ("P", 3_000_000.0)          # kPa -> Pa
+                ^^^^^^^^
+E       AttributeError: 'tuple' object has no attribute 'key'
+
+tests\test_properties.py:74: AttributeError
+=========================== short test summary info ===========================
+FAILED tests/test_properties.py::test_pyfluids_h_s_T_convierten_unidades - At...
+=================== 1 failed, 10 passed, 1 skipped in 3.14s ===================
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -70,22 +70,22 @@
+ def test_pyfluids_h_s_T_convierten_unidades(pf_env):
+     adapter = PyfluidsAdapter(x=0.5)
+     assert adapter.h(3000.0, T=450.0) == pytest.approx(400.0)
+     p_in, t_in = pf_env.with_state.call_args[0]
+-    assert (p_in.key, p_in.value) == ("P", 3_000_000.0)          # kPa -> Pa
+-    assert (t_in.key, t_in.value) == ("T", 450.0 - 273.15)       # K -> °C (config)
++    assert (p_in[0], p_in[1]) == ("P", 3_000_000.0)                 # kPa -> Pa
++    assert (t_in[0], t_in[1]) == ("T", 450.0 - 273.15)              # K -> °C (config)
+     assert adapter.h(3000.0, s=2.5) == pytest.approx(400.0)
+     _, s_in = pf_env.with_state.call_args[0]
+-    assert (s_in.key, s_in.value) == ("s", 2500.0)               # kJ/kg·K -> J/kg·K
++    assert (s_in[0], s_in[1]) == ("s", 2500.0)                      # kJ/kg·K -> J/kg·K
+     assert adapter.h(3000.0, quality=0.6) == pytest.approx(400.0)
+     _, q_in = pf_env.with_state.call_args[0]
+-    assert (q_in.key, q_in.value) == ("q", 60.0)                 # fracción -> %
++    assert (q_in[0], q_in[1]) == ("q", 60.0)                        # fracción -> %
+     assert adapter.s(3000.0, T=450.0) == pytest.approx(1.5)
+     assert adapter.T_from_Ph(3000.0, h=400.0) == pytest.approx(298.15)
+     _, h_in = pf_env.with_state.call_args[0]
+-    assert (h_in.key, h_in.value) == ("h", 400_000.0)            # kJ/kg -> J/kg
++    assert (h_in[0], h_in[1]) == ("h", 400_000.0)                   # kJ/kg -> J/kg
+     adapter.T_from_Ps(3000.0, s=1.5)
+-    assert pf_env.with_state.call_args[0][1].value == 1500.0
++    assert pf_env.with_state.call_args[0][1][1] == 1500.0
+     assert PyfluidsAdapter().T_from_Ph(3000.0, h=400.0) == pytest.approx(298.15)
+ 
+ 
+ def test_pyfluids_bubble_y_dew(pf_env):
+
+[0m
+Los inputs ahora son tuplas `("P", v)`; ajusto los accesos `.key`/`.value` a índices:
+[0m$ [0mwc -l tests/test_properties.py && .venv/Scripts/python.exe -m pytest tests/test_properties.py -v 2>&1 | tail -25
+206 tests/test_properties.py
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 12 items
+
+tests/test_properties.py::test_property_backend_es_abstracto PASSED      [  8%]
+tests/test_properties.py::test_property_range_error_y_adapter_py_sin_backends PASSED [ 16%]
+tests/test_properties.py::test_pyfluids_h_s_T_convierten_unidades PASSED [ 25%]
+tests/test_properties.py::test_pyfluids_bubble_y_dew PASSED              [ 33%]
+tests/test_properties.py::test_pyfluids_x_por_defecto_usa_composicion_de_instancia PASSED [ 41%]
+tests/test_properties.py::test_pyfluids_estado_incompleto_y_envuelve_errores PASSED [ 50%]
+tests/test_properties.py::test_build_mixture_validacion_x_y_par_binario_no_soportado PASSED [ 58%]
+tests/test_properties.py::test_iapws_h_s_T_convierten_unidades PASSED    [ 66%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_quality_y_saturacion PASSED [ 75%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend_y_estado_incompleto PASSED [ 83%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 91%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [100%]
+
+======================== 11 passed, 1 skipped in 2.77s ========================
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -39,12 +39,10 @@
+ fake_input.temperature.side_effect = lambda v: ("T", v)
+ fake_input.enthalpy.side_effect = lambda v: ("h", v)
+ fake_input.entropy.side_effect = lambda v: ("s", v)
+ fake_input.quality.side_effect = lambda v: ("q", v)
+-swe = MagicMock()
+-swe.enthalpy, swe.entropy, swe.temperature = 400_000.0, 1_500.0, 25.0
+-sat_b, sat_d = MagicMock(), MagicMock()
+-sat_b.temperature, sat_d.temperature = 25.0, 30.0
++swe = MagicMock(enthalpy=400_000.0, entropy=1_500.0, temperature=25.0)
++sat_b, sat_d = MagicMock(temperature=25.0), MagicMock(temperature=30.0)
+ mixture = MagicMock()
+ mixture.with_state.return_value = swe
+ mixture.bubble_point_at_pressure.return_value = sat_b
+ mixture.dew_point_at_pressure.return_value = sat_d
+
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -54,11 +54,8 @@
+     metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point"}
+     with pytest.raises(TypeError):
+         PropertyBackend()
+     assert metodos <= set(PropertyBackend.__abstractmethods__)
+-
+-
+-def test_property_range_error_y_adapter_py_sin_backends():
+     assert issubclass(PropertyRangeError, Exception)
+     assert str(PropertyRangeError("m")) == "m"
+     src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+     assert "import pyfluids" not in src and "from pyfluids" not in src
+
+[0m
+Todos pasan, pero 206 > 200. Aplico compactaciones quirúrgicas (fixture en una línea, fusiono dos pares de tests, quito un assert redundante):
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -79,13 +79,8 @@
+     _, h_in = pf_env.with_state.call_args[0]
+     assert (h_in[0], h_in[1]) == ("h", 400_000.0)                   # kJ/kg -> J/kg
+     adapter.T_from_Ps(3000.0, s=1.5)
+     assert pf_env.with_state.call_args[0][1][1] == 1500.0
+-    assert PyfluidsAdapter().T_from_Ph(3000.0, h=400.0) == pytest.approx(298.15)
+-
+-
+-def test_pyfluids_bubble_y_dew(pf_env):
+-    adapter = PyfluidsAdapter(x=0.5)
+     assert adapter.bubble_point(3000.0, x=0.5) == pytest.approx(298.15)
+     assert adapter.dew_point(3000.0, x=0.5) == pytest.approx(303.15)
+     pf_env.bubble_point_at_pressure.assert_called_once_with(3_000_000.0)
+     pf_env.dew_point_at_pressure.assert_called_once_with(3_000_000.0)
+
+[0m
+[0m$ [0mwc -l tests/test_properties.py && .venv/Scripts/python.exe -m pytest tests/test_properties.py -q 2>&1 | tail -3
+196 tests/test_properties.py
+.........s                                                               [100%]
+9 passed, 1 skipped in 2.65s
+[0m
+[0m$ [0mfor f in $(git ls-files --others --exclude-standard '*.py' | sort) $(git ls-files '*.py'); do n=$(wc -l < "$f"); flag=""; [ "$n" -gt 200 ] && flag="  <-- EXCEDE 200"; echo "$n  $f$flag"; done; echo '---'; find . -name '*.py' -not -path './.venv/*' | sort
+15  app.py
+7  src/__init__.py
+6  src/components/__init__.py
+6  src/components/absorbedor.py
+5  src/components/bomba.py
+6  src/components/condensador.py
+6  src/components/hrvg.py
+6  src/components/regenerador.py
+8  src/components/separador.py
+5  src/components/turbina.py
+4  src/components/valvula.py
+7  src/cycle_solver.py
+7  src/exergy.py
+5  src/export_excel.py
+5  src/plots.py
+12  src/properties/__init__.py
+82  src/properties/adapter.py
+112  src/properties/iapws_adapter.py
+159  src/properties/pyfluids_adapter.py
+5  src/sensitivity.py
+0  tests/__init__.py
+6  tests/test_components.py
+5  tests/test_cycle_solver.py
+4  tests/test_exergy.py
+4  tests/test_export.py
+196  tests/test_properties.py
+4  tests/test_sensitivity.py
+---
+./app.py
+./src/__init__.py
+./src/components/__init__.py
+./src/components/absorbedor.py
+./src/components/bomba.py
+./src/components/condensador.py
+./src/components/hrvg.py
+./src/components/regenerador.py
+./src/components/separador.py
+./src/components/turbina.py
+./src/components/valvula.py
+./src/cycle_solver.py
+./src/exergy.py
+./src/export_excel.py
+./src/plots.py
+./src/properties/__init__.py
+./src/properties/adapter.py
+./src/properties/iapws_adapter.py
+./src/properties/pyfluids_adapter.py
+./src/sensitivity.py
+./tests/__init__.py
+./tests/test_components.py
+./tests/test_cycle_solver.py
+./tests/test_exergy.py
+./tests/test_export.py
+./tests/test_properties.py
+./tests/test_sensitivity.py
+[0m
+196 líneas, todo pasa. Verificación final completa: líneas de todos los `.py`, estructura, criterios de aceptación y comportamiento real de ambos adapters:
+[0m$ [0m.venv/Scripts/python.exe -c "
+from src.properties.adapter import PropertyBackend
+from src.properties.pyfluids_adapter import PyfluidsAdapter
+from src.properties.iapws_adapter import IAPWSAdapter
+import inspect
+print('PyfluidsAdapter hereda PropertyBackend:', issubclass(PyfluidsAdapter, PropertyBackend))
+print('IAPWSAdapter hereda PropertyBackend:  ', issubclass(IAPWSAdapter, PropertyBackend))
+print('abstractos sin implementar (pyfluids):', getattr(PyfluidsAdapter, '__abstractmethods__', None))
+print('abstractos sin implementar (iapws):  ', getattr(IAPWSAdapter, '__abstractmethods__', None))
+# comportamiento real
+try:
+    PyfluidsAdapter(x=0.5)
+except Exception as e:
+    print('PyfluidsAdapter real ->', type(e).__name__ + ':', str(e)[:110])
+w = IAPWSAdapter()
+print('IAPWSAdapter real -> h( 3000 kPa, 300 K) =', w.h(3000.0, T=300.0), 'kJ/kg')
+print('IAPWSAdapter real -> s( 3000 kPa, 300 K) =', w.s(3000.0, T=300.0), 'kJ/kg·K')
+"
+PyfluidsAdapter hereda PropertyBackend: True
+IAPWSAdapter hereda PropertyBackend:   True
+abstractos sin implementar (pyfluids): frozenset()
+abstractos sin implementar (iapws):   frozenset()
+PyfluidsAdapter real -> PropertyRangeError: El backend pyfluids/CoolProp instalado no soporta la mezcla NH3-H2O (par binario amon�aco-agua). Se requiere R
+IAPWSAdapter real -> h( 3000 kPa, 300 K) = 115.33127302143888 kJ/kg
+IAPWSAdapter real -> s( 3000 kPa, 300 K) = 0.39229479240262577 kJ/kg�K
+[0m
+Verificación final con el comando exacto del acceptance criteria y suite completa:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_properties.py -v 2>&1 | tail -20 && echo '=== suite completa ===' && .venv/Scripts/python.exe -m pytest -q 2>&1 | tail -3
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 10 items
+
+tests/test_properties.py::test_property_backend_es_abstracto PASSED      [ 10%]
+tests/test_properties.py::test_pyfluids_h_s_T_convierten_unidades PASSED [ 20%]
+tests/test_properties.py::test_pyfluids_x_por_defecto_usa_composicion_de_instancia PASSED [ 30%]
+tests/test_properties.py::test_pyfluids_estado_incompleto_y_envuelve_errores PASSED [ 40%]
+tests/test_properties.py::test_build_mixture_validacion_x_y_par_binario_no_soportado PASSED [ 50%]
+tests/test_properties.py::test_iapws_h_s_T_convierten_unidades PASSED    [ 60%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_quality_y_saturacion PASSED [ 70%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend_y_estado_incompleto PASSED [ 80%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 90%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [100%]
+
+======================== 9 passed, 1 skipped in 2.70s =========================
+=== suite completa ===
+.........s                                                               [100%]
+9 passed, 1 skipped in 2.63s
+[0m
+Reviso el estado de git para confirmar que `.venv` y cachés quedan ignorados y listar los archivos cambiados:
+[0m$ [0mgit status --short | head -40; echo '---'; git status --short | wc -l
+?? .gitignore
+?? .opencode/
+?? AGENTS.md
+?? CONTEXT.md
+?? Kalina_ksc_11_tercero.md
+?? README.md
+?? TASK_CONTEXT.md
+?? app.py
+?? opencode_run_001.log
+?? requirements.txt
+?? src/
+?? tests/
+---
+12
+[0m
+[0m# [0mTodos
+[✓] Crear scaffold: __init__.py, stubs de componentes/solver/exergía/UI/tests
+[✓] Implementar src/properties/adapter.py (PropertyBackend + PropertyRangeError)
+[✓] Implementar src/properties/pyfluids_adapter.py (NH3-H2O)
+[✓] Implementar src/properties/iapws_adapter.py (agua pura)
+[✓] Implementar tests/test_properties.py (mocks + humo real)
+[✓] requirements.txt, README.md, .gitignore
+[✓] Ejecutar pytest, verificar líneas ≤200 y criterios de aceptación
+[0m
+Todo verificado. Cierro el todo list y entrego el reporte final:
+```
+STATUS: done
+
+SUMMARY:
+Scaffold completo del proyecto (27 archivos .py + requirements/README/.gitignore) con la
+capa de propiedades termodinámicas funcional vía patrón adapter: interfaz abstracta
+`PropertyBackend` + `PropertyRangeError`, `PyfluidsAdapter` (mezcla NH3-H2O) e
+`IAPWSAdapter` (agua pura). Tests: 9 passed + 1 skipped (el smoke real de pyfluids se
+salta con razón documentada: CoolProp 8.0.0 no incluye el par binario NH3-H2O, hallazgo
+verificado empíricamente). Todo lo demás queda como stub explícito con `# TODO(tarea futura)`.
+
+FILES_CHANGED:
+- app.py, requirements.txt, README.md, .gitignore (creados)
+- src/__init__.py, src/properties/__init__.py, src/components/__init__.py, tests/__init__.py
+- src/properties/adapter.py (implementado)
+- src/properties/pyfluids_adapter.py (implementado)
+- src/properties/iapws_adapter.py (implementado)
+- src/components/{hrvg,separador,turbina,regenerador,valvula,absorbedor,condensador,bomba}.py (stubs TODO)
+- src/{cycle_solver,exergy,sensitivity,export_excel,plots}.py (stubs TODO)
+- tests/test_properties.py (implementado)
+- tests/{test_components,test_cycle_solver,test_exergy,test_sensitivity,test_export}.py (placeholders TODO)
+
+TESTS:
+Comando: `.venv/Scripts/python.exe -m pytest tests/test_properties.py -v`
+Resultado: 9 passed, 1 skipped (test_pyfluids_humo_real_mezcla_nh3_h2o — skipif con razón).
+Los tests con mocks (interfaz abstracta, conversiones de unidades kPa→Pa, K→°C, kJ/kg→J/kg,
+fracción→%, envoltura de errores en PropertyRangeError, NotImplementedError para agua pura con
+x/quality, validación de x en (0,1)) pasan sin depender del backend real.
+
+RESULTS:
+- pytest: 9 passed, 1 skipped (2.70 s). Suite completa: 9 passed, 1 skipped.
+- Smoke real IAPWS: h(3000 kPa, 300 K) = 115.331273021 kJ/kg y s = 0.392294792 kJ/kg·K —
+  coinciden exactamente con los valores oficiales de validación IAPWS-IF97 (Región 1).
+- Smoke real pyfluids: SKIPPED. Verificación empírica: CoolProp 8.0.0 no soporta la mezcla
+  NH3-H2O — `AbstractState("HEOS", "Ammonia&Water")` y BICUBIC fallan con "Could not match the
+  binary pair [7664-41-7,7732-18-5]"; REFPROP requiere la DLL licenciada de NIST (no presente).
+  pyfluids 4.0.0 usa HEOS hardcodeado para `Mixture`. El adapter queda correctamente
+  implementado y lanza `PropertyRangeError` con mensaje claro en ese caso.
+- Criterios de aceptación: (1) estructura completa ✔; (2) comando de verificación corre ✔;
+  (3) ningún .py > 200 líneas (máx. 196) ✔; (4) adapter.py sin imports de pyfluids/iapws
+  (test explícito + grep) ✔; (5) ambos adapters heredan PropertyBackend con
+  `__abstractmethods__ = frozenset()` ✔.
+- Comandos usados para el entorno local (venv, nada global): `python -m venv .venv
+  --system-site-packages` y `.venv\Scripts\python.exe -m pip install pytest pytest-cov pyfluids`
+  (iapws 1.5.5 ya estaba global, visible vía system-site-packages).
+
+ERRORS:
+- Ninguno tras la corrección de dos desvíos detectados durante el desarrollo (test que
+  parcheaba `_build_mixture` al validar x, y acceso `.key` en tuplas del mock) — ambos
+  resueltos; resultado final limpio.
+
+ASSUMPTIONS:
+- Unidades canónicas de la interfaz PropertyBackend: P en kPa, T en K, h en kJ/kg,
+  s en kJ/kg·K, x = fracción másica de NH3 en (0,1). TASK_CONTEXT solo fijaba h y s; P/T se
+  tomaron por convención ingenieril consistente con los valores por defecto de CONTEXT.md
+  (P_high 3.0 MPa = 3000 kPa) y se declaran en el docstring de la interfaz.
+- `PyfluidsAdapter(x=0.5)`: composición por defecto = 0.50 (valor por defecto de la UI en
+  CONTEXT.md); si una llamada pasa x distinta, se crea la mezcla sobre la marcha.
+- IAPWSAdapter rechaza el parámetro `quality` con NotImplementedError (agua pura se modela
+  con (P, T) o (P, s)) — decisión explícita y documentada, fuera de lo exigido.
+- Los adapters usan el `UnitConverter` propio de pyfluids para toda conversión, por lo que
+  su comportamiento es independiente de la configuración de unidades activa.
+
+UNRESOLVED:
+- **El backend planificado (pyfluids/CoolProp) NO puede calcular las propiedades de la
+  mezcla NH3-H2O en este entorno**: CoolProp 8.0.0 no incluye el par binario amoníaco-agua
+  (solo REFPROP/NIST con licencia lo cubriría). El PyfluidsAdapter está implementado y
+  correcto, pero cualquier uso real lanza PropertyRangeError. Antes de la tarea del solver
+  del ciclo hay que decidir la fuente de propiedades de la mezcla (REFPROP con licencia u
+  otro backend) — no se implementa nada extra aquí para no salir del alcance ni inventar
+  un modelo de EOS por cuenta propia.
+- P0 y x0 del estado muerto siguen sin definir (ya documentado en CONTEXT.md; es de una
+  tarea posterior de exergía).
+
+RECOMMENDATIONS:
+- Siguiente tarea sugerida: definir/encontrar un backend que cubra NH3-H2O (REFPROP con
+  licencia, o evaluar un modelo EOS autocontenido con datos citables) y activar el smoke
+  test real de pyfluids, antes de implementar los componentes del ciclo (que dependen del
+  equilibrio L-V via bubble/dew point).
+- Tarea de componentes: cargar la skill ees-cycle-core/ees-validation-1to1 si se avanza
+  con el ciclo NH3-H2O, y mantener el 100% del consumo vía PropertyBackend.
+```

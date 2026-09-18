@@ -1,0 +1,18 @@
+# Dependencias del proyecto ciclo Kalina KSC-11 (Python 3.13.x)
+# Instalación recomendada:  python -m venv .venv && .venv\Scripts\pip install -r requirements.txt
+# El camino real de la mezcla NH3-H2O es el motor iapws portado
+# (src/properties/_nh3h2o_engine.py + _kalina_flash.py, ver CONTEXT.md).
+iapws==1.5.5
+numpy
+scipy
+pandas
+openpyxl
+matplotlib
+streamlit
+pytest
+pytest-cov
+
+# Opcional (solo referencia/futuro): pyfluids/CoolProp NO cubre la mezcla NH3-H2O
+# en este equipo (falta REFPROP/NIST, ver CONTEXT.md). PyfluidsAdapter se conserva
+# como referencia; no se instala por defecto.
+# pyfluids>=4.0.0

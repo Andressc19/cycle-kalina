@@ -1,0 +1,387 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m✱ [0mGlob "**/*.py"[90m 37 matches[0m
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/exergy.py
+[0m→ [0mRead src/export_excel.py
+[0m→ [0mRead src/plots.py
+Ahora leo las firmas reales de los módulos que la UI debe integrar, junto con el stub actual de `app.py`.
+[0m→ [0mRead app.py
+[0m→ [0mRead src/state.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead src/properties/iapws_adapter.py
+[0m→ [0mRead src/properties/pyfluids_adapter.py
+[0m→ [0mRead src/_cycle_loops.py
+[0m→ [0mRead src/sensitivity.py
+Leo los archivos restantes necesarios: el modelo de estado, el adapter abstracto, los adaptadores concretos, `_cycle_loops.py` y `sensitivity.py`, y el prompt base si existe en el repo.
+[0m✱ [0mGlob "*.md"[90m 5 matches[0m
+[0m→ [0mRead Kalina_ksc_11_tercero.md
+[0m→ [0mRead tests/_datos_ejemplo.py
+Reviso el prompt base (secciones de arquitectura/UI) y los datos de ejemplo de los tests para conocer la forma exacta de los estados y resultados.
+[0m→ [0mRead requirements.txt
+He revisado las firmas reales (`resolver_ciclo`, `CicloNoConvergeError`, `calcular_exergia`, `generar_excel`, `grafico_*`, `PropertyRangeError`, `AmmoniaWaterAdapter`). Antes de escribir, verifico el entorno (versión de Python/Streamlit para elegir parámetros compatibles de `st.dataframe`/`st.button`) y `requirements.txt`.
+[0m
+[0m$ [0mpython --version && python -c "import streamlit; print('streamlit', streamlit.__version__)" && python -c "import pandas; print('pandas', pandas.__version__)" && python -c "import matplotlib; print('matplotlib', matplotlib.__version__)" && python -c "import openpyxl; print('openpyxl', openpyxl.__version__)" && python -c "import scipy; print('scipy', scipy.__version__)"
+Python 3.13.7
+streamlit 1.63.0
+pandas 3.0.5
+matplotlib 3.10.9
+openpyxl 3.1.5
+scipy 1.18.1
+[0m
+Streamlit 1.63.0 (muy reciente: `use_container_width` está deprecado; `st.dataframe` ya estira por defecto). Verifico la firma real de `st.dataframe` para usar parámetros válidos.
+[0m$ [0mpython -c "
+import inspect, streamlit as st
+print('dataframe:', inspect.signature(st.dataframe))
+print('button:', inspect.signature(st.button))
+print('metric:', inspect.signature(st.metric))
+"
+dataframe: (data: 'Data' = None, width: 'Width' = 'stretch', height: "Height | Literal['auto']" = 'auto', *, use_container_width: 'bool | None' = None, hide_index: 'bool | None' = None, column_order: 'Iterable[str] | None' = None, column_config: 'ColumnConfigMappingInput | None' = None, key: 'Key | None' = None, on_select: "Literal['ignore', 'rerun'] | WidgetCallback" = 'ignore', selection_mode: 'SelectionMode | Iterable[SelectionMode]' = 'multi-row', selection_default: 'DataframeStateInput | DataframeState | None' = None, row_height: 'int | None' = None, placeholder: 'str | None' = None, lazy: 'bool | None' = None) -> 'DeltaGenerator | DataframeState'
+button: (label: 'str', key: 'Key | None' = None, help: 'str | None' = None, on_click: 'WidgetCallback | None' = None, args: 'WidgetArgs | None' = None, kwargs: 'WidgetKwargs | None' = None, *, type: "Literal['primary', 'secondary', 'tertiary']" = 'secondary', icon: 'str | None' = None, icon_position: 'IconPosition' = 'left', disabled: 'bool' = False, use_container_width: 'bool | None' = None, width: 'Width' = 'content', shortcut: 'str | None' = None, wrap: 'bool | None' = None) -> 'bool'
+metric: (label: 'str', value: 'Value', delta: 'Delta' = None, delta_color: 'DeltaColor' = 'normal', *, help: 'str | None' = None, icon: 'str | None' = None, label_visibility: 'LabelVisibility' = 'visible', border: 'bool' = False, width: 'Width' = 'stretch', height: 'Height' = 'content', chart_data: 'OptionSequence[Any] | None' = None, chart_type: "Literal['line', 'bar', 'area']" = 'line', delta_arrow: 'DeltaArrow' = 'auto', format: 'str | NumberFormat | None' = None, delta_description: 'str | None' = None) -> 'DeltaGenerator'
+[0m
+[0m← [0mWrite src/ui_helpers.py
+Wrote file successfully.
+[0m
+Tengo todo lo necesario. Streamlit 1.63 permite `width="stretch"`, `hide_index=True` y `border=True` en métricas. Escribo primero el módulo de ayuda `src/ui_helpers.py` y luego `app.py`.
+[0m← [0mWrite app.py
+Wrote file successfully.
+[0m
+Ahora `app.py`:
+Ahora verifico: límite de líneas, sintaxis y un smoke test de `ui_helpers` con los datos de ejemplo (sin tocar el solver real).
+[0m$ [0mwc -l app.py src/ui_helpers.py && python -c "import ast; ast.parse(open('app.py', encoding='utf-8').read()); ast.parse(open('src/ui_helpers.py', encoding='utf-8').read()); print('ast.parse OK')" && python -m py_compile app.py src/ui_helpers.py && python -c "
+from tests._datos_ejemplo import resultado_ciclo_ejemplo, resultado_exergia_ejemplo
+from src import ui_helpers
+r = resultado_ciclo_ejemplo()
+x = resultado_exergia_ejemplo()
+df1 = ui_helpers.tabla_estados(r, x)
+df2 = ui_helpers.tabla_sgen_ed(x)
+avisos = ui_helpers.advertencias_segunda_ley(x)
+print('tabla_estados filas:', len(df1), '| columnas:', list(df1.columns))
+print(df1.to_string())
+print('tabla_sgen_ed filas:', len(df2))
+print(df2.to_string())
+print('avisos 2a ley:', len(avisos))
+for a in avisos: print('-', a[:90], '...')
+p = ui_helpers.dict_parametros(dict(P_alta=3000.0, P_baja=400.0, x_b=0.5, T_fuente=470.0, T_sumidero=300.032917, m_b=1.0, eta_t=0.85, eta_p=0.75, eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80, T0=300.032917, P0=101.325))
+print('parametros keys:', len(p), '| muestra:', list(p.items())[:2])
+from src.plots import grafico_balance_energia, grafico_exergia_destruida
+b = ui_helpers.fig_png(grafico_balance_energia(r)); e = ui_helpers.fig_png(grafico_exergia_destruida(x))
+print('PNG bytes balance:', len(b), '| exergia:', len(e))
+"
+247 app.py
+  115 src/ui_helpers.py
+  362 total
+ast.parse OK
+tabla_estados filas: 10 | columnas: ['Estado', 'T [K]', 'P [kPa]', 'h [kJ/kg]', 's [kJ/kg�K]', 'x (NH3) [-]', 'm [kg/s]', 'q [-]', 'Fase', 'ex_f�sica [kJ/kg]']
+  Estado  T [K]  P [kPa]  h [kJ/kg]  s [kJ/kg�K]  x (NH3) [-]  m [kg/s]  q [-]      Fase  ex_f�sica [kJ/kg]
+0      1  350.0   3000.0      358.0         4.00          0.5       1.0    0.0   l�quido              -97.1
+1      2  400.0   3000.0      408.0         4.50          0.5       1.0    1.0  bif�sico             -197.1
+2      3  400.0   3000.0      409.0         4.60          0.6       0.5    1.0     vapor             -197.1
+3      4  380.0    400.0      386.4         4.40          0.6       0.5    1.0     vapor             -159.7
+4      5  410.0   3000.0      417.0         4.50          0.4       0.5    0.0   l�quido             -217.1
+5      6  370.0   3000.0      377.0         4.10          0.4       0.5    0.0   l�quido             -137.1
+6      7  365.0    400.0      369.4         4.05          0.4       0.5    0.0  bif�sico             -129.7
+7      8  374.0    400.0      379.4         4.24          0.5       1.0    1.0  bif�sico             -147.7
+8      9  330.0    400.0      335.4         3.80          0.5       1.0    0.0   l�quido              -59.7
+9     10  340.0   3000.0      348.0         3.90          0.5       1.0    0.0   l�quido              -77.1
+tabla_sgen_ed filas: 9
+    Componente  Sgen [kW/K]  Ed [kW]
+0         HRVG      0.37500    112.5
+1    Separador      0.05000     15.0
+2      Turbina     -0.10000    -30.0
+3  Regenerador     -0.10000    -30.0
+4      V�lvula     -0.02500     -7.5
+5   Absorbedor      0.01500      4.5
+6  Condensador     -0.29333    -88.0
+7        Bomba      0.10000     30.0
+8        Total      0.02167      6.5
+avisos 2a ley: 4
+- Turbina reporta Sgen = -0.10000 kW/K < 0, lo que violar�a la segunda ley en el modelo. Rev ...
+- Regenerador reporta Sgen = -0.10000 kW/K < 0, lo que violar�a la segunda ley en el modelo. ...
+- V�lvula reporta Sgen = -0.02500 kW/K < 0, lo que violar�a la segunda ley en el modelo. Rev ...
+- Condensador reporta Sgen = -0.29333 kW/K < 0, lo que violar�a la segunda ley en el modelo. ...
+parametros keys: 13 | muestra: [('P_alta (presi�n alta)', (3000.0, 'kPa')), ('P_baja (presi�n baja)', (400.0, 'kPa'))]
+PNG bytes balance: 21727 | exergia: 46429
+[0m
+[0m← [0mEdit src/ui_helpers.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\ui_helpers.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\ui_helpers.py
++++ D:\Desktop\ciclo_kalina_tercero\src\ui_helpers.py
+@@ -16,9 +16,10 @@
+ import pandas as pd
+ 
+ __all__ = ["ORDEN_COMPONENTES", "NOMBRES_COMPONENTES", "tabla_estados",
+            "tabla_sgen_ed", "advertencias_segunda_ley", "dict_parametros",
+-           "fig_png"]
++           "fig_png", "CAMPOS_CICLO", "CAMPOS_ESTADO", "BACKENDS",
++           "BACKEND_REAL", "CLAVES_RESULTADO"]
+ 
+ ORDEN_COMPONENTES = ("hrvg", "separador", "turbina", "regenerador",
+                      "valvula", "absorbedor", "condensador", "bomba")
+ 
+
+[0m
+Todo funciona (tabla de 10 estados, Sgen/Ed con total, 4 avisos de 2ª ley con los datos fake que tienen Sgen negativos, PNGs generados). Pero `app.py` quedó en **247 líneas** — viola el límite de 200. Muevo el esquema de campos y las constantes de backend a `src/ui_helpers.py` (datos de presentación, no necesitan Streamlit) y dejo `app.py` como orquestación pura.
+[0m← [0mEdit src/ui_helpers.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\ui_helpers.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\ui_helpers.py
++++ D:\Desktop\ciclo_kalina_tercero\src\ui_helpers.py
+@@ -113,5 +113,65 @@
+ def fig_png(fig) -> bytes:
+     """Figura matplotlib → bytes PNG (para ``st.download_button``)."""
+     buf = BytesIO()
+     fig.savefig(buf, format="png", dpi=150)
+-    return buf.getvalue()
+\ No newline at end of file
++    return buf.getvalue()
++
++
++# -- Esquema de la UI (datos de presentación, sin Streamlit) -----------------
++
++# Valores por defecto de CONTEXT.md ("Valores por defecto sugeridos para la
++# UI", con T_fuente ya actualizado a 470.0 K). Cada campo:
++# (clave, etiqueta, unidad, ayuda, por defecto, mínimo, máximo, paso, formato).
++# T0 = 300.032917 K (estado muerto, media del perfil horario ambiente);
++# P0 = 101.325 kPa (supuesto atmosférico de CONTEXT.md).
++CAMPOS_CICLO = (
++    ("P_alta", "Presión alta", "kPa",
++     "Presión de alta del ciclo (descarga de la bomba, entrada al HRVG).",
++     3000.0, 500.0, 20000.0, 50.0, "%.1f"),
++    ("P_baja", "Presión baja", "kPa",
++     "Presión de baja del ciclo (descarga de la turbina y condensador).",
++     400.0, 50.0, 5000.0, 50.0, "%.1f"),
++    ("x_b", "Composición global de NH3", "-",
++     "Fracción másica de amoníaco de la mezcla NH3-H2O que circula; define el "
++     "equilibrio del separador (0 < x < 1).", 0.50, 0.05, 0.95, 0.01, "%.2f"),
++    ("T_fuente", "Temperatura de la fuente", "K",
++     "Temperatura del reservorio que entrega calor al HRVG.",
++     470.0, 350.0, 800.0, 10.0, "%.1f"),
++    ("T_sumidero", "Temperatura del sumidero", "K",
++     "Temperatura del agua de enfriamiento que recibe el calor rechazado.",
++     300.032917, 250.0, 600.0, 1.0, "%.3f"),
++    ("m_b", "Flujo másico de trabajo", "kg/s",
++     "Base de cálculo del ciclo: caudal de mezcla circulante.",
++     1.0, 0.01, 100.0, 0.1, "%.2f"),
++    ("eta_t", "Eficiencia isentrópica de la turbina", "-",
++     "Relación entre el trabajo real y el isentrópico de la turbina.",
++     0.85, 0.05, 0.99, 0.01, "%.2f"),
++    ("eta_p", "Eficiencia isentrópica de la bomba", "-",
++     "Relación entre el trabajo isentrópico y el real de la bomba.",
++     0.75, 0.05, 0.99, 0.01, "%.2f"),
++    ("eps_hrvg", "Efectividad del HRVG", "-",
++     "ε_HRVG = (h2 − h1)/(h2,máx − h1): qué tan cerca del máximo opera el HRVG.",
++     0.85, 0.05, 0.99, 0.01, "%.2f"),
++    ("eps_reg", "Efectividad del regenerador", "-",
++     "ε_reg = (h5 − h6)/(h5 − h6,mín): recuperación interna de calor.",
++     0.75, 0.05, 0.99, 0.01, "%.2f"),
++    ("eps_cond", "Efectividad del condensador", "-",
++     "ε_cond = (h8 − h9)/(h8 − h9,mín) frente al sumidero.",
++     0.80, 0.05, 0.99, 0.01, "%.2f"),
++)
++CAMPOS_ESTADO = (
++    ("T0", "Temperatura ambiente (estado muerto)", "K",
++     "T0 = 300.032917 K: media del perfil horario ambiente (CONTEXT.md).",
++     300.032917, 250.0, 400.0, 0.001, "%.6f"),
++    ("P0", "Presión ambiente (estado muerto)", "kPa",
++     "P0 = 101.325 kPa (atmosférica estándar; supuesto de CONTEXT.md).",
++     101.325, 50.0, 500.0, 0.1, "%.3f"),
++)
++BACKENDS = (
++    "AmmoniaWaterAdapter — mezcla NH3-H2O (recomendado)",
++    "IAPWSAdapter (agua pura) — no aplica a la mezcla NH3-H2O en este entorno",
++    "PyfluidsAdapter (CoolProp) — no soporta el par NH3-H2O en este entorno",
++)
++BACKEND_REAL = "AmmoniaWaterAdapter"
++CLAVES_RESULTADO = ("resultado_ciclo", "resultado_exergia", "parametros",
++                    "backend_nombre")
+\ No newline at end of file
+
+[0m
+[0m← [0mWrite app.py
+Wrote file successfully.
+[0m
+[0m$ [0mwc -l app.py src/ui_helpers.py && python -c "import ast; ast.parse(open('app.py', encoding='utf-8').read()); ast.parse(open('src/ui_helpers.py', encoding='utf-8').read()); print('ast.parse OK')" && python -m py_compile app.py src/ui_helpers.py && python -c "import app; print('import app OK')"
+192 app.py
+  176 src/ui_helpers.py
+  368 total
+ast.parse OK
+import app OK
+[0m
+Ambos archivos cumplen el límite (192 y 176 líneas). Ahora la verificación de arranque real de la app en modo headless.
+[0m$ [0mLOG="C:/Users/Usuario/AppData/Local/Temp/opencode/streamlit_app.log"; streamlit run app.py --server.headless true --server.port 8765 > "$LOG" 2>&1 & PID=$!; sleep 20; echo "--- LOG ---"; cat "$LOG"; echo "--- PROC ---"; kill $PID 2>/dev/null; wait $PID 2>/dev/null; echo "proceso detenido"
+--- LOG ---
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+2026-09-17 23:25:28.246 Uvicorn server started on :::8765
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8765
+  Network URL: http://192.168.1.7:8765
+  External URL: http://191.95.133.89:8765
+
+--- PROC ---
+proceso detenido
+[0m
+El servidor arrancó limpio, pero Streamlit solo ejecuta el script cuando un cliente se conecta. Hago la verificación fuerte con `AppTest` de Streamlit, que ejecuta `main()` de verdad y reporta excepciones del script:
+[0m$ [0mpython -c "
+from streamlit.testing.v1 import AppTest
+
+at = AppTest.from_file('app.py', default_timeout=60)
+at.run()
+print('excepciones del script:', at.exception)
+assert not at.exception, at.exception
+
+# Contar widgets de entrada en el sidebar
+n_inputs = len(at.number_input)
+txt = [w.label for w in at.text]
+print('number_input:', len(n_inputs))
+for w in n_inputs:
+    print('  -', w.label, '=', w.value)
+print('selectbox:', [w.label for w in at.selectbox], '->', at.selectbox[0].value if at.selectbox else None)
+print('button:', [w.label for w in at.button])
+print('info presentes:', [i.value[:60] for i in at.info])
+print('markdown n:', len(at.markdown))
+print('expander:', [e.label for e in at.expander])
+"
+2026-09-17 23:25:56.546 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+Traceback (most recent call last):
+excepciones del script: ElementList()
+  File "<string>", line 12, in <module>
+    print('number_input:', len(n_inputs))
+                           ~~~^^^^^^^^^^
+TypeError: object of type 'int' has no len()
+[0m
+El script de la app corre sin excepciones (`at.exception` vacío); el error fue en *mi* script de prueba (`len()` sobre un int). Corrijo la verificación:
+[0m$ [0mpython -c "
+from streamlit.testing.v1 import AppTest
+
+at = AppTest.from_file('app.py', default_timeout=60)
+at.run()
+assert not at.exception, at.exception
+print('OK: script ejecutado sin excepciones')
+
+inputs = at.number_input
+print('number_input:', len(inputs))
+for w in inputs:
+    print('  -', w.label, '=', w.value)
+sb = at.selectbox
+print('selectbox:', sb[0].label, '->', sb[0].value)
+print('button:', [w.label for w in at.button])
+print('info:', [i.value[:70] for i in at.info])
+print('expandir:', [e.label for e in at.expander])
+"
+2026-09-17 23:26:08.144 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+Traceback (most recent call last):
+OK: script ejecutado sin excepciones
+number_input: 13
+  - Presi�n alta [kPa] = 3000.0
+  - Presi�n baja [kPa] = 400.0
+  - Composici�n global de NH3 [-] = 0.5
+  - Temperatura de la fuente [K] = 470.0
+  - Temperatura del sumidero [K] = 300.032917
+  - Flujo m�sico de trabajo [kg/s] = 1.0
+  - Eficiencia isentr�pica de la turbina [-] = 0.85
+  - Eficiencia isentr�pica de la bomba [-] = 0.75
+  - Efectividad del HRVG [-] = 0.85
+  - Efectividad del regenerador [-] = 0.75
+  - Efectividad del condensador [-] = 0.8
+  - Temperatura ambiente (estado muerto) [K] = 300.032917
+  - Presi�n ambiente (estado muerto) [kPa] = 101.325
+selectbox: Backend de propiedades -> AmmoniaWaterAdapter � mezcla NH3-H2O (recomendado)
+button: ['Ejecutar simulaci�n']
+info:   File "<string>", line 16, in <module>
+    print('info:', [i.value[:70] for i in at.info])
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03b7' in position 134: character maps to <undefined>
+[0m
+La app corre sin excepciones y los 13 campos traen exactamente los valores por defecto de CONTEXT.md (incluido `T_fuente = 470.0 K`). El traceback final es solo un artefacto de mi script de prueba (la consola cp1252 no imprime "η"); hago la comprobación final sin imprimir caracteres no-ASCII:
+[0m$ [0mpython -c "
+from streamlit.testing.v1 import AppTest
+
+at = AppTest.from_file('app.py', default_timeout=60)
+at.run()
+assert not at.exception
+assert len(at.number_input) == 13
+assert len(at.selectbox) == 1 and at.selectbox[0].value.startswith('AmmoniaWaterAdapter')
+assert len(at.button) == 1 and at.button[0].label == 'Ejecutar simulaci' + chr(243) + 'n'
+assert len(at.info) >= 1          # placeholder inicial: pulsa el boton para ver resultados
+assert len(at.expander) == 1      # seccion de sensibilidad reservada
+assert len(at.exception) == 0
+print('OK: 13 campos, backends, boton, info inicial, expander sensibilidad — sin excepciones')
+# Confirmar que NO hay resultados antes de correr (solo aparecen tras el clic)
+assert 'resultado_ciclo' not in at.session_state
+print('OK: session_state vacio antes del clic (resolver_ciclo solo se llama al pulsar)')
+"
+2026-09-17 23:26:23.797 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+OK: 13 campos, backends, boton, info inicial, expander sensibilidad � sin excepciones
+OK: session_state vacio antes del clic (resolver_ciclo solo se llama al pulsar)
+[0m
+Verificación completa. Redacto el reporte final según el formato obligatorio de `AGENTS.md`.
+
+---
+
+```
+STATUS: done
+SUMMARY: Implementé app.py (UI Streamlit en español, ciclo Kalina KSC-11)
+  integrando solver, exergía, Excel y gráficas reales, más src/ui_helpers.py
+  para respetar el límite de 200 líneas (app.py = 192, ui_helpers.py = 176).
+  Verificado: arranque headless de Streamlit sin excepciones y ejecución del
+  script vía AppTest sin errores, con los 13 campos de entrada en sus valores
+  por defecto de CONTEXT.md (incluido T_fuente = 470.0 K, T0 = 300.032917 K,
+  P0 = 101.325 kPa).
+FILES_CHANGED: app.py (reescrito; antes era stub TODO); src/ui_helpers.py
+  (nuevo, presentación y esquema de campos). Ningún otro archivo tocado.
+TESTS: no aplica pytest (app interactiva, constraint del TASK_CONTEXT); se
+  verificó con: (1) python -c "import ast; ast.parse(...)" + py_compile en
+  ambos archivos (limpio); (2) smoke test de src/ui_helpers con los datos fake
+  de tests/_datos_ejemplo.py (tabla de 10 estados OK, tabla Sgen/Ed con Total
+  OK, 4 avisos de 2ª ley detectados con los Sgen negativos del fake, dict de
+  13 parámetros OK, PNGs generados: 21727 y 46429 bytes); (3) streamlit run
+  app.py --server.headless true --server.port 8765 (log: "You can now view
+  your Streamlit app", sin traceback, proceso detenido al final); (4) AppTest
+  de Streamlit ejecutando main() de verdad: sin excepciones, 13 number_input
+  con los defaults exactos, selectbox de backend = AmmoniaWaterAdapter,
+  botón "Ejecutar simulación", placeholder inicial y expander de sensibilidad
+  presentes, session_state vacío antes del clic.
+RESULTS: app.py 192 líneas, src/ui_helpers.py 176 líneas. Arranque headless
+  limpio en http://localhost:8765. AppTest: 0 excepciones de script; campos
+  por defecto verificados: P_alta=3000.0, P_baja=400.0, x_b=0.5,
+  T_fuente=470.0, T_sumidero=300.032917, m_b=1.0, eta_t=0.85, eta_p=0.75,
+  eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80, T0=300.032917, P0=101.325.
+ERRORS: ninguno en la app. (Un error en MI script de verificación — len() sobre
+  int y un UnicodeEncodeError de consola cp1252 al imprimir "η" — no afecta a
+  la app; la corrida válida comprobó todo sin tocar caracteres especiales.)
+ASSUMPTIONS: (1) P0 = 101.325 kPa (estado muerto) es el supuesto explícito de
+  CONTEXT.md, ofrecido como campo configurable en la UI. (2) T_sumidero por
+  defecto = T0 = 300.032917 K (entrada "T_agua_in = T0 por defecto" de
+  CONTEXT.md). (3) Selector de backend: se listan los tres adapters pero los
+  dos no aplicables llevan "(no aplica …)" en la etiqueta; si el usuario los
+  elige, la app avisa y cae al motor real (AmmoniaWaterAdapter) — nunca deja
+  elegir un backend que falle en silencio. (4) La sección de sensibilidad es
+  solo placeholder (constraint: sin lógica real). (5) El flujo del clic no se
+  ejecutó end-to-end a propósito: correría resolver_ciclo real (~8-9 min),
+  explícitamente no requerido por el TASK_CONTEXT; la ruta del clic está
+  cubierta por try/except en código y por el hecho de que session_state queda
+  vacío hasta pulsar el botón.
+UNRESOLVED: ninguno.
+RECOMMENDATIONS: siguiente tarea natural: implementar src/sensitivity.py y
+  conectar el placeholder de la UI a los barridos (la UI ya reserva el hueco);
+  opcionalmente, regresión completa de pytest (tests/ ya cubren solver,
+  exergía, export y gráficas, y no dependen de la UI).
+```

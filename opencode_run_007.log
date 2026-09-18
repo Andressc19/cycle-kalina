@@ -1,0 +1,560 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead .
+[0m✱ [0mGlob "src/**/*.py"[90m 24 matches[0m
+[0m✱ [0mGlob "tests/**/*.py"[90m 8 matches[0m
+[0m→ [0mRead src/exergy.py
+[0m→ [0mRead src/state.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/_cycle_loops.py
+[0m→ [0mRead tests/test_exergy.py
+[0m→ [0mRead tests/test_cycle_solver.py
+[0m→ [0mRead src/components/regenerador.py
+[0m→ [0mRead src/components/hrvg.py
+[0m→ [0mRead src/components/condensador.py
+[0m→ [0mRead src/components/separador.py
+[0m→ [0mRead src/components/turbina.py
+[0m→ [0mRead src/components/valvula.py
+[0m→ [0mRead src/components/bomba.py
+[0m→ [0mRead src/components/absorbedor.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead scripts
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead scripts/diagnostico_rendimiento.py
+[0m→ [0mRead src/__init__.py
+[0m✱ [0mGrep "exergia|exergy"[90m 3 matches[0m
+[0m→ [0mRead tests/test_components.py
+[0m✱ [0mGrep "exergy|exergia"[90m in app.py · 3 matches[0m
+[0m✱ [0mGrep "from src import|import src"[90m 12 matches[0m
+[0m→ [0mRead app.py[90m [limit=60][0m
+He leído `TASK_CONTEXT.md`, `CONTEXT.md` y el código de `src/` y `tests/`. Contexto clave:
+
+- **8 fórmulas de `Sgen`** ya derivadas en CONTEXT.md (HRVG, separador, turbina, regenerador, válvula, absorbedor, condensador, bomba); `Ed = T0·Sgen`; balance global `Ex_Qi − Wnet − Ex_Qout ≈ Ed_total`.
+- **Estado muerto**: T0=300.032917 K (confirmado), P0=101.325 kPa (supuesto, default configurable); `x0 = x_corriente` (sin exergía química).
+- `calcular_exergia` debe recibir `T_fuente`/`T_sumidero` como argumentos propios (no están en el dict de `resolver_ciclo`).
+- Los estados devueltos no deben mutarse → usaré `dataclasses.replace`.
+
+Verifico primero el intérprete y el estado de pytest antes de implementar:
+[0m
+[0m$ [0mgit log --oneline -8 && git status --short
+fatal: your current branch 'master' does not have any commits yet
+[0m
+[0m$ [0mls .venv/Scripts/python.exe 2>/dev/null && .venv/Scripts/python.exe --version
+.venv/Scripts/python.exe
+Python 3.13.7
+[0m
+[0m← [0mWrite src/exergy.py
+Wrote file successfully.
+[0m
+Ahora implemento `src/exergy.py`:
+[0m← [0mWrite tests/test_exergy.py
+Wrote file successfully.
+[0m
+Ahora el test con el backend fake determinista (cálculo a mano de cada valor):
+[0m← [0mEdit tests/test_exergy.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+@@ -142,10 +142,11 @@
+         assert res["ed"][comp] == pytest.approx(300.0 * val), comp
+     assert res["ed_total"] == pytest.approx(300.0 * sum(esperado_sgen.values()))
+     assert res["ex_qi"] == pytest.approx(12.5)          # 50·(1 − 300/400)
+     assert res["ex_qout"] == pytest.approx(0.0)         # 44·(1 − 300/300)
++    # El residual es la aritmética definicional del balance global.
+     assert res["residual"] == pytest.approx(
+-        res["ex_qi"] - res["estados"] and 0.0 or 0.0)  # placeholder no usado
++        res["ex_qi"] - (-1.3) - res["ex_qout"] - res["ed_total"])
+ 
+ 
+ def test_calcular_exergia_rellena_exergia_fisica_sin_mutar(backend):
+     resultado = _resultado_mano()
+
+[0m
+Corrijo una línea residual que quedó mal en el test (una aserción placeholder sin sentido):
+[0m← [0mWrite scripts/reporte_exergia_caso_base.py
+Wrote file successfully.
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1
+...................................F.................s                   [100%]
+================================== FAILURES ===================================
+______________ test_exergia_fisica_usa_x_propia_de_la_corriente _______________
+
+backend = <tests.test_exergy.FakeBackend object at 0x000002117FD2D1D0>
+
+    def test_exergia_fisica_usa_x_propia_de_la_corriente(backend):
+        # El estado de referencia se eval�a con x0 = x_corriente (sin qu�mica):
+        # mismo T/P, distinto x \u2192 distinto resultado.
+        a = exergy.exergia_fisica(_estado(360.0, 3000.0, 0.5, 1.0), backend,
+                                  T0=300.0, P0=100.0)
+        b = exergy.exergia_fisica(_estado(360.0, 3000.0, 0.4, 1.0), backend,
+                                  T0=300.0, P0=100.0)
+>       assert a != pytest.approx(b)
+E       assert -117.09999999999991 != -117.10000000000005 � 1.2e-04
+E        +  where -117.10000000000005 � 1.2e-04 = <function approx at 0x000002113CDFBB00>(-117.10000000000005)
+E        +    where <function approx at 0x000002113CDFBB00> = pytest.approx
+
+tests\test_exergy.py:115: AssertionError
+============================== warnings summary ===============================
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_exergy.py::test_exergia_fisica_usa_x_propia_de_la_corriente
+1 failed, 52 passed, 1 skipped, 5 warnings in 60.26s (0:01:00)
+[0m
+[0m← [0mEdit tests/test_exergy.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+@@ -106,18 +106,33 @@
+ 
+ 
+ def test_exergia_fisica_usa_x_propia_de_la_corriente(backend):
+     # El estado de referencia se evalúa con x0 = x_corriente (sin química):
+-    # mismo T/P, distinto x → distinto resultado.
+-    a = exergy.exergia_fisica(_estado(360.0, 3000.0, 0.5, 1.0), backend,
+-                              T0=300.0, P0=100.0)
+-    b = exergy.exergia_fisica(_estado(360.0, 3000.0, 0.4, 1.0), backend,
+-                              T0=300.0, P0=100.0)
+-    assert a != pytest.approx(b)
+-    assert a == pytest.approx(-97.1)      # x=0.5: h0=305.1, s0=3.5
+-    assert b == pytest.approx(-117.1)     # x=0.4: h0=304.1, s0=3.4
++    # se comprueba con un spy que backend.h/backend.s reciben x=estado.x.
++    # (Con las leyes lineales del fake, ex es independiente de x al ser
++    # evaluado el referente a la MISMA x: 10x − 10x = 0 — de ahí el spy.)
++    llamadas = []
+ 
++    class Spy(FakeBackend):
++        def h(self, P, T=None, x=None, s=None, quality=None):
++            llamadas.append(("h", P, T, x))
++            return super().h(P, T=T, x=x)
+ 
++        def s(self, P, T=None, x=None):
++            llamadas.append(("s", P, T, x))
++            return super().s(P, T=T, x=x)
++
++    e = _estado(360.0, 3000.0, 0.5, 1.0)
++    exergy.exergia_fisica(e, Spy(), T0=300.0, P0=100.0)
++    assert ("h", 100.0, 300.0, 0.5) in llamadas
++    assert ("s", 100.0, 300.0, 0.5) in llamadas
++    # Y con otra composición la referencia se evalúa con esa x.
++    exergy.exergia_fisica(_estado(360.0, 3000.0, 0.4, 1.0), Spy(),
++                          T0=300.0, P0=100.0)
++    assert ("h", 100.0, 300.0, 0.4) in llamadas
++    assert ("s", 100.0, 300.0, 0.4) in llamadas
++
++
+ def test_exergia_fisica_con_defaults_devuelve_finito(backend):
+     valor = exergy.exergia_fisica(_estado(400.0, 3000.0, 0.5, 1.0), backend)
+     assert valor == pytest.approx(valor)        # no NaN
+     assert isinstance(valor, float) and abs(valor) < 1e6
+
+[0m
+El test que falla tenía una premisa falsa: con las leyes lineales del fake, `ex = (T−T0) + 1e-3(P−P0) − T0·0.01(T−T0)` — los términos en `x` se cancelan exactamente al evaluar `h0`/`s0` con `x0 = x_corriente` (que es precisamente lo que la fórmula exige). Lo reemplazo por un test con *spy* que verifica directamente que la referencia se evalúa con la `x` propia del estado:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_exergy.py -q 2>&1
+........F.                                                               [100%]
+================================== FAILURES ===================================
+____________ test_nuevos_archivos_dentro_del_limite_de_200_lineas _____________
+
+    def test_nuevos_archivos_dentro_del_limite_de_200_lineas():
+        for ruta in _MODULOS_NUEVOS:
+>           assert len((_RAIZ / ruta).read_text(encoding="utf-8").splitlines()) <= 200
+E           assert 212 <= 200
+E            +  where 212 = len(['"""Tests del m�dulo de exerg�a f�sica del ciclo Kalina KSC-11.', '', 'Usa el mismo `PropertyBackend` fake determinis...er.py` (leyes lineales, para poder calcular a mano cada valor', 'esperado y compararlo con `pytest.approx`):', '', ...])
+E            +    where ['"""Tests del m�dulo de exerg�a f�sica del ciclo Kalina KSC-11.', '', 'Usa el mismo `PropertyBackend` fake determinis...er.py` (leyes lineales, para poder calcular a mano cada valor', 'esperado y compararlo con `pytest.approx`):', '', ...] = <built-in method splitlines of str object at 0x000001E4E23528C0>()
+E            +      where <built-in method splitlines of str object at 0x000001E4E23528C0> = '"""Tests del m�dulo de exerg�a f�sica del ciclo Kalina KSC-11.\n\nUsa el mismo `PropertyBackend` fake determinista qu...n    texto = (_RAIZ / "src/exergy.py").read_text(encoding="utf-8")\n    assert not any(p in texto for p in prohibidos)'.splitlines
+E            +        where '"""Tests del m�dulo de exerg�a f�sica del ciclo Kalina KSC-11.\n\nUsa el mismo `PropertyBackend` fake determinista qu...n    texto = (_RAIZ / "src/exergy.py").read_text(encoding="utf-8")\n    assert not any(p in texto for p in prohibidos)' = read_text(encoding='utf-8')
+E            +          where read_text = (WindowsPath('D:/Desktop/ciclo_kalina_tercero') / 'tests/test_exergy.py').read_text
+
+tests\test_exergy.py:205: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_exergy.py::test_nuevos_archivos_dentro_del_limite_de_200_lineas
+1 failed, 9 passed in 1.87s
+[0m
+[0m→ [0mRead tests/test_exergy.py
+El archivo de test quedó en 212 líneas (límite 200). Lo compacto (docstring + comentarios redundantes):
+[0m
+[0m← [0mEdit tests/test_exergy.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+@@ -1,17 +1,12 @@
+ """Tests del módulo de exergía física del ciclo Kalina KSC-11.
+ 
+ Usa el mismo `PropertyBackend` fake determinista que `test_components.py` /
+-`test_cycle_solver.py` (leyes lineales, para poder calcular a mano cada valor
+-esperado y compararlo con `pytest.approx`):
+-
+-    h = T + 10·x + 1e-3·P ;   s = 0.01·T + x
+-    T_from_Ph = h − 10·x − 1e-3·P ;   T_from_Ps = 100·(s − x)
+-
+-Cubre: la fórmula exacta de exergía física de CONTEXT.md por corriente, las 8
+-fórmulas de `Sgen`/`Ed` de CONTEXT.md traducidas 1:1, el cierre del balance
+-global sobre el resultado REAL de `resolver_ciclo` (con el fake), la no
+-mutación de los estados originales y el límite de líneas por archivo.
++`test_cycle_solver.py` (leyes lineales para calcular a mano cada valor
++esperado): h = T + 10·x + 1e-3·P ;  s = 0.01·T + x ;  T_from_Ph = h − 10·x −
++1e-3·P. Cubre: la fórmula de exergía física de CONTEXT.md, las 8 fórmulas de
++`Sgen`/`Ed` traducidas 1:1, el cierre del balance global sobre el resultado
++real de `resolver_ciclo` (con el fake) y la no mutación de los estados.
+ """
+ 
+ from __future__ import annotations
+ 
+
+[0m
+Hago los recortes (docstring, comentarios, `_resultado_mano` compacto) para quedar ≤ 200 líneas:
+[0m← [0mEdit tests/test_exergy.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+@@ -65,20 +65,15 @@
+                        s=0.01 * T + x, x=x, m=m)
+ 
+ 
+ def _resultado_mano():
+-    """Conjunto de estados + energías para calcular cada Sgen a mano."""
++    """Estados + energías elegidos para calcular cada Sgen a mano."""
+     estados = dict(
+-        e1=_estado(350.0, 3000.0, 0.5, 1.0),
+-        e2=_estado(400.0, 3000.0, 0.5, 1.0),
+-        e3=_estado(400.0, 3000.0, 0.6, 0.5),
+-        e4=_estado(380.0, 400.0, 0.6, 0.5),
+-        e5=_estado(410.0, 3000.0, 0.4, 0.5),
+-        e6=_estado(370.0, 3000.0, 0.4, 0.5),
+-        e7=_estado(365.0, 400.0, 0.4, 0.5),
+-        e8=_estado(374.0, 400.0, 0.5, 1.0),
+-        e9=_estado(330.0, 400.0, 0.5, 1.0),
+-        e10=_estado(340.0, 3000.0, 0.5, 1.0),
++        e1=_estado(350.0, 3000.0, 0.5, 1.0), e2=_estado(400.0, 3000.0, 0.5, 1.0),
++        e3=_estado(400.0, 3000.0, 0.6, 0.5), e4=_estado(380.0, 400.0, 0.6, 0.5),
++        e5=_estado(410.0, 3000.0, 0.4, 0.5), e6=_estado(370.0, 3000.0, 0.4, 0.5),
++        e7=_estado(365.0, 400.0, 0.4, 0.5), e8=_estado(374.0, 400.0, 0.5, 1.0),
++        e9=_estado(330.0, 400.0, 0.5, 1.0), e10=_estado(340.0, 3000.0, 0.5, 1.0),
+     )
+     return dict(estados=estados, Qi=50.0, Qout=44.0, Wt=11.3, Wp=12.6,
+                 Wnet=-1.3, Qreg=35.0, eta=-0.026)
+ 
+
+[0m
+[0m← [0mEdit tests/test_exergy.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+@@ -95,12 +95,11 @@
+         pytest.approx(-217.1)
+ 
+ 
+ def test_exergia_fisica_usa_x_propia_de_la_corriente(backend):
+-    # El estado de referencia se evalúa con x0 = x_corriente (sin química):
+-    # se comprueba con un spy que backend.h/backend.s reciben x=estado.x.
+-    # (Con las leyes lineales del fake, ex es independiente de x al ser
+-    # evaluado el referente a la MISMA x: 10x − 10x = 0 — de ahí el spy.)
++    # La referencia se evalúa con x0 = x_corriente (sin química): se
++    # comprueba con un spy que backend.h/backend.s reciben x=estado.x (con
++    # leyes lineales, ex es independiente de x al evaluar a la MISMA x).
+     llamadas = []
+ 
+     class Spy(FakeBackend):
+         def h(self, P, T=None, x=None, s=None, quality=None):
+
+[0m
+[0m← [0mEdit tests/test_exergy.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_exergy.py
+@@ -122,14 +122,12 @@
+ 
+ 
+ def test_exergia_fisica_con_defaults_devuelve_finito(backend):
+     valor = exergy.exergia_fisica(_estado(400.0, 3000.0, 0.5, 1.0), backend)
+-    assert valor == pytest.approx(valor)        # no NaN
+     assert isinstance(valor, float) and abs(valor) < 1e6
+ 
+ 
+ def test_calcular_exergia_8_formulas_de_sgen_a_mano(backend):
+-    # T0=300, T_fuente=400, T_sumidero=300 → Ex_Qout = 44·(1−1) = 0.
+     res = exergy.calcular_exergia(_resultado_mano(), backend, T_fuente=400.0,
+                                   T_sumidero=300.0, T0=300.0, P0=100.0)
+     esperado_sgen = dict(
+         hrvg=1.0 * (4.5 - 4.0) - 50.0 / 400.0,          # 0.375
+
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -5
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+53 passed, 1 skipped, 5 warnings in 59.24s
+[0m
+Tests completos en verde (53 passed, 1 skipped — el skipped preexistente). Verifico límites de líneas y luego lanzo el caso base con el backend real:
+[0m$ [0mwc -l src/exergy.py tests/test_exergy.py scripts/reporte_exergia_caso_base.py
+113 src/exergy.py
+  198 tests/test_exergy.py
+   77 scripts/reporte_exergia_caso_base.py
+  388 total
+[0m
+Todos dentro del límite de 200 líneas. Ahora ejecuto el reporte del caso base con el backend real (**~8 min esperado**, ya diagnosticado — no es un cuelgue):
+[0m$ [0m.venv/Scripts/python.exe scripts/reporte_exergia_caso_base.py 2>&1
+Resolviendo el ciclo con el backend real (~8 min esperado, T_fuente=470 K)...
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\scripts\reporte_exergia_caso_base.py", line 78, in <module>
+    main()
+    ~~~~^^
+  File "D:\Desktop\ciclo_kalina_tercero\scripts\reporte_exergia_caso_base.py", line 44, in main
+    print(f"\n[CONVERGIO] en {t_res:.1f} s � \u03b7 = {res['eta']:.6f} "
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          f"({100 * res['eta']:.2f} %)")
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03b7' in position 27: character maps to <undefined>
+[0m
+[0m← [0mEdit scripts/reporte_exergia_caso_base.py
+Index: D:\Desktop\ciclo_kalina_tercero\scripts\reporte_exergia_caso_base.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\scripts\reporte_exergia_caso_base.py
++++ D:\Desktop\ciclo_kalina_tercero\scripts\reporte_exergia_caso_base.py
+@@ -31,8 +31,10 @@
+ T0, P0 = exergy.T0_POR_DEFECTO, exergy.P0_POR_DEFECTO
+ 
+ 
+ def main() -> None:
++    # Consola Windows cp1252: forzar UTF-8 para caracteres no ASCII.
++    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+     backend = AmmoniaWaterAdapter(x=0.5)
+     t0 = time.perf_counter()
+     print("Resolviendo el ciclo con el backend real "
+           "(~8 min esperado, T_fuente=470 K)...", flush=True)
+@@ -40,36 +42,36 @@
+     t_res = time.perf_counter() - t0
+     ex = exergy.calcular_exergia(res, backend, T_fuente=PARAMS["T_fuente"],
+                                  T_sumidero=PARAMS["T_sumidero"], T0=T0, P0=P0)
+ 
+-    print(f"\n[CONVERGIO] en {t_res:.1f} s — η = {res['eta']:.6f} "
++    print(f"\n[CONVERGIO] en {t_res:.1f} s -- eta = {res['eta']:.6f} "
+           f"({100 * res['eta']:.2f} %)")
+     print(f"T1 = {res['estados']['e1'].T:.4f} K | "
+           f"T2 = {res['estados']['e2'].T:.4f} K")
+-    print("\n-- 1) exergía física por estado [kJ/kg] "
++    print("\n-- 1) exergia fisica por estado [kJ/kg] "
+           f"(T0={T0:.4f} K, P0={P0:.1f} kPa) --")
+     encabezado = "  estado    T[K]      P[kPa]     h[kJ/kg]   s[kJ/kgK]   x     m[kg/s]   ex_fisica"
+     print(encabezado)
+     for i in range(1, 11):
+         e = ex["estados"][f"e{i}"]
+         print(f"  e{i:<5d} {e.T:9.3f} {e.P:9.1f} {e.h:10.3f} {e.s:10.4f} "
+               f"{e.x:6.4f} {e.m:8.4f} {e.exergia_fisica:10.4f}")
+ 
+-    print("\n-- 2) Sgen [kW/K] y Ed [kW] por componente (Ed = T0·Sgen) --")
++    print("\n-- 2) Sgen [kW/K] y Ed [kW] por componente (Ed = T0*Sgen) --")
+     for comp in ("hrvg", "separador", "turbina", "regenerador", "valvula",
+                  "absorbedor", "condensador", "bomba"):
+         print(f"  {comp:12s} Sgen = {ex['sgen'][comp]:12.6f}   "
+               f"Ed = {ex['ed'][comp]:10.4f}")
+     print(f"  {'Ed_total':12s} {'':12s} Ed = {ex['ed_total']:10.4f} kW")
+ 
+-    print("\n-- 3) balance global de exergía [kW] --")
++    print("\n-- 3) balance global de exergia [kW] --")
+     print(f"  Ex_Qi   = {ex['ex_qi']:10.4f}   (Qi = {res['Qi']:.4f} kW, "
+           f"T_fuente = 470 K)")
+     print(f"  Ex_Qout = {ex['ex_qout']:10.4f}   (Qout = {res['Qout']:.4f} kW, "
+           f"T_sumidero = 300.032917 K)")
+     print(f"  Wnet    = {res['Wnet']:10.4f}   (Wt = {res['Wt']:.4f}, "
+           f"Wp = {res['Wp']:.4f})")
+-    print(f"  residual = Ex_Qi − Wnet − Ex_Qout − Ed_total = "
++    print(f"  residual = Ex_Qi - Wnet - Ex_Qout - Ed_total = "
+           f"{ex['residual']:10.4f} kW")
+     print(f"  residual_rel (vs Ex_Qi) = {ex['residual_rel']:.6e}  "
+           f"[criterio: < 1e-3]")
+ 
+
+[0m
+El solver **sí convergió** (llegó al print tras `resolver_ciclo`), pero el script reventó al imprimir "η" en una consola cp1252. Lo hago a prueba de consola (ASCII puro + stdout utf-8) antes de relanzar, para no quemar otros 8 minutos:
+Relanzo el reporte del caso base (backend real, ~8 min):
+[0m$ [0m.venv/Scripts/python.exe scripts/reporte_exergia_caso_base.py 2>&1
+Resolviendo el ciclo con el backend real (~8 min esperado, T_fuente=470 K)...
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+[CONVERGIO] en 517.9 s -- eta = 0.131697 (13.17 %)
+T1 = 386.5229 K | T2 = 464.0692 K
+
+-- 1) exergia fisica por estado [kJ/kg] (T0=300.0329 K, P0=101.3 kPa) --
+  estado    T[K]      P[kPa]     h[kJ/kg]   s[kJ/kgK]   x     m[kg/s]   ex_fisica
+  e1       386.523    3000.0    472.136     2.1670 0.5000   1.0000    87.1330
+  e2       464.069    3000.0   2003.430     5.7290 0.5000   1.0000   549.7187
+  e3       464.069    3000.0   2294.417     6.4931 0.5821   0.8074   639.3545
+  e4       385.429     400.0   1994.082     6.6308 0.5821   0.8074   297.7077
+  e5       464.069    3000.0    783.425     2.5251 0.1559   0.1926   155.9675
+  e6       399.829    3000.0    480.280     1.8227 0.1559   0.1926    63.5650
+  e7       379.799     400.0    480.280     1.8387 0.1559   0.1926    58.7591
+  e8       384.955     400.0   1702.554     5.7083 0.5000   1.0000   255.0322
+  e9       320.138     400.0    372.927     1.9874 0.5000   1.0000    41.8160
+  e10      377.402    3000.0    413.757     2.0145 0.5000   1.0000    74.5085
+
+-- 2) Sgen [kW/K] y Ed [kW] por componente (Ed = T0*Sgen) --
+  hrvg         Sgen =     0.303897   Ed =    91.1792
+  separador    Sgen =     0.000000   Ed =     0.0000
+  turbina      Sgen =     0.111174   Ed =    33.3558
+  regenerador  Sgen =     0.017233   Ed =     5.1704
+  valvula      Sgen =     0.003085   Ed =     0.9255
+  absorbedor   Sgen =     0.000379   Ed =     0.1138
+  condensador  Sgen =     0.710643   Ed =   213.2161
+  bomba        Sgen =     0.027120   Ed =     8.1368
+  Ed_total                  Ed =   352.0976 kW
+
+-- 3) balance global de exergia [kW] --
+  Ex_Qi   =   553.7650   (Qi = 1531.2937 kW, T_fuente = 470 K)
+  Ex_Qout =     0.0000   (Qout = 1329.6264 kW, T_sumidero = 300.032917 K)
+  Wnet    =   201.6673   (Wt = 242.4966, Wp = 40.8293)
+  residual = Ex_Qi - Wnet - Ex_Qout - Ed_total =     0.0000 kW
+  residual_rel (vs Ex_Qi) = 6.545912e-08  [criterio: < 1e-3]
+[0m
+El caso base converge y el balance exergético cierra prácticamente a precisión de máquina (`residual_rel = 6.5e-8`). Confirmo el estado final con la suite completa de pytest y los límites de línea:
+[0m$ [0mwc -l src/exergy.py tests/test_exergy.py scripts/reporte_exergia_caso_base.py && git status --short
+113 src/exergy.py
+  198 tests/test_exergy.py
+   79 scripts/reporte_exergia_caso_base.py
+  390 total
+?? .gitignore
+?? .opencode/
+?? AGENTS.md
+?? CONTEXT.md
+?? Kalina_ksc_11_tercero.md
+?? README.md
+?? TASK_CONTEXT.md
+?? app.py
+?? opencode_run_001.log
+?? opencode_run_002.log
+?? opencode_run_003.log
+?? opencode_run_004.log
+?? opencode_run_005.log
+?? opencode_run_006.log
+?? opencode_run_007.log
+?? requirements.txt
+?? scripts/
+?? src/
+?? tests/
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -2
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+53 passed, 1 skipped, 5 warnings in 46.35s
+[0m
+Todo verde. Reporte final en el formato obligatorio:
+
+---
+
+```
+STATUS: done
+SUMMARY: Implementé el módulo de exergía física del ciclo KSC-11 (src/exergy.py):
+exergia_fisica por corriente (ex = (h−h0) − T0·(s−s0), x0 = x_corriente), las 8
+fórmulas de Sgen/Ed de CONTEXT.md traducidas 1:1, Ed_total y el balance global
+Ex_Qi − Wnet − Ex_Qout ≈ Ed_total. Con el caso base del backend real el balance
+cierra con residual_rel = 6.5e-8 (muy por debajo del criterio 1e-3), lo que
+verifica la traducción correcta de las 8 fórmulas. Todos los Sgen salen ≥ 0
+(ninguna violación de la 2ª ley en el caso base).
+
+FILES_CHANGED:
+- src/exergy.py (era stub TODO → implementado; 113 líneas)
+- tests/test_exergy.py (era placeholder → 10 tests con backend mockeado determinista y cálculo a mano; 198 líneas)
+- scripts/reporte_exergia_caso_base.py (nuevo; 79 líneas — reporte del caso base con backend real)
+
+TESTS: .venv/Scripts/python.exe -m pytest tests/ -q → 53 passed, 1 skipped
+(el skip es preexistente), 5 warnings de iapws (preexistentes del motor).
+
+RESULTS — caso base con backend real (T_fuente=470 K, resto de valores por
+defecto de CONTEXT.md; convergencia en 517.9 s ≈ 8.6 min, dentro de lo esperado):
+  eta = 0.131697 (13.17 %) | T1 = 386.5229 K | T2 = 464.0692 K
+
+  1) Exergía física por estado [kJ/kg]  (T0 = 300.032917 K, P0 = 101.325 kPa):
+     e1   386.523 K  3000 kPa   h=  472.136  s=2.1670  x=0.5000  m=1.0000  ex=  87.1330
+     e2   464.069 K  3000 kPa   h= 2003.430  s=5.7290  x=0.5000  m=1.0000  ex= 549.7187
+     e3   464.069 K  3000 kPa   h= 2294.417  s=6.4931  x=0.5821  m=0.8074  ex= 639.3545
+     e4   385.429 K   400 kPa   h= 1994.082  s=6.6308  x=0.5821  m=0.8074  ex= 297.7077
+     e5   464.069 K  3000 kPa   h=  783.425  s=2.5251  x=0.1559  m=0.1926  ex= 155.9675
+     e6   399.829 K  3000 kPa   h=  480.280  s=1.8227  x=0.1559  m=0.1926  ex=  63.5650
+     e7   379.799 K   400 kPa   h=  480.280  s=1.8387  x=0.1559  m=0.1926  ex=  58.7591
+     e8   384.955 K   400 kPa   h= 1702.554  s=5.7083  x=0.5000  m=1.0000  ex= 255.0322
+     e9   320.138 K   400 kPa   h=  372.927  s=1.9874  x=0.5000  m=1.0000  ex=  41.8160
+     e10  377.402 K  3000 kPa   h=  413.757  s=2.0145  x=0.5000  m=1.0000  ex=  74.5085
+
+  2) Sgen [kW/K] y Ed [kW] por componente (Ed = T0·Sgen):
+     hrvg         Sgen = 0.303897   Ed =  91.1792
+     separador    Sgen = 0.000000   Ed =   0.0000   (flash ideal: reversible)
+     turbina      Sgen = 0.111174   Ed =  33.3558
+     regenerador  Sgen = 0.017233   Ed =   5.1704
+     valvula      Sgen = 0.003085   Ed =   0.9255
+     absorbedor   Sgen = 0.000379   Ed =   0.1138
+     condensador  Sgen = 0.710643   Ed = 213.2161
+     bomba        Sgen = 0.027120   Ed =   8.1368
+     Ed_total                       Ed = 352.0976 kW
+
+  3) Balance global de exergía [kW]:
+     Ex_Qi   = 553.7650   (Qi = 1531.2937 kW,  T_fuente = 470 K)
+     Ex_Qout =   0.0000   (Qout = 1329.6264 kW, T_sumidero = 300.032917 K = T0)
+     Wnet    = 201.6673   (Wt = 242.4966, Wp = 40.8293)
+     residual  = Ex_Qi − Wnet − Ex_Qout − Ed_total = 0.0000 kW
+     residual_rel (vs Ex_Qi) = 6.545912e-08   [criterio: < 1e-3 → cierra]
+
+ERRORS: ninguno en el cálculo. (El primer lanzamiento del script falló con
+UnicodeEncodeError al imprimir "η" en consola cp1252 — artefacto de consola,
+no del cálculo; corregido haciendo el script ASCII puro + stdout utf-8 y
+relanzado con éxito.)
+
+ASSUMPTIONS:
+- P0 = 101.325 kPa (default de T0_POR_DEFECTO/P0_POR_DEFECTO; supuesto
+  explícito de CONTEXT.md, configurable).
+- T_sumidero = T0 = 300.032917 K (default de CONTEXT.md) → Ex_Qout = 0:
+  el calor se rechaza a un sumidero a temperatura ambiente, sin exergía útil.
+- Sumidero/fuente modelados como reservorios térmicos a T fija (CONTEXT.md).
+- Los estados originales de `resultado_ciclo` no se mutan: `calcular_exergia`
+  devuelve copias `dataclasses.replace` con `exergia_fisica` rellenada
+  (verificado por test).
+
+UNRESOLVED: ninguno. Nota informativa: los 8 Sgen del caso base salen ≥ 0
+(separador ≈ 0 por ser flash ideal; condensador domina la destrucción con
+213 kW ≈ 60 % de Ed_total), así que no hubo que reportar ninguna violación de
+la 2ª ley. Los RuntimeWarning de iapws son preexistentes del motor y no
+afectan los resultados.
+
+RECOMMENDATIONS:
+- Eficiencia exergética del ciclo: Wnet/Ex_Qi = 201.67/553.77 ≈ 36.4 %
+  (útil para el reporte final del proyecto y para sensibilidad).
+- El condensador concentra ~60 % de la destrucción de exergía: candidato
+  natural si una tarea futura explora reducción de irreversibilidades.
+- Conectar el balance a `src/export_excel.py` (tarea de exportación) y a la UI
+  cuando exista; `calcular_exergia` ya devuelve el dict completo para eso.
+```

@@ -1,0 +1,1222 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead reference/nh3h2o_vault_original.py
+[0m→ [0mRead reference/kalina_flash_excerpt_vault_original.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/pyfluids_adapter.py
+[0m→ [0mRead tests/test_properties.py
+[0m→ [0mRead requirements.txt
+[0m→ [0mRead README.md
+[0m→ [0mRead src/properties
+[0m→ [0mRead src/properties/__init__.py
+[0m→ [0mRead src/properties/iapws_adapter.py
+[0m
+[0m$ [0mls -la && ls src && python --version && python -c "import iapws, numpy, scipy; print('iapws', iapws.__version__); print('numpy', numpy.__version__); print('scipy', scipy.__version__)"
+total 179
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:46 .
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:09 ..
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:45 .git
+-rw-r--r-- 1 Usuario 197121   233 Sep 17 14:32 .gitignore
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:24 .opencode
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:33 .pytest_cache
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:24 .venv
+-rw-r--r-- 1 Usuario 197121  2088 Sep 17 14:22 AGENTS.md
+-rw-r--r-- 1 Usuario 197121  6693 Sep 17 14:43 CONTEXT.md
+-rw-r--r-- 1 Usuario 197121  8661 Sep 17 14:06 Kalina_ksc_11_tercero.md
+-rw-r--r-- 1 Usuario 197121  3372 Sep 17 14:32 README.md
+-rw-r--r-- 1 Usuario 197121  8800 Sep 17 14:46 TASK_CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   640 Sep 17 14:31 app.py
+-rw-r--r-- 1 Usuario 197121 98340 Sep 17 14:36 opencode_run_001.log
+-rw-r--r-- 1 Usuario 197121   764 Sep 17 14:47 opencode_run_002.log
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:46 reference
+-rw-r--r-- 1 Usuario 197121   258 Sep 17 14:32 requirements.txt
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:33 src
+drwxr-xr-x 1 Usuario 197121     0 Sep 17 14:33 tests
+__init__.py
+__pycache__
+components
+cycle_solver.py
+exergy.py
+export_excel.py
+plots.py
+properties
+sensitivity.py
+Python 3.13.7
+iapws 1.5.5
+numpy 2.4.6
+scipy 1.18.1
+[0m
+Environment verified: Python 3.13.7, iapws 1.5.5, numpy 2.4.6, scipy 1.18.1. Let me establish a baseline by running the existing tests and checking a few more structural details.
+[0m$ [0mls src && ls tests && ls .venv/Scripts 2>/dev/null | head -20
+__init__.py
+__pycache__
+components
+cycle_solver.py
+exergy.py
+export_excel.py
+plots.py
+properties
+sensitivity.py
+__init__.py
+__pycache__
+test_components.py
+test_cycle_solver.py
+test_exergy.py
+test_export.py
+test_properties.py
+test_sensitivity.py
+Activate.ps1
+activate
+activate.bat
+activate.fish
+coverage-3.13.exe
+coverage.exe
+coverage3.exe
+deactivate.bat
+pip.exe
+pip3.13.exe
+pip3.exe
+py.test.exe
+pygmentize.exe
+pytest.exe
+python.exe
+pythonw.exe
+[0m
+[0m$ [0m.venv/Scripts/python.exe --version 2>/dev/null; .venv/Scripts/python.exe -c "import iapws, numpy, scipy; print('venv iapws', iapws.__version__)" 2>/dev/null
+Python 3.13.7
+venv iapws 1.5.5
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_properties.py -v 2>&1 | tail -30
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 10 items
+
+tests/test_properties.py::test_property_backend_es_abstracto PASSED      [ 10%]
+tests/test_properties.py::test_pyfluids_h_s_T_convierten_unidades PASSED [ 20%]
+tests/test_properties.py::test_pyfluids_x_por_defecto_usa_composicion_de_instancia PASSED [ 30%]
+tests/test_properties.py::test_pyfluids_estado_incompleto_y_envuelve_errores PASSED [ 40%]
+tests/test_properties.py::test_build_mixture_validacion_x_y_par_binario_no_soportado PASSED [ 50%]
+tests/test_properties.py::test_iapws_h_s_T_convierten_unidades PASSED    [ 60%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_quality_y_saturacion PASSED [ 70%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend_y_estado_incompleto PASSED [ 80%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 90%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [100%]
+
+======================== 9 passed, 1 skipped in 2.99s =========================
+[0m
+[0m# [0mTodos
+[•] Copiar literal reference/nh3h2o_vault_original.py -> src/properties/_nh3h2o_engine.py
+[ ] Copiar reference/kalina_flash_excerpt_vault_original.py -> src/properties/_kalina_flash.py (ajustar import)
+[ ] Verificar import limpio de ambos motores + smoke calc
+[ ] Implementar src/properties/ammonia_water_adapter.py (AmmoniaWaterAdapter)
+[ ] Actualizar requirements.txt (pyfluids a opcional, confirmar iapws/numpy/scipy)
+[ ] Añadir docstring/cabecera a pyfluids_adapter.py sin tocar lógica
+[ ] Añadir tests de AmmoniaWaterAdapter a tests/test_properties.py
+[ ] Actualizar README.md (sección arquitectura de propiedades)
+[ ] diff reference vs portado, borrar reference/, correr suite completa y verificar límite 200 líneas
+[0m
+Baseline is green (9 passed, 1 skipped). Now I'll set up the task list and start porting.
+[0m$ [0mcp reference/nh3h2o_vault_original.py src/properties/_nh3h2o_engine.py && cp reference/kalina_flash_excerpt_vault_original.py src/properties/_kalina_flash.py && ls -la src/properties/
+total 53
+drwxr-xr-x 1 Usuario 197121    0 Sep 17 14:48 .
+drwxr-xr-x 1 Usuario 197121    0 Sep 17 14:33 ..
+-rw-r--r-- 1 Usuario 197121  541 Sep 17 14:31 __init__.py
+drwxr-xr-x 1 Usuario 197121    0 Sep 17 14:33 __pycache__
+-rw-r--r-- 1 Usuario 197121 7555 Sep 17 14:48 _kalina_flash.py
+-rw-r--r-- 1 Usuario 197121 9059 Sep 17 14:48 _nh3h2o_engine.py
+-rw-r--r-- 1 Usuario 197121 3241 Sep 17 14:31 adapter.py
+-rw-r--r-- 1 Usuario 197121 4422 Sep 17 14:32 iapws_adapter.py
+-rw-r--r-- 1 Usuario 197121 7049 Sep 17 14:31 pyfluids_adapter.py
+[0m
+[0m← [0mEdit src/properties/_kalina_flash.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+@@ -8,9 +8,9 @@
+ 
+ import bisect
+ import numpy as np
+ from scipy.optimize import brentq, fsolve
+-import nh3h2o_vault_original as ng  # en el proyecto real: from . import _nh3h2o_engine as ng
++from . import _nh3h2o_engine as ng
+ 
+ TOL_T = 1e-6          # tolerancia de inversion en temperatura [K]
+ DQ = 1e-3             # margen del criterio O5
+ 
+
+[0m
+Now adjust the import in `_kalina_flash.py`:
+[0m$ [0m.venv/Scripts/python.exe - <<'PY'
+from src.properties import _nh3h2o_engine as ng
+from src.properties import _kalina_flash as kf
+
+print("imports OK")
+print("bubbleT/dewT @ P=3 MPa, x_molar=w2m(0.5):")
+xm = ng.w2m(0.5)
+Tb = ng.bubbleT(3.0, xm)[0]
+Td = ng.dewT(3.0, xm)[0]
+print(f"  T_bubble={Tb:.4f}  T_dew={Td:.4f}")
+print("Tsat_puros(3.0) =", tuple(round(t, 4) for t in kf.Tsat_puros(3.0)))
+
+st = kf.estado(623.15, 3.0, 0.5)
+print("estado(623.15, 3.0, 0.5):", {k: round(v, 6) for k, v in st.items() if isinstance(v, float)})
+
+h = st["h"]
+st2 = kf.estado_de(3.0, 0.5, h=h)
+print("estado_de(3.0, 0.5, h) -> T:", round(st2["T"], 6), " (target 623.15)")
+st3 = kf.estado_de(3.0, 0.5, s=st2["s"])
+print("estado_de(3.0, 0.5, s) -> T:", round(st3["T"], 6))
+PY
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+imports OK
+bubbleT/dewT @ P=3 MPa, x_molar=w2m(0.5):
+  T_bubble=385.5575  T_dew=471.7948
+Tsat_puros(3.0) = (338.8749, 507.0031)
+estado(623.15, 3.0, 0.5): {'T': 623.15, 'P': 3.0, 'w': 0.5, 'h': np.float64(2781.68848), 's': np.float64(7.272018), 'q': 1.0}
+estado_de(3.0, 0.5, h) -> T: 623.15  (target 623.15)
+estado_de(3.0, 0.5, s) -> T: 623.15
+[0m
+[0m← [0mWrite src/properties/ammonia_water_adapter.py
+Wrote file successfully.
+[0m
+The ported engine imports cleanly (iapws corrections applied) and produces physically coherent results: at P=3 MPa, x=0.5 → T_bubble=385.56 K, T_dew=471.79 K, bracketed by pure Tsat (338.87, 507.00) K; `estado(623.15 K, 3 MPa, 0.5)` → h=2781.69 kJ/kg, s=7.27 kJ/kg·K; and the h/s inversion recovers T=623.15 K exactly. The RuntimeWarnings are internal to the motor's numerical search (it guards them) and were part of the vault original.
+
+Now I'll implement the adapter:
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -143,8 +143,10 @@
+     w = self._w(x)
+     return self._wrap(lambda: _kf.estado(T, mpa, w)["s"], "s(P, T, x)")
+ 
+ def T_from_Ph(self, P: float, h: float, x: Optional[float] = None) -> float:
++    if h is None:
++        raise ValueError("T_from_Ph: se requiere h [kJ/kg].")
+     mpa = self._mpa(P)
+     w = self._w(x)
+     return self._wrap(lambda: _kf.estado_de(mpa, w, h=float(h))["T"],
+                       "T_from_Ph(P, h, x)")
+
+[0m
+Let me add guard clauses for explicitly-`None` h/s in the inversion methods (interface contract says invalid/incomplete states raise `ValueError`):
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -151,8 +151,10 @@
+     return self._wrap(lambda: _kf.estado_de(mpa, w, h=float(h))["T"],
+                       "T_from_Ph(P, h, x)")
+ 
+ def T_from_Ps(self, P: float, s: float, x: Optional[float] = None) -> float:
++    if s is None:
++        raise ValueError("T_from_Ps: se requiere s [kJ/kg·K].")
+     mpa = self._mpa(P)
+     w = self._w(x)
+     return self._wrap(lambda: _kf.estado_de(mpa, w, s=float(s))["T"],
+                       "T_from_Ps(P, s, x)")
+
+[0m
+Now update `requirements.txt` (pyfluids → optional block):
+[0m← [0mEdit requirements.txt
+Index: D:\Desktop\ciclo_kalina_tercero\requirements.txt
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\requirements.txt
++++ D:\Desktop\ciclo_kalina_tercero\requirements.txt
+@@ -1,7 +1,8 @@
+ # Dependencias del proyecto ciclo Kalina KSC-11 (Python 3.13.x)
+ # Instalación recomendada:  python -m venv .venv && .venv\Scripts\pip install -r requirements.txt
+-pyfluids>=4.0.0
++# El camino real de la mezcla NH3-H2O es el motor iapws portado
++# (src/properties/_nh3h2o_engine.py + _kalina_flash.py, ver CONTEXT.md).
+ iapws==1.5.5
+ numpy
+ scipy
+ pandas
+
+[0m
+[0m← [0mEdit requirements.txt
+Index: D:\Desktop\ciclo_kalina_tercero\requirements.txt
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\requirements.txt
++++ D:\Desktop\ciclo_kalina_tercero\requirements.txt
+@@ -9,5 +9,10 @@
+ openpyxl
+ matplotlib
+ streamlit
+ pytest
+-pytest-cov
+\ No newline at end of file
++pytest-cov
++
++# Opcional (solo referencia/futuro): pyfluids/CoolProp NO cubre la mezcla NH3-H2O
++# en este equipo (falta REFPROP/NIST, ver CONTEXT.md). PyfluidsAdapter se conserva
++# como referencia; no se instala por defecto.
++# pyfluids>=4.0.0
+\ No newline at end of file
+
+[0m
+[0m← [0mEdit src/properties/pyfluids_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+@@ -1,6 +1,14 @@
+ """Adapter de propiedades de la mezcla NH3-H2O sobre pyfluids (mecanismo CoolProp).
+ 
++NOTA (2026-09-17): ESTE ADAPTER **NO** ES FUNCIONAL PARA NH3-H2O EN ESTE ENTORNO.
++El **camino real** para la mezcla es `AmmoniaWaterAdapter` (ver
++`src/properties/ammonia_water_adapter.py`), que envuelve el motor portado
++IAPWS G4-01 (iapws 1.5.5). pyfluids/CoolProp no incluye el par binario
++amoníaco-agua sin el backend REFPROP (licencia NIST) y por eso este adapter se
++conserva SOLO como referencia para un futuro con licencia — no debe usarlo el
++solver del ciclo. Su código funcional no se ha modificado.
++
+ Expone la interfaz `PropertyBackend` en sus unidades canónicas (P en kPa, T en K,
+ h en kJ/kg, s en kJ/kg·K, x = fracción másica de NH3 en (0, 1)) y traduce
+ internamente a pyfluids/CoolProp usando el propio `UnitConverter` de pyfluids,
+ por lo que su comportamiento no depende de la configuración de unidades activa.
+
+[0m
+Now add the header note to `pyfluids_adapter.py` (docstring only, no functional code touched):
+Now let me empirically verify the behavior I'll assert in the new tests (error wrapping, quality path, round-trips) before writing them:
+[0m$ [0m.venv/Scripts/python.exe - <<'PY'
+import warnings
+warnings.filterwarnings("ignore")
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.properties.adapter import PropertyRangeError
+from src.properties import _kalina_flash as kf
+
+a = AmmoniaWaterAdapter(x=0.5)
+h = a.h(3000.0, T=623.15, x=0.5)
+print("h(3000,623.15,0.5) =", h)
+print("roundtrip Ph:", a.T_from_Ph(3000.0, h, x=0.5) - 623.15)
+s = a.s(3000.0, T=623.15, x=0.5)
+print("s:", s, " roundtrip Ps:", a.T_from_Ps(3000.0, s, x=0.5) - 623.15)
+tb = a.bubble_point(3000.0, 0.5); td = a.dew_point(3000.0, 0.5)
+tp = kf.Tsat_puros(3.0)
+print("bubble", tb, "dew", td, "puros", tp)
+print("default x usado:", a.h(3000.0, T=623.15) == h)
+
+# error wrapping
+try:
+    a.T_from_Ph(3000.0, h=1e6, x=0.5)
+except PropertyRangeError as e:
+    print("T_from_Ph(1e6) -> PropertyRangeError OK:", str(e)[:80])
+try:
+    a.T_from_Ps(3000.0, s=-999.0, x=0.5)
+except PropertyRangeError as e:
+    print("T_from_Ps(-999) -> PropertyRangeError OK:", str(e)[:80])
+# ValueError paths
+for fn, desc in [(lambda: a.h(0.0, T=300.0, x=0.5), "P<=0"),
+                 (lambda: a.h(3000.0, T=300.0, x=0.0), "x=0"),
+                 (lambda: a.h(3000.0, quality=1.5, x=0.5), "quality fuera rango"),
+                 (lambda: a.h(3000.0), "estado incompleto"),
+                 (lambda: a.s(3000.0, x=0.5), "s sin T"),
+                 (lambda: a.T_from_Ph(3000.0, None, x=0.5), "h=None")]:
+    try:
+        fn(); print(desc, "-> NO LLANZO")
+    except ValueError:
+        print(desc, "-> ValueError OK")
+
+# quality path
+for q in (0.0, 0.3, 0.7, 1.0):
+    hv = a.h(3000.0, quality=q, x=0.5)
+    print(f"h(quality={q}) = {hv:.3f}")
+
+# no import de pyfluids/coolprop en el modulo
+import pathlib
+src = pathlib.Path(a.__module__.replace('.', '/') + '.py')
+mod = __import__('src.properties.ammonia_water_adapter', fromlist=['x'])
+print("source ok, sin pyfluids:", "pyfluids" not in pathlib.Path(mod.__file__).read_text(encoding="utf-8"))
+PY
+h(3000,623.15,0.5) = 2781.6884804435576
+roundtrip Ph: 3.410605131648481e-13
+s: 7.272017959601058  roundtrip Ps: 9.674749890109524e-11
+bubble 385.55748439418085 dew 471.79477596770096 puros (338.8749157753969, 507.00310667225216)
+default x usado: True
+T_from_Ph(1e6) -> PropertyRangeError OK: T_from_Ph(P, h, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONT
+T_from_Ps(-999) -> PropertyRangeError OK: T_from_Ps(P, s, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONT
+P<=0 -> ValueError OK
+x=0 -> ValueError OK
+quality fuera rango -> ValueError OK
+estado incompleto -> ValueError OK
+s sin T -> ValueError OK
+h=None -> ValueError OK
+h(quality=0.0) = 454.825
+h(quality=0.3) = 994.104
+h(quality=0.7) = 1794.990
+h(quality=1.0) = 2371.011
+source ok, sin pyfluids: False
+[0m
+All behaviors verified. Before writing tests, let me verify one more internal-consistency check (quality-state inversion lands between bubble and dew) and confirm the line-count situation:
+[0m$ [0m.venv/Scripts/python.exe - <<'PY'
+import warnings; warnings.filterwarnings("ignore")
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+a = AmmoniaWaterAdapter(x=0.5)
+h5 = a.h(3000.0, quality=0.5, x=0.5)
+tq = a.T_from_Ph(3000.0, h5, x=0.5)
+tb, td = a.bubble_point(3000.0, 0.5), a.dew_point(3000.0, 0.5)
+print("h(q=0.5) =", h5, " T_inv =", tq, " tb < T < td:", tb < tq < td)
+import math
+print("finite:", math.isfinite(h5))
+PY
+wc -l tests/test_properties.py src/properties/ammonia_water_adapter.py src/properties/_nh3h2o_engine.py src/properties/_kalina_flash.py requirements.txt src/properties/pyfluids_adapter.py
+h(q=0.5) = 1398.226599765168  T_inv = 443.1215769333661  tb < T < td: True
+finite: True
+  196 tests/test_properties.py
+  171 src/properties/ammonia_water_adapter.py
+  217 src/properties/_nh3h2o_engine.py
+  201 src/properties/_kalina_flash.py
+   17 requirements.txt
+  167 src/properties/pyfluids_adapter.py
+  969 total
+[0m
+[0m← [0mEdit src/properties/_kalina_flash.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+@@ -1,9 +1,9 @@
+ # Copia LITERAL de un extracto de:
+ #   D:\Archivo mental\Archivo mental\04_PROJECTS\active\Ciclo Kalina\codigo\src\kalina.py
+ #   (lineas 10-203 del original, seccion "CAPA DE PROPIEDADES" unicamente).
+-# NO incluye la "CAPA DE RESOLUCION" del ciclo completo que sigue despues en el
+-# original (eso es material de una tarea futura, no de esta).
++# NO incluye la "CAPA DE RESOLUCION" del ciclo completo que sigue despues
++# (eso es material de una tarea futura, no de esta).
+ # El unico cambio respecto al original es el import de ng (ver mas abajo);
+ # todo lo demas se preserva sin modificar.
+ 
+ import bisect
+
+[0m
+`_kalina_flash.py` came out at 201 lines — one over the project-wide cap (AC #7: no file over 200 except the explicitly-excepted engine). The original is a literal port whose leftover line is in the descriptive header comment, so I'll trim one comment line only (no engine logic touched):
+[0m← [0mWrite tests/test_ammonia_water_adapter.py
+Wrote file successfully.
+[0m
+Now the test file for `AmmoniaWaterAdapter` (new file, since `test_properties.py` is already at 196 lines and the hard cap is 200 — conflict documented later):
+Now update `README.md` — the properties architecture sections:
+[0m← [0mEdit README.md
+Index: D:\Desktop\ciclo_kalina_tercero\README.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\README.md
++++ D:\Desktop\ciclo_kalina_tercero\README.md
+@@ -24,47 +24,53 @@
+ app.py                      UI Streamlit (futuro)
+ src/
+   properties/               Capa de propiedades (funcional)
+     adapter.py              Interfaz abstracta + PropertyRangeError
+-    pyfluids_adapter.py     Mezcla NH3-H2O vía pyfluids/CoolProp
++    _nh3h2o_engine.py       Motor NH3-H2O portado (IAPWS G4-01, iapws)
++    _kalina_flash.py        Flash T,P,w -> h,s,fase,q + inversión h/s -> T
++    ammonia_water_adapter.py Mezcla NH3-H2O — CAMINO REAL (motor portado)
++    pyfluids_adapter.py     Mezcla NH3-H2O vía pyfluids (SOLO referencia)
+     iapws_adapter.py        Agua pura vía IAPWS-IF97 (iapws 1.5.5)
+   components/               HRVG, separador, turbina, regenerador, válvula,
+                             absorbedor, condensador, bomba (futuro)
+   cycle_solver.py, exergy.py, sensitivity.py, export_excel.py, plots.py (futuro)
+ tests/
+   test_properties.py        Tests de la capa de propiedades (mocks + humo)
++  test_ammonia_water_adapter.py  Tests del adapter de la mezcla (round-trips)
+   test_components.py, ...   Placeholders (futuro)
+ requirements.txt
+ ```
+ 
+-Convenciones: Python 3.13.x, archivos `.py` ≤ 200 líneas, unidades canónicas de
+-la interfaz de propiedades: P [kPa], T [K], h [kJ/kg], s [kJ/kg·K], x = fracción
+-másica de NH3 [-]. El resto del código solo consume `PropertyBackend`, nunca los
+-backends concretos.
++Convenciones: Python 3.13.x, archivos `.py` ≤ 200 líneas (excepción: el motor
++portado `_nh3h2o_engine.py` es copia literal de un código ya validado), unidades
++canónicas de la interfaz de propiedades: P [kPa], T [K], h [kJ/kg],
++s [kJ/kg·K], x = fracción másica de NH3 [-]. El resto del código solo consume
++`PropertyBackend`, nunca los backends concretos.
+ 
+ ## Configuración y ejecución (tests)
+ 
+ ```bash
+ python -m venv .venv
+ .venv\Scripts\pip install -r requirements.txt
+-.venv\Scripts\python -m pytest tests/test_properties.py -v
++.venv\Scripts\python -m pytest tests/test_properties.py tests/test_ammonia_water_adapter.py -v
+ ```
+ 
+ Cobertura (futuro): `.venv\Scripts\python -m pytest --cov=src --cov-report=term-missing`.
+ 
+-## Aviso importante sobre el backend de la mezcla NH3-H2O
++## Camino real de la mezcla NH3-H2O
+ 
+-El plan del proyecto (ver `Kalina_ksc_11_tercero.md` §3 y `CONTEXT.md`) usa
+-**pyfluids (CoolProp)** para la mezcla NH3-H2O. Verificado con pyfluids 4.0.0 /
+-CoolProp 8.0.0: **CoolProp no incluye el par binario amoníaco-agua** en sus
+-backends HEOS/BICUBIC — solo REFPROP (NIST, con licencia) lo cubre. Consecuencias:
++La mezcla NH3-H2O se resuelve con el **motor portado** del proyecto hermano
++(`src/properties/_nh3h2o_engine.py` + `_kalina_flash.py`), que envuelve
++`iapws.ammonia.H2ONH3` (ecuación de estado de referencia IAPWS G4-01,
++Tillner-Roth & Friend, 1998) con dos correcciones documentadas, y que ya fue
++validado contra las Tablas 6-8 de la guía IAPWS G4-01. El solver del ciclo solo
++consume la interfaz `PropertyBackend` vía `AmmoniaWaterAdapter`.
+ 
+-- `PyfluidsAdapter` está implementado y correcto, pero al usarlo sin un backend
+-  que cubra la mezcla lanza `PropertyRangeError` con un mensaje claro.
+-- El test de humo real de pyfluids se salta (`skip`) automáticamente hasta que el
+-  backend disponible cubra la mezcla; el de IAPWS (agua pura) corre y pasa.
+-- Antes de la tarea del solver del ciclo habrá que decidir cómo se obtienen las
+-  propiedades de la mezcla (REFPROP con licencia, u otro backend).
++`PyfluidsAdapter` (pyfluids/CoolProp) se conserva SOLO como referencia: CoolProp
++no incluye el par binario amoníaco-agua en sus backends HEOS/BICUBIC — solo
++REFPROP (NIST, con licencia) lo cubriría, y ese backend no está disponible en
++este entorno (verificado con pyfluids 4.0.0 / CoolProp 8.0.0). Sus tests de humo
++real quedan en `skip` automático mientras el backend no cubra la mezcla.
+ 
+ ## Documentación técnica
+ 
+ - `Kalina_ksc_11_tercero.md`: especificación base (ciclo, propiedades, arquitectura).
+
+[0m
+Now run the new tests and the fidelity diff between the reference and the ported engine:
+[0m$ [0mdiff reference/nh3h2o_vault_original.py src/properties/_nh3h2o_engine.py && echo "ENGINE: COPIAS IDENTICAS"; diff reference/kalina_flash_excerpt_vault_original.py src/properties/_kalina_flash.py; echo "---"
+ENGINE: COPIAS IDENTICAS
+4,5c4,5
+< # NO incluye la "CAPA DE RESOLUCION" del ciclo completo que sigue despues en el
+< # original (eso es material de una tarea futura, no de esta).
+---
+> # NO incluye la "CAPA DE RESOLUCION" del ciclo completo que sigue despues
+> # (eso es material de una tarea futura, no de esta).
+12c12
+< import nh3h2o_vault_original as ng  # en el proyecto real: from . import _nh3h2o_engine as ng
+---
+> from . import _nh3h2o_engine as ng
+---
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_ammonia_water_adapter.py -v 2>&1 | tail -20
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 8 items
+
+tests/test_ammonia_water_adapter.py::test_ammonia_es_property_backend_completo_sin_pyfluids PASSED [ 12%]
+tests/test_ammonia_water_adapter.py::test_ammonia_h_real_con_valores_por_defecto_del_contexto PASSED [ 25%]
+tests/test_ammonia_water_adapter.py::test_ammonia_round_trip_ph_con_tolerancia_del_motor PASSED [ 37%]
+tests/test_ammonia_water_adapter.py::test_ammonia_round_trip_ps_con_tolerancia_del_motor PASSED [ 50%]
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros PASSED [ 62%]
+tests/test_ammonia_water_adapter.py::test_ammonia_h_por_quality_monotona_e_inversion_dentro_de_campana 
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 120000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+[0m
+The engine copy is **identical** to the reference (`diff` clean), and the only `_kalina_flash.py` diffs are the intended ones (header comment trimmed 1 line for the 200-line cap + import fix). But the quality-path test **timed out (>120 s)** — the flash-based brentq is far too slow in the two-phase region. Let me measure precisely before deciding how to handle it:
+[0m$ [0m.venv/Scripts/python.exe - <<'PY'
+import time, warnings
+warnings.filterwarnings("ignore")
+from src.properties import _kalina_flash as kf
+from src.properties import _nh3h2o_engine as ng
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+
+def t(label, fn):
+    t0 = time.perf_counter(); r = fn(); dt = time.perf_counter() - t0
+    print(f"{label}: {dt:7.2f} s  -> {r if not isinstance(r, (int, float)) else round(r, 4)}")
+    return dt
+
+t("Tsat_puros(3)", lambda: kf.Tsat_puros(3.0))
+t("bubbleT(3,0.5m)", lambda: ng.bubbleT(3.0, ng.w2m(0.5))[0])
+t("dewT(3,0.5m)", lambda: ng.dewT(3.0, ng.w2m(0.5))[0])
+t("estado 623.15 (monofasico)", lambda: kf.estado(623.15, 3.0, 0.5)["h"])
+t("estado tb (burbuja, bifasico)", lambda: kf.estado(385.5575, 3.0, 0.5)["h"])
+t("estado 443 (bifasico medio)", lambda: kf.estado(443.0, 3.0, 0.5)["h"])
+t("flash_TP(443,3)", lambda: kf.flash_TP(443.0, 3.0))
+a = AmmoniaWaterAdapter(x=0.5)
+t("h(quality=0.5)", lambda: a.h(3000.0, quality=0.5, x=0.5))
+t("h(quality=0.0)", lambda: a.h(3000.0, quality=0.0, x=0.5))
+t("T_from_Ph(h_0.5)", lambda: a.T_from_Ph(3000.0, 1398.2266, x=0.5))
+PY
+Tsat_puros(3):    0.09 s  -> (338.8749157753969, 507.00310667225216)
+bubbleT(3,0.5m):   12.83 s  -> 385.5575
+dewT(3,0.5m):   10.00 s  -> 471.7948
+estado 623.15 (monofasico):    0.00 s  -> 2781.6885
+estado tb (burbuja, bifasico):    0.58 s  -> 454.8258
+estado 443 (bifasico medio):    0.48 s  -> 1395.6249
+flash_TP(443,3):    0.00 s  -> (0.2525957370683287, 0.7693362262583472)
+h(quality=0.5):   25.85 s  -> 1398.2266
+h(quality=0.0):   20.63 s  -> 454.8255
+T_from_Ph(h_0.5):    2.01 s  -> 443.1216
+[0m
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -84,31 +84,16 @@
+             f"(ver CONTEXT.md, IAPWS G4-01). Detalle del motor: {exc}"
+         ) from exc
+ 
+ def _h_de_quality(self, mpa: float, w: float, quality: float) -> float:
+-    """Entalpía de un estado bifásico a (P, x) con título másico ``quality``.
++    raise NotImplementedError(
++        "AmmoniaWaterAdapter no acepta el parámetro quality como entrada: el "
++        "motor portado resuelve (P, T, w) y (P, h/s, w), y la inversión "
++        "h(P, quality, x) requiere un brentq sobre flash de equilibrio de "
++        "~25 s por estado (medido). El solver no lo necesita: el título q se "
++        "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
++    )
+ 
+-    El título de `_kalina_flash.estado` crece monótonamente de 0 (burbuja) a
+-    1 (rocío) con T a (P, w) fija, así que se invierte con brentq sobre el
+-    intervalo [T_burbuja, T_rocío] del propio motor, sin supuestos externos.
+-    """
+-    xm = _ng.w2m(w)
+-    tb = _ng.bubbleT(mpa, xm)[0]
+-    td = _ng.dewT(mpa, xm)[0]
+-    if quality <= 0.0:
+-        return _kf.estado(tb, mpa, w)["h"]
+-    if quality >= 1.0:
+-        return _kf.estado(td, mpa, w)["h"]
+-    f = lambda T: _kf.estado(T, mpa, w)["q"] - quality
+-    if not (f(tb) < 0.0 < f(td)):
+-        raise PropertyRangeError(
+-            f"h(P, quality, x): no se pudo resolver el título {quality:.4g} "
+-            f"a P={mpa:.4g} MPa, w={w:.4f} (burbuja {tb:.2f} K, rocío "
+-            f"{td:.2f} K)."
+-        )
+-    T = brentq(f, tb, td, xtol=1e-9)
+-    return _kf.estado(T, mpa, w)["h"]
+-
+ # -- interfaz PropertyBackend ---------------------------------------------
+ 
+ def h(self, P: float, T: Optional[float] = None, x: Optional[float] = None,
+       s: Optional[float] = None, quality: Optional[float] = None) -> float:
+
+[0m
+Timing confirms: `h(quality=...)` costs 20–26 s per call (flash brentq), which is impractical for both tests and the future cycle solver — and the "cheap" endpoint lever rule would require inventing a phase-composition approximation the task forbids. The interface marks quality as optional ("los adapters pueden *además* aceptar"), and no formula in CONTEXT.md uses quality as an input — it's only reported (`estado` returns `q`). I'll drop the quality path and raise a documented `NotImplementedError`:
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -17,10 +17,8 @@
+ 
+ import math
+ from typing import Optional
+ 
+-from scipy.optimize import brentq
+-
+ from .adapter import PropertyBackend, PropertyRangeError
+ from . import _kalina_flash as _kf
+ from . import _nh3h2o_engine as _ng
+ 
+
+[0m
+Let me simplify — inline the quality rejection in `h()` and drop the now-unused helper and `brentq` import:
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -90,8 +90,17 @@
+         "~25 s por estado (medido). El solver no lo necesita: el título q se "
+         "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
+     )
+ 
++def _h_de_quality(self, mpa: float, w: float, quality: float) -> float:
++    raise NotImplementedError(
++        "AmmoniaWaterAdapter no acepta el parámetro quality como entrada: el "
++        "motor portado resuelve (P, T, w) y (P, h/s, w), y la inversión "
++        "h(P, quality, x) requiere un brentq sobre flash de equilibrio de "
++        "~25 s por estado (medido). El solver no lo necesita: el título q se "
++        "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
++    )
++
+ # -- interfaz PropertyBackend ---------------------------------------------
+ 
+ def h(self, P: float, T: Optional[float] = None, x: Optional[float] = None,
+       s: Optional[float] = None, quality: Optional[float] = None) -> float:
+
+[0m
+[0m← [0mEdit tests/test_ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
+@@ -68,19 +68,28 @@
+     assert ta < tb < td < tw                   # coherencia física básica
+     assert math.isfinite(tb) and math.isfinite(td)
+ 
+ 
+-def test_ammonia_h_por_quality_monotona_e_inversion_dentro_de_campana():
++def test_ammonia_h_por_quality_no_soportado_pero_documentado():
+     a = AmmoniaWaterAdapter(x=_X)
+-    h0 = a.h(_P, quality=0.0, x=_X)
+-    h3 = a.h(_P, quality=0.3, x=_X)
+-    h7 = a.h(_P, quality=0.7, x=_X)
+-    h1 = a.h(_P, quality=1.0, x=_X)
+-    assert h0 < h3 < h7 < h1
+-    t_inv = a.T_from_Ph(_P, a.h(_P, quality=0.5, x=_X), x=_X)
+-    assert a.bubble_point(_P, _X) < t_inv < a.dew_point(_P, _X)
++    with pytest.raises(NotImplementedError):
++        a.h(_P, quality=0.5, x=_X)
++    with pytest.raises(ValueError):
++        a.h(_P, quality=1.5, x=_X)          # rango inválido se valida antes
+ 
+ 
++def test_ammonia_inversion_dentro_de_la_campana_bifasica():
++    a = AmmoniaWaterAdapter(x=_X)
++    # Estado bifásico real (T entre burbuja y rocío a 3 MPa, x=0.5): la
++    # inversión h -> T debe devolver una T dentro de la campana binaria.
++    tb, td = a.bubble_point(_P, _X), a.dew_point(_P, _X)
++    tm = 0.5 * (tb + td)
++    h = a.h(_P, T=tm, x=_X)
++    t_rec = a.T_from_Ph(_P, h, x=_X)
++    assert tb < t_rec < td
++    assert abs(t_rec - tm) <= 1e3 * kf.TOL_T
++
++
+ def test_ammonia_valida_argumentos_y_envuelve_errores_del_motor():
+     a = AmmoniaWaterAdapter(x=_X)
+     invalidas = (
+         lambda: a.h(0.0, T=300.0, x=_X),            # P no positiva
+
+[0m
+Now update the tests — replace the slow quality test with a rejection test and add a two-phase consistency check that's cheap:
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -90,17 +90,8 @@
+         "~25 s por estado (medido). El solver no lo necesita: el título q se "
+         "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
+     )
+ 
+-def _h_de_quality(self, mpa: float, w: float, quality: float) -> float:
+-    raise NotImplementedError(
+-        "AmmoniaWaterAdapter no acepta el parámetro quality como entrada: el "
+-        "motor portado resuelve (P, T, w) y (P, h/s, w), y la inversión "
+-        "h(P, quality, x) requiere un brentq sobre flash de equilibrio de "
+-        "~25 s por estado (medido). El solver no lo necesita: el título q se "
+-        "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
+-    )
+-
+ # -- interfaz PropertyBackend ---------------------------------------------
+ 
+ def h(self, P: float, T: Optional[float] = None, x: Optional[float] = None,
+       s: Optional[float] = None, quality: Optional[float] = None) -> float:
+
+[0m
+A duplicated `_h_de_quality` slipped in. Let me fix that and update the class docstring to document supported combos:
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -30,11 +30,14 @@
+ class AmmoniaWaterAdapter(PropertyBackend):
+     """Propiedades de la mezcla NH3-H2O vía el motor portado (IAPWS G4-01).
+ 
+     ``x`` es la composición por defecto de la instancia: si una llamada no pasa
+-    ``x``, se usa ese valor. Los errores de dominio del motor portado
+-    (``RuntimeError``/``ValueError``) se envuelven en ``PropertyRangeError``;
+-    solo los argumentos inválidos lanzan ``ValueError`` directo.
++    ``x``, se usa ese valor. Combos soportados: ``(P, T, x)``, ``(P, s, x)``,
++    ``(P, h, x)``, ``bubble_point`` y ``dew_point``. El parámetro ``quality`` de
++    la interfaz no se acepta como entrada (ver ``_h_de_quality``). Los errores
++    de dominio del motor portado (``RuntimeError``/``ValueError``) se envuelven
++    en ``PropertyRangeError``; los argumentos inválidos lanzan ``ValueError``
++    directo y los combos no soportados ``NotImplementedError``.
+     """
+ 
+     def __init__(self, x: float = 0.5):
+         if not 0.0 < x < 1.0:
+
+[0m
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -113,11 +113,11 @@
+         return self._wrap(
+             lambda: self._h_de_quality(mpa, w, quality), "h(P, quality, x)"
+         )
+     raise ValueError(
+-        "Estado de la mezcla NH3-H2O incompleto — se requiere (P, T, x), "
+-        "(P, s, x) o (P, quality, x), con P en kPa, T en K, h en kJ/kg y "
+-        "s en kJ/kg·K."
++        "Estado de la mezcla NH3-H2O incompleto — se requiere (P, T, x) o "
++        "(P, s, x), con P en kPa, T en K, h en kJ/kg y s en kJ/kg·K. El "
++        "parámetro quality no es soportado por este adapter (NotImplementedError)."
+     )
+ 
+ def s(self, P: float, T: Optional[float] = None, x: Optional[float] = None) -> float:
+     if T is None:
+
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_ammonia_water_adapter.py -v 2>&1 | tail -15
+prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:70: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_ammonia_water_adapter.py::test_ammonia_h_por_quality_no_soportado_pero_documentado
+================== 1 failed, 8 passed, 5 warnings in 55.70s ===================
+[0m
+Interesting — the quality rejection test failed. Let me see the exact failure:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_ammonia_water_adapter.py::test_ammonia_h_por_quality_no_soportado_pero_documentado -v 2>&1 | grep -A 20 "test_ammonia_h_por_quality"
+tests/test_ammonia_water_adapter.py::test_ammonia_h_por_quality_no_soportado_pero_documentado FAILED [100%]
+
+================================== FAILURES ===================================
+__________ test_ammonia_h_por_quality_no_soportado_pero_documentado ___________
+
+fn = <function AmmoniaWaterAdapter.h.<locals>.<lambda> at 0x000001E808A8AF20>
+what = 'h(P, quality, x)'
+
+    @staticmethod
+    def _wrap(fn, what: str):
+        """Ejecuta una llamada al motor portado envolviendo sus errores de dominio.
+    
+        ``RuntimeError`` (equilibrio no resoluble) y ``ValueError`` (sin ra�z de
+        vapor/l�quido, dominio fuera de la campana, brentq sin cambio de signo)
+        se convierten en ``PropertyRangeError``; nunca se propagan crudos. Los
+        ``ValueError`` de validaci�n de argumentos se lanzan ANTES de llegar aqu�.
+        """
+        try:
+>           return fn()
+                   ^^^^
+
+src\properties\ammonia_water_adapter.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\properties\ammonia_water_adapter.py:114: in <lambda>
+--
+    def test_ammonia_h_por_quality_no_soportado_pero_documentado():
+        a = AmmoniaWaterAdapter(x=_X)
+        with pytest.raises(NotImplementedError):
+>           a.h(_P, quality=0.5, x=_X)
+
+tests\test_ammonia_water_adapter.py:75: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\properties\ammonia_water_adapter.py:113: in h
+    return self._wrap(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+fn = <function AmmoniaWaterAdapter.h.<locals>.<lambda> at 0x000001E808A8AF20>
+what = 'h(P, quality, x)'
+
+    @staticmethod
+    def _wrap(fn, what: str):
+        """Ejecuta una llamada al motor portado envolviendo sus errores de dominio.
+    
+        ``RuntimeError`` (equilibrio no resoluble) y ``ValueError`` (sin ra�z de
+        vapor/l�quido, dominio fuera de la campana, brentq sin cambio de signo)
+        se convierten en ``PropertyRangeError``; nunca se propagan crudos. Los
+--
+FAILED tests/test_ammonia_water_adapter.py::test_ammonia_h_por_quality_no_soportado_pero_documentado
+============================== 1 failed in 1.79s ==============================
+[0m
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -109,10 +109,15 @@
+         raise ValueError(
+             f"quality (título másico) debe estar en [0, 1]; se recibió "
+             f"{quality!r}."
+         )
+-    return self._wrap(
+-        lambda: self._h_de_quality(mpa, w, quality), "h(P, quality, x)"
++    raise NotImplementedError(
++        "AmmoniaWaterAdapter no acepta el parámetro quality como entrada: "
++        "el motor portado resuelve (P, T, x) y (P, h/s, x), y la "
++        "inversión h(P, quality, x) requiere un brentq sobre flash de "
++        "equilibrio de ~25 s por estado (medido). El solver no lo "
++        "necesita: el título q se obtiene como salida de estado(). Use "
++        "(P, T, x) o (P, s, x)."
+     )
+ raise ValueError(
+     "Estado de la mezcla NH3-H2O incompleto — se requiere (P, T, x) o "
+     "(P, s, x), con P en kPa, T en K, h en kJ/kg y s en kJ/kg·K. El "
+
+[0m
+The root cause: `NotImplementedError` is a subclass of `RuntimeError`, so `_wrap` swallows it into `PropertyRangeError`. The rejection is an intentional adapter-level decision (like `IAPWSAdapter`), so it must propagate as `NotImplementedError` — cleanest is raising it directly in `h()` and removing the helper:
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -93,8 +93,17 @@
+         "~25 s por estado (medido). El solver no lo necesita: el título q se "
+         "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
+     )
+ 
++def _h_de_quality(self, mpa: float, w: float, quality: float) -> float:
++    raise NotImplementedError(
++        "AmmoniaWaterAdapter no acepta el parámetro quality como entrada: el "
++        "motor portado resuelve (P, T, w) y (P, h/s, w), y la inversión "
++        "h(P, quality, x) requiere un brentq sobre flash de equilibrio de "
++        "~25 s por estado (medido). El solver no lo necesita: el título q se "
++        "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
++    )
++
+ # -- interfaz PropertyBackend ---------------------------------------------
+ 
+ def h(self, P: float, T: Optional[float] = None, x: Optional[float] = None,
+       s: Optional[float] = None, quality: Optional[float] = None) -> float:
+
+[0m
+[0m→ [0mRead src/properties/ammonia_water_adapter.py[90m [offset=80, limit=75][0m
+Let me read the current state of the file to clean up properly — I made an inconsistent edit:
+[0m
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -84,26 +84,8 @@
+             f"{what}: el motor NH3-H2O portado no cubre el estado pedido "
+             f"(ver CONTEXT.md, IAPWS G4-01). Detalle del motor: {exc}"
+         ) from exc
+ 
+-def _h_de_quality(self, mpa: float, w: float, quality: float) -> float:
+-    raise NotImplementedError(
+-        "AmmoniaWaterAdapter no acepta el parámetro quality como entrada: el "
+-        "motor portado resuelve (P, T, w) y (P, h/s, w), y la inversión "
+-        "h(P, quality, x) requiere un brentq sobre flash de equilibrio de "
+-        "~25 s por estado (medido). El solver no lo necesita: el título q se "
+-        "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
+-    )
+-
+-def _h_de_quality(self, mpa: float, w: float, quality: float) -> float:
+-    raise NotImplementedError(
+-        "AmmoniaWaterAdapter no acepta el parámetro quality como entrada: el "
+-        "motor portado resuelve (P, T, w) y (P, h/s, w), y la inversión "
+-        "h(P, quality, x) requiere un brentq sobre flash de equilibrio de "
+-        "~25 s por estado (medido). El solver no lo necesita: el título q se "
+-        "obtiene como salida de estado(). Use (P, T, x) o (P, s, x)."
+-    )
+-
+ # -- interfaz PropertyBackend ---------------------------------------------
+ 
+ def h(self, P: float, T: Optional[float] = None, x: Optional[float] = None,
+       s: Optional[float] = None, quality: Optional[float] = None) -> float:
+
+[0m
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -32,12 +32,13 @@
+ 
+ ``x`` es la composición por defecto de la instancia: si una llamada no pasa
+ ``x``, se usa ese valor. Combos soportados: ``(P, T, x)``, ``(P, s, x)``,
+ ``(P, h, x)``, ``bubble_point`` y ``dew_point``. El parámetro ``quality`` de
+-la interfaz no se acepta como entrada (ver ``_h_de_quality``). Los errores
+-de dominio del motor portado (``RuntimeError``/``ValueError``) se envuelven
+-en ``PropertyRangeError``; los argumentos inválidos lanzan ``ValueError``
+-directo y los combos no soportados ``NotImplementedError``.
++la interfaz no se acepta como entrada: el título q se obtiene como salida de
++``estado()`` del motor; invertir h(P, quality, x) costaría ~25 s por estado.
++Los errores de dominio del motor portado (``RuntimeError``/``ValueError``)
++se envuelven en ``PropertyRangeError``; los argumentos inválidos lanzan
++``ValueError`` directo y los combos no soportados ``NotImplementedError``.
+ """
+ 
+ def __init__(self, x: float = 0.5):
+     if not 0.0 < x < 1.0:
+
+[0m
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -79,9 +79,9 @@
+ try:
+     return fn()
+ except PropertyRangeError:
+     raise
+-except (RuntimeError, ValueError) as exc:
++except (RuntimeError, ValueError, NotImplementedError) as exc:
+     raise PropertyRangeError(
+         f"{what}: el motor NH3-H2O portado no cubre el estado pedido "
+         f"(ver CONTEXT.md, IAPWS G4-01). Detalle del motor: {exc}"
+     ) from exc
+
+[0m
+Now run the fixed test file. Also add `NotImplementedError` to `_wrap`'s catch tuple for robustness with motor-origin errors (the quality rejection is now raised outside `_wrap`, so no collision — and this matches `IAPWSAdapter`'s convention of wrapping backend-raised `NotImplementedError`):
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_ammonia_water_adapter.py -v 2>&1 | tail -14
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:70: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 9 passed, 5 warnings in 48.47s ========================
+[0m
+All 9 new tests pass (the 5 RuntimeWarnings are inherited from the ported motor's numerical search — guarded internally, present in the vault original, not touched by design). Now the complete verification run plus line-count check:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_properties.py tests/test_ammonia_water_adapter.py -v 2>&1 | tail -25
+tests/test_ammonia_water_adapter.py::test_ammonia_round_trip_ph_con_tolerancia_del_motor PASSED [ 68%]
+tests/test_ammonia_water_adapter.py::test_ammonia_round_trip_ps_con_tolerancia_del_motor PASSED [ 73%]
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros PASSED [ 78%]
+tests/test_ammonia_water_adapter.py::test_ammonia_h_por_quality_no_soportado_pero_documentado PASSED [ 84%]
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica PASSED [ 89%]
+tests/test_ammonia_water_adapter.py::test_ammonia_valida_argumentos_y_envuelve_errores_del_motor PASSED [ 94%]
+tests/test_ammonia_water_adapter.py::test_ammonia_x_por_defecto_de_instancia PASSED [100%]
+
+============================== warnings summary ===============================
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:70: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================= 18 passed, 1 skipped, 5 warnings in 53.00s ==================
+[0m
+18 passed, 1 skipped. Now the full suite (all test files) and the line-count audit:
+[0m$ [0mfor f in src/properties/*.py tests/*.py src/cycle_solver.py src/exergy.py src/sensitivity.py src/export_excel.py src/plots.py app.py; do printf "%4s  %s\n" "$(wc -l < "$f")" "$f"; done
+12  src/properties/__init__.py
+ 201  src/properties/_kalina_flash.py
+ 217  src/properties/_nh3h2o_engine.py
+  82  src/properties/adapter.py
+ 154  src/properties/ammonia_water_adapter.py
+ 112  src/properties/iapws_adapter.py
+ 167  src/properties/pyfluids_adapter.py
+   0  tests/__init__.py
+ 116  tests/test_ammonia_water_adapter.py
+   6  tests/test_components.py
+   5  tests/test_cycle_solver.py
+   4  tests/test_exergy.py
+   4  tests/test_export.py
+ 196  tests/test_properties.py
+   4  tests/test_sensitivity.py
+   7  src/cycle_solver.py
+   7  src/exergy.py
+   5  src/sensitivity.py
+   5  src/export_excel.py
+   5  src/plots.py
+  15  app.py
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -6
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:70: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+18 passed, 1 skipped, 5 warnings in 52.62s
+[0m
+[0m→ [0mRead src/properties/_kalina_flash.py[90m [limit=14][0m
+The full suite passes (18 passed, 1 skipped). But `_kalina_flash.py` is still 201 lines — my earlier header edit shortened a line's *text* but didn't remove a *line*. Let me actually merge two header comment lines:
+[0m
+[0m← [0mEdit src/properties/_kalina_flash.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+@@ -1,11 +1,11 @@
+ # Copia LITERAL de un extracto de:
+ #   D:\Archivo mental\Archivo mental\04_PROJECTS\active\Ciclo Kalina\codigo\src\kalina.py
+ #   (lineas 10-203 del original, seccion "CAPA DE PROPIEDADES" unicamente).
+ # NO incluye la "CAPA DE RESOLUCION" del ciclo completo que sigue despues
+-# (eso es material de una tarea futura, no de esta).
+-# El unico cambio respecto al original es el import de ng (ver mas abajo);
+-# todo lo demas se preserva sin modificar.
++# (eso es material de una tarea futura, no de esta). El unico cambio respecto
++# al original es el import de ng (ver mas abajo); todo lo demas se preserva
++# sin modificar.
+ 
+ import bisect
+ import numpy as np
+ from scipy.optimize import brentq, fsolve
+
+[0m
+[0m$ [0mwc -l src/properties/_kalina_flash.py && .venv/Scripts/python.exe -c "from src.properties import _kalina_flash, _nh3h2o_engine; print('re-import OK')" && diff reference/nh3h2o_vault_original.py src/properties/_nh3h2o_engine.py && echo "ENGINE sigue identico al reference/"
+201 src/properties/_kalina_flash.py
+re-import OK
+ENGINE sigue identico al reference/
+[0m
+[0m→ [0mRead src/properties/_kalina_flash.py[90m [limit=14][0m
+Still 201 — I respread the text into the same number of lines. Let me look at the exact block and remove one physical line:
+[0m
+[0m← [0mEdit src/properties/_kalina_flash.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py
+@@ -1,11 +1,10 @@
+ # Copia LITERAL de un extracto de:
+ #   D:\Archivo mental\Archivo mental\04_PROJECTS\active\Ciclo Kalina\codigo\src\kalina.py
+-#   (lineas 10-203 del original, seccion "CAPA DE PROPIEDADES" unicamente).
+-# NO incluye la "CAPA DE RESOLUCION" del ciclo completo que sigue despues
+-# (eso es material de una tarea futura, no de esta). El unico cambio respecto
+-# al original es el import de ng (ver mas abajo); todo lo demas se preserva
+-# sin modificar.
++#   (lineas 10-203 del original: CAPA DE PROPIEDADES; la CAPA DE RESOLUCION
++#   del ciclo, especifica del vault, no se incluye — es material de una tarea
++#   futura). El unico cambio respecto al original es el import de ng (abajo);
++#   todo lo demas se preserva sin modificar.
+ 
+ import bisect
+ import numpy as np
+ from scipy.optimize import brentq, fsolve
+
+[0m
+[0m$ [0mwc -l src/properties/_kalina_flash.py && .venv/Scripts/python.exe -c "from src.properties import _kalina_flash; print('re-import OK')" && diff reference/kalina_flash_excerpt_vault_original.py src/properties/_kalina_flash.py
+200 src/properties/_kalina_flash.py
+re-import OK
+3,7c3,6
+< #   (lineas 10-203 del original, seccion "CAPA DE PROPIEDADES" unicamente).
+< # NO incluye la "CAPA DE RESOLUCION" del ciclo completo que sigue despues en el
+< # original (eso es material de una tarea futura, no de esta).
+< # El unico cambio respecto al original es el import de ng (ver mas abajo);
+< # todo lo demas se preserva sin modificar.
+---
+> #   (lineas 10-203 del original: CAPA DE PROPIEDADES; la CAPA DE RESOLUCION
+> #   del ciclo, especifica del vault, no se incluye — es material de una tarea
+> #   futura). El unico cambio respecto al original es el import de ng (abajo);
+> #   todo lo demas se preserva sin modificar.
+12c11
+< import nh3h2o_vault_original as ng  # en el proyecto real: from . import _nh3h2o_engine as ng
+---
+> from . import _nh3h2o_engine as ng
+[0m
+[0m$ [0mrm -rf reference && ls
+AGENTS.md
+CONTEXT.md
+Kalina_ksc_11_tercero.md
+README.md
+TASK_CONTEXT.md
+app.py
+opencode_run_001.log
+opencode_run_002.log
+requirements.txt
+src
+tests
+[0m
+`_kalina_flash.py` is now exactly **200 lines**, re-imports cleanly, and the diff vs. reference shows only the intentional changes (header comment reflowed to 200 lines + the relative import). The engine copy is byte-identical.
+
+The task explicitly instructs deleting `reference/` once ported — final suite run and cleanup:
+[0m$ [0mgit status --short && git log --oneline -3
+?? .gitignore
+?? .opencode/
+?? AGENTS.md
+?? CONTEXT.md
+?? Kalina_ksc_11_tercero.md
+?? README.md
+?? TASK_CONTEXT.md
+?? app.py
+?? opencode_run_001.log
+?? opencode_run_002.log
+?? requirements.txt
+?? src/
+?? tests/
+fatal: your current branch 'master' does not have any commits yet
+[0m
+`reference/` deleted. Final verification run (exact command from TASK_CONTEXT + the new test file):
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_properties.py tests/test_ammonia_water_adapter.py -v 2>&1 | grep -E "PASSED|FAILED|SKIPPED|passed|failed|error" | tail -25
+tests/test_properties.py::test_property_backend_es_abstracto PASSED      [  5%]
+tests/test_properties.py::test_pyfluids_h_s_T_convierten_unidades PASSED [ 10%]
+tests/test_properties.py::test_pyfluids_x_por_defecto_usa_composicion_de_instancia PASSED [ 15%]
+tests/test_properties.py::test_pyfluids_estado_incompleto_y_envuelve_errores PASSED [ 21%]
+tests/test_properties.py::test_build_mixture_validacion_x_y_par_binario_no_soportado PASSED [ 26%]
+tests/test_properties.py::test_iapws_h_s_T_convierten_unidades PASSED    [ 31%]
+tests/test_properties.py::test_iapws_rechaza_mezcla_quality_y_saturacion PASSED [ 36%]
+tests/test_properties.py::test_iapws_envuelve_errores_del_backend_y_estado_incompleto PASSED [ 42%]
+tests/test_properties.py::test_iapws_humo_real_vs_if97 PASSED            [ 47%]
+tests/test_properties.py::test_pyfluids_humo_real_mezcla_nh3_h2o SKIPPED [ 52%]
+tests/test_ammonia_water_adapter.py::test_ammonia_es_property_backend_completo_sin_pyfluids PASSED [ 57%]
+tests/test_ammonia_water_adapter.py::test_ammonia_h_real_con_valores_por_defecto_del_contexto PASSED [ 63%]
+tests/test_ammonia_water_adapter.py::test_ammonia_round_trip_ph_con_tolerancia_del_motor PASSED [ 68%]
+tests/test_ammonia_water_adapter.py::test_ammonia_round_trip_ps_con_tolerancia_del_motor PASSED [ 73%]
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros PASSED [ 78%]
+tests/test_ammonia_water_adapter.py::test_ammonia_h_por_quality_no_soportado_pero_documentado PASSED [ 84%]
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica PASSED [ 89%]
+tests/test_ammonia_water_adapter.py::test_ammonia_valida_argumentos_y_envuelve_errores_del_motor PASSED [ 94%]
+tests/test_ammonia_water_adapter.py::test_ammonia_x_por_defecto_de_instancia PASSED [100%]
+================= 18 passed, 1 skipped, 5 warnings in 50.41s ==================
+[0m
+[0m# [0mTodos
+[✓] Copiar literal reference/nh3h2o_vault_original.py -> src/properties/_nh3h2o_engine.py
+[✓] Copiar reference/kalina_flash_excerpt_vault_original.py -> src/properties/_kalina_flash.py (ajustar import)
+[✓] Verificar import limpio de ambos motores + smoke calc
+[✓] Implementar src/properties/ammonia_water_adapter.py (AmmoniaWaterAdapter)
+[✓] Actualizar requirements.txt (pyfluids a opcional, confirmar iapws/numpy/scipy)
+[✓] Añadir docstring/cabecera a pyfluids_adapter.py sin tocar lógica
+[✓] Añadir tests de AmmoniaWaterAdapter (tests/test_ammonia_water_adapter.py)
+[✓] Actualizar README.md (sección arquitectura de propiedades)
+[✓] diff reference vs portado, borrar reference/, correr suite completa y verificar límite 200 líneas
+[0m
+STATUS: done
+
+SUMMARY: Se portó literalmente el motor NH3-H2O del vault a `src/properties/` (`_nh3h2o_engine.py` — copia byte-idéntica verificada con `diff` — y `_kalina_flash.py` — import ajustado a relativo, 200 líneas) y se implementó `AmmoniaWaterAdapter(PropertyBackend)` como camino real de la mezcla (conversión kPa↔MPa en la frontera, `w2m` para burbuja/rocío, errores del motor envueltos en `PropertyRangeError`). Se añadieron 9 tests reales de round-trip/consistencia interna, se marcó `PyfluidsAdapter` como solo-referencia, se actualizaron `requirements.txt` y `README.md`, y se borró `reference/` tras verificar la fidelidad.
+
+FILES_CHANGED:
+- Creados: `src/properties/_nh3h2o_engine.py` (217 líneas — excepción explícita), `src/properties/_kalina_flash.py` (200), `src/properties/ammonia_water_adapter.py` (154), `tests/test_ammonia_water_adapter.py` (116).
+- Modificados: `requirements.txt` (pyfluids movido a bloque "Opcional / solo referencia"), `src/properties/pyfluids_adapter.py` (solo cabecera/docstring, código funcional intacto), `README.md` (arquitectura de propiedades).
+- Borrados: `reference/` (contenido portado y verificado; no queda ninguna referencia a él en el proyecto).
+
+TESTS: `.venv\Scripts\python.exe -m pytest tests/test_properties.py tests/test_ammonia_water_adapter.py -v` → **18 passed, 1 skipped** (el skip es el humo real de pyfluids, ya existente: CoolProp no cubre el par binario NH3-H2O). También `pytest tests/ -q` completo → 18 passed, 1 skipped. Nuevos tests: round-trip h→T_from_Ph→h y s→T_from_Ps→s (tol. `1e3·TOL_T`, motor portado), h real con valores de CONTEXT.md, burbuja<rocío acotados por `Tsat_puros`, inversión dentro de la campana bifásica, envoltorio de errores (ValueError para argumentos inválidos, `PropertyRangeError` para dominio del motor, `NotImplementedError` para quality), y ausencia de imports pyfluids/CoolProp.
+
+RESULTS:
+- `diff reference/nh3h2o_vault_original.py src/properties/_nh3h2o_engine.py` → **sin diferencias** (copias idénticas). `diff` de `_kalina_flash.py` → solo cabecera refluida (límite 200 líneas) + línea de import relativo; lógica intacta.
+- `<AmmoniaWaterAdapter>.h(3000 kPa, 623.15 K, x=0.5)` = **2781.69 kJ/kg** (finito, dentro de [-200, 3500]).
+- Round-trip: T recuperada con error ~3e-13 K (h) y ~1e-10 K (s); TOL_T=1e-6 K.
+- `bubble_point(3000, 0.5)`=385.56 K, `dew_point`=471.79 K; `Tsat_puros(3 MPa)`=(338.87, 507.00) K → **ta < tb < td < tw** verificado.
+- Rendimiento medido: h/s monofásico <10 ms; burbuja/rocío ~10-23 s; inversión bifásica ~2 s.
+
+ERRORS: ninguno funcional. Timeout inicial en un test de calidad: la inversión `h(P, quality, x)` vía brentq sobre flash costaba ~25 s/estado → se retiró ese camino (se reporta abajo). Advertencias RuntimeWarnings (overflow exp, divide-by-zero, log(0)) heredadas del motor portado durante sus barridos numéricos — ya existían en el vault, el motor las gestiona internamente; por diseño no se tocó el motor.
+
+ASSUMPTIONS:
+- `_kalina_flash.py`: se refluó el bloque de comentario de cabecera (7→6 líneas) para cumplir AC #7 ("ningún archivo >200 líneas"); el único otro cambio es el import requerido. Código de la capa de propiedades idéntico.
+- El parámetro `quality` de entrada en `h()` no se implementó: medición (~25 s/estado) lo hace inviable y ninguna fórmula de CONTEXT.md lo usa (el título `q` es salida de `estado()`); se lanza `NotImplementedError` documentado, consistente con la semántica de la interfaz ("los adapters pueden además..."). El error de validación de rango de quality sigue siendo `ValueError`.
+- Los tests nuevos viven en un archivo nuevo (ver UNRESOLVED).
+
+UNRESOLVED:
+- Conflicto de especificación resuelto unilateralmente: la instrucción "añadir los tests nuevos de `AmmoniaWaterAdapter` a `tests/test_properties.py`" es incompatible con la restricción de ≤200 líneas (ese archivo ya tiene 196). Se priorizó la restricción (AC #7) y los tests se pusieron en `tests/test_ammonia_water_adapter.py`, sin tocar los tests existentes. Si Claude prefiere otra disposición (p.ej. autorizar que `test_properties.py` supere 200), es un cambio trivial.
+- `h(P, quality, x)`: si una tarea futura del solver necesita estados especificados por calidad de entrada, habrá que crear una tarea dedicada con inversión de título con arranque tibio (el método brentq directo medido cuesta ~25 s por estado).
+
+RECOMMENDATIONS: el solver y componentes futuros deben consumir exclusivamente `AmmoniaWaterAdapter` (mezcla) e `IAPWSAdapter` (agua); `bubble_point`/`dew_point` (~10-23 s por llamada) conviene cachearlos en el adapter si el ciclo los repite para la misma (P, x) — no se añadió para no exceder el alcance. Considerar silenciar selectivamente los RuntimeWarnings del motor en los archivos de tests para salida limpia, sin modificar el motor portado.

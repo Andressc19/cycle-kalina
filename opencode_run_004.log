@@ -1,0 +1,686 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m✱ [0mGlob "**/*.md"[90m 5 matches[0m
+[0m✱ [0mGlob "src/**/*.py"[90m 23 matches[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead src/state.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/properties/adapter.py
+Ahora leo los componentes existentes y el stub actual del solver:
+[0m→ [0mRead src/components/hrvg.py
+[0m→ [0mRead src/components/separador.py
+[0m→ [0mRead src/components/turbina.py
+[0m→ [0mRead src/components/regenerador.py
+[0m→ [0mRead src/components/valvula.py
+[0m→ [0mRead src/components/absorbedor.py
+[0m→ [0mRead src/components/condensador.py
+[0m→ [0mRead src/components/bomba.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+Ahora reviso el adapter de la mezcla (usado en el camino real), los tests existentes y el placeholder:
+[0m✱ [0mGlob "tests/**/*.py"[90m 8 matches[0m
+[0m→ [0mRead tests/test_cycle_solver.py
+[0m→ [0mRead tests/test_components.py
+[0m→ [0mRead tests/test_ammonia_water_adapter.py
+[0m→ [0mRead src/components/__init__.py
+[0m→ [0mRead src/properties/__init__.py
+[0m→ [0mRead src/__init__.py
+[0m✱ [0mGlob "conftest.py"[90m 0 matches[0m
+[0m✱ [0mGrep "cycle_solver|resolver_ciclo|CicloNoConverge"[90m 0 matches[0m
+[0m✱ [0mGrep "resolver_ciclo|cycle_solver"[90m 46 matches[0m
+[0m→ [0mRead src/properties/_kalina_flash.py[90m [limit=80][0m
+[0m→ [0mRead src/properties/_kalina_flash.py[90m [offset=81][0m
+He leído todo lo necesario. Tengo confirmadas las firmas exactas de los 8 componentes (`hrvg`, `separador`, `turbina`, `regenerador`, `valvula`, `absorbedor`, `condensador`, `bomba`), `EstadoTermo`, la interfaz `PropertyBackend` y el adapter real `AmmoniaWaterAdapter`. Antes de escribir, verifico el entorno (Python/scipy/pytest):
+[0m
+[0m$ [0mpython --version && python -c "import scipy, sys; print('scipy', scipy.__version__)" && python -m pytest --version
+Python 3.13.7
+scipy 1.18.1
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe: No module named pytest
+[0m
+`pytest` no aparece en el Python global. Busco un entorno virtual del proyecto:
+[0m$ [0mls -a; ls .venv/Scripts 2>/dev/null | head -20; ls venv/Scripts 2>/dev/null | head -20
+.
+..
+.git
+.gitignore
+.opencode
+.pytest_cache
+.venv
+AGENTS.md
+CONTEXT.md
+Kalina_ksc_11_tercero.md
+README.md
+TASK_CONTEXT.md
+app.py
+opencode_run_001.log
+opencode_run_002.log
+opencode_run_003.log
+opencode_run_004.log
+requirements.txt
+src
+tests
+Activate.ps1
+activate
+activate.bat
+activate.fish
+coverage-3.13.exe
+coverage.exe
+coverage3.exe
+deactivate.bat
+pip.exe
+pip3.13.exe
+pip3.exe
+py.test.exe
+pygmentize.exe
+pytest.exe
+python.exe
+pythonw.exe
+[0m
+[0m$ [0m.venv/Scripts/python.exe --version && .venv/Scripts/python.exe -c "import scipy, pytest; print('scipy', scipy.__version__, '| pytest', pytest.__version__)"
+Python 3.13.7
+scipy 1.18.1 | pytest 9.1.1
+[0m
+El entorno virtual `.venv` tiene `scipy` y `pytest`. Confirmo la suite actual antes de tocar nada:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -5
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+30 passed, 1 skipped, 5 warnings in 48.22s
+[0m
+[0m← [0mWrite src/_cycle_loops.py
+Wrote file successfully.
+[0m
+Suite base: **30 passed, 1 skipped** (igual al reporte previo). Ahora escribo los dos módulos del solver:
+[0m← [0mWrite src/cycle_solver.py
+Wrote file successfully.
+[0m
+Ahora los tests (reemplazo del placeholder):
+[0m← [0mWrite tests/test_cycle_solver.py
+Wrote file successfully.
+[0m
+[0m← [0mEdit tests/test_cycle_solver.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+@@ -96,17 +96,18 @@
+     assert e["e5"].m * (e["e5"].h - e["e6"].h) == pytest.approx(
+         e["e1"].h - e["e10"].h)
+ 
+ 
+-def test_numero_de_lazos_y_residuos_del_caso_base(backend):
++def test_energias_finitas_y_residuo_del_lazo_exterior(backend):
+     res = resolver_ciclo(backend, **_PARAMS_BASE)
+-    e = res["estados"]
+-    # El lazo exterior convergió: T1 del dict ≈ autovalor del balance cerrado.
+-    assert abs(e["e1"].T - res["estados"]["e1"].T) >= 0.0  # (sanity, no-op)
+-    # Qi/Wt/Qout/Wp todos positivos y finitos (magnitudes [kW]).
+-    for nombre in ("Qi", "Wt", "Qout", "Wp", "Qreg", "Wnet"):
+-        assert res[nombre] > 0.0 or nombre == "Qreg"
+-        assert res[nombre] == res[nombre]  # no NaN
++    for nombre in ("Qi", "Qout", "Wt", "Wp", "Qreg", "Wnet", "eta"):
++        assert math.isfinite(res[nombre])
++    # Magnitudes [kW]: calor y trabajo entran/salen en sentidos definidos.
++    assert res["Qi"] > 0.0 and res["Wt"] > 0.0 and res["Wp"] >= 0.0
++    # Residuo del lazo exterior: F(T1) ≈ 0 en la solución dentro de tol_T1.
++    T1_nuevo, _, _ = evaluar(res["estados"]["e1"].T, backend, **_PARAMS_BASE,
++                             tol_T10=1e-4, max_iter_frio=300)
++    assert abs(T1_nuevo - res["estados"]["e1"].T) < 1e-3
+ 
+ 
+ def test_caso_fisicamente_imposible_lanza_ciclo_no_converge(backend):
+     # T_fuente < T_sumidero hace degenerado el rango físico -> bracket inviable.
+
+[0m
+Limpio un test que quedó con una aserción sin sentido (no-op) y lo reescribo con verificaciones reales:
+[0m← [0mEdit tests/test_cycle_solver.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+@@ -18,8 +18,9 @@
+ """
+ 
+ from __future__ import annotations
+ 
++import math
+ from pathlib import Path
+ 
+ import pytest
+ 
+
+[0m
+Ahora ejecuto los tests del solver:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_cycle_solver.py -v 2>&1 | tail -25
+tests/test_cycle_solver.py::test_lazo_interior_sin_convergencia_lanza_ciclo_no_converge PASSED [ 55%]
+tests/test_cycle_solver.py::test_propaga_excepcion_real_del_backend_sin_envolver PASSED [ 66%]
+tests/test_cycle_solver.py::test_evaluar_y_bracketear_privados PASSED    [ 77%]
+tests/test_cycle_solver.py::test_nuevos_archivos_dentro_del_limite_de_200_lineas PASSED [ 88%]
+tests/test_cycle_solver.py::test_solver_no_importa_backends_concretos PASSED [100%]
+
+================================== FAILURES ===================================
+__________________ test_resolver_ciclo_balance_global_y_eta ___________________
+
+backend = <tests.test_cycle_solver.FakeBackend object at 0x000001F3BD231590>
+
+    def test_resolver_ciclo_balance_global_y_eta(backend):
+        res = resolver_ciclo(backend, **_PARAMS_BASE)
+        # 1er principio con la convenci�n documentada: Qi + Wp = Qout + Wt.
+        lhs = res["Qi"] + res["Wp"]
+        err = abs(lhs - (res["Qout"] + res["Wt"])) / lhs
+        assert err < 1e-4
+        assert res["Qi"] > 0.0
+>       assert 0.0 < res["eta"] < 1.0
+E       assert 0.0 < -0.1392824824249767
+
+tests\test_cycle_solver.py:94: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_cycle_solver.py::test_resolver_ciclo_balance_global_y_eta
+========================= 1 failed, 8 passed in 1.70s =========================
+[0m
+[0m← [0mEdit tests/test_cycle_solver.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+@@ -90,9 +90,12 @@
+ lhs = res["Qi"] + res["Wp"]
+ err = abs(lhs - (res["Qout"] + res["Wt"])) / lhs
+ assert err < 1e-4
+ assert res["Qi"] > 0.0
+-assert 0.0 < res["eta"] < 1.0
++# El fake con leyes lineales rinde Wnet < 0 (su bomba consume más que su
++# turbina produce: 1e-3·ΔP/η_p > m_v·η_t·1e-3·ΔP) — artefacto del backend.
++# El criterio 0 < η < 1 se verifica con el backend real (respuesta final).
++assert -1.0 < res["eta"] < 1.0
+ # Cierre del regenerador a nivel de ciclo: m_l·(h5−h6) = m_b·(h1−h10).
+ e = res["estados"]
+ assert e["e5"].m * (e["e5"].h - e["e6"].h) == pytest.approx(
+     e["e1"].h - e["e10"].h)
+
+[0m
+El solver converge y el balance global cierra, pero con el **fake** η = −0.139: el fake tiene leyes lineales que hacen que el trabajo de bomba (ΔP·1e-3/η_p = 3.47 kW) supere al de turbina (m_v·η_t·ΔP·1e-3 ≈ 1.9 kW) — un artefacto del backend artificial, no del solver. El criterio de aceptación permite Wnet negativo ("repórtalo, no lo fuerces"); el `0 < η < 1` se verifica con el backend real. Ajusto el test para que afirme lo que el fake puede garantizar honestamente:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_cycle_solver.py -q 2>&1 | tail -3
+=========================== short test summary info ===========================
+FAILED tests/test_cycle_solver.py::test_resolver_ciclo_balance_global_y_eta
+1 failed, 8 passed in 1.64s
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_cycle_solver.py::test_resolver_ciclo_balance_global_y_eta -q 2>&1 | grep -A 12 "def test_resolver"
+def test_resolver_ciclo_balance_global_y_eta(backend):
+        res = resolver_ciclo(backend, **_PARAMS_BASE)
+        # 1er principio con la convenci�n documentada: Qi + Wp = Qout + Wt.
+        lhs = res["Qi"] + res["Wp"]
+        err = abs(lhs - (res["Qout"] + res["Wt"])) / lhs
+        assert err < 1e-4
+        assert res["Qi"] > 0.0
+        # El fake con leyes lineales rinde Wnet < 0 (su bomba consume m�s que su
+        # turbina produce: 1e-3\xb7\u0394P/\u03b7_p > m_v\xb7\u03b7_t\xb71e-3\xb7\u0394P) \u2014 artefacto del backend.
+        # El criterio 0 < \u03b7 < 1 se verifica con el backend real (respuesta final).
+        assert -1.0 < res["eta"] < 1.0
+        # Cierre del regenerador a nivel de ciclo: m_l\xb7(h5\u2212h6) = m_b\xb7(h1\u2212h10).
+        e = res["estados"]
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_cycle_solver.py::test_resolver_ciclo_balance_global_y_eta -q 2>&1 | grep -B 2 -A 8 "Error\|assert"
+lhs = res["Qi"] + res["Wp"]
+        err = abs(lhs - (res["Qout"] + res["Wt"])) / lhs
+        assert err < 1e-4
+        assert res["Qi"] > 0.0
+        # El fake con leyes lineales rinde Wnet < 0 (su bomba consume m�s que su
+        # turbina produce: 1e-3\xb7\u0394P/\u03b7_p > m_v\xb7\u03b7_t\xb71e-3\xb7\u0394P) \u2014 artefacto del backend.
+        # El criterio 0 < \u03b7 < 1 se verifica con el backend real (respuesta final).
+        assert -1.0 < res["eta"] < 1.0
+        # Cierre del regenerador a nivel de ciclo: m_l\xb7(h5\u2212h6) = m_b\xb7(h1\u2212h10).
+        e = res["estados"]
+>       assert e["e5"].m * (e["e5"].h - e["e6"].h) == pytest.approx(
+            e["e1"].h - e["e10"].h)
+E       assert 1.4545264790009884 == 1.454528201306175 � 1.5e-06
+E         
+E         comparison failed
+E         Obtained: 1.4545264790009884
+E         Expected: 1.454528201306175 � 1.5e-06
+
+tests\test_cycle_solver.py:100: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_cycle_solver.py::test_resolver_ciclo_balance_global_y_eta
+1 failed in 1.56s
+[0m
+[0m← [0mEdit tests/test_cycle_solver.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+@@ -95,11 +95,12 @@
+     # turbina produce: 1e-3·ΔP/η_p > m_v·η_t·1e-3·ΔP) — artefacto del backend.
+     # El criterio 0 < η < 1 se verifica con el backend real (respuesta final).
+     assert -1.0 < res["eta"] < 1.0
+     # Cierre del regenerador a nivel de ciclo: m_l·(h5−h6) = m_b·(h1−h10).
++    # Tolerancia rel 1e-4: es el residuo del lazo exterior (brentq xtol=1e-4 K).
+     e = res["estados"]
+     assert e["e5"].m * (e["e5"].h - e["e6"].h) == pytest.approx(
+-        e["e1"].h - e["e10"].h)
++        e["e1"].h - e["e10"].h, rel=1e-4)
+ 
+ 
+ def test_energias_finitas_y_residuo_del_lazo_exterior(backend):
+     res = resolver_ciclo(backend, **_PARAMS_BASE)
+
+[0m
+La verificación del cierre del regenerador falla solo por la tolerancia: el residuo del lazo exterior (|T1_nuevo − T1| ≈ 1e-7 K con `brentq`) se traduce en ~1.7e-6 kJ/kg en `h`, justo por encima del `rel=1e-6` por defecto de `approx`. Es el residuo numérico esperado de un brentq con `xtol=1e-4`; relajo a `rel=1e-4` (la escala correcta):
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_cycle_solver.py -v 2>&1 | tail -14
+plugins: cov-7.1.0, anyio-4.15.1
+collecting ... collected 9 items
+
+tests/test_cycle_solver.py::test_resolver_ciclo_converge_y_devuelve_esquema_completo PASSED [ 11%]
+tests/test_cycle_solver.py::test_resolver_ciclo_balance_global_y_eta PASSED [ 22%]
+tests/test_cycle_solver.py::test_energias_finitas_y_residuo_del_lazo_exterior PASSED [ 33%]
+tests/test_cycle_solver.py::test_caso_fisicamente_imposible_lanza_ciclo_no_converge PASSED [ 44%]
+tests/test_cycle_solver.py::test_lazo_interior_sin_convergencia_lanza_ciclo_no_converge PASSED [ 55%]
+tests/test_cycle_solver.py::test_propaga_excepcion_real_del_backend_sin_envolver PASSED [ 66%]
+tests/test_cycle_solver.py::test_evaluar_y_bracketear_privados PASSED    [ 77%]
+tests/test_cycle_solver.py::test_nuevos_archivos_dentro_del_limite_de_200_lineas PASSED [ 88%]
+tests/test_cycle_solver.py::test_solver_no_importa_backends_concretos PASSED [100%]
+
+============================== 9 passed in 1.20s ==============================
+[0m
+9/9 verdes. Ahora la suite completa:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -3
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+39 passed, 1 skipped, 5 warnings in 47.64s
+[0m
+[0m← [0mWrite C:/Users/Usuario/AppData/Local/Temp/opencode/probe_ciclo_real.py
+Wrote file successfully.
+[0m
+Suite completa: **39 passed, 1 skipped** (antes 30+1; +9 nuevas). Ahora la verificación con el **backend real** (`AmmoniaWaterAdapter`, valores por defecto de CONTEXT.md). Escribo un script de prueba en el directorio temporal pre-aprobado (no dejo archivos sueltos en el repo):
+[0m$ [0m.venv/Scripts/python.exe "C:\Users\Usuario\AppData\Local\Temp\opencode\probe_ciclo_real.py" 2>&1 | grep -v Warning
+Traceback (most recent call last):
+  File "C:\Users\Usuario\AppData\Local\Temp\opencode\probe_ciclo_real.py", line 5, in <module>
+    from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+ModuleNotFoundError: No module named 'src'
+[0m
+El script se ejecuta desde el directorio temporal y no encuentra `src`. Añado el proyecto al `sys.path`:
+[0m← [0mEdit C:/Users/Usuario/AppData/Local/Temp/opencode/probe_ciclo_real.py
+Index: C:\Users\Usuario\AppData\Local\Temp\opencode\probe_ciclo_real.py
+===================================================================
+--- C:\Users\Usuario\AppData\Local\Temp\opencode\probe_ciclo_real.py
++++ C:\Users\Usuario\AppData\Local\Temp\opencode\probe_ciclo_real.py
+@@ -1,8 +1,11 @@
+ """Probe del caso base con el backend real (AmmoniaWaterAdapter, CONTEXT.md)."""
++import sys
+ import time
+ import math
+ 
++sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero")
++
+ from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+ from src.cycle_solver import resolver_ciclo, CicloNoConvergeError
+ 
+ P_ALTA, P_BAJA = 3000.0, 400.0
+
+[0m
+[0m$ [0m.venv/Scripts/python.exe "C:\Users\Usuario\AppData\Local\Temp\opencode\probe_ciclo_real.py" 2>&1 | grep -v Warning
+prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+bubble(P_alta, x=0.5) = 385.5575 K ; dew = 471.7948 K
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py", line 80, in _wrap
+    return fn()
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py", line 148, in <lambda>
+    return self._wrap(lambda: _ng.bubbleT(mpa, _ng.w2m(w))[0],
+                              ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py", line 211, in bubbleT
+    def bubbleT(P, x, **kw): return _satT(P, x, "bub", **kw)
+                                    ~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py", line 207, in _satT
+    T = brentq(f, lo, hi, xtol=1e-8)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\scipy\optimize\_zeros_py.py", line 858, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+ValueError: f(a) and f(b) must have different signs
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Usuario\AppData\Local\Temp\opencode\probe_ciclo_real.py", line 23, in <module>
+    res = resolver_ciclo(a, P_alta=P_ALTA, P_baja=P_BAJA, T_fuente=T_FUENTE,
+                         T_sumidero=T_SUM, x_b=X_B, m_b=M_B, eta_t=ETA_T,
+                         eta_p=ETA_P, eps_hrvg=EPS_HRVG, eps_reg=EPS_REG,
+                         eps_cond=EPS_COND)
+  File "D:\Desktop\ciclo_kalina_tercero\src\cycle_solver.py", line 58, in resolver_ciclo
+    lo, hi = _bracketear(F, T_sumidero, T_fuente)
+             ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\_cycle_loops.py", line 143, in _bracketear
+    f_lo, f_hi = F(lo), F(hi)
+                 ~^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\cycle_solver.py", line 55, in F
+    T1_nuevo, _, _ = evaluar(T1, backend, **kwargs)
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\_cycle_loops.py", line 100, in evaluar
+    estado3, estado5, _ = separador.resolver(estado2, backend)
+                          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\components\separador.py", line 72, in resolver
+    x_l = _composicion(backend.bubble_point, P, T_eq, _X_MIN, z)
+  File "D:\Desktop\ciclo_kalina_tercero\src\components\separador.py", line 37, in _composicion
+    f_lo = metodo(P, lo) - T_eq
+           ~~~~~~^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py", line 148, in bubble_point
+    return self._wrap(lambda: _ng.bubbleT(mpa, _ng.w2m(w))[0],
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                      "bubble_point(P, x)")
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py", line 84, in _wrap
+    raise PropertyRangeError(
+    ...<2 lines>...
+    ) from exc
+src.properties.adapter.PropertyRangeError: bubble_point(P, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONTEXT.md, IAPWS G4-01). Detalle del motor: f(a) and f(b) must have different signs
+[0m
+[0m← [0mWrite C:/Users/Usuario/AppData/Local/Temp/opencode/probe_dominio.py
+Wrote file successfully.
+[0m
+El backend real falla en el **endpoint inferior del bracket**: el separador llama `bubble_point(3000, 1e-6)` (bisección desde `x=1e-6`) y el motor portado no puede resolver la burbuja cerca del agua pura (`f(a) and f(b) must have different signs` → `PropertyRangeError`). Necesito entender el dominio real: (a) ¿falla `bubble_point(3000, x→0)` siempre o solo para ciertos estados?; (b) ¿dónde cae T2 = f(T1) para el backend real? Mido ambos:
+[0m$ [0m.venv/Scripts/python.exe "C:\Users\Usuario\AppData\Local\Temp\opencode\probe_dominio.py" 2>&1 | grep -v "prop\[" | grep -v "KA, KW"
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 300000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+[0m
+El sondeo con `x→0` parece costosísimo (warnings de overflow en `iapws/ammonia.py` cerca del agua pura) y colgó con salida bufferizada. Reintento paso a paso, sin buffer, con un solo caso por invocación:
+[0m$ [0m.venv/Scripts/python.exe -u -c "
+import sys, time
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+a = AmmoniaWaterAdapter(x=0.5)
+t0 = time.perf_counter()
+try:
+    v = a.bubble_point(3000.0, 1e-6)
+    print(f'bubble(1e-6) = {v:.2f} K en {time.perf_counter()-t0:.1f} s')
+except Exception as e:
+    print(f'bubble(1e-6) -> {type(e).__name__} en {time.perf_counter()-t0:.1f} s: {str(e)[:80]}')
+" 2>&1 | grep -v Warning
+bubble(1e-6) -> PropertyRangeError en 1.0 s: bubble_point(P, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONT
+[0m
+`bubble_point(3000, 1e-6)` lanza `PropertyRangeError` en ~1 s (rápido, pero siempre). El separador de `src/components/separador.py` llama `bubble_point(P, _X_MIN=1e-6)` **incondicionalmente** al inicio de su bisección → con el backend real, cualquier `evaluar` falla ahí. Debo mapear el dominio real del motor (¿dónde empieza a fallar `bubbleT`?):
+[0m$ [0m.venv/Scripts/python.exe -u -c "
+import sys, time
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+a = AmmoniaWaterAdapter(x=0.5)
+for x in (1e-6, 1e-4, 1e-3, 0.01, 0.03, 0.05, 0.1):
+    t0 = time.perf_counter()
+    try:
+        v = a.bubble_point(3000.0, x)
+        print(f'bubble({x:.0e}) = {v:.2f} K  ({time.perf_counter()-t0:.1f} s)', flush=True)
+    except Exception as e:
+        print(f'bubble({x:.0e}) -> {type(e).__name__} ({time.perf_counter()-t0:.1f} s)', flush=True)
+" 2>&1 | grep -v Warning
+bubble(1e-06) -> PropertyRangeError (1.0 s)
+bubble(1e-04) -> PropertyRangeError (1.3 s)
+bubble(1e-03) = 506.66 K  (6.3 s)
+bubble(1e-02) = 503.60 K  (7.7 s)
+bubble(3e-02) = 497.24 K  (8.8 s)
+bubble(5e-02) = 491.38 K  (9.1 s)
+bubble(1e-01) = 478.02 K  (9.2 s)
+[0m
+Confirmado el dato duro: el motor portado solo cubre `x ≥ ~1e-3` (másico) para `bubble_point`; por debajo lanza `PropertyRangeError`. El separador de `src/components/` (que no puedo tocar) **siempre** empieza su bisección en `x=1e-6`, así que con el backend real la cascada muere ahí para cualquier estado. Verifico el lado del rocío (`x→1−1e-6`) y reproduzco el fallo con un separador directo sobre un estado real en campana, para dejar la evidencia completa:
+[0m$ [0m.venv/Scripts/python.exe -u -c "
+import sys, time
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+a = AmmoniaWaterAdapter(x=0.5)
+for x in (1-1e-6, 1-1e-4, 1-1e-3, 0.99, 0.95):
+    t0 = time.perf_counter()
+    try:
+        v = a.dew_point(3000.0, x)
+        print(f'dew({x:.6f}) = {v:.2f} K  ({time.perf_counter()-t0:.1f} s)', flush=True)
+    except Exception as e:
+        print(f'dew({x:.6f}) -> {type(e).__name__} ({time.perf_counter()-t0:.1f} s)', flush=True)
+" 2>&1 | grep -v Warning
+dew(0.999999) -> PropertyRangeError (1.8 s)
+dew(0.999900) = 339.39 K  (9.5 s)
+dew(0.999000) = 343.84 K  (12.3 s)
+dew(0.990000) = 367.05 K  (14.7 s)
+dew(0.950000) = 398.05 K  (17.1 s)
+[0m
+Simétrico: el dominio real del motor es `x ∈ [~1e-3, ~1−1e-3]` másico; el separador sondea ambos extremos prohibidos de forma incondicional. Reproduzco el fallo exacto con un estado real **dentro** de la campana (T=420 K, P=3000 kPa, x=0.5):
+[0m$ [0m.venv/Scripts/python.exe -u -c "
+import sys, time
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.components import separador
+from src.state import EstadoTermo
+P, T, x_b = 3000.0, 420.0, 0.5
+a = AmmoniaWaterAdapter(x=x_b)
+print(f'campana a P={P}, x=0.5: bubble={a.bubble_point(P, x_b):.2f} K, dew={a.dew_point(P, x_b):.2f} K', flush=True)
+entrada = EstadoTermo(T=T, P=P, h=a.h(P, T=T, x=x_b), s=a.s(P, T=T, x=x_b), x=x_b, m=1.0)
+t0 = time.perf_counter()
+try:
+    v, l, _ = separador.resolver(entrada, a)
+    print(f'separador OK: x_v={v.x:.4f}, x_l={l.x:.4f} ({time.perf_counter()-t0:.1f} s)', flush=True)
+except Exception as e:
+    print(f'separador -> {type(e).__name__} tras {time.perf_counter()-t0:.1f} s: {str(e)[:90]}', flush=True)
+" 2>&1 | grep -v Warning
+prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+campana a P=3000.0, x=0.5: bubble=385.56 K, dew=471.79 K
+separador -> PropertyRangeError tras 1.0 s: bubble_point(P, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONTEXT.md, IA
+[0m
+Reproducción limpia y definitiva: incluso con un estado real válido dentro de la campana (420 K ∈ (385.56, 471.79)), `separador.resolver` con el backend real lanza `PropertyRangeError` en ~1 s — el separador sondea `x=1e-6` incondicionalmente y el motor portado no cubre `x < ~1e-3`.
+
+Este bloqueo está **fuera de mi alcance** (`No tocar: src/components/*`): no puedo modificar el separador. Pero antes de concluir, verifico algo más: ¿existe **cualquier** T1 con el backend real donde el ciclo ni siquiera empiece? No — el fallo es incondicional. Compruebo entonces los números del caso base **con el fake** (para reportar la verificación de los lazos) y el estado final de los archivos:
+[0m$ [0m.venv/Scripts/python.exe -u -c "
+import sys, math
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.cycle_solver import resolver_ciclo
+from src.properties.adapter import PropertyBackend
+import tests.test_cycle_solver as tcs
+
+res = resolver_ciclo(tcs.FakeBackend(), **tcs._PARAMS_BASE)
+print('Caso base FAKE (backend lineal artificial, solo verifica los lazos):')
+print(f\"{'est':<4}{'T[K]':>10}{'h[kJ/kg]':>11}{'s[kJ/kgK]':>12}{'x':>8}{'m[kg/s]':>9}\")
+for k in (f'e{i}' for i in range(1, 11)):
+    e = res['estados'][k]
+    print(f'{e.etiqueta:<4}{e.T:10.4f}{e.h:11.4f}{e.s:12.5f}{e.x:8.4f}{str(e.m):>9}')
+for n in ('Qi', 'Qout', 'Wt', 'Wp', 'Qreg', 'Wnet'):
+    print(f'{n} = {res[n]:.4f} kW')
+print(f'eta = {res[\"eta\"]*100:.4f} %')
+lhs = res['Qi'] + res['Wp']
+print(f'balance 1er principio rel = {abs(lhs-(res[\"Qout\"]+res[\"Wt\"]))/lhs:.2e}')
+" 2>&1 | grep -v Warning
+Caso base FAKE (backend lineal artificial, solo verifica los lazos):
+est       T[K]   h[kJ/kg]   s[kJ/kgK]       x  m[kg/s]
+1     355.5721   363.5721     4.05572  0.5000      1.0
+2     366.9858   374.9858     4.16986  0.5000      1.0
+3     366.9858   375.2872     4.20000  0.53010.8492904884762866
+4     367.3758   373.0772     4.20390  0.53010.8492904884762866
+5     366.9858   373.2872     4.00000  0.33010.15070951152371337
+6     357.3346   363.6360     3.90349  0.33010.15070951152371337
+7     359.9346   363.6360     3.92949  0.33010.15070951152371337
+8     366.2544   371.6544     4.16254  0.5000      1.0
+9     353.2509   358.6509     4.03251  0.5000      1.0
+10    354.1175   362.1175     4.04118  0.5000      1.0
+Qi = 11.4137 kW
+Qout = 13.0035 kW
+Wt = 1.8769 kW
+Wp = 3.4667 kW
+Qreg = 1.4545 kW
+Wnet = -1.5897 kW
+eta = -13.9282 %
+balance 1er principio rel = 1.16e-07
+[0m
+Caso base con el fake: convergencia perfecta de ambos lazos (T1* = 355.57 K, balance relativo 1.16e-7). Estado final del repo y recuento de líneas:
+[0m$ [0mgit status --short && echo "---" && wc -l src/cycle_solver.py src/_cycle_loops.py tests/test_cycle_solver.py && echo "---" && git diff --stat
+?? .gitignore
+?? .opencode/
+?? AGENTS.md
+?? CONTEXT.md
+?? Kalina_ksc_11_tercero.md
+?? README.md
+?? TASK_CONTEXT.md
+?? app.py
+?? opencode_run_001.log
+?? opencode_run_002.log
+?? opencode_run_003.log
+?? opencode_run_004.log
+?? requirements.txt
+?? src/
+?? tests/
+---
+   63 src/cycle_solver.py
+  152 src/_cycle_loops.py
+  170 tests/test_cycle_solver.py
+  385 total
+---
+[0m
+Última comprobación: suite completa con el estado final de los archivos (ya la corrí tras el último ajuste, pero confirmo una vez más):
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -2
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+39 passed, 1 skipped, 5 warnings in 48.73s
+[0m
+```
+
+STATUS: partial
+
+SUMMARY:
+- Implementé `resolver_ciclo(...)` con los dos lazos anidados del pseudocódigo
+  del TASK_CONTEXT: lazo interior de sustitución sucesiva sobre T10
+  (`lazo_frio`) y lazo exterior por Brent sobre T1 con bracket físico
+  (T_sumidero, T_fuente) y `CicloNoConvergeError`; traducido 1:1, sin cambiar
+  ninguna fórmula de los componentes ni de CONTEXT.md.
+- Los 9 tests del solver pasan y la suite completa quedó en 39 passed,
+  1 skipped (antes 30+1). El balance de energía global (Qi + Wp = Qout + Wt)
+  cierra con error relativo 1.16e-7 en la verificación con backend fake.
+- BLOQUEO encontrado (fuera de mi alcance, ver UNRESOLVED): con el backend
+  real AmmoniaWaterAdapter el separador existente (`src/components/separador.py`,
+  que tengo prohibido tocar) lanza `PropertyRangeError` para CUALQUIER estado,
+  porque su bisección sondea `bubble_point(P, x=1e-6)` y `dew_point(P, x=1−1e-6)`
+  incondicionalmente, y el motor portado IAPWS G4-01 solo cubre
+  x ∈ [~1e-3, ~1−1e-3] (másico). Por eso el resultado numérico del caso base con
+  los valores por defecto de CONTEXT.md NO se puede producir hoy: la cascada
+  1→2→separador muere antes de que el lazo exterior pueda empezar.
+
+FILES_CHANGED:
+- `src/cycle_solver.py` — reemplazado el stub TODO por la API pública
+  `resolver_ciclo(...)` + re-export de `CicloNoConvergeError` (63 líneas ≤ 200).
+- `src/_cycle_loops.py` — NUEVO: `CicloNoConvergeError`, `lazo_frio`,
+  `evaluar`, `_bracketear` (152 líneas ≤ 200).
+- `tests/test_cycle_solver.py` — reemplazado el placeholder por 9 tests
+  (170 líneas ≤ 200).
+- No se tocó nada de `src/components/*`, `src/state.py`, `src/properties/*`,
+  `src/exergy.py`, `src/sensitivity.py`, `src/export_excel.py`, `src/plots.py`,
+  `app.py`.
+
+TESTS:
+- Comando: `.venv/Scripts/python.exe -m pytest tests/test_cycle_solver.py -v`
+  → 9 passed.
+  - Convergencia con FakeBackend y esquema completo de salida (10 estados
+    etiquetados "1".."10", masas coherentes: e3.m+e5.m = e8.m = e9.m = e10.m = m_b,
+    x8 = x_b).
+  - Balance global 1er principio < 1e-4 y cierre del regenerador m_l·(h5−h6) =
+    m_b·(h1−h10).
+  - Energías finitas y residuo del lazo exterior |T1_nuevo − T1| < 1e-3 en la solución.
+  - `CicloNoConvergeError` ante T_fuente < T_sumidero (bracket degenerado) y ante
+    `max_iter_frio=0` (lazo interior sin convergencia).
+  - Propagación limpia de `PropertyRangeError` del backend (no envuelta).
+  - Test directo de `evaluar`/`_bracketear`.
+  - Límite 200 líneas y no-importación de backends concretos en los módulos nuevos.
+- Comando completo: `.venv/Scripts/python.exe -m pytest tests/ -q`
+  → 39 passed, 1 skipped, 5 warnings (mismas warnings preexistentes de
+  `_kalina_flash.py`), 48.7 s.
+
+RESULTS:
+- Verificación de los lazos con FakeBackend lineal (leyes de test_components.py,
+  caso base T_sumidero=350, T_fuente=369 para que el bracket quepa en la campana
+  del fake a x=0.5: 350–370 K; NO es física real, es el harness determinista):
+
+  estado   T[K]      h[kJ/kg]   s[kJ/kg·K]  x       m[kg/s]
+  e1       355.5721  363.5721   4.05572     0.5000  1.0
+  e2       366.9858  374.9858   4.16986     0.5000  1.0
+  e3       366.9858  375.2872   4.20000     0.5301  0.8493
+  e4       367.3758  373.0772   4.20390     0.5301  0.8493
+  e5       366.9858  373.2872   4.00000     0.3301  0.1507
+  e6       357.3346  363.6360   3.90349     0.3301  0.1507
+  e7       359.9346  363.6360   3.92949     0.3301  0.1507
+  e8       366.2544  371.6544   4.16254     0.5000  1.0
+  e9       353.2509  358.6509   4.03251     0.5000  1.0
+  e10      354.1175  362.1175   4.04118     0.5000  1.0
+
+  Qi = 11.4137 kW ; Qout = 13.0035 kW ; Wt = 1.8769 kW ; Wp = 3.4667 kW ;
+  Qreg = 1.4545 kW ; Wnet = −1.5897 kW ; η = −13.93 % ;
+  balance rel. |Qi+Wp−(Qout+Wt)|/(Qi+Wp) = 1.16e-07 ; residuo lazo exterior ~1e-7 K.
+  (Nota: η<0 es artefacto del fake lineal — su bomba consume 1e-3·ΔP/η_p > su
+  turbina produce m_v·η_t·1e-3·ΔP; no se forzó el signo, se reporta tal cual.)
+
+- Bloqueo con backend real (evidencia medible, IAPWS G4-01 portado):
+  - `bubble_point(3000 kPa, x)` funciona para x ≥ 1e-3 (bubble(1e-3)=506.66 K,
+    bubble(0.5)=385.56 K) y lanza PropertyRangeError para x ≤ 1e-4.
+  - `dew_point(3000 kPa, x)` funciona para x ≤ 1−1e-3 (dew(0.999)=343.84 K,
+    dew(0.5)=471.79 K) y lanza PropertyRangeError para x ≥ 1−1e-4.
+  - `separador.resolver` con un estado real VÁLIDO dentro de la campana
+    (T=420 K ∈ (385.56, 471.79), P=3000 kPa, x=0.5, m=1) → PropertyRangeError en
+    1.0 s (falla en la primera sonda de su bisección). Por tanto
+    `resolver_ciclo` con `AmmoniaWaterAdapter` no puede converger con NINGÚN T1:
+    la excepción sale de la primera llamada a `evaluar` en `_bracketear`.
+
+ERRORS:
+- Ninguno en el código entregado (pytest verde). El bloqueo del backend real es
+  un gap de dominio componente↔motor, no un error del solver.
+
+ASSUMPTIONS:
+- Ampliación del bracket exterior (el TASK_CONTEXT la deja abierta): comienza en
+  [T_sumidero+1.0, T_fuente−1.0] y, si no hay cambio de signo, desplaza ambos
+  extremos hacia los bordes físicos en pasos de 5.0 K, clampeado estrictamente
+  dentro de (T_sumidero, T_fuente) (inset 1e-6). Si lo/hi quedan degenerados
+  (T_fuente ≤ T_sumidero + 2 K) o se agota el rango sin cambio de signo →
+  CicloNoConvergeError, sin inventar un bracket más amplio que el físico.
+- `CicloNoConvergeError` vive en `src/_cycle_loops.py` (módulo pequeño propio,
+  como permite el task) y se re-exporta desde `cycle_solver.py`; evita el ciclo
+  de imports (esa excepción la lanzan `_bracketear` y `evaluar`).
+- Convención de signos documentada: Qi, Qout, Wt, Wp, Qreg son magnitudes [kW]
+  (entradas/salidas según el sentido físico); balance global Qi + Wp = Qout + Wt;
+  Wnet = Wt − Wp; η = Wnet/Qi.
+- Los estados del lazo interior se inicializan a None antes del bucle para que
+  `max_iter_frio=0` no produzca UnboundLocalError y el flag False se propague
+  como CicloNoConvergeError desde `evaluar`.
+- Tests del solver con FakeBackend (convención de CONTEXT.md): caso base con
+  parámetros artificiales elegidos para que TODO el bracket físico sea evaluable
+  dentro de la campana del fake (350–370 K a x=0.5); el criterio 0<η<1 de la
+  aceptación se verificaría con el backend real — bloqueado (ver UNRESOLVED).
+
+UNRESOLVED:
+- **No se puede producir el resultado numérico del caso base con los valores
+  por defecto de CONTEXT.md (criterio de aceptación #2) con el backend real.**
+  Causa: `separador.py` (componente existente, fuera de mi alcance de archivos)
+  invierte bubble/dew bisectando x ∈ [1e-6, z] y [z, 1−1e-6], y sondea los
+  extremos incondicionalmente; el motor portado IAPWS G4-01 no cubre
+  x ≤ ~1e-3 ni x ≥ ~1−1e-3 (másico) — `PropertyRangeError` verificado
+  empíricamente en ambos extremos y en una reproducción directa del separador
+  con un estado real dentro de la campana. Tampoco existe un backend alternativo
+  que lo resuelva (pyfluids/CoolProp no cubre NH3-H2O en este equipo, CONTEXT.md).
+- Hallazgo adicional (mismo componente): aun corrigiendo el dominio, la bisección
+  de `separador._composicion` ejecuta SIEMPRE sus 100 iteraciones (sin salida
+  temprana) y cada inversión bubble/dew del motor cuesta 1–17 s medidos → un
+  `evaluar` completo costaría del orden de horas con el backend real. El camino
+  viable es usar el flash (P,T) del motor portado (`_kalina_flash.flash_TP`, que
+  el proyecto hermano sí usaba) o un arreglo de dominio+early-exit en el
+  separador — decisión del director, no mía.
+
+RECOMMENDATIONS:
+- Tarea de seguimiento (componente): corregir `src/components/separador.py` —
+  p.ej. acotar la bisección a x ∈ [1e-3, 1−1e-3], añadir salida temprana cuando
+  el intervalo colapsa, o exponer flash (P,T) en la interfaz de propiedades
+  reutilizando `_kalina_flash.flash_TP` (que ya es parte del port y es la vía
+  que usó el proyecto hermano).
+- Tras eso, re-ejecutar la verificación del caso base real (los lazos ya están
+  hechos y verificados) y evaluar el costo temporal real del lazo completo.
+- El solver y sus tests quedan listos; la suite sigue verde y los criterios de
+  aceptación #1, #4, #5 y #6 se cumplen. #2 y #3 (backend real) quedan
+  condicionados a la tarea del separador.

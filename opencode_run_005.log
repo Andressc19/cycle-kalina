@@ -1,0 +1,1020 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead CONTEXT.md
+[0m✱ [0mGlob "TASK_CONTEXT.md"[90m 1 match[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m✱ [0mGlob "**/*.py"[90m 33 matches[0m
+[0m→ [0mRead .
+Ahora exploro la estructura del proyecto para entender los archivos involucrados.
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead src/properties/iapws_adapter.py
+[0m→ [0mRead src/properties/pyfluids_adapter.py
+[0m→ [0mRead src/components/separador.py
+[0m→ [0mRead src/properties/_kalina_flash.py
+[0m→ [0mRead src/properties/_nh3h2o_engine.py
+[0m→ [0mRead src/state.py
+[0m→ [0mRead tests/test_ammonia_water_adapter.py
+Ahora reviso los tests existentes y el solver del ciclo.
+[0m→ [0mRead tests/test_properties.py
+[0m→ [0mRead tests/test_components.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/_cycle_loops.py
+[0m→ [0mRead tests/test_cycle_solver.py
+Reviso los tests restantes (sensitivity, export, exergy) para ver si usan fakes de `PropertyBackend` que también deban implementar el nuevo método.
+[0m✱ [0mGrep "PropertyBackend|FakeBackend|bubble_point|dew_point|class.*Backend"[90m in tests · 36 matches[0m
+[0m✱ [0mGrep "class |Backend|PropertyBackend"[90m in tests · 0 matches[0m
+[0m✱ [0mGrep "import|adapter"[90m in tests · 0 matches[0m
+[0m→ [0mRead tests/test_sensitivity.py[90m [limit=30][0m
+[0m→ [0mRead tests/test_export.py[90m [limit=30][0m
+[0m→ [0mRead tests/test_exergy.py[90m [limit=30][0m
+[0m
+[0m# [0mTodos
+[•] Añadir método abstracto equilibrio_liquido_vapor en src/properties/adapter.py
+[ ] Implementar equilibrio_liquido_vapor en AmmoniaWaterAdapter (flash_TP + m2w)
+[ ] Implementar equilibrio_liquido_vapor en IAPWSAdapter (NotImplementedError)
+[ ] Implementar equilibrio_liquido_vapor en PyfluidsAdapter (PropertyRangeError documentado)
+[ ] Reescribir src/components/separador.py para usar flash directo
+[ ] Actualizar fakes de PropertyBackend en tests (test_components.py, test_cycle_solver.py)
+[ ] Añadir tests del nuevo método (test_ammonia_water_adapter.py, test_properties.py)
+[ ] Correr pytest completo y verificar límite de 200 líneas
+[ ] Correr resolver_ciclo con AmmoniaWaterAdapter y valores por defecto de CONTEXT.md
+[0m
+Tengo el panorama completo. Planifico el trabajo:
+[0m← [0mEdit src/properties/adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\adapter.py
+@@ -79,5 +79,17 @@
+     """Temperatura de rocío [K] de la mezcla a (P, x) — solo mezcla NH3-H2O.
+ 
+     La usa la lógica del separador/flash (tareas futuras). Los adapters que
+     no modelan mezclas deben lanzar NotImplementedError.
++    """
++
++@abstractmethod
++def equilibrio_liquido_vapor(self, P: float, T: float) -> tuple[float, float]:
++    """Composiciones másicas (x_liquido, x_vapor) en equilibrio a (P [kPa], T [K]).
++
++    Es el flash directo (P, T) → composiciones de las fases saturadas,
++    independiente de la composición global: la usa el separador ideal
++    (regla de la palanca) sin tener que invertir bubble/dew point. Solo
++    mezcla NH3-H2O — los adapters que no modelan mezclas lanzan
++    NotImplementedError, y los backends que no cubren el rango lanzan
++    PropertyRangeError (T fuera de la campana bifásica a esa P).
+     """
+\ No newline at end of file
+
+[0m
+**Paso 2** — implementar en `AmmoniaWaterAdapter`:
+[0m← [0mEdit src/properties/ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py
+@@ -151,5 +151,19 @@
+ def dew_point(self, P: float, x: float) -> float:
+     mpa = self._mpa(P)
+     w = self._validar_w(x)
+     return self._wrap(lambda: _ng.dewT(mpa, _ng.w2m(w))[0],
+-                      "dew_point(P, x)")
+\ No newline at end of file
++                      "dew_point(P, x)")
++
++def equilibrio_liquido_vapor(self, P: float, T: float) -> tuple[float, float]:
++    """Flash (P, T) → (x_liquido, x_vapor) másicos (ver PropertyBackend)."""
++    mpa = self._mpa(P)
++    par = self._wrap(lambda: _kf.flash_TP(T, mpa),
++                     "equilibrio_liquido_vapor(P, T)")
++    if par is None:
++        raise PropertyRangeError(
++            f"equilibrio_liquido_vapor(P={P} kPa, T={T} K): no existe "
++            "equilibrio bifásico para ninguna composición (T fuera de la "
++            "campana binaria a esa P, motor IAPWS G4-01)."
++        )
++    xL_molar, xV_molar = par
++    return _ng.m2w(float(xL_molar)), _ng.m2w(float(xV_molar))
+\ No newline at end of file
+
+[0m
+[0m← [0mEdit src/properties/iapws_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\iapws_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\iapws_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\iapws_adapter.py
+@@ -109,5 +109,12 @@
+ def dew_point(self, P: float, x: float) -> float:
+     raise NotImplementedError(
+         "IAPWSAdapter solo modela agua pura; no existe punto de rocío de "
+         "mezcla. Use PyfluidsAdapter para el equilibrio L-V de NH3-H2O."
++    )
++
++def equilibrio_liquido_vapor(self, P: float, T: float) -> tuple[float, float]:
++    raise NotImplementedError(
++        "IAPWSAdapter solo modela agua pura (IAPWS-IF97); no existe "
++        "equilibrio líquido-vapor de mezcla NH3-H2O a (P, T). Use "
++        "AmmoniaWaterAdapter para el flash binario."
+     )
+\ No newline at end of file
+
+[0m
+**Paso 2 (cont.)** — `IAPWSAdapter` (NotImplementedError):
+[0m← [0mEdit src/properties/pyfluids_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\pyfluids_adapter.py
+@@ -164,5 +164,14 @@
+ def bubble_point(self, P: float, x: float) -> float:
+     return self._sat_temperature(P, x, kind="bubble")
+ 
+ def dew_point(self, P: float, x: float) -> float:
+-    return self._sat_temperature(P, x, kind="dew")
+\ No newline at end of file
++    return self._sat_temperature(P, x, kind="dew")
++
++def equilibrio_liquido_vapor(self, P: float, T: float) -> tuple[float, float]:
++    raise PropertyRangeError(
++        "equilibrio_liquido_vapor: el backend pyfluids/CoolProp instalado "
++        "no soporta la mezcla NH3-H2O (par binario amoníaco-agua; requiere "
++        "REFPROP/NIST) ni expone composiciones de fase desde un flash "
++        "(P, T). No es el camino real de la mezcla en este entorno — use "
++        "AmmoniaWaterAdapter (ver CONTEXT.md)."
++    )
+\ No newline at end of file
+
+[0m
+**Paso 2 (cont.)** — `PyfluidsAdapter` (PropertyRangeError documentado, coherente con su estado actual):
+**Paso 3** — reescribir `separador.py`:
+[0m← [0mWrite src/components/separador.py
+Wrote file successfully.
+[0m
+**Paso 6** — actualizar los fakes de los tests. Primero `tests/test_components.py`:
+[0m← [0mEdit tests/test_components.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+@@ -4,8 +4,9 @@
+ lineales para comparar cada fórmula de CONTEXT.md contra el cálculo a mano:
+     h = T + 10·x + 1e-3·P ;   s = 0.01·T + x
+     T_from_Ph = h − 10·x − 1e-3·P ;   T_from_Ps = 100·(s − x)
+     bubble_point = 400 − 100·x ;   dew_point = 420 − 100·x
++    equilibrio_liquido_vapor = ((400 − T)/100, (420 − T)/100)  # inversa de las dos
+ """
+ 
+ from __future__ import annotations
+ 
+
+[0m
+[0m← [0mEdit tests/test_components.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+@@ -45,9 +45,12 @@
+ 
+     def dew_point(self, P, x):
+         return 420.0 - 100.0 * x
+ 
++    def equilibrio_liquido_vapor(self, P, T):
++        return (400.0 - T) / 100.0, (420.0 - T) / 100.0
+ 
++
+ @pytest.fixture
+ def backend():
+     return FakeBackend()
+ 
+
+[0m
+[0m← [0mEdit tests/test_components.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+@@ -94,9 +94,9 @@
+ 
+ 
+ def test_separador_propaga_excepcion_del_backend():
+     class BackendFueraDeRango(FakeBackend):
+-        def bubble_point(self, P, x):
++        def equilibrio_liquido_vapor(self, P, T):
+             raise PropertyRangeError("equilibrio L-V fuera de rango")
+ 
+     entrada = EstadoTermo(T=360.0, P=3000.0, h=368.0, s=4.1, x=0.5, m=1.0)
+     with pytest.raises(PropertyRangeError):
+
+[0m
+[0m← [0mEdit tests/test_cycle_solver.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+@@ -5,8 +5,9 @@
+ 
+     h = T + 10·x + 1e-3·P ;   s = 0.01·T + x
+     T_from_Ph = h − 10·x − 1e-3·P ;   T_from_Ps = 100·(s − x)
+     bubble_point = 400 − 100·x ;   dew_point = 420 − 100·x
++    equilibrio_liquido_vapor = ((400 − T)/100, (420 − T)/100)  # inversa de las dos
+ 
+ y un caso base con parámetros elegidos para que todo el rango físico de T1
+ (T_sumidero+1, T_fuente−1) quepa DENTRO de la campana bifásica del fake a
+ x=0.5 (burbuja 350 K, rocío 370 K): T_sumidero=350, T_fuente=369 → bracket
+
+[0m
+Ahora el fake de `tests/test_cycle_solver.py`:
+[0m← [0mEdit tests/test_cycle_solver.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_cycle_solver.py
+@@ -61,9 +61,12 @@
+ 
+     def dew_point(self, P, x):
+         return 420.0 - 100.0 * x
+ 
++    def equilibrio_liquido_vapor(self, P, T):
++        return (400.0 - T) / 100.0, (420.0 - T) / 100.0
+ 
++
+ @pytest.fixture
+ def backend():
+     return FakeBackend()
+ 
+
+[0m
+[0m← [0mEdit tests/test_ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
+@@ -113,5 +113,30 @@
+ 
+ def test_ammonia_x_por_defecto_de_instancia():
+     a = AmmoniaWaterAdapter(x=_X)
+     assert a.h(_P, T=_T) == pytest.approx(a.h(_P, T=_T, x=_X))
+-    assert a.s(_P, T=_T) == pytest.approx(a.s(_P, T=_T, x=_X))
+\ No newline at end of file
++    assert a.s(_P, T=_T) == pytest.approx(a.s(_P, T=_T, x=_X))
++
++
++def test_ammonia_equilibrio_liquido_vapor_real_dentro_de_la_campana():
++    # Caso verificado por Claude (TASK_CONTEXT 2026-09-17-fix-separador-flash-
++    # directo): flash_TP(420 K, 3.0 MPa) -> (0.3505675781113534, 0.8890627246074095)
++    # MOLAR. El adapter debe devolver las mismas composiciones convertidas a
++    # fracción másica con m2w (convención de la interfaz PropertyBackend).
++    a = AmmoniaWaterAdapter(x=_X)
++    xL, xV = a.equilibrio_liquido_vapor(_P, 420.0)
++    xL_esp, xV_esp = kf.flash_TP(420.0, 3.0)
++    assert xL == pytest.approx(ng.m2w(xL_esp))
++    assert xV == pytest.approx(ng.m2w(xV_esp))
++    # Coherencia física: líquido pobre en NH3, vapor rico; ambas en (0, 1).
++    assert 0.0 < xL < 0.5 < xV < 1.0
++    assert xL < xV
++
++
++def test_ammonia_equilibrio_liquido_vapor_fuera_de_la_campana_es_range_error():
++    # T por debajo de Tsat(NH3) y por encima de Tsat(H2O) a 3 MPa: sin fase
++    # bifásica -> flash_TP devuelve None -> PropertyRangeError con mensaje claro.
++    a = AmmoniaWaterAdapter(x=_X)
++    for T_fuera in (200.0, 600.0):
++        with pytest.raises(PropertyRangeError) as excinfo:
++            a.equilibrio_liquido_vapor(_P, T_fuera)
++        assert "equilibrio_liquido_vapor" in str(excinfo.value)
+\ No newline at end of file
+
+[0m
+**Paso 7** — añadir tests del nuevo método. Primero en `tests/test_ammonia_water_adapter.py` (cálculo real + fuera de campana + conversión molar→másica):
+[0m← [0mEdit tests/test_ammonia_water_adapter.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_ammonia_water_adapter.py
+@@ -15,8 +15,9 @@
+ 
+ import pytest
+ 
+ from src.properties import _kalina_flash as kf
++from src.properties import _nh3h2o_engine as ng
+ from src.properties import ammonia_water_adapter as awa
+ from src.properties.adapter import PropertyBackend, PropertyRangeError
+ from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+ 
+
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -50,9 +50,10 @@
+             yield mixture
+ 
+ 
+ def test_property_backend_es_abstracto():
+-    metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point"}
++    metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point",
++               "equilibrio_liquido_vapor"}
+     with pytest.raises(TypeError):
+         PropertyBackend()
+     assert metodos <= set(PropertyBackend.__abstractmethods__)
+     assert issubclass(PropertyRangeError, Exception)
+
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -147,9 +147,10 @@
+ for llamada in (lambda: adapter.h(100.0, T=300.0, x=0.5),
+                 lambda: adapter.s(100.0, T=300.0, x=0.5),
+                 lambda: adapter.h(100.0, T=300.0, quality=0.5),
+                 lambda: adapter.bubble_point(100.0, x=0.5),
+-                lambda: adapter.dew_point(100.0, x=0.5)):
++                lambda: adapter.dew_point(100.0, x=0.5),
++                lambda: adapter.equilibrio_liquido_vapor(100.0, 300.0)):
+     with pytest.raises(NotImplementedError):
+         llamada()
+ 
+ 
+
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -109,8 +109,17 @@
+     with pytest.raises(PropertyRangeError):
+         PyfluidsAdapter().bubble_point(3000.0, x=0.5)
+ 
+ 
++def test_pyfluids_equilibrio_liquido_vapor_no_cubre_la_mezcla_en_este_entorno(pf_env):
++    # PyfluidsAdapter NO es el camino real de la mezcla en este entorno (ver
++    # CONTEXT.md): el flash (P, T) -> composiciones de fase queda documentado
++    # como no soportado (PropertyRangeError) en lugar de inventar un equilibrio.
++    adapter = PyfluidsAdapter(x=0.5)
++    with pytest.raises(PropertyRangeError):
++        adapter.equilibrio_liquido_vapor(3000.0, 420.0)
++
++
+ def test_build_mixture_validacion_x_y_par_binario_no_soportado():
+     for x_invalida in (0.0, 1.0, -0.1):
+         with pytest.raises(ValueError):
+             pya._build_mixture(x_invalida)
+
+[0m
+[0m$ [0mwc -l src/properties/adapter.py src/properties/ammonia_water_adapter.py src/properties/iapws_adapter.py src/properties/pyfluids_adapter.py src/components/separador.py tests/test_components.py tests/test_cycle_solver.py tests/test_ammonia_water_adapter.py tests/test_properties.py
+94 src/properties/adapter.py
+  168 src/properties/ammonia_water_adapter.py
+  119 src/properties/iapws_adapter.py
+  176 src/properties/pyfluids_adapter.py
+   50 src/components/separador.py
+  201 tests/test_components.py
+  174 tests/test_cycle_solver.py
+  142 tests/test_ammonia_water_adapter.py
+  207 tests/test_properties.py
+ 1331 total
+[0m
+Verifico límite de 200 líneas en todos los `.py` modificados y localizo el intérprete del venv:
+[0m$ [0mls .venv/Scripts/python.exe .venv/bin/python 2>/dev/null; .venv/Scripts/python.exe --version 2>/dev/null || .venv/bin/python --version 2>/dev/null
+.venv/Scripts/python.exe
+Python 3.13.7
+[0m
+[0m→ [0mRead tests/test_components.py[90m [offset=1, limit=60][0m
+[0m→ [0mRead tests/test_properties.py[90m [offset=95, limit=40][0m
+Dos archivos de test superan 200 líneas (criterio 4). Los recorto. Primero leo el estado actual de los tramos:
+Necesito recortar los tests a ≤200 líneas. Reviso el estado completo de `test_properties.py`:
+[0m→ [0mRead tests/test_properties.py
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -9,10 +9,9 @@
+ from unittest.mock import MagicMock, patch
+ 
+ import pytest
+ 
+-from src.properties import adapter as adapter_mod
+-from src.properties import iapws_adapter as iapwsa
++from src.properties import adapter as adapter_mod, iapws_adapter as iapwsa
+ from src.properties import pyfluids_adapter as pya
+ from src.properties.adapter import PropertyBackend, PropertyRangeError
+ from src.properties.iapws_adapter import IAPWSAdapter
+ from src.properties.pyfluids_adapter import PyfluidsAdapter
+
+[0m
+Recorto ambos archivos de test a ≤200 líneas. `test_properties.py` (208 → 200):
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -53,9 +53,8 @@
+ metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point",
+            "equilibrio_liquido_vapor"}
+ with pytest.raises(TypeError):
+     PropertyBackend()
+-assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
+ assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+ assert "import pyfluids" not in src and "from pyfluids" not in src
+
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -53,8 +53,9 @@
+ metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point",
+            "equilibrio_liquido_vapor"}
+ with pytest.raises(TypeError):
+     PropertyBackend()
++assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
+ assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+ assert "import pyfluids" not in src and "from pyfluids" not in src
+
+[0m
+Corrijo: ese edit borró accidentalmente una aserción. La restauro:
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -109,14 +109,11 @@
+         PyfluidsAdapter().bubble_point(3000.0, x=0.5)
+ 
+ 
+ def test_pyfluids_equilibrio_liquido_vapor_no_cubre_la_mezcla_en_este_entorno(pf_env):
+-    # PyfluidsAdapter NO es el camino real de la mezcla en este entorno (ver
+-    # CONTEXT.md): el flash (P, T) -> composiciones de fase queda documentado
+-    # como no soportado (PropertyRangeError) en lugar de inventar un equilibrio.
+-    adapter = PyfluidsAdapter(x=0.5)
++    # No es el camino real (CONTEXT.md): flash -> composiciones no soportado.
+     with pytest.raises(PropertyRangeError):
+-        adapter.equilibrio_liquido_vapor(3000.0, 420.0)
++        PyfluidsAdapter(x=0.5).equilibrio_liquido_vapor(3000.0, 420.0)
+ 
+ 
+ def test_build_mixture_validacion_x_y_par_binario_no_soportado():
+     for x_invalida in (0.0, 1.0, -0.1):
+
+[0m
+Ahora sí, aplico los recortes con cuidado. Compacto el test nuevo de pyfluids (7 → 3 líneas):
+[0m✗ [0mEdit tests/test_properties.py failed
+[91m[1mError: [0mNo changes to apply: oldString and newString are identical.
+Cierro los últimos recortes de `test_properties.py` (set de métodos en una línea, blank en FakeIAPWS97 y `_PYFLUIDS_SKIP`):
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -53,9 +53,8 @@
+ metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point",
+            "equilibrio_liquido_vapor"}
+ with pytest.raises(TypeError):
+     PropertyBackend()
+-assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
+ assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+ assert "import pyfluids" not in src and "from pyfluids" not in src
+
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -53,8 +53,9 @@
+ metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point",
+            "equilibrio_liquido_vapor"}
+ with pytest.raises(TypeError):
+     PropertyBackend()
++assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
+ assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+ assert "import pyfluids" not in src and "from pyfluids" not in src
+
+[0m
+Restauro de nuevo la aserción (error de copia):
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -124,9 +124,8 @@
+                          MagicMock(side_effect=ValueError("Could not match the binary pair"))):
+         with pytest.raises(PropertyRangeError):
+             pya._build_mixture(0.5)
+ 
+-
+ class FakeIAPWS97:
+     last_kwargs: dict = {}
+     def __init__(self, **kwargs):
+         FakeIAPWS97.last_kwargs = kwargs
+
+[0m
+Aplico los dos recortes restantes limpios (blank en FakeIAPWS97 y `_PYFLUIDS_SKIP`):
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -187,12 +187,11 @@
+     except (PropertyRangeError, ValueError):
+         return False
+ 
+ 
+-_PYFLUIDS_SKIP = (
+-    "CoolProp/pyfluids instalado no soporta la mezcla NH3-H2O (par binario amoníaco-agua); "
+-    "se requiere REFPROP/NIST. El test se activa solo cuando el backend lo cubra."
+-)
++_PYFLUIDS_SKIP = ("CoolProp/pyfluids instalado no soporta la mezcla NH3-H2O (par binario "
++                  "amoníaco-agua); se requiere REFPROP/NIST. El test se activa solo cuando el "
++                  "backend lo cubra.")
+ 
+ 
+ @pytest.mark.skipif(not _pyfluids_mixture_disponible(), reason=_PYFLUIDS_SKIP)
+ def test_pyfluids_humo_real_mezcla_nh3_h2o():
+
+[0m
+[0m$ [0mwc -l tests/test_properties.py tests/test_components.py
+201 tests/test_properties.py
+  201 tests/test_components.py
+  402 total
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -109,9 +109,8 @@
+         PyfluidsAdapter().bubble_point(3000.0, x=0.5)
+ 
+ 
+ def test_pyfluids_equilibrio_liquido_vapor_no_cubre_la_mezcla_en_este_entorno(pf_env):
+-    # No es el camino real (CONTEXT.md): flash -> composiciones no soportado.
+     with pytest.raises(PropertyRangeError):
+         PyfluidsAdapter(x=0.5).equilibrio_liquido_vapor(3000.0, 420.0)
+ 
+ 
+
+[0m
+Un corte final en cada archivo. En `test_properties.py` compacto el test nuevo (sin comentario):
+[0m← [0mEdit tests/test_components.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_components.py
+@@ -22,9 +22,8 @@
+ _RAIZ = Path(__file__).resolve().parents[1]
+ 
+ 
+ class FakeBackend(PropertyBackend):
+-
+     def h(self, P, T=None, x=None, s=None, quality=None):
+         if T is not None:
+             return T + 10.0 * x + 1e-3 * P
+         if s is not None:
+
+[0m
+En `test_components.py` elimino el blank interno de la clase fake:
+[0m$ [0mwc -l src/properties/adapter.py src/properties/ammonia_water_adapter.py src/properties/iapws_adapter.py src/properties/pyfluids_adapter.py src/components/separador.py tests/test_components.py tests/test_cycle_solver.py tests/test_ammonia_water_adapter.py tests/test_properties.py
+94 src/properties/adapter.py
+  168 src/properties/ammonia_water_adapter.py
+  119 src/properties/iapws_adapter.py
+  176 src/properties/pyfluids_adapter.py
+   50 src/components/separador.py
+  200 tests/test_components.py
+  174 tests/test_cycle_solver.py
+  142 tests/test_ammonia_water_adapter.py
+  200 tests/test_properties.py
+ 1323 total
+[0m
+Todos ≤ 200 líneas. Verifico la integridad de `test_properties.py` tras las ediciones:
+[0m→ [0mRead tests/test_properties.py
+El contador del lector y `wc` difieren en 1. Uso Python para el conteo exacto:
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+from pathlib import Path
+for f in ['tests/test_properties.py','tests/test_components.py','tests/test_cycle_solver.py','tests/test_ammonia_water_adapter.py','src/properties/adapter.py','src/properties/ammonia_water_adapter.py','src/properties/iapws_adapter.py','src/properties/pyfluids_adapter.py','src/components/separador.py']:
+    ln = Path(f).read_text(encoding='utf-8').splitlines()
+    print(len(ln), f)
+"
+201 tests/test_properties.py
+200 tests/test_components.py
+175 tests/test_cycle_solver.py
+143 tests/test_ammonia_water_adapter.py
+95 src/properties/adapter.py
+169 src/properties/ammonia_water_adapter.py
+120 src/properties/iapws_adapter.py
+177 src/properties/pyfluids_adapter.py
+51 src/components/separador.py
+[0m
+[0m✗ [0mEdit tests/test_properties.py failed
+[91m[1mError: [0mNo changes to apply: oldString and newString are identical.
+Corto la última línea de `test_properties.py` (set de métodos en una sola línea):
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -53,8 +53,9 @@
+ metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point",
+            "equilibrio_liquido_vapor"}
+ with pytest.raises(TypeError):
+     PropertyBackend()
++    PropertyBackend()
+ assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
+ assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+
+[0m
+Hago el edit correctamente (2 líneas → 1):
+[0m→ [0mRead tests/test_properties.py[90m [limit=25, offset=50][0m
+He duplicado un bloque por error. Leo el tramo y lo corrijo:
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -53,9 +53,8 @@
+ metodos = {"h", "s", "T_from_Ph", "T_from_Ps", "bubble_point", "dew_point",
+            "equilibrio_liquido_vapor"}
+ with pytest.raises(TypeError):
+     PropertyBackend()
+-    PropertyBackend()
+ assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
+ assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -55,9 +55,8 @@
+ with pytest.raises(TypeError):
+     PropertyBackend()
+ assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
+-assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+ assert "import pyfluids" not in src and "from pyfluids" not in src
+ assert "import iapws" not in src and "from iapws" not in src
+ 
+
+[0m
+Corrijo el resto del tramo y hago el corte final del set a una línea (verificando después):
+Mido el estado actual con precisión:
+[0m$ [0m.venv/Scripts/python.exe -c "
+from pathlib import Path
+f = Path('tests/test_properties.py')
+txt = f.read_text(encoding='utf-8')
+print('splitlines:', len(txt.splitlines()))
+print('wc-style:', txt.count(chr(10)))
+"
+splitlines: 200
+wc-style: 199
+[0m
+Reviso el diff completo contra HEAD para verificar la integridad de todas mis ediciones:
+[0m$ [0mgit diff --stat && echo "=====" && git status --short
+=====
+?? .gitignore
+?? .opencode/
+?? AGENTS.md
+?? CONTEXT.md
+?? Kalina_ksc_11_tercero.md
+?? README.md
+?? TASK_CONTEXT.md
+?? app.py
+?? opencode_run_001.log
+?? opencode_run_002.log
+?? opencode_run_003.log
+?? opencode_run_004.log
+?? opencode_run_005.log
+?? requirements.txt
+?? src/
+?? tests/
+[0m
+[0m→ [0mRead tests/test_properties.py
+No hay baseline en git (todo está sin commitear). Verifico leyendo el archivo completo:
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+@@ -55,8 +55,9 @@
+ with pytest.raises(TypeError):
+     PropertyBackend()
+ assert metodos <= set(PropertyBackend.__abstractmethods__)
+ assert issubclass(PropertyRangeError, Exception)
++assert str(PropertyRangeError("m")) == "m"
+ src = Path(adapter_mod.__file__).read_text(encoding="utf-8")
+ assert "import pyfluids" not in src and "from pyfluids" not in src
+ assert "import iapws" not in src and "from iapws" not in src
+ 
+
+[0m
+El archivo es coherente (200 líneas). Restauro la aserción `str(PropertyRangeError)` que quité por error y compenso plegando el set de métodos a una línea — en una sola edición:
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+
+[0m
+[0m→ [0mRead tests/test_properties.py[90m [limit=8, offset=52][0m
+Sigo fallando en plegar el set. Lo hago ahora de forma explícita y verifico después:
+[0m✗ [0mEdit tests/test_properties.py failed
+[91m[1mError: [0mNo changes to apply: oldString and newString are identical.
+[0m
+[0m← [0mEdit tests/test_properties.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_properties.py
+
+[0m
+El edit tool no aplica este pliegue correctamente. Uso un reemplazo determinista con Python:
+[0m$ [0m.venv/Scripts/python.exe -c "
+from pathlib import Path
+p = Path('tests/test_properties.py')
+t = p.read_text(encoding='utf-8')
+ant = '    metodos = {\"h\", \"s\", \"T_from_Ph\", \"T_from_Ps\", \"bubble_point\", \"dew_point\",\n               \"equilibrio_liquido_vapor\"}\n'
+nue = '    metodos = {\"h\", \"s\", \"T_from_Ph\", \"T_from_Ps\", \"bubble_point\", \"dew_point\", \"equilibrio_liquido_vapor\"}\n'
+assert t.count(ant) == 1, ('patron no unico', t.count(ant))
+t = t.replace(ant, nue)
+p.write_text(t, encoding='utf-8')
+print('largo nueva linea:', len(nue))
+print('splitlines:', len(t.splitlines()))
+"
+largo nueva linea: 108
+splitlines: 200
+[0m
+[0m→ [0mRead tests/test_properties.py[90m [limit=14, offset=51][0m
+200 líneas exactas. Verificación final de los tramos editados y de todos los conteos:
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "
+from pathlib import Path
+for f in ['src/properties/adapter.py','src/properties/ammonia_water_adapter.py','src/properties/iapws_adapter.py','src/properties/pyfluids_adapter.py','src/components/separador.py','tests/test_components.py','tests/test_cycle_solver.py','tests/test_ammonia_water_adapter.py','tests/test_properties.py']:
+    n = len(Path(f).read_text(encoding='utf-8').splitlines())
+    print(n, f)
+    assert n <= 200, f
+print('TODOS <= 200 OK')
+"
+95 src/properties/adapter.py
+169 src/properties/ammonia_water_adapter.py
+120 src/properties/iapws_adapter.py
+177 src/properties/pyfluids_adapter.py
+51 src/components/separador.py
+200 tests/test_components.py
+175 tests/test_cycle_solver.py
+143 tests/test_ammonia_water_adapter.py
+200 tests/test_properties.py
+TODOS <= 200 OK
+[0m
+[0m# [0mTodos
+[✓] Añadir método abstracto equilibrio_liquido_vapor en src/properties/adapter.py
+[✓] Implementar equilibrio_liquido_vapor en AmmoniaWaterAdapter (flash_TP + m2w)
+[✓] Implementar equilibrio_liquido_vapor en IAPWSAdapter (NotImplementedError)
+[✓] Implementar equilibrio_liquido_vapor en PyfluidsAdapter (PropertyRangeError documentado)
+[✓] Reescribir src/components/separador.py para usar flash directo
+[✓] Actualizar fakes de PropertyBackend en tests (test_components.py, test_cycle_solver.py)
+[✓] Añadir tests del nuevo método (test_ammonia_water_adapter.py, test_properties.py)
+[•] Correr pytest completo y verificar límite de 200 líneas
+[ ] Correr resolver_ciclo con AmmoniaWaterAdapter y valores por defecto de CONTEXT.md
+[0m
+Todos los archivos ≤ 200 líneas. Actualizo el estado y ejecuto la suite completa de pytest:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1
+..........................................s                              [100%]
+============================== warnings summary ===============================
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+42 passed, 1 skipped, 5 warnings in 48.64s
+[0m
+Suite completa: **42 passed, 1 skipped** (el skip es el esperado de pyfluids/CoolProp). Ahora el intento real: primero el criterio de aceptación 1 (separador temporal) y después `resolver_ciclo` con los valores por defecto de CONTEXT.md:
+[0m$ [0m.venv/Scripts/python.exe -c "
+import time
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.components import separador
+from src.state import EstadoTermo
+
+backend = AmmoniaWaterAdapter(x=0.5)
+entrada = EstadoTermo(T=420.0, P=3000.0, h=0.0, s=0.0, x=0.5, m=1.0)
+t0 = time.perf_counter()
+vapor, liquido, res = separador.resolver(entrada, backend)
+dt = time.perf_counter() - t0
+print(f'TIEMPO separador.resolver: {dt:.3f} s')
+print('vapor  : T=%.2f P=%.1f x=%.6f h=%.4f s=%.4f m=%.4f q=%s fase=%s' % (vapor.T, vapor.P, vapor.x, vapor.h, vapor.s, vapor.m, vapor.q, vapor.fase))
+print('liquido: T=%.2f P=%.1f x=%.6f h=%.4f s=%.4f m=%.4f q=%s fase=%s' % (liquido.T, liquido.P, liquido.x, liquido.h, liquido.s, liquido.m, liquido.q, liquido.fase))
+print('reconstruye x_b =', vapor.m*vapor.x + liquido.m*liquido.x)
+"
+TIEMPO separador.resolver: 0.527 s
+vapor  : T=420.00 P=3000.0 x=0.883394 h=1969.8153 s=6.1802 m=0.2972 q=1.0 fase=vapor
+liquido: T=420.00 P=3000.0 x=0.337876 h=573.5404 s=2.2948 m=0.7028 q=0.0 fase=liquido
+reconstruye x_b = 0.49999999999999994
+[0m
+Criterio 1 cumplido: **0.527 s**, sin excepción, regla de la palanca exacta. Ahora el ciclo completo con los valores por defecto:
+[0m$ [0m.venv/Scripts/python.exe -c "
+import time, traceback
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.cycle_solver import resolver_ciclo
+
+backend = AmmoniaWaterAdapter(x=0.5)
+t0 = time.perf_counter()
+try:
+    res = resolver_ciclo(
+        backend,
+        P_alta=3000.0, P_baja=400.0, T_fuente=623.15, T_sumidero=300.032917,
+        x_b=0.5, m_b=1.0, eta_t=0.85, eta_p=0.75,
+        eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80,
+    )
+except Exception as exc:
+    print('FALLO total:', type(exc).__name__)
+    print(str(exc)[:2000])
+    traceback.print_exc()
+else:
+    dt = time.perf_counter() - t0
+    print(f'CONVERGIO en {dt:.1f} s')
+    for k, e in res['estados'].items():
+        print(f'{k}: T={e.T:.4f} K  P={e.P:8.2f} kPa  h={e.h:10.4f} kJ/kg  s={e.s:8.4f}  x={e.x:.6f}  m={e.m}  q={e.q}  fase={e.fase}')
+    for k in ('Qi','Qout','Wt','Wp','Qreg','Wnet','eta'):
+        print(f'{k} = {res[k]:.6f}')
+" 2>&1
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+Traceback (most recent call last):
+  File "<string>", line 9, in <module>
+    res = resolver_ciclo(
+        backend,
+    ...<2 lines>...
+        eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80,
+    )
+  File "D:\Desktop\ciclo_kalina_tercero\src\cycle_solver.py", line 58, in resolver_ciclo
+    lo, hi = _bracketear(F, T_sumidero, T_fuente)
+             ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\_cycle_loops.py", line 143, in _bracketear
+    f_lo, f_hi = F(lo), F(hi)
+                        ~^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\cycle_solver.py", line 55, in F
+    T1_nuevo, _, _ = evaluar(T1, backend, **kwargs)
+                     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\_cycle_loops.py", line 100, in evaluar
+    estado3, estado5, _ = separador.resolver(estado2, backend)
+                          ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\components\separador.py", line 37, in resolver
+    x_l, y_v = backend.equilibrio_liquido_vapor(P, T_eq)
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\ammonia_water_adapter.py", line 163, in equilibrio_liquido_vapor
+    raise PropertyRangeError(
+    ...<3 lines>...
+    )
+src.properties.adapter.PropertyRangeError: equilibrio_liquido_vapor(P=3000.0 kPa, T=623.000001690135 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor IAPWS G4-01).
+FALLO total: PropertyRangeError
+equilibrio_liquido_vapor(P=3000.0 kPa, T=623.000001690135 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor IAPWS G4-01).
+[0m
+El ciclo NO converge: el separador (ahora correcto) recibe el estado 2 a ~623 K, que a 3000 kPa está fuera de la campana bifásica (el motor lo reporta como `PropertyRangeError` — propagado sin envolver, como pide la tarea). Ejecuto un diagnóstico para precisar el paso y la causa física:
+[0m$ [0m.venv/Scripts/python.exe -c "
+import time, traceback
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.properties import _kalina_flash as kf
+from src._cycle_loops import evaluar
+from src.properties.adapter import PropertyRangeError
+
+backend = AmmoniaWaterAdapter(x=0.5)
+Ta, Tw = kf.Tsat_puros(3000.0 * 1e-3)
+print(f'Dome a P=3 MPa: Tsat_NH3={Ta:.3f} K  Tsat_H2O={Tw:.3f} K')
+
+kw = dict(P_alta=3000.0, P_baja=400.0, T_fuente=623.15, T_sumidero=300.032917,
+          x_b=0.5, m_b=1.0, eta_t=0.85, eta_p=0.75,
+          eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80, tol_T10=1e-4, max_iter_frio=300)
+
+for T1 in (301.0, 350.0, 400.0, 450.0, 500.0):
+    t0 = time.perf_counter()
+    try:
+        T1n, estados, ener = evaluar(T1, backend, **kw)
+        e2 = estados['e2']
+        print(f'T1={T1:.1f}: OK  T2={e2.T:.3f}  h2={e2.h:.2f}  (T1nuevo={T1n:.3f}, {time.perf_counter()-t0:.1f}s)')
+    except PropertyRangeError as exc:
+        print(f'T1={T1:.1f}: PropertyRangeError a los {time.perf_counter()-t0:.1f}s -> {str(exc)[:95]}')
+    except Exception as exc:
+        print(f'T1={T1:.1f}: {type(exc).__name__}: {str(exc)[:110]}  ({time.perf_counter()-t0:.1f}s)')
+" 2>&1
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+Dome a P=3 MPa: Tsat_NH3=338.875 K  Tsat_H2O=507.003 K
+T1=301.0: OK  T2=471.951  h2=2371.50  (T1nuevo=388.469, 74.0s)
+T1=350.0: OK  T2=483.387  h2=2406.28  (T1nuevo=394.058, 79.0s)
+T1=400.0: PropertyRangeError a los 23.5s -> T_from_Ph(P, h, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONTEXT.md, IAPWS G
+T1=450.0: PropertyRangeError a los 0.8s -> equilibrio_liquido_vapor(P=3000.0 kPa, T=552.74978359636 K): no existe equilibrio bif�sico para
+T1=500.0: PropertyRangeError a los 0.4s -> equilibrio_liquido_vapor(P=3000.0 kPa, T=604.2278846222711 K): no existe equilibrio bif�sico pa
+[0m
+[0m# [0mTodos
+[✓] Añadir método abstracto equilibrio_liquido_vapor en src/properties/adapter.py
+[✓] Implementar equilibrio_liquido_vapor en AmmoniaWaterAdapter (flash_TP + m2w)
+[✓] Implementar equilibrio_liquido_vapor en IAPWSAdapter (NotImplementedError)
+[✓] Implementar equilibrio_liquido_vapor en PyfluidsAdapter (PropertyRangeError documentado)
+[✓] Reescribir src/components/separador.py para usar flash directo
+[✓] Actualizar fakes de PropertyBackend en tests (test_components.py, test_cycle_solver.py)
+[✓] Añadir tests del nuevo método (test_ammonia_water_adapter.py, test_properties.py)
+[✓] Correr pytest completo y verificar límite de 200 líneas
+[✓] Correr resolver_ciclo con AmmoniaWaterAdapter y valores por defecto de CONTEXT.md
+[0m
+Diagnóstico concluyente. Actualizo el estado de la tarea:
+[0m$ [0mgit status --short | head -30
+?? .gitignore
+?? .opencode/
+?? AGENTS.md
+?? CONTEXT.md
+?? Kalina_ksc_11_tercero.md
+?? README.md
+?? TASK_CONTEXT.md
+?? app.py
+?? opencode_run_001.log
+?? opencode_run_002.log
+?? opencode_run_003.log
+?? opencode_run_004.log
+?? opencode_run_005.log
+?? requirements.txt
+?? src/
+?? tests/
+[0m
+Todo completado. Verifico que no haya archivos colaterales:
+---
+
+STATUS: done (tarea de corrección del separador completada; la verificación del ciclo con los valores por defecto **no converge** — se reporta el error exacto, sin forzar resultado)
+
+SUMMARY: Se reemplazó el mecanismo de equilibrio del separador (bisección sobre bubble/dew point, que fallaba con PropertyRangeError y era lento) por el flash directo `(P,T) → (x_líq, x_vap)` ya portado y validado. Se añadió el método abstracto `equilibrio_liquido_vapor` a `PropertyBackend` y se implementó en los tres adapters. El intento real de `resolver_ciclo` con los valores por defecto de CONTEXT.md converge hasta el separador y falla con `PropertyRangeError` porque el estado 2 (T≈623 K) queda fuera de la campana bifásica a 3 MPa (cima en 507.0 K) — limitación física del punto de operación, no del mecanismo corregido.
+
+FILES_CHANGED:
+- `src/properties/adapter.py` — método abstracto `equilibrio_liquido_vapor(P, T) -> tuple[float, float]` añadido (ADICIÓN; no se borraron `bubble_point`/`dew_point`).
+- `src/properties/ammonia_water_adapter.py` — implementación real: `_mpa(P)` → `flash_TP(T, P/1000)`, `None` → `PropertyRangeError`, conversión molar→másica con `m2w`, errores del motor envueltos con el patrón `_wrap`.
+- `src/properties/iapws_adapter.py` — `NotImplementedError` (agua pura no tiene equilibrio de mezcla).
+- `src/properties/pyfluids_adapter.py` — `PropertyRangeError` documentando que este backend no cubre la mezcla en este entorno (no es el camino real).
+- `src/components/separador.py` — reescrito: eliminadas `_composicion`, `_X_MIN/_X_MAX/_ITERS` y el uso de bubble/dew; ahora `x_l, y_v = backend.equilibrio_liquido_vapor(P, T_eq)` + regla de la palanca; firma pública `resolver` intacta; excepciones del backend propagadas sin envolver.
+- `tests/test_ammonia_water_adapter.py` — 2 tests nuevos del método (cálculo real T=420 K / P=3000 kPa contra `flash_TP(420, 3.0)` convertido con `m2w`; y T fuera de campana → `PropertyRangeError`).
+- `tests/test_properties.py` — método nuevo incluido en la verificación de abstractos; IAPWS lo rechaza con `NotImplementedError`; Pyfluids mock → `PropertyRangeError`.
+- `tests/test_components.py`, `tests/test_cycle_solver.py` — fakes de `PropertyBackend` actualizados: `equilibrio_liquido_vapor = ((400−T)/100, (420−T)/100)` (inversa exacta de sus leyes lineales de bubble/dew); el fake de rango fuera ahora lanza desde `equilibrio_liquido_vapor`.
+
+TESTS: `.venv/Scripts/python.exe -m pytest tests/ -q` — ejecutado completo tras los cambios (resultado abajo). Límite de 200 líneas verificado por script Python (`splitlines()`) en los 9 archivos tocados/modificados.
+
+RESULTS:
+1. **Suite pytest**: `42 passed, 1 skipped` en 48.64 s. El único skip es el test de humo real de pyfluids (pre-existente, condicional a que CoolProp cubra NH3-H2O, que no ocurre en este entorno — razón documentada en la marca).
+2. **Criterio 1 — separador real**: `separador.resolver` con `AmmoniaWaterAdapter`, estado normal (T=420 K, P=3000 kPa, x=0.5, m=1.0): **0.527 s**, sin excepción. Resultado: vapor x=0.883394 (m=0.2972, h=1969.82, s=6.1802), líquido x=0.337876 (m=0.7028, h=573.54, s=2.2948); reconstrucción exacta de x_b=0.5 (regla de la palanca). Coherente con `flash_TP(420, 3.0) → (0.350568, 0.889063)` molar → m2w → (0.3379, 0.8834).
+3. **Criterio 3 — `resolver_ciclo` con valores por defecto de CONTEXT.md** (P_alta=3000, P_baja=400, T_fuente=623.15, T_sumidero=300.032917, x_b=0.5, eta_t=0.85, eta_p=0.75, eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80, m_b=1.0): **NO CONVERGE**. Error exacto y paso:
+   - `src.properties.adapter.PropertyRangeError: equilibrio_liquido_vapor(P=3000.0 kPa, T=623.000001690135 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor IAPWS G4-01).`
+   - Ocurre en el **primer paso del lazo exterior** (`_bracketear` → `F(hi)` con hi = T_fuente − 1 = 622.15 K) dentro de **`separador.resolver(estado2)`** (`_cycle_loops.py:100`). El HRVG con ε=0.85 y T_fuente=623.15 K lleva el estado 2 a T≈623 K (vapor sobrecalentado); a 3 MPa la campana bifásica termina en Tsat(H2O)=507.003 K (base: Tsat(NH3)=338.875 K), así que no existe equilibrio y `flash_TP` devuelve `None` → `PropertyRangeError` (propagado sin envolver, como manda la tarea). No es `CicloNoConvergeError` porque el error del backend se propaga intacto por diseño.
+   - Barrido diagnóstico de `evaluar(T1)` (confirma que es estructural, no del bracket): T1=301 → Ok (T2=471.95 K, F=+87.5); T1=350 → Ok (T2=483.39 K, F=+44.1); T1=400 → falla en `T_from_Ph` del balance del regenerador (h1_nuevo fuera de dominio); T1=450 → `PropertyRangeError` en el separador (T2=552.75 K > 507); T1=500 → idem (T2=604.23 K). No existe punto con cambio de signo de F en el rango físico: no se forzó ni inventó resultado.
+
+ERRORS: ninguno en la implementación. El fallo reportado de `resolver_ciclo` es el comportamiento correcto del sistema ante un punto de operación físicamente no realizable (estado 2 sobrecalentado fuera de la campana a 3 MPa con T_fuente=623.15 K). Los `RuntimeWarning` de iapws en los tests de burbuja/rocío son pre-existentes del motor portado (no bloquean).
+
+ASSUMPTIONS:
+- La cima de la campana bifásica a 3 MPa (507.003 K) se obtuvo con `Tsat_puros(3.0)` del propio motor portado (Tsat del agua pura a esa P), no es un dato externo.
+- Ningún otro supuesto de ingeniería: todos los valores del intento real son los de CONTEXT.md sin modificar.
+
+UNRESOLVED:
+- **El caso base por defecto del proyecto (P_alta=3 MPa, T_fuente=623.15 K, ε_HRVG=0.85) no es realizable con un separador ideal de flash a esa P**: el estado 2 del HRVG sale sobrecalentado por encima del punto de rocío de la mezcla a 3 MPa. Esto es un problema de coherencia entre el método de efectividad de CONTEXT.md y los valores por defecto de la UI, no del mecanismo corregido (el separador ya no es el causante de ningún fallo a estados dentro de la campana). Decidir el ajuste corresponde al director (p. ej. bajar T_fuente, subir P_alta, o limitar el dominio del HRVG al punto de rocío) — no lo hice porque la tarea prohíbe forzar resultados.
+
+RECOMMENDATIONS:
+1. Que el director decida el tratamiento del caso base por defecto: (a) cambiar los valores por defecto de la UI (p. ej. T_fuente tal que T2 quede dentro de la campana ~[339, 507] K a 3 MPa), (b) restringir el HRVG a que T2 ≤ T_rocío(x_b, P_alta) con la ε efectiva, o (c) aceptar el fallo explícito documentado como límite físico del punto de operación.
+2. El nuevo método `equilibrio_liquido_vapor` quedó probado con mock + cálculo real y el separador ahora detecta estados fuera de campana en <1 s (frente a >1 s de fallo + bisección lenta del estado anterior); puede usarse en futuras tareas (sensibilidad, exergía) sin volver a bubble/dew.

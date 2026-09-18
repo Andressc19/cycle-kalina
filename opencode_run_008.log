@@ -1,0 +1,231 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m✱ [0mGlob "*.md"[90m 5 matches[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead src/state.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/exergy.py
+[0m→ [0mRead src/export_excel.py
+[0m→ [0mRead src/plots.py
+[0m→ [0mRead tests/test_export.py
+[0m✱ [0mGlob "tests/**/*.py"[90m 8 matches[0m
+[0m✱ [0mGrep "(?i)hojas|sensibilidad|entradas|resumen|excel|secci[óo]n 10|## 10"[90m 14 matches[0m
+[0m→ [0mRead tests/test_exergy.py
+[0m→ [0mRead Kalina_ksc_11_tercero.md[90m [offset=180, limit=70][0m
+[0m✱ [0mGlob "src/**/*.py"[90m 24 matches[0m
+[0m→ [0mRead tests/test_cycle_solver.py
+[0m→ [0mRead tests/test_components.py[90m [limit=80][0m
+[0m→ [0mRead tests/__init__.py
+[0m✱ [0mGlob "*"[90m 100 matches[0m
+[0m→ [0mRead requirements.txt
+[0m→ [0mRead README.md
+[0m→ [0mRead app.py
+[0m→ [0mRead tests/test_sensitivity.py
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "import matplotlib, openpyxl; print('matplotlib', matplotlib.__version__); print('openpyxl', openpyxl.__version__)"
+matplotlib 3.10.9
+openpyxl 3.1.5
+[0m
+[0m✱ [0mGlob "**/{pytest.ini,pyproject.toml,setup.cfg,tox.ini,conftest.py}"[90m 0 matches[0m
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_exergy.py -q 2>&1 | tail -5
+..........                                                               [100%]
+10 passed in 1.22s
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -5
+D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+53 passed, 1 skipped, 5 warnings in 49.17s
+[0m
+[0m# [0mTodos
+[•] Crear tests/_datos_ejemplo.py (datos de ejemplo a mano, sin solver real)
+[ ] Implementar src/export_excel.py (5 hojas, openpyxl, bytes en memoria)
+[ ] Implementar src/plots.py (2 figuras matplotlib, sin pyplot/plt.close)
+[ ] Reescribir tests/test_export.py (5 hojas, reapertura, ≤200 líneas)
+[ ] Crear tests/test_plots.py (estructura de figuras, no pixel-perfect)
+[ ] Correr suite completa y verificar criterios de aceptación
+[0m
+He leído el protocolo (AGENTS.md), CONTEXT.md, TASK_CONTEXT.md y todos los módulos involucrados. Plan de trabajo definido:
+[0m← [0mWrite tests/_datos_ejemplo.py
+Wrote file successfully.
+[0m
+[0m# [0mTodos
+[✓] Crear tests/_datos_ejemplo.py (datos de ejemplo a mano, sin solver real)
+[•] Implementar src/export_excel.py (5 hojas, openpyxl, bytes en memoria)
+[ ] Implementar src/plots.py (2 figuras matplotlib, sin pyplot/plt.close)
+[ ] Reescribir tests/test_export.py (5 hojas, reapertura, ≤200 líneas)
+[ ] Crear tests/test_plots.py (estructura de figuras, no pixel-perfect)
+[ ] Correr suite completa y verificar criterios de aceptación
+[0m
+[0m← [0mWrite src/export_excel.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite src/plots.py
+Wrote file successfully.
+[0m
+[0m# [0mTodos
+[✓] Crear tests/_datos_ejemplo.py (datos de ejemplo a mano, sin solver real)
+[✓] Implementar src/export_excel.py (5 hojas, openpyxl, bytes en memoria)
+[✓] Implementar src/plots.py (2 figuras matplotlib, sin pyplot/plt.close)
+[•] Reescribir tests/test_export.py (5 hojas, reapertura, ≤200 líneas)
+[ ] Crear tests/test_plots.py (estructura de figuras, no pixel-perfect)
+[ ] Correr suite completa y verificar criterios de aceptación
+[0m
+[0m← [0mWrite tests/test_export.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite tests/test_plots.py
+Wrote file successfully.
+[0m
+[0m# [0mTodos
+[✓] Crear tests/_datos_ejemplo.py (datos de ejemplo a mano, sin solver real)
+[✓] Implementar src/export_excel.py (5 hojas, openpyxl, bytes en memoria)
+[✓] Implementar src/plots.py (2 figuras matplotlib, sin pyplot/plt.close)
+[✓] Reescribir tests/test_export.py (5 hojas, reapertura, ≤200 líneas)
+[✓] Crear tests/test_plots.py (estructura de figuras, no pixel-perfect)
+[•] Correr suite completa y verificar criterios de aceptación
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_export.py tests/test_plots.py -q 2>&1 | tail -25
+..........F                                                              [100%]
+================================== FAILURES ===================================
+_________ test_exergia_destruida_8_barras_ordenadas_de_mayor_a_menor __________
+
+    def test_exergia_destruida_8_barras_ordenadas_de_mayor_a_menor():
+        fig = grafico_exergia_destruida(resultado_exergia_ejemplo())
+        assert isinstance(fig, Figure)
+        ax = fig.axes[0]
+        assert len(ax.patches) == 8
+        alturas = [round(p.get_height(), 1) for p in ax.patches]
+        assert alturas == sorted(alturas, reverse=True)
+        assert alturas == [112.5, 30.0, 15.0, 4.5, -7.5, -30.0, -30.0, -88.0]
+        # etiquetas en espa�ol, alineadas con el orden de las barras
+>       assert [t.get_text() for t in ax.get_xticklabels()] == \
+            ["HRVG", "Bomba", "Separador", "Absorbedor", "V�lvula",
+             "Regenerador", "Turbina", "Condensador"]
+E       AssertionError: assert ['HRVG', 'Bom...Turbina', ...] == ['HRVG', 'Bom...nerador', ...]
+E         
+E         At index 5 diff: 'Turbina' != 'Regenerador'
+E         Use -v to get more diff
+
+tests\test_plots.py:41: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_plots.py::test_exergia_destruida_8_barras_ordenadas_de_mayor_a_menor
+1 failed, 10 passed in 2.03s
+[0m
+Fallo claro: mi expectativa del orden de los empates (−30.0 de Regenerador vs Turbina) era incorrecta — el sort estable con `reverse=True` mantiene el orden original del dict para claves iguales (turbina va antes que regenerador). Corrijo la expectativa del test (comportamiento determinista del módulo):
+[0m← [0mEdit tests/test_plots.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_plots.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_plots.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_plots.py
+@@ -37,8 +37,10 @@
+ alturas = [round(p.get_height(), 1) for p in ax.patches]
+ assert alturas == sorted(alturas, reverse=True)
+ assert alturas == [112.5, 30.0, 15.0, 4.5, -7.5, -30.0, -30.0, -88.0]
+ # etiquetas en español, alineadas con el orden de las barras
++# (sort estable con reverse=True: los empates conservan el orden original
++# del dict — turbina antes que regenerador, ambas con Ed = −30 kW).
+ assert [t.get_text() for t in ax.get_xticklabels()] == \
+     ["HRVG", "Bomba", "Separador", "Absorbedor", "Válvula",
+-     "Regenerador", "Turbina", "Condensador"]
++     "Turbina", "Regenerador", "Condensador"]
+ assert ax.get_ylabel() == "Exergía destruida [kW]"
+\ No newline at end of file
+
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_export.py tests/test_plots.py -q 2>&1 | tail -5
+...........                                                              [100%]
+11 passed in 1.62s
+[0m
+Ahora la suite completa (criterio de aceptación 3):
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/ -q 2>&1 | tail -6
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+64 passed, 1 skipped, 5 warnings in 50.79s
+[0m
+Suite completa verde. Verifico los límites de líneas finales para el reporte:
+[0m$ [0mfor f in src/export_excel.py src/plots.py tests/_datos_ejemplo.py tests/test_export.py tests/test_plots.py; do printf "%s: " "$f"; wc -l < "$f"; done
+src/export_excel.py: 147
+src/plots.py: 53
+tests/_datos_ejemplo.py: 87
+tests/test_export.py: 146
+tests/test_plots.py: 45
+[0m
+[0m# [0mTodos
+[✓] Crear tests/_datos_ejemplo.py (datos de ejemplo a mano, sin solver real)
+[✓] Implementar src/export_excel.py (5 hojas, openpyxl, bytes en memoria)
+[✓] Implementar src/plots.py (2 figuras matplotlib, sin pyplot/plt.close)
+[✓] Reescribir tests/test_export.py (5 hojas, reapertura, ≤200 líneas)
+[✓] Crear tests/test_plots.py (estructura de figuras, no pixel-perfect)
+[✓] Correr suite completa y verificar criterios de aceptación
+[0m
+```
+STATUS: done
+SUMMARY: Implementé src/export_excel.py (generar_excel → bytes de un .xlsx en
+memoria con las 5 hojas: Entradas, Estados, Componentes, Exergía, Resumen) y
+src/plots.py (grafico_balance_energia y grafico_exergia_destruida, figuras
+matplotlib sin pyplot/plt.close). Creé datos de ejemplo a mano en
+tests/_datos_ejemplo.py (misma forma exacta de resolver_ciclo/calcular_exergia)
+y los tests de ambas funcionalidades. Suite completa: 64 passed, 1 skipped.
+FILES_CHANGED:
+- src/export_excel.py (implementado; 147 líneas — stub TODO → funcional)
+- src/plots.py (implementado; 53 líneas — stub TODO → funcional)
+- tests/test_export.py (reescrito; 146 líneas — placeholder → 9 tests)
+- tests/test_plots.py (nuevo; 45 líneas)
+- tests/_datos_ejemplo.py (nuevo; 87 líneas — datos compartidos de ejemplo)
+TESTS: pytest tests/test_export.py tests/test_plots.py -q (11 passed);
+luego suite completa: python -m pytest tests/ -q (64 passed, 1 skipped).
+Los nuevos tests usan únicamente EstadoTermo/dicts construidos a mano →
+ninguno ejecuta el backend real ni resolver_ciclo (verificado: sin imports de
+backends concretos en los módulos nuevos y sin escritura a disco de
+generar_excel — test con monkeypatch.chdir(tmp_path)).
+RESULTS:
+- Criterio 1 (bytes reabribles + 5 hojas+contenido): PASS — load_workbook de
+  un BytesIO reabre las 5 hojas; Entradas valida filas {nombre:(valor,unidad)}
+  + fila backend; Estados 10 filas con T/P/h/s/x/m/q/fase/ex_fisica (e1:
+  T=350, P=3000, h=358, s=4.0, ex=−97.1); Componentes Qi/Wt/Qreg/Qout/Wp con
+  "—" para Separador/Válvula/Absorbedor; Exergía Sgen/Ed por 8 componentes +
+  Ed_total=6.5 + Ex_Qi=12.5 + Ex_Qout=0 + residual=7.3 verificable como
+  Ex_Qi−Wnet−Ex_Qout−Ed_total; Resumen energético/exergético (eta_ex=Wnet/Ex_Qi)
+  + fecha, versión "ciclo_kalina_tercero v0.1", backend.
+- Criterio 2 (Figure con datos correctos): PASS — balance: 5 barras
+  [50, 44, 11.3, 12.6, −1.3]; exergía: 8 barras ordenadas desc
+  [112.5, 30, 15, 4.5, −7.5, −30, −30, −88] vía ax.patches; etiquetas y títulos
+  en español, ejes con unidades.
+- Criterio 3 (suite completa): 64 passed, 1 skipped en 50.79 s.
+- Criterio 4 (≤200 líneas): 147/53/146/45/87 — todos por debajo.
+ERRORS: ninguno (1 fallo inicial del test de orden con empates en Ed= −30 kW
+era una expectativa incorrecta mía, corregida: el sort estable con
+reverse=True conserva el orden original del dict para claves iguales).
+ASSUMPTIONS:
+- Convención de `parametros`: dict {nombre: (valor, unidad)} (un valor simple
+  se acepta y deja unidad "—") — documentada en el docstring del módulo.
+- La hoja Componentes añade una columna "Tipo de energía" que documenta la
+  convención pedida (celda "—" en energía externa para separador, válvula y
+  absorbedor). Los 8 componentes usan el mismo orden de ciclo (hrvg, separador,
+  turbina, regenerador, válvula, absorbedor, condensador, bomba) en ambas
+  hojas Componentes/Exergía.
+- Resumen: eta_exergetico = Wnet/Ex_Qi con guarda (si Ex_Qi == 0 → "—"); fecha
+  datetime.now() ISO (timespec=seconds); versión fija "ciclo_kalina_tercero
+  v0.1". Se omitió la hoja "Sensibilidad" de las "hojas sugeridas" de
+  Kalina_ksc_11_tercero.md §10 porque la tarea de sensibilidad quedó saltada
+  por decisión del usuario (TASK_CONTEXT) y el acceptance criteria pide 5 hojas
+  (Entradas, Estados, Componentes, Exergía, Resumen).
+UNRESOLVED: ninguno.
+RECOMMENDATIONS: la siguiente tarea (UI Streamlit, app.py) puede conectar
+generar_excel a st.download_button(data=...) y las figuras a st.pyplot(fig)
+directamente (las Figure se devuelven abiertas y no dependen del estado de
+pyplot). Si en el futuro se retoma sensibilidad paramétrica, añadir la hoja
+"Sensibilidad" seguirá el mismo patrón de ws.append, sin tocar el resto.
+```
