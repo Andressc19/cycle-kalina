@@ -1,138 +1,148 @@
 ---
 project: ciclo_kalina_tercero
-task_id: 2026-09-17-ui-streamlit
+task_id: 2026-09-18-validar-teqp-nh3h2o
 delegated_to: executor
 model: opencode/big-pickle
-created: 2026-09-17
+created: 2026-09-18
 ---
 
-# TASK_CONTEXT — UI Streamlit (app.py)
+# TASK_CONTEXT — Validar teqp como motor NH3-H2O alternativo (rendimiento)
 
 ## Task ID
 
-2026-09-17-ui-streamlit
+2026-09-18-validar-teqp-nh3h2o
 
 ## Project
 
-ciclo_kalina_tercero. Última pieza para tener el proyecto visualmente completo (por decisión
-del usuario, la sensibilidad paramétrica queda para después — esta UI corre **una sola
-simulación por clic**, no barridos). Conecta todo lo ya construido y verificado: adapter de
-propiedades, componentes, solver, exergía, Excel y gráficas.
+ciclo_kalina_tercero. El motor actual de la mezcla NH3-H2O
+(`src/properties/_nh3h2o_engine.py` + `_kalina_flash.py`, IAPWS G4-01 portado) es correcto
+pero **muy lento**: una corrida completa de `resolver_ciclo` con `AmmoniaWaterAdapter` tarda
+**8-15+ minutos** (medido en la sesión de hoy, con las validaciones de `src/restricciones/`
+añadidas — ver `CONTEXT.md`). Esta tarea investiga si `teqp` (paquete NIST, dominio público,
+mismo modelo Tillner-Roth/G4-01) puede sustituirlo con el mismo rigor pero mucho más rápido.
+
+**Esto NO es una tarea de integración al solver todavía.** Es una tarea de validación aislada:
+construir un adapter de prueba, verificarlo a fondo contra el motor actual (que sí está
+validado contra IAPWS G4-01 en el proyecto hermano — ver `tests/test_ammonia_water_adapter.py`
+líneas 3-5), y reportar si es confiable y cuánto más rápido es. La decisión de reemplazar
+`AmmoniaWaterAdapter` es una tarea posterior, solo si esta valida bien.
 
 ## Objective
 
-Implementar `app.py` (hoy stub `TODO`): una app Streamlit en español para un público **poco
-familiarizado con software académico** (`Kalina_ksc_11_tercero.md`, sección 8), que permita
-introducir los parámetros de entrada, ejecutar la simulación real, ver los resultados
-(estados, energías, exergía), descargar el Excel y las gráficas.
+1. Construir un módulo de prueba (`src/properties/_teqp_prototipo.py`, NO tocar
+   `ammonia_water_adapter.py` ni ningún archivo existente) que calcule, para la mezcla NH3-H2O
+   vía `teqp.AmmoniaWaterTillnerRoth()`: `h(T,P,x)`, `s(T,P,x)`, `bubble_point(P,x)`,
+   `dew_point(P,x)`.
+2. Cross-validar cada resultado contra el equivalente de `AmmoniaWaterAdapter` (el motor
+   actual, ya validado) para al menos 8 puntos (T,P,x) distintos dentro del dominio real de
+   barrido del proyecto (P_alta 2000-4000 kPa, P_baja 300-600 kPa, x_b 0.40-0.70,
+   T 280-480 K aprox — ver `CAMPOS_CICLO` en `src/ui_helpers.py` para los rangos exactos de la
+   UI). Reportar el error relativo de cada comparación.
+3. Medir el tiempo de cada llamada de teqp y compararlo contra el tiempo medido del motor
+   actual para los MISMOS puntos.
+4. Reportar honestamente si teqp es confiable (no solo rápido) con la evidencia numérica.
 
-## Context — pieza crítica: el cálculo real tarda ~8-9 minutos
+## Context — lo ya investigado hoy (no repetir, partir de aquí)
 
-`resolver_ciclo` con el backend real (`AmmoniaWaterAdapter`) tarda del orden de **8-9 minutos**
-por corrida (motor NH3-H2O riguroso, ya diagnosticado y optimizado en una tarea anterior — no
-es un bug, es el costo real de la física). La UI **debe**:
-- Mostrar un aviso explícito y visible ANTES de que el usuario pulse "Ejecutar simulación"
-  (algo como: "⏱ El cálculo con el motor de propiedades real puede tardar varios minutos —
-  no cierres esta pestaña mientras corre").
-- Usar `st.spinner(...)` con un mensaje mientras corre, para que no parezca colgada.
-- Guardar el resultado en `st.session_state` (no recalcular en cada rerun de Streamlit —
-  Streamlit re-ejecuta el script en cada interacción; solo se debe llamar a `resolver_ciclo`
-  cuando el usuario pulsa el botón, nunca implícitamente).
-- Capturar `CicloNoConvergeError` (de `src/cycle_solver.py`) y `PropertyRangeError` (de
-  `src/properties/adapter.py`) y mostrarlas como un mensaje de advertencia claro en español
-  (no un traceback crudo) — coherente con `Kalina_ksc_11_tercero.md` sección 6 ("Emitir
-  advertencias claras cuando los datos salgan del rango válido").
+- `pip install teqp` instala sin compilar (wheel `cp313-win_amd64`, teqp 0.23.2). `pip install
+  CoolProp` igual (CoolProp 8.0.0, wheel `cp312-abi3` compatible con 3.13) — SÍ hace falta
+  instalar `CoolProp` (no solo `pyfluids`) para poder generar el JSON de gas ideal de los
+  componentes puros.
+- `teqp.AmmoniaWaterTillnerRoth()` es un modelo de **Helmholtz residual únicamente**: expone
+  `get_Ar00`, `get_Ar01`, `get_Ar10`, etc. NO da h/s directo.
+- Receta oficial verificada (NIST, "Heat Pump Model",
+  https://pages.nist.gov/teqp-docs/en/main/recipes/HeatPumpModel.html — leída hoy, la receta
+  mostrada ahí es para un fluido puro R125, no para la mezcla; hay que adaptarla a 2
+  componentes con `teqp.IdealHelmholtz([jig_nh3, jig_h2o])`):
+  ```python
+  jig_nh3 = teqp.convert_CoolProp_idealgas(json.dumps(json.loads(CP.get_fluid_param_string('Ammonia','JSON'))[0]), 0)
+  jig_h2o = teqp.convert_CoolProp_idealgas(json.dumps(json.loads(CP.get_fluid_param_string('Water','JSON'))[0]), 0)
+  aig = teqp.IdealHelmholtz([jig_nh3, jig_h2o])   # ORDEN sin confirmar, ver abajo
+  model = teqp.AmmoniaWaterTillnerRoth()
 
-Revisa las firmas reales antes de escribir, no las asumas:
-- `src/cycle_solver.py::resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero,
-  x_b, m_b, eta_t, eta_p, eps_hrvg, eps_reg, eps_cond, tol_T1=..., tol_T10=...,
-  max_iter_frio=...) -> dict` y `CicloNoConvergeError`.
-- `src/exergy.py::calcular_exergia(resultado_ciclo, backend, *, T0, P0) -> dict`.
-- `src/export_excel.py::generar_excel(resultado_ciclo, resultado_exergia, parametros, backend_nombre) -> bytes`.
-- `src/plots.py::grafico_balance_energia(resultado_ciclo) -> Figure`,
-  `grafico_exergia_destruida(resultado_exergia) -> Figure`.
-- `src/properties/ammonia_water_adapter.py::AmmoniaWaterAdapter`,
-  `src/properties/iapws_adapter.py::IAPWSAdapter`,
-  `src/properties/pyfluids_adapter.py::PyfluidsAdapter`.
+  def h(T, rhomolar, molefrac):
+      Atot10 = model.get_Ar10(T, rhomolar, molefrac) + aig.get_Aig10(T, rhomolar, molefrac)
+      return R * T * (1 + model.get_Ar01(T, rhomolar, molefrac) + Atot10)
 
-Valores por defecto de todos los campos: usa la tabla de `CONTEXT.md` ("Valores por defecto
-sugeridos para la UI"), **ya actualizada** (T_fuente=470.0 K). T0=300.032917 K, P0=101.325 kPa
-(estado muerto).
-
-## Layout sugerido (ajustable, no es obligatorio pixel a pixel)
-
-1. **Cabecera**: título, breve descripción del ciclo KSC-11 (puedes usar el diagrama
-   Mermaid de `Kalina_ksc_11_tercero.md` sección 1 como texto/imagen si es simple, o
-   omitirlo si complica — no es un requisito duro).
-2. **Sidebar o sección de entradas**: todos los campos numéricos con:
-   - Etiqueta clara + unidad visible.
-   - `help=` (tooltip) explicando qué es cada parámetro, en español sencillo.
-   - Valor por defecto de `CONTEXT.md`.
-   - Selector de backend de propiedades: **por defecto y único camino real,
-     `AmmoniaWaterAdapter`**; puedes listar `IAPWSAdapter`/`PyfluidsAdapter` en el selector
-     pero deshabilitados o marcados "(no aplica a la mezcla NH3-H2O en este entorno)" — no
-     dejes que el usuario elija un backend que sabes que va a fallar sin advertirlo.
-3. **Botón "Ejecutar simulación"** (con el aviso de tiempo ANTES del botón, no después).
-4. **Resultados** (solo tras ejecutar, desde `st.session_state`):
-   - Tabla de los 10 estados (T, P, h, s, x, m, q, fase, exergía física) — `st.dataframe`.
-   - Métricas destacadas (`st.metric`): `η` energético, `η` exergético (`Wnet/Ex_Qi`), `Wnet`,
-     `Qi`, `Qout`.
-   - Las dos gráficas de `plots.py` (`st.pyplot`).
-   - Tabla de `Sgen`/`Ed` por componente.
-   - Panel de advertencias (si `CicloNoConvergeError`/`PropertyRangeError`, o si algún `Sgen`
-     saliera negativo — repórtalo como advertencia de 2ª ley, no lo ocultes).
-5. **Descargas**: botón de Excel (`st.download_button`, `generar_excel(...)`) y botones para
-   descargar cada gráfica como PNG (usa `fig.savefig` a un buffer `BytesIO`).
-6. **Sección de sensibilidad**: un `st.tabs`/`st.expander` visible pero con contenido tipo
-   "Próximamente — barrido de sensibilidad paramétrica" (la lógica de `sensitivity.py` no
-   existe todavía, es una tarea futura). No implementes nada funcional aquí, solo el espacio
-   reservado en la UI, coherente con `Kalina_ksc_11_tercero.md` sección 9 ("la UI debe quedar
-   preparada para configurarlos sin reescribir el solver").
+  def s(T, rhomolar, molefrac):
+      Atot10 = model.get_Ar10(T, rhomolar, molefrac) + aig.get_Aig10(T, rhomolar, molefrac)
+      Atot00 = model.get_Ar00(T, rhomolar, molefrac) + aig.get_Aig00(T, rhomolar, molefrac)
+      return R * (Atot10 - Atot00)
+  ```
+  **IMPORTANTE**: verificar `R` — usar `model.get_R(molefrac)`, no asumir 8.314.
+- **`h`/`s` toman `(T, rhomolar, molefrac)`, NO `(T, P, x)`**: hace falta resolver la densidad
+  molar a la presión pedida (un solve adicional, p.ej. sobre `model.get_pr` o el método de
+  presión que exponga el modelo — revisar `dir(model)` para el método de presión exacto, no
+  está confirmado en esta investigación).
+- El flash `model.mix_VLE_Tx(T, rhovecL0, rhovecV0, xspec, atol, reltol, axtol, relxtol,
+  maxiter)` **requiere semillas de densidad para ambas fases** (no es caja negra). Probado hoy
+  con semillas crudas (densidades de saturación de los puros vía CoolProp, escaladas por
+  composición): convergió (`xtol_satisfied`) en **0.65 ms**, pero el resultado de la fase
+  líquida salió sospechoso — `rhoL` con las DOS componentes en la MISMA densidad molar
+  (`[22161.5, 22161.5]`), lo que implica composición líquida = 0.5 exactamente, igual a la
+  composición global de entrada. Eso probablemente sea una **convergencia espuria/trivial**
+  (el solver "convergió" sin encontrar el equilibrio físico real), NO una confirmación de que
+  el flash funciona. **No confíes en ese resultado — repite con semillas mejores y verifica
+  contra el motor actual antes de sacar cualquier conclusión de velocidad real.**
+- **Orden de composición sin confirmar**: no se determinó si el índice 0 de
+  `molefrac`/`xspec`/`rhovec*` en `AmmoniaWaterTillnerRoth` es NH3 o H2O. Determínalo
+  empíricamente: evalúa en el límite `x→0`/`x→1` (o usa `pure_VLE_T` con `molefrac=[1,0]` y
+  `[0,1]`) y compara el punto de ebullición resultante contra el de NH3 puro (~239.7 K a
+  101.325 kPa) y H2O puro (~373.15 K a 101.325 kPa) — no lo asumas.
+- **Unidades**: `AmmoniaWaterAdapter` (el motor actual) usa P en kPa y composición en
+  **fracción MÁSICA** (`w`); `teqp`/`_nh3h2o_engine.py` usan P en MPa y fracción **MOLAR**.
+  `_nh3h2o_engine.py` ya tiene los conversores `w2m`/`m2w` (masa↔molar) — reutilízalos para
+  traducir, no reimplementes la conversión.
+- Motor actual, tiempos de referencia ya medidos hoy: una corrida completa de
+  `resolver_ciclo` (10 estados, ~8 llamadas al backend por iteración de cada uno de los 2
+  lazos anidados) tarda 8-15+ min. `bubble_point`/`dew_point`/`equilibrio_liquido_vapor`
+  individuales no se cronometraron por separado hoy — hazlo tú como parte de esta tarea
+  (son la comparación directa contra `pure_VLE_T`/`mix_VLE_Tx` de teqp).
 
 ## Files
 
-Implementar (hoy stub `TODO`):
-- `app.py`
+Crear (prototipo aislado, no wire al resto del proyecto):
+- `src/properties/_teqp_prototipo.py` — funciones sueltas (NO necesita implementar
+  `PropertyBackend`, esto es solo para medir y validar, no es la interfaz final).
+- `tests/test_teqp_prototipo.py` — el cross-check contra `AmmoniaWaterAdapter` y las
+  mediciones de tiempo, como tests de pytest (marca con `pytest.mark.skip` o similar si teqp
+  no está instalado, para no romper el resto de la suite si alguien corre los tests sin él).
 
-Si `app.py` no cabe en 200 líneas con todo lo anterior, divide en `app.py` (orquestación
-principal) + un módulo de ayuda, por ejemplo `src/ui_helpers.py` (construcción de la tabla de
-estados como DataFrame, formateo de advertencias, etc.) — mismo patrón de división ya usado
-antes cuando un archivo se acerca al límite.
-
-No tocar ningún otro archivo — esta tarea es pura integración de lo ya construido.
+**No modifiques ningún archivo existente.** Si necesitas añadir `teqp`/`CoolProp` a
+`requirements.txt`, añádelos como comentario opcional (igual que `pyfluids` ya está comentado
+ahí), NO como dependencia activa — esta tarea es exploratoria.
 
 ## Constraints
 
-- No implementes nada de sensibilidad real (solo el placeholder de UI).
-- No hagas que la app llame a `resolver_ciclo` fuera del clic explícito del botón (ni en la
-  carga inicial de la página, ni en cada rerun).
 - Cada archivo `.py` ≤ 200 líneas.
-- No se puede probar esta tarea con `pytest` de forma significativa (es una app interactiva) —
-  en su lugar, verifica manualmente que `streamlit run app.py` levanta sin errores de sintaxis/
-  import (usa `python -c "import ast; ast.parse(open('app.py').read())"` como mínimo, y si es
-  posible, arráncala con `streamlit run app.py --server.headless true` unos segundos y
-  verifica en el log que no hay excepción de arranque, luego mátala).
+- No inventes la fórmula de h/s ni el orden de composición — verifícalos empíricamente como
+  se describe arriba y reporta cómo los verificaste.
+- No reemplaces ni toques `ammonia_water_adapter.py`, `_nh3h2o_engine.py`, `_kalina_flash.py`,
+  `cycle_solver.py`, `restricciones/`, ni `sensitivity.py`.
+- Si algo de la receta de h/s o el flash no converge de forma confiable tras un esfuerzo
+  razonable de ajustar semillas, repórtalo en UNRESOLVED — no inventes un resultado ni ocultes
+  la falla.
 
 ## Acceptance criteria
 
-1. `streamlit run app.py` levanta sin errores (verificado como se describe arriba).
-2. Todos los campos de entrada de `CONTEXT.md` están presentes, con etiqueta, unidad,
-   tooltip y valor por defecto.
-3. El botón de ejecutar muestra el aviso de tiempo, usa `st.spinner`, y solo llama a
-   `resolver_ciclo` al pulsar (no antes).
-4. `CicloNoConvergeError`/`PropertyRangeError` se capturan y se muestran como advertencia
-   clara en español, no como traceback.
-5. Los botones de descarga (Excel + gráficas) están conectados a las funciones reales de las
-   tareas anteriores.
-6. Ningún archivo supera 200 líneas.
+1. Al menos 8 puntos (T,P,x) comparados: `h`, `s`, `bubble_point`, `dew_point` de teqp vs.
+   `AmmoniaWaterAdapter`, con el error relativo de cada uno reportado explícitamente (no solo
+   "parece razonable").
+2. El orden de composición (NH3 vs H2O en índice 0) queda confirmado con evidencia, no
+   supuesto.
+3. Tiempos de `bubble_point`/`dew_point`/flash de teqp vs. los del motor actual, medidos para
+   los mismos puntos (no una comparación contra un número de otra corrida).
+4. Si algún punto de comparación tiene error relativo > 1% en h/s o > 0.5 K en
+   bubble/dew_point, repórtalo como discrepancia sin suavizarlo — es la señal de si teqp sirve
+   o no para este proyecto.
 
 ## Expected output
 
-`app.py` funcional, integrando todo el proyecto, con la sensibilidad reservada como
-"próximamente" para la tarea que sigue después.
+Un reporte claro: ¿teqp da resultados consistentes con el motor ya validado, dentro de qué
+tolerancia, y cuánto más rápido es? Con eso, el director (Claude) decide si vale la pena una
+tarea de integración real (reemplazar `AmmoniaWaterAdapter`) o si se descarta.
 
 ## Verification
 
-Arranque manual de `streamlit run app.py` (o equivalente headless) sin excepciones, más
-`python -c "import ast; ast.parse(open('app.py').read())"` limpio. Reporta en RESULTS qué
-verificaste exactamente y qué viste en pantalla/log.
+`pytest tests/test_teqp_prototipo.py -v` con el reporte de errores relativos y tiempos
+impreso o incluido en el RESULTS de la respuesta final (no solo pass/fail de los asserts).

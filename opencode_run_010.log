@@ -1,0 +1,1851 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m✱ [0mGlob "**/*.py"[90m 48 matches[0m
+[0m✱ [0mGlob "**/*.txt"[90m 1 match[0m
+[0m→ [0mRead src/properties/_nh3h2o_engine.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead tests/test_ammonia_water_adapter.py
+[0m→ [0mRead requirements.txt
+[0m→ [0mRead src/properties/_kalina_flash.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/__init__.py
+[0m→ [0mRead src/ui_helpers.py
+[0m
+[0m$ [0mpython -c "import sys; print(sys.version)" && python -c "import teqp; print('teqp', teqp.__version__)" 2>&1; python -c "import CoolProp; print('CoolProp', CoolProp.__version__)" 2>&1
+3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import teqp; print('teqp', teqp.__version__)
+    ^^^^^^^^^^^
+ModuleNotFoundError: No module named 'teqp'
+CoolProp 8.0.0
+[0m
+teqp no está instalado; CoolProp sí (8.0.0). Instalo teqp ya que la tarea lo requiere:
+[0m$ [0mpip install teqp 2>&1 | tail -5
+Collecting teqp
+  Using cached teqp-0.23.2-cp313-cp313-win_amd64.whl.metadata (23 kB)
+Using cached teqp-0.23.2-cp313-cp313-win_amd64.whl (7.7 MB)
+Installing collected packages: teqp
+Successfully installed teqp-0.23.2
+[0m
+teqp 0.23.2 instalado. Ahora exploro la API de teqp para confirmar los métodos disponibles (presión, flash, get_R, etc.):
+[0m$ [0mpython -c "
+import teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+print('--- dir(model) ---')
+print([x for x in dir(m) if not x.startswith('_')])
+print()
+print('--- dir(teqp) top-level ---')
+print([x for x in dir(teqp) if not x.startswith('_')])
+"
+--- dir(model) ---
+['TcNH3', 'alphar_departure', 'build_Psi_Hessian_autodiff', 'build_Psir_Hessian_autodiff', 'build_Psir_gradient_autodiff', 'build_d2PsirdTdrhoi_autodiff', 'dalphar_departure_ddelta', 'dpsatdT_pure', 'eigen_problem', 'extrapolate_from_critical', 'find_VLLE_T_binary', 'find_VLLE_p_binary', 'get_ATrhoXi', 'get_ATrhoXiXj', 'get_ATrhoXiXjXk', 'get_Ar00', 'get_Ar01', 'get_Ar01n', 'get_Ar02', 'get_Ar02n', 'get_Ar03', 'get_Ar03n', 'get_Ar04', 'get_Ar04n', 'get_Ar05n', 'get_Ar06n', 'get_Ar10', 'get_Ar10n', 'get_Ar11', 'get_Ar12', 'get_Ar13', 'get_Ar14', 'get_Ar20', 'get_Ar20n', 'get_Ar21', 'get_Ar22', 'get_Ar23', 'get_Ar24', 'get_Ar30n', 'get_Ar40n', 'get_Arxy', 'get_AtaudeltaXi', 'get_AtaudeltaXiXj', 'get_AtaudeltaXiXjXk', 'get_B12vir', 'get_B2vir', 'get_Bnvir', 'get_R', 'get_Tr', 'get_chempotVLE_autodiff', 'get_criticality_conditions', 'get_dchempotdT_autodiff', 'get_deriv_mat2', 'get_dmBnvirdTm', 'get_dp_dT_crit', 'get_dpsat_dTsat_isopleth', 'get_drhovec_dT_crit', 'get_drhovecdT_psat', 'get_drhovecdp_Tsat', 'get_fugacity_coefficients', 'get_minimum_eigenvalue_Psi_Hessian', 'get_neff', 'get_partial_molar_volumes', 'get_pr', 'get_pure_critical_conditions_Jacobian', 'get_reducing_density', 'get_reducing_temperature', 'get_rhor', 'get_splus', 'mix_VLE_Tp', 'mix_VLE_Tx', 'mix_VLLE_T', 'mixture_VLE_px', 'pure_VLE_T', 'solve_pure_critical', 'trace_VLE_isobar_binary', 'trace_VLE_isotherm_binary', 'trace_VLLE_binary', 'trace_critical_arclength_binary', 'vcNH3']
+
+--- dir(teqp) top-level ---
+['AbstractModel', 'AmmoniaWaterTillnerRoth', 'CPAfactory', 'EigenData', 'IdealHelmholtz', 'IterationMatrices', 'MixVLEReturn', 'MixVLETpFlags', 'MixVLEpxFlags', 'MultiFluidVLEAncillaries', 'NRIterator', 'PCSAFTEOS', 'PVLEOptions', 'SAFTCoeffs', 'TCABOptions', 'TVLEOptions', 'VLEAncillary', 'VLE_return_code', 'VLLEFinderOptions', 'VLLETracerOptions', 'attach_model_specific_methods', 'build_LJ126_TholJPCRD2016', 'build_Psi_Hessian_autodiff', 'build_Psir_Hessian_autodiff', 'build_Psir_gradient_autodiff', 'build_alias_map', 'build_ancillaries', 'build_d2PsirdTdrhoi_autodiff', 'build_multifluid_ecs_mutant', 'build_multifluid_model', 'build_multifluid_mutant', 'canonical_PR', 'canonical_SRK', 'collect_component_json', 'convert_CoolProp_idealgas', 'convert_FLD', 'convert_HMXBNC', 'deprecated_caller', 'deprecated_top_level_functions', 'eigen_problem', 'extrapolate_from_critical', 'f', 'find_VLLE_T_binary', 'functools', 'get_B2virget_B12vir', 'get_BIPdep', 'get_chempotVLE_autodiff', 'get_criticality_conditions', 'get_datapath', 'get_dchempotdT_autodiff', 'get_departure_json', 'get_dpsat_dTsat_isopleth', 'get_drhovec_dT_crit', 'get_drhovecdT_psat', 'get_drhovecdp_Tsat', 'get_fugacity_coefficients', 'get_minimum_eigenvalue_Psi_Hessian', 'get_partial_molar_volumes', 'get_pr', 'get_pure_critical_conditions_Jacobian', 'get_splus', 'make_model', 'make_vdW1', 'mix_VLE_Tx', 'mix_VLLE_T', 'mixture_VLE_px', 'os', 'paramopt', 'phaseequil', 'pure_VLE_T', 'solve_pure_critical', 'teqp', 'tolist', 'trace_VLE_isobar_binary', 'trace_VLE_isotherm_binary', 'trace_critical_arclength_binary', 'vdWEOS', 'vdWEOS1', 'warnings']
+[0m
+[0m$ [0mpython -c "
+import inspect, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+for meth in ['mix_VLE_Tx', 'mix_VLE_Tp', 'pure_VLE_T', 'get_pr', 'get_R', 'mixture_VLE_px']:
+    fn = getattr(m, meth, None)
+    if fn is None:
+        print(meth, ': NO EXISTE en el modelo'); continue
+    try:
+        print(meth, inspect.signature(fn))
+    except Exception as e:
+        print(meth, 'signature unavailable:', e)
+"
+mix_VLE_Tx signature unavailable: no signature found for builtin <built-in method mix_VLE_Tx of PyCapsule object at 0x00000137B6FC1530>
+mix_VLE_Tp signature unavailable: no signature found for builtin <built-in method mix_VLE_Tp of PyCapsule object at 0x00000137B6FC15D0>
+pure_VLE_T signature unavailable: no signature found for builtin <built-in method pure_VLE_T of PyCapsule object at 0x00000137B6FC1030>
+get_pr signature unavailable: no signature found for builtin <built-in method get_pr of PyCapsule object at 0x00000137B6FC0040>
+get_R signature unavailable: no signature found for builtin <built-in method get_R of PyCapsule object at 0x00000137B6FBA660>
+mixture_VLE_px signature unavailable: no signature found for builtin <built-in method mixture_VLE_px of PyCapsule object at 0x00000137B6FC1670>
+[0m
+[0m$ [0mpython - <<'EOF'
+import teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+# 1) Confirmar R molares del modelo para la mezcla
+print('R molefrac=[0.5,0.5]:', m.get_R([0.5, 0.5]))
+print('R molefrac=[1,0]:', m.get_R([1.0, 0.0]))
+print('R molefrac=[0,1]:', m.get_R([0.0, 1.0]))
+print('R universal (8.314462...):', 8.31446261815324)
+# 2) get_pr: presion molar
+print('get_pr(300, 55000, [0.5,0.5]):', m.get_pr(300.0, 55000.0, [0.5, 0.5]))
+EOF
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+TypeError: get_R(): incompatible function arguments. The following argument types are supported:
+    1. (self: teqp.teqp.AbstractModel, molefrac: numpy.ndarray[numpy.float64[m, 1]]) -> float
+
+Invoked with: <teqp.teqp.AbstractModel object at 0x0000021A03297C50>, [0.5, 0.5]
+[0m
+teqp espera arrays de numpy. Repito con numpy y hago la verificación empírica del orden de composición:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+
+x_NH3 = np.array([1.0, 0.0], dtype=np.float64)   # si indice 0 = NH3
+x_H2O = np.array([0.0, 1.0], dtype=np.float64)   # si indice 1 = H2O
+x_mix = np.array([0.5, 0.5], dtype=np.float64)
+
+print('R [1,0]:', m.get_R(x_NH3))
+print('R [0,1]:', m.get_R(x_H2O))
+print('R [0.5,0.5]:', m.get_R(x_mix))
+
+# Presión del modelo: get_pr(T, rhomolar, molefrac)
+print('get_pr(300, 55000, [0.5,0.5]):', m.get_pr(300.0, 55000.0, x_mix))
+
+# Orden de composición: punto de ebullición a 101.325 kPa
+# NH3 puro ~239.7 K, H2O puro ~373.15 K
+for label, x in [('[1,0]', x_NH3), ('[0,1]', x_H2O)]:
+    rhoL, rhoV = 30000.0, 10.0   # semillas crudas
+    try:
+        r = m.pure_VLE_T(240.0, rhoL, rhoV, x)
+        print(f'pure_VLE_T(240 K, {label}) ->', r)
+    except Exception as e:
+        print(f'pure_VLE_T(240 K, {label}) fallo:', str(e)[:200])
+EOF
+R [1,0]: 8.314471
+R [0,1]: 8.314471
+R [0.5,0.5]: 8.314471
+Traceback (most recent call last):
+  File "<stdin>", line 13, in <module>
+TypeError: get_pr(): incompatible function arguments. The following argument types are supported:
+    1. (self: teqp.teqp.AbstractModel, T: float, rhovec: numpy.ndarray[numpy.float64[m, 1]]) -> float
+
+Invoked with: <teqp.teqp.AbstractModel object at 0x0000021847637C50>, 300.0, 55000.0, array([0.5, 0.5])
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+x_mix = np.array([0.5, 0.5], dtype=np.float64)
+
+# get_pr toma rhovec (densidades parciales por componente)
+rhomolar = 55000.0
+rhovec = x_mix * rhomolar
+print('get_pr(300, rhovec=x*55000):', m.get_pr(300.0, rhovec))
+
+# Debe ser igual a (1 + delta*fird)*R*T*rhomolar/... => P[Pa] sin los 1e3 del motor
+print('P esperada [Pa] ~', 8.314471*300.0*55000.0)  # orden de magnitud gas ideal
+
+# get_Ar*
+for meth in ['get_Ar00', 'get_Ar01', 'get_Ar10']:
+    try:
+        v = getattr(m, meth)(300.0, rhomolar, x_mix)
+        print(meth, v)
+    except TypeError as e:
+        print(meth, 'TypeError:', str(e)[:160])
+EOF
+get_pr(300, rhovec=x*55000): 594274809.2416804
+P esperada [Pa] ~ 137188771.49999997
+get_Ar00 -7.022262387601043
+get_Ar01 4.331803563396452
+get_Ar10 -14.6740676444713
+[0m
+`get_pr(T, rhovec)` toma densidades parciales por componente. Continuo explorando la API (presión, Ar, pure_VLE_T):
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+x_NH3 = np.array([1.0, 0.0], dtype=np.float64)
+x_H2O = np.array([0.0, 1.0], dtype=np.float64)
+
+# pure_VLE_T: presion de saturacion del 'puro' indicado por molefrac, a T dada
+# NH3 puro a 240 K: Psat(NH3) ~ 330 kPa (0.33 MPa); agua a 240 K: ~10 Pa
+for label, x in [('[1,0]', x_NH3), ('[0,1]', x_H2O)]:
+    try:
+        r = m.pure_VLE_T(240.0, 30000.0, 10.0, x)
+        print(f'pure_VLE_T(240 K, {label}) ->', r)
+    except Exception as e:
+        print(f'pure_VLE_T(240 K, {label}) fallo:', str(e)[:200])
+EOF
+pure_VLE_T(240 K, [1,0]) fallo: pure_VLE_T(): incompatible function arguments. The following argument types are supported:
+    1. (self: teqp.teqp.AbstractModel, T: float, rhoL: float, rhoV: float, max_iter: int, molefrac: Optional[
+pure_VLE_T(240 K, [0,1]) fallo: pure_VLE_T(): incompatible function arguments. The following argument types are supported:
+    1. (self: teqp.teqp.AbstractModel, T: float, rhoL: float, rhoV: float, max_iter: int, molefrac: Optional[
+[0m
+`pure_VLE_T` necesita `max_iter` como 4º argumento. Reintento con la firma correcta:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+x_NH3 = np.array([1.0, 0.0], dtype=np.float64)
+x_H2O = np.array([0.0, 1.0], dtype=np.float64)
+
+# Referencias: Psat NH3 ~ 239.7 K=101.325kPa; Psat H2O ~373.15K=101.325kPa
+# A 240 K: Psat(NH3) ~ 330 kPa ([1,0] si indice 0 = NH3); agua ~ 3.5 Pa
+for label, x in [('[1,0]', x_NH3), ('[0,1]', x_H2O)]:
+    try:
+        r = m.pure_VLE_T(240.0, 30000.0, 10.0, 100, x)
+        print(f'pure_VLE_T(240 K, {label}) ->', r)
+    except Exception as e:
+        print(f'pure_VLE_T(240 K, {label}) fallo:', str(e)[:300])
+
+# A 373.15 K: agua pura ~ 101.325 kPa; NH3 puro ~ muchisimo mayor (critico 405 K)
+for label, x in [('[1,0]', x_NH3), ('[0,1]', x_H2O)]:
+    try:
+        r = m.pure_VLE_T(373.15, 30000.0, 10.0, 100, x)
+        print(f'pure_VLE_T(373.15 K, {label}) ->', r)
+    except Exception as e:
+        print(f'pure_VLE_T(373.15 K, {label}) fallo:', str(e)[:300])
+EOF
+pure_VLE_T(240 K, [1,0]) -> [32956.95707555    62.34394129]
+pure_VLE_T(240 K, [0,1]) fallo: Tillner-Roth model cannot accept mole fraction of zero
+pure_VLE_T(373.15 K, [1,0]) -> [26813.07296552  3295.12833637]
+pure_VLE_T(373.15 K, [0,1]) fallo: Tillner-Roth model cannot accept mole fraction of zero
+[0m
+La firma funciona pero los valores no cuadran con NH3/H2O a primera vista. Verifico contra CoolProp (valores de referencia de puros) qué componente es el índice 0:
+[0m$ [0mpython - <<'EOF'
+import CoolProp.CoolProp as CP
+for fld in ['Ammonia', 'Water']:
+    for T in [240.0, 373.15]:
+        try:
+            ps = CP.PropsSI('P', 'T', T, 'Q', 0, fld)
+            print(f'{fld} Psat({T} K) = {ps:.6g} Pa')
+        except Exception as e:
+            print(f'{fld} Psat({T} K) fallo:', str(e)[:100])
+    # Tsat a 101325 Pa
+    print(f'{fld} Tsat(101325 Pa) = {CP.PropsSI("T","P",101325.0,"Q",0,fld):.4f} K')
+EOF
+Ammonia Psat(240.0 K) = 102171 Pa
+Ammonia Psat(373.15 K) = 6.25512e+06 Pa
+Ammonia Tsat(101325 Pa) = 239.8343 K
+Water Psat(240.0 K) = 37.6149 Pa
+Water Psat(373.15 K) = 101418 Pa
+Water Tsat(101325 Pa) = 373.1243 K
+[0m
+Los resultados de `pure_VLE_T` no cuadran con ningún puro — verifico la coherencia interna del retorno y pruebo semillas distintas:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+
+# Verificar coherencia: si pure_VLE_T(240,[1,0]) -> (32957 Pa, rhoV=62.34),
+# get_pr(240, [62.34, 0]) debe dar ~32957 Pa  (si indice 0 es la componente pura)
+rhoV0 = 62.34394129
+print('get_pr(240, [62.34, 0]):', m.get_pr(240.0, np.array([rhoV0, 0.0])))
+# y el liquido: buscar rhoL tal que get_pr(240,[r,0]) ~ 32957 Pa con r grande
+for r in [30000, 40000, 38000, 35000]:
+    print(f'  get_pr(240, [{r}, 0]):', m.get_pr(240.0, np.array([r, 0.0])))
+
+# Semillas distintas para pure_VLE_T
+for (rL, rV) in [(40000.0, 10.0), (44000.0, 30.0), (45000.0, 50.0), (50000.0, 5.0)]:
+    try:
+        r = m.pure_VLE_T(240.0, rL, rV, 500, np.array([1.0, 0.0]))
+        print(f'pure_VLE_T(240, rhoL={rL}, rhoV={rV}, [1,0]) ->', r)
+    except Exception as e:
+        print(f'pure_VLE_T(240, rhoL={rL}, rhoV={rV}, [1,0]) fallo:', str(e)[:150])
+EOF
+get_pr(240, [62.34, 0]): -4032.2660356859446
+  get_pr(240, [30000, 0]): 1492975028.446246
+  get_pr(240, [40000, 0]): -80798721.37187381
+  get_pr(240, [38000, 0]): -131887167.70774308
+  get_pr(240, [35000, 0]): -153980854.78167546
+pure_VLE_T(240, rhoL=40000.0, rhoV=10.0, [1,0]) -> [40031.8131071     52.66742676]
+pure_VLE_T(240, rhoL=44000.0, rhoV=30.0, [1,0]) -> [40031.8131071     52.66742676]
+pure_VLE_T(240, rhoL=45000.0, rhoV=50.0, [1,0]) -> [40031.8131071     52.66742676]
+pure_VLE_T(240, rhoL=50000.0, rhoV=5.0, [1,0]) -> [40031.8131071     52.66742676]
+[0m
+El par retornado por `pure_VLE_T` parece ser densidades (rhoL, rhoV) de saturación, y cuadran con NH3 (índice 0). Lo verifico contra CoolProp y determino la semántica de `get_pr`:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+import CoolProp.CoolProp as CP
+m = teqp.AmmoniaWaterTillnerRoth()
+
+# Densidades de saturacion de NH3 y H2O via CoolProp, para comparar con pure_VLE_T
+for fld, T in [('Ammonia', 240.0), ('Ammonia', 373.15), ('Water', 373.15)]:
+    rhoL = CP.PropsSI('DMOLAR', 'T', T, 'Q', 0, fld)   # mol/m3
+    rhoV = CP.PropsSI('DMOLAR', 'T', T, 'Q', 1, fld)
+    print(f'{fld} sat dens @ {T} K: rhoL={rhoL:.1f} rhoV={rhoV:.4f} mol/m3')
+
+# pure_VLE_T retorna? verificar contra get_pr: rhoV de [1,0]@373.15 = 3295
+r = m.pure_VLE_T(373.15, 30000.0, 10.0, 500, np.array([1.0, 0.0]))
+print('pure_VLE_T(373.15,[1,0]) ->', r)
+print('get_pr(373.15, [3295, 0]):', m.get_pr(373.15, np.array([3295.12833637, 0.0])))
+print('NH3 Psat CoolProp@373.15:', CP.PropsSI('P','T',373.15,'Q',0,'Ammonia'))
+print('get_pr(500, [1000, 0]):', m.get_pr(500.0, np.array([1000.0, 0.0])))
+print('get_pr(500, [0, 1000]):', m.get_pr(500.0, np.array([0.0, 1000.0])))
+print('IG P = R*T*rho =', 8.314471*500.0*1000.0)
+EOF
+Ammonia sat dens @ 240.0 K: rhoL=40012.3 rhoV=52.6654 mol/m3
+Ammonia sat dens @ 373.15 K: rhoL=26823.0 rhoV=3294.7820 mol/m3
+Water sat dens @ 373.15 K: rhoL=53196.5 rhoV=33.2035 mol/m3
+pure_VLE_T(373.15,[1,0]) -> [26813.07296552  3295.12833637]
+get_pr(373.15, [3295, 0]): -3968014.461539955
+NH3 Psat CoolProp@373.15: 6255124.503032476
+get_pr(500, [1000, 0]): -251910.98744992827
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+RuntimeError: Tillner-Roth model cannot accept mole fraction of zero
+[0m
+`get_pr` con densidad parcial nula da presiones negativas — sospechoso. Pruebo con fracciones no nulas para entender la semántica:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+
+tests = [
+    (373.15, np.array([3295.13*0.999, 3295.13*0.001])),   # casi puro NH3, vapor
+    (373.15, np.array([3295.13*0.5, 3295.13*0.5])),
+    (500.0,  np.array([999.0, 1.0])),                     # casi puro NH3 gas
+    (300.0,  np.array([27500.0, 27500.0])),               # liquido comprimido z=0.5
+]
+for T, rhovec in tests:
+    try:
+        print(f'get_pr({T}, rho_tot={rhovec.sum():.2f}, z={rhovec/rhovec.sum()}) = {m.get_pr(T, rhovec)} Pa')
+    except Exception as e:
+        print('fallo:', str(e)[:120])
+EOF
+get_pr(373.15, rho_tot=3295.13, z=[0.999 0.001]) = -3977772.9185839635 Pa
+get_pr(373.15, rho_tot=3295.13, z=[0.5 0.5]) = -29383588848.66878 Pa
+get_pr(500.0, rho_tot=1000.00, z=[0.999 0.001]) = -252454.24636251255 Pa
+get_pr(300.0, rho_tot=55000.00, z=[0.5 0.5]) = 594274809.2416804 Pa
+[0m
+`get_pr` da resultados raros en fase vapor. Reviso la documentación local del paquete teqp (stubs/docstrings) antes de seguir:
+[0m$ [0mpython - <<'EOF'
+import teqp, os
+print(teqp.__file__)
+d = os.path.dirname(teqp.__file__)
+for root, dirs, files in os.walk(d):
+    for f in files:
+        if f.endswith(('.pyi', '.py', '.md', '.txt', '.rst')):
+            print(os.path.join(root, f))
+EOF
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\teqp\__init__.py
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\teqp\__init__.py
+[0m
+[0m◈ [0mExa Web Search "teqp AmmoniaWaterTillnerRoth get_pr rhovec pressure partial density mol/m3"
+La doc oficial confirma `get_pr(T, rhovec)` con rhovec = vector. Pruebo la interpretación de unidades con el punto crítico del NH3 (referencia: Tc=405.4 K, Pc=11.333 MPa, rhoc=13696 mol/m³):
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+
+# Punto critico NH3 (referencia): T=405.4, P=11.333 MPa, rho=13696 mol/m3
+for label, rhovec in [
+    ('[13696, 0] mol/m3', np.array([13696.0, 0.0])),
+    ('[13.696, 0] mol/L', np.array([13.696, 0.0])),
+    ('[1.3696e7, 0] mmol/m3', np.array([1.3696e7, 0.0])),
+    ('[6850, 6850] split', np.array([6850.0, 6850.0])),
+]:
+    try:
+        print(f'get_pr(405.4, {label}) = {m.get_pr(405.4, rhovec):.6g} Pa')
+    except Exception as e:
+        print(f'get_pr(405.4, {label}) fallo: {str(e)[:130]}')
+
+# Sat NH3 a 373.15: rhoL=26823, rhoV=3295 (CoolProp)
+for label, rhovec in [
+    ('[26823, 0]', np.array([26823.0, 0.0])),
+    ('[26.823, 0]', np.array([26.823, 0.0])),
+    ('[0.999*3295, 0.001*3295]', np.array([3295.13*0.999, 3295.13*0.001])),
+]:
+    try:
+        print(f'get_pr(373.15, {label}) = {m.get_pr(373.15, rhovec):.6g} Pa  (Psat NH3=6.256 MPa)')
+    except Exception as e:
+        print(f'get_pr(373.15, {label}) fallo: {str(e)[:130]}')
+EOF
+get_pr(405.4, [13696, 0] mol/m3) = -3.48261e+07 Pa
+get_pr(405.4, [13.696, 0] mol/L) = -69.2633 Pa
+get_pr(405.4, [1.3696e7, 0] mmol/m3) = 2.54499e+46 Pa
+get_pr(405.4, [6850, 6850] split) = -7.97571e+11 Pa
+get_pr(373.15, [26823, 0]) = -7.69308e+07 Pa  (Psat NH3=6.256 MPa)
+get_pr(373.15, [26.823, 0]) = -304.436 Pa  (Psat NH3=6.256 MPa)
+get_pr(373.15, [0.999*3295, 0.001*3295]) = -3.97777e+06 Pa  (Psat NH3=6.256 MPa)
+[0m
+`get_pr` no funciona de forma fiable en este modelo — reviso la semántica de `get_Ar10`/`get_Ar01` (derivadas de Helmholtz) en la documentación de teqp para calcular la presión manualmente:
+[0m◈ [0mExa Web Search "teqp "get_Ar10" "get_Ar01" derivative alpha residual Helmholtz definition "get_Ar00""
+Información clave: `get_pr` es la presión **residual** (P_total = R·T·ρ + get_pr), `mix_VLE_Tx` toma semillas como vectores de densidad parcial y `xspec` como array. Verifico la fórmula de presión total contra el punto crítico y exploro el flash:
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+R = m.get_R(np.array([0.5,0.5]))
+
+def P_total(T, rhovec):
+    """P total [Pa] = R*T*rho_tot + P_residual"""
+    return R*T*rhovec.sum() + m.get_pr(T, rhovec)
+
+# Critico NH3: T=405.4, rho=13696, P=11.333 MPa
+Pc = P_total(405.4, np.array([13696.0, 0.0]))
+print('P total NH3 critico:', Pc/1e6, 'MPa (ref 11.333)')
+
+# Sat NH3 373.15: rhoV=3295.13 -> P ~ 6.256 MPa
+print('P total NH3 vapor sat 373.15:', P_total(373.15, np.array([3295.13, 0.0]))/1e6, 'MPa (ref 6.256)')
+print('P total NH3 liquido sat 373.15:', P_total(373.15, np.array([26823.1, 0.0]))/1e6, 'MPa (ref 6.256)')
+
+# Sat NH3 240 K: rhoV=52.67, rhoL=40031.8 -> P ~ 0.102 MPa
+print('P total NH3 vapor sat 240:', P_total(240.0, np.array([52.67, 0.0]))/1e6, 'MPa (ref 0.1022)')
+print('P total NH3 liq sat 240:', P_total(240.0, np.array([40031.8, 0.0]))/1e6, 'MPa (ref 0.1022)')
+
+# Mezcla: flash mix_VLE_Tx en T=420 z=[0.5,0.5]
+z = np.array([0.5, 0.5])
+rhoL0 = np.array([22161.5, 22161.5])       # semillas crudas (lo de hoy)
+rhoV0 = z * 420.0*0  # placeholder
+# usar seed simple de gas ideal
+rhoV0 = z * (3.0e6/(R*420.0))
+out = m.mix_VLE_Tx(420.0, rhoL0, rhoV0, z, 1e-10, 1e-10, 1e-10, 1e-10, 400)
+print('mix_VLE_Tx code:', out[0])
+print('  rhovecL:', out[1], ' compL:', out[1]/out[1].sum())
+print('  rhovecV:', out[2], ' compV:', out[2]/out[2].sum())
+PL = P_total(420.0, out[1]); PV = P_total(420.0, out[2])
+print('  P(L)=', PL/1e6, 'MPa  P(V)=', PV/1e6, 'MPa')
+EOF
+P total NH3 critico: 11.338808512551754 MPa (ref 11.333)
+P total NH3 vapor sat 373.15: 6.255270489946217 MPa (ref 6.256)
+P total NH3 liquido sat 373.15: 6.289050067358613 MPa (ref 6.256)
+P total NH3 vapor sat 240: 0.10223055391045198 MPa (ref 0.1022)
+P total NH3 liq sat 240: 0.10177855927290022 MPa (ref 0.1022)
+mix_VLE_Tx code: VLE_return_code.notfinite_step
+  rhovecL: [20023.04726758 20023.04726758]  compL: [0.5 0.5]
+  rhovecV: [-10.18412004 663.24371305]  compV: [-0.01559447  1.01559447]
+  P(L)= 17.21731283622396 MPa  P(V)= nan MPa
+[0m
+Fórmula de presión total confirmada (Pc NH3: 11.339 vs 11.333 MPa; saturaciones reproducidas). El flash no converge con semillas crudas. Desarrollo semillas mejor y pruebo `mix_VLE_Tx` contra el motor:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, CoolProp.CoolProp as CP
+m = teqp.AmmoniaWaterTillnerRoth()
+R = m.get_R(np.array([0.5,0.5]))
+
+def P_total(T, rhovec):
+    return R*T*rhovec.sum() + m.get_pr(T, rhovec)
+
+# get_reducing_density / get_rhor
+z = np.array([0.5, 0.5])
+try:
+    print('get_reducing_density([1,0]):', m.get_reducing_density(np.array([1.0,0.0])))
+    print('get_reducing_density([0.5,0.5]):', m.get_reducing_density(z))
+except Exception as e:
+    print('get_reducing_density fallo:', str(e)[:150])
+
+# Densidades de saturacion puras CoolProp para semillas
+def rhoL_pure(T, fld, Tc, rhoc):
+    try:
+        return CP.PropsSI('DMOLAR','T',T,'Q',0,fld)
+    except Exception:
+        return rhoc
+def rhoV_pure(T, fld):
+    try:
+        return CP.PropsSI('DMOLAR','T',T,'Q',1,fld)
+    except Exception:
+        return 1.0
+
+for (T, P_MPa) in [(420.0, 3.0), (360.0, 0.4), (480.0, 3.0)]:
+    rhoL = z[0]*rhoL_pure(T,'Ammonia',405.4,13211.8) + z[1]*rhoL_pure(T,'Water',647.1,17873.7)
+    rhoV = z[0]*rhoV_pure(T,'Ammonia') + z[1]*rhoV_pure(T,'Water')
+    rhoV0 = max(rhoV, P_MPa*1e6/(R*T)*0.9)
+    rhovecL0, rhovecV0 = z*rhoL, z*rhoV0
+    out = m.mix_VLE_Tx(T, rhovecL0, rhovecV0, z, 1e-10, 1e-10, 1e-10, 1e-10, 400)
+    code, rL, rV = out[0], out[1], out[2]
+    print(f'T={T} z=0.5 code={code}')
+    print(f'  compL={rL/rL.sum()} compV={rV/rV.sum()}')
+    print(f'  P(L)={P_total(T,rL)/1e6:.4f} MPa  P(V)={P_total(T,rV)/1e6:.4f} MPa')
+EOF
+get_reducing_density([1,0]): 13211.777154312384
+get_reducing_density([0.5,0.5]): 14142.874969199209
+T=420.0 z=0.5 code=VLE_return_code.notfinite_step
+  compL=[-0.56069064  1.56069064] compV=[2.00440523e-08 9.99999980e-01]
+  P(L)=nan MPa  P(V)=19520782294343146520625474487517495462593573872770062181090246503365513347841654784.0000 MPa
+T=360.0 z=0.5 code=VLE_return_code.xtol_satisfied
+  compL=[0.5 0.5] compV=[0.53358416 0.46641584]
+  P(L)=-0.6166 MPa  P(V)=-0.6166 MPa
+T=480.0 z=0.5 code=VLE_return_code.xtol_satisfied
+  compL=[0.5 0.5] compV=[0.84081549 0.15918451]
+  P(L)=11.1828 MPa  P(V)=11.1828 MPa
+[0m
+La presión de saturación de teqp (-0.62 MPa @360K, 11.18 MPa @480K) no parece plausible — cruzo contra el motor iapws en los mismos estados:
+[0m$ [0mpython - <<'EOF'
+import sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+
+# Motor: bubbleP(T, x_molar) -> P [MPa], dewP(T, x) -> P [MPa]
+for T in [360.0, 420.0, 480.0]:
+    Pb, yb, okb = ng.bubbleP(T, 0.5)
+    Pd, yd, okd = ng.dewP(T, 0.5)
+    print(f'T={T}: P_burbuja={Pb:.6f} MPa (y={yb:.4f}, ok={okb})  P_rocio={Pd:.6f} MPa (x={yd:.4f}, ok={okd})')
+# Tsat puras a 3 MPa y 0.4 MPa para contexto
+print('Tsat_pure(3.0 MPa):', ng.Tsat_pure(3.0))
+print('Tsat_pure(0.4 MPa):', ng.Tsat_pure(0.4))
+EOF
+T=360.0: P_burbuja=1.695253 MPa (y=0.9841, ok=True)  P_rocio=0.118169 MPa (x=0.0555, ok=True)
+T=420.0: P_burbuja=5.121217 MPa (y=0.9425, ok=True)  P_rocio=0.830020 MPa (x=0.0855, ok=True)
+T=480.0: P_burbuja=11.182789 MPa (y=0.8408, ok=True)  P_rocio=3.479022 MPa (x=0.1326, ok=True)
+Tsat_pure(3.0 MPa): (338.8749157753969, 507.00310667225216)
+Tsat_pure(0.4 MPa): (271.2693295293085, 416.75835925510785)
+[0m
+El flash convergió EXACTO al punto de burbuja del motor a 480 K (11.1828 MPa, y=0.8408), pero a 360 K cayó en una raíz espuria negativa. Necesito semillas líquidas confiables. Examino las densidades reales del líquido saturado y las opciones de teqp:
+[0m$ [0mpython - <<'EOF'
+import teqp
+print('MixVLETpFlags:', teqp.MixVLETpFlags)
+print()
+print('MixVLEReturn:', teqp.MixVLEReturn)
+print()
+# opciones de PVLEOptions / TVLEOptions
+for name in ['PVLEOptions', 'TVLEOptions']:
+    o = getattr(teqp, name, None)
+    print(name, ':', o)
+    if o is not None:
+        items = o.__dict__ if hasattr(o,'__dict__') else [x for x in dir(o) if not x.startswith('_')]
+        print('   ->', items)
+EOF
+MixVLETpFlags: <class 'teqp.teqp.MixVLETpFlags'>
+
+MixVLEReturn: <class 'teqp.teqp.MixVLEReturn'>
+
+PVLEOptions : <class 'teqp.teqp.PVLEOptions'>
+   -> {'__init__': <instancemethod __init__ at 0x000002411240AAD0>, '__doc__': None, '__module__': 'teqp.teqp', '_pybind11_conduit_v1_': <instancemethod _pybind11_conduit_v1_ at 0x00000241124289A0>, 'abs_err': <property object at 0x0000024112546BB0>, 'rel_err': <property object at 0x0000024112546D40>, 'init_dt': <property object at 0x0000024112546ED0>, 'init_c': <property object at 0x0000024112547060>, 'max_dt': <property object at 0x00000241125471F0>, 'crit_termination': <property object at 0x0000024112547380>, 'max_steps': <property object at 0x0000024112547510>, 'integration_order': <property object at 0x00000241125476A0>, 'polish': <property object at 0x0000024112547830>, 'polish_reltol_rho': <property object at 0x00000241125479C0>, 'polish_exception_on_fail': <property object at 0x0000024112547B50>, 'verbosity': <property object at 0x0000024112547CE0>, 'calc_criticality': <property object at 0x0000024112547E70>, 'terminate_unstable': <property object at 0x0000024112550040>}
+TVLEOptions : <class 'teqp.teqp.TVLEOptions'>
+   -> {'__init__': <instancemethod __init__ at 0x00000241124282B0>, '__doc__': None, '__module__': 'teqp.teqp', '_pybind11_conduit_v1_': <instancemethod _pybind11_conduit_v1_ at 0x00000241124282E0>, 'abs_err': <property object at 0x00000241125452B0>, 'rel_err': <property object at 0x0000024112545440>, 'init_dt': <property object at 0x00000241125455D0>, 'init_c': <property object at 0x0000024112545760>, 'max_dt': <property object at 0x00000241125458F0>, 'p_termination': <property object at 0x0000024112545A80>, 'crit_termination': <property object at 0x0000024112545C10>, 'max_steps': <property object at 0x0000024112545DA0>, 'integration_order': <property object at 0x0000024112545F30>, 'polish': <property object at 0x00000241125460C0>, 'polish_reltol_rho': <property object at 0x0000024112546250>, 'polish_exception_on_fail': <property object at 0x00000241125463E0>, 'verbosity': <property object at 0x0000024112546570>, 'calc_criticality': <property object at 0x0000024112546700>, 'terminate_unstable': <property object at 0x0000024112546890>}
+[0m
+[0m$ [0mpython - <<'EOF'
+import sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+import numpy as np
+
+# Densidad real del liquido saturado (motor) en el punto de burbuja
+for T in [360.0, 420.0, 480.0]:
+    Pb, yb, ok = ng.bubbleP(T, 0.5)
+    rL = ng.rho_TPx(T, Pb, 0.5, 'l')
+    rV = ng.rho_TPx(T, Pb, yb, 'v')
+    print(f'T={T}: P_bub={Pb:.4f} MPa  rhoL_sat={rL:.1f} mol/m3  rhoV_sat={rV:.2f} mol/m3')
+EOF
+T=360.0: P_bub=1.6953 MPa  rhoL_sat=43.7 mol/m3  rhoV_sat=0.63 mol/m3
+T=420.0: P_bub=5.1212 MPa  rhoL_sat=39.4 mol/m3  rhoV_sat=1.81 mol/m3
+T=480.0: P_bub=11.1828 MPa  rhoL_sat=33.3 mol/m3  rhoV_sat=4.22 mol/m3
+[0m
+Las unidades del motor son mol/dm³ (43.7 mol/dm³ = 43 700 mol/m³). Mapeo la isoterma P(ρ) del modelo teqp a 360 K para diagnosticar por qué la semilla líquida cayó en la raíz espuria:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+
+def P_tot(T, rho_tot, zz=z):
+    return R*T*rho_tot + m.get_pr(T, rho_tot*zz)
+
+T = 360.0
+print('Isoterma T=360 K, z=0.5:')
+for rho in [0.1, 1, 10, 50, 100, 200, 300, 400, 500, 600, 630, 650, 700, 800, 1000, 2000, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 43000, 43700, 44000, 45000, 48000, 50000, 55000]:
+    try:
+        P = P_tot(T, rho)/1e6
+        print(f'  rho={rho:7.1f}: P={P:9.4f} MPa')
+    except Exception as e:
+        print(f'  rho={rho:7.1f}: fallo {str(e)[:80]}')
+EOF
+Isoterma T=360 K, z=0.5:
+  rho=    0.1: P=   0.0003 MPa
+  rho=    1.0: P=   0.0030 MPa
+  rho=   10.0: P=   0.0298 MPa
+  rho=   50.0: P=   0.1472 MPa
+  rho=  100.0: P=   0.2893 MPa
+  rho=  200.0: P=   0.5569 MPa
+  rho=  300.0: P=   0.7937 MPa
+  rho=  400.0: P=   0.9535 MPa
+  rho=  500.0: P=   0.8803 MPa
+  rho=  600.0: P=   0.1676 MPa
+  rho=  630.0: P=  -0.2853 MPa
+  rho=  650.0: P=  -0.6776 MPa
+  rho=  700.0: P=  -2.0684 MPa
+  rho=  800.0: P=  -7.5276 MPa
+  rho= 1000.0: P= -41.9686 MPa
+  rho= 2000.0: P=-5597.6796 MPa
+  rho= 5000.0: P=-3402630.5940 MPa
+  rho=10000.0: P=-337640148.4335 MPa
+  rho=15000.0: P=761897599.6730 MPa
+  rho=20000.0: P=131709630.5356 MPa
+  rho=25000.0: P=4781.7038 MPa
+  rho=30000.0: P= 293.0133 MPa
+  rho=35000.0: P= -45.7486 MPa
+  rho=40000.0: P= -65.8260 MPa
+  rho=43000.0: P= -17.9218 MPa
+  rho=43700.0: P=   1.6777 MPa
+  rho=44000.0: P=  11.1562 MPa
+  rho=45000.0: P=  47.6605 MPa
+  rho=48000.0: P= 207.8304 MPa
+  rho=50000.0: P= 364.4825 MPa
+  rho=55000.0: P= 995.6650 MPa
+[0m
+La semilla líquida cayó en la rama metaestable negativa (la isoterma tiene un gran lazo de van der Waals). Pruebo semillas en la rama estable comprimida (P≫Psat):
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*rhovec.sum() + m.get_pr(T, rhovec)
+
+T = 360.0
+# Motor: P_bub=1.6953 MPa, y=0.9841
+print('Buscando semillas que converjan al punto de burbuja real (P=1.695 MPa, y=0.9841, rhoL=43700, rhoV~610):')
+for rL in [40000.0, 42000.0, 44000.0, 45000.0, 48000.0, 55000.0]:
+    for rV in [100.0, 300.0, 500.0, 700.0]:
+        out = m.mix_VLE_Tx(T, z*rL, z*rV, z, 1e-10, 1e-10, 1e-10, 1e-10, 400)
+        code = str(out[0])
+        if 'xtol' not in code:
+            continue
+        rLc, rVc = out[1], out[2]
+        PL, PV = P_tot(T, rLc)/1e6, P_tot(T, rVc)/1e6
+        y = rVc/rVc.sum()
+        print(f'  rhoL0={rL:.0f} rhoV0={rV:.0f}: code={code} | P={PL:.4f} MPa y={y[0]:.4f} | rhoL={rLc.sum():.0f} rhoV={rVc.sum():.0f}')
+EOF
+Buscando semillas que converjan al punto de burbuja real (P=1.695 MPa, y=0.9841, rhoL=43700, rhoV~610):
+  rhoL0=48000 rhoV0=500: code=VLE_return_code.xtol_satisfied | P=6969.6382 MPa y=0.5000 | rhoL=68782 rhoV=68782
+[0m
+`mix_VLE_Tx` converge a raíces triviales con casi todas las semillas a 360 K. Pruebo la alternativa robusta: `trace_VLE_isobar_binary` (traza toda la campana a P fija, con continuación interna):
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+import inspect
+try:
+    print(inspect.signature(m.trace_VLE_isobar_binary))
+except Exception as e:
+    print('sin firma:', e)
+
+# Probar: p en Pa? Tstart? options?
+opts = teqp.PVLEOptions()
+opts.max_steps = 500
+opts.polish = True
+try:
+    r = m.trace_VLE_isobar_binary(3.0e6, 450.0, opts)
+    print('keys:', sorted(r.keys()))
+    for k in sorted(r.keys()):
+        v = r[k]
+        if isinstance(v, np.ndarray):
+            print(f'  {k}: ndarray len={len(v)}', 'primero/ultimo:', v[0], v[-1])
+        else:
+            print(f'  {k}: {v}')
+except Exception as e:
+    print('fallo trace:', str(e)[:300])
+EOF
+sin firma: no signature found for builtin <built-in method trace_VLE_isobar_binary of PyCapsule object at 0x000001D17B4374C0>
+fallo trace: trace_VLE_isobar_binary(): incompatible function arguments. The following argument types are supported:
+    1. (self: teqp.teqp.AbstractModel, p: float, T0: float, rhovecL0: numpy.ndarray[numpy.float64[m, 1]], rhovecV0: numpy.ndarray[numpy.float64[m, 1]], options: Optional[teqp.teqp.PVLEOptions] = N
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+opts = teqp.PVLEOptions()
+opts.max_steps = 1000
+opts.polish = True
+opts.verbosity = 0
+
+for (T0, rho0) in [(500.0, 14000.0), (506.0, 14000.0), (495.0, 13000.0), (507.0, 13500.0)]:
+    z0 = np.array([0.5, 0.5])
+    try:
+        r = m.trace_VLE_isobar_binary(3.0e6, T0, z0*rho0, z0*rho0, opts)
+        keys = sorted(r.keys())
+        n = len(r['T']) if 'T' in r else 0
+        print(f'T0={T0} rho0={rho0}: n={n}')
+        for k in keys:
+            v = r[k]
+            if isinstance(v, np.ndarray):
+                print(f'   {k}: {v[0]:.4g} ... {v[-1]:.4g} ({len(v)})')
+            else:
+                print(f'   {k}: {v}')
+        break
+    except Exception as e:
+        print(f'T0={T0} rho0={rho0} fallo:', str(e)[:160])
+EOF
+T0=500.0 rho0=14000.0 fallo: 'list' object has no attribute 'keys'
+T0=506.0 rho0=14000.0 fallo: 'list' object has no attribute 'keys'
+T0=495.0 rho0=13000.0 fallo: 'list' object has no attribute 'keys'
+T0=507.0 rho0=13500.0 fallo: 'list' object has no attribute 'keys'
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+opts = teqp.PVLEOptions()
+opts.max_steps = 1000
+opts.polish = True
+opts.verbosity = 0
+z0 = np.array([0.5, 0.5])
+r = m.trace_VLE_isobar_binary(3.0e6, 500.0, z0*14000.0, z0*14000.0, opts)
+print('type:', type(r), 'len:', len(r))
+if len(r) > 0:
+    print('r[0] type:', type(r[0]))
+    print('r[0]:', r[0])
+EOF
+type: <class 'list'> len: 1001
+r[0] type: <class 'dict'>
+r[0]: {'T / K': 500.0, 'c': 1.0, 'drho/dt': [0.0075526824467667215, -0.7071067811865476, 0.0, -0.7071067811865475, -0.0], 'dt': 1e-05, 'pL / Pa': -148908922.02844822, 'pV / Pa': -148908922.02844822, 'rhoL / mol/m^3': [7000.0, 7000.0], 'rhoV / mol/m^3': [7000.0, 7000.0], 't': 0.0, 'xL_0 / mole frac.': 0.5, 'xV_0 / mole frac.': 0.5}
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+opts = teqp.PVLEOptions()
+opts.max_steps = 2000
+opts.polish = True
+opts.verbosity = 0
+z0 = np.array([0.5, 0.5])
+r = m.trace_VLE_isobar_binary(3.0e6, 500.0, z0*14000.0, z0*14000.0, opts)
+Ts = np.array([d['T / K'] for d in r])
+xL = np.array([d['xL_0 / mole frac.'] for d in r])
+xV = np.array([d['xV_0 / mole frac.'] for d in r])
+rL = np.array([d['rhoL / mol/m^3'][0] for d in r])
+rV = np.array([d['rhoV / mol/m^3'][0] for d in r])
+pL = np.array([d['pL / Pa'] for d in r])
+pV = np.array([d['pV / Pa'] for d in r])
+print('n =', len(r))
+print('T range:', Ts.min(), '...', Ts.max())
+print('xL range:', xL.min(), '...', xL.max(), ' xV range:', xV.min(), '...', xV.max())
+print('pL range: %.4g ... %.4g MPa' % (pL.min()/1e6, pL.max()/1e6))
+# motor: bubbleT(3.0, 0.5molar) y dewT(3.0, 0.5molar)
+import sys; sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+Tb, yb, ok = ng.bubbleT(3.0, 0.5)
+Td, xd, ok2 = ng.dewT(3.0, 0.5)
+print('motor: Tbub(3MPa,0.5)=', Tb, ' Tdew(3MPa,0.5)=', Td, ' (y=', yb, ' xL=', xd, ')')
+EOF
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+n = 2001
+T range: 500.0 ... 527.4768089410538
+xL range: 0.4392159819750645 ... 0.5  xV range: 0.43921598197506534 ... 0.5
+pL range: -148.9 ... 3 MPa
+motor: Tbub(3MPa,0.5)= 388.1687060040146  Tdew(3MPa,0.5)= 473.0332988714768  (y= 0.9697136419822207  xL= 0.12575247800768996 )
+[0m
+La traza isobárica también requiere semillas en el punto crítico. Busco ejemplos reales de uso de `mix_VLE_Tx` en la documentación/recetas de teqp:
+[0m◈ [0mExa Web Search "teqp "mix_VLE_Tx" example python ammonia water OR mixture VLE rhovecL0 rhovecV0"
+La doc confirma: `xspec` = composición de la fase LÍQUIDA (flash de burbuja), y existe `mixture_VLE_px` (resuelve T directamente a P y x fijos). Pruebo ambos con las semillas oficiales (densidades de saturación del puro NH3 escaladas por z):
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*rhovec.sum() + m.get_pr(T, rhovec)
+
+def seed_puro_NH3(T):
+    """Semilla oficial: densidades de saturacion del NH3 puro via pure_VLE_T, escaladas por z."""
+    rhoL, rhoV = m.pure_VLE_T(T, 40000.0, 20.0, 500, np.array([1.0, 0.0]))
+    return rhoL, rhoV
+
+print('== mix_VLE_Tx con semillas "puro NH3 escalado" ==')
+for T in [360.0, 420.0, 480.0]:
+    try:
+        rhoL, rhoV = seed_puro_NH3(T)
+        rhovecL0 = z*rhoL; rhovecV0 = z*rhoV
+        out = m.mix_VLE_Tx(T, rhovecL0, rhovecV0, z, 1e-10, 1e-10, 1e-10, 1e-10, 100)
+        code, rL, rV = str(out[0]), out[1], out[2]
+        PL = P_tot(T, rL)/1e6
+        print(f'T={T}: code={code} P_bub={PL:.4f} MPa y={rV/rV.sum():.4f} rhoL={rL.sum():.0f} rhoV={rV.sum():.0f}')
+    except Exception as e:
+        print(f'T={T}: fallo {str(e)[:120]}')
+
+print()
+print('== mixture_VLE_px (burbuja y rocio directos) ==')
+# motor de referencia
+Tb, yb, _ = ng.bubbleT(3.0, 0.5); Td, xd, _ = ng.dewT(3.0, 0.5)
+print(f'motor: bubbleT(3MPa,0.5)={Tb:.4f} K (esp y={yb:.4f}); dewT(3MPa,0.5)={Td:.4f} K (esp xL={xd:.4f})')
+for p, T0 in [(3.0e6, 450.0), (0.4e6, 350.0)]:
+    for label, xspec in [('bub(z=0.5)', z)]:
+        try:
+            r = m.mixture_VLE_px(p, xspec, T0, z*30000.0, z*500.0, None)
+            print(f'P={p/1e6:.1f} MPa {label}: code={r[0]} T_sol={r[1]:.4f} K')
+            rL, rV = r[2], r[3]
+            print(f'    compL={rL/rL.sum():.4f} compV={rV/rV.sum():.4f} P(L)={P_tot(r[1],rL)/1e6:.4f} P(V)={P_tot(r[1],rV)/1e6:.4f} MPa')
+        except Exception as e:
+            print(f'P={p/1e6:.1f} MPa {label}: fallo {str(e)[:150]}')
+EOF
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+== mix_VLE_Tx con semillas "puro NH3 escalado" ==
+T=360.0: fallo unsupported format string passed to numpy.ndarray.__format__
+T=420.0: fallo unsupported format string passed to numpy.ndarray.__format__
+T=480.0: fallo unsupported format string passed to numpy.ndarray.__format__
+
+== mixture_VLE_px (burbuja y rocio directos) ==
+motor: bubbleT(3MPa,0.5)=388.1687 K (esp y=0.9697); dewT(3MPa,0.5)=473.0333 K (esp xL=0.1258)
+P=3.0 MPa bub(z=0.5): code=VLE_return_code.notfinite_step T_sol=452.5299 K
+P=3.0 MPa bub(z=0.5): fallo unsupported format string passed to numpy.ndarray.__format__
+P=0.4 MPa bub(z=0.5): code=VLE_return_code.xtol_satisfied T_sol=409.9265 K
+P=0.4 MPa bub(z=0.5): fallo unsupported format string passed to numpy.ndarray.__format__
+[0m
+Error de formato en f-strings (numpy). Corrijo y comparo contra los valores del motor en ambas presiones:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+
+print('Motor (referencia):')
+for p in [3.0, 0.4]:
+    Tb, yb, _ = ng.bubbleT(p, 0.5); Td, xd, _ = ng.dewT(p, 0.5)
+    print(f'  P={p} MPa: bubbleT={Tb:.4f} K (y={yb:.4f})  dewT={Td:.4f} K (xL={xd:.4f})')
+
+print()
+print('mixture_VLE_px (xspec=z como LIQUIDO, es decir burbuja):')
+for p in [3.0e6, 0.4e6]:
+    for T0, rLseed, rVseed in [(450.0, 40000.0, 800.0), (380.0, 40000.0, 400.0)]:
+        try:
+            r = m.mixture_VLE_px(p, z, T0, z*rLseed, z*rVseed, None)
+            code, T_sol, rL, rV = r[0], r[1], r[2], r[3]
+            print(f'  P={p/1e6:.1f} MPa T0={T0}: code={code} T_sol={T_sol:.4f} K', end='')
+            print(f'  | compL={float(rL[0]/(rL.sum())):.4f} compV={float(rV[0]/(rV.sum())):.4f} P(L)={P_tot(T_sol,rL)/1e6:.4f} P(V)={P_tot(T_sol,rV)/1e6:.4f} MPa')
+        except Exception as e:
+            print(f'  P={p/1e6:.1f} MPa T0={T0}: fallo {str(e)[:140]}')
+EOF
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+Motor (referencia):
+  P=3.0 MPa: bubbleT=388.1687 K (y=0.9697)  dewT=473.0333 K (xL=0.1258)
+  P=0.4 MPa: bubbleT=306.6154 K (y=0.9963)  dewT=395.0751 K (xL=0.0715)
+
+mixture_VLE_px (xspec=z como LIQUIDO, es decir burbuja):
+  P=3.0 MPa T0=450.0: code=VLE_return_code.notfinite_step T_sol=442.3665 K  | compL=0.5000 compV=1.1044 P(L)=14.5016 P(V)=3.0134 MPa
+  P=3.0 MPa T0=380.0: code=VLE_return_code.notfinite_step T_sol=391.1193 K  | compL=0.5000 compV=1.0593 P(L)=77.2565 P(V)=2.9780 MPa
+  P=0.4 MPa T0=450.0: code=VLE_return_code.notfinite_step T_sol=393.6839 K  | compL=0.5000 compV=13.2161 P(L)=-1.9677 P(V)=nan MPa
+  P=0.4 MPa T0=380.0: code=VLE_return_code.notfinite_step T_sol=375.7336 K  | compL=0.5000 compV=-11.0962 P(L)=42.0117 P(V)=nan MPa
+[0m
+`mixture_VLE_px` tampoco converge de forma confiable con estas semillas. Reintento `mix_VLE_Tx` con las semillas de la receta oficial (densidades de saturación del NH3 puro vía `pure_VLE_T` a la misma T, escaladas por z), con el formato corregido:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+
+def seed_puro_NH3(T):
+    rL, rV = m.pure_VLE_T(T, 40000.0, 20.0, 500, np.array([1.0, 0.0]))
+    return np.array([float(rL), float(rV)])
+
+print('Motor:')
+for T in [360.0, 420.0, 480.0]:
+    Pb, yb, ok = ng.bubbleP(T, 0.5)
+    print(f'  T={T}: P_bub={Pb:.4f} MPa y={yb:.6f}')
+
+print()
+print('mix_VLE_Tx semilla=puro NH3 escalado:')
+for T in [360.0, 420.0, 480.0]:
+    rhoL, rhoV = seed_puro_NH3(T)
+    rhovecL0 = z*rhoL; rhovecV0 = z*rhoV
+    try:
+        out = m.mix_VLE_Tx(T, rhovecL0, rhovecV0, z, 1e-10, 1e-10, 1e-10, 1e-10, 300)
+        code, rL, rV = str(out[0]), out[1], out[2]
+        PL = P_tot(T, rL)/1e6; PV = P_tot(T, rV)/1e6
+        compL = float(rL[0]/rL.sum()); compV = float(rV[0]/rV.sum())
+        print(f'  T={T}: seed rhoL={rhoL:.0f} rhoV={rhoV:.2f} | code={code}')
+        print(f'     P(L)={PL:.4f} MPa P(V)={PV:.4f}  compL={compL:.4f} compV={compV:.4f}  rhoL={rL.sum():.0f} rhoV={rV.sum():.0f}')
+    except Exception as e:
+        print(f'  T={T}: fallo {str(e)[:140]}')
+EOF
+Motor:
+  T=360.0: P_bub=1.6953 MPa y=0.984082
+  T=420.0: P_bub=5.1212 MPa y=0.942497
+  T=480.0: P_bub=11.1828 MPa y=0.840815
+
+mix_VLE_Tx semilla=puro NH3 escalado:
+  T=360.0: seed rhoL=28788 rhoV=2359.77 | code=VLE_return_code.notfinite_step
+     P(L)=-36.7375 MPa P(V)=-147594746710319954760082673749771889937542108672053450970729184690371012503092618958526988353967783229629192662634995382884675616768.0000  compL=0.5000 compV=1.1556  rhoL=34424 rhoV=-58547
+  T=420.0: seed rhoL=5235 rhoV=5235.00 | code=VLE_return_code.xtol_satisfied
+     P(L)=-1552.1813 MPa P(V)=-1552.1813  compL=0.5000 compV=0.5000  rhoL=5233 rhoV=5233
+  T=480.0: seed rhoL=5131 rhoV=5130.79 | code=VLE_return_code.xtol_satisfied
+     P(L)=7.0274 MPa P(V)=7.0274  compL=0.5000 compV=0.5000  rhoL=5131 rhoV=5131
+[0m
+Pruebo la hipótesis decisiva: ¿converge `mix_VLE_Tx` a 360 K si la semilla es EXACTAMENTE la solución (del motor)? Y en paralelo, una estrategia de semilla líquida autocontenida (cruces de P=0 en el barrido denso):
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+
+T = 360.0
+Pb, yb, ok = ng.bubbleP(T, 0.5)
+rL = ng.rho_TPx(T, Pb, 0.5, 'l') * 1000.0   # mol/m3
+rV = ng.rho_TPx(T, Pb, yb, 'v') * 1000.0
+rhovecL0 = np.array([0.5*rL, 0.5*rL])
+rhovecV0 = np.array([yb*rV, (1-yb)*rV])
+print(f'Semilla EXACTA del motor: P_bub={Pb:.4f} MPa, rhoL={rL:.0f}, rhoV={rV:.1f}, y={yb:.4f}')
+
+out = m.mix_VLE_Tx(T, rhovecL0, rhovecV0, z, 1e-10, 1e-10, 1e-10, 1e-10, 300)
+code, rLc, rVc = str(out[0]), out[1], out[2]
+PL = P_tot(T, rLc)/1e6
+compV = float(rVc[0]/rVc.sum())
+print(f'code={code}  P(L)={PL:.6f} MPa  compV={compV:.6f}')
+print(f'  rhoL={rLc.sum():.2f} (motor {rL:.2f})  rhoV={rVc.sum():.2f} (motor {rV:.2f})')
+EOF
+Semilla EXACTA del motor: P_bub=1.6953 MPa, rhoL=43701, rhoV=626.0, y=0.9841
+code=VLE_return_code.xtol_satisfied  P(L)=1.695253 MPa  compV=0.984082
+  rhoL=43700.58 (motor 43700.58)  rhoV=625.99 (motor 625.99)
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+fl = teqp.MixVLETpFlags()
+print('MixVLETpFlags campos:', [x for x in dir(fl) if not x.startswith('_')])
+EOF
+MixVLETpFlags campos: ['atol', 'axtol', 'maxiter', 'reltol', 'relxtol']
+[0m
+**Hallazgo clave**: con la semilla exacta, `mix_VLE_Tx(360 K)` da EXACTAMENTE el punto de burbuja del motor (1.695253 MPa, y=0.984082) — los dos modelos coinciden a precisión de máquina (ambos son G4-01). El problema es solo de semillas. Exploro `mix_VLE_Tp` (flash T,P) y `MixVLETpFlags` para rocío/burbuja:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+
+# mix_VLE_Tp: flash a (T, P) fijos
+def flash_Tp(T, P_Pa, seedL, seedV):
+    fl = teqp.MixVLETpFlags()
+    r = m.mix_VLE_Tp(T, P_Pa, seedL, seedV, fl)
+    return r
+
+# Motor de referencia: flash_TP(T,P) molar -> (xL, xV)
+for (T, P_MPa) in [(420.0, 3.0), (360.0, 1.6953), (420.0, 0.83)]:
+    par = ng.flash_TP(T, P_MPa)
+    print(f'Motor flash_TP({T},{P_MPa}):', par)
+
+# teqp mix_VLE_Tp con seeds
+fl = teqp.MixVLETpFlags()
+for (T, P_MPa) in [(420.0, 3.0), (360.0, 1.6953)]:
+    r = m.mix_VLE_Tp(T, P_MPa*1e6, z*40000.0, z*800.0, fl)
+    print(f'teqp flash_Tp({T},{P_MPa}): rhoL={r.rhoL} rhoV={r.rhoV}')
+    print('   iter:', r.iter, ' message?', dir(r))
+    rl, rv = np.array(r.rhoL), np.array(r.rhoV)
+    print(f'   compL={float(rl[0]/rl.sum()):.4f} compV={float(rv[0]/rv.sum()):.4f} P(L)={P_tot(T, rl)/1e6:.4f} P(V)={P_tot(T, rv)/1e6:.4f}')
+EOF
+Traceback (most recent call last):
+  File "<stdin>", line 18, in <module>
+AttributeError: module 'src.properties._nh3h2o_engine' has no attribute 'flash_TP'
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _kalina_flash as kf
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+
+# Motor de referencia
+for (T, P_MPa) in [(420.0, 3.0), (360.0, 1.6953), (420.0, 0.83)]:
+    par = kf.flash_TP(T, P_MPa)
+    print(f'Motor flash_TP({T},{P_MPa}):', par)
+
+# teqp mix_VLE_Tp
+fl = teqp.MixVLETpFlags()
+for (T, P_MPa) in [(420.0, 3.0), (360.0, 1.6953)]:
+    r = m.mix_VLE_Tp(T, P_MPa*1e6, z*40000.0, z*800.0, fl)
+    rl, rv = np.array(r.rhoL), np.array(r.rhoV)
+    print(f'teqp flash_Tp({T},{P_MPa}): compL={float(rl[0]/rl.sum()):.4f} compV={float(rv[0]/rv.sum()):.4f}')
+    print(f'   P(L)={P_tot(T,rl)/1e6:.4f} P(V)={P_tot(T,rv)/1e6:.4f}  iter={r.iter}')
+EOF
+Motor flash_TP(420.0,3.0): (0.3505675781113534, 0.8890627246074095)
+Motor flash_TP(360.0,1.6953): (0.5000070717260926, 0.9840830804878408)
+Motor flash_TP(420.0,0.83): (0.08545016231754435, 0.49998644559708605)
+Traceback (most recent call last):
+  File "<stdin>", line 19, in <module>
+AttributeError: 'teqp.teqp.MixVLEReturn' object has no attribute 'rhoL'
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp
+m = teqp.AmmoniaWaterTillnerRoth()
+fl = teqp.MixVLETpFlags()
+# inspeccionar MixVLEReturn
+r = m.mix_VLE_Tp(420.0, 3.0e6, np.array([0.5,0.5])*40000.0, np.array([0.5,0.5])*800.0, fl)
+print('atributos MixVLEReturn:', [a for a in dir(r) if not a.startswith('_')])
+print('repr:', r)
+EOF
+atributos MixVLEReturn: ['T', 'initial_r', 'message', 'num_fev', 'num_iter', 'r', 'return_code', 'rhovecL', 'rhovecV', 'success']
+repr: <teqp.teqp.MixVLEReturn object at 0x00000188AADB9430>
+[0m
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _kalina_flash as kf
+m = teqp.AmmoniaWaterTillnerRoth()
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+
+fl = teqp.MixVLETpFlags()
+for (T, P_MPa) in [(420.0, 3.0), (360.0, 1.6953), (420.0, 0.83), (480.0, 3.479)]:
+    r = m.mix_VLE_Tp(T, P_MPa*1e6, z*40000.0, z*800.0, fl)
+    rl, rv = np.array(r.rhovecL), np.array(r.rhovecV)
+    compL = float(rl[0]/rl.sum()); compV = float(rv[0]/rv.sum())
+    print(f'teqp flash_Tp({T},{P_MPa}): ok={r.success} code={r.return_code} iter={r.num_iter}')
+    print(f'   compL={compL:.4f} compV={compV:.4f} | P(L)={P_tot(T,rl)/1e6:.4f} P(V)={P_tot(T,rv)/1e6:.4f} MPa')
+    par = kf.flash_TP(T, P_MPa)
+    print(f'   motor: xL={par[0]:.4f} xV={par[1]:.4f}')
+EOF
+teqp flash_Tp(420.0,3.0): ok=False code=VLE_return_code.unset iter=9
+   compL=1.4238 compV=0.2407 | P(L)=39.0134 P(V)=-18.6324 MPa
+   motor: xL=0.3506 xV=0.8891
+teqp flash_Tp(360.0,1.6953): ok=False code=VLE_return_code.unset iter=9
+   compL=nan compV=nan | P(L)=nan P(V)=nan MPa
+   motor: xL=0.5000 xV=0.9841
+teqp flash_Tp(420.0,0.83): ok=False code=VLE_return_code.unset iter=9
+   compL=nan compV=nan | P(L)=nan P(V)=nan MPa
+   motor: xL=0.0855 xV=0.5000
+teqp flash_Tp(480.0,3.479): ok=False code=VLE_return_code.unset iter=9
+   compL=0.1326 compV=0.5000 | P(L)=3.4790 P(V)=3.4790 MPa
+Traceback (most recent call last):
+  File "<stdin>", line 18, in <module>
+TypeError: 'NoneType' object is not subscriptable
+[0m
+## Objective
+- Validar `teqp` (paquete NIST, `teqp.AmmoniaWaterTillnerRoth()`, mismo modelo Tillner-Roth/IAPWS G4-01) como motor NH3-H2O alternativo **por rendimiento** frente al motor iapws portado (lento: `resolver_ciclo` tarda 8–15+ min).
+- Construir prototipo aislado `src/properties/_teqp_prototipo.py` (h, s, bubble_point, dew_point), cross-validarlo contra `AmmoniaWaterAdapter` en ≥8 puntos (T,P,x) del dominio real, medir tiempos y reportar honestamente si es confiable. **No** es integración al solver; NO tocar archivos existentes.
+
+## Important Details
+- Restricciones: crear solo `src/properties/_teqp_prototipo.py` y `tests/test_teqp_prototipo.py`; cada .py ≤200 líneas; no modificar `ammonia_water_adapter.py` ni nada existente; `requirements.txt`: añadir teqp/CoolProp como comentario opcional.
+- Criterios de aceptación: (1) ≥8 puntos comparados h/s/burbuja/rocío con error relativo explícito; (2) orden de composición confirmado con evidencia; (3) tiempos medidos en los mismos puntos; (4) discrepancias >1% en h/s o >0.5 K en burbuja/rocío reportadas sin suavizar.
+- Unidades: interfaz canónica P en kPa, T en K, h kJ/kg, s kJ/kg·K, x fracción másica de NH3; teqp interno usa Pa/MPa, mol/m³ y fracción molar. Reusar `w2m`/`m2w` de `src/properties/_nh3h2o_engine.py`.
+- `model.get_R(molefrac)` = 8.314471 J/mol·K constante (no asumir 8.314; coincide con R_U del motor).
+- h/s requieren densidad molar resuelta a (T,P,x): **P_total [Pa] = R·T·Σ(rhovec) + get_pr(T, rhovec)** — `get_pr` devuelve presión **RESIDUAL** (confirmado en docs teqp y numéricamente: crítico NH3 11.339 MPa vs 11.333; Psat NH3 373.15 K vapor 6.2553 MPa; 240 K 0.1022 MPa).
+- `pure_VLE_T(T, rhoL, rhoV, max_iter, molefrac)` (max_iter es 4º arg) retorna par **(rhoL_sat, rhoV_sat)** en mol/m³, NO presión; rechaza molefrac=[0,1] ("Tillner-Roth model cannot accept mole fraction of zero"). `get_pr` también rechaza [0,1]; semillas de agua pura deben venir de CoolProp.
+- `mix_VLE_Tx(T, rhovecL0, rhovecV0, xspec, atol, reltol, axtol, relxtol, maxiter)` → (VLE_return_code, rhovecL, rhovecV): semillas = vectores completos de densidad parcial; `xspec` = array de fracciones molares (composición líquida fija ⇒ flash de burbuja). Muy sensible a semillas (ver Blocked).
+- `trace_VLE_isobar_binary(p, T0, rhovecL0, rhovecV0, options=PVLEOptions)` → lista de dicts ('T / K', 'pL / Pa', 'pV / Pa', 'rhoL / mol/m^3', 'rhoV / mol/m^3', 'xL_0 / mole frac.', 'xV_0 / mole frac.', ...); necesita semillas cerca del punto crítico de la mezcla.
+- `get_reducing_density([1,0])=13211.78`, `([0.5,0.5])=14142.87` mol/m³.
+- Referencia del motor (unidades MPa / mol/dm³): `bubbleP(360,0.5)=1.695253` (y=0.9841); `bubbleP(420,0.5)=5.121217` (y=0.9425); `bubbleP(480,0.5)=11.182789` (y=0.8408); `dewP(360,0.5)=0.118169`; `dewP(420,0.5)=0.830020`; `dewP(480,0.5)=3.479022`; `Tsat_pure(3 MPa)=(338.875, 507.003)` K; `bubbleT(3 MPa,0.5)=388.169` K; `dewT(3 MPa,0.5)=473.033` K. `rho_TPx` del motor en mol/dm³ (43.7 mol/dm³ = 43 700 mol/m³).
+- Receta h/s pendiente (NIST Heat Pump Model): `jig = teqp.convert_CoolProp_idealgas(JSON_CoolProp, 0)`; `aig = teqp.IdealHelmholtz([jig_nh3, jig_h2o])`; `Atot10 = model.get_Ar10 + aig.get_Aig10`; `h = R·T·(1 + model.get_Ar01 + Atot10)`; `s = R·(Atot10 - (model.get_Ar00 + aig.get_Aig00))`. Ojo: offset de estado de referencia entre receta teqp/CoolProp (hs_anchor CoolProp) y motor (G4-01: sat. líquido 273.15 K = 0) —determinar empíricamente (offset lineal por composición Δh = a + b·z) y reportarlo.
+- Proyecto: 10 estados Kalina KSC-11; fórmulas de efectividad ε_HRVG/ε_reg/ε_cond; separador ideal; dominio P_alta 2000–4000 kPa (default 3000), T_fuente 623.15 K, x=0.5 (CONTEXT.md).
+- El usuario exige respuestas en formato AGENTS.md: STATUS/SUMMARY/FILES_CHANGED/TESTS/RESULTS/ERRORS/ASSUMPTIONS/UNRESOLVED/RECOMMENDATIONS.
+
+## Work State
+### Completed
+- Leídos: `TASK_CONTEXT.md`, `CONTEXT.md`, `src/properties/_nh3h2o_engine.py`, `_kalina_flash.py`, `ammonia_water_adapter.py`, `adapter.py`, `__init__.py`, `src/ui_helpers.py` (truncado), `requirements.txt`, `tests/test_ammonia_water_adapter.py` (truncado).
+- `pip install teqp` → **teqp 0.23.2** instalado (cp313 win_amd64); **CoolProp 8.0.0** ya instalado; Python 3.13.7.
+- API explorada: `get_pr(T, rhovec)` (residual), `get_Ar00/01/10(T, rhomolar, molefrac)`, `pure_VLE_T`, `mix_VLE_Tx`, `trace_VLE_isobar_binary`; clases `PVLEOptions`, `TVLEOptions`, `MixVLETpFlags`, `MixVLEReturn` disponibles.
+- **P_total = R·T·ρ_total + get_pr** verificado (crítico NH3 11.339 vs 11.333 MPa; sat NH3 373.15 K 6.2553 MPa; 240 K 0.1022 MPa).
+- **Orden de composición CONFIRMADO: índice 0 = NH3, índice 1 = H2O.** Evidencia: `pure_VLE_T(240 K, [1,0])` → (40031.8, 52.67) = densidades sat de NH3 CoolProp (40012.3, 52.67); `pure_VLE_T(373.15 K, [1,0])` → (26813.07, 3295.13) = NH3 CoolProp (26823.0, 3294.78); H2O (53196.5, 33.2) no cuadra.
+- `mix_VLE_Tx`: a 480 K z=[0.5,0.5] convergió **exacto** al motor (P=11.1828 MPa, y=0.84081549); a 360 K convergencia espuria (P=-0.6166 MPa) y a otras semillas raíces triviales (rhoL=rhoV=68782, y=0.5).
+- Isoterma T=360 K, z=0.5 mapeada: raíz líquida física en ~43700 mol/m³ (P=+1.68 MPa); lazo metaestable enorme (40000→-65.8 MPa; 43000→-17.9; 44000→+11.2; 45000→+47.7; 55000→+995.7; lóbulos espurios 30000→+293; 25000→+4781).
+- Valores de referencia del motor obtenidos para 360/420/480 K y 3 MPa (ver Important Details).
+- `trace_VLE_isobar_binary(3e6, 500, z*14000, z*14000, opts)` ejecutado pero no físico (trazó hasta T=527.5 K, xL≈xV≈0.439; p inicial -148.9 MPa).
+
+### Active
+- Sin archivos creados todavía (`_teqp_prototipo.py`, tests y comentario en `requirements.txt` pendientes).
+- Investigación de estrategia fluida robusta: alternativas por probar — `mix_VLE_Tp` (flash T,P) con brentq sobre T para burbuja/rocío; raíz de densidad líquida propia (barrido de isoterma + brentq) para semillas exactas; `trace_VLE_isobar_binary` con semillas en el crítico de la mezcla.
+- Receta h/s (IdealHelmholtz + JSON CoolProp) sin probar aún; offsets de referencia sin cuantificar.
+
+### Blocked
+- `mix_VLE_Tx` no converge de forma fiable a la burbuja en T bajas (360 K) con semillas razonables; convergencias triviales/espurias frecuentes por el lazo de van der Waals enorme del modelo. Se necesita estrategia de semillas/raíces robusta antes de implementar bubble/dew.
+- `trace_VLE_isobar_binary` sin semillas válidas cerca del crítico (pendiente).
+- Offset de estado de referencia h/s entre teqp y motor sin verificar (impacta criterio de error relativo <1%).
+
+## Next Move
+1. Probar `mix_VLE_Tp` y/o resolver la raíz de densidad líquida del modelo (barrido isoterma + brentq) para obtener semillas exactas; validar burbuja/rocío contra el motor en 360/420/480 K con z=0.5.
+2. Implementar h/s con la receta IdealHelmholtz (JSON CoolProp de Amoniaco y Agua); cuantificar offsets por composición contra el motor.
+3. Escribir `src/properties/_teqp_prototipo.py` (≤200 líneas; interfaz kPa/fracción másica ↔ internamente Pa/mol/m³/fracción molar; reusar `w2m`/`m2w` de `_nh3h2o_engine`).
+4. Escribir `tests/test_teqp_prototipo.py`: ≥8 puntos (T,P,x) en el dominio (P_alta 2000–4000 kPa, etc.), comparación h/s/bubble/dew + tiempos, `pytest.mark.skip` si teqp no está instalado.
+5. Añadir comentario opcional de teqp/CoolProp en `requirements.txt`.
+6. Reporte final en formato AGENTS.md (incluir evidencias de orden de composición, offsets y discrepancias sin suavizar).
+
+## Relevant Files
+- `D:\Desktop\ciclo_kalina_tercero\TASK_CONTEXT.md` — definición de la tarea (objetivo, criterios, contexto de rendimiento).
+- `D:\Desktop\ciclo_kalina_tercero\CONTEXT.md` — única fuente de verdad de ingeniería (estados, efectividades, defaults).
+- `src/properties/_teqp_prototipo.py` — POR CREAR (módulo de prueba con teqp).
+- `tests/test_teqp_prototipo.py` — POR CREAR (cross-validación + tiempos).
+- `src/properties/_nh3h2o_engine.py` — motor iapws G4-01 validado (con conversores w2m/m2w; P en MPa, rho en mol/dm³).
+- `src/properties/_kalina_flash.py` — capa flash T,P del motor.
+- `src/properties/ammonia_water_adapter.py` — NO MODIFICAR; interfaz canonical (kPa, fracción másica); referencia para comparación.
+- `src/properties/adapter.py` — `PropertyBackend` ABC y `PropertyRangeError`.
+- `tests/test_ammonia_water_adapter.py` — patrón de tests del adapter (defaults _P=3000 kPa, _T=623.15 K, _X=0.5).
+- `src/ui_helpers.py` — `CAMPOS_CICLO` (rangos de la UI del dominio).
+- `requirements.txt` — añadir teqp/CoolProp como comentario opcional.
+
+## ARS Pipeline State (preservado entre compactaciones)
+- Suite ARS v3.13.0 activa; **sin invocaciones `/ars-*` visibles en esta conversación** (sesión de tarea delegada de codificación).
+- Fase de pipeline actual: N/A (no corre `/ars-full`; tarea de ejecución).
+- Material Passport: N/A (ninguna ruta visible en la conversación).
+- Claves de cita fallidas en verificación: ninguna.
+- Modo de guarda de write-scope: **advisory (solo logs)**.
+- Resultados de verificación cross-model: ninguno reportado.
+- Comandos disponibles: /ars-plan, /ars-full, /ars-lit-review, /ars-reviewer, /ars-revision, /ars-revision-coach, /ars-abstract, /ars-outline, /ars-citation-check, /ars-format-convert, /ars-disclosure, /ars-mark-read, /ars-unmark-read, /ars-cache-invalidate, /ars-3w, /ars-rebuttal-audit.
+- Routing: si la intención del usuario abarca múltiples fases del pipeline, aclarar antes de rutear; no auto-rutear materiales ambiguos multi-fase a un agente de una sola fase.
+Continue if you have next steps, or stop and ask for clarification if you are unsure how to proceed.
+El flash T,P de teqp también falla con semillas crudas (nan, comp>1). Decisión: ver si teqp expone coeficientes de fugacidad para reimplementar el flash por sustitución sucesiva (estructura probada del motor, pero con primitivas teqp C++), y revisar el flash del motor:
+[0m✱ [0mGrep "def (_flashP|bubble|dew|rho_TPx|Tsat|Psat)"[90m in src/properties/_nh3h2o_engine.py · 17 matches[0m
+[0m
+[0m$ [0mpython - <<'EOF'
+import teqp, numpy as np
+m = teqp.AmmoniaWaterTillnerRoth()
+print([x for x in dir(m) if 'fu' in x.lower() or 'phi' in x.lower() or 'chem' in x.lower()])
+EOF
+['get_chempotVLE_autodiff', 'get_dchempotdT_autodiff', 'get_fugacity_coefficients']
+[0m
+[0m→ [0mRead src/properties/_nh3h2o_engine.py[90m [offset=89, limit=135][0m
+`teqp` expone `get_fugacity_coefficients` — puedo reimplementar el flash probado del motor encima de primitivas teqp. Leo el `_flashP` del motor y la firma de fugacidades:
+[0m
+[0m$ [0mpython - <<'EOF'
+import teqp, numpy as np, inspect
+m = teqp.AmmoniaWaterTillnerRoth()
+print(inspect.signature(m.get_fugacity_coefficients))
+z = np.array([0.5, 0.5])
+R = m.get_R(z)
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+# probar fugacity coefficients en un estado liquido y vapor
+phi = m.get_fugacity_coefficients(360.0, z*43700.0)
+print('phi liq (T=360, rho=43700):', np.array(phi))
+phi2 = m.get_fugacity_coefficients(360.0, z*600.0)
+print('phi vap (T=360, rho=600):', np.array(phi2))
+print('P liq:', P_tot(360.0, z*43700.0)/1e6, 'MPa')
+EOF
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\inspect.py", line 3375, in signature
+    return Signature.from_callable(obj, follow_wrapped=follow_wrapped,
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                   globals=globals, locals=locals, eval_str=eval_str)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\inspect.py", line 3098, in from_callable
+    return _signature_from_callable(obj, sigcls=cls,
+                                    follow_wrapper_chains=follow_wrapped,
+                                    globals=globals, locals=locals, eval_str=eval_str)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\inspect.py", line 2513, in _signature_from_callable
+    sig = _get_signature_of(obj.__func__)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\inspect.py", line 2592, in _signature_from_callable
+    return _signature_from_builtin(sigcls, obj,
+                                   skip_bound_arg=skip_bound_arg)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\inspect.py", line 2378, in _signature_from_builtin
+    raise ValueError("no signature found for builtin {!r}".format(func))
+ValueError: no signature found for builtin <built-in method get_fugacity_coefficients of PyCapsule object at 0x000001D25CBA4EA0>
+[0m
+[0m$ [0mpython - <<'EOF'
+import teqp, numpy as np
+print('convert_CoolProp_idealgas doc:')
+print(teqp.convert_CoolProp_idealgas.__doc__[:600] if teqp.convert_CoolProp_idealgas.__doc__ else 'sin doc')
+m = teqp.AmmoniaWaterTillnerRoth()
+print()
+print('get_chempotVLE_autodiff doc:', (m.get_chempotVLE_autodiff.__doc__ or '')[:200])
+EOF
+convert_CoolProp_idealgas doc:
+convert_CoolProp_idealgas(arg0: str, arg1: int) -> json
+
+
+get_chempotVLE_autodiff doc: get_chempotVLE_autodiff(self: teqp.teqp.AbstractModel, T: float, rhovec: numpy.ndarray[numpy.float64[m, 1]]) -> numpy.ndarray[numpy.float64[m, 1]]
+[0m
+La estrategia queda clara: reimplementar el flash del motor (sustitución sucesiva sobre K-factors de fugacidad, raíces de densidad por brentq) con primitivas teqp. Verifico los tres ingredientes decisivos: firmas de `convert_CoolProp_idealgas`/`IdealHelmholtz`, y que `get_fugacity_coefficients` reproduce exactamente los K-factors de equilibrio del motor:
+[0m$ [0mpython - <<'EOF'
+import teqp, numpy as np, sys
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+m = teqp.AmmoniaWaterTillnerRoth()
+R = m.get_R(np.array([0.5,0.5]))
+def P_tot(T, rhovec):
+    return R*T*float(rhovec.sum()) + float(m.get_pr(T, rhovec))
+
+# Estado de equilibrio del motor: T=360, xL=0.5, y=0.984082, P=1.695253 MPa
+T = 360.0
+Pb, yb, ok = ng.bubbleP(T, 0.5)
+rL = ng.rho_TPx(T, Pb, 0.5, 'l') * 1000.0
+rV = ng.rho_TPx(T, Pb, yb, 'v') * 1000.0
+print(f'Motor: P={Pb:.6f} MPa y={yb:.6f} rhoL={rL:.1f} rhoV={rV:.2f}')
+print(f'K esperados: KA=y/x={yb/0.5:.6f}  KW=(1-y)/0.5={(1-yb)/0.5:.6f}')
+
+# teqp: fugacidad en las mismas densidades/composiciones
+ZL = np.array([0.5, 0.5]); ZV = np.array([yb, 1-yb])
+phiL = np.array(m.get_fugacity_coefficients(T, ZL*rL))
+phiV = np.array(m.get_fugacity_coefficients(T, ZV*rV))
+K_teqp = phiL/phiV
+print(f'teqp: phiL={phiL} phiV={phiV}')
+print(f'K teqp: KA={K_teqp[0]:.6f} KW={K_teqp[1]:.6f}')
+print(f'|dKA|={abs(K_teqp[0]-yb/0.5):.2e}  |dKW|={abs(K_teqp[1]-(1-yb)/0.5):.2e}')
+print(f'P con teqp: P(L)={P_tot(T, ZL*rL)/1e6:.6f} P(V)={P_tot(T, ZV*rV)/1e6:.6f} MPa')
+EOF
+Motor: P=1.695253 MPa y=0.984082 rhoL=43700.6 rhoV=625.99
+K esperados: KA=y/x=1.968165  KW=(1-y)/0.5=0.031835
+teqp: phiL=[1.80211554 0.02365602] phiV=[0.91563246 0.74307662]
+K teqp: KA=1.968165 KW=0.031835
+|dKA|=6.88e-14  |dKW|=1.03e-15
+P con teqp: P(L)=1.695253 P(V)=1.695253 MPa
+[0m
+Fugacidades teqp = motor a precisión de máquina (|ΔK|~1e-14) — el flash por sustitución sucesiva sobre teqp converge a los mismos puntos. Ahora pruebo la construcción IdealHelmholtz + receta h/s:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, json, CoolProp.CoolProp as CP
+from CoolProp.CoolProp import PropsSI
+
+jn = json.loads(CP.get_fluid_param_string('Ammonia','JSON'))
+jw = json.loads(CP.get_fluid_param_string('Water','JSON'))
+print('tipo json ammonia:', type(jn), 'len:', len(jn))
+print('keys[0]:', list(jn[0].keys())[:12])
+print('keys jw[0]:', list(jw[0].keys())[:12])
+jig_n = teqp.convert_CoolProp_idealgas(json.dumps(jn[0]), 0)
+jig_w = teqp.convert_CoolProp_idealgas(json.dumps(jw[0]), 0)
+print('jig_n keys:', list(jig_n.keys()) if hasattr(jig_n,'keys') else type(jig_n))
+print('jig_w keys:', list(jig_w.keys()) if hasattr(jig_w,'keys') else type(jig_w))
+aig = teqp.IdealHelmholtz([jig_n, jig_w])
+print('IdealHelmholtz methods:', [x for x in dir(aig) if 'ig' in x.lower() or 'Aig' in x or 'rgb' in x.lower()])
+EOF
+tipo json ammonia: <class 'list'> len: 1
+keys[0]: ['ANCILLARIES', 'EOS', 'INFO', 'STATES', 'TRANSPORT']
+keys jw[0]: ['ANCILLARIES', 'EOS', 'INFO', 'STATES', 'TRANSPORT']
+jig_n keys: ['R', 'terms']
+jig_w keys: ['R', 'terms']
+IdealHelmholtz methods: ['eigen_problem', 'get_Aig00', 'get_Aig01', 'get_Aig02', 'get_Aig03', 'get_Aig04', 'get_Aig10', 'get_Aig11', 'get_Aig12', 'get_Aig13', 'get_Aig14', 'get_Aig20', 'get_Aig21', 'get_Aig22', 'get_Aig23', 'get_Aig24', 'get_minimum_eigenvalue_Psi_Hessian']
+[0m
+`IdealHelmholtz` listo. Antes de escribir el módulo, verifico EMPÍRICAMENTE qué combinación de derivadas reproduce h/s (no me fío de la receta a ciegas) usando diferencias finitas sobre α_total = Ar00 + Aig00:
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, json, sys
+from CoolProp.CoolProp import PropsSI
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+import CoolProp.CoolProp as CP
+
+m = teqp.AmmoniaWaterTillnerRoth()
+R = m.get_R(np.array([0.5,0.5]))   # 8.314471
+jn = json.loads(CP.get_fluid_param_string('Ammonia','JSON')); jw = json.loads(CP.get_fluid_param_string('Water','JSON'))
+aig = teqp.IdealHelmholtz([teqp.convert_CoolProp_idealgas(json.dumps(jn[0]), 0),
+                           teqp.convert_CoolProp_idealgas(json.dumps(jw[0]), 0)])
+z = np.array([0.5, 0.5])
+
+def alpha(T, rho):
+    return float(m.get_Ar00(T, rho, z)) + float(aig.get_Aig00(T, rho, z))
+
+def P_rho(T, rho):
+    return float(m.get_pr(T, z*rho)) + R*T*rho
+
+# estado liquido y vapor (densidades del motor)
+for (T, P, x, ph) in [(450.0, 3.0, 0.5, 'l'), (450.0, 3.0, 0.5, 'v')]:
+    rho = ng.rho_TPx(T, P, x, ph)*1000.0   # mol/m3
+    # derivada numerica d alpha/dT a rho cte
+    dT = 0.5
+    a_p, a_m = alpha(T+dT, rho), alpha(T-dT, rho)
+    dalpha_dT = (a_p - a_m)/(2*dT)
+    u_RT_term = 1.0/T * 0.0  # placeholder
+    # u = R*T**2 * dalpha/dT  (porque A = R*T*alpha, u = -T d(A/T)/dT = R*T^2 dalpha/dT)
+    u = R*T*T*dalpha_dT
+    h_num = u + P_rho(T,rho)/rho
+    s_num = -R*(alpha(T,rho) + T*dalpha_dT)
+    # candidatas con indices teqp
+    h_cand1 = R*T*(1.0 + float(m.get_Ar01(T,rho,z)) + float(aig.get_Aig01(T,rho,z)))
+    h_cand2 = R*T*(1.0 + float(m.get_Ar10(T,rho,z)) + float(aig.get_Aig10(T,rho,z)))
+    s1 = R*(float(m.get_Ar10(T,rho,z)) + float(aig.get_Aig10(T,rho,z)) - (float(m.get_Ar00(T,rho,z)) + float(aig.get_Aig00(T,rho,z))))
+    print(f'--- {ph} T={T} P={P} x={x} rho={rho:.0f}')
+    print(f'  h numerica  = {h_num/1000:.3f} kJ/mol   s numerica = {s_num:.6f} J/mol/K')
+    print(f'  h cand Ar01(+Aig01) = {h_cand1/1000:.3f} kJ/mol   h cand Ar10(+Aig10) = {h_cand2/1000:.3f}')
+    print(f'  s cand (Aig10+Ar10 - total00) = {s1:.6f}')
+    eng = ng.prop(rho/1000.0, T, 0.5)
+    print(f'  motor: h={eng["h"]:.3f} kJ/kg  s={eng["s"]:.6f} kJ/kg/K   (M_mix={0.5*17.031+0.5*18.015:.4f})')
+EOF
+--- l T=450.0 P=3.0 x=0.5 rho=36193
+  h numerica  = -13.844 kJ/mol   s numerica = 51.545807 J/mol/K
+  h cand Ar01(+Aig01) = 3.824 kJ/mol   h cand Ar10(+Aig10) = 17.668
+  s cand (Aig10+Ar10 - total00) = 51.545832
+  motor: h=798.145 kJ/kg  s=2.935578 kJ/kg/K   (M_mix=17.5230)
+--- v T=450.0 P=3.0 x=0.5 rho=958
+  h numerica  = -34.186 kJ/mol   s numerica = 111.366787 J/mol/K
+  h cand Ar01(+Aig01) = 6.874 kJ/mol   h cand Ar10(+Aig10) = 41.060
+  s cand (Aig10+Ar10 - total00) = 111.366735
+  motor: h=2307.145 kJ/kg  s=6.349474 kJ/kg/K   (M_mix=17.5230)
+[0m
+s verificado. La receta h del task aún no cuadra con diferencias finitas — pruebo la combinación exacta del task (`R·T·(1 + Ar01 + Ar10 + Aig10)`) y la fórmula correcta con signo (−R·T²·α_T + P/ρ):
+[0m$ [0mpython - <<'EOF'
+import numpy as np, teqp, json, sys
+from CoolProp.CoolProp import PropsSI
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _nh3h2o_engine as ng
+import CoolProp.CoolProp as CP
+
+m = teqp.AmmoniaWaterTillnerRoth()
+R = m.get_R(np.array([0.5,0.5]))
+jn = json.loads(CP.get_fluid_param_string('Ammonia','JSON')); jw = json.loads(CP.get_fluid_param_string('Water','JSON'))
+aig = teqp.IdealHelmholtz([teqp.convert_CoolProp_idealgas(json.dumps(jn[0]), 0),
+                           teqp.convert_CoolProp_idealgas(json.dumps(jw[0]), 0)])
+z = np.array([0.5, 0.5])
+M_mix = 17.5230
+
+def alpha(T, rho):
+    return float(m.get_Ar00(T, rho, z)) + float(aig.get_Aig00(T, rho, z))
+def P_rho(T, rho):
+    return float(m.get_pr(T, z*rho)) + R*T*rho
+
+for (T, P, x, ph) in [(450.0, 3.0, 0.5, 'l'), (450.0, 3.0, 0.5, 'v'), (600.0, 3.0, 0.5, 'l'), (600.0, 3.0, 0.5, 'v')]:
+    rho = ng.rho_TPx(T, P, x, ph)*1000.0
+    dT = 0.25
+    dalpha_dT = (alpha(T+dT, rho) - alpha(T-dT, rho))/(2*dT)
+    u = -R*T*T*dalpha_dT
+    h_true = (u + P_rho(T,rho)/rho)/1000.0             # kJ/mol
+    h_task = R*T*(1.0 + float(m.get_Ar01(T,rho,z)) + float(m.get_Ar10(T,rho,z)) + float(aig.get_Aig10(T,rho,z)))/1000.0
+    h_task2 = R*T*(1.0 + float(m.get_Ar01(T,rho,z)) + float(aig.get_Aig01(T,rho,z)) + float(m.get_Ar10(T,rho,z)) + float(aig.get_Aig10(T,rho,z)))/1000.0
+    eng_h = ng.prop(rho/1000.0, T, 0.5)["h"]*M_mix/1000.0  # kJ/mol
+    print(f'{ph:1s} T={T:5.0f} P={P} rho={rho:7.0f}: h_true={h_true:8.3f}  h_task={h_task:8.3f}  h_task2={h_task2:8.3f}  motor={eng_h:8.3f} kJ/mol')
+EOF
+l T=  450 P=3.0 rho=  36193: h_true=  14.010  h_task=  14.010  h_task2=  17.751  motor=  13.986 kJ/mol
+v T=  450 P=3.0 rho=    958: h_true=  40.452  h_task=  40.452  h_task2=  44.193  motor=  40.428 kJ/mol
+Traceback (most recent call last):
+  File "<stdin>", line 21, in <module>
+  File "D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py", line 111, in rho_TPx
+    raise ValueError(f"sin raiz de liquido: T={T:.2f} P={P:.5g} x={x:.4f}")
+ValueError: sin raiz de liquido: T=600.00 P=3 x=0.5000
+[0m
+[0m→ [0mRead src/properties/_nh3h2o_engine.py[90m [limit=88][0m
+La receta del task para h está VERIFICADA: `h = R·T·(1 + Ar01 + Ar10 + Aig10)` coincide exactamente con el valor termodinámico real. Reviso los conversores w2m/m2w del motor para la interfaz y luego escribo el prototipo:
+Todo verificado. Escribo el prototipo aislado (≤200 líneas) y el test de validación:
+[0m
+[0m← [0mWrite src/properties/_teqp_prototipo.py
+Wrote file successfully.
+[0m
+[0m← [0mEdit src/properties/_teqp_prototipo.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+@@ -102,12 +102,11 @@
+ xl, xv = (z, [y, 1 - y]) if kind == "bub" else ([y, 1 - y], z)
+ try:
+     rL = rho_root(T, P * 1e6, np.array(xl), "l")
+     rV = rho_root(T, P * 1e6, np.array(xv), "v")
+-    KA = _MODEL.get_fugacity_coefficients(T, np.array(xl) * rL)[0]
+-    KW = _MODEL.get_fugacity_coefficients(T, np.array(xl) * rL)[1]
+-    KV = _MODEL.get_fugacity_coefficients(T, np.array(xv) * rV)
+-    KA, KW = KA / KV[0], KW / KV[1]
++    phiL = _MODEL.get_fugacity_coefficients(T, np.array(xl) * rL)
++    phiV = _MODEL.get_fugacity_coefficients(T, np.array(xv) * rV)
++    KA, KW = phiL[0] / phiV[0], phiL[1] / phiV[1]
+ except Exception:
+     return P, y, False
+ if not (np.isfinite(KA) and np.isfinite(KW) and KA > 0 and KW > 0):
+     return P, y, False
+
+[0m
+[0m← [0mEdit src/properties/_teqp_prototipo.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+@@ -149,9 +149,9 @@
+     return _satT(P, x, "dew")
+ 
+ def _h_mol(T, rho, z):
+     """Entalpia molar [J/mol]: h = R*T*(1 + Ar01 + Ar10 + Aig10) (verificado
+-    por diferencias finitas contra u=-R*T^2*d(al fa_total)/dT + P/rho)."""
++    por diferencias finitas contra u = -R*T^2*d(alfa_total)/dT + P/rho)."""
+     aig = _jigs()
+     return _R * T * (1.0 + float(_MODEL.get_Ar01(T, rho, z))
+                      + float(_MODEL.get_Ar10(T, rho, z))
+                      + float(aig.get_Aig10(T, rho, z)))
+
+[0m
+Limpio un par de detalles (llamada duplicada a fugacidad, typo) y verifico el conteo de líneas:
+[0m✱ [0mGrep "def (h|s|bubble_point|dew_point|T_sat|Tsat)\("[90m in src/properties · 21 matches[0m
+[0m→ [0mRead src/properties/ammonia_water_adapter.py[90m [limit=75, offset=85][0m
+El adapter confirma: `h(P, T, w)`, `s(P, T, w)`, `bubble_point(P, w)`, `dew_point(P, w)` con P en kPa y w másica. Un ajuste necesario: en estados de vapor el prototipo podría caer en la raíz líquida metaestable — hago explícito el parámetro de fase:
+[0m
+[0m← [0mEdit src/properties/_teqp_prototipo.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+@@ -165,24 +165,19 @@
+ def _rho_at(T, P_kPa, w, ph):
+     z = np.array([w2m(w), 1 - w2m(w)])
+     return rho_root(T, P_kPa * 1e3, z, ph)
+ 
+-def h(T, P_kPa, w):
+-    """Entalpia masica [kJ/kg] a (T, P, fraccion masica w)."""
++def h(T, P_kPa, w, ph="l"):
++    """Entalpia masica [kJ/kg] a (T, P, fraccion masica w). ph='l'/'v' explicito
++    (necesario en region monofasica, donde puede existir raiz metaestable)."""
+     z = np.array([w2m(w), 1 - w2m(w)])
+-    try:
+-        rho = rho_root(T, P_kPa * 1e3, z, "l")
+-    except ValueError:
+-        rho = rho_root(T, P_kPa * 1e3, z, "v")
++    rho = rho_root(T, P_kPa * 1e3, z, ph)
+     return _h_mol(T, rho, z) / Mm(z[0])
+ 
+-def s(T, P_kPa, w):
+-    """Entropia masica [kJ/kg-K] a (T, P, fraccion masica w)."""
++def s(T, P_kPa, w, ph="l"):
++    """Entropia masica [kJ/kg-K] a (T, P, fraccion masica w). ph='l'/'v'."""
+     z = np.array([w2m(w), 1 - w2m(w)])
+-    try:
+-        rho = rho_root(T, P_kPa * 1e3, z, "l")
+-    except ValueError:
+-        rho = rho_root(T, P_kPa * 1e3, z, "v")
++    rho = rho_root(T, P_kPa * 1e3, z, ph)
+     return _s_mol(T, rho, z) / Mm(z[0])
+ 
+ def bubble_point(P_kPa, w):
+     """Temperatura de burbuja [K] a P[kPa] y fraccion masica w."""
+
+[0m
+Ahora el test de validación 1:1:
+[0m← [0mWrite tests/test_teqp_prototipo.py
+Wrote file successfully.
+[0m
+Verifico el límite de 200 líneas y ejecuto la validación 1:1:
+[0m$ [0mwc -l src/properties/_teqp_prototipo.py tests/test_teqp_prototipo.py
+187 src/properties/_teqp_prototipo.py
+  118 tests/test_teqp_prototipo.py
+  305 total
+[0m
+[0m$ [0mls tests/ && cat tests/conftest.py 2>/dev/null; cat pytest.ini pyproject.toml setup.cfg 2>/dev/null | head -40
+__init__.py
+__pycache__
+_datos_ejemplo.py
+test_ammonia_water_adapter.py
+test_components.py
+test_cycle_solver.py
+test_exergy.py
+test_export.py
+test_plots.py
+test_properties.py
+test_restricciones.py
+test_restricciones_convenciones.py
+test_sensitivity.py
+test_teqp_prototipo.py
+[0m
+[0m$ [0mhead -30 tests/test_ammonia_water_adapter.py && python -m pytest tests/test_teqp_prototipo.py -s -v 2>&1 | tail -45
+"""Tests de `AmmoniaWaterAdapter` — el camino real de la mezcla NH3-H2O.
+
+El motor portado (`_nh3h2o_engine` + `_kalina_flash`) ya está validado contra
+las Tablas 6-8 de IAPWS G4-01 (Tillner-Roth & Friend, 1998) en el proyecto
+hermano, así que estos tests NO usan valores de referencia externos: validan
+consistencia interna (round-trip h -> T_from_Ph, coherencia burbuja < rocío <
+Tsat de los puros, monotonicidad del título) y que los errores de dominio del
+motor se envuelven en `PropertyRangeError` (TASK_CONTEXT
+2026-09-17-adapter-mezcla-nh3h2o).
+"""
+
+from pathlib import Path
+import inspect
+import math
+
+import pytest
+
+from src.properties import _kalina_flash as kf
+from src.properties import _nh3h2o_engine as ng
+from src.properties import ammonia_water_adapter as awa
+from src.properties.adapter import PropertyBackend, PropertyRangeError
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+
+_P = 3000.0          # kPa — P_high por defecto de CONTEXT.md
+_T = 623.15          # K — T_fuente por defecto de CONTEXT.md
+_X = 0.5             # composición global por defecto de CONTEXT.md
+
+
+def test_ammonia_es_property_backend_completo_sin_pyfluids():
+    assert issubclass(AmmoniaWaterAdapter, PropertyBackend)
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe: No module named pytest
+[0m
+[0m$ [0mls -a | head -30; ls .venv/Scripts/pytest.exe venv/Scripts/pytest.exe 2>/dev/null; python -c "import pytest" 2>&1; where pytest 2>/dev/null
+.
+..
+.claude
+.git
+.gitignore
+.opencode
+.pytest_cache
+.streamlit
+.venv
+AGENTS.md
+CONTEXT.md
+Kalina_ksc_11_tercero.md
+README.md
+TASK_CONTEXT.md
+__pycache__
+app.py
+opencode_run_001.log
+opencode_run_002.log
+opencode_run_003.log
+opencode_run_004.log
+opencode_run_005.log
+opencode_run_006.log
+opencode_run_007.log
+opencode_run_008.log
+opencode_run_009.log
+opencode_run_010.log
+requirements.txt
+scripts
+src
+tests
+.venv/Scripts/pytest.exe
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'
+[0m
+[0m$ [0m.venv/Scripts/python.exe -c "import teqp, CoolProp; print('venv: teqp', teqp.__version__ if hasattr(teqp,'__version__') else 'ok', '| CoolProp', CoolProp.__version__)" 2>&1; python -c "import CoolProp; print('sys: CoolProp', CoolProp.__version__)" 2>&1
+venv: teqp 0.23.2 | CoolProp 8.0.0
+sys: CoolProp 8.0.0
+[0m
+El venv tiene teqp y CoolProp. Ejecuto la validación con el pytest del venv:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_teqp_prototipo.py -s -v 2>&1 | tail -50
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+________________ ERROR collecting tests/test_teqp_prototipo.py ________________
+ImportError while importing test module 'D:\Desktop\ciclo_kalina_tercero\tests\test_teqp_prototipo.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_teqp_prototipo.py:12: in <module>
+    from ammonia_water_adapter import AmmoniaWaterAdapter
+E   ModuleNotFoundError: No module named 'ammonia_water_adapter'
+=========================== short test summary info ===========================
+ERROR tests/test_teqp_prototipo.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.37s ===============================
+[0m
+[0m← [0mEdit tests/test_teqp_prototipo.py
+Index: D:\Desktop\ciclo_kalina_tercero\tests\test_teqp_prototipo.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\tests\test_teqp_prototipo.py
++++ D:\Desktop\ciclo_kalina_tercero\tests\test_teqp_prototipo.py
+@@ -8,10 +8,10 @@
+ 
+ import numpy as np
+ import pytest
+ 
+-from ammonia_water_adapter import AmmoniaWaterAdapter
+-from _teqp_prototipo import h, s, bubble_point, dew_point
++from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
++from src.properties._teqp_prototipo import h, s, bubble_point, dew_point
+ 
+ pytest.importorskip("teqp")  # skip si teqp no está instalado
+ from CoolProp.CoolProp import PropsSI
+ import teqp as _tq
+
+[0m
+Los tests del proyecto importan vía `src.properties.*`. Corrijo las importaciones del test:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_teqp_prototipo.py -s -v 2>&1 | tail -55
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+________________ ERROR collecting tests/test_teqp_prototipo.py ________________
+.venv\Lib\site-packages\_pytest\python.py:508: in importtestmodule
+    mod = import_path(
+.venv\Lib\site-packages\_pytest\pathlib.py:596: in import_path
+    importlib.import_module(module_name)
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<frozen importlib._bootstrap>:1387: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1360: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:935: in _load_unlocked
+    ???
+.venv\Lib\site-packages\_pytest\assertion\rewrite.py:188: in exec_module
+    exec(co, module.__dict__)
+tests\test_teqp_prototipo.py:13: in <module>
+    from src.properties._teqp_prototipo import h, s, bubble_point, dew_point
+E     File "D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py", line 35
+E       global _M_ig
+E       ^^^^^^^^^^^^
+E   SyntaxError: name '_M_ig' is used prior to global declaration
+=========================== short test summary info ===========================
+ERROR tests/test_teqp_prototipo.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 1.15s ===============================
+[0m
+[0m← [0mEdit src/properties/_teqp_prototipo.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+@@ -26,14 +26,14 @@
+ 
+ def _jigs():
+     import json
+     from CoolProp.CoolProp import get_fluid_param_string
+-    if _M_ig is not None:
+-        return _M_ig
+     def jig(flu):
+         j = json.loads(get_fluid_param_string(flu, "JSON"))[0]
+         return teqp.convert_CoolProp_idealgas(json.dumps(j), 0)
+     global _M_ig
++    if _M_ig is not None:
++        return _M_ig
+     _M_ig = teqp.IdealHelmholtz([jig("Ammonia"), jig("Water")])
+     return _M_ig
+ 
+ _MODEL = teqp.AmmoniaWaterTillnerRoth()
+
+[0m
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_teqp_prototipo.py -s -v 2>&1 | tail -60
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+________________ ERROR collecting tests/test_teqp_prototipo.py ________________
+ImportError while importing test module 'D:\Desktop\ciclo_kalina_tercero\tests\test_teqp_prototipo.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_teqp_prototipo.py:13: in <module>
+    from src.properties._teqp_prototipo import h, s, bubble_point, dew_point
+src\properties\_teqp_prototipo.py:22: in <module>
+    from _nh3h2o_engine import w2m, m2w, Mm
+E   ModuleNotFoundError: No module named '_nh3h2o_engine'
+=========================== short test summary info ===========================
+ERROR tests/test_teqp_prototipo.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 2.46s ===============================
+[0m
+[0m$ [0mhead -20 src/properties/ammonia_water_adapter.py
+"""Adapter de la mezcla NH3-H2O sobre el motor portado del proyecto hermano.
+
+El motor vive en `_nh3h2o_engine.py` (IAPWS G4-01, Tillner-Roth & Friend 1998,
+clase `iapws.ammonia.H2ONH3` con correcciones) y `_kalina_flash.py` (flash
+T,P,w -> h,s,fase,q y su inversión h/s -> T). Este adapter envuelve ese motor
+detrás de la interfaz canónica `PropertyBackend` (P en kPa, T en K, h en
+kJ/kg, s en kJ/kg·K, x = fracción másica de NH3) y traduce las unidades en la
+frontera: el motor usa P en **MPa** (P_kPa / 1000) y la misma composición
+másica que la interfaz.
+
+Es el **camino real** para todo cálculo de la mezcla NH3-H2O (ver CONTEXT.md):
+pyfluids/CoolProp no cubre el par binario amoníaco-agua en este entorno y el
+solver nunca debería importar `iapws`/el motor directamente, solo esta interfaz.
+"""
+
+from __future__ import annotations
+
+import math
+from typing import Optional
+[0m
+[0m$ [0msed -n '20,30p' src/properties/ammonia_water_adapter.py
+from .adapter import PropertyBackend, PropertyRangeError
+from . import _kalina_flash as _kf
+from . import _nh3h2o_engine as _ng
+
+__all__ = ["AmmoniaWaterAdapter"]
+
+_KPA_PER_MPA = 0.001
+
+
+class AmmoniaWaterAdapter(PropertyBackend):
+[0m
+[0m← [0mEdit src/properties/_teqp_prototipo.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+@@ -18,9 +18,9 @@
+ import numpy as np
+ import teqp
+ from scipy.optimize import brentq
+ from CoolProp.CoolProp import PropsSI
+-from _nh3h2o_engine import w2m, m2w, Mm
++from ._nh3h2o_engine import w2m, m2w, Mm
+ 
+ _R = 8.314471                       # J/mol-K (get_R del modelo, constante)
+ _M_ig = None
+ 
+
+[0m
+Style del paquete: imports relativos. Corrijo:
+[0m$ [0m.venv/Scripts/python.exe -m pytest tests/test_teqp_prototipo.py -s -v 2>&1 | tail -60
+the tiny absolute differences available between floating point numbers near
+        zero are not meaningful.
+    
+        References
+        ----------
+        .. [Brent1973]
+           Brent, R. P.,
+           *Algorithms for Minimization Without Derivatives*.
+           Englewood Cliffs, NJ: Prentice-Hall, 1973. Ch. 3-4.
+    
+        .. [PressEtal1992]
+           Press, W. H.; Flannery, B. P.; Teukolsky, S. A.; and Vetterling, W. T.
+           *Numerical Recipes in FORTRAN: The Art of Scientific Computing*, 2nd ed.
+           Cambridge, England: Cambridge University Press, pp. 352-355, 1992.
+           Section 9.3:  "Van Wijngaarden-Dekker-Brent Method."
+    
+        Examples
+        --------
+        >>> def f(x):
+        ...     return (x**2 - 1)
+    
+        >>> from scipy import optimize
+    
+        >>> root = optimize.brentq(f, -2, 0)
+        >>> root
+        -1.0
+    
+        >>> root = optimize.brentq(f, 0, 2)
+        >>> root
+        1.0
+        """
+        if not isinstance(args, tuple):
+            args = (args,)
+        maxiter = operator.index(maxiter)
+        if xtol <= 0:
+            raise ValueError(f"xtol too small ({xtol:g} <= 0)")
+        if rtol < _rtol:
+            raise ValueError(f"rtol too small ({rtol:g} < {_rtol:g})")
+        f = _wrap_nan_raise(f)
+>       r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       ValueError: f(a) and f(b) must have different signs
+
+.venv\Lib\site-packages\scipy\optimize\_zeros_py.py:858: ValueError
+============================== warnings summary ===============================
+tests/test_teqp_prototipo.py::test_h_s
+tests/test_teqp_prototipo.py::test_tiempos
+  D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_teqp_prototipo.py::test_h_s
+tests/test_teqp_prototipo.py::test_tiempos
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_teqp_prototipo.py::test_burbuja_y_rocio - ValueError: f(a) ...
+FAILED tests/test_teqp_prototipo.py::test_tiempos - ValueError: f(a) and f(b)...
+============= 2 failed, 2 passed, 4 warnings in 222.22s (0:03:42) =============
+[0m
+`h/s` pasó en los 16 estados; fallan burbuja/rocío (brentq sin cambio de signo en el intervalo `[Tsat_NH3+0.05, Tsat_H2O−0.05]`) y hay que ver cuánto tarda cada llamada. Depuro el punto exacto:
+[0m$ [0m.venv/Scripts/python.exe - <<'EOF' 2>&1 | tail -40
+import sys, time, warnings
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _teqp_prototipo as tp
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+import numpy as np
+from CoolProp.CoolProp import PropsSI
+AD = AmmoniaWaterAdapter()
+
+for (P, w) in [(3000.0, 0.5), (2000.0, 0.3), (2000.0, 0.5)]:
+    Ta = PropsSI('T','P',P*1e3,'Q',0,'Ammonia'); Tw = PropsSI('T','P',P*1e3,'Q',0,'Water')
+    x = tp.w2m(w)
+    z = np.array([x, 1-x])
+    try:
+        Tb, y, ok = tp.bubbleT(P/1e3, x)
+        print(f'P={P} w={w}: bubbleT={Tb:.4f} K (y={y:.4f}, ok={ok})')
+    except Exception as e:
+        # ver extremos: f(Ta+0.05) y f(Tw-0.05)
+        fa = tp.bubbleP(Ta+0.05, x)[0] - P/1e3
+        fb = tp.bubbleP(Tw-0.05, x)[0] - P/1e3
+        print(f'P={P} w={w} bubble: fallo {str(e)[:60]}; f(Ta+.05)={fa:+.3f} f(Tw-.05)={fb:+.3f}')
+    try:
+        Td, xL, ok = tp.dewT(P/1e3, x)
+        print(f'P={P} w={w}: dewT={Td:.4f} K (xL={xL:.4f}, ok={ok})')
+    except Exception as e:
+        fa = tp.dewP(Ta+0.05, x)[0] - P/1e3
+        fb = tp.dewP(Tw-0.05, x)[0] - P/1e3
+        print(f'P={P} w={w} dew: fallo {str(e)[:60]}; f(Ta+.05)={fa:+.3f} f(Tw-.05)={fb:+.3f}')
+EOF
+P=3000.0 w=0.5 bubble: fallo f(a) and f(b) must have different signs; f(Ta+.05)=+36.000 f(Tw-.05)=+34.435
+P=3000.0 w=0.5 dew: fallo f(a) and f(b) must have different signs; f(Ta+.05)=+36.000 f(Tw-.05)=+3.151
+P=2000.0 w=0.3 bubble: fallo f(a) and f(b) must have different signs; f(Ta+.05)=+37.000 f(Tw-.05)=+35.862
+P=2000.0 w=0.3 dew: fallo f(a) and f(b) must have different signs; f(Ta+.05)=+37.000 f(Tw-.05)=+37.000
+P=2000.0 w=0.5 bubble: fallo f(a) and f(b) must have different signs; f(Ta+.05)=+37.000 f(Tw-.05)=+35.468
+P=2000.0 w=0.5 dew: fallo f(a) and f(b) must have different signs; f(Ta+.05)=+37.000 f(Tw-.05)=+2.007
+[0m
+Los extremos del intervalo dan +36 MPa — el flash diverge al tope del clip (39). Instrumento las iteraciones para ver qué pasa en T baja:
+[0m$ [0m.venv/Scripts/python.exe - <<'EOF' 2>&1 | tail -45
+import sys, numpy as np
+sys.path.insert(0, r'D:\Desktop\ciclo_kalina_tercero')
+from src.properties import _teqp_prototipo as tp
+from CoolProp.CoolProp import PropsSI
+from src.properties import _nh3h2o_engine as ng
+
+P_MPa = 3.0
+T = PropsSI('T','P',P_MPa*1e6,'Q',0,'Ammonia') + 0.05
+x = 0.5
+z = np.array([x, 1-x])
+print(f'T={T:.4f} (Tsat_NH3(3MPa)+0.05)')
+
+pa, pw = tp.Psat_pure(T)
+print(f'Raoult: pa={pa:.4f} pw={pw:.5f} P_init={x*pa+(1-x)*pw:.4f} MPa')
+# motor: bubbleP real
+Pb, yb, ok = ng.bubbleP(T, x)
+print(f'MOTOR: bubbleP({T:.3f},0.5)={Pb:.4f} MPa  y={yb:.5f}')
+
+# seguimiento de mi flash
+P = x*pa+(1-x)*pw; y = np.clip(x*pa/P, 1e-8, 1-1e-8)
+for k in range(12):
+    xl, xv = (z, np.array([y, 1-y]))
+    try:
+        rL = tp.rho_root(T, P*1e6, xl, 'l'); rV = tp.rho_root(T, P*1e6, xv, 'v')
+        phiL = tp._MODEL.get_fugacity_coefficients(T, xl*rL)
+        phiV = tp._MODEL.get_fugacity_coefficients(T, xv*rV)
+        KA, KW = phiL[0]/phiV[0], phiL[1]/phiV[1]
+    except Exception as e:
+        print(f'  iter {k}: fallo {str(e)[:50]}'); break
+    Pn = P*(x*KA+(1-x)*KW); yn = x*KA/(x*KA+(1-x)*KW)
+    P = np.clip(0.6*P+0.4*Pn, 1e-8, 39.0); y = np.clip(0.6*y+0.4*yn, 1e-8, 1-1e-8)
+    print(f'  iter {k}: P={P:8.4f} y={y:.5f} KA={KA:8.1f} KW={KW:7.4f} rhoL={rL:.0f} rhoV={rV:.1f}')
+EOF
+T=338.9399 (Tsat_NH3(3MPa)+0.05)
+Raoult: pa=3003534.4458 pw=25939.64716 P_init=1514737.0465 MPa
+MOTOR: bubbleP(338.940,0.5)=1.0247 MPa  y=0.99069
+  iter 0: fallo f(a) and f(b) must have different signs
+[0m
+[0m← [0mEdit src/properties/_teqp_prototipo.py
+Index: D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
++++ D:\Desktop\ciclo_kalina_tercero\src\properties\_teqp_prototipo.py
+@@ -73,16 +73,18 @@
+             break
+     raise ValueError(f"sin raiz de liquido: T={T:.1f} P={P:.4g} z={z[0]:.3f}")
+ 
+ def Psat_pure(T):
+-    """Psat [MPa] de NH3 y H2O puros (inicializacion de Raoult, como el motor)."""
++    """Psat [MPa] de NH3 y H2O puros (inicializacion de Raoult, como el motor).
++
++    PropsSI devuelve Pa: se convierte a MPa (unidades internas del flash)."""
+     k = round(T, 6)
+     if k in _PSAT:
+         return _PSAT[k]
+-    pa = PropsSI("P", "T", min(T, 405.3), "Q", 1, "Ammonia")
++    pa = PropsSI("P", "T", min(T, 405.3), "Q", 1, "Ammonia") * 1e-6
+     if T > 405.3:
+         pa *= np.exp(-2500.0 * (1.0 / T - 1.0 / 405.3))
+-    pw = PropsSI("P", "T", max(min(T, 646.9), 273.17), "Q", 1, "Water")
++    pw = PropsSI("P", "T", max(min(T, 646.9), 273.17), "Q", 1, "Water") * 1e-6
+     pw = 1.0 if not np.isfinite(pw) else pw
+     _PSAT[k] = (pa, pw)
+     return pa, pw
+ 
+
+[0m
+Bug de unidades: `PropsSI` devuelve **Pa**, pero `Psat_pure` y el flash trabajan en **MPa** (el motor usa MPa). El motor real da P_burb=1.0247 MPa a T=338.94; mi P_init salió en 1.5e6 "MPa". Corrijo:

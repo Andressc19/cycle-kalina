@@ -12,7 +12,18 @@ streamlit
 pytest
 pytest-cov
 
-# Opcional (solo referencia/futuro): pyfluids/CoolProp NO cubre la mezcla NH3-H2O
-# en este equipo (falta REFPROP/NIST, ver CONTEXT.md). PyfluidsAdapter se conserva
+# TeqpAdapter (src/properties/teqp_adapter.py): alternativa de rendimiento a
+# AmmoniaWaterAdapter, ~20x más rápida (ver TASK_CONTEXT 2026-09-18-validar-
+# teqp-nh3h2o). Usa teqp.AmmoniaWaterTillnerRoth (mismo modelo Tillner-Roth &
+# Friend 1998 que IAPWS G4-01, dominio público NIST, sin licencia REFPROP) +
+# CoolProp para el gas ideal de los puros. AmmoniaWaterAdapter sigue siendo
+# el camino real por defecto (validado exhaustivamente contra IAPWS G4-01);
+# TeqpAdapter no lo está — es una alternativa experimental de rendimiento.
+teqp==0.23.2
+CoolProp==8.0.0
+
+# Opcional (solo referencia/futuro): pyfluids NO cubre la mezcla NH3-H2O en
+# este equipo aun con CoolProp instalado (falta el par binario NH3-H2O en los
+# backends libres de CoolProp, ver CONTEXT.md). PyfluidsAdapter se conserva
 # como referencia; no se instala por defecto.
 # pyfluids>=4.0.0
