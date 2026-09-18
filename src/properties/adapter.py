@@ -93,3 +93,25 @@ class PropertyBackend(ABC):
         NotImplementedError, y los backends que no cubren el rango lanzan
         PropertyRangeError (T fuera de la campana bifásica a esa P).
         """
+
+    def fase_de(self, P: float, T: float, x: float) -> tuple[str, float]:
+        """Clasifica un estado (P, T, x) en 'liquido'/'bifasico'/'vapor' y su título q.
+
+        Método concreto (no abstracto): se apoya solo en ``bubble_point``,
+        ``dew_point`` y ``equilibrio_liquido_vapor``, así que funciona para
+        cualquier backend que implemente esos tres sin necesitar overrides.
+        q=0.0 en líquido (saturado o comprimido), q=1.0 en vapor (saturado o
+        sobrecalentado), y el título másico por regla de la palanca en la
+        región bifásica. Usada por `restricciones.py` para clasificar salidas
+        de componentes (condensador, HRVG, turbina) sin que el solver del
+        ciclo necesite conocer el título de cada estado.
+        """
+        T_burbuja = self.bubble_point(P, x)
+        T_rocio = self.dew_point(P, x)
+        if T <= T_burbuja:
+            return "liquido", 0.0
+        if T >= T_rocio:
+            return "vapor", 1.0
+        x_liquido, x_vapor = self.equilibrio_liquido_vapor(P, T)
+        q = (x - x_liquido) / (x_vapor - x_liquido)
+        return "bifasico", q
