@@ -17,13 +17,13 @@ from __future__ import annotations
 
 import streamlit as st
 
-from src import ui_helpers, ui_inputs
+from src import ui_backend, ui_barrido, ui_clasificacion, ui_helpers, ui_inputs
 from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
 from src.exergy import calcular_exergia
 from src.export_excel import generar_excel
 from src.plots import grafico_balance_energia, grafico_exergia_destruida
 from src.properties.adapter import PropertyRangeError
-from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.restricciones import evaluar_ciclo
 
 
 def _limpiar_resultados():
@@ -35,18 +35,20 @@ def _limpiar_resultados():
 
 def _ejecutar(vals, backend_sel):
     """Corre UNA simulación real y guarda el resultado en session_state."""
-    if backend_sel != ui_helpers.BACKENDS[0]:
-        st.warning(
-            "⚠️ El motor elegido no cubre la mezcla NH3-H2O en este entorno; se "
-            "usará **AmmoniaWaterAdapter** (IAPWS G4-01), el único que la soporta."
-        )
+    backend, nombre_backend, aviso = ui_backend.construir_backend(
+        backend_sel, vals["x_b"])
+    if aviso:
+        st.warning(aviso)
+    mensaje_espera = (
+        "⏳ Resolviendo el ciclo con TeqpAdapter (NIST teqp)... unas "
+        "decenas de segundos."
+        if nombre_backend == ui_backend.BACKEND_TEQP else
+        "⏳ Resolviendo el ciclo con el motor NH3-H2O riguroso... esto puede "
+        "tardar varios minutos. No cierres esta pestaña."
+    )
     parametros = ui_helpers.dict_parametros(vals)
     try:
-        backend = AmmoniaWaterAdapter(x=vals["x_b"])
-        with st.spinner(
-            "⏳ Resolviendo el ciclo con el motor NH3-H2O riguroso... esto puede "
-            "tardar varios minutos. No cierres esta pestaña."
-        ):
+        with st.spinner(mensaje_espera):
             resultado = resolver_ciclo(
                 backend, P_alta=vals["P_alta"], P_baja=vals["P_baja"],
                 T_fuente=vals["T_fuente"], T_sumidero=vals["T_sumidero"],
@@ -57,6 +59,11 @@ def _ejecutar(vals, backend_sel):
                                        T_fuente=vals["T_fuente"],
                                        T_sumidero=vals["T_sumidero"],
                                        T0=vals["T0"], P0=vals["P0"])
+            validacion = evaluar_ciclo(
+                backend, resultado, P_alta=vals["P_alta"], P_baja=vals["P_baja"],
+                T_fuente=vals["T_fuente"], T_sumidero=vals["T_sumidero"],
+                x_b=vals["x_b"], m_b=vals["m_b"], eps_hrvg=vals["eps_hrvg"],
+                eps_reg=vals["eps_reg"], eps_cond=vals["eps_cond"])
     except CicloNoConvergeError as exc:
         _limpiar_resultados()
         st.warning(
@@ -74,16 +81,35 @@ def _ejecutar(vals, backend_sel):
         return
     st.session_state["resultado_ciclo"] = resultado
     st.session_state["resultado_exergia"] = exergia
+    st.session_state["resultado_validacion"] = validacion
     st.session_state["parametros"] = parametros
-    st.session_state["backend_nombre"] = ui_helpers.BACKEND_REAL
+    st.session_state["backend_nombre"] = nombre_backend
     st.success("✅ Simulación completada. Resultados abajo.")
 
 
+def _mostrar_clasificacion():
+    """Caja con la etiqueta de clasificación termodinámica del punto
+    (`restricciones.evaluar_ciclo`: KALINA/VALIDO_ADVERTENCIA/CORREGIBLE/
+    DEGENERADO/INVIABLE) y el detalle de qué criterios la produjeron."""
+    validacion = st.session_state.get("resultado_validacion")
+    if validacion is None:
+        return
+    etiqueta, tipo = ui_clasificacion.CLASIFICACION_INFO.get(
+        validacion.clasificacion.value, (validacion.clasificacion.value, "info"))
+    with st.container(border=True):
+        st.markdown("**Clasificación del ciclo**")
+        getattr(st, tipo)(f"**{etiqueta}**")
+        st.caption(validacion.mensaje_reporte().replace("\n", "  \n"))
+
+
 def _mostrar_resultados():
-    """Renderiza métricas, estados, gráficas, advertencias y descargas."""
+    """Renderiza clasificación, métricas, estados, gráficas, advertencias y
+    descargas."""
     r = st.session_state["resultado_ciclo"]
     x = st.session_state["resultado_exergia"]
     eta_ex = r["Wnet"] / x["ex_qi"] if x["ex_qi"] else float("nan")
+
+    _mostrar_clasificacion()
 
     c1, c2, c3, c4, c5 = st.columns(5)
     c1.metric("η energético", f"{r['eta']:.1%}", border=True)
@@ -141,28 +167,26 @@ def main() -> None:
         "la barra lateral."
     )
 
-    vals = ui_inputs.renderizar_inputs()
-
     with st.sidebar:
         backend_sel, ejecutar = ui_inputs.renderizar_panel_ejecucion()
 
-    if ejecutar:
-        _ejecutar(vals, backend_sel)
+    tab_puntual, tab_barrido = st.tabs(
+        ["Análisis puntual", "Sensibilidad paramétrica"])
 
-    if "resultado_ciclo" in st.session_state:
-        _mostrar_resultados()
-    else:
-        st.info("Configure los parámetros y pulse **Ejecutar simulación** para ver "
-                "aquí los resultados, las gráficas y las descargas.")
+    with tab_puntual:
+        vals = ui_inputs.renderizar_inputs()
 
-    with st.expander("📈 Análisis de sensibilidad paramétrica — próximamente"):
-        st.info(
-            "Espacio reservado para el barrido de sensibilidad (p. ej. η vs P_alta, "
-            "Wnet vs T_fuente, exergía destruida vs efectividades): se podrá elegir "
-            "variable, rango y paso sin reescribir el solver. La lógica de "
-            "`src/sensitivity.py` es de una tarea futura — solo se reserva el lugar "
-            "en la UI (Kalina_ksc_11_tercero.md §9)."
-        )
+        if ejecutar:
+            _ejecutar(vals, backend_sel)
+
+        if "resultado_ciclo" in st.session_state:
+            _mostrar_resultados()
+        else:
+            st.info("Configure los parámetros y pulse **Ejecutar simulación** "
+                    "para ver aquí los resultados, las gráficas y las descargas.")
+
+    with tab_barrido:
+        ui_barrido.renderizar_panel_barrido(vals, backend_sel)
 
 
 if __name__ == "__main__":

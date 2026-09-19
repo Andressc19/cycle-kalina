@@ -1,13 +1,12 @@
 """Helpers de presentación para la UI Streamlit del ciclo Kalina KSC-11.
 
-Tarea 2026-09-17-ui-streamlit. Construye los DataFrames que muestra
-`app.py` (tabla de los 10 estados y tabla de Sgen/Ed por componente), el
-snapshot de parámetros de entrada para el Excel y los bytes PNG de una
-figura. También vive aquí el esquema de campos de la UI: la namedtuple
-`Campo` reúne la etiqueta corta en español, el símbolo LaTeX con su unidad
-(solo pantalla; `st.number_input` no renderiza `$...$` en labels), el
-tooltip y los límites de CONTEXT.md. `dict_parametros` conserva etiquetas
-planas, sin LaTeX, para el Excel.
+Construye los DataFrames que muestra `app.py` (tabla de los 10 estados y
+tabla de Sgen/Ed por componente), el snapshot de parámetros de entrada para
+el Excel y los bytes PNG de una figura. También vive aquí el esquema de
+campos de la UI: la namedtuple `Campo` reúne la etiqueta corta en español,
+el símbolo LaTeX con su unidad (solo pantalla; `st.number_input` no
+renderiza `$...$` en labels), el tooltip y los límites de CONTEXT.md.
+`dict_parametros` conserva etiquetas planas, sin LaTeX, para el Excel.
 """
 
 from __future__ import annotations
@@ -20,7 +19,7 @@ import pandas as pd
 __all__ = ["ORDEN_COMPONENTES", "NOMBRES_COMPONENTES", "Campo",
            "tabla_estados", "tabla_sgen_ed", "advertencias_segunda_ley",
            "dict_parametros", "fig_png", "CAMPOS_CICLO", "CAMPOS_ESTADO",
-           "BACKENDS", "BACKEND_REAL", "CLAVES_RESULTADO"]
+           "CLAVES_RESULTADO", "agrupar_campos"]
 
 ORDEN_COMPONENTES = ("hrvg", "separador", "turbina", "regenerador",
                      "valvula", "absorbedor", "condensador", "bomba")
@@ -78,12 +77,18 @@ def tabla_sgen_ed(resultado_exergia) -> pd.DataFrame:
     return pd.DataFrame(filas)
 
 
+# Sgen [kW/K] bajo este límite es ruido numérico del solver, no violación
+# real (-1e-6 es ~100-10000x más chico que un Sgen real, ~0.01-1 kW/K).
+_TOL_SGEN = 1e-4
+
+
 def advertencias_segunda_ley(resultado_exergia) -> list:
-    """Mensajes en español para cada componente con Sgen < 0 (violaría la 2ª ley)."""
+    """Mensajes por componente con Sgen claramente < 0 (más allá de
+    `_TOL_SGEN`; la tabla de Sgen/Ed sigue mostrando el valor exacto)."""
     sgen = resultado_exergia["sgen"]
     mensajes = []
     for comp in ORDEN_COMPONENTES:
-        if sgen[comp] < 0:
+        if sgen[comp] < -_TOL_SGEN:
             mensajes.append(
                 f"{NOMBRES_COMPONENTES[comp]} reporta Sgen = {sgen[comp]:.5f} "
                 "kW/K < 0, lo que violaría la segunda ley en el modelo. Revise "
@@ -179,11 +184,18 @@ CAMPOS_ESTADO = (
           r"$P_0 = 101.325\ \mathrm{kPa}$.",
           101.325, 50.0, 500.0, 0.1, "%.3f", "Estado muerto (exergía)"),
 )
-BACKENDS = (
-    "AmmoniaWaterAdapter — mezcla NH3-H2O (recomendado)",
-    "IAPWSAdapter (agua pura) — no aplica a la mezcla NH3-H2O en este entorno",
-    "PyfluidsAdapter (CoolProp) — no soporta el par NH3-H2O en este entorno",
-)
-BACKEND_REAL = "AmmoniaWaterAdapter"
-CLAVES_RESULTADO = ("resultado_ciclo", "resultado_exergia", "parametros",
-                    "backend_nombre")
+CLAVES_RESULTADO = ("resultado_ciclo", "resultado_exergia",
+                    "resultado_validacion", "parametros", "backend_nombre")
+
+
+def agrupar_campos(campos: tuple) -> list:
+    """Separa un esquema de `Campo` en secciones (`campo.grupo`), respetando
+    el orden de definición. Usado por `ui_inputs` y `ui_barrido` para que
+    ambas pestañas agrupen las mismas 11 variables de la misma forma."""
+    grupos = []
+    for campo in campos:
+        if grupos and grupos[-1][0] == campo.grupo:
+            grupos[-1][1].append(campo)
+        else:
+            grupos.append([campo.grupo, [campo]])
+    return grupos
