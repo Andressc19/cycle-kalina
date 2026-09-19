@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from src import ui_helpers
+from src import ui_backend, ui_helpers
 
 __all__ = ["renderizar_inputs", "renderizar_panel_ejecucion"]
 
@@ -41,17 +41,6 @@ def _render_filas(campos, destino):
                 destino[campo.clave] = _campo_num(campo)
 
 
-def _agrupar(campos):
-    """Separa el esquema en secciones respetando el orden de definición."""
-    grupos = []
-    for campo in campos:
-        if grupos and grupos[-1][0] == campo.grupo:
-            grupos[-1][1].append(campo)
-        else:
-            grupos.append([campo.grupo, [campo]])
-    return grupos
-
-
 def _seccion(nombre, campos, destino):
     """Una sección bordeada con el encabezado del grupo y sus campos."""
     with st.container(border=True):
@@ -70,7 +59,7 @@ def renderizar_inputs():
     """Izquierda: 3 grupos apilados; derecha: Rendimiento de equipos; +
     estado muerto a ancho completo. Devuelve los valores."""
     destino = {}
-    grupos = _agrupar(ui_helpers.CAMPOS_CICLO)
+    grupos = ui_helpers.agrupar_campos(ui_helpers.CAMPOS_CICLO)
     col_izq, col_der = st.columns(2)
     with col_izq:
         for nombre, campos in grupos[:-1]:
@@ -87,10 +76,11 @@ def _seccion_backend():
     with st.container(border=True):
         st.markdown("**Motor de propiedades**")
         backend = st.selectbox(
-            "Backend de propiedades", ui_helpers.BACKENDS, index=0,
+            "Backend de propiedades", ui_backend.BACKENDS, index=0,
             key="select_backend",
-            help="AmmoniaWaterAdapter es el único motor que soporta la mezcla "
-                 "NH3-H2O en este entorno.")
+            help="AmmoniaWaterAdapter (motor riguroso) y TeqpAdapter (NIST "
+                 "teqp, más rápido) soportan la mezcla NH3-H2O en este "
+                 "entorno.")
         st.caption("IAPWSAdapter (agua pura) y PyfluidsAdapter (CoolProp) no "
                    "cubren la mezcla NH3-H2O; se listan solo como referencia.")
     return backend
@@ -102,11 +92,18 @@ def renderizar_panel_ejecucion():
     st.caption("Defina los parámetros en el área principal y ejecute la "
                "simulación desde aquí.")
     backend = _seccion_backend()
-    st.markdown(
-        "⏱️ **El cálculo con el motor de propiedades real puede tardar varios "
-        "minutos (~8-9 min). No cierres esta pestaña ni pulses el botón de "
-        "nuevo mientras corre.**"
-    )
+    if backend == ui_backend.BACKENDS[1]:
+        st.markdown(
+            "⏱️ **TeqpAdapter resuelve el ciclo en decenas de segundos** "
+            "(~10-20x más rápido que el motor riguroso). No cierres esta "
+            "pestaña mientras corre."
+        )
+    else:
+        st.markdown(
+            "⏱️ **El cálculo con el motor de propiedades real puede tardar "
+            "varios minutos (~8-9 min). No cierres esta pestaña ni pulses el "
+            "botón de nuevo mientras corre.**"
+        )
     ejecutar = st.button("Ejecutar simulación", type="primary",
                          width="stretch")
     return backend, ejecutar
