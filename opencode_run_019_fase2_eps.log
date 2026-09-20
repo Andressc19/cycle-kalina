@@ -1,0 +1,378 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m✱ [0mGlob "**/TASK_CONTEXT_fase2_eps_hrvg.md"[90m 1 match[0m
+[0m→ [0mRead TASK_CONTEXT_fase2_eps_hrvg.md
+[0m✱ [0mGlob "scripts/barridos_2026-09-19/fase2_libre/**"[90m 9 matches[0m
+[0m✱ [0mGlob "resultados/barridos_2026-09-19/fase2_libre/**"[90m 6 matches[0m
+[0m✱ [0mGlob "src/**/*.py"[90m 40 matches[0m
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/confirmacion_motor_real_v2.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/busqueda_libre_v2.py
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE_v2.md
+[0m✱ [0mGrep "tabla_barrido"[90m 34 matches[0m
+[0m✱ [0mGrep "class TeqpAdapter"[90m in src/properties/teqp_adapter.py · 1 match[0m
+[0m→ [0mRead src/sensitivity.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/01_punto_default_y_scan.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py
+[0m→ [0mRead src/restricciones/__init__.py
+[0m✱ [0mGrep "eps_hrvg"[90m in src/ui_helpers.py · 16 matches[0m
+[0m→ [0mRead src/ui_campos.py
+[0m→ [0mRead src/restricciones/modelos.py
+[0m→ [0mRead src/restricciones/clasificacion.py
+[0m→ [0mRead src/restricciones/operativos.py
+[0m→ [0mRead src/restricciones/segunda_ley.py
+[0m→ [0mRead src/restricciones/numericos.py
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/busqueda_libre_v2.csv[90m [limit=6][0m
+[0m→ [0mRead src/cycle_solver.py
+[0m
+[0m$ [0mls -la
+total 1054
+drwxr-xr-x 1 Usuario 197121      0 Sep 20 11:14 .
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:56 ..
+drwxr-xr-x 1 Usuario 197121      0 Sep 20 03:18 .claude
+-rw-r--r-- 1 Usuario 197121     79 Sep 19 10:56 .git
+-rw-r--r-- 1 Usuario 197121    257 Sep 19 10:56 .gitignore
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 11:29 .opencode
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 11:01 .pytest_cache
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:57 .streamlit
+-rw-r--r-- 1 Usuario 197121   3055 Sep 19 10:56 AGENTS.md
+-rw-r--r-- 1 Usuario 197121   9389 Sep 19 10:56 CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   8661 Sep 19 10:56 Kalina_ksc_11_tercero.md
+-rw-r--r-- 1 Usuario 197121   5323 Sep 19 10:56 README.md
+-rw-r--r-- 1 Usuario 197121   8470 Sep 20 01:10 TASK_CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   5992 Sep 19 15:46 TASK_CONTEXT_fase1_profesor.md
+-rw-r--r-- 1 Usuario 197121   3658 Sep 20 11:14 TASK_CONTEXT_fase2_eps_hrvg.md
+-rw-r--r-- 1 Usuario 197121   5646 Sep 19 15:46 TASK_CONTEXT_fase2_libre.md
+-rw-r--r-- 1 Usuario 197121   3318 Sep 20 11:14 TASK_CONTEXT_fase3_confirma_690.md
+-rw-r--r-- 1 Usuario 197121   6180 Sep 19 15:47 TASK_CONTEXT_fase3_real.md
+-rw-r--r-- 1 Usuario 197121   8329 Sep 20 02:02 TASK_CONTEXT_rangos_actualizados.md
+-rw-r--r-- 1 Usuario 197121   6643 Sep 20 02:28 TASK_CONTEXT_ui_tamb.md
+-rw-r--r-- 1 Usuario 197121   8297 Sep 19 10:57 VALIDACION_ELSAYED2013.md
+drwxr-xr-x 1 Usuario 197121      0 Sep 20 02:31 __pycache__
+-rw-r--r-- 1 Usuario 197121   8930 Sep 20 02:30 app.py
+-rw-r--r-- 1 Usuario 197121  98946 Sep 19 10:56 opencode_run_001.log
+-rw-r--r-- 1 Usuario 197121  67576 Sep 19 10:56 opencode_run_002.log
+-rw-r--r-- 1 Usuario 197121  24933 Sep 19 10:56 opencode_run_003.log
+-rw-r--r-- 1 Usuario 197121  38052 Sep 19 10:56 opencode_run_004.log
+-rw-r--r-- 1 Usuario 197121  53849 Sep 19 10:56 opencode_run_005.log
+-rw-r--r-- 1 Usuario 197121  44948 Sep 19 10:56 opencode_run_006.log
+-rw-r--r-- 1 Usuario 197121  30767 Sep 19 10:56 opencode_run_007.log
+-rw-r--r-- 1 Usuario 197121  12765 Sep 19 10:56 opencode_run_008.log
+-rw-r--r-- 1 Usuario 197121  23465 Sep 19 10:56 opencode_run_009.log
+-rw-r--r-- 1 Usuario 197121 100602 Sep 19 10:57 opencode_run_010.log
+-rw-r--r-- 1 Usuario 197121  63280 Sep 19 13:17 opencode_run_011.log
+-rw-r--r-- 1 Usuario 197121  16575 Sep 19 14:29 opencode_run_012.log
+-rw-r--r-- 1 Usuario 197121  34045 Sep 19 15:57 opencode_run_013_fase1.log
+-rw-r--r-- 1 Usuario 197121  34147 Sep 19 16:37 opencode_run_014_fase2.log
+-rw-r--r-- 1 Usuario 197121  71659 Sep 19 16:30 opencode_run_015_fase3.log
+-rw-r--r-- 1 Usuario 197121  68767 Sep 20 01:28 opencode_run_016_fix_tamb.log
+-rw-r--r-- 1 Usuario 197121  52447 Sep 20 03:11 opencode_run_017_rangos.log
+-rw-r--r-- 1 Usuario 197121  20125 Sep 20 02:32 opencode_run_018_ui_tamb.log
+-rw-r--r-- 1 Usuario 197121   1726 Sep 20 11:16 opencode_run_019_fase2_eps.log
+-rw-r--r-- 1 Usuario 197121   5082 Sep 20 11:16 opencode_run_020_fase3_confirma.log
+-rw-r--r-- 1 Usuario 197121   1274 Sep 19 10:57 requirements.txt
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 11:01 resultados
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 11:01 scripts
+drwxr-xr-x 1 Usuario 197121      0 Sep 20 01:14 src
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:59 tests
+-rw-r--r-- 1 Usuario 197121   3092 Sep 19 10:57 validacion_elsayed2013.json
+[0m
+[0m$ [0mpython --version 2>&1; python -c "import pandas, scipy; print('pandas', pandas.__version__, 'scipy ok')" 2>&1
+Python 3.13.7
+pandas 3.0.5 scipy ok
+[0m
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/confirmacion_motor_real_v2.json
+[0m
+[0m$ [0mpython -c "import teqp; print('teqp', teqp.__version__ if hasattr(teqp,'__version__') else 'ok')" 2>&1; python -m pytest --version 2>&1
+teqp 0.23.2
+pytest 9.1.1
+[0m
+Python 3.13.7 con teqp 0.23.2 y pytest 9.1.1 disponibles. Ya tengo el patrón de la carpeta (esquema `tabla_barrido` + columnas de diagnóstico O2). Escribo el script de pre-escaneo:
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py
+Wrote file successfully.
+[0m
+Ahora el test determinista (mismo patrón que `test_fase2_libre.py`):
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py -v 2>&1
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 4 items
+
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_6_puntos_solo_eps_hrvg_variado FAILED [ 25%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_dentro_de_campos_ciclo FAILED [ 50%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_esquema_columnas_empieza_por_tabla_barrido PASSED [ 75%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_csv_registrado_tiene_esquema_y_6_puntos SKIPPED [100%]
+
+================================== FAILURES ===================================
+_________________ test_combos_6_puntos_solo_eps_hrvg_variado __________________
+
+    def test_combos_6_puntos_solo_eps_hrvg_variado():
+>       puntos = f2.combos_eps_hrvg()
+                 ^^^^^^^^^^^^^^^^^^^^
+
+scripts\barridos_2026-09-19\fase2_libre\test_prescan_eps_hrvg.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def combos_eps_hrvg() -> list[dict]:
+        """Los 6 puntos del pre-escaneo: candidato v2 con solo eps_hrvg variado."""
+>       return [dict(**CANDIDATO, eps_hrvg=eps) for eps in EPS_HRVG_GRID]
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: dict() got multiple values for keyword argument 'eps_hrvg'
+
+scripts\barridos_2026-09-19\fase2_libre\prescan_eps_hrvg.py:63: TypeError
+_____________________ test_combos_dentro_de_campos_ciclo ______________________
+
+    def test_combos_dentro_de_campos_ciclo():
+>       for combo in f2.combos_eps_hrvg():
+                     ^^^^^^^^^^^^^^^^^^^^
+
+scripts\barridos_2026-09-19\fase2_libre\test_prescan_eps_hrvg.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def combos_eps_hrvg() -> list[dict]:
+        """Los 6 puntos del pre-escaneo: candidato v2 con solo eps_hrvg variado."""
+>       return [dict(**CANDIDATO, eps_hrvg=eps) for eps in EPS_HRVG_GRID]
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: dict() got multiple values for keyword argument 'eps_hrvg'
+
+scripts\barridos_2026-09-19\fase2_libre\prescan_eps_hrvg.py:63: TypeError
+=========================== short test summary info ===========================
+FAILED scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_6_puntos_solo_eps_hrvg_variado
+FAILED scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_dentro_de_campos_ciclo
+=================== 2 failed, 1 passed, 1 skipped in 2.18s ====================
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\prescan_eps_hrvg.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\prescan_eps_hrvg.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\prescan_eps_hrvg.py
+@@ -59,9 +59,9 @@
+ 
+ 
+ def combos_eps_hrvg() -> list[dict]:
+     """Los 6 puntos del pre-escaneo: candidato v2 con solo eps_hrvg variado."""
+-    return [dict(**CANDIDATO, eps_hrvg=eps) for eps in EPS_HRVG_GRID]
++    return [{**CANDIDATO, "eps_hrvg": eps} for eps in EPS_HRVG_GRID]
+ 
+ 
+ def resolver_punto(combo: dict) -> dict:
+     """Resuelve + clasifica un punto y adjunta diagnósticos q2/T2/O2."""
+
+[0m
+Error mío: `dict(**CANDIDATO, eps_hrvg=eps)` choca porque `CANDIDATO` ya trae `eps_hrvg`. Lo arreglo con unpacking de dict literal:
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py -v 2>&1
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 4 items
+
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_6_puntos_solo_eps_hrvg_variado PASSED [ 25%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_dentro_de_campos_ciclo PASSED [ 50%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_esquema_columnas_empieza_por_tabla_barrido PASSED [ 75%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_csv_registrado_tiene_esquema_y_6_puntos SKIPPED [100%]
+
+======================== 3 passed, 1 skipped in 1.53s =========================
+[0m
+3 passed, 1 skipped (el del CSV aún no existe). Ahora corro el pre-escaneo:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.py 2>&1
+Pre-escaneo eps_hrvg: 6 puntos (eps_hrvg=(0.7, 0.75, 0.8, 0.85, 0.9, 0.95)) con TeqpAdapter, resto = candidato v2, T_amb_diseno=303.55 K...
+  [1/6] eps_hrvg=0.70 -> KALINA eta=0.12175801539798804 q2=0.4541228970611357 T2=456.28580719359354
+  [2/6] eps_hrvg=0.75 -> KALINA eta=0.12273736769618782 q2=0.4915083079544291 T2=458.9721717283269
+  [3/6] eps_hrvg=0.80 -> KALINA eta=0.12357043399158664 q2=0.5296273170396775 T2=461.481212041098
+  [4/6] eps_hrvg=0.85 -> KALINA eta=0.12428878032997338 q2=0.5685612755830746 T2=463.82643023912067
+  [5/6] eps_hrvg=0.90 -> KALINA eta=0.12491666615152322 q2=0.6083845581112871 T2=466.0204077725547
+  [6/6] eps_hrvg=0.95 -> KALINA eta=0.12547276472853 q2=0.6491655575611939 T2=468.074728534962
+
+Puntos evaluados: 6 en 259.9 s (43.32 s/punto)
+ eps_hrvg clasificacion      eta
+     0.70        KALINA 0.121758
+     0.75        KALINA 0.122737
+     0.80        KALINA 0.123570
+     0.85        KALINA 0.124289
+     0.90        KALINA 0.124917
+     0.95        KALINA 0.125473
+
+CSV guardado en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\prescan_eps_hrvg.csv
+[0m
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.csv
+Los 6 puntos convergen y todos clasifican KALINA. Reviso el CSV generado para confirmar el esquema y los diagnósticos:
+[0m
+[0m← [0mWrite resultados/barridos_2026-09-19/fase2_libre/PRESCAN_EPS_HRVG.md
+Wrote file successfully.
+[0m
+Todo el rango 0.70–0.95 da KALINA (6/6). El análisis de fronteras:
+
+- **O5 (q2)**: q2 va de 0.454 a 0.649 — centro de la banda (1e-3, 1−1e-3); ambas fronteras O5 quedan lejos (superior ~eps=1.4, inferior ~0.12).
+- **S5 (T2 ≤ T_fuente=470 K)**: margen colapsa de +13.71 K (0.70) a **+1.93 K (0.95)**. Extrapolación lineal: T2=470 en **eps_hrvg ≈ 0.99** — justo el tope 0.99 de `CAMPOS_CICLO`. Esa es la frontera de clasificación real en el entorno del candidato.
+
+Conclusión: el rango 0.80–0.90 propuesto era **INADECUADO** (todo KALINA, sin acercarse a borde; a 0.90 el margen S5 aún es +3.98 K). Rango corregido: **0.80–0.99**, que bracketea la frontera S5. Escribo el resumen y actualizo la fila de `BASE_LIBRE_v2.md`:
+[0m← [0mEdit resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE_v2.md
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE_v2.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE_v2.md
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE_v2.md
+@@ -101,10 +101,18 @@
+ | 1 | `x_b` | 0.35 – 0.45 | **0.40** | Palanca nueva; vigilar C1 (x5 < x_b < x3) y O2 (T_sat_L sube al bajar x_b) |
+ | 2 | `P_baja` | 400 – 500 kPa | **400** | Default del profesor; subirla quita η y da margen O2 (ver barrido) |
+ | 3 | `eps_cond` | 0.85 – 0.95 | **0.95** | Palanca directa de O2; por debajo de 0.90 casi todo CORREGIBLE |
+ | 4 | `eta_t` | 0.80 – 0.90 | **0.85** | Afecta O1 (q4 ≥ 0.90, margen modesto en v1) y η directamente |
+-| 5 | `eps_hrvg` | 0.80 – 0.90 | **0.85** | Afecta O5 (q2) y η; no se varió en el barrido v2, falta caracterizarla |
++| 5 | `eps_hrvg` | 0.80 – 0.99 | **0.85** | Afecta O5 (q2) y η; la frontera real es S5 (T2→T_fuente) en ≈0.99, no 0.90 — rango corregido por el pre-escaneo (nota abajo) |
+ 
++> Nota (pre-escaneo eps_hrvg, 2026-09-20, `PRESCAN_EPS_HRVG.md`): el rango
++> 0.80–0.90 original era una suposición sin evidencia. El pre-escaneo (6 pts
++> TeqpAdapter, `prescan_eps_hrvg.csv`) dio todo KALINA en 0.70–0.95 sin
++> acercarse a frontera (margen S5 ≥ +3.98 K a 0.90); la frontera S5
++> (T2>T_fuente=470 K → INVIABLE) está extrapolada a eps_hrvg ≈ 0.99, el tope
++> de `CAMPOS_CICLO`. Por eso el tope se amplía a 0.99 para bracketing; el piso
++> 0.80 se conserva (sin fronteras debajo en un entorno razonable).
++
+ Fijas durante el barrido de sensibilidad: `P_alta=3000`, `T_fuente=470.0`,
+ `T_sumidero=300.032917`, `m_b=1.0`, `eta_p=0.75`, `eps_reg=0.75`,
+ `T_amb_diseno=303.55`. Variables de vigilancia en cada corrida: clasificación
+ (frontera O2 = knuckle), margen O1, margen O2.
+
+[0m
+Ahora actualizo **solo** la fila de `eps_hrvg` en §3 de `BASE_LIBRE_v2.md`, con una nota de por qué cambió:
+[0m$ [0mgit diff -- resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE_v2.md 2>&1; echo "---STATUS---"; git status --short 2>&1
+---STATUS---
+ M .claude/launch.json
+ M TASK_CONTEXT.md
+ M app.py
+ M src/restricciones/clasificacion.py
+ M src/restricciones/operativos.py
+ M src/ui_helpers.py
+ M src/ui_inputs.py
+ M tests/test_restricciones.py
+ M tests/test_restricciones_convenciones.py
+?? TASK_CONTEXT_fase1_profesor.md
+?? TASK_CONTEXT_fase2_eps_hrvg.md
+?? TASK_CONTEXT_fase2_libre.md
+?? TASK_CONTEXT_fase3_confirma_690.md
+?? TASK_CONTEXT_fase3_real.md
+?? TASK_CONTEXT_rangos_actualizados.md
+?? TASK_CONTEXT_ui_tamb.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? opencode_run_013_fase1.log
+?? opencode_run_014_fase2.log
+?? opencode_run_015_fase3.log
+?? opencode_run_016_fix_tamb.log
+?? opencode_run_017_rangos.log
+?? opencode_run_018_ui_tamb.log
+?? opencode_run_019_fase2_eps.log
+?? opencode_run_020_fase3_confirma.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+?? src/ui_campos.py
+[0m
+Verifico el diff de `BASE_LIBRE_v2.md` (que solo cambió la fila 5 + nota) y corro los tests de la carpeta + suite de `tests/` (sin tocar `fase3_real`, que corre en paralelo):
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/ tests/ -q 2>&1
+........................................................................ [ 65%]
+s.....................................                                   [100%]
+============================== warnings summary ===============================
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_teqp_adapter.py::test_bubble_point_coincide_con_el_motor_real
+tests/test_validacion_elsayed2013.py::test_eta_dentro_de_5pct_del_caso_elsayed2013
+  C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_teqp_adapter.py::test_bubble_point_coincide_con_el_motor_real
+  D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_validacion_elsayed2013.py::test_eta_dentro_de_5pct_del_caso_elsayed2013
+  D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+109 passed, 1 skipped, 9 warnings in 355.16s (0:05:55)
+[0m
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE_v2.md[90m [offset=93, limit=28][0m
+Los 109 tests pasan. Nota: `resultados/` y `scripts/barridos_2026-09-19/` están sin trackear en git (por eso el diff sale vacío); los archivos `M` del status son modificaciones previas de otras sesiones, no mías — yo solo toqué 5 archivos de mi carpeta. Verifico el §3 del informe editado:
+La fila 5 y la nota están bien, el resto del documento intacto. Verifico que el test del CSV ahora pase (antes saltó porque el CSV no existía) y el límite de 200 líneas:
+[0m
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py -v 2>&1; echo "---LINECONTS---"; wc -l scripts/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.py scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 4 items
+
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_6_puntos_solo_eps_hrvg_variado PASSED [ 25%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_combos_dentro_de_campos_ciclo PASSED [ 50%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_esquema_columnas_empieza_por_tabla_barrido PASSED [ 75%]
+scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py::test_csv_registrado_tiene_esquema_y_6_puntos PASSED [100%]
+
+============================== 4 passed in 1.53s ==============================
+---LINECONTS---
+ 124 scripts/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.py
+  72 scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py
+ 196 total
+[0m
+Todo completo. Reporte final:
+
+```
+STATUS: done
+SUMMARY: Pre-escaneo de eps_hrvg completado sobre el candidato v2 (400/0.40/0.95)
+con TeqpAdapter: 6/6 puntos (eps_hrvg 0.70–0.95) clasifican KALINA con respuesta
+monótona (η 0.1218→0.1255). El rango 0.80–0.90 propuesto era INADECUADO (todo KALINA
+sin acercarse a frontera); se recomienda y registra el rango corregido 0.80–0.99,
+que bracketee la frontera S5 (T2>T_fuente) real en ≈0.99 (tope de CAMPOS_CICLO).
+FILES_CHANGED:
+  - scripts/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.py (nuevo, 124 líneas ≤ 200)
+  - scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py (nuevo, 72 líneas ≤ 200)
+  - resultados/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.csv (nuevo, 6 filas, esquema tabla_barrido + q2/T2/T_sat_L/T9_amb/O2_margen)
+  - resultados/barridos_2026-09-19/fase2_libre/PRESCAN_EPS_HRVG.md (nuevo, resumen 10-20 líneas)
+  - resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE_v2.md (editado SOLO §3: fila de eps_hrvg 0.80–0.90 → 0.80–0.99 + nota de por qué cambió)
+  - No se tocó src/, TASK_CONTEXT*.md, fase1_profesor/ ni fase3_real/ (tarea paralela)
+TESTS: pytest scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py -v → 4 passed.
+  Suite amplia (tests/ + fase2_libre/, sin fase3_real): pytest scripts/barridos_2026-09-19/fase2_libre/ tests/ -q → 109 passed, 1 skipped, 9 warnings (warnings preexistentes de iapws, sin relación).
+RESULTS: 6 puntos (TeqpAdapter, resto = candidato v2, T_amb_diseno=303.55):
+  eps_hrvg | clasif. | η        | q2    | T2 [K]    | margen S5 (470−T2)
+  0.70     | KALINA  | 0.121758 | 0.454 | 456.29    | +13.71
+  0.75     | KALINA  | 0.122737 | 0.492 | 458.97    | +11.03
+  0.80     | KALINA  | 0.123570 | 0.530 | 461.48    | +8.52
+  0.85     | KALINA  | 0.124289 | 0.569 | 463.83    | +6.17
+  0.90     | KALINA  | 0.124917 | 0.608 | 466.02    | +3.98
+  0.95     | KALINA  | 0.125473 | 0.649 | 468.07    | +1.93
+  Plataforma: todo el rango es KALINA (plano, sin cruce de clasificación). Fronteras
+  O5 fuera de alcance (superior ≈1.4, inferior ≈0.12). Frontera real: S5 (T2>T_fuente
+  → INVIABLE) extrapolada a eps_hrvg ≈ 0.99, el tope de CAMPOS_CICLO.
+  RANGO FINAL RECOMENDADO: eps_hrvg: 0.80 – 0.99 (centro 0.85) — el 0.80–0.90 original
+  era INADECUADO (nada cerca de un borde; a 0.90 el margen S5 aún es +3.98 K). Actualizado
+  en BASE_LIBRE_v2.md §3 (fila 5 + nota). η(0.85)=0.124289 consistente con el motor real
+  (0.124296).
+ERRORS: ninguno. (Un error propio en combos_eps_hrvg por dict(**CANDIDATO, eps_hrvg=eps)
+  chocando con la clave existente — detectado por los tests y corregido a {**CANDIDATO,
+  "eps_hrvg": eps}; tests verdes tras el fix.)
+ASSUMPTIONS: m_b=1.0 y T_amb_diseno=303.55 tomados del candidato de
+  confirmacion_motor_real_v2.py / BASE_LIBRE_v2.md. Frontera S5 (≈0.99) estimada por
+  extrapolación lineal de T2 sobre los 6 puntos (margen a 0.95: +1.93 K), no por un
+  punto resuelto en 0.99; el punto extremo 0.99 del rango corregido puede caer INVIABLE
+  por S5 — eso es exactamente bracketing, no un problema.
+UNRESOLVED: ninguno. El punto extremo propuesto 0.99 no se resolvió en este pre-escaneo
+  (el objetivo era caracterizar el entorno del candidato; resolver 0.99 queda para el
+  barrido de sensibilidad autorizado).
+RECOMMENDATIONS: (1) Al autorizar el barrido de sensibilidad de Fase 2, usar eps_hrvg
+  0.80–0.99 como fila 5 (ya actualizada en BASE_LIBRE_v2 §3). (2) Vigilar en ese barrido
+  la frontera S5 (T2 vs T_fuente=470 K) además de O2/O1: es la única que se acerca en
+  esta variable. (3) Si se quiere confirmar el cruce exacto, un micro-escaneo focal 0.96–0.99
+  (paso 0.01, 4 pts Teqp) lo ubicaría con precisión antes del barrido final.
+```

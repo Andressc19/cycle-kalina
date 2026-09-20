@@ -1,0 +1,1648 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m$ [0mls
+AGENTS.md
+CONTEXT.md
+Kalina_ksc_11_tercero.md
+README.md
+TASK_CONTEXT.md
+TASK_CONTEXT_fase1_profesor.md
+TASK_CONTEXT_fase2_eps_hrvg.md
+TASK_CONTEXT_fase2_libre.md
+TASK_CONTEXT_fase2_sensibilidad_final.md
+TASK_CONTEXT_fase3_confirma_690.md
+TASK_CONTEXT_fase3_real.md
+TASK_CONTEXT_fase3_sensibilidad_final.md
+TASK_CONTEXT_rangos_actualizados.md
+TASK_CONTEXT_ui_tamb.md
+VALIDACION_ELSAYED2013.md
+__pycache__
+app.py
+opencode_run_001.log
+opencode_run_002.log
+opencode_run_003.log
+opencode_run_004.log
+opencode_run_005.log
+opencode_run_006.log
+opencode_run_007.log
+opencode_run_008.log
+opencode_run_009.log
+opencode_run_010.log
+opencode_run_011.log
+opencode_run_012.log
+opencode_run_013_fase1.log
+opencode_run_014_fase2.log
+opencode_run_015_fase3.log
+opencode_run_016_fix_tamb.log
+opencode_run_017_rangos.log
+opencode_run_018_ui_tamb.log
+opencode_run_019_fase2_eps.log
+opencode_run_020_fase3_confirma.log
+opencode_run_021_fase2_final.log
+opencode_run_022_fase3_final.log
+requirements.txt
+resultados
+scripts
+src
+tests
+validacion_elsayed2013.json
+[0m
+[0m✱ [0mGlob "**/TASK_CONTEXT_fase2_sensibilidad_final.md"[90m 1 match[0m
+[0m→ [0mRead TASK_CONTEXT_fase2_sensibilidad_final.md
+[0m→ [0mRead CONTEXT.md
+[0m
+[0m$ [0mls scripts/barridos_2026-09-19/ scripts/barridos_2026-09-19/fase2_libre/ 2>/dev/null; echo "---"; ls src/; echo "---"; ls resultados/barridos_2026-09-19/ 2>/dev/null
+scripts/barridos_2026-09-19/:
+__pycache__
+b0_confirma_motor_real.py
+b0_scan_cementera.py
+fase1_profesor
+fase2_libre
+fase3_real
+test_b0_scan.py
+
+scripts/barridos_2026-09-19/fase2_libre/:
+01_punto_default_y_scan.py
+02_confirmacion_motor_real.py
+__pycache__
+busqueda_libre_v2.py
+confirmacion_motor_real_v2.py
+prescan_eps_hrvg.py
+test_fase2_libre.py
+test_prescan_eps_hrvg.py
+---
+__init__.py
+__pycache__
+_cycle_loops.py
+components
+cycle_solver.py
+exergy.py
+export_excel.py
+plots.py
+properties
+restricciones
+sensitivity.py
+state.py
+ui_backend.py
+ui_barrido.py
+ui_campos.py
+ui_clasificacion.py
+ui_helpers.py
+ui_inputs.py
+---
+b0_confirmacion_motor_real.json
+b0_scan_cementera.csv
+fase1_profesor
+fase2_libre
+fase3_real
+figuras
+[0m
+[0m→ [0mRead src/sensitivity.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/busqueda_libre_v2.py
+[0m✗ [0mRead src/restricciones.py failed
+[91m[1mError: [0mFile not found: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones.py
+
+Did you mean one of these?
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones
+[0m→ [0mRead src/ui_helpers.py
+[0m→ [0mRead src/restricciones
+[0m
+[0m$ [0mls src/properties/ src/restricciones/ src/components/
+src/components/:
+__init__.py
+__pycache__
+absorbedor.py
+bomba.py
+condensador.py
+hrvg.py
+regenerador.py
+separador.py
+turbina.py
+valvula.py
+
+src/properties/:
+__init__.py
+__pycache__
+_kalina_flash.py
+_nh3h2o_engine.py
+_teqp_engine.py
+_teqp_flash.py
+adapter.py
+ammonia_water_adapter.py
+iapws_adapter.py
+pyfluids_adapter.py
+teqp_adapter.py
+
+src/restricciones/:
+__init__.py
+__pycache__
+clasificacion.py
+composicion.py
+modelos.py
+numericos.py
+operativos.py
+segunda_ley.py
+[0m
+[0m→ [0mRead src/restricciones/__init__.py
+[0m→ [0mRead src/restricciones/operativos.py
+[0m→ [0mRead src/restricciones/clasificacion.py
+[0m→ [0mRead src/restricciones/modelos.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead src/properties/teqp_adapter.py
+[0m→ [0mRead src/plots.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/confirmacion_motor_real_v2.py
+[0m
+[0m$ [0mls -la resultados/barridos_2026-09-19/fase2_libre/ resultados/barridos_2026-09-19/figuras/ 2>/dev/null
+resultados/barridos_2026-09-19/fase2_libre/:
+total 77
+drwxr-xr-x 1 Usuario 197121     0 Sep 20 11:24 .
+drwxr-xr-x 1 Usuario 197121     0 Sep 19 15:45 ..
+-rw-r--r-- 1 Usuario 197121  7666 Sep 19 16:29 BASE_LIBRE.md
+-rw-r--r-- 1 Usuario 197121  6923 Sep 20 11:24 BASE_LIBRE_v2.md
+-rw-r--r-- 1 Usuario 197121  1917 Sep 20 11:24 PRESCAN_EPS_HRVG.md
+-rw-r--r-- 1 Usuario 197121  3674 Sep 19 15:58 busqueda_libre.csv
+-rw-r--r-- 1 Usuario 197121 32966 Sep 20 02:31 busqueda_libre_v2.csv
+-rw-r--r-- 1 Usuario 197121  1395 Sep 19 16:29 confirmacion_motor_real.json
+-rw-r--r-- 1 Usuario 197121   558 Sep 20 02:37 confirmacion_motor_real_v2.json
+-rw-r--r-- 1 Usuario 197121  1748 Sep 20 11:22 prescan_eps_hrvg.csv
+
+resultados/barridos_2026-09-19/figuras/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 11:01 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 15:45 ..
+[0m
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/confirmacion_motor_real_v2.json
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/PRESCAN_EPS_HRVG.md
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.csv
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE_v2.md
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/restricciones/numericos.py
+[0m→ [0mRead src/exergy.py
+[0m→ [0mRead src/restricciones/segunda_ley.py
+[0m→ [0mRead src/state.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/ui_campos.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py
+[0m
+[0m$ [0mtail -30 opencode_run_021_fase2_final.log 2>/dev/null; echo "=== log 022 ==="; tail -20 opencode_run_022_fase3_final.log 2>/dev/null
+total 77
+drwxr-xr-x 1 Usuario 197121     0 Sep 20 11:24 .
+drwxr-xr-x 1 Usuario 197121     0 Sep 19 15:45 ..
+-rw-r--r-- 1 Usuario 197121  7666 Sep 19 16:29 BASE_LIBRE.md
+-rw-r--r-- 1 Usuario 197121  6923 Sep 20 11:24 BASE_LIBRE_v2.md
+-rw-r--r-- 1 Usuario 197121  1917 Sep 20 11:24 PRESCAN_EPS_HRVG.md
+-rw-r--r-- 1 Usuario 197121  3674 Sep 19 15:58 busqueda_libre.csv
+-rw-r--r-- 1 Usuario 197121 32966 Sep 20 02:31 busqueda_libre_v2.csv
+-rw-r--r-- 1 Usuario 197121  1395 Sep 19 16:29 confirmacion_motor_real.json
+-rw-r--r-- 1 Usuario 197121   558 Sep 20 02:37 confirmacion_motor_real_v2.json
+-rw-r--r-- 1 Usuario 197121  1748 Sep 20 11:22 prescan_eps_hrvg.csv
+
+resultados/barridos_2026-09-19/figuras/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 11:01 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 15:45 ..
+[0m
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/confirmacion_motor_real_v2.json
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/PRESCAN_EPS_HRVG.md
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/prescan_eps_hrvg.csv
+[0m→ [0mRead resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE_v2.md
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/restricciones/numericos.py
+[0m→ [0mRead src/exergy.py
+[0m→ [0mRead src/restricciones/segunda_ley.py
+[0m→ [0mRead src/state.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/ui_campos.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/test_prescan_eps_hrvg.py
+=== log 022 ===
+?? TASK_CONTEXT_fase3_real.md
+?? TASK_CONTEXT_fase3_sensibilidad_final.md
+?? TASK_CONTEXT_rangos_actualizados.md
+?? TASK_CONTEXT_ui_tamb.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? opencode_run_013_fase1.log
+?? opencode_run_014_fase2.log
+?? opencode_run_015_fase3.log
+?? opencode_run_016_fix_tamb.log
+?? opencode_run_017_rangos.log
+?? opencode_run_018_ui_tamb.log
+?? opencode_run_019_fase2_eps.log
+?? opencode_run_020_fase3_confirma.log
+?? opencode_run_021_fase2_final.log
+?? opencode_run_022_fase3_final.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+?? src/ui_campos.py
+[0m
+[0m
+[0m$ [0mpython --version && python -c "import teqp; print('teqp ok', teqp.__version__)" && python -c "import matplotlib, pandas, scipy; print('mpl', matplotlib.__version__, 'pandas', pandas.__version__, 'scipy', scipy.__version__)"
+Python 3.13.7
+teqp ok 0.23.2
+mpl 3.10.9 pandas 3.0.5 scipy 1.18.1
+[0m
+[0m$ [0mcat > "C:/Users/Usuario/AppData/Local/Temp/opencode/timing_teqp.py" << 'EOF'
+import sys, time
+from pathlib import Path
+RAIZ = Path(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+sys.path.insert(0, str(RAIZ))
+from src.cycle_solver import resolver_ciclo
+from src.properties.teqp_adapter import TeqpAdapter
+
+combo = dict(P_alta=3000.0, P_baja=400.0, x_b=0.40, T_fuente=470.0,
+             T_sumidero=300.032917, m_b=1.0, eta_t=0.85, eta_p=0.75,
+             eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.95)
+t0 = time.perf_counter()
+backend = TeqpAdapter(x=0.40)
+res = resolver_ciclo(backend, **combo)
+dt = time.perf_counter() - t0
+print(f"teqp solve: {dt:.2f} s, eta={res['eta']:.6f}")
+EOF
+python "C:/Users/Usuario/AppData/Local/Temp/opencode/timing_teqp.py"
+teqp solve: 34.74 s, eta=0.124289
+[0m
+[0m$ [0mgit status --short | head -40; echo "--- branch ---"; git branch --show-current
+M .claude/launch.json
+ M TASK_CONTEXT.md
+ M app.py
+ M src/restricciones/clasificacion.py
+ M src/restricciones/operativos.py
+ M src/ui_helpers.py
+ M src/ui_inputs.py
+ M tests/test_restricciones.py
+ M tests/test_restricciones_convenciones.py
+?? TASK_CONTEXT_fase1_profesor.md
+?? TASK_CONTEXT_fase2_eps_hrvg.md
+?? TASK_CONTEXT_fase2_libre.md
+?? TASK_CONTEXT_fase2_sensibilidad_final.md
+?? TASK_CONTEXT_fase3_confirma_690.md
+?? TASK_CONTEXT_fase3_real.md
+?? TASK_CONTEXT_fase3_sensibilidad_final.md
+?? TASK_CONTEXT_rangos_actualizados.md
+?? TASK_CONTEXT_ui_tamb.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? opencode_run_013_fase1.log
+?? opencode_run_014_fase2.log
+?? opencode_run_015_fase3.log
+?? opencode_run_016_fix_tamb.log
+?? opencode_run_017_rangos.log
+?? opencode_run_018_ui_tamb.log
+?? opencode_run_019_fase2_eps.log
+?? opencode_run_020_fase3_confirma.log
+?? opencode_run_021_fase2_final.log
+?? opencode_run_022_fase3_final.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+?? src/ui_campos.py
+--- branch ---
+fix/temperatura-ambiente
+[0m
+[0m$ [0mls scripts/barridos_2026-09-19/fase3_real/ scripts/barridos_2026-09-19/fase1_profesor/ resultados/barridos_2026-09-19/fase3_real/ resultados/barridos_2026-09-19/fase1_profesor/ 2>/dev/null | head -60
+resultados/barridos_2026-09-19/fase1_profesor/:
+CONSTANCIA_PROFESOR.md
+eta_vs_Palta_profesor.csv
+eta_vs_Tambiente_profesor.csv
+eta_vs_xb_profesor.csv
+
+resultados/barridos_2026-09-19/fase3_real/:
+CASO_HUSAVIK.md
+CASO_HUSAVIK_v2.md
+busqueda_husavik.csv
+busqueda_husavik_v2.csv
+confirmacion_motor_real.json
+confirmacion_motor_real_690.json
+confirmacion_motor_real_v2.json
+sensibilidad_palta.csv
+sensibilidad_pbaja.csv
+sensibilidad_xb.csv
+
+scripts/barridos_2026-09-19/fase1_profesor/:
+__pycache__
+correr_fase1_profesor.py
+tamb_profesor.csv
+test_fase1_profesor.py
+
+scripts/barridos_2026-09-19/fase3_real/:
+__pycache__
+ajuste_p_baja_husavik.py
+busqueda_base_husavik.py
+busqueda_husavik_v2.py
+confirma_690.py
+confirma_motor_real.py
+confirma_motor_real_v2.py
+sensibilidad_husavik.py
+[0m
+[0m→ [0mRead src/components/__init__.py
+[0m→ [0mRead src/components/condensador.py
+[0m
+[0m# [0mTodos
+[•] Escribir _comun_sensibilidad.py (helpers compartidos)
+[ ] Escribir ancla_sensibilidad.py (tablas del punto ancla)
+[ ] Escribir ofat_sensibilidad.py (5 barridos OFAT Teqp)
+[ ] Escribir malla_2d_sensibilidad.py (malla 6x6 P_baja x eps_cond)
+[ ] Escribir spot_check_sensibilidad.py (motor real, <=10 pts)
+[ ] Escribir figuras_sensibilidad.py (PNGs + resumen_fase2.json)
+[ ] Escribir test_sensibilidad_final.py (tests deterministas)
+[ ] Ejecutar ancla + OFAT + malla (Teqp)
+[ ] Ejecutar spot checks con motor real
+[ ] Generar figuras + resumen y verificar PNGs
+[ ] Correr pytest y reportar
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/comun_sensibilidad.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py
+Wrote file successfully.
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+@@ -49,9 +49,9 @@
+               P_baja=400.0, x_b=0.40, eps_cond=0.95)
+ 
+ # Variables del OFAT con sus rangos (FIN = centro; tope 0.99 de eps_hrvg es
+ # el bracket de la frontera S5, ver PRESCAN_EPS_HRVG.md).
+-BARRIB LES = {
++BARRIDOS = {
+     "x_b": Barrido(0.35, 0.45, 0.02),
+     "P_baja": Barrido(400.0, 500.0, 20.0),
+     "eps_cond": Barrido(0.85, 0.95, 0.02),
+     "eta_t": Barrido(0.80, 0.90, 0.02),
+
+[0m
+I accidentally introduced a typo (`BARRIB LES`). Let me fix it:
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+@@ -62,9 +62,9 @@
+ 
+ def especificacion(var: str) -> dict:
+     """Especificacion Fijo/Barrido de las 11 variables para un barrido."""
+     spec = {k: Fijo(v) for k, v in CENTRO.items()}
+-    spec[var] = BARRIB_LES[var]
++    spec[var] = BARRIDOS[var]
+     return spec
+ 
+ 
+ def guardar(csv: Path, filas: list[dict]) -> None:
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+@@ -76,15 +76,15 @@
+ 
+ 
+ def main() -> None:
+     csvs, totex = {}, 0
+-    for var in BARRIB_LES:
++    for var in BARRIDOS:
+         csv = SALIDAS / f"sensibilidad_{var}.csv"
+         csvs[var] = csv
+         totex += len(generar_combinaciones(especificacion(var)))
+-    print(f"OFAT: {len(BARRIB_LES)} barridos, {totex} puntos TeqpAdapter, "
+-          f"{csvs[list(BARRIB_LES)[0]].parent}", flush=True)
+-    for var, espec in BARRIB_LES.items():
++    print(f"OFAT: {len(BARRIDOS)} barridos, {totex} puntos TeqpAdapter, "
++          f"{csvs[list(BARRIDOS)[0]].parent}", flush=True)
++    for var, espec in BARRIDOS.items():
+         csv = csvs[var]
+         n = len(generar_combinaciones(espec))
+         if csv.exists():
+             df = pd.read_csv(csv)
+
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py
+Wrote file successfully.
+[0m
+The mesh script came out convoluted. Let me rewrite it cleanly:
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/spot_check_sensibilidad.py
+Wrote file successfully.
+[0m
+Now the spot-check script:
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/figuras_sensibilidad.py
+Wrote file successfully.
+[0m
+Now the figures script:
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/ancla_sensibilidad.py
+Wrote file successfully.
+[0m
+Now the anchor table script:
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py
+Wrote file successfully.
+[0m
+Now the test file:
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/comun_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\comun_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\comun_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\comun_sensibilidad.py
+@@ -118,13 +118,14 @@
+         return abs(m[f"margen_{codigo_principal}"]) < UMBRALES_SPOT[codigo_principal]
+     return False
+ 
+ 
+-def resolver_punto(combo: dict, factory) -> dict:
++def resolver_punto(combo: dict, factory=importar_teqp) -> dict:
+     """Resuelve + clasifica un punto del barrido y adjunta margenes (worker).
+ 
+-    ``factory`` es la funcion que crea el backend (TeqpAdapter o el motor
+-    real). Todo punto se registra igual, converja o no (TASK Constraints 4).
++    ``factory`` es la funcion que crea el backend (por defecto TeqpAdapter
++    para el grueso del barrido; el motor real se pasa explicitamente en el
++    spot-check). Todo punto se registra igual, converja o no (TASK Constraint 4).
+     """
+     backend = factory()
+     fila = dict(combo, convergio=False,
+                 clasificacion=Clasificacion.NO_CONVERGIO.value, eta=None,
+
+[0m
+I need to fix `resolver_punto` to have a default for `factory` since `pool.map` passes only one argument:
+Continue if you have next steps, or stop and ask for clarification if you are unsure how to proceed.
+[0m✱ [0mGrep "^def (resolver_ciclo|evaluar_ciclo)|^VARIABLES_BARRIBLES|^def generar_valores|^def generar_combinaciones|^def tabla_barrido|^class (Fijo|Barrido)"[90m in src · 8 matches[0m
+[0m✱ [0mGrep "def fase_de|_TOL"[90m in src/properties · 1 match[0m
+Continuing implementation. First, let me verify the key API names I relied on, and compile-check all files:
+[0m✱ [0mGrep "_TOL|def _regla|1e-3|T_amb_diseno"[90m in src/restricciones · 22 matches[0m
+[0m→ [0mRead src/restricciones/clasificacion.py[90m [offset=45, limit=30][0m
+[0m→ [0mRead src/sensitivity.py[90m [offset=33, limit=100][0m
+Verified most names. Let me check the N2 tolerance name in `numericos.py`, the full `evaluar_ciclo` signature, and `tabla_barrido`:
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/comun_sensibilidad.py
+Full API confirmed. Now let me re-read my `comun_sensibilidad.py` to verify its actual current state:
+[0m→ [0mRead src/restricciones/clasificacion.py[90m [limit=44][0m
+[0m✱ [0mGrep "def bubble_point|def fase_de|class PropertyBackend"[90m in src/properties/adapter.py · 7 matches[0m
+`comun` looks solid. Let me verify `ResultadoValidacion` has `.principal` and check `bubble_point` exists:
+[0m✱ [0mGrep "class ResultadoValidacion|principal|mensaje_reporte|class Falla|def codigo|codigo:"[90m in src/restricciones/modelos.py · 14 matches[0m
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/spot_check_sensibilidad.py
+Wrote file successfully.
+[0m
+`ResultadoValidacion.principal` is a property — all API calls check out. Now let me rewrite `spot_check_sensibilidad.py` cleanly (the previous draft had dict-membership and timing issues):
+Now compile-check all files and run the deterministic tests:
+[0m$ [0mpython -m py_compile scripts/barridos_2026-09-19/fase2_libre/comun_sensibilidad.py scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py scripts/barridos_2026-09-19/fase2_libre/spot_check_sensibilidad.py scripts/barridos_2026-09-19/fase2_libre/figuras_sensibilidad.py scripts/barridos_2026-09-19/fase2_libre/ancla_sensibilidad.py scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py && echo COMPILE_OK
+COMPILE_OK
+[0m
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py -v 2>&1
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 10 items
+
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_5_barridos_y_count_total_33 PASSED [ 10%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_valores_por_variable_dentro_de_campos_ciclo PASSED [ 20%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_esquema_columnas_tabla_barrido_mas_diag SKIPPED [ 30%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_malla_6x6_36_puntos_dentro_de_campos_ciclo PASSED [ 40%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_malla_esquema_columnas SKIPPED [ 50%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ligante_kalina_elige_frontera_mas_cercana FAILED [ 60%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ligante_no_kalina_usa_falla_principal PASSED [ 70%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_spot_necesario_umbrales PASSED [ 80%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_factories_crean_adapters PASSED [ 90%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_csvs_registrados_tienen_esquema_y_clasificaciones_validas SKIPPED [100%]
+
+================================== FAILURES ===================================
+_______________ test_ligante_kalina_elige_frontera_mas_cercana ________________
+
+    def test_ligante_kalina_elige_frontera_mas_cercana():
+        m = dict(margen_O1=0.15, margen_O2=1.2, margen_S5=6.0, margen_O5=0.4)
+>       assert comun.ligante("KALINA", None, m) == ("O2", 1.2)
+E       AssertionError: assert ('O1', 0.15) == ('O2', 1.2)
+E         
+E         At index 0 diff: 'O1' != 'O2'
+E         
+E         Full diff:
+E           (
+E         -     'O2',
+E         ?       ^...
+E         
+E         ...Full output truncated (5 lines hidden), use '-vv' to show
+
+scripts\barridos_2026-09-19\fase2_libre\test_sensibilidad_final.py:112: AssertionError
+=========================== short test summary info ===========================
+FAILED scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ligante_kalina_elige_frontera_mas_cercana
+=================== 1 failed, 6 passed, 3 skipped in 3.12s ====================
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\test_sensibilidad_final.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\test_sensibilidad_final.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\test_sensibilidad_final.py
+@@ -107,9 +107,9 @@
+ 
+ # ----------------------------------------------------- logica de margenes ---
+ 
+ def test_ligante_kalina_elige_frontera_mas_cercana():
+-    m = dict(margen_O1=0.15, margen_O2=1.2, margen_S5=6.0, margen_O5=0.4)
++    m = dict(margen_O1=2.5, margen_O2=1.2, margen_S5=6.0, margen_O5=0.4)
+     assert comun.ligante("KALINA", None, m) == ("O2", 1.2)
+ 
+ 
+ def test_ligante_no_kalina_usa_falla_principal():
+
+[0m
+The code is correct — `min` picks the smallest margin (O1=0.15 < O2=1.2); my test expectation was wrong. Fixing the test:
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py -v 2>&1
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 10 items
+
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_5_barridos_y_count_total_33 PASSED [ 10%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_valores_por_variable_dentro_de_campos_ciclo PASSED [ 20%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_esquema_columnas_tabla_barrido_mas_diag SKIPPED [ 30%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_malla_6x6_36_puntos_dentro_de_campos_ciclo PASSED [ 40%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_malla_esquema_columnas SKIPPED [ 50%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ligante_kalina_elige_frontera_mas_cercana PASSED [ 60%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ligante_no_kalina_usa_falla_principal PASSED [ 70%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_spot_necesario_umbrales PASSED [ 80%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_factories_crean_adapters PASSED [ 90%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_csvs_registrados_tienen_esquema_y_clasificaciones_validas SKIPPED [100%]
+
+======================== 7 passed, 3 skipped in 2.55s =========================
+[0m
+All deterministic tests pass. Now the critical risk to de-risk before the long runs: the `ProcessPoolExecutor` + Windows spawn + importlib-loaded module pickling. Let me smoke-test it with a small pool:
+[0m$ [0mcat > "$TEMP/opencode/smoke_pool.py" << 'EOF'
+import importlib.util, sys, time
+from concurrent.futures import ProcessPoolExecutor
+from pathlib import Path
+
+CARPETA = Path(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre")
+RAIZ = CARPETA.parents[2]
+sys.path.insert(0, str(RAIZ)); sys.path.insert(0, str(CARPETA))
+
+spec = importlib.util.spec_from_file_location("comun_sensibilidad", CARPETA / "comun_sensibilidad.py")
+comun = importlib.util.module_from_spec(spec); spec.loader.exec_module(comun)
+
+ANCLA = dict(P_alta=3000.0, P_baja=400.0, x_b=0.40, T_fuente=470.0,
+             T_sumidero=300.032917, m_b=1.0, eta_t=0.85, eta_p=0.75,
+             eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.95)
+combo2 = dict(ANCLA, P_baja=420.0)
+t0 = time.perf_counter()
+with ProcessPoolExecutor(max_workers=2) as pool:
+    res = list(pool.map(comun.resolver_punto, [ANCLA, combo2]))
+for f in res:
+    print(f"P_baja={f['P_baja']} -> {f['clasificacion']} eta={f['eta']} "
+          f"ligante={f['criterio_ligante']} margen={f['margen_ligante']}")
+print(f"2 puntos en {time.perf_counter()-t0:.0f} s")
+EOF
+python "$TEMP/opencode/smoke_pool.py"
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=2080, pipe_handle=848)
+                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+    from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=2080, pipe_handle=708)
+                                                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 122, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 131, in _main
+    prepare(preparation_data)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 246, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 131, in _main
+    prepare(preparation_data)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 297, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+                                  run_name="__mp_main__")
+  File "<frozen runpy>", line 287, in run_path
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 246, in prepare
+    _fixup_main_from_path(data['init_main_from_path'])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 297, in _fixup_main_from_path
+    main_content = runpy.run_path(main_path,
+                                  run_name="__mp_main__")
+  File "<frozen runpy>", line 287, in run_path
+  File "C:\Users\Usuario\AppData\Local\Temp\opencode\smoke_pool.py", line 18, in <module>
+    res = list(pool.map(comun.resolver_punto, [ANCLA, combo2]))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Usuario\AppData\Local\Temp\opencode\smoke_pool.py", line 18, in <module>
+    res = list(pool.map(comun.resolver_punto, [ANCLA, combo2]))
+               ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 837, in map
+    results = super().map(partial(_process_chunk, fn),
+                          itertools.batched(zip(*iterables), chunksize),
+                          timeout=timeout)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 837, in map
+    results = super().map(partial(_process_chunk, fn),
+                          itertools.batched(zip(*iterables), chunksize),
+                          timeout=timeout)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 608, in map
+    fs = [self.submit(fn, *args) for args in zip(*iterables)]
+          ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 608, in map
+    fs = [self.submit(fn, *args) for args in zip(*iterables)]
+          ~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 808, in submit
+    self._adjust_process_count()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 808, in submit
+    self._adjust_process_count()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 767, in _adjust_process_count
+    self._spawn_process()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 767, in _adjust_process_count
+    self._spawn_process()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 785, in _spawn_process
+    p.start()
+    ~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\process.py", line 121, in start
+    self._popen = self._Popen(self)
+                  ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 785, in _spawn_process
+    p.start()
+    ~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\context.py", line 337, in _Popen
+    return Popen(process_obj)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\process.py", line 121, in start
+    self._popen = self._Popen(self)
+                  ~~~~~~~~~~~^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\context.py", line 337, in _Popen
+    return Popen(process_obj)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\popen_spawn_win32.py", line 47, in __init__
+    prep_data = spawn.get_preparation_data(process_obj._name)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\popen_spawn_win32.py", line 47, in __init__
+    prep_data = spawn.get_preparation_data(process_obj._name)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 164, in get_preparation_data
+    _check_not_importing_main()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 164, in get_preparation_data
+    _check_not_importing_main()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 140, in _check_not_importing_main
+    raise RuntimeError('''
+    ...<16 lines>...
+    ''')
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\spawn.py", line 140, in _check_not_importing_main
+    raise RuntimeError('''
+    ...<16 lines>...
+    ''')
+RuntimeError: 
+        An attempt has been made to start a new process before the
+        current process has finished its bootstrapping phase.
+
+        This probably means that you are not using fork to start your
+        child processes and you have forgotten to use the proper idiom
+        in the main module:
+
+            if __name__ == '__main__':
+                freeze_support()
+                ...
+
+        The "freeze_support()" line can be omitted if the program
+        is not going to be frozen to produce an executable.
+
+        To fix this issue, refer to the "Safe importing of main module"
+        section in https://docs.python.org/3/library/multiprocessing.html
+        
+RuntimeError: 
+        An attempt has been made to start a new process before the
+        current process has finished its bootstrapping phase.
+
+        This probably means that you are not using fork to start your
+        child processes and you have forgotten to use the proper idiom
+        in the main module:
+
+            if __name__ == '__main__':
+                freeze_support()
+                ...
+
+        The "freeze_support()" line can be omitted if the program
+        is not going to be frozen to produce an executable.
+
+        To fix this issue, refer to the "Safe importing of main module"
+        section in https://docs.python.org/3/library/multiprocessing.html
+        
+concurrent.futures.process._RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\queues.py", line 262, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+_pickle.PicklingError: Can't pickle <function resolver_punto at 0x0000015F6BD32160>: it's not the same object as comun_sensibilidad.resolver_punto
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Usuario\AppData\Local\Temp\opencode\smoke_pool.py", line 18, in <module>
+    res = list(pool.map(comun.resolver_punto, [ANCLA, combo2]))
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\process.py", line 617, in _chain_from_iterable_of_lists
+    for element in iterable:
+                   ^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 456, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\queues.py", line 262, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\multiprocessing\reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+_pickle.PicklingError: Can't pickle <function resolver_punto at 0x0000015F6BD32160>: it's not the same object as comun_sensibilidad.resolver_punto
+[0m
+The smoke test caught a real Windows-spawn issue: functions in an importlib-loaded module aren't pickleable by reference unless the module is registered in `sys.modules`. Let me check how `busqueda_libre_v2.py` handles its pool worker (it worked before), to follow the repo pattern:
+[0m$ [0mrg -n "ProcessPool|__name__|def resolver_punto|executor|pool|submit" scripts/barridos_2026-09-19/fase2_libre/busqueda_libre_v2.py | head -40
+/usr/bin/bash: line 1: rg: command not found
+[0m
+[0m✱ [0mGrep "ProcessPool|def resolver_punto|executor|pool|submit|__name__|concurrent"[90m in scripts/barridos_2026-09-19/fase2_libre/busqueda_libre_v2.py · 33 matches[0m
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+@@ -39,8 +39,9 @@
+ _spec = importlib.util.spec_from_file_location(
+     "comun_sensibilidad", _CARPETA / "comun_sensibilidad.py")
+ comun = importlib.util.module_from_spec(_spec)
+ _spec.loader.exec_module(comun)
++sys.modules.setdefault("comun_sensibilidad", comun)  # pickling en pool (spawn)
+ 
+ from src.sensitivity import (Barrido, Fijo, generar_combinaciones,  # noqa: E402
+                              tabla_barrido)
+ 
+
+[0m
+Repo convention: workers live in `__main__` so Windows re-execution re-creates them. My cross-module worker needs explicit registration in `sys.modules` to be pickleable by reference. Applying that to the three pool-using scripts:
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
+@@ -32,8 +32,9 @@
+ _spec = importlib.util.spec_from_file_location(
+     "comun_sensibilidad", _CARPETA / "comun_sensibilidad.py")
+ comun = importlib.util.module_from_spec(_spec)
+ _spec.loader.exec_module(comun)
++sys.modules.setdefault("comun_sensibilidad", comun)  # pickling en pool (spawn)
+ 
+ from src.sensitivity import Barrido, Fijo, generar_combinaciones  # noqa: E402
+ 
+ CENTRO = dict(P_alta=3000.0, T_fuente=470.0, T_sumidero=300.032917, m_b=1.0,
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/spot_check_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py
+@@ -36,8 +36,9 @@
+ _spec = importlib.util.spec_from_file_location(
+     "comun_sensibilidad", _CARPETA / "comun_sensibilidad.py")
+ comun = importlib.util.module_from_spec(_spec)
+ _spec.loader.exec_module(comun)
++sys.modules.setdefault("comun_sensibilidad", comun)  # pickling en pool (spawn)
+ 
+ from src.sensitivity import VARIABLES_BARRIBLES  # noqa: E402
+ 
+ VARS_OFAT = ("x_b", "P_baja", "eps_cond", "eta_t", "eps_hrvg")
+
+[0m
+Now re-run the smoke test with a proper `__main__` guard to validate the fix end-to-end:
+[0m$ [0mcat > "$TEMP/opencode/smoke_pool.py" << 'EOF'
+import importlib.util, sys, time
+from concurrent.futures import ProcessPoolExecutor
+from pathlib import Path
+
+CARPETA = Path(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre")
+RAIZ = CARPETA.parents[2]
+sys.path.insert(0, str(RAIZ)); sys.path.insert(0, str(CARPETA))
+
+spec = importlib.util.spec_from_file_location("comun_sensibilidad", CARPETA / "comun_sensibilidad.py")
+comun = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(comun)
+sys.modules.setdefault("comun_sensibilidad", comun)
+
+ANCLA = dict(P_alta=3000.0, P_baja=400.0, x_b=0.40, T_fuente=470.0,
+             T_sumidero=300.032917, m_b=1.0, eta_t=0.85, eta_p=0.75,
+             eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.95)
+combo2 = dict(ANCLA, P_baja=420.0)
+
+def main():
+    t0 = time.perf_counter()
+    with ProcessPoolExecutor(max_workers=2) as pool:
+        res = list(pool.map(comun.resolver_punto, [ANCLA, combo2]))
+    for f in res:
+        print(f"P_baja={f['P_baja']} -> {f['clasificacion']} eta={f['eta']} "
+              f"ligante={f['criterio_ligante']} margen={f['margen_ligante']} "
+              f"O2={f['margen_O2']}")
+    print(f"2 puntos en {time.perf_counter()-t0:.0f} s")
+
+if __name__ == "__main__":
+    main()
+EOF
+python "$TEMP/opencode/smoke_pool.py"
+P_baja=400.0 -> KALINA eta=0.12428878032997338 ligante=O1 margen=0.0012542120861269712 O2=3.9116389535105895
+P_baja=420.0 -> KALINA eta=0.12155524253465892 ligante=O1 margen=0.0028941566124055518 O2=5.428905216486328
+2 puntos en 40 s
+[0m
+[0m# [0mTodos
+[✓] Verificar APIs + tests deterministas (pytest)
+[✓] Smoke test pool Windows spawn (pickling comun)
+[•] Correr ancla_sensibilidad.py (entregable A)
+[ ] Correr ofat_sensibilidad.py (33 pts, entregable B)
+[ ] Correr malla_2d_sensibilidad.py (36 pts, entregable C)
+[ ] Correr spot_check_sensibilidad.py (<=10 pts motor real)
+[ ] Correr figuras_sensibilidad.py (PNGs + resumen_fase2.json)
+[ ] Pytest final completo + verificar entregables
+[0m
+Smoke test passes: pool works, anchor reproduces KALINA η=0.124289 (matches cited real-motor η=0.124296), O2 margin +3.91 K matches BASE_LIBRE_v2. Notably the anchor's binding frontier is **O1** (q4−0.90 = +0.0013) — the OFAT sweeps will cross it. Now launching the real pipeline:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/ancla_sensibilidad.py 2>&1
+Ancla (motor real, citado): KALINA eta=0.124296 Wnet=166.62 kW (336.9 s)
+Ancla (TeqpAdapter): KALINA eta=0.124289 Wnet=166.61 kW; N2 residuo=1.939e-04 <= limite=1.341e+00 -> True
+Guardados ancla_estados.csv y ancla_balance.csv en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre
+[0m
+Ancla (deliverable A) done: Teqp η=0.124289 vs cited real-motor η=0.124296 (Δ=7e-6), N2 closure ✓. Now the OFAT sweeps, then the 2D mesh (chained, ~13 min):
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py 2>&1
+OFAT: 5 barridos, 33 puntos TeqpAdapter, D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py", line 111, in <module>
+    main()
+    ~~~~^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py", line 89, in main
+    n = len(generar_combinaciones(espec))
+            ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\sensitivity.py", line 83, in generar_combinaciones
+    claves = list(variables)
+TypeError: 'Barrido' object is not iterable
+[0m
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py
+Bug in `main()`'s second loop — it passes the `Barrido` object instead of the full spec. Let me read the current state:
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\ofat_sensibilidad.py
+@@ -83,19 +83,19 @@
+     csvs[var] = csv
+     totex += len(generar_combinaciones(especificacion(var)))
+ print(f"OFAT: {len(BARRIDOS)} barridos, {totex} puntos TeqpAdapter, "
+       f"{csvs[list(BARRIDOS)[0]].parent}", flush=True)
+-for var, espec in BARRIDOS.items():
++for var in BARRIDOS:
+     csv = csvs[var]
+-    n = len(generar_combinaciones(espec))
++    n = len(generar_combinaciones(especificacion(var)))
+     if csv.exists():
+         df = pd.read_csv(csv)
+         print(f"  {var}: ya existe {csv.name} ({len(df)} filas), "
+               f"se reutiliza", flush=True)
+         print(f"    {df['clasificacion'].value_counts().to_dict()}")
+         continue
+     t0 = time.perf_counter()
+-    combos = generar_combinaciones(espec)
++    combos = generar_combinaciones(especificacion(var))
+     with ProcessPoolExecutor(max_workers=4) as pool:
+         filas = list(pool.map(comun.resolver_punto, combos))
+     guardar(csv, filas)
+     df = pd.read_csv(csv)
+
+[0m
+Fixed. Re-running the OFAT sweeps (~7 min):
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/ofat_sensibilidad.py 2>&1
+OFAT: 5 barridos, 33 puntos TeqpAdapter, D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre
+  x_b (6 pts): {'KALINA': 4, 'CORREGIBLE': 2} | KALINA eta medio=0.12191 | 82 s (13.7 s/pt) | sensibilidad_x_b.csv
+  P_baja (6 pts): {'KALINA': 5, 'NO_CONVERGIO': 1} | KALINA eta medio=0.11759 | 77 s (12.9 s/pt) | sensibilidad_P_baja.csv
+  eps_cond (6 pts): {'CORREGIBLE': 5, 'KALINA': 1} | KALINA eta medio=0.12429 | 90 s (14.9 s/pt) | sensibilidad_eps_cond.csv
+  eta_t (6 pts): {'KALINA': 3, 'VALIDO_ADVERTENCIA': 3} | KALINA eta medio=0.11981 | 80 s (13.3 s/pt) | sensibilidad_eta_t.csv
+  eps_hrvg (9 pts): {'KALINA': 7, 'NO_CONVERGIO': 1, 'VALIDO_ADVERTENCIA': 1} | KALINA eta medio=0.12457 | 96 s (10.7 s/pt) | sensibilidad_eps_hrvg.csv
+OFAT terminado.
+[0m
+OFAT complete — all 5 sweeps done, KALINA/CORREGIBLE frontiers already visible. Now the 2D mesh (~7 min):
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py 2>&1
+Malla 2D: 36 puntos TeqpAdapter (P_baja 400-500 � eps_cond 0.85-0.95), 4 workers...
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py", line 88, in <module>
+    main()
+    ~~~~^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py", line 77, in main
+    tabla = pd.DataFrame({c: [f[c] for c in COLUMNAS] for f in filas})
+                          ^
+NameError: name 'c' is not defined
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
+@@ -73,9 +73,9 @@
+         return
+ t0 = time.perf_counter()
+ with ProcessPoolExecutor(max_workers=N_WORKERS) as pool:
+     filas = list(pool.map(comun.resolver_punto, combos))
+-tabla = pd.DataFrame({c: [f[c] for c in COLUMNAS] for f in filas})
++tabla = pd.DataFrame({col: [f[col] for f in filas] for col in COLUMNAS})
+ tabla = tabla.sort_values(["P_baja", "eps_cond"]).reset_index(drop=True)
+ tabla.to_csv(CSV, index=False, encoding="utf-8")
+ dt = time.perf_counter() - t0
+ print(f"  {len(combos)} puntos en {dt:.0f} s "
+
+[0m
+Trivial scoping bug in the mesh DataFrame builder. Fixing:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py 2>&1
+Malla 2D: 36 puntos TeqpAdapter (P_baja 400-500 � eps_cond 0.85-0.95), 4 workers...
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py", line 88, in <module>
+    main()
+    ~~~~^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py", line 77, in main
+    tabla = pd.DataFrame({col: [f[col] for f in filas] for col in COLUMNAS})
+                                ~^^^^^
+KeyError: 'O2_margen'
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\malla_2d_sensibilidad.py
+@@ -73,8 +73,10 @@
+         return
+ t0 = time.perf_counter()
+ with ProcessPoolExecutor(max_workers=N_WORKERS) as pool:
+     filas = list(pool.map(comun.resolver_punto, combos))
++for f in filas:  # alias del CSV (spec): O2_margen = margen_O2 interno
++    f["O2_margen"] = f["margen_O2"]
+ tabla = pd.DataFrame({col: [f[col] for f in filas] for col in COLUMNAS})
+ tabla = tabla.sort_values(["P_baja", "eps_cond"]).reset_index(drop=True)
+ tabla.to_csv(CSV, index=False, encoding="utf-8")
+ dt = time.perf_counter() - t0
+
+[0m
+`resolver_punto` emits `margen_O2` but the mesh CSV spec needs column `O2_margen`. Adding the alias:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/malla_2d_sensibilidad.py 2>&1
+Malla 2D: 36 puntos TeqpAdapter (P_baja 400-500 � eps_cond 0.85-0.95), 4 workers...
+  36 puntos en 452 s (12.5 s/pt)
+clasificacion
+CORREGIBLE      26
+KALINA           9
+NO_CONVERGIO     1
+CSV guardado en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\mapa_2d_pbaja_epscond.csv
+[0m
+Mesh complete: 26 CORREGIBLE / 9 KALINA / 1 NO_CONVERGIO — KALINA hugs the low-P_baja, high-ε_cond corner as O2 dictates. Now the real-motor spot checks (~14 min):
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/spot_check_sensibilidad.py 2>&1
+Spot-check: 47 candidatos de 47 en el umbral con margen medible; tope motor real 10
+  sensibilidad_eps_hrvg.csv fila 6: KALINA via O1 margen +0.000
+  sensibilidad_eta_t.csv fila 3: VALIDO_ADVERTENCIA via O1 margen -0.000
+  sensibilidad_eps_hrvg.csv fila 5: KALINA via O1 margen +0.000
+  sensibilidad_eps_hrvg.csv fila 8: VALIDO_ADVERTENCIA via O1 margen -0.000
+  sensibilidad_eps_hrvg.csv fila 4: KALINA via O1 margen +0.001
+  sensibilidad_eps_hrvg.csv fila 3: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 0: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 1: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 2: KALINA via O1 margen +0.001
+  sensibilidad_P_baja.csv fila 0: KALINA via O1 margen +0.001
+  sensibilidad_eps_cond.csv fila 5: KALINA via O1 margen +0.001
+  sensibilidad_eps_hrvg.csv fila 2: KALINA via O1 margen +0.001
+  mapa_2d_pbaja_epscond.csv fila 5: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 3: KALINA via O1 margen +0.001
+  sensibilidad_eps_hrvg.csv fila 1: KALINA via O1 margen +0.002
+  sensibilidad_eps_hrvg.csv fila 0: KALINA via O1 margen +0.002
+  sensibilidad_eta_t.csv fila 2: KALINA via O1 margen +0.003
+  sensibilidad_P_baja.csv fila 1: KALINA via O1 margen +0.003
+  mapa_2d_pbaja_epscond.csv fila 11: KALINA via O1 margen +0.003
+  sensibilidad_eta_t.csv fila 4: VALIDO_ADVERTENCIA via O1 margen -0.003
+  mapa_2d_pbaja_epscond.csv fila 16: KALINA via O1 margen +0.004
+  sensibilidad_eta_t.csv fila 1: KALINA via O1 margen +0.006
+  mapa_2d_pbaja_epscond.csv fila 22: KALINA via O1 margen +0.006
+  sensibilidad_P_baja.csv fila 3: KALINA via O1 margen +0.006
+  mapa_2d_pbaja_epscond.csv fila 23: KALINA via O1 margen +0.006
+  sensibilidad_eta_t.csv fila 5: VALIDO_ADVERTENCIA via O1 margen -0.007
+  mapa_2d_pbaja_epscond.csv fila 28: KALINA via O1 margen +0.007
+  sensibilidad_P_baja.csv fila 4: KALINA via O1 margen +0.007
+  mapa_2d_pbaja_epscond.csv fila 29: KALINA via O1 margen +0.007
+  mapa_2d_pbaja_epscond.csv fila 34: KALINA via O1 margen +0.009
+  sensibilidad_P_baja.csv fila 5: KALINA via O1 margen +0.009
+  mapa_2d_pbaja_epscond.csv fila 35: KALINA via O1 margen +0.009
+  sensibilidad_eta_t.csv fila 0: KALINA via O1 margen +0.009
+  mapa_2d_pbaja_epscond.csv fila 10: CORREGIBLE via O2 margen -0.018
+  mapa_2d_pbaja_epscond.csv fila 33: CORREGIBLE via O2 margen -0.046
+  mapa_2d_pbaja_epscond.csv fila 27: CORREGIBLE via O2 margen -0.370
+  sensibilidad_eps_cond.csv fila 4: CORREGIBLE via O2 margen -0.383
+  mapa_2d_pbaja_epscond.csv fila 4: CORREGIBLE via O2 margen -0.383
+  sensibilidad_x_b.csv fila 4: CORREGIBLE via O2 margen -0.553
+  mapa_2d_pbaja_epscond.csv fila 21: CORREGIBLE via O2 margen -0.703
+  mapa_2d_pbaja_epscond.csv fila 15: CORREGIBLE via O2 margen -1.045
+  mapa_2d_pbaja_epscond.csv fila 9: CORREGIBLE via O2 margen -1.397
+  sensibilidad_x_b.csv fila 5: CORREGIBLE via O2 margen -1.428
+  mapa_2d_pbaja_epscond.csv fila 32: CORREGIBLE via O2 margen -1.492
+  sensibilidad_eps_cond.csv fila 3: CORREGIBLE via O2 margen -1.759
+  mapa_2d_pbaja_epscond.csv fila 3: CORREGIBLE via O2 margen -1.759
+  mapa_2d_pbaja_epscond.csv fila 26: CORREGIBLE via O2 margen -1.814
+  AVISO: 47 candidatos > tope; se revisan los 10 mas cercanos al borde.
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+  sensibilidad_eps_hrvg.csv fila 6: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  sensibilidad_eta_t.csv fila 3: teqp=VALIDO_ADVERTENCIA -> real=VALIDO_ADVERTENCIA confirmado=True (0 s)
+  sensibilidad_eps_hrvg.csv fila 5: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  sensibilidad_eps_hrvg.csv fila 8: teqp=VALIDO_ADVERTENCIA -> real=VALIDO_ADVERTENCIA confirmado=True (0 s)
+  sensibilidad_eps_hrvg.csv fila 4: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  sensibilidad_eps_hrvg.csv fila 3: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  sensibilidad_x_b.csv fila 0: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  sensibilidad_x_b.csv fila 1: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  sensibilidad_x_b.csv fila 2: teqp=KALINA -> real=NO_CONVERGIO confirmado=False (0 s)
+  sensibilidad_P_baja.csv fila 0: teqp=KALINA -> real=NO_CONVERGIO confirmado=False (0 s)
+  10 puntos motor real en 1065 s
+Traceback (most recent call last):
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\internals\blocks.py", line 1115, in setitem
+    casted = np_can_hold_element(values.dtype, value)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\dtypes\cast.py", line 1792, in np_can_hold_element
+    raise LossySetitemError
+pandas.errors.LossySetitemError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py", line 191, in <module>
+    main()
+    ~~~~^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py", line 162, in main
+    _escribir_motor(csv, detalles)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py", line 185, in _escribir_motor
+    df.loc[i, "motor_confirmado"] = v
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexing.py", line 938, in __setitem__
+    iloc._setitem_with_indexer(indexer, value, self.name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexing.py", line 1953, in _setitem_with_indexer
+    self._setitem_with_indexer_split_path(indexer, value, name)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexing.py", line 2044, in _setitem_with_indexer_split_path
+    self._setitem_single_column(loc, value, pi)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\indexing.py", line 2181, in _setitem_single_column
+    self.obj._mgr.column_setitem(loc, plane_indexer, value)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\internals\managers.py", line 1541, in column_setitem
+    new_mgr = col_mgr.setitem((idx,), value)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\internals\managers.py", line 620, in setitem
+    return self.apply("setitem", indexer=indexer, value=value)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\internals\managers.py", line 445, in apply
+    applied = getattr(b, f)(**kwargs)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\internals\blocks.py", line 1118, in setitem
+    nb = self.coerce_to_target_dtype(value, raise_on_upcast=True)
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\core\internals\blocks.py", line 468, in coerce_to_target_dtype
+    raise TypeError(f"Invalid value '{other}' for dtype '{self.values.dtype}'")
+TypeError: Invalid value 'True' for dtype 'float64'
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/spot_check_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\spot_check_sensibilidad.py
+@@ -139,31 +139,41 @@
+         for f, fut in futuros:
+             t1 = time.perf_counter()
+             real = fut.result()
+             mismo = (f["clasificacion"] == real["clasificacion"])
+-            detalles.append(dict(
++            detalle = dict(
+                 csv=f["_csv"], fila_idx=f["_idx"],
+                 combo=combo_de_fila(f["_csv"], f),
+                 clasificacion_teqp=f["clasificacion"],
+                 clasificacion_real=real["clasificacion"],
+                 motor_confirmado=bool(mismo),
+                 eta_real=real["eta"],
+                 margen_ligante=f["margen_ligante"],
+-                tiempo_s=round(time.perf_counter() - t1, 1)))
++                tiempo_s=round(time.perf_counter() - t1, 1))
++            detalles.append(detalle)
++            # Checkpoint incremental: cada punto se persiste al terminar,
++            # para que un corte no pierda el trabajo ya hecho.
++            _checkpoint_json(detalle, con_margen, MAX_SPOT)
++            for var in VARS_OFAT:
++                csv = FASE2 / f"sensibilidad_{var}.csv"
++                if csv.exists():
++                    _escribir_motor(csv, [detalle])
++            if MALLA_CSV.exists():
++                _escribir_motor(MALLA_CSV, [detalle])
+             print(f"  {f['_csv']} fila {f['_idx']}: teqp="
+                   f"{f['clasificacion']} -> real={real['clasificacion']} "
+-                  f"confirmado={mismo} ({detalles[-1]['tiempo_s']:.0f} s)",
++                  f"confirmado={mismo} ({detalle['tiempo_s']:.0f} s)",
+                   flush=True)
+         print(f"  {len(elegidos)} puntos motor real en "
+               f"{time.perf_counter() - t0:.0f} s", flush=True)
+ 
++    # Reescritura final (idempotente): consolida en los CSVs y el JSON.
+     for var in VARS_OFAT:
+         csv = FASE2 / f"sensibilidad_{var}.csv"
+         if csv.exists():
+             _escribir_motor(csv, detalles)
+     if MALLA_CSV.exists():
+         _escribir_motor(MALLA_CSV, detalles)
+-
+     resumen = dict(T_amb_diseno=comun.T_AMB_DISENO, tope_motor_real=MAX_SPOT,
+                    puntos=detalles,
+                    exceso=[dict(csv=f["_csv"], fila_idx=f["_idx"],
+                                 clasificacion=f["clasificacion"],
+@@ -174,16 +184,41 @@
+         json.dump(resumen, fh, indent=2, ensure_ascii=False)
+     print(f"Guardado {JSON_OUT}")
+ 
+ 
++def _checkpoint_json(detalle: dict, con_margen: list, tope: int) -> None:
++    """Append de un punto al JSON (idempotente por csv+fila_idx)."""
++    prev = {"puntos": [], "exceso": []}
++    if JSON_OUT.exists():
++        try:
++            prev = json.loads(JSON_OUT.read_text(encoding="utf-8"))
++        except (json.JSONDecodeError, OSError):
++            prev = {"puntos": [], "exceso": []}
++    prev["T_amb_diseno"] = comun.T_AMB_DISENO
++    prev["tope_motor_real"] = tope
++    prev["puntos"] = [p for p in prev["puntos"]
++                      if not (p["csv"] == detalle["csv"]
++                              and p["fila_idx"] == detalle["fila_idx"])]
++    prev["puntos"].append(detalle)
++    prev["exceso"] = [dict(csv=f["_csv"], fila_idx=f["_idx"],
++                           clasificacion=f["clasificacion"],
++                           criterio=f["criterio_ligante"],
++                           margen=f["margen_ligante"])
++                      for f in con_margen[tope:]]
++    with open(JSON_OUT, "w", encoding="utf-8") as fh:
++        json.dump(prev, fh, indent=2, ensure_ascii=False)
++
++
+ def _escribir_motor(csv: Path, detalles: list[dict]) -> None:
+     df = pd.read_csv(csv)
+     if "motor_confirmado" not in df:
+         df["motor_confirmado"] = None
++    df["motor_confirmado"] = df["motor_confirmado"].astype(object)
+     idx = [d["fila_idx"] for d in detalles if d["csv"] == csv.name]
+     val = [d["motor_confirmado"] for d in detalles if d["csv"] == csv.name]
+     for i, v in zip(idx, val):
+-        df.loc[i, "motor_confirmado"] = v
++        if 0 <= i < len(df):
++            df.loc[i, "motor_confirmado"] = v
+     df.to_csv(csv, index=False, encoding="utf-8")
+     print(f"  motor_confirmado actualizado en {csv.name}")
+ 
+ 
+
+[0m
+The 10 real-engine points **did** run (1065 s) — 8 confirmed, 2 flagged `motor_confirmado=False` (Teqp=KALINA but real engine hits `NO_CONVERGIO` at the O1 boundary) — but the crash lost the in-memory results before any write. I need to fix the pandas dtype bug AND add incremental checkpointing so no future crash wastes another 18 min:
+Let me quickly verify the `_escribir_motor` dtype fix on a throwaway copy before spending another 18 min:
+[0m$ [0mcp resultados/barridos_2026-09-19/fase2_libre/sensibilidad_x_b.csv "$TEMP/opencode/test_motor.csv" && cat > "$TEMP/opencode/test_escribir.py" << 'EOF'
+import importlib.util, sys
+from pathlib import Path
+
+CARPETA = Path(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre")
+spec = importlib.util.spec_from_file_location("spot_check_sensibilidad", CARPETA / "spot_check_sensibilidad.py")
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+import pandas as pd
+
+csv = Path(r"C:\Users\Usuario\AppData\Local\Temp\opencode\test_motor.csv")
+detalles = [dict(csv=csv.name, fila_idx=1, motor_confirmado=True),
+            dict(csv=csv.name, fila_idx=3, motor_confirmado=False)]
+mod._escribir_motor(csv, detalles)
+df = pd.read_csv(csv)
+print("motor_confirmado col:", df["motor_confirmado"].tolist())
+assert df.loc[1, "motor_confirmado"] is True or str(df.loc[1, "motor_confirmado"]) == "True"
+assert str(df.loc[3, "motor_confirmado"]) == "False"
+print("OK: dtype fix verified")
+EOF
+python "$TEMP/opencode/test_escribir.py" && rm "$TEMP/opencode/test_motor.csv"
+motor_confirmado actualizado en test_motor.csv
+motor_confirmado col: [nan, True, nan, False, nan, nan]
+OK: dtype fix verified
+[0m
+Fix verified. Re-running the spot check with durable checkpoints (~18 min):
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/spot_check_sensibilidad.py 2>&1 | grep -v "RuntimeWarning\|fugNH3\|np.log\|prop\[\|overflow\|divide"
+Spot-check: 47 candidatos de 47 en el umbral con margen medible; tope motor real 10
+  sensibilidad_eps_hrvg.csv fila 6: KALINA via O1 margen +0.000
+  sensibilidad_eta_t.csv fila 3: VALIDO_ADVERTENCIA via O1 margen -0.000
+  sensibilidad_eps_hrvg.csv fila 5: KALINA via O1 margen +0.000
+  sensibilidad_eps_hrvg.csv fila 8: VALIDO_ADVERTENCIA via O1 margen -0.000
+  sensibilidad_eps_hrvg.csv fila 4: KALINA via O1 margen +0.001
+  sensibilidad_eps_hrvg.csv fila 3: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 0: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 1: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 2: KALINA via O1 margen +0.001
+  sensibilidad_P_baja.csv fila 0: KALINA via O1 margen +0.001
+  sensibilidad_eps_cond.csv fila 5: KALINA via O1 margen +0.001
+  sensibilidad_eps_hrvg.csv fila 2: KALINA via O1 margen +0.001
+  mapa_2d_pbaja_epscond.csv fila 5: KALINA via O1 margen +0.001
+  sensibilidad_x_b.csv fila 3: KALINA via O1 margen +0.001
+  sensibilidad_eps_hrvg.csv fila 1: KALINA via O1 margen +0.002
+  sensibilidad_eps_hrvg.csv fila 0: KALINA via O1 margen +0.002
+  sensibilidad_eta_t.csv fila 2: KALINA via O1 margen +0.003
+  sensibilidad_P_baja.csv fila 1: KALINA via O1 margen +0.003
+  mapa_2d_pbaja_epscond.csv fila 11: KALINA via O1 margen +0.003
+  sensibilidad_eta_t.csv fila 4: VALIDO_ADVERTENCIA via O1 margen -0.003
+  mapa_2d_pbaja_epscond.csv fila 16: KALINA via O1 margen +0.004
+  sensibilidad_eta_t.csv fila 1: KALINA via O1 margen +0.006
+  mapa_2d_pbaja_epscond.csv fila 22: KALINA via O1 margen +0.006
+  sensibilidad_P_baja.csv fila 3: KALINA via O1 margen +0.006
+  mapa_2d_pbaja_epscond.csv fila 23: KALINA via O1 margen +0.006
+  sensibilidad_eta_t.csv fila 5: VALIDO_ADVERTENCIA via O1 margen -0.007
+  mapa_2d_pbaja_epscond.csv fila 28: KALINA via O1 margen +0.007
+  sensibilidad_P_baja.csv fila 4: KALINA via O1 margen +0.007
+  mapa_2d_pbaja_epscond.csv fila 29: KALINA via O1 margen +0.007
+  mapa_2d_pbaja_epscond.csv fila 34: KALINA via O1 margen +0.009
+  sensibilidad_P_baja.csv fila 5: KALINA via O1 margen +0.009
+  mapa_2d_pbaja_epscond.csv fila 35: KALINA via O1 margen +0.009
+  sensibilidad_eta_t.csv fila 0: KALINA via O1 margen +0.009
+  mapa_2d_pbaja_epscond.csv fila 10: CORREGIBLE via O2 margen -0.018
+  mapa_2d_pbaja_epscond.csv fila 33: CORREGIBLE via O2 margen -0.046
+  mapa_2d_pbaja_epscond.csv fila 27: CORREGIBLE via O2 margen -0.370
+  sensibilidad_eps_cond.csv fila 4: CORREGIBLE via O2 margen -0.383
+  mapa_2d_pbaja_epscond.csv fila 4: CORREGIBLE via O2 margen -0.383
+  sensibilidad_x_b.csv fila 4: CORREGIBLE via O2 margen -0.553
+  mapa_2d_pbaja_epscond.csv fila 21: CORREGIBLE via O2 margen -0.703
+  mapa_2d_pbaja_epscond.csv fila 15: CORREGIBLE via O2 margen -1.045
+  mapa_2d_pbaja_epscond.csv fila 9: CORREGIBLE via O2 margen -1.397
+  sensibilidad_x_b.csv fila 5: CORREGIBLE via O2 margen -1.428
+  mapa_2d_pbaja_epscond.csv fila 32: CORREGIBLE via O2 margen -1.492
+  sensibilidad_eps_cond.csv fila 3: CORREGIBLE via O2 margen -1.759
+  mapa_2d_pbaja_epscond.csv fila 3: CORREGIBLE via O2 margen -1.759
+  mapa_2d_pbaja_epscond.csv fila 26: CORREGIBLE via O2 margen -1.814
+  AVISO: 47 candidatos > tope; se revisan los 10 mas cercanos al borde.
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_eps_hrvg.csv fila 6: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_eta_t.csv fila 3: teqp=VALIDO_ADVERTENCIA -> real=VALIDO_ADVERTENCIA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_eps_hrvg.csv fila 5: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_eps_hrvg.csv fila 8: teqp=VALIDO_ADVERTENCIA -> real=VALIDO_ADVERTENCIA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_eps_hrvg.csv fila 4: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_eps_hrvg.csv fila 3: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_x_b.csv fila 0: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_x_b.csv fila 1: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_x_b.csv fila 2: teqp=KALINA -> real=NO_CONVERGIO confirmado=False (0 s)
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+  sensibilidad_P_baja.csv fila 0: teqp=KALINA -> real=KALINA confirmado=True (0 s)
+  10 puntos motor real en 1268 s
+  motor_confirmado actualizado en sensibilidad_x_b.csv
+  motor_confirmado actualizado en sensibilidad_P_baja.csv
+  motor_confirmado actualizado en sensibilidad_eps_cond.csv
+  motor_confirmado actualizado en sensibilidad_eta_t.csv
+  motor_confirmado actualizado en sensibilidad_eps_hrvg.csv
+  motor_confirmado actualizado en mapa_2d_pbaja_epscond.csv
+Guardado D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\spotcheck_motor_real_fase2.json
+[0m
+Spot check complete (1268 s): all 10 frontier points confirmed — 9 with `motor_confirmado=True`, 1 `False` (x_b=0.39: Teqp=KALINA but real engine hits NO_CONVERGIO at the O1 boundary; note P_baja=400 flipped to converged this run — the IAPWS flash is flaky exactly at q4≈0.901). Now figures + resumen:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/figuras_sensibilidad.py 2>&1
+fase2_sensibilidad_x_b.png: 6 puntos
+  fase2_sensibilidad_P_baja.png: 6 puntos
+  fase2_sensibilidad_eps_cond.png: 6 puntos
+  fase2_sensibilidad_eta_t.png: 6 puntos
+  fase2_sensibilidad_eps_hrvg.png: 9 puntos
+  fase2_mapa_2d_pbaja_epscond.png
+resumen_fase2.json guardado
+[0m
+All figures generated. Final validation — full pytest plus deliverable inventory:
+[0m$ [0mls -la resultados/barridos_2026-09-19/fase2_libre/ resultados/barridos_2026-09-19/figuras/ | grep -E "ancla|sensibilidad|mapa|fase2|spotcheck|resumen"
+resultados/barridos_2026-09-19/fase2_libre/:
+-rw-r--r-- 1 Usuario 197121   276 Sep 20 11:52 ancla_balance.csv
+-rw-r--r-- 1 Usuario 197121   633 Sep 20 11:52 ancla_estados.csv
+-rw-r--r-- 1 Usuario 197121  5661 Sep 20 13:03 mapa_2d_pbaja_epscond.csv
+-rw-r--r-- 1 Usuario 197121   318 Sep 20 13:03 resumen_fase2.json
+-rw-r--r-- 1 Usuario 197121  2333 Sep 20 13:03 sensibilidad_P_baja.csv
+-rw-r--r-- 1 Usuario 197121  3677 Sep 20 13:03 sensibilidad_eps_cond.csv
+-rw-r--r-- 1 Usuario 197121  3689 Sep 20 13:03 sensibilidad_eps_hrvg.csv
+-rw-r--r-- 1 Usuario 197121  3210 Sep 20 13:03 sensibilidad_eta_t.csv
+-rw-r--r-- 1 Usuario 197121  2929 Sep 20 13:03 sensibilidad_x_b.csv
+-rw-r--r-- 1 Usuario 197121 12782 Sep 20 13:03 spotcheck_motor_real_fase2.json
+-rw-r--r-- 1 Usuario 197121 36587 Sep 20 13:03 fase2_mapa_2d_pbaja_epscond.png
+-rw-r--r-- 1 Usuario 197121 45611 Sep 20 13:03 fase2_sensibilidad_P_baja.png
+-rw-r--r-- 1 Usuario 197121 44557 Sep 20 13:03 fase2_sensibilidad_eps_cond.png
+-rw-r--r-- 1 Usuario 197121 47843 Sep 20 13:03 fase2_sensibilidad_eps_hrvg.png
+-rw-r--r-- 1 Usuario 197121 51445 Sep 20 13:03 fase2_sensibilidad_eta_t.png
+-rw-r--r-- 1 Usuario 197121 43129 Sep 20 13:03 fase2_sensibilidad_x_b.png
+-rw-r--r-- 1 Usuario 197121 58472 Sep 20 12:24 fase3_mapa_2d_pbaja_epsreg.png
+-rw-r--r-- 1 Usuario 197121 53136 Sep 20 12:24 fase3_sensibilidad_P_baja.png
+-rw-r--r-- 1 Usuario 197121 57129 Sep 20 12:24 fase3_sensibilidad_eps_cond.png
+-rw-r--r-- 1 Usuario 197121 49298 Sep 20 12:24 fase3_sensibilidad_eps_reg.png
+-rw-r--r-- 1 Usuario 197121 50713 Sep 20 12:24 fase3_sensibilidad_eta_t.png
+-rw-r--r-- 1 Usuario 197121 57192 Sep 20 12:24 fase3_sensibilidad_x_b.png
+[0m
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py -v 2>&1 | tail -20
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 10 items
+
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_5_barridos_y_count_total_33 PASSED [ 10%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_valores_por_variable_dentro_de_campos_ciclo PASSED [ 20%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ofat_esquema_columnas_tabla_barrido_mas_diag PASSED [ 30%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_malla_6x6_36_puntos_dentro_de_campos_ciclo PASSED [ 40%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_malla_esquema_columnas PASSED [ 50%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ligante_kalina_elige_frontera_mas_cercana PASSED [ 60%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_ligante_no_kalina_usa_falla_principal PASSED [ 70%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_spot_necesario_umbrales PASSED [ 80%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_factories_crean_adapters PASSED [ 90%]
+scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py::test_csvs_registrados_tienen_esquema_y_clasificaciones_validas PASSED [100%]
+
+============================= 10 passed in 3.19s ==============================
+[0m
+All 10 tests pass; every deliverable exists (A–D + spotcheck JSON). The `fase3_*` files visible belong to the parallel session — I didn't touch them. Final data-quality check:
+[0m$ [0mpython - << 'EOF'
+import json, pandas as pd
+F = r"resultados/barridos_2026-09-19/fase2_libre"
+print("=== ancla_balance.csv ===")
+print(pd.read_csv(f"{F}/ancla_balance.csv").to_string(index=False))
+print("\n=== resumen_fase2.json ===")
+print(json.dumps(json.load(open(f"{F}/resumen_fase2.json", encoding="utf-8")), indent=2, ensure_ascii=False))
+print("\n=== spotcheck: resumen ===")
+sp = json.load(open(f"{F}/spotcheck_motor_real_fase2.json", encoding="utf-8"))
+print(f"puntos: {len(sp['puntos'])}, exceso: {len(sp['exceso'])}")
+for p in sp["puntos"]:
+    print(f"  {p['csv']} fila {p['fila_idx']}: teqp={p['clasificacion_teqp']} -> real={p['clasificacion_real']} confirmado={p['motor_confirmado']}")
+print("\n=== OFAT: clasificacion por variable (con motor_confirmado) ===")
+for v in ["x_b","P_baja","eps_cond","eta_t","eps_hrvg"]:
+    df = pd.read_csv(f"{F}/sensibilidad_{v}.csv")
+    print(f"  {v}: {df['clasificacion'].value_counts().to_dict()} | confirmado NaN={int(df['motor_confirmado'].isna().sum())}")
+print("\n=== malla: mapa KALINA/CORREGIBLE ===")
+df = pd.read_csv(f"{F}/mapa_2d_pbaja_epscond.csv")
+piv = df.pivot(index="P_baja", columns="eps_cond", values="clasificacion")
+print(piv.to_string())
+EOF
+=== ancla_balance.csv ===
+      Qi     Qout      Wt    Wp    Wnet      eta  residuo_N2  limite_N2  cumple_N2 clasificacion_teqp                                                                                                               nota
+1340.534 1173.921 170.714 4.101 166.613 0.124289    0.000194   1.340534       True             KALINA Tablas con TeqpAdapter; motor real citado de confirmacion_motor_real_v2.json: eta=0.124296, KALINA, Wnet=166.62 kW
+
+=== resumen_fase2.json ===
+Traceback (most recent call last):
+  File "<stdin>", line 6, in <module>
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 248: character maps to <undefined>
+[0m
+Console encoding issue on Windows (cp1252) — rerun with UTF-8 output:
+[0m$ [0mPYTHONIOENCODING=utf-8 python - << 'EOF'
+import json, pandas as pd
+F = r"resultados/barridos_2026-09-19/fase2_libre"
+print("=== resumen_fase2.json ===")
+print(json.dumps(json.load(open(f"{F}/resumen_fase2.json", encoding="utf-8")), indent=2, ensure_ascii=False))
+print("\n=== spotcheck: resumen ===")
+sp = json.load(open(f"{F}/spotcheck_motor_real_fase2.json", encoding="utf-8"))
+print(f"puntos: {len(sp['puntos'])}, exceso: {len(sp['exceso'])}")
+for p in sp["puntos"]:
+    print(f"  {p['csv']} fila {p['fila_idx']}: teqp={p['clasificacion_teqp']} -> real={p['clasificacion_real']} confirmado={p['motor_confirmado']}")
+print("\n=== OFAT: clasificacion por variable (NaN=sin verificar) ===")
+for v in ["x_b","P_baja","eps_cond","eta_t","eps_hrvg"]:
+    df = pd.read_csv(f"{F}/sensibilidad_{v}.csv")
+    print(f"  {v}: {df['clasificacion'].value_counts().to_dict()} | confirmado NaN={int(df['motor_confirmado'].isna().sum())}")
+print("\n=== malla 2D (KALINA/CORREGIBLE por P_baja x eps_cond) ===")
+df = pd.read_csv(f"{F}/mapa_2d_pbaja_epscond.csv")
+print(df.pivot(index="P_baja", columns="eps_cond", values="clasificacion").to_string())
+print("\nKALINA eta medio:", df[df.clasificacion=='KALINA'].eta.mean().round(5))
+EOF
+=== resumen_fase2.json ===
+{
+  "fase": "2_libre",
+  "clasificacion_ancla": "KALINA",
+  "eta_ancla": 0.124296,
+  "leccion_aprendida": "Con x_b=0.40, eps_cond=0.95 y T_amb_diseno=303.55 el KALINA se sostiene con margen O2 cómodo; las únicas fronteras del entorno son S5 (T2→T_fuente, eps_hrvg≈0.99) y O2 en el plano P_baja×eps_cond."
+}
+
+=== spotcheck: resumen ===
+puntos: 10, exceso: 37
+  sensibilidad_eps_hrvg.csv fila 6: teqp=KALINA -> real=KALINA confirmado=True
+  sensibilidad_eta_t.csv fila 3: teqp=VALIDO_ADVERTENCIA -> real=VALIDO_ADVERTENCIA confirmado=True
+  sensibilidad_eps_hrvg.csv fila 5: teqp=KALINA -> real=KALINA confirmado=True
+  sensibilidad_eps_hrvg.csv fila 8: teqp=VALIDO_ADVERTENCIA -> real=VALIDO_ADVERTENCIA confirmado=True
+  sensibilidad_eps_hrvg.csv fila 4: teqp=KALINA -> real=KALINA confirmado=True
+  sensibilidad_eps_hrvg.csv fila 3: teqp=KALINA -> real=KALINA confirmado=True
+  sensibilidad_x_b.csv fila 0: teqp=KALINA -> real=KALINA confirmado=True
+  sensibilidad_x_b.csv fila 1: teqp=KALINA -> real=KALINA confirmado=True
+  sensibilidad_x_b.csv fila 2: teqp=KALINA -> real=NO_CONVERGIO confirmado=False
+  sensibilidad_P_baja.csv fila 0: teqp=KALINA -> real=KALINA confirmado=True
+
+=== OFAT: clasificacion por variable (NaN=sin verificar) ===
+  x_b: {'KALINA': 4, 'CORREGIBLE': 2} | confirmado NaN=3
+  P_baja: {'KALINA': 5, 'NO_CONVERGIO': 1} | confirmado NaN=5
+  eps_cond: {'CORREGIBLE': 5, 'KALINA': 1} | confirmado NaN=6
+  eta_t: {'KALINA': 3, 'VALIDO_ADVERTENCIA': 3} | confirmado NaN=5
+  eps_hrvg: {'KALINA': 7, 'NO_CONVERGIO': 1, 'VALIDO_ADVERTENCIA': 1} | confirmado NaN=4
+
+=== malla 2D (KALINA/CORREGIBLE por P_baja x eps_cond) ===
+eps_cond        0.85        0.87        0.89        0.91        0.93          0.95
+P_baja                                                                            
+400.0     CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE        KALINA
+420.0     CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE        KALINA
+440.0     CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE      KALINA  NO_CONVERGIO
+460.0     CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE      KALINA        KALINA
+480.0     CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE      KALINA        KALINA
+500.0     CORREGIBLE  CORREGIBLE  CORREGIBLE  CORREGIBLE      KALINA        KALINA
+
+KALINA eta medio: 0.11724
+[0m
+[0m$ [0mgit status --short -- scripts/barridos_2026-09-19/fase2_libre/ resultados/barridos_2026-09-19/fase2_libre/ resultados/barridos_2026-09-19/figuras/ 2>&1 | head -40
+?? resultados/barridos_2026-09-19/fase2_libre/
+?? resultados/barridos_2026-09-19/figuras/
+?? scripts/barridos_2026-09-19/fase2_libre/
+[0m
+All checks pass. The lever mapping is coherent (ε_cond ≥ 0.93 is what holds KALINA; the isolated NO_CONVERGIO at P_baja=440/ε_cond=0.95 is a solver stall amid KALINA neighbors). Final step — confirm nothing outside scope was touched:
+[0m$ [0mgit status --short -- src/ scripts/barridos_2026-09-19/fase3_real/ 2>&1 | head -20
+M src/restricciones/clasificacion.py
+ M src/restricciones/operativos.py
+ M src/ui_helpers.py
+ M src/ui_inputs.py
+?? scripts/barridos_2026-09-19/fase3_real/
+?? src/ui_campos.py
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/figuras_sensibilidad.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\figuras_sensibilidad.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\figuras_sensibilidad.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\figuras_sensibilidad.py
+@@ -145,12 +145,15 @@
+     print(f"  {out.name}", flush=True)
+ else:
+     print("  AVISO: falta la malla 2D, se omite el mapa", flush=True)
+ 
+-leccion = ("Con x_b=0.40, eps_cond=0.95 y T_amb_diseno=303.55 el KALINA "
+-           "se sostiene con margen O2 cómodo; las únicas fronteras del "
+-           "entorno son S5 (T2→T_fuente, eps_hrvg≈0.99) y O2 en el plano "
+-           "P_baja×eps_cond.")
++leccion = ("El KALINA del ancla se sostiene con O2 comodo (+3.91 K) y S5 "
++           "lejos, pero la frontera real del entorno es O1 (q4=0.9013, "
++           "margen +0.0013, sin cruzar). La sensibilidad dominante es "
++           "eps_cond: por debajo de ~0.93 todo el plano "
++           "P_baja×eps_cond cae a CORREGIBLE por O2. En la frontera O1 "
++           "el motor real IAPWS es numericamente fragil (no-convergencias "
++           "no deterministas, ver spotcheck_motor_real_fase2.json).")
+ resumen = {"fase": "2_libre", "clasificacion_ancla": "KALINA",
+            "eta_ancla": 0.124296, "leccion_aprendida": leccion}
+ with open(FASE2 / "resumen_fase2.json", "w", encoding="utf-8") as fh:
+     json.dump(resumen, fh, indent=2, ensure_ascii=False)
+
+[0m
+Deliverables verified; no production code touched (the `src/` modifications were pre-existing branch changes; `fase3_real/` is the parallel session's). One correction: `resumen_fase2.json`'s lesson omits the sweep's main finding — the anchor's binding frontier is **O1** (q4), not O2. Fixing the deliverable:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/figuras_sensibilidad.py 2>&1 && cat resultados/barridos_2026-09-19/fase2_libre/resumen_fase2.json
+fase2_sensibilidad_x_b.png: 6 puntos
+  fase2_sensibilidad_P_baja.png: 6 puntos
+  fase2_sensibilidad_eps_cond.png: 6 puntos
+  fase2_sensibilidad_eta_t.png: 6 puntos
+  fase2_sensibilidad_eps_hrvg.png: 9 puntos
+  fase2_mapa_2d_pbaja_epscond.png
+resumen_fase2.json guardado
+{
+  "fase": "2_libre",
+  "clasificacion_ancla": "KALINA",
+  "eta_ancla": 0.124296,
+  "leccion_aprendida": "El KALINA del ancla se sostiene con O2 comodo (+3.91 K) y S5 lejos, pero la frontera real del entorno es O1 (q4=0.9013, margen +0.0013, sin cruzar). La sensibilidad dominante es eps_cond: por debajo de ~0.93 todo el plano P_baja×eps_cond cae a CORREGIBLE por O2. En la frontera O1 el motor real IAPWS es numericamente fragil (no-convergencias no deterministas, ver spotcheck_motor_real_fase2.json)."
+}
+[0m
+[0m# [0mTodos
+[✓] Verificar APIs + tests deterministas (pytest)
+[✓] Smoke test pool Windows spawn (pickling comun)
+[✓] Correr ancla_sensibilidad.py (entregable A)
+[✓] Correr ofat_sensibilidad.py (33 pts, entregable B)
+[✓] Correr malla_2d_sensibilidad.py (36 pts, entregable C)
+[✓] Correr spot_check_sensibilidad.py (<=10 pts motor real)
+[✓] Correr figuras_sensibilidad.py (PNGs + resumen_fase2.json)
+[✓] Pytest final completo + verificar entregables
+[0m
+STATUS: done
+
+SUMMARY: Ejecuté el barrido de sensibilidad FINAL de Fase 2 (tarea 2026-09-20-fase2-sensibilidad-final) con TeqpAdapter para los 70 puntos del grueso y 10 spot-checks selectivos con el motor real IAPWS. Entregables A–D completos: tablas del ancla con N2 cerrado, 5 OFAT, malla 2D P_baja×ε_cond, 6 figuras y resumen_fase2.json; 10/10 tests deterministas pasan. No toqué src/, fase3_real/, fase1_profesor/ ni archivos _v2.
+
+FILES_CHANGED (nuevos, solo dentro del alcance):
+- scripts/barridos_2026-09-19/fase2_libre/: comun_sensibilidad.py, ofat_sensibilidad.py, malla_2d_sensibilidad.py, spot_check_sensibilidad.py, figuras_sensibilidad.py, ancla_sensibilidad.py, test_sensibilidad_final.py
+- resultados/barridos_2026-09-19/fase2_libre/: ancla_estados.csv, ancla_balance.csv, sensibilidad_{x_b,P_baja,eps_cond,eta_t,eps_hrvg}.csv, mapa_2d_pbaja_epscond.csv, spotcheck_motor_real_fase2.json, resumen_fase2.json
+- resultados/barridos_2026-09-19/figuras/: fase2_sensibilidad_*.png ×5, fase2_mapa_2d_pbaja_epscond.png
+
+TESTS: `python -m pytest scripts/barridos_2026-09-19/fase2_libre/test_sensibilidad_final.py -v` → 10 passed (conteos/valores OFAT y malla dentro de CAMPOS_CICLO, esquema de columnas CSV, lógica ligante/spot_necesario, factories). Verificación ad-hoc de cada entregable con pandas/json (balances, N2, mapa 2D, JSONs).
+
+RESULTS:
+- Ancla (Teqp, citando motor real): KALINA, η=0.124289 vs 0.124296 real (Δ=7e-6), Wnet=166.61 kW; Qi=1340.534, Qout=1173.921, Wt=170.714, Wp=4.101; N2: residuo 1.94e-4 ≤ límite 1.3405 → cumple. Margenes: O1 (q4−0.90)=+0.0013 (frontera MÁS cercana del ancla), O2=+3.91 K, S5 lejos.
+- OFAT (33 pts): x_b→4 KALINA/2 CORREGIBLE; P_baja→5/1 NO_CONVERGIO; eps_cond→1 KALINA/5 CORREGIBLE (la variable dominante); eta_t→3 KALINA/3 VALIDO_ADVERTENCIA; eps_hrvg→7 KALINA/1 VALIDO_ADVERTENCIA/1 NO_CONVERGIO.
+- Malla 2D (36 pts): 26 CORREGIBLE / 9 KALINA / 1 NO_CONVERGIO (P_baja=440, ε_cond=0.95, aislado entre vecinos KALINA). KALINA solo con ε_cond ≥ 0.93; frontera O2 diagonal.
+- Spot-check motor real (10 pts, 1268 s): 9 confirmado=True; 1 confirmado=False (x_b=0.39: Teqp=KALINA → real=NO_CONVERGIO). 37 candidatos en exceso documentados en spotcheck_motor_real_fase2.json.
+- Tiempos: ancla ~45 s; OFAT ~7 min; malla 452 s; motor real 1268 s.
+
+ERRORS: 3 bugs míos encontrados y corregidos durante la ejecución: (1) variables `BARRIB_LES` residuales tras el rename (NameError) — corregido; (2) pickling de funciones de módulo cargado por importlib en pool de Windows spawn (`PicklingError`) — corregido registrando el módulo en sys.modules; (3) dtype float64 en `_escribir_motor` al escribir True/False (`TypeError`) que abortó la primera corrida del spot-check tras 17.8 min — corregido con astype(object) y checkpointing incremental (segunda corrida exitosa). Sin errores residuales.
+
+ASSUMPTIONS:
+- Margen O1 = q4−0.90 (criterio O1: q4 ≥ 0.90); ligante KALINA = frontera O1/O2/S5 con margen firmado más cercano; umbrales de spot 0.02 (q) / 2.0 K (T) según el texto ("~1-2 K o 0.02 en q2/q4").
+- NO_CONVERGIO del real en la frontera O1: lo registro como motor_confirmado=False (Teqp no pudo ser confirmado), no intenté adivinar cuál motor es "correcto".
+- El presupuesto ≤10 reales se respetó; los 37 candidatos restantes quedaron con motor_confirmado=NaN.
+
+UNRESOLVED:
+- La frontera O1 (q4≈0.90) queda solo parcialmente verificada con motor real (10 de 47 candidatos por presupuesto; el resto está en el campo "exceso" del JSON).
+- El motor real IAPWS muestra no-convergencia no determinista justo en la frontera O1 (x_b=0.39 falló dos veces; P_baja=400=ancla falló en la 1.ª corrida y convergió en la 2.ª; RuntimeWarnings overflow/div0 en iapws/_kalina_flash): conviene decisión del director sobre si ampliar spot-checks o aceptar Teqp como fallback ahí.
+- `tiempo_s` por punto en el JSON mide el burst de lectura del resultado (los futuros ya corrían), no la duración real por punto; el total sí está medido (1268 s / 10 pts / 4 workers).
+
+RECOMMENDATIONS:
+- Considerar que ε_cond ≈ 0.93 es el piso operativo real del candidato (por debajo, O2 vuelca todo el plano a CORREGIBLE); el ancla con ε_cond=0.95 tiene margen vs borde limitado.
+- Si el director quiere cerrar la frontera O1 con motor real: subir el tope (costo ~340 s/pt real ÷ workers) o correr solo los KALINA-no-verificados más cercanos (x_b=0.39 ya documentado como discrepante).
+- El NO_CONVERGIO aislado de la malla (440 kPa, 0.95) vale un re-solve de un punto (sospecha de stall del solver, no físico) antes de citarlo.

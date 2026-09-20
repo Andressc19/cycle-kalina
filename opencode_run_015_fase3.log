@@ -1,0 +1,933 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT_fase3_real.md
+[0m→ [0mRead .
+[0m✱ [0mGlob "*.md"[90m 9 matches[0m
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead src
+[0m→ [0mRead scripts
+[0m→ [0mRead resultados
+[0m→ [0mRead scripts/barridos_2026-09-19
+[0m→ [0mRead resultados/barridos_2026-09-19
+[0m→ [0mRead scripts/barridos_2026-09-19/fase3_real
+[0m→ [0mRead resultados/barridos_2026-09-19/fase3_real
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_scan_cementera.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/properties
+[0m→ [0mRead src/restricciones
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead src/properties/teqp_adapter.py
+[0m✱ [0mGrep "CAMPOS_CICLO"[90m 26 matches[0m
+[0m→ [0mRead src/ui_helpers.py[90m [offset=100, limit=80][0m
+[0m→ [0mRead src/restricciones/__init__.py
+[0m→ [0mRead src/sensitivity.py
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_confirma_motor_real.py
+[0m→ [0mRead src/restricciones/clasificacion.py
+[0m→ [0mRead src/_cycle_loops.py
+[0m→ [0mRead src/restricciones/modelos.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase1_profesor
+[0m
+[0m$ [0mgit status --short && git log --oneline -5
+M TASK_CONTEXT.md
+?? TASK_CONTEXT_fase1_profesor.md
+?? TASK_CONTEXT_fase2_libre.md
+?? TASK_CONTEXT_fase3_real.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? opencode_run_013_fase1.log
+?? opencode_run_014_fase2.log
+?? opencode_run_015_fase3.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+8496a42 test(v&v): validacion externa contra Elsayed et al. (2013), KCS11
+9692c30 feat(ui): pestanas de nivel superior, TeqpAdapter en ejecucion, y clasificacion termodinamica en resultados
+58b60e5 fix(properties): corrige 2 bugs reales de integracion en TeqpAdapter
+bf7c511 feat(properties): TeqpAdapter, alternativa de rendimiento a AmmoniaWaterAdapter
+6fd0f81 feat(restricciones): barrido parametrico y 17 criterios de admisibilidad
+[0m
+[0m→ [0mRead scripts/barridos_2026-09-19/fase2_libre
+Ahora entiendo la estructura. Déjame verificar el entorno (Python, paquetes, estado de git y las carpetas de las tareas paralelas) antes de escribir nada.
+[0m
+[0m$ [0mpython --version && python -c "import teqp, pandas, scipy, iapws; print('teqp', teqp.__version__ if hasattr(teqp,'__version__') else 'ok'); print('pandas', pandas.__version__); print('scipy ok'); print('iapws ok')"
+Python 3.13.7
+teqp 0.23.2
+pandas 3.0.5
+scipy ok
+iapws ok
+[0m
+Entorno listo (teqp 0.23.2, pandas 3.0.5). `fase3_real/` está vacía; `fase1_profesor/` ya tiene su `tamb_profesor.csv` (no lo tocaré). Antes de escribir los scripts definitivos, hago una exploración numérica rápida para entender el terreno físico (calibración de P_baja, campana a P_alta=3300 kPa, convergencia del punto base):
+[0m$ [0mpython - <<'EOF'
+import sys
+from pathlib import Path
+sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+from src.properties.teqp_adapter import TeqpAdapter
+from scipy.optimize import brentq
+
+b = TeqpAdapter(x=0.82)
+T_SUM = 278.15
+T_OBJ = T_SUM + 3.0
+f = lambda P: b.bubble_point(P, 0.82) - T_OBJ
+pb = brentq(f, 50.0, 5000.0, xtol=1e-4)
+print(f"P_baja calibrada (x_b=0.82, bubble=281.15K): {pb:.3f} kPa")
+print(f"  check bubble(P_baja)={b.bubble_point(pb,0.82):.4f} K")
+
+for pa in (3000.0, 3200.0, 3300.0, 3400.0, 3600.0):
+    try:
+        bub = b.bubble_point(pa, 0.82)
+        dew = b.dew_point(pa, 0.82)
+        print(f"P_alta={pa:.0f} kPa: bubble={bub:.2f} K, dew={dew:.2f} K  (T_fuente=394.15)")
+    except Exception as e:
+        print(f"P_alta={pa:.0f}: ERROR {e}")
+
+# campana en P_baja tambien (lado frio)
+bub_l = b.bubble_point(pb, 0.82)
+dew_l = b.dew_point(pb, 0.82)
+print(f"P_baja={pb:.1f} kPa: bubble={bub_l:.2f} K, dew={dew_l:.2f} K")
+EOF
+P_baja calibrada (x_b=0.82, bubble=281.15K): 467.557 kPa
+  check bubble(P_baja)=281.1500 K
+P_alta=3000 kPa: bubble=348.67 K, dew=433.22 K  (T_fuente=394.15)
+P_alta=3200 kPa: bubble=351.70 K, dew=435.65 K  (T_fuente=394.15)
+P_alta=3300 kPa: bubble=353.16 K, dew=436.82 K  (T_fuente=394.15)
+P_alta=3400 kPa: bubble=354.59 K, dew=437.96 K  (T_fuente=394.15)
+P_alta=3600 kPa: bubble=357.37 K, dew=440.14 K  (T_fuente=394.15)
+P_baja=467.6 kPa: bubble=281.15 K, dew=372.19 K
+[0m
+La calibración es limpia: **P_baja = 467.6 kPa** para x_b=0.82 (bubble=281.15 K) y la campana a P_alta=3300 kPa es [353.16, 436.82] K — T_fuente=394.15 K queda DENTRO. Ahora la prueba de convergencia del punto base:
+[0m$ [0mpython - <<'EOF'
+import sys, time
+sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+from src.properties.teqp_adapter import TeqpAdapter
+from src.cycle_solver import resolver_ciclo, CicloNoConvergeError
+from src.properties.adapter import PropertyRangeError
+from src.restricciones import evaluar_ciclo
+
+b = TeqpAdapter(x=0.82)
+combo = dict(P_alta=3300.0, P_baja=467.557, T_fuente=394.15, T_sumidero=278.15,
+             x_b=0.82, m_b=1.0, eta_t=0.90, eta_p=0.80,
+             eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80)
+t0 = time.perf_counter()
+try:
+    res = resolver_ciclo(b, **combo)
+    dt = time.perf_counter() - t0
+    val = evaluar_ciclo(b, res, **combo)
+    print(f"CONVERGIO en {dt:.2f} s")
+    print("clasificacion:", val.clasificacion.value)
+    print("eta:", res["eta"])
+    print("Wnet:", res["Wnet"])
+    print("Qi:", res["Qi"], "Qout:", res["Qout"], "Wt:", res["Wt"], "Wp:", res["Wp"])
+    est = res["estados"]
+    for k in ("e1","e2","e3","e4","e5","e6","e7","e8","e9","e10"):
+        e = est[k]
+        print(f"  {k}: T={e.T:.2f} K  P={e.P:.1f} kPa  x={e.x:.4f}  h={e.h:.2f}  m={e.m:.4f}")
+    print("mensaje:", val.mensaje_reporte()[:500])
+except (CicloNoConvergeError, PropertyRangeError) as exc:
+    print(f"FALLO en {time.perf_counter()-t0:.2f} s: {type(exc).__name__}: {str(exc)[:600]}")
+EOF
+Traceback (most recent call last):
+  File "<stdin>", line 16, in <module>
+TypeError: evaluar_ciclo() got an unexpected keyword argument 'eta_t'
+[0m
+[0m$ [0mpython - <<'EOF'
+import sys, time
+sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+from src.properties.teqp_adapter import TeqpAdapter
+from src.cycle_solver import resolver_ciclo, CicloNoConvergeError
+from src.properties.adapter import PropertyRangeError
+from src.restricciones import evaluar_ciclo
+
+b = TeqpAdapter(x=0.82)
+combo = dict(P_alta=3300.0, P_baja=467.557, T_fuente=394.15, T_sumidero=278.15,
+             x_b=0.82, m_b=1.0, eta_t=0.90, eta_p=0.80,
+             eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80)
+t0 = time.perf_counter()
+try:
+    res = resolver_ciclo(b, **combo)
+    dt = time.perf_counter() - t0
+    val = evaluar_ciclo(b, res, P_alta=combo["P_alta"], P_baja=combo["P_baja"],
+                        T_fuente=combo["T_fuente"], T_sumidero=combo["T_sumidero"],
+                        x_b=combo["x_b"], m_b=combo["m_b"],
+                        eps_hrvg=combo["eps_hrvg"], eps_reg=combo["eps_reg"],
+                        eps_cond=combo["eps_cond"])
+    print(f"CONVERGIO en {dt:.2f} s")
+    print("clasificacion:", val.clasificacion.value)
+    print("eta:", res["eta"])
+    print("Wnet:", res["Wnet"])
+    print("Qi:", res["Qi"], "Qout:", res["Qout"], "Wt:", res["Wt"], "Wp:", res["Wp"])
+    est = res["estados"]
+    for k in ("e1","e2","e3","e4","e5","e6","e7","e8","e9","e10"):
+        e = est[k]
+        print(f"  {k}: T={e.T:.2f} K  P={e.P:.1f} kPa  x={e.x:.4f}  h={e.h:.2f}  m={e.m:.4f}")
+    print("mensaje:", val.mensaje_reporte()[:500])
+except (CicloNoConvergeError, PropertyRangeError) as exc:
+    print(f"FALLO en {time.perf_counter()-t0:.2f} s: {type(exc).__name__}: {str(exc)[:600]}")
+EOF
+CONVERGIO en 45.58 s
+clasificacion: CORREGIBLE
+eta: 0.16062383468961564
+Wnet: 134.16104030227575
+Qi: 835.2498902888494 Qout: 701.0890243815896 Wt: 151.7574124063043 Wp: 17.596372104028546
+  e1: T=335.88 K  P=3300.0 kPa  x=0.8200  h=452.83  m=1.0000
+  e2: T=381.38 K  P=3300.0 kPa  x=0.8200  h=1288.08  m=1.0000
+  e3: T=381.38 K  P=3300.0 kPa  x=0.9803  h=1784.43  m=0.6238
+  e4: T=287.40 K  P=467.6 kPa  x=0.9803  h=1541.15  m=0.6238
+  e5: T=381.38 K  P=3300.0 kPa  x=0.5543  h=465.04  m=0.3762
+  e6: T=334.38 K  P=3300.0 kPa  x=0.5543  h=232.00  m=0.3762
+  e7: T=308.01 K  P=467.6 kPa  x=0.5543  h=232.00  m=0.3762
+  e8: T=302.89 K  P=467.6 kPa  x=0.8200  h=1048.65  m=1.0000
+  e9: T=282.26 K  P=467.6 kPa  x=0.8200  h=347.57  m=1.0000
+  e10: T=318.16 K  P=3300.0 kPa  x=0.8200  h=365.16  m=1.0000
+mensaje: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=303.41703222236237, esperado=<= 281.150 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+[0m
+El punto base **converge** y clasifica `CORREGIBLE` (O2: cavitación en la bomba). Necesito entender el criterio O2 para saber qué palanca ajustar:
+[0m→ [0mRead src/restricciones/operativos.py
+El criterio O2 es la única falla: re-resuelve el condensador contra el piso de diseño `T_amb=303.55 K` (`max(T_sumidero, 303.55)`) y exige `T9_amb <= bubble(P_baja, x_b)=281.15 K`. Con `eps_cond=0.80` da `T9_amb=303.42 K`. Calculo rápido el `eps_cond` requerido y verifico el efecto en el solver:
+[0m
+[0m$ [0mpython - <<'EOF'
+import sys
+sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+from src.properties.teqp_adapter import TeqpAdapter
+from src.cycle_solver import resolver_ciclo, CicloNoConvergeError
+from src.properties.adapter import PropertyRangeError
+from src.restricciones import evaluar_ciclo
+
+b = TeqpAdapter(x=0.82)
+PB = 467.557
+T_AMB = 303.55
+X = 0.82
+# estado 8 aproximado de la corrida previa
+h8 = 1048.65
+h9_ideal = b.h(PB, T=T_AMB, x=X)
+h9_req = b.h(PB, T=281.15, x=X)   # liquido subenfriado/saturado a bubble
+eps_req = (h8 - h9_req) / (h8 - h9_ideal)
+print(f"h9_ideal(303.55K)={h9_ideal:.2f}  h9_req(281.15K)={h9_req:.2f}  eps_req={eps_req:.4f}")
+
+# verificar con el solver real en un par de eps_cond
+for eps_c in (0.90, 0.95, 0.97, 0.99):
+    combo = dict(P_alta=3300.0, P_baja=PB, T_fuente=394.15, T_sumidero=278.15,
+                 x_b=X, m_b=1.0, eta_t=0.90, eta_p=0.80,
+                 eps_hrvg=0.85, eps_reg=0.75, eps_cond=eps_c)
+    try:
+        res = resolver_ciclo(b, **combo)
+        val = evaluar_ciclo(b, res, P_alta=combo["P_alta"], P_baja=combo["P_baja"],
+                            T_fuente=combo["T_fuente"], T_sumidero=combo["T_sumidero"],
+                            x_b=combo["x_b"], m_b=combo["m_b"],
+                            eps_hrvg=combo["eps_hrvg"], eps_reg=combo["eps_reg"],
+                            eps_cond=combo["eps_cond"])
+        e9 = res["estados"]["e9"]
+        print(f"eps_cond={eps_c:.2f}: {val.clasificacion.value}  eta={res['eta']:.4f}  "
+              f"T9={e9.T:.2f} K  fallas={[f.codigo for f in val.fallas]}")
+    except (CicloNoConvergeError, PropertyRangeError) as exc:
+        print(f"eps_cond={eps_c:.2f}: FALLO {type(exc).__name__}: {str(exc)[:150]}")
+EOF
+(no output)
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 120000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+[0m
+El solver es lento (~45 s/punto) y el timeout de 120 s cortó la corrida. Reintento con `-u` (salida sin buffer) y más tiempo, pero primero el cálculo analítico del `eps_cond` requerido:
+[0m$ [0mpython -u - <<'EOF'
+import sys
+sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+from src.properties.teqp_adapter import TeqpAdapter
+
+b = TeqpAdapter(x=0.82)
+PB = 467.557
+T_AMB = 303.55
+X = 0.82
+h8 = 1048.65
+h9_ideal = b.h(PB, T=T_AMB, x=X)
+h9_req = b.h(PB, T=281.15, x=X)
+eps_req = (h8 - h9_req) / (h8 - h9_ideal)
+print(f"h9_ideal(303.55K)={h9_ideal:.2f}  h9_req(281.15K)={h9_req:.2f}  eps_req={eps_req:.4f}", flush=True)
+EOF
+h9_ideal(303.55K)=1057.25  h9_req(281.15K)=186.35  eps_req=-100.2802
+[0m
+El `eps_req` analítico salió negativo (-100): `h8=1048.65 < h9_ideal(303.55K)=1057.25`, así que `T9_amb >= T8=302.89 K` **para cualquier** `eps_cond` — la palanca directa NO es `eps_cond`, sino bajar `T8` (salida del absorbedor) vía el acoplamiento del ciclo (`eps_cond` real baja `T9→T10→T6→T7→T8`, y `eps_reg` tira de `T7`). Reviso los logs de la fase B0 para aprender del tiempo por punto y de las palancas ya exploradas:
+[0m$ [0mrg -n "s/punto|puntos|tiempo|CONVERGIO|calibra" opencode_run_011.log | head -30
+/usr/bin/bash: line 1: rg: command not found
+[0m
+[0m$ [0mrg -n "s/punto|puntos|tiempo|CONVERGIO|calibra|KALINA|CORREGIBLE" opencode_run_012.log | head -40
+/usr/bin/bash: line 1: rg: command not found
+[0m
+[0m✱ [0mGrep "s/punto|puntos evaluados|tiempo|CONVERGIO|KALINA|CORREGIBLE"[90m in opencode_run_012.log · 100 matches[0m
+[0m✱ [0mGrep "s/punto|puntos evaluados|tiempo|CONVERGIO|KALINA"[90m in opencode_run_011.log · 100 matches[0m
+[0m→ [0mRead src/restricciones/segunda_ley.py
+[0m→ [0mRead src/restricciones/composicion.py
+Aprendizajes clave del log: el B0 usó `ProcessPoolExecutor` (1.95 s/punto con 4 workers para puntos que NO convergen; los que convergen tardan 45-70 s) y la fase2 encontró el mismo muro O2. Antes de gastar tiempo de solver, reviso los otros criterios de restricción para conocer todas las trampas posibles:
+[0m→ [0mRead src/restricciones/numericos.py
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py
+Wrote file successfully.
+[0m
+Ahora tengo el mapa completo de criterios. La clave: **S6** (T9≥T_sumidero) limita `eps_cond`, **S4** limita `eps_reg`, **O1** (q4≥0.90) limita `eta_t`, y **O2** exige `T8≤bubble(P_baja,x_b)=281.15 K` (como `P_baja` se recalibra a bubble=281.15, el objetivo O2 es fijo). Escribo el script de búsqueda fase3 con fases adaptativas y registro incremental en CSV:
+Ejecuto la búsqueda (Fase A: 1 punto; B: 12; C: hasta 32 si hace falta — con 4 workers):
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py", line 42, in <module>
+    from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+ModuleNotFoundError: No module named 'src'
+[0m
+La ruta del raíz está mal: el script vive un nivel más profundo que el de B0 (`fase3_real/`), así que necesito `parents[3]`:
+[0m← [0mEdit scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py
+@@ -35,9 +35,9 @@
+ 
+ import pandas as pd
+ from scipy.optimize import brentq
+ 
+-_RAIZ = Path(__file__).resolve().parents[2]  # script en scripts/barridos_2026-09-19/fase3_real/
++_RAIZ = Path(__file__).resolve().parents[3]  # script en scripts/barridos_2026-09-19/fase3_real/
+ sys.path.insert(0, str(_RAIZ))
+ 
+ from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+ from src.properties.adapter import PropertyRangeError
+
+[0m
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py
+=== Fase A: base: 1 puntos ===
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py", line 208, in <module>
+    main()
+    ~~~~^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py", line 157, in main
+    resumen(filas_a)
+    ~~~~~~~^^^^^^^^^
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py", line 140, in resumen
+    print(f"  P_alta={f['P_alta']:.0f} x_b={f['x_b']:.2f} "
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          f"eta_t={f['eta_t']:.2f} eps_r={f['eps_reg']:.2f} "
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          f"eps_c={f['eps_cond']:.2f} \u2192 {f['clasificacion']} ({estado})",
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          flush=True)
+          ^^^^^^^^^^^
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 56: character maps to <undefined>
+[0m
+Problema de codificación de consola (cp1252) con el carácter `→`. Lo cambio a ASCII en los prints:
+[0m$ [0mpython - <<'EOF'
+import io
+p = r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\busqueda_base_husavik.py"
+s = io.open(p, encoding="utf-8").read()
+s = s.replace("→", "->").replace("—", "-")
+io.open(p, "w", encoding="utf-8", newline="\n").write(s)
+print("ok")
+EOF
+ok
+[0m
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py
+=== Fase A: base: 1 puntos ===
+  P_alta=3300 x_b=0.82 eta_t=0.90 eps_r=0.75 eps_c=0.80 -> CORREGIBLE (eta=0.1606 Wnet=134.2 kW)
+
+=== Fase B: palancas T8 (P_alta=3300, x_b=0.82): 12 puntos ===
+  4/12 (78 s)
+  8/12 (148 s)
+  12/12 (215 s)
+  P_alta=3300 x_b=0.82 eta_t=0.90 eps_r=0.90 eps_c=0.98 -> CORREGIBLE (eta=0.1569 Wnet=143.8 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.90 eps_r=0.95 eps_c=0.98 -> CORREGIBLE (eta=0.1585 Wnet=144.1 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.90 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1641 Wnet=143.2 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.90 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1626 Wnet=142.9 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.95 eps_r=0.90 eps_c=0.98 -> CORREGIBLE (eta=0.1659 Wnet=152.1 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.95 eps_r=0.95 eps_c=0.98 -> CORREGIBLE (eta=0.1676 Wnet=152.4 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.95 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1721 Wnet=151.3 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.95 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1736 Wnet=151.6 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.98 eps_r=0.90 eps_c=0.98 -> CORREGIBLE (eta=0.1713 Wnet=157.1 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1777 Wnet=156.3 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1793 Wnet=156.6 kW)
+  P_alta=3300 x_b=0.82 eta_t=0.98 eps_r=0.95 eps_c=0.98 -> CORREGIBLE (eta=0.1731 Wnet=157.3 kW)
+
+=== Fase C: extension P_alta/x_b: 32 puntos ===
+  4/32 (77 s)
+  8/32 (148 s)
+  12/32 (222 s)
+  16/32 (288 s)
+  20/32 (367 s)
+  24/32 (433 s)
+  28/32 (509 s)
+  32/32 (533 s)
+  P_alta=3000 x_b=0.80 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1740 Wnet=151.8 kW)
+  P_alta=3000 x_b=0.80 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1724 Wnet=151.5 kW)
+  P_alta=3000 x_b=0.78 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1750 Wnet=145.4 kW)
+  P_alta=3000 x_b=0.78 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1731 Wnet=145.1 kW)
+  P_alta=3000 x_b=0.84 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1721 Wnet=164.1 kW)
+  P_alta=3000 x_b=0.86 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1712 Wnet=170.1 kW)
+  P_alta=3000 x_b=0.84 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1710 Wnet=163.9 kW)
+  P_alta=3000 x_b=0.86 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1703 Wnet=169.9 kW)
+  P_alta=3200 x_b=0.78 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1791 Wnet=143.5 kW)
+  P_alta=3200 x_b=0.80 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1782 Wnet=150.4 kW)
+  P_alta=3200 x_b=0.78 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1770 Wnet=143.1 kW)
+  P_alta=3200 x_b=0.80 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1764 Wnet=150.1 kW)
+  P_alta=3200 x_b=0.86 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1757 Wnet=170.3 kW)
+  P_alta=3200 x_b=0.84 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1765 Wnet=163.8 kW)
+  P_alta=3200 x_b=0.86 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1747 Wnet=170.1 kW)
+  P_alta=3200 x_b=0.84 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1753 Wnet=163.6 kW)
+  P_alta=3400 x_b=0.78 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1827 Wnet=141.0 kW)
+  P_alta=3400 x_b=0.78 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1803 Wnet=140.6 kW)
+  P_alta=3400 x_b=0.80 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1799 Wnet=148.2 kW)
+  P_alta=3400 x_b=0.80 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1819 Wnet=148.5 kW)
+  P_alta=3400 x_b=0.86 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> NO_CONVERGIO (sin converger)
+  P_alta=3400 x_b=0.86 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> NO_CONVERGIO (sin converger)
+  P_alta=3400 x_b=0.84 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1805 Wnet=163.0 kW)
+  P_alta=3400 x_b=0.84 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1791 Wnet=162.8 kW)
+  P_alta=3500 x_b=0.78 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1843 Wnet=139.6 kW)
+  P_alta=3500 x_b=0.78 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1818 Wnet=139.2 kW)
+  P_alta=3500 x_b=0.80 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1836 Wnet=147.4 kW)
+  P_alta=3500 x_b=0.80 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1815 Wnet=147.0 kW)
+  P_alta=3500 x_b=0.86 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> NO_CONVERGIO (sin converger)
+  P_alta=3500 x_b=0.86 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> NO_CONVERGIO (sin converger)
+  P_alta=3500 x_b=0.84 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1823 Wnet=162.4 kW)
+  P_alta=3500 x_b=0.84 eta_t=0.98 eps_r=0.90 eps_c=0.90 -> CORREGIBLE (eta=0.1808 Wnet=162.2 kW)
+
+Sin punto KALINA en A+B+C. Mejor candidato para refinamiento:
+  CORREGIBLE P_alta=3300 x_b=0.82 eta_t=0.90 eps_r=0.75 eps_c=0.80 eta=0.1606
+
+CSV parcial en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv
+[0m
+45 puntos probados, todos clasifican `CORREGIBLE` (O2) salvo 2 `NO_CONVERGIO`. El muro O2 persiste. Reviso el CSV para ver los mensajes detallados (T8, T9_amb) de los mejores puntos:
+[0m$ [0mpython - <<'EOF'
+import pandas as pd
+df = pd.read_csv(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv")
+print("filas:", len(df), "| convergio:", int(df.convergio.sum()), "| clasif:", df.clasificacion.value_counts().to_dict())
+print()
+cols = ["P_alta","P_baja","x_b","eta_t","eps_hrvg","eps_reg","eps_cond","clasificacion","eta","mensaje"]
+pd.set_option("display.max_colwidth", 200)
+# mejores por eta entre CORREGIBLE
+best = df[df.clasificacion=="CORREGIBLE"].sort_values("eta", ascending=False).head(3)
+print(best[cols].to_string(index=False))
+print()
+print("--- mensaje del mejor por eta_t mas alto ---")
+m = df[(df.P_alta==3300)&(df.x_b==0.82)&(df.eta_t==0.98)&(df.eps_reg==0.95)&(df.eps_cond==0.90)]
+print(m[cols].to_string(index=False))
+print()
+print("--- NO_CONVERGIO (ejemplo) ---")
+nc = df[df.clasificacion=="NO_CONVERGIO"].head(1)
+print(nc[cols].to_string(index=False))
+EOF
+filas: 45 | convergio: 41 | clasif: {'CORREGIBLE': 41, 'NO_CONVERGIO': 4}
+
+ P_alta     P_baja  x_b  eta_t  eps_hrvg  eps_reg  eps_cond clasificacion      eta                                                                                                                                                                                                                                                                                                                                                         mensaje
+ 3500.0 438.910383 0.78   0.98      0.85     0.95       0.9    CORREGIBLE 0.184330 T8=296.28 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=302.71931787681467, esperado=<= 281.150 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 3500.0 453.620478 0.80   0.98      0.85     0.95       0.9    CORREGIBLE 0.183647 T8=296.21 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=302.70447282278917, esperado=<= 281.150 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 3400.0 438.910383 0.78   0.98      0.85     0.95       0.9    CORREGIBLE 0.182675  T8=297.06 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=302.8207705549182, esperado=<= 281.150 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+
+--- mensaje del mejor por eta_t mas alto ---
+ P_alta     P_baja  x_b  eta_t  eps_hrvg  eps_reg  eps_cond clasificacion      eta                                                                                                                                                                                                                                                                                                                                                         mensaje
+ 3300.0 467.557428 0.82   0.98      0.85     0.95       0.9    CORREGIBLE 0.179301 T8=297.51 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=302.87242886233946, esperado=<= 281.150 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+
+--- NO_CONVERGIO (ejemplo) ---
+ P_alta     P_baja  x_b  eta_t  eps_hrvg  eps_reg  eps_cond clasificacion  eta                                                                                                                                                                               mensaje
+ 3400.0 493.411816 0.86   0.98      0.85     0.95       0.9  NO_CONVERGIO  NaN T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=477.02 K, P=3.4e+06 Pa, x=0.8666
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py
+Wrote file successfully.
+[0m
+Diagnóstico claro: las palancas de T8 (eta_t, eps_reg, eps_cond) bajan T8 de 302.9 a ~296.2 K, pero el objetivo O2 queda fijo en 281.15 K (por la calibración de P_baja) — aún 15 K de distancia. La palanca que me asigna explícitamente la tarea y que aún no he movido es **`P_baja`** (dato no publicado del caso real): subirla eleva `bubble(P_baja, x_b)` (objetivo O2 = "margen de subenfriamiento de diseño", exactamente lo que sugiere el propio criterio O2). Escribo el script de ajuste de P_baja que **añade** filas al mismo `busqueda_husavik.csv`:
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py
+Ajuste de P_baja: 7 puntos -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv
+  2/7 (68 s)
+  4/7 (76 s)
+  6/7 (112 s)
+
+Resultados (120 s total):
+  P_baja=800 eta_t=0.90 eps_r=0.75 eps_c=0.80 -> CORREGIBLE (eta=0.1266 Wnet=105.9 kW)
+  P_baja=1000 eta_t=0.90 eps_r=0.75 eps_c=0.80 -> CORREGIBLE (eta=0.1100 Wnet=91.9 kW)
+  P_baja=1200 eta_t=0.90 eps_r=0.75 eps_c=0.80 -> CORREGIBLE (eta=0.0952 Wnet=79.5 kW)
+  P_baja=1400 eta_t=0.90 eps_r=0.75 eps_c=0.80 -> CORREGIBLE (eta=0.0818 Wnet=68.2 kW)
+  P_baja=1200 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.0995 Wnet=86.7 kW)
+  P_baja=1000 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1162 Wnet=101.3 kW)
+  P_baja=800 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1361 Wnet=118.7 kW)
+[0m
+Sigue `CORREGIBLE` incluso a P_baja=1400 (y η cae a 8%). Reviso los mensajes para ver qué falla ahora:
+[0m$ [0mpython - <<'EOF'
+import pandas as pd
+df = pd.read_csv(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv")
+pd.set_option("display.max_colwidth", 260)
+cols = ["P_baja","eta_t","eps_reg","eps_cond","clasificacion","eta","mensaje"]
+ult = df.tail(7)
+print(ult[cols].to_string(index=False))
+EOF
+P_baja  eta_t  eps_reg  eps_cond clasificacion      eta                                                                                                                                                                                                                                                                                                                                                         mensaje
+  800.0   0.90     0.75       0.8    CORREGIBLE 0.126596 T8=319.40 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=305.41353371560086, esperado=<= 297.454 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 1000.0   0.90     0.75       0.8    CORREGIBLE 0.109980  T8=326.92 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=306.1936698458727, esperado=<= 304.885 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 1200.0   0.90     0.75       0.8    CORREGIBLE 0.095193  T8=333.39 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=312.3783231505072, esperado=<= 311.278 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 1400.0   0.90     0.75       0.8    CORREGIBLE 0.081786  T8=339.09 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=317.8324693328973, esperado=<= 316.926 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 1200.0   0.98     0.95       0.9    CORREGIBLE 0.099539  T8=328.40 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=311.5716361208291, esperado=<= 311.278 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 1000.0   0.98     0.95       0.9    CORREGIBLE 0.116241  T8=321.86 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=305.3935549253924, esperado=<= 304.885 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+  800.0   0.98     0.95       0.9    CORREGIBLE 0.136094 T8=314.25 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=304.22574248118315, esperado=<= 297.454 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\ajuste_p_baja_husavik.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\ajuste_p_baja_husavik.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\ajuste_p_baja_husavik.py
+@@ -45,20 +45,20 @@
+             "eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond",
+             "convergio", "clasificacion", "eta", "Wnet", "mensaje")
+ 
+ # (P_alta, P_baja, x_b, eta_t, eps_hrvg, eps_reg, eps_cond)
+-# Config A: palancas default (las del punto base del TASK_CONTEXT).
+-# Config B: palancas fuertes (bajan T8 al minimo alcanzable).
++# Refinamiento alrededor de la frontera O2: P_baja x eps_cond x eta_t.
+ PUNTOS = [
+-    # -- config A (base) x P_baja creciente --
+-    (3300.0, 800.0, 0.82, 0.90, 0.85, 0.75, 0.80),
+-    (3300.0, 1000.0, 0.82, 0.90, 0.85, 0.75, 0.80),
+-    (3300.0, 1200.0, 0.82, 0.90, 0.85, 0.75, 0.80),
+-    (3300.0, 1400.0, 0.82, 0.90, 0.85, 0.75, 0.80),
+-    # -- config B (palancas fuertes) x P_baja creciente --
+-    (3300.0, 800.0, 0.82, 0.98, 0.85, 0.95, 0.90),
+     (3300.0, 1000.0, 0.82, 0.98, 0.85, 0.95, 0.90),
+-    (3300.0, 1200.0, 0.82, 0.98, 0.85, 0.95, 0.90),
++    (3300.0, 1000.0, 0.82, 0.98, 0.85, 0.95, 0.98),
++    (3300.0, 1100.0, 0.82, 0.98, 0.85, 0.95, 0.98),
++    (3300.0, 1200.0, 0.82, 0.98, 0.85, 0.95, 0.98),
++    (3300.0, 1300.0, 0.82, 0.98, 0.85, 0.95, 0.90),
++    (3300.0, 1300.0, 0.82, 0.98, 0.85, 0.95, 0.98),
++    (3300.0, 1300.0, 0.82, 0.95, 0.85, 0.95, 0.98),
++    (3300.0, 1300.0, 0.82, 0.90, 0.85, 0.95, 0.98),
++    (3300.0, 1400.0, 0.82, 0.90, 0.85, 0.90, 0.98),
++    (3300.0, 1500.0, 0.82, 0.90, 0.85, 0.95, 0.98),
+ ]
+ 
+ 
+ def importar_backend():
+
+[0m
+Hallazgo clave: el hueco O2 se cierra al subir P_baja (fallo de 7.96 K a 800 kPa → 0.90 K a 1400 kPa), y `eps_cond` alto también baja `T9_amb` (a 303.55): en P_baja=1200 con palancas fuertes el fallo es de solo 0.29 K. Además, a mayor `eps_cond` la P_baja necesaria baja (mejor η). Refino la rejilla alrededor de la frontera, incluyendo `eta_t=0.90` (valor citado de la literatura):
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py
+Ajuste de P_baja: 10 puntos -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv
+  2/10 (31 s)
+  4/10 (54 s)
+  6/10 (59 s)
+  8/10 (80 s)
+  10/10 (84 s)
+
+Resultados (84 s total):
+  P_baja=1000 eta_t=0.98 eps_r=0.95 eps_c=0.98 -> CORREGIBLE (eta=0.1106 Wnet=100.5 kW)
+  P_baja=1200 eta_t=0.98 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0946 Wnet=86.0 kW)
+  P_baja=1100 eta_t=0.98 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.1023 Wnet=93.0 kW)
+  P_baja=1000 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.1162 Wnet=101.3 kW)
+  P_baja=1300 eta_t=0.98 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0875 Wnet=79.5 kW)
+  P_baja=1300 eta_t=0.95 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0847 Wnet=77.0 kW)
+  P_baja=1300 eta_t=0.98 eps_r=0.95 eps_c=0.90 -> CORREGIBLE (eta=0.0921 Wnet=80.2 kW)
+  P_baja=1300 eta_t=0.90 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0800 Wnet=72.7 kW)
+  P_baja=1400 eta_t=0.90 eps_r=0.90 eps_c=0.98 -> KALINA (eta=0.0732 Wnet=67.1 kW)
+  P_baja=1500 eta_t=0.90 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0682 Wnet=62.0 kW)
+
+KALINA en 7 punto(s):
+  P_baja=1200.0 eta=0.09462 Wnet=85.98 kW
+  P_baja=1100.0 eta=0.10228 Wnet=92.96 kW
+  P_baja=1300.0 eta=0.08749 Wnet=79.50 kW
+  P_baja=1300.0 eta=0.08469 Wnet=76.96 kW
+  P_baja=1300.0 eta=0.08004 Wnet=72.73 kW
+  P_baja=1400.0 eta=0.07319 Wnet=67.05 kW
+  P_baja=1500.0 eta=0.06820 Wnet=61.97 kW
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\ajuste_p_baja_husavik.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\ajuste_p_baja_husavik.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\ajuste_p_baja_husavik.py
+@@ -45,20 +45,18 @@
+             "eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond",
+             "convergio", "clasificacion", "eta", "Wnet", "mensaje")
+ 
+ # (P_alta, P_baja, x_b, eta_t, eps_hrvg, eps_reg, eps_cond)
+-# Refinamiento alrededor de la frontera O2: P_baja x eps_cond x eta_t.
++# Refinamiento final: frontera O2 con eta_t=0.90 (valor citado en la
++# literatura del caso) y eps_cond/eps_reg lo mas cerca de los defaults.
+ PUNTOS = [
+-    (3300.0, 1000.0, 0.82, 0.98, 0.85, 0.95, 0.90),
+-    (3300.0, 1000.0, 0.82, 0.98, 0.85, 0.95, 0.98),
+-    (3300.0, 1100.0, 0.82, 0.98, 0.85, 0.95, 0.98),
+-    (3300.0, 1200.0, 0.82, 0.98, 0.85, 0.95, 0.98),
+-    (3300.0, 1300.0, 0.82, 0.98, 0.85, 0.95, 0.90),
+-    (3300.0, 1300.0, 0.82, 0.98, 0.85, 0.95, 0.98),
+-    (3300.0, 1300.0, 0.82, 0.95, 0.85, 0.95, 0.98),
+-    (3300.0, 1300.0, 0.82, 0.90, 0.85, 0.95, 0.98),
+-    (3300.0, 1400.0, 0.82, 0.90, 0.85, 0.90, 0.98),
+-    (3300.0, 1500.0, 0.82, 0.90, 0.85, 0.95, 0.98),
++    (3300.0, 1150.0, 0.82, 0.90, 0.85, 0.95, 0.98),
++    (3300.0, 1200.0, 0.82, 0.90, 0.85, 0.95, 0.98),
++    (3300.0, 1250.0, 0.82, 0.90, 0.85, 0.95, 0.98),
++    (3300.0, 1200.0, 0.82, 0.90, 0.85, 0.95, 0.95),
++    (3300.0, 1250.0, 0.82, 0.90, 0.85, 0.95, 0.95),
++    (3300.0, 1300.0, 0.82, 0.90, 0.85, 0.95, 0.95),
++    (3300.0, 1200.0, 0.82, 0.90, 0.85, 0.90, 0.98),
+ ]
+ 
+ 
+ def importar_backend():
+
+[0m
+**¡KALINA encontrado!** 7 puntos pasan la frontera O2 con `eps_cond=0.98`. El mejor por eficiencia: **P_baja=1100 kPa, η=0.1023**. Para la base final prefiero usar `eta_t=0.90` (valor citado en la literatura del caso, no inventado) y solo calibrar P_baja/efectividades (que el TASK_CONTEXT declara como "tuyos para calibrar"). Afino la frontera con eta_t=0.90:
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py
+Ajuste de P_baja: 7 puntos -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv
+  2/7 (33 s)
+  4/7 (34 s)
+  6/7 (59 s)
+
+Resultados (60 s total):
+  P_baja=1150 eta_t=0.90 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0900 Wnet=81.8 kW)
+  P_baja=1250 eta_t=0.90 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0832 Wnet=75.6 kW)
+  P_baja=1200 eta_t=0.90 eps_r=0.95 eps_c=0.98 -> KALINA (eta=0.0866 Wnet=78.7 kW)
+  P_baja=1200 eta_t=0.90 eps_r=0.95 eps_c=0.95 -> KALINA (eta=0.0882 Wnet=78.9 kW)
+  P_baja=1200 eta_t=0.90 eps_r=0.90 eps_c=0.98 -> KALINA (eta=0.0857 Wnet=78.5 kW)
+  P_baja=1250 eta_t=0.90 eps_r=0.95 eps_c=0.95 -> KALINA (eta=0.0848 Wnet=75.9 kW)
+  P_baja=1300 eta_t=0.90 eps_r=0.95 eps_c=0.95 -> KALINA (eta=0.0815 Wnet=72.9 kW)
+
+KALINA en 7 punto(s):
+  P_baja=1150.0 eta=0.09002 Wnet=81.80 kW
+  P_baja=1250.0 eta=0.08324 Wnet=75.64 kW
+  P_baja=1200.0 eta=0.08657 Wnet=78.66 kW
+  P_baja=1200.0 eta=0.08818 Wnet=78.90 kW
+  P_baja=1200.0 eta=0.08570 Wnet=78.52 kW
+  P_baja=1250.0 eta=0.08480 Wnet=75.87 kW
+  P_baja=1300.0 eta=0.08153 Wnet=72.95 kW
+[0m
+Todos los 7 puntos con `eta_t=0.90` (valor citado) clasifican `KALINA`. El mejor por η: **P_baja=1150 kPa → η=0.0900**. Reviso los márgenes O2/S6 de los candidatos en el CSV para elegir la base más robusta:
+[0m$ [0mpython - <<'EOF'
+import pandas as pd
+df = pd.read_csv(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv")
+pd.set_option("display.max_colwidth", 120)
+ult = df.tail(14)
+cols = ["P_baja","eta_t","eps_reg","eps_cond","clasificacion","eta","mensaje"]
+print(ult[cols].to_string(index=False))
+# estado completo del punto elegido (re-resolver rapido para imprimir estados)
+EOF
+P_baja  eta_t  eps_reg  eps_cond clasificacion      eta                                                                                                                                                                                                                                                                                                                                                         mensaje
+ 1000.0   0.98     0.95      0.90    CORREGIBLE 0.116241  T8=321.86 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=305.3935549253924, esperado=<= 304.885 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 1300.0   0.98     0.95      0.98        KALINA 0.087487                                                                                                                                                                                                                                                                                          T8=329.47 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1300.0   0.95     0.95      0.98        KALINA 0.084693                                                                                                                                                                                                                                                                                          T8=329.61 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1300.0   0.98     0.95      0.90    CORREGIBLE 0.092071 T8=331.36 K || [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=314.37360098853446, esperado=<= 314.182 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+ 1300.0   0.90     0.95      0.98        KALINA 0.080035                                                                                                                                                                                                                                                                                          T8=329.85 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1400.0   0.90     0.90      0.98        KALINA 0.073187                                                                                                                                                                                                                                                                                          T8=333.05 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1500.0   0.90     0.95      0.98        KALINA 0.068196                                                                                                                                                                                                                                                                                          T8=335.20 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1150.0   0.90     0.95      0.98        KALINA 0.090015                                                                                                                                                                                                                                                                                          T8=325.42 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1250.0   0.90     0.95      0.98        KALINA 0.083244                                                                                                                                                                                                                                                                                          T8=328.42 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1200.0   0.90     0.95      0.98        KALINA 0.086568                                                                                                                                                                                                                                                                                          T8=326.95 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1200.0   0.90     0.95      0.95        KALINA 0.088180                                                                                                                                                                                                                                                                                          T8=327.64 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1200.0   0.90     0.90      0.98        KALINA 0.085698                                                                                                                                                                                                                                                                                          T8=327.40 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1250.0   0.90     0.95      0.95        KALINA 0.084799                                                                                                                                                                                                                                                                                          T8=329.11 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+ 1300.0   0.90     0.95      0.95        KALINA 0.081534                                                                                                                                                                                                                                                                                          T8=330.55 K || KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase3_real/confirma_motor_real.py
+Wrote file successfully.
+[0m
+Confirmado: los KALINA pasan los 17 criterios. Elijo como base definitiva el punto más robusto y honesto frente al caso real (mantiene los valores citados `eta_t=0.90`/`eta_p=0.80` y `x_b=0.82`/`P_alta=3300`; `eps_cond=0.95` en vez de 0.98 para no rozar S6):
+
+**Base: `(P_alta=3300, P_baja=1200, x_b=0.82, eta_t=0.90, eta_p=0.80, eps_hrvg=0.85, eps_reg=0.95, eps_cond=0.95)` → η=0.0882, Wnet=78.9 kW**
+
+Ahora escribo el script de confirmación con motor real (`AmmoniaWaterAdapter`, lento ~70-80 s/punto — 2 puntos):
+## Objective
+- Ejecutar exactamente la tarea de `TASK_CONTEXT_fase3_real.md` (tarea `2026-09-19-fase3-caso-real`): anclar la base de operación al caso REAL de la planta geotérmica de Húsavík (Islandia) y ajustar variables dentro de `CAMPOS_CICLO` hasta que el punto clasifique `KALINA`, trabajando SOLO en `scripts/barridos_2026-09-19/fase3_real/` y `resultados/barridos_2026-09-19/fase3_real/`.
+- Productos esperados: base KALINA confirmada con el motor real (iapws G4-01) → JSON, sensibilidad opcional, reporte `CASO_HUSAVIK.md`, y cada intento registrado en `busqueda_husavik.csv` (mismo esquema que `tabla_barrido`).
+
+## Important Details
+- Raíz del worktree: `D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d`
+- Tareas paralelas en el repo: `fase1_profesor/` (ya tiene `tamb_profesor.csv`) y `fase2_libre/` (vacía) — **NO tocar**. NO modificar `src/` ni código de producción.
+- Caso real citado (no re-buscar): `T_fuente = 394.15 K` (121 °C), `T_sumidero = 278.15 K` (5 °C), `x_b ≈ 0.82`, `P_alta ≈ 3300 kPa` (32-34 bar), `eta_t ≈ 0.90`, `eta_p ≈ 0.80`. `P_baja` NO publicado → calibrar con regla de Fase B0: `bubble_point(P_baja, x_b) = T_sumidero + 3 = 281.15 K`, dentro de `CAMPOS_CICLO` (P_baja 50-5000 kPa).
+- Tope de presupuesto: ~150-200 puntos con `TeqpAdapter` + 1-3 con `AmmoniaWaterAdapter`.
+- Entorno: Python 3.13.7, teqp 0.23.2, pandas 3.0.5, scipy, iapws OK. Windows: consola cp1252 → solo ASCII en `print` (falló `\u2192`), usar `python -u`.
+- `_RAIZ = Path(__file__).resolve().parents[3]` para scripts dentro de `fase3_real/` (B0 usaba `parents[2]` desde `barridos_2026-09-19/`).
+- Firma de `evaluar_ciclo`: `evaluar_ciclo(backend, resultado, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b, eps_hrvg, eps_reg, eps_cond)` — NO acepta `eta_t`/`eta_p`.
+- Criterios clave: O2 (CORREGIBLE) — re-resuelve condensador con `T_amb_eval = max(T_sumidero, 303.55)` y exige `T9_amb <= bubble(P_baja, x_b)`; como `h8 < h9_ideal(303.55)`, `T9_amb ∈ [T8, 303.55]` → O2 requiere `T8 <= 281.15` (con P_baja calibrada al mínimo) y `eps_cond` NO lo arregla. S6 exige `T9 >= T_sumidero`; S4 exige `e6.T > e10.T`; S5 exige `e2.T <= T_fuente`; O1 exige `q4 >= 0.90` (VALIDO_ADVERTENCIA). Falla INVIABLE si falla cualquier S*.
+- Palancas efectivas medidas: `eta_t`, `eps_reg`, `eps_cond`, `eps_hrvg` bajan `T8` de 302.9 → ~296.2 K como máximo. La palanca restante y autorizada es **subir `P_baja` por encima del mínimo** (sube `bubble(P_baja,x_b)` = objetivo O2; es el "margen de subenfriamiento de diseño" que sugiere el propio criterio O2).
+- Rendimiento solver con TeqpAdapter: ~45-70 s/punto convergente; con `ProcessPoolExecutor` (4 workers): 12 pts ≈ 215 s, 32 pts ≈ 533 s.
+
+## Work State
+### Completed
+- Leídos: `TASK_CONTEXT_fase3_real.md`, `CONTEXT.md`, `src/ui_helpers.py` (CAMPOS_CICLO), `src/restricciones/*` (criterios), `src/sensitivity.py` (esquema `tabla_barrido`), logs B0 (`opencode_run_011/012`: 352 pts en 686.7 s, 1.95 s/pt; fase2 encontró el mismo muro O2).
+- Calibración verificada: `P_baja = 467.557 kPa` a x_b=0.82 (bubble=281.1500 K). Campana a 3300 kPa: [353.16, 436.82] K → T_fuente DENTRO. A 467.6 kPa: [281.15, 372.19] K.
+- Punto base literal (3300, 0.82, eta_t=0.90, eta_p=0.80, eps_h=0.85, eps_r=0.75, eps_c=0.80): CONVERGE (~45.6 s) → `CORREGIBLE` (O2), eta=0.1606, Wnet=134.2 kW, T8=302.89 K, T9_amb=303.42 K.
+- Escrito y ejecutado `scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py` (fases A/B/C adaptativas, CSV incremental). Resultado: 45 filas en `resultados/barridos_2026-09-19/fase3_real/busqueda_husavik.csv` — 41 `CORREGIBLE`, 4 `NO_CONVERGIO` (P_alta=3400/3500, x_b=0.86). Ningún `KALINA`. Mejor: P_alta=3500, x_b=0.78, eta_t=0.98, eps_r=0.95, eps_c=0.90 → eta=0.1843, T8=296.28 K (aún > 281.15).
+- Escrito (NO ejecutado) `scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py`: 7 puntos con `P_baja` explícito ∈ {800, 1000, 1200, 1400}, config A (palancas base) y config B (fuertes: eta_t=0.98, eps_r=0.95, eps_c=0.90); añade filas al mismo `busqueda_husavik.csv` (mismo esquema).
+
+### Active
+- Script `ajuste_p_baja_husavik.py` listo pero aún sin correr — es el siguiente paso para intentar cruzar el muro O2 vía `P_baja`.
+
+### Blocked
+- Ninguno. Riesgo conocido: puntos NO convergentes en bordes (P_alta alta + x_b=0.86); solver lento (~50 s/punto) → correr con timeout amplio (~20 min).
+
+## Next Move
+1. Ejecutar `python -u scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py` desde la raíz del worktree (timeout 1200-1800 s). Verificar si `bubble(P_baja, 0.82) > T9_amb (~303.5 K)` → O2 pasa → `KALINA`.
+2. Si hay `KALINA`: elegir punto base (preferir config B con eta mejor), confirmar 1-3 puntos con `AmmoniaWaterAdapter` → `resultados/barridos_2026-09-19/fase3_real/confirmacion_motor_real.json`.
+3. Correr 2-3 barridos pequeños de sensibilidad con `TeqpAdapter` (p.ej. eta vs P_alta, eta vs x_b) → CSVs en `fase3_real/`.
+4. Escribir `resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK.md` documentando: parámetros reales, calibración de P_baja, el ajuste de margen de diseño de P_baja sobre el mínimo (honestidad: P_baja real no publicada), y discrepancias motor lento/rápido.
+5. Si `P_baja=1400` no basta con holgura: iterar combinaciones intermedias (p.ej. P_baja 1000-1200 con palancas fuertes) o reportar honestamente el muro de O2.
+
+## Relevant Files
+- `scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py`: búsqueda A/B/C ya ejecutada (45 pts, sin KALINA).
+- `scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py`: ajuste de P_baja listo para ejecutar.
+- `resultados/barridos_2026-09-19/fase3_real/busqueda_husavik.csv`: traza completa de intentos (esquema `tabla_barrido`).
+- `resultados/barridos_2026-09-19/fase3_real/`: destino de `confirmacion_motor_real.json`, CSVs de sensibilidad y `CASO_HUSAVIK.md` (vacía por ahora).
+- `scripts/barridos_2026-09-19/b0_scan_cementera.py` / `b0_confirma_motor_real.py`: patrones de referencia (paralelización, calibración de P_baja, confirmación con motor real, JSON).
+- `src/cycle_solver.py`, `src/properties/teqp_adapter.py`, `src/properties/ammonia_water_adapter.py`, `src/restricciones/`, `src/sensitivity.py`, `src/ui_helpers.py`: APIs consumidas (solo lectura).
+- `TASK_CONTEXT_fase3_real.md`: especificación exacta de la tarea y del caso real.
+Continue if you have next steps, or stop and ask for clarification if you are unsure how to proceed.
+Corrijo un typo que dejé en el script (`SALISA` → `SALIDA`) antes de ejecutar:
+[0m← [0mEdit scripts/barridos_2026-09-19/fase3_real/confirma_motor_real.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\confirma_motor_real.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\confirma_motor_real.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase3_real\confirma_motor_real.py
+@@ -105,9 +105,9 @@
+             caso=dict(T_fuente=T_FUENTE, T_sumidero=T_SUMIDERO, m_b=MB,
+                       eta_p=ETA_P, fuente_caso="Husavik 121C / 5C, Mlcak et al."),
+             puntos=sorted(registros, key=lambda r: -r["tiempo_s"]),
+         ), f, indent=2, ensure_ascii=False)
+-    print(f"\nGuardado {SALISA if False else SALIDA}")
++    print(f"\nGuardado {SALIDA}")
+     print(f"Tiempo total: {time.perf_counter()-t0:.0f} s")
+ 
+ 
+ if __name__ == "__main__":
+
+[0m
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/confirma_motor_real.py
+Confirmacion con motor real (AmmoniaWaterAdapter, iapws G4-01)...
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+  P_alta=3300 P_baja=1150 x_b=0.82 eps_c=0.98 -> KALINA (343.8 s)
+    eta=0.09000 Wnet=81.78 kW
+  P_alta=3300 P_baja=1200 x_b=0.82 eps_c=0.95 -> KALINA (350.5 s)
+    eta=0.08817 Wnet=78.89 kW
+
+Guardado D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\confirmacion_motor_real.json
+Tiempo total: 353 s
+[0m
+Motor real **confirma ambos puntos KALINA** y con coincidencia casi exacta con Teqp (η=0.08817 vs 0.08818; 0.09000 vs 0.09002). Reviso el esquema de columnas del CSV existente para homologar los barridos de sensibilidad:
+[0m$ [0mpython - <<'EOF'
+import pandas as pd
+df = pd.read_csv(r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\busqueda_husavik.csv")
+print(list(df.columns))
+print(df.shape)
+EOF
+['T_fuente', 'T_sumidero', 'P_alta', 'P_baja', 'x_b', 'm_b', 'eta_t', 'eta_p', 'eps_hrvg', 'eps_reg', 'eps_cond', 'convergio', 'clasificacion', 'eta', 'Wnet', 'mensaje']
+(69, 16)
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase3_real/sensibilidad_husavik.py
+Wrote file successfully.
+[0m
+Escribo el script de sensibilidad (3 barridos × 4 puntos, TeqpAdapter, mismo esquema de 16 columnas):
+[0m$ [0mpython -u scripts/barridos_2026-09-19/fase3_real/sensibilidad_husavik.py
+[sensibilidad_palta.csv] P_alta=3500.00 -> KALINA eta=0.0922735057808396
+[sensibilidad_palta.csv] P_alta=3400.00 -> KALINA eta=0.09027893805889728
+[sensibilidad_palta.csv] P_alta=3200.00 -> CORREGIBLE eta=0.08597039096206019
+[sensibilidad_palta.csv] P_alta=3000.00 -> CORREGIBLE eta=0.08119448565990997
+  guardado D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\sensibilidad_palta.csv (4 filas)
+[sensibilidad_xb.csv] x_b=0.78 -> KALINA eta=0.08643894254376712
+[sensibilidad_xb.csv] x_b=0.80 -> KALINA eta=0.08734977067718422
+[sensibilidad_xb.csv] x_b=0.84 -> CORREGIBLE eta=0.08893076780402637
+[sensibilidad_xb.csv] x_b=0.86 -> CORREGIBLE eta=0.08960175324357338
+  guardado D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\sensibilidad_xb.csv (4 filas)
+[sensibilidad_pbaja.csv] P_baja=1150.00 -> CORREGIBLE eta=0.09168550248630705
+[sensibilidad_pbaja.csv] P_baja=1100.00 -> CORREGIBLE eta=0.09532623470918815
+[sensibilidad_pbaja.csv] P_baja=1250.00 -> KALINA eta=0.0847990704417825
+[sensibilidad_pbaja.csv] P_baja=1300.00 -> KALINA eta=0.08153436231601342
+  guardado D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\sensibilidad_pbaja.csv (4 filas)
+[0m
+Sensibilidad coherente: la base está en las tres fronteras de `KALINA` (P_alta ≥ ~3250, x_b ≤ ~0.83, P_baja ≥ ~1175). Extraigo los estados detallados de la base para el reporte:
+[0m$ [0mpython - <<'EOF'
+import sys
+from pathlib import Path
+sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+from src.cycle_solver import resolver_ciclo
+from src.properties.teqp_adapter import TeqpAdapter
+from src.restricciones import evaluar_ciclo
+
+backend = TeqpAdapter()
+combo = dict(P_alta=3300.0, P_baja=1200.0, T_fuente=394.15, T_sumidero=278.15,
+             x_b=0.82, m_b=1.0, eta_t=0.90, eta_p=0.80,
+             eps_hrvg=0.85, eps_reg=0.95, eps_cond=0.95)
+res = resolver_ciclo(backend, **combo)
+est = res["estados"]
+print("=== ESTADOS (TeqpAdapter) ===")
+for k in ["e1","e2","e3","e4","e5","e6","e7","e8","e9","e10"]:
+    e = est[k]
+    print(f"{k}: T={e.T:7.2f} K  P={e.P:8.1f} kPa  h={e.h:9.2f} kJ/kg  "
+          f"x={e.x:.5f}  m={e.m:.4f} kg/s  {e.estado}")
+print("=== BALANCES ===")
+for k in ["Qi","Qout","Wnet","eta"]:
+    print(f"{k} = {res[k]:.5f}")
+print("=== VERIFICACIONES ===")
+b = backend
+print(f"bubble(1200, 0.82) = {b.bubble_point(1200.0, 0.82):.4f} K   (objetivo O2)")
+print(f"dew(1200, 0.82)    = {b.dew_point(1200.0, 0.82):.4f} K")
+print(f"bubble(3300, 0.82) = {b.bubble_point(3300.0, 0.82):.4f} K")
+print(f"dew(3300, 0.82)    = {b.dew_point(3300.0, 0.82):.4f} K")
+val = evaluar_ciclo(backend, res, **combo)
+print("clasificacion:", val.clasificacion.value)
+print(val.mensaje_reporte())
+# chequeos de diseno
+print(f"pinch condensador: T7({est['e7'].T:.2f})  vs  T_sumidero(278.15)  "
+      f"-> pinch = {est['e7'].T-278.15:.2f} K")
+print(f"aprox evaporador: T_fuente(394.15) vs T4({est['e4'].T:.2f}) "
+      f"-> pinch = {394.15-est['e4'].T:.2f} K")
+print(f"subenfriamiento bomba: T9_amb vs bubble -> chequeo O2 en mensaje")
+EOF
+=== ESTADOS (TeqpAdapter) ===
+Traceback (most recent call last):
+  File "<stdin>", line 18, in <module>
+AttributeError: 'EstadoTermo' object has no attribute 'estado'
+[0m
+[0m$ [0mpython - <<'EOF'
+import sys
+sys.path.insert(0, r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d")
+from src.cycle_solver import resolver_ciclo
+from src.properties.teqp_adapter import TeqpAdapter
+from src.restricciones import evaluar_ciclo
+
+backend = TeqpAdapter()
+combo = dict(P_alta=3300.0, P_baja=1200.0, T_fuente=394.15, T_sumidero=278.15,
+             x_b=0.82, m_b=1.0, eta_t=0.90, eta_p=0.80,
+             eps_hrvg=0.85, eps_reg=0.95, eps_cond=0.95)
+res = resolver_ciclo(backend, **combo)
+est = res["estados"]
+print("=== ESTADOS (TeqpAdapter) ===")
+e0 = est["e1"]
+print("atributos de EstadoTermo:", [a for a in dir(e0) if not a.startswith("_")])
+for k in ["e1","e2","e3","e4","e5","e6","e7","e8","e9","e10"]:
+    e = est[k]
+    print(f"{k}: T={e.T:7.2f} K  P={e.P:8.1f} kPa  h={e.h:9.2f} kJ/kg  "
+          f"x={e.x:.5f}  m={e.m:.4f} kg/s")
+print("=== BALANCES ===")
+for k in ["Qi","Qout","Wnet","eta"]:
+    print(f"{k} = {res[k]:.5f}")
+print("=== VERIFICACIONES ===")
+print(f"bubble(1200, 0.82) = {backend.bubble_point(1200.0, 0.82):.4f} K   (objetivo O2)")
+print(f"dew(1200, 0.82)    = {backend.dew_point(1200.0, 0.82):.4f} K")
+print(f"bubble(3300, 0.82) = {backend.bubble_point(3300.0, 0.82):.4f} K")
+print(f"dew(3300, 0.82)    = {backend.dew_point(3300.0, 0.82):.4f} K")
+val = evaluar_ciclo(backend, res, **combo)
+print("clasificacion:", val.clasificacion.value)
+print(val.mensaje_reporte())
+print(f"pinch condensador (T7-T_sumidero): {est['e7'].T-278.15:.2f} K")
+print(f"aprox evaporador (T_fuente-T4): {394.15-est['e4'].T:.2f} K")
+EOF
+=== ESTADOS (TeqpAdapter) ===
+atributos de EstadoTermo: ['P', 'T', 'etiqueta', 'exergia_fisica', 'fase', 'h', 'm', 'q', 's', 'x']
+e1: T= 321.77 K  P=  3300.0 kPa  h=   382.81 kJ/kg  x=0.82000  m=1.0000 kg/s
+e2: T= 380.53 K  P=  3300.0 kPa  h=  1277.58 kJ/kg  x=0.82000  m=1.0000 kg/s
+e3: T= 380.53 K  P=  3300.0 kPa  h=  1781.13 kJ/kg  x=0.98114  m=0.6177 kg/s
+e4: T= 328.15 K  P=  1200.0 kPa  h=  1647.33 kJ/kg  x=0.98114  m=0.6177 kg/s
+e5: T= 380.53 K  P=  3300.0 kPa  h=   463.96 kJ/kg  x=0.55964  m=0.3823 kg/s
+e6: T= 292.61 K  P=  3300.0 kPa  h=    36.84 kJ/kg  x=0.55964  m=0.3823 kg/s
+e7: T= 292.96 K  P=  1200.0 kPa  h=    36.84 kJ/kg  x=0.55964  m=0.3823 kg/s
+e8: T= 327.64 K  P=  1200.0 kPa  h=  1031.64 kJ/kg  x=0.82000  m=1.0000 kg/s
+e9: T= 287.29 K  P=  1200.0 kPa  h=   215.77 kJ/kg  x=0.82000  m=1.0000 kg/s
+e10: T= 287.78 K  P=  3300.0 kPa  h=   219.53 kJ/kg  x=0.82000  m=1.0000 kg/s
+=== BALANCES ===
+Qi = 894.76579
+Qout = 815.86566
+Wnet = 78.90027
+eta = 0.08818
+=== VERIFICACIONES ===
+bubble(1200, 0.82) = 311.2776 K   (objetivo O2)
+dew(1200, 0.82)    = 400.9070 K
+bubble(3300, 0.82) = 353.1596 K
+dew(3300, 0.82)    = 436.8209 K
+Traceback (most recent call last):
+  File "<stdin>", line 28, in <module>
+TypeError: evaluar_ciclo() got an unexpected keyword argument 'eta_t'
+[0m
+[0m← [0mWrite resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK.md
+Wrote file successfully.
+[0m
+Tengo todos los datos de la base (el error del one-off fue solo del extra `eta_t` en `evaluar_ciclo` — los estados ya se imprimieron). Redacto el reporte `CASO_HUSAVIK.md`:
+Verificaciones finales de consistencia de todos los artefactos:
+[0m$ [0mpython - <<'EOF'
+import json, glob, pandas as pd
+base = r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real"
+df = pd.read_csv(base + r"\busqueda_husavik.csv")
+print("=== busqueda_husavik.csv ===")
+print("filas:", len(df), "| columnas:", len(df.columns))
+print(df["clasificacion"].value_counts().to_string())
+base_pt = df[(df.P_alta==3300)&(df.P_baja==1200)&(df.x_b==0.82)&(df.eta_t==0.90)&(df.eps_reg==0.95)&(df.eps_cond==0.95)]
+print("fila del punto base:\n", base_pt[["P_baja","eta_t","eta","Wnet","clasificacion"]].to_string(index=False))
+print("\n=== confirmacion_motor_real.json ===")
+j = json.load(open(base + r"\confirmacion_motor_real.json", encoding="utf-8"))
+print("motor:", j["motor"])
+for p in j["puntos"]:
+    print(f"  ({p['P_alta']:.0f},{p['P_baja']:.0f},x={p['x_b']}) eta={p['eta']:.5f} Wnet={p['Wnet']:.2f} -> {p['clasificacion']} [{p['tiempo_s']} s]")
+print("\n=== sensibilidad CSVs ===")
+for f in glob.glob(base + r"\sensibilidad_*.csv"):
+    s = pd.read_csv(f)
+    print(f"{f.split(chr(92))[-1]}: {len(s)} filas x {len(s.columns)} col | " + ", ".join(f"{r['clasificacion']}(η={r['eta']:.3f})" for _, r in s.iterrows()))
+EOF
+=== busqueda_husavik.csv ===
+filas: 69 | columnas: 16
+clasificacion
+CORREGIBLE      51
+KALINA          14
+NO_CONVERGIO     4
+fila del punto base:
+  P_baja  eta_t     eta      Wnet clasificacion
+ 1200.0    0.9 0.08818 78.900272        KALINA
+
+=== confirmacion_motor_real.json ===
+motor: AmmoniaWaterAdapter (iapws G4-01)
+  (3300,1200,x=0.82) eta=0.08817 Wnet=78.89 -> KALINA [350.5 s]
+  (3300,1150,x=0.82) eta=0.09000 Wnet=81.78 -> KALINA [343.8 s]
+
+=== sensibilidad CSVs ===
+Traceback (most recent call last):
+  File "<stdin>", line 17, in <module>
+  File "C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03b7' in position 50: character maps to <undefined>
+[0m
+Todo correcto excepto el `η` en el print del one-off (límite cp1252 de la consola, no del pipeline). Reviso los CSVs de sensibilidad con ASCII:
+[0m$ [0mpython - <<'EOF'
+import glob, pandas as pd
+base = r"D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real"
+for f in glob.glob(base + r"\sensibilidad_*.csv"):
+    s = pd.read_csv(f)
+    cols = list(s.columns)
+    print(f.split("\\")[-1], "->", len(s), "filas x", len(cols), "col | schema OK:", cols == s.columns.tolist()[:len(cols)])
+    print("  " + ", ".join(f"{r['clasificacion']}(eta={r['eta']:.3f})" for _, r in s.iterrows()))
+EOF
+sensibilidad_palta.csv -> 4 filas x 16 col | schema OK: True
+  KALINA(eta=0.092), KALINA(eta=0.090), CORREGIBLE(eta=0.086), CORREGIBLE(eta=0.081)
+sensibilidad_pbaja.csv -> 4 filas x 16 col | schema OK: True
+  CORREGIBLE(eta=0.092), CORREGIBLE(eta=0.095), KALINA(eta=0.085), KALINA(eta=0.082)
+sensibilidad_xb.csv -> 4 filas x 16 col | schema OK: True
+  KALINA(eta=0.086), KALINA(eta=0.087), CORREGIBLE(eta=0.089), CORREGIBLE(eta=0.090)
+[0m
+STATUS: done
+SUMMARY: Encontré y confirmé una base KALINA anclada al caso real de Húsavík: la frontera del criterio O2 exige subir `P_baja` de 467.6 kPa (calibración B0) a ≥1175 kPa con efectividades altas; la base elegida (3300 kPa/1200 kPa, x_b=0.82, eta_t=0.90, eta_p=0.80, eps_hrvg=0.85, eps_reg=0.95, eps_cond=0.95) da η=0.0882 y Wnet=78.9 kW, confirmada con el motor real (iapws G4-01) con coincidencia ≤0.02 %. Completé los 3 barridos de sensibilidad, la confirmación JSON y el reporte `CASO_HUSAVIK.md`, todo dentro del alcance de la tarea (fase1/fase2 y `src/` intactos).
+FILES_CHANGED:
+- `scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py` (búsqueda A/B/C, 45 pts)
+- `scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py` (frontera O2; 3 rondas = 24 pts)
+- `scripts/barridos_2026-09-19/fase3_real/confirma_motor_real.py` (2 pts, iapws G4-01)
+- `scripts/barridos_2026-09-19/fase3_real/sensibilidad_husavik.py` (3 barridos, 12 pts)
+- `resultados/barridos_2026-09-19/fase3_real/busqueda_husavik.csv` (69 filas, esquema `tabla_barrido`)
+- `resultados/barridos_2026-09-19/fase3_real/sensibilidad_{palta,xb,pbaja}.csv` (12 filas)
+- `resultados/barridos_2026-09-19/fase3_real/confirmacion_motor_real.json`
+- `resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK.md`
+TESTS: Los 3 scripts se ejecutaron y cada artefacto se verificó por lectura (pandas/JSON): esquema de 16 columnas en los 4 CSVs, clasificaciones por fila, y coincidencia Teqp vs motor real en η/Wnet de los 2 puntos confirmados (0.08818/78.90 vs 0.08817/78.89 y 0.09002/81.80 vs 0.09000/81.78).
+RESULTS: Busqueda completa: 69 filas en `busqueda_husavik.csv` (51 CORREGIBLE, 14 KALINA, 4 NO_CONVERGIO). **Base KALINA**: (3300, 1200, x_b=0.82, eta_t=0.90, eta_p=0.80, eps_hrvg=0.85, eps_reg=0.95, eps_cond=0.95) → η=0.0882, Wnet=78.9 kW, Qi=894.8 kW, Qout=815.9 kW; T9=287.29 K (bubble en 1200 = 311.28 K). Sensibilidad: frontera O2 en P_alta≈3250–3300, x_b≈0.83, P_baja≈1175–1200 kPa; η máx (~0.095) justo en la frontera O2. Presupuesto usado: 81 pts Teqp + 2 motor real ≈ 83 de 150–200.
+ERRORS: Solo warnings numéricos internos del motor iapws (overflow en fugacidad, dividir-por-cero en el flash) en la confirmación — no afectan convergencia ni clasificación (coincidencia con Teqp). Un `UnicodeEncodeError` en un one-off de inspección (carácter η en consola cp1252), sin impacto en los artefactos.
+ASSUMPTIONS: `P_baja` real no publicada → se usó la regla B0 para el mínimo (bubble=281.15 K → 467.6 kPa) y luego margen de diseño 1200 kPa (sugerencia literal del criterio O2: "aumentar el margen de subenfriamiento del condensador"); `eps_cond=0.95`/`eps_reg=0.95` dentro de CAMPOS_CICLO (efectividades hacia mínimo termodinámico, no NTU); `eta_t=0.90` y `eta_p=0.80` citados se mantuvieron sin ajustar.
+UNRESOLVED: Ninguno dentro del alcance de la tarea. (Nota honesta: la base implica pinch de condensador ≈9 K, no los 3 K de la regla B0 — documentado en CASO_HUSAVIK.md como costo del margen O2.)
+RECOMMENDATIONS: La base KALINA así obtenida puede alimentar análisis posteriores (p. ej. screener de sensibilidad completo como en fase1, dimensionamiento de turbina/condensador con los estados del reporte, o iterar P_baja entre 1200–1250 si se quisiera margen O2 extra a costa de η). Si se desea validar contra el texto original de Mlcak et al. (P_baja/publicación exacta), convendría confirmar la cita antes de cerrar la trazabilidad en el vault.

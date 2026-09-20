@@ -1,0 +1,37 @@
+{
+  "caso": {
+    "P_alta": 3300.0,
+    "P_baja": 690.0,
+    "T_fuente": 394.15,
+    "T_sumidero": 278.15,
+    "x_b": 0.82,
+    "m_b": 1.0,
+    "eta_t": 0.9,
+    "eta_p": 0.8,
+    "eps_hrvg": 0.85,
+    "eps_reg": 0.75,
+    "eps_cond": 0.95
+  },
+  "motor": "AmmoniaWaterAdapter (iapws G4-01)",
+  "puntos": [
+    {
+      "T_amb_diseno": 283.15,
+      "convergio": true,
+      "clasificacion": "KALINA",
+      "eta": 0.12729574184991568,
+      "Wnet": 117.56966912862379,
+      "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas.",
+      "T1": 314.7961218507393,
+      "T2": 380.11197663355824,
+      "T8": 310.8269589986033,
+      "T9": 287.1628342132446,
+      "x3": 0.9815554448809846,
+      "x5": 0.5622674696635946,
+      "m_v": 0.6146909655655584,
+      "m_l": 0.38530903443444164,
+      "Qi": 923.5946734749451,
+      "Qout": 806.0250565284374,
+      "tiempo_s": 246.4
+    }
+  ]
+}

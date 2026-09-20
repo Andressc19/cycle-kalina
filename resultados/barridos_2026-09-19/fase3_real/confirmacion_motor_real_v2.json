@@ -1,0 +1,56 @@
+{
+  "caso": {
+    "P_alta": 3300.0,
+    "P_baja": 670.0,
+    "T_fuente": 394.15,
+    "T_sumidero": 278.15,
+    "x_b": 0.82,
+    "m_b": 1.0,
+    "eta_t": 0.9,
+    "eta_p": 0.8,
+    "eps_hrvg": 0.85,
+    "eps_reg": 0.95,
+    "eps_cond": 0.95
+  },
+  "motor": "AmmoniaWaterAdapter (iapws G4-01)",
+  "puntos": [
+    {
+      "T_amb_diseno": 283.15,
+      "convergio": true,
+      "clasificacion": "KALINA",
+      "eta": 0.1344510903111242,
+      "Wnet": 120.41877154401286,
+      "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas.",
+      "T1": 321.5305923633641,
+      "T2": 380.5099014864468,
+      "T8": 308.02576801284454,
+      "T9": 286.81964257662895,
+      "x3": 0.9811543433124993,
+      "x5": 0.5597394067824384,
+      "m_v": 0.6175874907533002,
+      "m_l": 0.3824125092466998,
+      "Qi": 895.6325401702575,
+      "Qout": 775.2139146805313,
+      "tiempo_s": 194.3
+    },
+    {
+      "T_amb_diseno": 303.55,
+      "convergio": true,
+      "clasificacion": "CORREGIBLE",
+      "eta": 0.1344510903111928,
+      "Wnet": 120.41877154413682,
+      "mensaje": "[CORREGIBLE] O2: succión de la bomba bifásica bajo el peor caso de T_amb (riesgo de cavitación) (medido=303.742847701587, esperado=<= 291.836 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de diseño del condensador",
+      "T1": 321.5305923632525,
+      "T2": 380.50990148640665,
+      "T8": 308.02576801269953,
+      "T9": 286.8196425766237,
+      "x3": 0.9811543433125024,
+      "x5": 0.5597394067824555,
+      "m_v": 0.6175874907532801,
+      "m_l": 0.3824125092467199,
+      "Qi": 895.6325401707225,
+      "Qout": 775.2139146800531,
+      "tiempo_s": 125.8
+    }
+  ]
+}

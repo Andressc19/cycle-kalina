@@ -1,0 +1,45 @@
+{
+  "caso": {
+    "T_fuente": 470.0,
+    "T_sumidero": 300.032917,
+    "P_alta": 3000.0,
+    "x_b": 0.5,
+    "m_b": 1.0,
+    "eta_t": 0.85,
+    "eta_p": 0.75,
+    "eps_hrvg": 0.85,
+    "eps_reg": 0.75,
+    "backend": "AmmoniaWaterAdapter (iapws G4-01, motor real)"
+  },
+  "nota_precision": "Punto 1: eta/Wnet son los valores reales impresos por el script (5/3 decimales, 0.12276 / 218.784). Punto 3: precision completa capturada en consola. Punto 2: no convergio en el motor real.",
+  "puntos": [
+    {
+      "P_baja": 450.0,
+      "eps_cond": 0.99,
+      "convergio": true,
+      "clasificacion": "KALINA",
+      "eta": 0.12276,
+      "Wnet": 218.784,
+      "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas.",
+      "tiempo_s": 562.4
+    },
+    {
+      "P_baja": 500.0,
+      "eps_cond": 0.98,
+      "convergio": false,
+      "clasificacion": "NO_CONVERGIO",
+      "mensaje": "h(P, s, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONTEXT.md, IAPWS G4-01). Detalle del motor: equilibrio no resoluble en T=374.1076 K, P=0.5 MPa, w=0.5928",
+      "tiempo_s": 412.1
+    },
+    {
+      "P_baja": 500.0,
+      "eps_cond": 0.99,
+      "convergio": true,
+      "clasificacion": "KALINA",
+      "eta": 0.11651275083486785,
+      "Wnet": 207.64180428518603,
+      "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas.",
+      "tiempo_s": 569.8
+    }
+  ]
+}

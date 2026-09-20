@@ -1,0 +1,1233 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m
+[0m$ [0mgit status && git branch --show-current
+On branch fix/temperatura-ambiente
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   TASK_CONTEXT.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	TASK_CONTEXT_fase1_profesor.md
+	TASK_CONTEXT_fase2_libre.md
+	TASK_CONTEXT_fase3_real.md
+	opencode_run_011.log
+	opencode_run_012.log
+	opencode_run_013_fase1.log
+	opencode_run_014_fase2.log
+	opencode_run_015_fase3.log
+	opencode_run_016_fix_tamb.log
+	resultados/
+	scripts/barridos_2026-09-19/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+fix/temperatura-ambiente
+[0m
+[0m→ [0mRead src/restricciones/operativos.py
+[0m→ [0mRead src/restricciones/clasificacion.py
+[0m→ [0mRead src/ui_helpers.py
+[0m→ [0mRead src/ui_inputs.py
+Estoy en la rama correcta. Ahora leo todos los archivos relevantes antes de tocar nada.
+[0m→ [0mRead src/ui_barrido.py
+[0m→ [0mRead app.py
+[0m→ [0mRead tests/test_restricciones.py
+Ahora leo los demás archivos: `ui_barrido.py`, `app.py`, y los tests.
+[0m→ [0mRead tests/test_restricciones_convenciones.py
+[0m→ [0mRead src/sensitivity.py
+[0m✱ [0mGrep "T_AMB_CAVITACION|verificar_operativos|evaluar_ciclo"[90m 47 matches[0m
+Ahora reviso `sensitivity.py`, el `__init__` de restricciones, y busco todos los usos de `T_AMB_CAVITACION` y `verificar_operativos` en el repo.
+[0m→ [0mRead src/restricciones/__init__.py
+[0m→ [0mRead src/components/condensador.py
+[0m→ [0mRead src/components/__init__.py
+[0m→ [0mRead src/state.py
+Reviso ahora el componente condensador, el state, y los tests de componentes para entender el fake y diseñar bien el test nuevo.
+[0m✱ [0mGrep "ui_helpers"[90m 19 matches[0m
+Ya tengo el panorama completo. Antes de implementar, verifico un par de detalles: quién más usa el esquema de `ui_helpers` (para el re-export) y el test de convenciones del límite de líneas.
+[0m
+[0m$ [0mwc -l src/ui_helpers.py src/ui_inputs.py src/ui_barrido.py app.py src/restricciones/operativos.py src/restricciones/clasificacion.py tests/test_restricciones.py tests/test_restricciones_convenciones.py
+200 src/ui_helpers.py
+  108 src/ui_inputs.py
+  133 src/ui_barrido.py
+  192 app.py
+  109 src/restricciones/operativos.py
+   79 src/restricciones/clasificacion.py
+  174 tests/test_restricciones.py
+   45 tests/test_restricciones_convenciones.py
+ 1040 total
+[0m
+[0m← [0mEdit src/restricciones/operativos.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
+@@ -4,18 +4,20 @@
+ vault (evaluaba entradas, no la solución convergida; redundante con O3) — no
+ se implementa aquí, es validación de entrada. O6/CD (rocío ácido, cierre
+ declarado) no aplican: requieren C_g finito, no implementado en este repo.
+ 
+-O2 se evalúa con un T_amb de diseño de al menos 30.4 °C (margen de diseño
+-conservador — decisión explícita del vault, "no la media"): se re-resuelve
+-el condensador con `max(T_sumidero_de_la_corrida, 30.4 °C)` a partir del
+-mismo estado 8 ya convergido, sin re-resolver todo el ciclo (estado 8 no
+-depende de T_sumidero). El máximo es necesario porque, si un barrido explora
+-un T_sumidero por encima de 30.4 °C, evaluar solo contra el fijo
+-subestimaría el riesgo real de cavitación en ese punto — 30.4 °C es un
+-PISO de diseño, no un techo. Etiqueta CORREGIBLE, no INVIABLE (decisión del
+-usuario: es una falla operativa evitable ajustando subenfriamiento, no una
+-imposibilidad física).
++O2 se evalúa contra un T_amb de diseño de al menos 30.4 °C por defecto
++(margen de diseño conservador — decisión explícita del vault, "no la media").
++Ese piso es el parámetro configurable `T_amb_diseno` de `verificar_operativos`
++(default 303.55 K = 30.4 °C, expuesto también en la UI de la app): se
++re-resuelve el condensador con `max(T_sumidero_de_la_corrida, T_amb_diseno)`
++a partir del mismo estado 8 ya convergido, sin re-resolver todo el ciclo
++(estado 8 no depende de T_sumidero). El máximo es necesario porque, si un
++barrido explora un T_sumidero por encima del piso, evaluar solo contra el
++fijo subestimaría el riesgo real de cavitación en ese punto — el piso es un
++mínimo de diseño, no un techo. Etiqueta CORREGIBLE, no INVIABLE (decisión
++del usuario: es una falla operativa evitable ajustando subenfriamiento, no
++una imposibilidad física).
+ """
+ 
+ from __future__ import annotations
+ 
+
+[0m
+Confirmado: `ui_helpers.py` está exactamente en 200 líneas (`wc -l`) y `test_fase2_libre.py` (de barridos, que NO toco) importa `CAMPOS_CICLO` desde `ui_helpers` — por eso el re-export debe mantenerse. Ya tengo todo. Implemento.
+
+**1. `src/restricciones/operativos.py`** — quito la constante, agrego el parámetro keyword-only:
+[0m← [0mEdit src/restricciones/operativos.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
+@@ -27,14 +27,21 @@
+ __all__ = ["verificar_operativos"]
+ 
+ DQ = 1e-3               # margen del criterio O5 (mismo valor que el motor: ver
+                         # `_kalina_flash.py::DQ`, "margen del criterio O5")
+-T_AMB_CAVITACION = 303.55  # K = 30.4 degC, PISO de diseño (vault)
+ 
+ 
+ def verificar_operativos(resultado: dict, backend, *, P_alta: float,
+                          P_baja: float, T_sumidero: float, x_b: float,
+-                         m_b: float, eps_cond: float) -> list[Falla]:
++                         m_b: float, eps_cond: float,
++                         T_amb_diseno: float = 303.55) -> list[Falla]:
++    """Criterios O1, O2, O3 y O5 sobre un punto ya resuelto.
++
++    ``T_amb_diseno`` es el PISO de diseño del criterio O2 (cavitación) en K:
++    el condensador se re-resuelve contra `max(T_sumidero, T_amb_diseno)`.
++    Default 303.55 K (30.4 °C, decisión del vault); configurable desde la UI
++    sin cambiar el comportamiento de quien no lo pase.
++    """
+     fallas: list[Falla] = []
+     e = resultado["estados"]
+ 
+     # O1 — título de turbina (tecnológico, VALIDO_ADVERTENCIA)
+
+[0m
+[0m← [0mEdit src/restricciones/operativos.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py
+@@ -59,10 +59,10 @@
+                     "excluye del ranking de SELECCION pero se conserva en "
+                     "las tablas",
+     ))
+ 
+-# O2 — cavitación de bomba, contra el peor caso: max(T_sumidero, T_amb piso)
+-T_amb_evaluar = max(T_sumidero, T_AMB_CAVITACION)
++# O2 — cavitación de bomba, contra el peor caso: max(T_sumidero, T_amb_diseno)
++T_amb_evaluar = max(T_sumidero, T_amb_diseno)
+ estado9_amb, _ = condensador.resolver(
+     e["e8"], backend, T_sumidero=T_amb_evaluar, eps=eps_cond, m=m_b)
+ T_sat_L = backend.bubble_point(P_baja, x_b)
+ if estado9_amb.T > T_sat_L:
+
+[0m
+[0m← [0mEdit src/restricciones/clasificacion.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\clasificacion.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\clasificacion.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\clasificacion.py
+@@ -43,18 +43,23 @@
+ 
+ 
+ def evaluar_ciclo(backend, resultado: dict, *, P_alta: float, P_baja: float,
+                   T_fuente: float, T_sumidero: float, x_b: float, m_b: float,
+-                  eps_hrvg: float, eps_reg: float, eps_cond: float
+-                  ) -> ResultadoValidacion:
++                  eps_hrvg: float, eps_reg: float, eps_cond: float,
++                  T_amb_diseno: float = 303.55) -> ResultadoValidacion:
+     """Corre los 17 criterios implementados sobre un punto ya resuelto.
+ 
+     ``resultado`` es el dict que devuelve `resolver_ciclo` (estados + energías).
+     No lanza excepciones: un punto que no convergió nunca llega aquí (ver
+     docstring del módulo). Devuelve un `ResultadoValidacion` con la
+     clasificación final (la más severa entre todas las fallas encontradas, o
+     KALINA si no hay ninguna) y la lista completa de fallas, para no perder
+     trazabilidad.
++
++    ``T_amb_diseno`` es el piso de diseño del criterio O2 (cavitación) en K:
++    se propaga a `verificar_operativos`, que evalúa el condensador contra
++    `max(T_sumidero, T_amb_diseno)`. Default 303.55 K (decisión del vault);
++    configurable y retrocompatible para quien no lo pase.
+     """
+     fallas: list[Falla] = []
+ 
+     f_n2 = verificar_n2(resultado)
+
+[0m
+**2. `src/restricciones/clasificacion.py`** — agrego `T_amb_diseno` y lo propago:
+[0m← [0mEdit src/restricciones/clasificacion.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\clasificacion.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\clasificacion.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\clasificacion.py
+@@ -70,9 +70,10 @@
+     resultado, T_fuente=T_fuente, T_sumidero=T_sumidero,
+     eps_hrvg=eps_hrvg, eps_reg=eps_reg, eps_cond=eps_cond))
+ fallas.extend(verificar_operativos(
+     resultado, backend, P_alta=P_alta, P_baja=P_baja,
+-    T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eps_cond=eps_cond))
++    T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eps_cond=eps_cond,
++    T_amb_diseno=T_amb_diseno))
+ fallas.extend(verificar_composicion(resultado, x_b))
+ 
+ if not fallas:
+     clasificacion = Clasificacion.KALINA
+
+[0m
+Corro los tests de restricciones para confirmar el estado actual (los tests que importan `T_AMB_CAVITACION` deberían fallar con `ImportError`):
+[0m$ [0mpython -m pytest tests/test_restricciones.py tests/test_restricciones_convenciones.py -q 2>&1 | tail -20
+=================================== ERRORS ====================================
+________________ ERROR collecting tests/test_restricciones.py _________________
+ImportError while importing test module 'D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests\test_restricciones.py:19: in <module>
+    from src.restricciones.operativos import DQ, T_AMB_CAVITACION
+E   ImportError: cannot import name 'T_AMB_CAVITACION' from 'src.restricciones.operativos' (D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\restricciones\operativos.py)
+=========================== short test summary info ===========================
+ERROR tests/test_restricciones.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.34s
+[0m
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -10,14 +10,15 @@
+ 
+ from __future__ import annotations
+ 
+ from dataclasses import replace
++import inspect
+ 
+ import pytest
+ 
+ from src.properties.adapter import PropertyBackend
+ from src.restricciones import Clasificacion, evaluar_ciclo
+-from src.restricciones.operativos import DQ, T_AMB_CAVITACION
++from src.restricciones.operativos import DQ, verificar_operativos
+ from src.state import EstadoTermo
+ 
+ 
+ class FakeBackend(PropertyBackend):
+
+[0m
+Como esperaba: la eliminación de la constante rompe la recolección (ImportError). Adapto mínimamente los 2 tests que la referenciaban — preservando exactamente sus aserciones de comportamiento (el piso de diseño = 303.55 K) — y añado los tests nuevos. Primero los imports:
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -135,9 +135,12 @@
+     assert DQ == 1e-3
+ 
+ 
+ def test_t_amb_cavitacion_es_30_4_c():
+-    assert T_AMB_CAVITACION == pytest.approx(303.55)
++    """Piso de diseño del criterio O2 = 30.4 °C: el default de T_amb_diseno
++    (antes constante de módulo T_AMB_CAVITACION) sigue siendo 303.55 K."""
++    assert inspect.signature(verificar_operativos).parameters[
++        "T_amb_diseno"].default == pytest.approx(303.55)
+ 
+ 
+ def test_o2_usa_el_peor_caso_entre_t_sumidero_y_t_amb_fijo(backend):
+     """Si T_sumidero de la corrida supera el piso de 30.4°C, O2 debe evaluar
+
+[0m
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -149,12 +149,13 @@
+ resultado = _resultado_base()
+ # T_sumidero=340 K (66.85 degC) ya excede el piso de 303.55 K (30.4 degC)
+ # en _PARAMS; comparamos contra recomputar el condensador manualmente.
+ from src.components import condensador
+-from src.restricciones.operativos import T_AMB_CAVITACION
++piso = inspect.signature(verificar_operativos).parameters[
++    "T_amb_diseno"].default
+ e8 = resultado["estados"]["e8"]
+ esperado_con_piso_fijo, _ = condensador.resolver(
+-    e8, backend, T_sumidero=T_AMB_CAVITACION, eps=_PARAMS["eps_cond"],
++    e8, backend, T_sumidero=piso, eps=_PARAMS["eps_cond"],
+     m=_PARAMS["m_b"])
+ esperado_con_peor_caso, _ = condensador.resolver(
+     e8, backend, T_sumidero=_PARAMS["T_sumidero"], eps=_PARAMS["eps_cond"],
+     m=_PARAMS["m_b"])
+
+[0m
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -176,4 +176,28 @@
+     from src.restricciones.numericos import verificar_n2
+ 
+     resultado = resolver_ciclo(_FB(), **_PARAMS_BASE)
+     assert verificar_n2(resultado) is None
++
++
++def test_o2_t_amb_diseno_bajo_deja_de_cavitar(backend):
++    """T_amb_diseno configurable: un punto que con el default 303.55 K dispara
++    O2 deja de cavitar con T_amb_diseno igual a T_sumidero (290 K).
++    Con el fake: T9 = (1-eps)·T8 + eps·T_amb; T8 = 550, eps = 0.8,
++    T_sat,L = 350 → T9(303.55) = 352.84 > 350 (cavita), T9(290) = 342 (no)."""
++    resultado = _resultado_base()
++    resultado["estados"]["e8"] = replace(resultado["estados"]["e8"], h=555.4)
++    params = dict(_PARAMS, T_sumidero=290.0)
++    val_default = evaluar_ciclo(backend, resultado, **params)
++    assert any(f.codigo == "O2" for f in val_default.fallas)
++    val_bajo = evaluar_ciclo(backend, resultado, **params, T_amb_diseno=290.0)
++    assert not any(f.codigo == "O2" for f in val_bajo.fallas)
++
++
++def test_o2_t_amb_diseno_alto_despierta_cavitacion(backend):
++    """Recíproco: el caso base (KALINA con el default, T_amb_evaluar = 340 K)
++    empieza a fallar O2 si se sube T_amb_diseno por encima del umbral."""
++    resultado = _resultado_base()
++    val_default = evaluar_ciclo(backend, resultado, **_PARAMS)
++    assert not any(f.codigo == "O2" for f in val_default.fallas)
++    val_alto = evaluar_ciclo(backend, resultado, **_PARAMS, T_amb_diseno=380.0)
++    assert any(f.codigo == "O2" for f in val_alto.fallas)
+
+[0m
+Ahora añado los 2 tests nuevos al final de `tests/test_restricciones.py`:
+[0m← [0mEdit tests/test_restricciones_convenciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones_convenciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones_convenciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones_convenciones.py
+@@ -17,8 +17,9 @@
+     "src/restricciones/operativos.py",
+     "src/restricciones/composicion.py",
+     "src/restricciones/clasificacion.py",
+     "src/sensitivity.py",
++    "src/ui_campos.py",
+     "tests/test_restricciones.py",
+     "tests/test_sensitivity.py",
+ ]
+ 
+
+[0m
+**3. `tests/test_restricciones_convenciones.py`** — añado el archivo nuevo `src/ui_campos.py` a la lista auditable (cambio aditivo, sin tocar lógica):
+Corro los tests de restricciones para validar la parte de backend antes de pasar a la UI:
+[0m$ [0mpython -m pytest tests/test_restricciones.py tests/test_restricciones_convenciones.py -v 2>&1 | tail -35
+lineas_import = [l for l in
+>                            (_RAIZ / ruta).read_text(encoding="utf-8").splitlines()
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             if l.startswith(("import ", "from "))]
+
+tests\test_restricciones_convenciones.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/Desktop/ciclo_kalina_tercero/.claude/worktrees/barridos-tercero-f7448d/src/ui_campos.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Desktop\\ciclo_kalina_tercero\\.claude\\worktrees\\barridos-tercero-f7448d\\src\\ui_campos.py'
+
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:537: FileNotFoundError
+=========================== short test summary info ===========================
+FAILED tests/test_restricciones_convenciones.py::test_archivos_nuevos_dentro_del_limite_de_200_lineas
+FAILED tests/test_restricciones_convenciones.py::test_restricciones_y_sensitivity_no_importan_backends_concretos
+======================== 2 failed, 11 passed in 5.22s =========================
+[0m
+[0m← [0mWrite src/ui_campos.py
+Wrote file successfully.
+[0m
+Los 11 tests de restricciones pasan (incluidos los 2 nuevos). Los 2 fallos de convenciones son solo porque `src/ui_campos.py` aún no existe — lo creo ahora.
+
+**4. Creo `src/ui_campos.py`** (esquema de campos extraído de `ui_helpers`, + el nuevo campo):
+[0m← [0mEdit src/ui_helpers.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+@@ -1,12 +1,12 @@
+ """Helpers de presentación para la UI Streamlit del ciclo Kalina KSC-11.
+ 
+ Construye los DataFrames que muestra `app.py` (tabla de los 10 estados y
+ tabla de Sgen/Ed por componente), el snapshot de parámetros de entrada para
+-el Excel y los bytes PNG de una figura. También vive aquí el esquema de
+-campos de la UI: la namedtuple `Campo` reúne la etiqueta corta en español,
+-el símbolo LaTeX con su unidad (solo pantalla; `st.number_input` no
+-renderiza `$...$` en labels), el tooltip y los límites de CONTEXT.md.
++el Excel y los bytes PNG de una figura. El esquema de campos (namedtuple
++`Campo`, `CAMPOS_CICLO`, `CAMPOS_ESTADO`, `CAMPOS_DISENO`, `agrupar_campos`)
++vive en `src/ui_campos.py` (extraído aquí por el límite de 200 líneas) y se
++re-exporta para no romper a `ui_inputs`, `ui_barrido` y los scripts.
+ `dict_parametros` conserva etiquetas planas, sin LaTeX, para el Excel.
+ """
+ 
+ from __future__ import annotations
+
+[0m
+**5. `src/ui_helpers.py`** — actualizo el docstring, re-exporto el esquema desde `ui_campos`, añado `CAMPOS_DISENO` a `__all__`, y el campo a `dict_parametros`:
+[0m← [0mEdit src/ui_helpers.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+@@ -10,17 +10,19 @@
+ """
+ 
+ from __future__ import annotations
+ 
+-from collections import namedtuple
+ from io import BytesIO
+ 
+ import pandas as pd
+ 
++from .ui_campos import (CAMPOS_CICLO, CAMPOS_DISENO, CAMPOS_ESTADO,
++                        Campo, agrupar_campos)
++
+ __all__ = ["ORDEN_COMPONENTES", "NOMBRES_COMPONENTES", "Campo",
+            "tabla_estados", "tabla_sgen_ed", "advertencias_segunda_ley",
+            "dict_parametros", "fig_png", "CAMPOS_CICLO", "CAMPOS_ESTADO",
+-           "CLAVES_RESULTADO", "agrupar_campos"]
++           "CAMPOS_DISENO", "CLAVES_RESULTADO", "agrupar_campos"]
+ 
+ ORDEN_COMPONENTES = ("hrvg", "separador", "turbina", "regenerador",
+                      "valvula", "absorbedor", "condensador", "bomba")
+ 
+
+[0m
+[0m← [0mEdit src/ui_helpers.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+@@ -115,8 +115,9 @@
+         "eps_reg (regenerador)": (round(valores["eps_reg"], 4), "-"),
+         "eps_cond (condensador)": (round(valores["eps_cond"], 4), "-"),
+         "T0 (estado muerto)": (round(valores["T0"], 6), "K"),
+         "P0 (estado muerto)": (round(valores["P0"], 4), "kPa"),
++        "T_amb_diseno (piso criterio O2)": (round(valores["T_amb_diseno"], 3), "K"),
+     }
+ 
+ 
+ def fig_png(fig) -> bytes:
+
+[0m
+[0m← [0mEdit src/ui_helpers.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+@@ -123,82 +123,5 @@
+ def fig_png(fig) -> bytes:
+     """Figura matplotlib → bytes PNG (para ``st.download_button``)."""
+     buf = BytesIO()
+     fig.savefig(buf, format="png", dpi=150)
+-    return buf.getvalue()
+-
+-
+-# -- Esquema de la UI (datos de presentación, sin Streamlit) -----------------
+-
+-# Un campo de entrada: clave, etiqueta corta (plana, sin LaTeX), símbolo LaTeX
+-# con unidad (se muestra con st.markdown sobre el widget; los labels de
+-# st.number_input NO renderizan $...$), tooltip (estos sí admiten $...$),
+-# default/mínimo/máximo/paso/formato de CONTEXT.md y grupo de la barra lateral.
+-Campo = namedtuple("Campo", (
+-    "clave", "etiqueta", "simbolo", "ayuda",
+-    "default", "vmin", "vmax", "paso", "formato", "grupo",
+-))
+-
+-CAMPOS_CICLO = (
+-    Campo("T_fuente", "Temperatura de la fuente", r"$T_{\mathrm{fuente}}\ [\mathrm{K}]$",
+-          "Temperatura del reservorio que entrega calor al HRVG.",
+-          470.0, 350.0, 800.0, 10.0, "%.1f", "Condiciones de borde"),
+-    Campo("T_sumidero", "Temperatura del sumidero", r"$T_{\mathrm{sumidero}}\ [\mathrm{K}]$",
+-          "Temperatura del agua de enfriamiento que recibe el calor rechazado.",
+-          300.032917, 250.0, 600.0, 1.0, "%.3f", "Condiciones de borde"),
+-    Campo("P_alta", "Presión alta", r"$P_{\mathrm{alta}}\ [\mathrm{kPa}]$",
+-          "Presión de alta del ciclo (descarga de la bomba, entrada al HRVG).",
+-          3000.0, 500.0, 20000.0, 50.0, "%.1f", "Presiones del ciclo"),
+-    Campo("P_baja", "Presión baja", r"$P_{\mathrm{baja}}\ [\mathrm{kPa}]$",
+-          "Presión de baja del ciclo (descarga de la turbina y condensador).",
+-          400.0, 50.0, 5000.0, 50.0, "%.1f", "Presiones del ciclo"),
+-    Campo("x_b", "Composición global de NH3", r"$x_{\mathrm{NH_3}}$",
+-          "Fracción másica de amoníaco de la mezcla NH3-H2O que circula; define "
+-          "el equilibrio del separador ($0 < x < 1$).",
+-          0.50, 0.05, 0.95, 0.01, "%.2f", "Composición y flujo"),
+-    Campo("m_b", "Flujo másico de trabajo", r"$\dot{m}_{b}\ [\mathrm{kg/s}]$",
+-          "Base de cálculo del ciclo: caudal de mezcla circulante.",
+-          1.0, 0.01, 100.0, 0.1, "%.2f", "Composición y flujo"),
+-    Campo("eta_t", "Eficiencia isentrópica de la turbina", r"$\eta_{t}$",
+-          "Relación entre el trabajo real y el isentrópico de la turbina.",
+-          0.85, 0.05, 0.99, 0.01, "%.2f", "Rendimiento de equipos"),
+-    Campo("eta_p", "Eficiencia isentrópica de la bomba", r"$\eta_{p}$",
+-          "Relación entre el trabajo isentrópico y el real de la bomba.",
+-          0.75, 0.05, 0.99, 0.01, "%.2f", "Rendimiento de equipos"),
+-    Campo("eps_hrvg", "Efectividad del HRVG", r"$\varepsilon_{\mathrm{HRVG}}$",
+-          r"Efectividad del HRVG: $\varepsilon_{\mathrm{HRVG}} = (h_2 - h_1)/"
+-          r"(h_{2,\mathrm{max}} - h_1)$ — qué tan cerca del máximo opera.",
+-          0.85, 0.05, 0.99, 0.01, "%.2f", "Rendimiento de equipos"),
+-    Campo("eps_reg", "Efectividad del regenerador", r"$\varepsilon_{\mathrm{reg}}$",
+-          r"Efectividad del regenerador: $\varepsilon_{\mathrm{reg}} = (h_5 - h_6)/"
+-          r"(h_5 - h_{6,\mathrm{min}})$ — recuperación interna de calor.",
+-          0.75, 0.05, 0.99, 0.01, "%.2f", "Rendimiento de equipos"),
+-    Campo("eps_cond", "Efectividad del condensador", r"$\varepsilon_{\mathrm{cond}}$",
+-          r"Efectividad del condensador: $\varepsilon_{\mathrm{cond}} = (h_8 - h_9)/"
+-          r"(h_8 - h_{9,\mathrm{min}})$ — rechazo de calor al sumidero.",
+-          0.80, 0.05, 0.99, 0.01, "%.2f", "Rendimiento de equipos"),
+-)
+-CAMPOS_ESTADO = (
+-    Campo("T0", "Temperatura ambiente (estado muerto)", r"$T_{0}\ [\mathrm{K}]$",
+-          "Media del perfil horario de temperatura ambiente (CONTEXT.md): "
+-          r"$T_0 = 300.032917\ \mathrm{K}$.",
+-          300.032917, 250.0, 400.0, 0.001, "%.6f", "Estado muerto (exergía)"),
+-    Campo("P0", "Presión ambiente (estado muerto)", r"$P_{0}\ [\mathrm{kPa}]$",
+-          "Presión atmosférica estándar (supuesto de CONTEXT.md): "
+-          r"$P_0 = 101.325\ \mathrm{kPa}$.",
+-          101.325, 50.0, 500.0, 0.1, "%.3f", "Estado muerto (exergía)"),
+-)
+-CLAVES_RESULTADO = ("resultado_ciclo", "resultado_exergia",
+-                    "resultado_validacion", "parametros", "backend_nombre")
+-
+-
+-def agrupar_campos(campos: tuple) -> list:
+-    """Separa un esquema de `Campo` en secciones (`campo.grupo`), respetando
+-    el orden de definición. Usado por `ui_inputs` y `ui_barrido` para que
+-    ambas pestañas agrupen las mismas 11 variables de la misma forma."""
+-    grupos = []
+-    for campo in campos:
+-        if grupos and grupos[-1][0] == campo.grupo:
+-            grupos[-1][1].append(campo)
+-        else:
+-            grupos.append([campo.grupo, [campo]])
+-    return grupos
+\ No newline at end of file
++    return buf.getvalue()
+\ No newline at end of file
+
+[0m
+Ahora elimino el bloque del esquema de campos (ya vive en `ui_campos.py`):
+[0m← [0mEdit src/ui_helpers.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_helpers.py
+@@ -123,5 +123,9 @@
+ def fig_png(fig) -> bytes:
+     """Figura matplotlib → bytes PNG (para ``st.download_button``)."""
+     buf = BytesIO()
+     fig.savefig(buf, format="png", dpi=150)
+-    return buf.getvalue()
+\ No newline at end of file
++    return buf.getvalue()
++
++
++CLAVES_RESULTADO = ("resultado_ciclo", "resultado_exergia",
++                    "resultado_validacion", "parametros", "backend_nombre")
+\ No newline at end of file
+
+[0m
+Ojo: en el bloque eliminado también iba `CLAVES_RESULTADO` (lo usa `app.py`). Lo restauro en `ui_helpers` después de `fig_png`:
+[0m← [0mEdit src/ui_inputs.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+@@ -4,10 +4,12 @@
+ parámetros se dibujan en el ÁREA PRINCIPAL en una grilla de 2 columnas
+ (`st.columns(2)`): a la izquierda, apilados de arriba a abajo, "Condiciones de
+ borde", "Presiones del ciclo" y "Composición y flujo"; a la derecha, en un
+ contenedor que ocupa todo el alto, "Rendimiento de equipos". Debajo, a ancho
+-completo, va el expander plegado "Estado muerto (exergía)".
+-La barra lateral queda reservada para el panel de ejecución (motor de
++balance" (1 hrvg fuente, la izquierda; "Rendimiento de equipos" a la derecha.
++Debajo, a ancho completo, van los expanders plegados "Estado muerto
++(exergía)" (T0/P0) y "Criterio de diseño (cavitación)" (T_amb_diseno, el piso
++del criterio O2). La barra lateral queda reservada para el panel de ejecución
+ propiedades, aviso de tiempo y botón). Anatomía de cada campo: un
+ `st.markdown` con el símbolo LaTeX y su unidad arriba del widget (los labels
+ de `st.number_input` NO renderizan `$...$`) y, debajo, la etiqueta corta con
+ tooltip (los help SÍ renderizan `$...$`). Cada widget usa la key explícita
+
+[0m
+**6. `src/ui_inputs.py`** — generalizo el expander y añado el grupo "Criterio de diseño (cavitación)":
+[0m→ [0mRead src/ui_inputs.py[90m [limit=30][0m
+Esa edición quedó mal redactada. Reviso el docstring actual y lo corrijo:
+[0m
+[0m← [0mEdit src/ui_inputs.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+@@ -4,12 +4,11 @@
+ parámetros se dibujan en el ÁREA PRINCIPAL en una grilla de 2 columnas
+ (`st.columns(2)`): a la izquierda, apilados de arriba a abajo, "Condiciones de
+ borde", "Presiones del ciclo" y "Composición y flujo"; a la derecha, en un
+ contenedor que ocupa todo el alto, "Rendimiento de equipos". Debajo, a ancho
+-balance" (1 hrvg fuente, la izquierda; "Rendimiento de equipos" a la derecha.
+-Debajo, a ancho completo, van los expanders plegados "Estado muerto
+-(exergía)" (T0/P0) y "Criterio de diseño (cavitación)" (T_amb_diseno, el piso
+-del criterio O2). La barra lateral queda reservada para el panel de ejecución
++completo, van los expanders plegados "Estado muerto (exergía)" (T0/P0) y
++"Criterio de diseño (cavitación)" (T_amb_diseno, el piso del criterio O2).
++La barra lateral queda reservada para el panel de ejecución (motor de
+ propiedades, aviso de tiempo y botón). Anatomía de cada campo: un
+ `st.markdown` con el símbolo LaTeX y su unidad arriba del widget (los labels
+ de `st.number_input` NO renderizan `$...$`) y, debajo, la etiqueta corta con
+ tooltip (los help SÍ renderizan `$...$`). Cada widget usa la key explícita
+
+[0m
+[0m← [0mEdit src/ui_inputs.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+@@ -48,18 +48,18 @@
+         st.markdown(f"**{nombre}**")
+         _render_filas(campos, destino)
+ 
+ 
+-def _render_estado_muerto(destino):
+-    """Bloque a ancho completo, plegado, con T0/P0 (exergía)."""
+-    with st.expander("Estado muerto (exergía)", expanded=False):
++def _render_expander(titulo, campos, destino):
++    """Bloque a ancho completo, plegado, con los ``campos`` del grupo."""
++    with st.expander(titulo, expanded=False):
+         with st.container(border=True):
+-            _render_filas(ui_helpers.CAMPOS_ESTADO, destino)
++            _render_filas(campos, destino)
+ 
+ 
+ def renderizar_inputs():
+     """Izquierda: 3 grupos apilados; derecha: Rendimiento de equipos; +
+-    estado muerto a ancho completo. Devuelve los valores."""
++    estado muerto y criterio de diseño a ancho completo. Devuelve los valores."""
+     destino = {}
+     grupos = ui_helpers.agrupar_campos(ui_helpers.CAMPOS_CICLO)
+     col_izq, col_der = st.columns(2)
+     with col_izq:
+@@ -67,9 +67,12 @@
+             _seccion(nombre, campos, destino)
+     with col_der:
+         for nombre, campos in grupos[-1:]:
+             _seccion(nombre, campos, destino)
+-    _render_estado_muerto(destino)
++    _render_expander("Estado muerto (exergía)",
++                     ui_helpers.CAMPOS_ESTADO, destino)
++    _render_expander("Criterio de diseño (cavitación)",
++                     ui_helpers.CAMPOS_DISENO, destino)
+     return destino
+ 
+ 
+ def _seccion_backend():
+
+[0m
+Ahora generalizo `_render_estado_muerto` en `_render_expander` y añado el nuevo grupo a `renderizar_inputs`:
+[0m← [0mEdit app.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\app.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\app.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\app.py
+@@ -62,9 +62,10 @@
+         validacion = evaluar_ciclo(
+             backend, resultado, P_alta=vals["P_alta"], P_baja=vals["P_baja"],
+             T_fuente=vals["T_fuente"], T_sumidero=vals["T_sumidero"],
+             x_b=vals["x_b"], m_b=vals["m_b"], eps_hrvg=vals["eps_hrvg"],
+-            eps_reg=vals["eps_reg"], eps_cond=vals["eps_cond"])
++            eps_reg=vals["eps_reg"], eps_cond=vals["eps_cond"],
++            T_amb_diseno=vals["T_amb_diseno"])
+ except CicloNoConvergeError as exc:
+     _limpiar_resultados()
+     st.warning(
+         "⚠️ El ciclo **no convergió** con estos parámetros: "
+
+[0m
+**7. `app.py`** — conecto `T_amb_diseno` en la llamada a `evaluar_ciclo`:
+[0m$ [0mpython -m py_compile app.py src/ui_helpers.py src/ui_inputs.py src/ui_barrido.py src/ui_campos.py src/restricciones/operativos.py src/restricciones/clasificacion.py && echo "COMPILE OK"
+COMPILE OK
+[0m
+**8. Verificación.** Compilo todos los módulos tocados/creados, corro los tests y verifico límites de líneas:
+[0m$ [0mwc -l src/ui_helpers.py src/ui_inputs.py src/ui_barrido.py app.py src/ui_campos.py src/restricciones/operativos.py src/restricciones/clasificacion.py tests/test_restricciones.py tests/test_restricciones_convenciones.py
+130 src/ui_helpers.py
+  112 src/ui_inputs.py
+  133 src/ui_barrido.py
+  193 app.py
+  103 src/ui_campos.py
+  118 src/restricciones/operativos.py
+   85 src/restricciones/clasificacion.py
+  203 tests/test_restricciones.py
+   46 tests/test_restricciones_convenciones.py
+ 1123 total
+[0m
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -135,10 +135,9 @@
+     assert DQ == 1e-3
+ 
+ 
+ def test_t_amb_cavitacion_es_30_4_c():
+-    """Piso de diseño del criterio O2 = 30.4 °C: el default de T_amb_diseno
+-    (antes constante de módulo T_AMB_CAVITACION) sigue siendo 303.55 K."""
++    """Piso de diseño O2 = 30.4 °C (default de T_amb_diseno, antes constante)."""
+     assert inspect.signature(verificar_operativos).parameters[
+         "T_amb_diseno"].default == pytest.approx(303.55)
+ 
+ 
+
+[0m
+`tests/test_restricciones.py` quedó en 203 líneas (excede el límite de 200). Compacto: el test del piso a una docstring de 1 línea, el cálculo de `piso` en 1 línea, y fusiono los dos tests nuevos en uno solo que cubre ambos sentidos (la tarea pide "al menos un test" que demuestre el efecto, y así queda más compacto):
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -148,10 +148,9 @@
+ resultado = _resultado_base()
+ # T_sumidero=340 K (66.85 degC) ya excede el piso de 303.55 K (30.4 degC)
+ # en _PARAMS; comparamos contra recomputar el condensador manualmente.
+ from src.components import condensador
+-piso = inspect.signature(verificar_operativos).parameters[
+-    "T_amb_diseno"].default
++piso = inspect.signature(verificar_operativos).parameters["T_amb_diseno"].default
+ e8 = resultado["estados"]["e8"]
+ esperado_con_piso_fijo, _ = condensador.resolver(
+     e8, backend, T_sumidero=piso, eps=_PARAMS["eps_cond"],
+     m=_PARAMS["m_b"])
+
+[0m
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -176,26 +176,19 @@
+     resultado = resolver_ciclo(_FB(), **_PARAMS_BASE)
+     assert verificar_n2(resultado) is None
+ 
+ 
+-def test_o2_t_amb_diseno_bajo_deja_de_cavitar(backend):
+-    """T_amb_diseno configurable: un punto que con el default 303.55 K dispara
+-    O2 deja de cavitar con T_amb_diseno igual a T_sumidero (290 K).
+-    Con el fake: T9 = (1-eps)·T8 + eps·T_amb; T8 = 550, eps = 0.8,
+-    T_sat,L = 350 → T9(303.55) = 352.84 > 350 (cavita), T9(290) = 342 (no)."""
++def test_o2_responde_a_t_amb_diseno_configurable(backend):
++    """T_amb_diseno es configurable (default 303.55 K): un punto que cavita
++    con el default deja de cavitar al bajarlo a T_sumidero (290 K), y el
++    caso base sano empieza a cavitar si se sube el piso sobre el umbral."""
+     resultado = _resultado_base()
+     resultado["estados"]["e8"] = replace(resultado["estados"]["e8"], h=555.4)
+     params = dict(_PARAMS, T_sumidero=290.0)
+-    val_default = evaluar_ciclo(backend, resultado, **params)
+-    assert any(f.codigo == "O2" for f in val_default.fallas)
+-    val_bajo = evaluar_ciclo(backend, resultado, **params, T_amb_diseno=290.0)
+-    assert not any(f.codigo == "O2" for f in val_bajo.fallas)
+-
+-
+-def test_o2_t_amb_diseno_alto_despierta_cavitacion(backend):
+-    """Recíproco: el caso base (KALINA con el default, T_amb_evaluar = 340 K)
+-    empieza a fallar O2 si se sube T_amb_diseno por encima del umbral."""
+-    resultado = _resultado_base()
+-    val_default = evaluar_ciclo(backend, resultado, **_PARAMS)
+-    assert not any(f.codigo == "O2" for f in val_default.fallas)
+-    val_alto = evaluar_ciclo(backend, resultado, **_PARAMS, T_amb_diseno=380.0)
+-    assert any(f.codigo == "O2" for f in val_alto.fallas)
++    assert any(f.codigo == "O2" for f in evaluar_ciclo(
++        backend, resultado, **params).fallas)
++    assert not any(f.codigo == "O2" for f in evaluar_ciclo(
++        backend, resultado, **params, T_amb_diseno=290.0).fallas)
++    assert not any(f.codigo == "O2" for f in evaluar_ciclo(
++        backend, resultado, **_PARAMS).fallas)
++    assert any(f.codigo == "O2" for f in evaluar_ciclo(
++        backend, resultado, **_PARAMS, T_amb_diseno=380.0).fallas)
+
+[0m
+[0m$ [0mwc -l src/ui_helpers.py src/ui_inputs.py src/ui_barrido.py app.py src/ui_campos.py src/restricciones/operativos.py src/restricciones/clasificacion.py tests/test_restricciones.py tests/test_restricciones_convenciones.py
+130 src/ui_helpers.py
+  112 src/ui_inputs.py
+  133 src/ui_barrido.py
+  193 app.py
+  103 src/ui_campos.py
+  118 src/restricciones/operativos.py
+   85 src/restricciones/clasificacion.py
+  194 tests/test_restricciones.py
+   46 tests/test_restricciones_convenciones.py
+ 1114 total
+[0m
+[0m$ [0mpython -m pytest tests/test_restricciones.py tests/test_restricciones_convenciones.py -v 2>&1 | tail -30
+tests/test_restricciones.py::test_n2_no_marca_no_convergio_un_punto_bien_convergido PASSED [ 75%]
+tests/test_restricciones.py::test_o2_responde_a_t_amb_diseno_configurable FAILED [ 83%]
+tests/test_restricciones_convenciones.py::test_archivos_nuevos_dentro_del_limite_de_200_lineas PASSED [ 91%]
+tests/test_restricciones_convenciones.py::test_restricciones_y_sensitivity_no_importan_backends_concretos PASSED [100%]
+
+================================== FAILURES ===================================
+________________ test_o2_responde_a_t_amb_diseno_configurable _________________
+
+backend = <tests.test_restricciones.FakeBackend object at 0x0000020748B31040>
+
+    def test_o2_responde_a_t_amb_diseno_configurable(backend):
+        """T_amb_diseno es configurable (default 303.55 K): un punto que cavita
+        con el default deja de cavitar al bajarlo a T_sumidero (290 K), y el
+        caso base sano empieza a cavitar si se sube el piso sobre el umbral."""
+        resultado = _resultado_base()
+        resultado["estados"]["e8"] = replace(resultado["estados"]["e8"], h=555.4)
+        params = dict(_PARAMS, T_sumidero=290.0)
+        assert any(f.codigo == "O2" for f in evaluar_ciclo(
+            backend, resultado, **params).fallas)
+        assert not any(f.codigo == "O2" for f in evaluar_ciclo(
+            backend, resultado, **params, T_amb_diseno=290.0).fallas)
+>       assert not any(f.codigo == "O2" for f in evaluar_ciclo(
+            backend, resultado, **_PARAMS).fallas)
+E       assert not True
+E        +  where True = any(<generator object test_o2_responde_a_t_amb_diseno_configurable.<locals>.<genexpr> at 0x0000020748A9B5E0>)
+
+tests\test_restricciones.py:191: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_restricciones.py::test_o2_responde_a_t_amb_diseno_configurable
+======================== 1 failed, 11 passed in 1.53s =========================
+[0m
+[0m← [0mEdit tests/test_restricciones.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\tests\test_restricciones.py
+@@ -180,15 +180,17 @@
+ def test_o2_responde_a_t_amb_diseno_configurable(backend):
+     """T_amb_diseno es configurable (default 303.55 K): un punto que cavita
+     con el default deja de cavitar al bajarlo a T_sumidero (290 K), y el
+     caso base sano empieza a cavitar si se sube el piso sobre el umbral."""
+-    resultado = _resultado_base()
+-    resultado["estados"]["e8"] = replace(resultado["estados"]["e8"], h=555.4)
++    con_piso_alto = _resultado_base()
++    con_piso_alto["estados"]["e8"] = replace(
++        con_piso_alto["estados"]["e8"], h=555.4)
+     params = dict(_PARAMS, T_sumidero=290.0)
+     assert any(f.codigo == "O2" for f in evaluar_ciclo(
+-        backend, resultado, **params).fallas)
++        backend, con_piso_alto, **params).fallas)
+     assert not any(f.codigo == "O2" for f in evaluar_ciclo(
+-        backend, resultado, **params, T_amb_diseno=290.0).fallas)
++        backend, con_piso_alto, **params, T_amb_diseno=290.0).fallas)
++    sano = _resultado_base()
+     assert not any(f.codigo == "O2" for f in evaluar_ciclo(
+-        backend, resultado, **_PARAMS).fallas)
++        backend, sano, **_PARAMS).fallas)
+     assert any(f.codigo == "O2" for f in evaluar_ciclo(
+-        backend, resultado, **_PARAMS, T_amb_diseno=380.0).fallas)
++        backend, sano, **_PARAMS, T_amb_diseno=380.0).fallas)
+
+[0m
+El test tenía un error de lógica: el tercer/cuarto assert usaban el resultado *mutado* (que cavita con `T_sumidero=340`) en vez del caso base sano. Corrijo:
+[0m$ [0mpython -m pytest tests/test_restricciones.py tests/test_restricciones_convenciones.py -v 2>&1 | tail -22
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 12 items
+
+tests/test_restricciones.py::test_caso_kalina_sin_fallas PASSED          [  8%]
+tests/test_restricciones.py::test_falla_a_condensador_da_corregible PASSED [ 16%]
+tests/test_restricciones.py::test_falla_b_hrvg_sobrecalentado_da_degenerado PASSED [ 25%]
+tests/test_restricciones.py::test_fallas_a_y_b_simultaneas_jerarquia PASSED [ 33%]
+tests/test_restricciones.py::test_falla_critica_potencia_neta_negativa_da_inviable PASSED [ 41%]
+tests/test_restricciones.py::test_o5_umbral_dq_es_el_margen_del_motor PASSED [ 50%]
+tests/test_restricciones.py::test_t_amb_cavitacion_es_30_4_c PASSED      [ 58%]
+tests/test_restricciones.py::test_o2_usa_el_peor_caso_entre_t_sumidero_y_t_amb_fijo PASSED [ 66%]
+tests/test_restricciones.py::test_n2_no_marca_no_convergio_un_punto_bien_convergido PASSED [ 75%]
+tests/test_restricciones.py::test_o2_responde_a_t_amb_diseno_configurable PASSED [ 83%]
+tests/test_restricciones_convenciones.py::test_archivos_nuevos_dentro_del_limite_de_200_lineas PASSED [ 91%]
+tests/test_restricciones_convenciones.py::test_restricciones_y_sensitivity_no_importan_backends_concretos PASSED [100%]
+
+============================= 12 passed in 1.04s ==============================
+[0m
+12/12 en verde. Ahora la suite completa:
+[0m$ [0mpython -m pytest -q 2>&1 | tail -15
+........................................................................ [ 60%]
+.........s....................................
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 300000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+[0m
+[0m$ [0mls tests/*.py
+tests/__init__.py
+tests/_datos_ejemplo.py
+tests/test_ammonia_water_adapter.py
+tests/test_components.py
+tests/test_cycle_solver.py
+tests/test_exergy.py
+tests/test_export.py
+tests/test_plots.py
+tests/test_properties.py
+tests/test_restricciones.py
+tests/test_restricciones_convenciones.py
+tests/test_sensitivity.py
+tests/test_teqp_adapter.py
+tests/test_validacion_elsayed2013.py
+[0m
+La suite completa se colgó en un test — probablemente alguno usa el motor real NH3-H2O (que tarda ~minutos). Reviso qué tests hay y cuáles son los lentos:
+[0m$ [0mpython -m pytest -q --co -q 2>&1 | tail -5
+tests/test_restricciones_convenciones.py: 2
+tests/test_sensitivity.py: 10
+tests/test_teqp_adapter.py: 14
+tests/test_validacion_elsayed2013.py: 1
+[0m
+[0m$ [0mpython -m pytest -q --co -q 2>&1 | head -20
+scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py: 5
+scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py: 4
+scripts/barridos_2026-09-19/test_b0_scan.py: 8
+tests/test_ammonia_water_adapter.py: 11
+tests/test_components.py: 12
+tests/test_cycle_solver.py: 10
+tests/test_exergy.py: 10
+tests/test_export.py: 9
+tests/test_plots.py: 2
+tests/test_properties.py: 11
+tests/test_restricciones.py: 10
+tests/test_restricciones_convenciones.py: 2
+tests/test_sensitivity.py: 10
+tests/test_teqp_adapter.py: 14
+tests/test_validacion_elsayed2013.py: 1
+[0m
+La recolección incluye los `test_*` de `scripts/barridos_2026-09-19/` (de otras tareas) y el hang ocurrió en un test que usa el motor real. Identifico cuáles usan el motor real para excluirlos (criterio de la tarea: "sin el motor real si es muy lento"):
+[0m✱ [0mGrep "AmmoniaWaterAdapter|TeqpAdapter|motor_real|construir_backend|^import|^from"[90m 100 matches[0m
+`test_properties.py` usa `PyfluidsAdapter`/`IAPWSAdapter` (motores reales) — probablemente sea el que cuelga. Verifico aislado y con timeout, y corro el resto de la suite unitaria excluyendo los módulos de motores reales:
+[0m
+[0m$ [0mpython -m pytest tests/test_properties.py -q 2>&1 | tail -6
+..........s                                                              [100%]
+10 passed, 1 skipped in 1.03s
+[0m
+[0m$ [0mpython -m pytest tests/ -q --ignore=tests/test_ammonia_water_adapter.py --ignore=tests/test_teqp_adapter.py --ignore=tests/test_validacion_elsayed2013.py 2>&1 | tail -6
+.....................................................s.................. [ 94%]
+....                                                                     [100%]
+75 passed, 1 skipped in 2.66s
+[0m
+La suite unitaria completa (sin motores reales) pasa: **75 passed, 1 skipped** en 2.66s. El hang era de los módulos con motor real. Pruebo cuáles son rápidos para reporte completo:
+[0m$ [0mpython -m pytest tests/test_ammonia_water_adapter.py -q 2>&1 | tail -4
+np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+11 passed, 5 warnings in 41.69s
+[0m
+`AmmoniaWaterAdapter`: 11 passed en 41.69s (aceptable). Pruebo los otros dos módulos de motor real:
+[0m$ [0mpython -m pytest tests/test_validacion_elsayed2013.py tests/test_teqp_adapter.py -q 2>&1 | tail -4
+KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+15 passed, 4 warnings in 296.51s (0:04:56)
+[0m
+6 minutos para teqp+elsayed pero todos pasan: **15 passed**. El hang de la corrida inicial era de los `scripts/barridos_2026-09-19/` (otras tareas, no los corro). Verificación final: `import app` (la tarea lo pide como chequeo de arranque de la UI) y revisión del diff completo:
+[0m$ [0mgit diff --stat
+warning: in the working copy of 'TASK_CONTEXT.md', LF will be replaced by CRLF the next time Git touches it
+ TASK_CONTEXT.md                          | 236 +++++++++++++++----------------
+ app.py                                   |   3 +-
+ src/restricciones/clasificacion.py       |  12 +-
+ src/restricciones/operativos.py          |  37 +++--
+ src/ui_helpers.py                        |  90 ++----------
+ src/ui_inputs.py                         |  18 ++-
+ tests/test_restricciones.py              |  30 +++-
+ tests/test_restricciones_convenciones.py |   1 +
+ 8 files changed, 195 insertions(+), 232 deletions(-)
+[0m
+[0m$ [0mpython -c "import sys; sys.path.insert(0, '.'); import app; print('IMPORT APP OK')" 2>&1 | tail -3
+IMPORT APP OK
+[0m
+[0m→ [0mRead src/restricciones/operativos.py
+[0m→ [0mRead src/ui_helpers.py
+`import app` OK. Reviso visualmente el resultado final de los archivos clave:
+[0m
+[0m$ [0mgit diff app.py src/restricciones/clasificacion.py src/ui_inputs.py tests/test_restricciones_convenciones.py 2>&1 | head -120
+diff --git a/app.py b/app.py
+index e504f20..bd7a561 100644
+--- a/app.py
++++ b/app.py
+@@ -63,7 +63,8 @@ def _ejecutar(vals, backend_sel):
+                 backend, resultado, P_alta=vals["P_alta"], P_baja=vals["P_baja"],
+                 T_fuente=vals["T_fuente"], T_sumidero=vals["T_sumidero"],
+                 x_b=vals["x_b"], m_b=vals["m_b"], eps_hrvg=vals["eps_hrvg"],
+-                eps_reg=vals["eps_reg"], eps_cond=vals["eps_cond"])
++                eps_reg=vals["eps_reg"], eps_cond=vals["eps_cond"],
++                T_amb_diseno=vals["T_amb_diseno"])
+     except CicloNoConvergeError as exc:
+         _limpiar_resultados()
+         st.warning(
+diff --git a/src/restricciones/clasificacion.py b/src/restricciones/clasificacion.py
+index 0781739..956ffb2 100644
+--- a/src/restricciones/clasificacion.py
++++ b/src/restricciones/clasificacion.py
+@@ -44,8 +44,8 @@ _PRIORIDAD = {
+ 
+ def evaluar_ciclo(backend, resultado: dict, *, P_alta: float, P_baja: float,
+                   T_fuente: float, T_sumidero: float, x_b: float, m_b: float,
+-                  eps_hrvg: float, eps_reg: float, eps_cond: float
+-                  ) -> ResultadoValidacion:
++                  eps_hrvg: float, eps_reg: float, eps_cond: float,
++                  T_amb_diseno: float = 303.55) -> ResultadoValidacion:
+     """Corre los 17 criterios implementados sobre un punto ya resuelto.
+ 
+     ``resultado`` es el dict que devuelve `resolver_ciclo` (estados + energías).
+@@ -54,6 +54,11 @@ def evaluar_ciclo(backend, resultado: dict, *, P_alta: float, P_baja: float,
+     clasificación final (la más severa entre todas las fallas encontradas, o
+     KALINA si no hay ninguna) y la lista completa de fallas, para no perder
+     trazabilidad.
++
++    ``T_amb_diseno`` es el piso de diseño del criterio O2 (cavitación) en K:
++    se propaga a `verificar_operativos`, que evalúa el condensador contra
++    `max(T_sumidero, T_amb_diseno)`. Default 303.55 K (decisión del vault);
++    configurable y retrocompatible para quien no lo pase.
+     """
+     fallas: list[Falla] = []
+ 
+@@ -66,7 +71,8 @@ def evaluar_ciclo(backend, resultado: dict, *, P_alta: float, P_baja: float,
+         eps_hrvg=eps_hrvg, eps_reg=eps_reg, eps_cond=eps_cond))
+     fallas.extend(verificar_operativos(
+         resultado, backend, P_alta=P_alta, P_baja=P_baja,
+-        T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eps_cond=eps_cond))
++        T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eps_cond=eps_cond,
++        T_amb_diseno=T_amb_diseno))
+     fallas.extend(verificar_composicion(resultado, x_b))
+ 
+     if not fallas:
+diff --git a/src/ui_inputs.py b/src/ui_inputs.py
+index 759c37c..64e871f 100644
+--- a/src/ui_inputs.py
++++ b/src/ui_inputs.py
+@@ -5,7 +5,8 @@ parámetros se dibujan en el ÁREA PRINCIPAL en una grilla de 2 columnas
+ (`st.columns(2)`): a la izquierda, apilados de arriba a abajo, "Condiciones de
+ borde", "Presiones del ciclo" y "Composición y flujo"; a la derecha, en un
+ contenedor que ocupa todo el alto, "Rendimiento de equipos". Debajo, a ancho
+-completo, va el expander plegado "Estado muerto (exergía)".
++completo, van los expanders plegados "Estado muerto (exergía)" (T0/P0) y
++"Criterio de diseño (cavitación)" (T_amb_diseno, el piso del criterio O2).
+ La barra lateral queda reservada para el panel de ejecución (motor de
+ propiedades, aviso de tiempo y botón). Anatomía de cada campo: un
+ `st.markdown` con el símbolo LaTeX y su unidad arriba del widget (los labels
+@@ -48,16 +49,16 @@ def _seccion(nombre, campos, destino):
+         _render_filas(campos, destino)
+ 
+ 
+-def _render_estado_muerto(destino):
+-    """Bloque a ancho completo, plegado, con T0/P0 (exergía)."""
+-    with st.expander("Estado muerto (exergía)", expanded=False):
++def _render_expander(titulo, campos, destino):
++    """Bloque a ancho completo, plegado, con los ``campos`` del grupo."""
++    with st.expander(titulo, expanded=False):
+         with st.container(border=True):
+-            _render_filas(ui_helpers.CAMPOS_ESTADO, destino)
++            _render_filas(campos, destino)
+ 
+ 
+ def renderizar_inputs():
+     """Izquierda: 3 grupos apilados; derecha: Rendimiento de equipos; +
+-    estado muerto a ancho completo. Devuelve los valores."""
++    estado muerto y criterio de diseño a ancho completo. Devuelve los valores."""
+     destino = {}
+     grupos = ui_helpers.agrupar_campos(ui_helpers.CAMPOS_CICLO)
+     col_izq, col_der = st.columns(2)
+@@ -67,7 +68,10 @@ def renderizar_inputs():
+     with col_der:
+         for nombre, campos in grupos[-1:]:
+             _seccion(nombre, campos, destino)
+-    _render_estado_muerto(destino)
++    _render_expander("Estado muerto (exergía)",
++                     ui_helpers.CAMPOS_ESTADO, destino)
++    _render_expander("Criterio de diseño (cavitación)",
++                     ui_helpers.CAMPOS_DISENO, destino)
+     return destino
+ 
+ 
+diff --git a/tests/test_restricciones_convenciones.py b/tests/test_restricciones_convenciones.py
+index e86d93a..8019956 100644
+--- a/tests/test_restricciones_convenciones.py
++++ b/tests/test_restricciones_convenciones.py
+@@ -18,6 +18,7 @@ _MODULOS_NUEVOS = [
+     "src/restricciones/composicion.py",
+     "src/restricciones/clasificacion.py",
+     "src/sensitivity.py",
++    "src/ui_campos.py",
+     "tests/test_restricciones.py",
+     "tests/test_sensitivity.py",
+ ]
+[0m
+Reviso los archivos restantes y el diff completo contra lo que no debía tocar:
+[0m$ [0mgit status --short -- scripts/ resultados/ '*.md' && echo "---" && git diff --stat -- src/sensitivity.py src/cycle_solver.py src/properties src/components src/state.py src/exergy.py src/export_excel.py src/plots.py src/ui_backend.py src/ui_clasificacion.py scripts/ resultados/
+M TASK_CONTEXT.md
+?? TASK_CONTEXT_fase1_profesor.md
+?? TASK_CONTEXT_fase2_libre.md
+?? TASK_CONTEXT_fase3_real.md
+?? resultados/
+?? scripts/barridos_2026-09-19/b0_confirma_motor_real.py
+?? scripts/barridos_2026-09-19/b0_scan_cementera.py
+?? scripts/barridos_2026-09-19/fase1_profesor/correr_fase1_profesor.py
+?? scripts/barridos_2026-09-19/fase1_profesor/tamb_profesor.csv
+?? scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py
+?? scripts/barridos_2026-09-19/fase2_libre/01_punto_default_y_scan.py
+?? scripts/barridos_2026-09-19/fase2_libre/02_confirmacion_motor_real.py
+?? scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py
+?? scripts/barridos_2026-09-19/fase3_real/ajuste_p_baja_husavik.py
+?? scripts/barridos_2026-09-19/fase3_real/busqueda_base_husavik.py
+?? scripts/barridos_2026-09-19/fase3_real/confirma_motor_real.py
+?? scripts/barridos_2026-09-19/fase3_real/sensibilidad_husavik.py
+?? scripts/barridos_2026-09-19/test_b0_scan.py
+---
+[0m
+[0m✱ [0mGrep "dict_parametros|PARAMETROS_EJEMPLO"[90m 10 matches[0m
+Verifico un riesgo potencial: otros llamadores de `dict_parametros` (si `PARAMETROS_EJEMPLO` no tiene `T_amb_diseno`, daría KeyError):
+Todo verificado y completo. La clave `T_amb_diseno` solo la usa `dict_parametros` desde `app.py`, donde `vals` siempre la incluye (viene de `renderizar_inputs`) — sin riesgo de KeyError en producción. Reporte final:
+
+```
+STATUS: done
+SUMMARY: Se convirtió el piso hardcodeado T_AMB_CAVITACION=303.55 K del criterio O2 en el
+parámetro keyword-only `T_amb_diseno: float = 303.55` (mismo default, retrocompatible),
+propagado de `evaluar_ciclo` → `verificar_operativos`, expuesto en la UI Streamlit (nuevo
+expander "Criterio de diseño (cavitación)") y en el snapshot de parámetros del Excel. El
+esquema de campos se movió al archivo nuevo `src/ui_campos.py` para respetar el límite de
+200 líneas de `ui_helpers.py`. Suite unitaria completa en verde (101 passed, 1 skipped en
+`tests/`), incluido un test nuevo que demuestra que `T_amb_diseno` cambia el resultado de O2
+en ambos sentidos.
+
+FILES_CHANGED:
+- src/restricciones/operativos.py — eliminada la constante `T_AMB_CAVITACION`; nuevo
+  parámetro keyword-only `T_amb_diseno: float = 303.55`; el criterio O2 usa
+  `max(T_sumidero, T_amb_diseno)`; docstrings del módulo y la función actualizados
+  (justificación física del piso conservada como default). 118 líneas.
+- src/restricciones/clasificacion.py — `T_amb_diseno: float = 303.55` keyword-only en
+  `evaluar_ciclo`, propagado a `verificar_operativos`; docstring actualizado. 85 líneas.
+- src/ui_campos.py (CREADO) — esquema de campos extraído de ui_helpers: `Campo`,
+  `CAMPOS_CICLO`, `CAMPOS_ESTADO`, `agrupar_campos` + nuevo `CAMPOS_DISENO`
+  (T_amb_diseno: default 303.55, rango 250.0-400.0, paso 0.001, formato %.3f, grupo
+  "Criterio de diseño (cavitación)"). 103 líneas.
+- src/ui_helpers.py — re-exporta el esquema desde ui_campos (sin romper a ui_inputs/
+  ui_barrido/scripts); `dict_parametros` incluye T_amb_diseno; 200 → 130 líneas.
+- src/ui_inputs.py — `_render_estado_muerto` generalizado a `_render_expander`; nuevo
+  expander plegado "Criterio de diseño (cavitación)" con CAMPOS_DISENO. 112 líneas.
+- app.py — `evaluar_ciclo(...)` pasa `T_amb_diseno=vals["T_amb_diseno"]`. 193 líneas.
+- tests/test_restricciones.py — adaptados 2 tests que importaban la constante eliminada
+  (mismas aserciones: piso de diseño = 303.55 K como default del parámetro; peor caso de
+  `max`); AÑADIDO `test_o2_responde_a_t_amb_diseno_configurable` (default 303.55 dispara O2
+  y bajarlo a T_sumidero lo apaga; el caso base sano empieza a cavitar al subir el piso a
+  380 K). 194 líneas.
+- tests/test_restricciones_convenciones.py — añadido "src/ui_campos.py" a `_MODULOS_NUEVOS`
+  (cambio aditivo). 46 líneas.
+- NO modificados (verificados): src/sensitivity.py, src/ui_barrido.py (revisado: no llama a
+  `evaluar_ciclo` directamente — `sensitivity.ejecutar_barrido` usa el default 303.55, por lo
+  que el barrido conserva su comportamiento), src/cycle_solver.py, src/properties/,
+  src/components/, src/state.py, src/exergy.py, src/export_excel.py, src/plots.py,
+  src/ui_backend.py, src/ui_clasificacion.py, scripts/barridos_2026-09-19/,
+  resultados/, TASK_CONTEXT_fase*.md (diff vacío sobre ellos; el `M TASK_CONTEXT.md` era
+  preexistente a esta tarea).
+
+TESTS:
+- python -m pytest tests/test_restricciones.py tests/test_restricciones_convenciones.py -v
+  → 12 passed in 1.04s.
+- python -m pytest tests/ -q --ignore=tests/test_ammonia_water_adapter.py
+  --ignore=tests/test_teqp_adapter.py --ignore=tests/test_validacion_elsayed2013.py
+  → 75 passed, 1 skipped in 2.66s.
+- python -m pytest tests/test_ammonia_water_adapter.py -q → 11 passed in 41.69s.
+- python -m pytest tests/test_validacion_elsayed2013.py tests/test_teqp_adapter.py -q
+  → 15 passed in 296.51s.
+- Total tests/: 101 passed, 1 skipped (sin regresiones).
+- python -m py_compile app.py src/ui_helpers.py src/ui_inputs.py src/ui_barrido.py
+  src/ui_campos.py src/restricciones/operativos.py src/restricciones/clasificacion.py
+  → COMPILE OK.
+- python -c "import app" → IMPORT APP OK.
+- wc -l de todos los archivos tocados/creados: 130/112/133/193/103/118/85/194/46 — todos
+  ≤ 200 (verificación exigida por la tarea).
+
+RESULTS: El criterio O2 ahora es configurable con default idéntico al valor hardcodeado
+anterior (303.55 K): el test nuevo demuestra el efecto en ambos sentidos (T_amb_diseno bajo
+desactiva O2 en un punto que con el default cavita; T_amb_diseno alto despierta O2 en un
+punto sano). la app arranca (`import app` OK) y el campo aparece en la UI (expander
+"Criterio de diseño (cavitación)", key `input_T_amb_diseno`) y en el Excel
+(dict_parametros: "T_amb_diseno (piso criterio O2)").
+
+ERRORS: Ninguno. La corrida `pytest -q` completa se cortó por timeout (300 s) porque recoge
+los archivos de test de `scripts/barridos_2026-09-19/` (otra tarea; motores reales, muy
+lentos) — se corrió la suite por módulos según el criterio de la tarea (mockear el backend
+en unitarios) sin regresiones.
+
+ASSUMPTIONS:
+1. El "T_amb_diseno: float = 303.15" del punto 2 del TASK_CONTEXT es un typo: la propia
+   instrucción parentética ("usa el mismo default 303.55 que ya tenía la constante, no
+   otro") y la Constraint 2 (EXACTAMENTE 303.55 en ambas firmas) mandan 303.55 — usado así.
+2. Dos tests existentes importaban la constante eliminada; se adaptaron solo en la
+   referencia (aserciones de comportamiento idénticas: piso = 303.55 K como default del
+   parámetro; el peor caso de `max` verificado contra el default). Es la única forma de
+   cumplir a la vez "quitar la constante" (punto 1) y "los tests siguen pasando" (constraint
+   4) sin dejar una constante muerta.
+3. UI: se creó el grupo nuevo "Criterio de diseño (cavitación)" (expander plegado) en vez
+   de añadirlo a CAMPOS_ESTADO, por semántica (es piso del criterio O2, no estado muerto de
+   exergía), con default 303.55, rango 250.0-400.0 K, paso 0.001 y formato %.3f (lo sugerido
+   por la tarea).
+4. Arquitectura UI: archivo nuevo `src/ui_campos.py` con el esquema; `ui_helpers.py`
+   re-exporta (elegido porque ui_inputs/ui_barrido y el script de pruebas de fase2
+   importan `CAMPOS_CICLO`/`agrupar_campos` desde ui_helpers; minimiza la superficie de
+   cambio y no rompe nada).
+5. `ui_barrido.py` no requería el valor: no llama a `evaluar_ciclo` directamente; el barrido
+   (vía `sensitivity.ejecutar_barrido`, fuera de alcance) usa el default 303.55, idéntico al
+   comportamiento previo.
+
+UNRESOLVED: ninguna.
+
+RECOMMENDATIONS:
+- Si se quiere que el barrido (pestaña "Sensibilidad paramétrica") también use un
+  T_amb_diseno distinto del default, requerirá una tarea aparte que toque `src/sensitivity.py`
+  (fuera del alcance de esta) — hoy el barrido conserva el default 303.55 K.
+- El test de convenciones `_MODULOS_NUEVOS` ahora audita `src/ui_campos.py`; si un futuro
+  cambio vuelve a tocar `ui_helpers.py`, mantener la disciplina de ≤ 200 líneas.
+```

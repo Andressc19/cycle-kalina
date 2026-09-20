@@ -1,0 +1,270 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+Verifico el estado real de los archivos antes de decidir:
+[0m$ [0mls -la --time-style=full-iso resultados/barridos_2026-09-19/ scripts/barridos_2026-09-19/ 2>&1; echo "---"; python -c "
+import pandas as pd
+df = pd.read_csv('resultados/barridos_2026-09-19/b0_scan_cementera.csv')
+print('filas:', len(df))
+print('convergio:', df.convergio.sum())
+print('tiene lazo_frio_no_conv:', 'lazo_frio_no_conv' in df.mensaje.to_string())
+print('tiene T~nan:', 'T~' in df.mensaje.to_string())
+print('mensajes con T= en lado_frio:', df.mensaje.str.contains('lado_frio.*T=').sum())
+" 2>&1
+resultados/barridos_2026-09-19/:
+total 136
+drwxr-xr-x 1 Usuario 197121      0 2026-09-19 11:52:30.086274100 -0500 .
+drwxr-xr-x 1 Usuario 197121      0 2026-09-19 10:01:10.524831000 -0500 ..
+-rw-r--r-- 1 Usuario 197121 137596 2026-09-19 12:14:36.259985600 -0500 b0_scan_cementera.csv
+drwxr-xr-x 1 Usuario 197121      0 2026-09-19 10:01:10.525827000 -0500 figuras
+
+scripts/barridos_2026-09-19/:
+total 40
+drwxr-xr-x 1 Usuario 197121    0 2026-09-19 10:41:06.854517800 -0500 .
+drwxr-xr-x 1 Usuario 197121    0 2026-09-19 10:01:10.523825600 -0500 ..
+drwxr-xr-x 1 Usuario 197121    0 2026-09-19 12:16:40.359454300 -0500 __pycache__
+-rw-r--r-- 1 Usuario 197121 4481 2026-09-19 10:42:00.055272300 -0500 b0_confirma_motor_real.py
+-rw-r--r-- 1 Usuario 197121 9232 2026-09-19 12:16:27.237912800 -0500 b0_scan_cementera.py
+-rw-r--r-- 1 Usuario 197121 4716 2026-09-19 12:16:34.154426800 -0500 test_b0_scan.py
+---
+filas: 352
+convergio: 0
+tiene lazo_frio_no_conv: False
+tiene T~nan: True
+mensajes con T= en lado_frio: 6
+[0m
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_confirma_motor_real.py
+El CSV (12:14) es anterior al fix final (12:16): falta `lazo_frio_no_conv` y aún tiene `T~nan`. Hay que re-ejecutar. Antes, verifico el script de confirmación con motor real:
+[0m→ [0mRead AGENTS.md
+El script de confirmación está correcto (mismas constantes, `parents[2]`, calibra P_baja con motor real). Lanzo la re-ejecución del escaneo (artefacto final) y, en paralelo, leo `AGENTS.md` para el formato del reporte:
+[0m
+[0m$ [0mpython scripts/barridos_2026-09-19/b0_scan_cementera.py 2>&1 | tail -22
+225/352 puntos (442 s)
+  250/352 puntos (496 s)
+  275/352 puntos (550 s)
+  300/352 puntos (600 s)
+  325/352 puntos (651 s)
+  350/352 puntos (685 s)
+
+Puntos evaluados: 352 en 686.7 s (1.95 s/punto)
+Distribuci�n por clasificaci�n:
+clasificacion
+NO_CONVERGIO    352
+Convergencias: 0
+
+Mejores candidatos (m�ximo roc�o = m�s cerca de ser v�lidos):
+  P_alta= 7000 kPa x_b=0.35: bubble=472.3 K, dew=529.2 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6500 kPa x_b=0.35: bubble=466.9 K, dew=525.0 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 7000 kPa x_b=0.40: bubble=460.6 K, dew=524.3 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6000 kPa x_b=0.35: bubble=461.1 K, dew=520.5 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6500 kPa x_b=0.40: bubble=455.2 K, dew=520.2 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 7000 kPa x_b=0.45: bubble=449.4 K, dew=519.1 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+
+CSV guardado en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\b0_scan_cementera.csv
+[0m
+Escaneo finalizado (11.4 min). Verifico el CSV con el código final y lanzo la confirmación con motor real:
+[0m$ [0mpython -c "
+import pandas as pd
+df = pd.read_csv('resultados/barridos_2026-09-19/b0_scan_cementera.csv')
+print('filas:', len(df), '| convergio:', df.convergio.sum(), '| NO_CONVERGIO:', (df.clasificacion=='NO_CONVERGIO').sum())
+print('lazo_frio_no_conv presente:', (df.mensaje.str.contains('lazo_frio_no_conv')).sum())
+print('T~nan presente:', (df.mensaje.str.contains('T~')).sum())
+def fam(m):
+    if 'lazo_frio_no_conv' in m: return 'lazo_frio_no_conv'
+    if 'lado_frio' in m: return 'lado_frio (P_baja, teqp)'
+    if 'sobrecalentado' in m: return 'sonda_hi sobrecalentado'
+    if 'DENTRO de campana' in m: return 'DENTRO campana (sospechoso)'
+    if 'otra_ubicacion' in m: return 'otra_ubicacion'
+    return 'no_identificada'
+df['fam'] = df.mensaje.apply(fam)
+print(df.fam.value_counts().to_string())
+print()
+print('nulos en eta/Wnet:', df.eta.isna().sum(), '/', df.Wnet.isna().sum())
+"
+filas: 352 | convergio: 0 | NO_CONVERGIO: 352
+lazo_frio_no_conv presente: 1
+T~nan presente: 0
+fam
+sonda_hi sobrecalentado     309
+lado_frio (P_baja, teqp)     42
+lazo_frio_no_conv             1
+
+nulos en eta/Wnet: 352 / 352
+[0m
+CSV final perfecto: 352 NO_CONVERGIO, familias 309/42/1, sin `T~nan`, sin SOSPECHOSO. Ahora la confirmación con motor real (iapws G4-01), que es lenta:
+[0m$ [0mpython scripts/barridos_2026-09-19/b0_confirma_motor_real.py 2>&1
+Confirmaci�n con motor real (AmmoniaWaterAdapter, iapws G4-01)...
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+-- P_alta=7000 kPa, x_b=0.35, eps_hrvg=0.50, P_baja=157.9 kPa --
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+  convergio=False clasificacion=NO_CONVERGIO (69.7 s)
+  mensaje: equilibrio_liquido_vapor(P=7000.0 kPa, T=582.649582349027 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor IAPWS G4-01).
+
+-- P_alta=7000 kPa, x_b=0.35, eps_hrvg=0.65, P_baja=157.9 kPa --
+  convergio=False clasificacion=NO_CONVERGIO (76.6 s)
+  mensaje: equilibrio_liquido_vapor(P=7000.0 kPa, T=582.7996201548433 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor IAPWS G4-01).
+
+-- P_alta=6500 kPa, x_b=0.35, eps_hrvg=0.50, P_baja=157.9 kPa --
+  convergio=False clasificacion=NO_CONVERGIO (77.6 s)
+  mensaje: equilibrio_liquido_vapor(P=6500.0 kPa, T=582.6496358921854 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor IAPWS G4-01).
+
+Guardado D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\b0_confirmacion_motor_real.json
+LISTO
+[0m
+Confirmación con motor real: los 3 mejores candidatos fallan idénticamente en la sonda superior (T2≈582.6-582.8 K fuera de campana, motor IAPWS G4-01) — la falla es estructural, no del motor rápido. Reviso el JSON, el estado git y cierro:
+[0m$ [0mpython -c "
+import json
+d = json.load(open('resultados/barridos_2026-09-19/b0_confirmacion_motor_real.json', encoding='utf-8'))
+print('caso:', d['caso'])
+for p in d['puntos']:
+    print({k: (v if k != 'mensaje' else v[:120]) for k, v in p.items()})
+"; echo "==="; git status --short; echo "==="; git log --oneline -3
+caso: {'T_fuente': 583.15, 'T_sumidero': 300.032917, 'DT_COND': 3.0, 'eta_t': 0.85, 'eta_p': 0.75, 'eps_reg': 0.75, 'eps_cond': 0.8, 'm_b': 1.0}
+{'P_alta': 7000.0, 'P_baja': 157.88893698830577, 'x_b': 0.35, 'eps_hrvg': 0.5, 'convergio': False, 'clasificacion': 'NO_CONVERGIO', 'mensaje': 'equilibrio_liquido_vapor(P=7000.0 kPa, T=582.649582349027 K): no existe equilibrio bif�sico para ninguna composici�n (T ', 'tiempo_s': 69.7}
+{'P_alta': 7000.0, 'P_baja': 157.88893698830577, 'x_b': 0.35, 'eps_hrvg': 0.65, 'convergio': False, 'clasificacion': 'NO_CONVERGIO', 'mensaje': 'equilibrio_liquido_vapor(P=7000.0 kPa, T=582.7996201548433 K): no existe equilibrio bif�sico para ninguna composici�n (T', 'tiempo_s': 76.6}
+{'P_alta': 6500.0, 'P_baja': 157.88893698830577, 'x_b': 0.35, 'eps_hrvg': 0.5, 'convergio': False, 'clasificacion': 'NO_CONVERGIO', 'mensaje': 'equilibrio_liquido_vapor(P=6500.0 kPa, T=582.6496358921854 K): no existe equilibrio bif�sico para ninguna composici�n (T', 'tiempo_s': 77.6}
+===
+ M TASK_CONTEXT.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+===
+8496a42 test(v&v): validacion externa contra Elsayed et al. (2013), KCS11
+9692c30 feat(ui): pestanas de nivel superior, TeqpAdapter en ejecucion, y clasificacion termodinamica en resultados
+58b60e5 fix(properties): corrige 2 bugs reales de integracion en TeqpAdapter
+[0m
+Todo verificado. El JSON confirma 3/3 fallos estructurales idénticos con el motor real y `P_baja` coincide entre motores (157.9 vs 157.889 kPa — validación cruzada). Entrego el reporte final con el formato de AGENTS.md:
+
+---
+
+```
+STATUS: partial
+SUMMARY: Ejecuté el escaneo grueso completo de la Fase B0 del caso cementera
+(T_fuente=583.15 K, T_sumidero=300.032917 K, 352 puntos en P_alta 2000-7000
+kPa, x_b 0.35-0.70, eps_hrvg 0.50-0.90 con TeqpAdapter) y la confirmación de
+los 3 mejores candidatos con el motor real (AmmoniaWaterAdapter/IAPWS G4-01).
+Ningún punto de la rejilla clasifica KALINA (352/352 NO_CONVERGIO, 0
+convergencias); la confirmación con motor real reproduce el mismo fallo
+estructural, lo que descarta una limitación numérica del motor rápido y
+confirma la causa raíz anticipada en el TASK_CONTEXT (sonda superior del
+bracket). Entregables generados: CSV del escaneo completo, JSON de
+confirmación, scripts (bajo el límite de 200 líneas) y 8 tests en verde.
+
+FILES_CHANGED:
+- scripts/barridos_2026-09-19/b0_scan_cementera.py        (creado, 215 líneas)
+- scripts/barridos_2026-09-19/b0_confirma_motor_real.py   (creado, 110 líneas)
+- scripts/barridos_2026-09-19/test_b0_scan.py             (creado, 128 líneas)
+- resultados/barridos_2026-09-19/b0_scan_cementera.csv    (generado, 352 filas)
+- resultados/barridos_2026-09-19/b0_confirmacion_motor_real.json (generado)
+- No toqué src/, CONTEXT.md, TASK_CONTEXT.md ni _bracketear (prohibido).
+  (M TASK_CONTEXT.md y opencode_run_011/012.log: preexistentes, no tocados.)
+
+TESTS: python -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v
+  -> 8 passed en ~22 s (rejillas 11x8x4=352, calibración P_baja con raíz en
+  [50,5000] kPa, anotación de sonda sobrecalentado/liquido/dentro-de-campana,
+  clasificación lado_frio y lazo_frio_no_conv). La confirmación con motor
+  real (3 puntos, ~70-80 s/punto) se verificó por inspección del JSON.
+
+RESULTS:
+- Escaneo grueso: 352 puntos en 686.7 s (1.95 s/punto con 4 workers),
+  distribuidos: NO_CONVERGIO 352, convergencias 0 (eta/Wnet vacíos en todas).
+    * 309/352: fallo en la SONDA SUPERIOR del bracket — T2_sonda ≈ 582.6-582.8 K
+      > dew de la combinación ("equilibrio_liquido_vapor(P, T=582.6-582.8 K):
+      no existe equilibrio bifásico para ninguna composición").
+    * 42/352: fallo en el LADO FRÍO (P_baja 157.9-764.6 kPa, T ≈ 290.8-371 K):
+      T_from_Ph/estado fuera del dominio del motor teqp (p. ej. h=64714.1
+      fuera de dominio a P=157.9 kPa, x=0.36) — sin relación con la campana.
+      Concentrados en eps_hrvg=0.90 (41/42).
+    * 1/352: lazo interior frío no convergió (3500, 0.40, 0.50) — sin estado
+      de campana involucrado.
+    * 0 puntos con sonda DENTRO de campana -> el escenario SOSPECHOSO de
+      limitación numérica del motor rápido (que TASK_CONTEXT pedía vigilar)
+      NO aparece en ningún punto.
+- Mejores candidatos por máximo rocío (ceiling del rango permitido):
+    P=7000 kPa x=0.35: bubble=472.3 K, dew=529.2 K (sonda_hi=582.15 K)
+    P=6500 kPa x=0.35: bubble=466.9 K, dew=525.0 K
+    P=7000 kPa x=0.40: bubble=460.6 K, dew=524.3 K
+    P=6000 kPa x=0.35: bubble=461.1 K, dew=520.5 K
+  -> El rocío máximo del rango (529.2 K) queda 53 K por debajo de la sonda hi.
+- Límite físico: Tsat_agua(7 MPa) = 558.98 K < T_fuente - 1 = 582.15 K: la
+  campana binaria NH3-H2O no puede alcanzar la sonda superior del bracket ni
+  siquiera en el límite agua pura (el rocío máximo medido es aún menor,
+  porque a x_b>0 el NH3 reduce Tsat).
+- Confirmación con motor real (3 puntos: (7000,0.35,0.50), (7000,0.35,0.65),
+  (6500,0.35,0.50), 69.7/76.6/77.6 s): los tres NO_CONVERGIO con el MISMO
+  fallo — separador sin equilibrio bifásico a T2 = 582.65/582.80/582.65 K
+  (motor IAPWS G4-01). La falla es estructural del solver, no del motor
+  rápido. Validación cruzada adicional: P_baja calibrada coincide entre
+  motores (157.9 kPa teqp vs 157.889 kPa real).
+- eps_hrvg no modifica el estado 2 en la sonda: T2=582.6 K para eps=0.50 y
+  582.8 K para eps=0.65-0.90 (h2->h2max cuando T1->T_fuente), por lo que
+  abrir eps_hrvg a otros valores (paso 4 del approach) no puede crear un
+  punto válido — la evidencia desautoriza seguir ese eje.
+
+ERRORS: ninguno de código. Warnings numéricos esperados de iapws durante
+intentos de flash fuera de campana (overflow en exp en ammonia.py:290 y
+divide-by-zero en _kalina_flash.py:69) en la confirmación real — no afectan
+el resultado (el fallo es el esperado). Incidente de proceso: la primera
+versión secuencial del escaneo (6-9 s/punto) se cortó por timeout de 45 min
+sin CSV; se rediseñó con ProcessPoolExecutor (4 workers, 1.95 s/punto) y
+terminó correctamente.
+
+ASSUMPTIONS:
+- ΔT_app,cond = 3 K (P_baja tal que bubble_point(P_baja, x_b) = T_sumidero +
+  3 K = 303.033 K) — único supuesto físico nuevo, autorizado en TASK_CONTEXT.
+- "Mejores candidatos" = máximo rocío a P_alta <= 7000 kPa (proxy de
+  cercanía a válido cuando nada converge).
+- Rejilla gruesa 11 x 8 x 4 = 352 puntos (dentro del tope 300-400) con teqp
+  de semilla; defaults CONTEXT.md fijos (eta_t=0.85, eta_p=0.75, eps_reg=0.75,
+  eps_cond=0.80, m_b=1.0).
+- Comportamiento multiproceso idéntico al secuencial (workers crean su propio
+  backend; los specs son floats puros).
+
+UNRESOLVED:
+- NO EXISTE base KALINA demostrable en el rango autorizado (P_alta <= 7000
+  kPa) con el solucionador actual. Causa raíz CONFIRMADA (hipótesis del punto
+  3 del TASK_CONTEXT): _bracketear arranca con sonda hi = T_fuente - 1 =
+  582.15 K, que fuerza estado 2 a T2 ≈ 582.6-582.8 K, fuera de la campana en
+  toda la rejilla (rocío máx. 529.2 K; techo teórico Tsat_agua(7 MPa) =
+  558.98 K). No modifiqué _bracketear (prohibido).
+- Por tanto, las soluciones físicamente válidas del INTERIOR de la campana
+  (T1 realista ~530-560 K) quedan inalcanzables: el brentq exterior nunca
+  explora el interior porque el primer par de sondas aborta antes.
+- Reducciones de dominio NO intentadas (se registran según TASK_CONTEXT):
+  (a) P_alta > 7000 kPa (prohibido explícitamente); (b) variar
+  eps_reg/eps_cond/eta_t/eta_p/m_b — no se abrieron porque ninguna interviene
+  en el estado 2 y la evidencia (T2 sonda invariante) muestra que no pueden
+  remediar el fallo; (c) eps_hrvg fuera de [0.50, 0.90] — punto muerto medido
+  (h2->h2max satura). El único camino prometedor es modificar el arranque del
+  bracket o subir P_alta, ambos fuera del alcance de esta tarea.
+- Observación adicional no bloqueante: el motor teqp no cubre estados fríos
+  del lazo en P_baja (42 puntos, h fuera de dominio a T ~290-371 K); el motor
+  real sí los cubre pero falla igual en la sonda superior, así que no cambia
+  la conclusión, pero limita al teqp para futuros escaneos de este caso.
+
+RECOMMENDATIONS:
+1. Abrir una tarea de refactor MÍNIMO autorizada por el director: limitar la
+   sonda superior del bracket a la campana (p. ej. hi = T1 tal que
+   T2(hi) = dew(P_alta, x_b) - margen, manteniendo brentq exterior y lazo
+   interior intactos) para alcanzar el interior de la campana y localizar el
+   punto KALINA que probablemente existe (T1 ~530-560 K, P >= 6500 kPa,
+   x_b bajo). Esta es la única vía que promete un candidato real.
+2. En su defecto, evaluar autorizar P_alta > 7000 kPa (el rocío crece con P)
+   cuantificando antes con teqp si el rocío alcanza 582-583 K (no lo calculé:
+   requiere su propia mini-exploración, no inventar el valor).
+3. El caso cementera (310 °C) con T1->T_fuente no es accesible con la
+   topología actual; si el objetivo es maximizar extracción del gas
+   precalentador, considerar en Fase B1 variantes con recalentamiento que no
+   exijan T1≈T_fuente. No forzar un KALINA con el solucionador sin resolver
+   el arranque del bracket.
+4. Conservar b0_scan_cementera.csv y b0_confirmacion_motor_real.json como
+   evidencia del diagnóstico negativo (trazabilidad completa por punto).
+```

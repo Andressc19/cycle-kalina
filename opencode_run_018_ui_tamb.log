@@ -1,0 +1,364 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT_ui_tamb.md
+[0m→ [0mRead src/ui_campos.py
+[0m→ [0mRead src/ui_inputs.py
+[0m→ [0mRead src/ui_helpers.py
+[0m→ [0mRead app.py
+[0m→ [0mRead src/ui_barrido.py
+[0m
+[0m$ [0mgit status && git branch --show-current && git log --oneline -5
+On branch fix/temperatura-ambiente
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .claude/launch.json
+	modified:   TASK_CONTEXT.md
+	modified:   app.py
+	modified:   src/restricciones/clasificacion.py
+	modified:   src/restricciones/operativos.py
+	modified:   src/ui_helpers.py
+	modified:   src/ui_inputs.py
+	modified:   tests/test_restricciones.py
+	modified:   tests/test_restricciones_convenciones.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	TASK_CONTEXT_fase1_profesor.md
+	TASK_CONTEXT_fase2_libre.md
+	TASK_CONTEXT_fase3_real.md
+	TASK_CONTEXT_rangos_actualizados.md
+	TASK_CONTEXT_ui_tamb.md
+	opencode_run_011.log
+	opencode_run_012.log
+	opencode_run_013_fase1.log
+	opencode_run_014_fase2.log
+	opencode_run_015_fase3.log
+	opencode_run_016_fix_tamb.log
+	opencode_run_017_rangos.log
+	opencode_run_018_ui_tamb.log
+	resultados/
+	scripts/barridos_2026-09-19/
+	src/ui_campos.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+fix/temperatura-ambiente
+8496a42 test(v&v): validacion externa contra Elsayed et al. (2013), KCS11
+9692c30 feat(ui): pestanas de nivel superior, TeqpAdapter en ejecucion, y clasificacion termodinamica en resultados
+58b60e5 fix(properties): corrige 2 bugs reales de integracion en TeqpAdapter
+bf7c511 feat(properties): TeqpAdapter, alternativa de rendimiento a AmmoniaWaterAdapter
+6fd0f81 feat(restricciones): barrido parametrico y 17 criterios de admisibilidad
+[0m
+Ahora leo `ui_barrido.py` (solo lectura, para no romperlo con mis cambios a `destino`) y verifico el estado de la rama y las líneas de los archivos:
+[0m$ [0mwc -l app.py src/ui_campos.py src/ui_inputs.py src/ui_helpers.py
+193 app.py
+  103 src/ui_campos.py
+  112 src/ui_inputs.py
+  130 src/ui_helpers.py
+  538 total
+[0m
+[0m✱ [0mGrep "dict_parametros|CAMPOS_DISENO|renderizar_inputs|aplica_margen"[90m 44 matches[0m
+Ahora reviso cómo se consumen `dict_parametros`, `CAMPOS_DISENO` y `renderizar_inputs` en el resto del proyecto (para no romper nada) y si hay tests de UI:
+[0m✱ [0mGlob "tests/**/*.py"[90m 14 matches[0m
+[0m
+[0m← [0mEdit src/ui_campos.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_campos.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_campos.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_campos.py
+@@ -83,11 +83,15 @@
+     Campo("T_amb_diseno", "Piso de T ambiente (criterio O2)",
+           r"$T_{\mathrm{amb,diseno}}\ [\mathrm{K}]$",
+           "Piso de diseño del criterio O2 (cavitación): el condensador se "
+           "evalúa siempre contra al menos esta T ambiente, aunque T_sumidero "
+-          "sea menor. Default 303.55 K (30.4 °C, decisión del vault); "
+-          "subirlo es un criterio de diseño más conservador y bajarlo, "
+-          "uno más permisivo.",
++          "sea menor. Comparte el perfil horario de T_ambiente con T0 (estado "
++          "muerto) pero son variables independientes: T0 = 300.032917 K es el "
++          "PROMEDIO, referencia contable de exergía que NO afecta la "
++          "clasificación; T_amb_diseno = 303.55 K es el MÁXIMO/peor caso y SÍ "
++          "decide si el punto clasifica KALINA (criterio O2). No las fusione. "
++          "Subirlo es un criterio de diseño más conservador; bajarlo, uno "
++          "más permisivo.",
+           303.55, 250.0, 400.0, 0.001, "%.3f", "Criterio de diseño (cavitación)"),
+ )
+ 
+ 
+
+[0m
+Sin tests de UI existentes (los tests actuales cubren restricciones/componentes/solver, no módulos Streamlit), y `CAMPOS_DISENO`/`dict_parametros` solo los consumen `ui_inputs.py`/`app.py` — mis cambios no rompen a `ui_barrido` (solo lee `vals` con `.get()` y claves de `CAMPOS_CICLO`). Procedo con las ediciones.
+
+**1. `src/ui_campos.py` — tooltip del campo T_amb_diseno (relación con T0):**
+[0m← [0mEdit src/ui_inputs.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+@@ -3,12 +3,15 @@
+ Tarea 2026-09-17-ui-streamlit (apartado visual de inputs). Los grupos de
+ parámetros se dibujan en el ÁREA PRINCIPAL en una grilla de 2 columnas
+ (`st.columns(2)`): a la izquierda, apilados de arriba a abajo, "Condiciones de
+ borde", "Presiones del ciclo" y "Composición y flujo"; a la derecha, en un
+-contenedor que ocupa todo el alto, "Rendimiento de equipos". Debajo, a ancho
+-completo, van los expanders plegados "Estado muerto (exergía)" (T0/P0) y
+-"Criterio de diseño (cavitación)" (T_amb_diseno, el piso del criterio O2).
+-La barra lateral queda reservada para el panel de ejecución (motor de
++contenedor que ocupa todo el alto, "Rendimiento de equipos" y, justo debajo,
++VISIBLE sin plegar, "Criterio de diseño (cavitación)" con el piso
++`T_amb_diseno` (criterio O2) y el checkbox "Aplicar margen de peor caso":
++marcado (default) → campo editable y se usa tal cual; desmarcado → campo
++deshabilitado y el valor efectivo es `T_sumidero` de la corrida, sin margen.
++Debajo, a ancho completo, va el expander plegado "Estado muerto (exergía)"
++(T0/P0). La barra lateral queda reservada para el panel de ejecución (motor de
+ propiedades, aviso de tiempo y botón). Anatomía de cada campo: un
+ `st.markdown` con el símbolo LaTeX y su unidad arriba del widget (los labels
+ de `st.number_input` NO renderizan `$...$`) y, debajo, la etiqueta corta con
+ tooltip (los help SÍ renderizan `$...$`). Cada widget usa la key explícita
+
+[0m
+**2. `src/ui_inputs.py` — docstring, `_campo_num` con `disabled`, bloque visible de T_amb_diseno + checkbox:**
+[0m← [0mEdit src/ui_inputs.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+@@ -26,15 +26,17 @@
+ 
+ __all__ = ["renderizar_inputs", "renderizar_panel_ejecucion"]
+ 
+ 
+-def _campo_num(campo):
+-    """Símbolo LaTeX (markdown) + number_input; devuelve el valor actual."""
++def _campo_num(campo, disabled=False):
++    """Símbolo LaTeX (markdown) + number_input; devuelve el valor actual.
++    ``disabled=True`` pinta el widget gris y no editable (se usa cuando el
++    checkbox de margen de peor caso está desmarcado)."""
+     st.markdown(f"**{campo.simbolo}**")
+     return st.number_input(
+         campo.etiqueta, min_value=campo.vmin, max_value=campo.vmax,
+         value=campo.default, step=campo.paso, format=campo.formato,
+-        help=campo.ayuda, key=f"input_{campo.clave}")
++        help=campo.ayuda, key=f"input_{campo.clave}", disabled=disabled)
+ 
+ 
+ def _render_filas(campos, destino):
+     """Campos en filas de 2 columnas (la última puede quedar con uno solo)."""
+
+[0m
+[0m← [0mEdit src/ui_inputs.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\ui_inputs.py
+@@ -60,11 +60,39 @@
+         with st.container(border=True):
+             _render_filas(campos, destino)
+ 
+ 
++def _seccion_tamb_diseno(campos, destino):
++    """`T_amb_diseno` VISIBLE (sin plegar), justo debajo de "Rendimiento de
++    equipos" en la columna derecha. El checkbox "Aplicar margen de peor caso"
++    (True por defecto, preserva el comportamiento actual) controla el campo:
++    marcado → editable y se usa tal cual; desmarcado → el widget se
++    deshabilita y el valor efectivo que usa `app._ejecutar` es `T_sumidero`
++    de la corrida (sin margen; el `max(T_sumidero, T_amb_diseno)` del
++    criterio O2 colapsa a `T_sumidero`). El estado del checkbox viaja en
++    `destino["aplica_margen_o2"]` para que `app.py` lo lea."""
++    with st.container(border=True):
++        st.markdown("**Criterio de diseño (cavitación)**")
++        aplica = st.checkbox(
++            "Aplicar margen de peor caso", value=True,
++            key="input_aplica_margen_o2",
++            help="Marcado (por defecto): se usa T_amb_diseno tal cual, con el "
++                 "margen de peor caso sobre T_sumidero. Desmarcado: el "
++                 "criterio O2 se evalúa solo contra T_sumidero de esta "
++                 "corrida, sin margen adicional.")
++        for campo in campos:
++            destino[campo.clave] = _campo_num(campo, disabled=not aplica)
++        if not aplica:
++            st.caption(f"Margen desactivado: esta corrida usará "
++                       f"T_sumidero = {destino['T_sumidero']:.3f} K como "
++                       "T_amb_diseno efectiva (sin margen de peor caso).")
++        destino["aplica_margen_o2"] = aplica
++
++
+ def renderizar_inputs():
+-    """Izquierda: 3 grupos apilados; derecha: Rendimiento de equipos; +
+-    estado muerto y criterio de diseño a ancho completo. Devuelve los valores."""
++    """Izquierda: 3 grupos apilados; derecha: Rendimiento de equipos y, justo
++    debajo, visible sin plegar, el criterio de diseño (T_amb_diseno + checkbox
++    de margen); estado muerto (T0/P0) a ancho completo. Devuelve los valores."""
+     destino = {}
+     grupos = ui_helpers.agrupar_campos(ui_helpers.CAMPOS_CICLO)
+     col_izq, col_der = st.columns(2)
+     with col_izq:
+@@ -72,12 +100,11 @@
+             _seccion(nombre, campos, destino)
+     with col_der:
+         for nombre, campos in grupos[-1:]:
+             _seccion(nombre, campos, destino)
++        _seccion_tamb_diseno(ui_helpers.CAMPOS_DISENO, destino)
+     _render_expander("Estado muerto (exergía)",
+                      ui_helpers.CAMPOS_ESTADO, destino)
+-    _render_expander("Criterio de diseño (cavitación)",
+-                     ui_helpers.CAMPOS_DISENO, destino)
+     return destino
+ 
+ 
+ def _seccion_backend():
+
+[0m
+[0m← [0mEdit app.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\app.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\app.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\app.py
+@@ -45,8 +45,13 @@
+     if nombre_backend == ui_backend.BACKEND_TEQP else
+     "⏳ Resolviendo el ciclo con el motor NH3-H2O riguroso... esto puede "
+     "tardar varios minutos. No cierres esta pestaña."
+ )
++# Margen de peor caso (2026-09-20-ui-tamb-diseno-visible): desmarcado → el
++# valor efectivo de T_amb_diseno es T_sumidero (criterio O2 sin margen).
++# Vale para el Excel (dict_parametros) y para evaluar_ciclo (más abajo).
++if not vals.get("aplica_margen_o2", True):
++    vals["T_amb_diseno"] = vals["T_sumidero"]
+ parametros = ui_helpers.dict_parametros(vals)
+ try:
+     with st.spinner(mensaje_espera):
+         resultado = resolver_ciclo(
+
+[0m
+**3. `app.py` — lógica de `T_amb_diseno` efectivo en `_ejecutar`:**
+[0m→ [0mRead app.py[90m [offset=36, limit=45][0m
+Verifico que la edición en `app.py` quedó bien indentada (el oldString no incluía la indentación):
+[0m→ [0mRead src/ui_inputs.py
+La edición quedó bien indentada y `app.py` tiene 199 líneas (≤200 ✓). Ahora verifico `ui_inputs.py` completo:
+[0m→ [0mRead src/ui_campos.py[90m [limit=25, offset=80][0m
+`ui_inputs.py`: 145 líneas ✓. Verifico `ui_campos.py` y el conteo de líneas final de los 4 archivos:
+[0m
+[0m$ [0mwc -l app.py src/ui_campos.py src/ui_inputs.py src/ui_helpers.py
+198 app.py
+  107 src/ui_campos.py
+  144 src/ui_inputs.py
+  130 src/ui_helpers.py
+  579 total
+[0m
+Todos ≤200 líneas (app.py 198, ui_campos.py 107, ui_inputs.py 144, ui_helpers.py 130 sin cambios). Ahora las verificaciones: compilación, import de la app y tests:
+[0m$ [0mpython -m py_compile app.py src/ui_inputs.py src/ui_helpers.py src/ui_campos.py && python -c "import app; print('import app OK')"
+import app OK
+[0m
+Compila e importa sin errores. Ahora los tests (criterio de la tarea anterior, ignorando los tests lentos de motor real):
+[0m$ [0mpython -m pytest tests/ -q --ignore=tests/test_ammonia_water_adapter.py --ignore=tests/test_teqp_adapter.py --ignore=tests/test_validacion_elsayed2013.py
+.....................................................s.................. [ 94%]
+....                                                                     [100%]
+75 passed, 1 skipped in 3.17s
+[0m
+75 passed, 1 skipped (el skipped ya existía en el criterio de la tarea anterior — no es regresión). Una verificación funcional extra de la lógica efectiva (sin motor ni Streamlit):
+[0m$ [0mpython - <<'EOF'
+from src import ui_helpers
+base = dict(P_alta=3000.0, P_baja=400.0, x_b=0.5, T_fuente=470.0,
+            T_sumidero=300.0, m_b=1.0, eta_t=0.85, eta_p=0.75,
+            eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80,
+            T0=300.032917, P0=101.325, T_amb_diseno=303.55)
+# Caso checkbox desmarcado -> efectivo = T_sumidero
+off = dict(base); off["aplica_margen_o2"] = False
+if not off.get("aplica_margen_o2", True):
+    off["T_amb_diseno"] = off["T_sumidero"]
+p_off = ui_helpers.dict_parametros(off)
+print("margen OFF ->", p_off["T_amb_diseno (piso criterio O2)"])
+assert p_off["T_amb_diseno (piso criterio O2)"] == (300.0, "K")
+# Caso checkbox marcado (default) -> efectivo = widget 303.55
+on = dict(base); on["aplica_margen_o2"] = True
+if not on.get("aplica_margen_o2", True):
+    on["T_amb_diseno"] = on["T_sumidero"]
+p_on = ui_helpers.dict_parametros(on)
+print("margen ON  ->", p_on["T_amb_diseno (piso criterio O2)"])
+assert p_on["T_amb_diseno (piso criterio O2)"] == (303.55, "K")
+# Default de .get: si la clave falta (retrocompat), se comporta como ON
+legacy = dict(base)
+assert legacy.get("aplica_margen_o2", True) is True
+print("OK: logica efectiva correcta en ambos casos")
+EOF
+margen OFF -> (300.0, 'K')
+margen ON  -> (303.55, 'K')
+OK: logica efectiva correcta en ambos casos
+[0m
+Todo verificado. Reviso el diff final para el reporte y confirmo que no toqué la carpeta de la tarea paralela:
+[0m$ [0mgit diff --stat app.py src/ui_campos.py src/ui_inputs.py src/ui_helpers.py && git status --porcelain -- scripts/barridos_2026-09-19/ resultados/barridos_2026-09-19/ | head -5; echo "---"; git diff --stat src/restricciones/ src/cycle_solver.py src/sensitivity.py src/ui_barrido.py
+app.py            |  8 ++++-
+ src/ui_helpers.py | 90 +++++++------------------------------------------------
+ src/ui_inputs.py  | 62 ++++++++++++++++++++++++++++++--------
+ 3 files changed, 66 insertions(+), 94 deletions(-)
+?? resultados/barridos_2026-09-19/
+?? scripts/barridos_2026-09-19/
+---
+ src/restricciones/clasificacion.py | 12 +++++++++---
+ src/restricciones/operativos.py    | 37 +++++++++++++++++++++++--------------
+ 2 files changed, 32 insertions(+), 17 deletions(-)
+[0m
+Confirmado: los diffs de `src/ui_helpers.py` y `src/restricciones/*` son del working tree previo (tarea anterior sin commitear), no de esta tarea. Yo edité exactamente 3 archivos (`app.py`, `src/ui_campos.py`, `src/ui_inputs.py`) y `scripts/barridos_2026-09-19/` + `resultados/barridos_2026-09-19/` quedaron intactos (siguen untracked, de la tarea paralela).
+
+---
+
+```
+STATUS: done
+SUMMARY: Saqué el campo T_amb_diseno del expander plegado "Criterio de diseño
+  (cavitación)" y lo puse VISIBLE en la columna derecha, justo debajo de
+  "Rendimiento de equipos", con un checkbox nuevo "Aplicar margen de peor caso"
+  (True por defecto). Desmarcado, el campo numérico se deshabilita y el valor
+  efectivo que recibe evaluar_ciclo —y que exporta el Excel— es T_sumidero de
+  la corrida. Tooltip del campo actualizado para aclarar la relación con T0.
+FILES_CHANGED:
+  - app.py (modificado): en `_ejecutar`, si `vals.get("aplica_margen_o2", True)`
+    es False → `vals["T_amb_diseno"] = vals["T_sumidero"]` ANTES de
+    `dict_parametros(vals)` y de `evaluar_ciclo(...)`, de modo que el Excel y la
+    validación usan siempre el valor EFECTIVO. 198 líneas (≤200).
+  - src/ui_inputs.py (modificado): `_campo_num` acepta `disabled`; nueva
+    `_seccion_tamb_diseno` (bloque border visible con checkbox key
+    `input_aplica_margen_o2` + number_input deshabilitado + caption cuando está
+    desmarcado, y `destino["aplica_margen_o2"]` en el dict); `renderizar_inputs`
+    renderiza CAMPOS_DISENO dentro de la columna derecha tras "Rendimiento de
+    equipos" y elimina el expander plegado del criterio de diseño (queda solo el
+    expander "Estado muerto (exergía)" con T0/P0). 144 líneas (≤200).
+  - src/ui_campos.py (modificado): solo el texto del tooltip (ayuda) de
+    T_amb_diseno — T0=300.032917 K es el PROMEDIO (referencia de exergía, no
+    afecta clasificación) vs T_amb_diseno=303.55 K MÁXIMO/peor caso (sí decide
+    KALINA vía O2), variables independientes con misma fuente. 107 líneas (≤200).
+  - src/ui_helpers.py: NO modificado (no hizo falta — app.py inyecta el valor
+    efectivo antes del snapshot; el diff que aparece en git es de la tarea previa
+    sin commitear).
+TESTS: `python -m pytest tests/ -q --ignore=tests/test_ammonia_water_adapter.py
+  --ignore=tests/test_teqp_adapter.py --ignore=tests/test_validacion_elsayed2013.py`
+  → 75 passed, 1 skipped (el skip preexistente del criterio de la tarea anterior).
+  Además `python -m py_compile app.py src/ui_inputs.py src/ui_helpers.py
+  src/ui_campos.py` y `python -c "import app"` → OK, y un script ad-hoc (sin motor
+  ni Streamlit) validando la lógica: margen OFF → T_amb_diseno efectiva = 300.0 K
+  (=T_sumidero), margen ON → 303.55 K, y retrocompatibilidad de
+  `vals.get("aplica_margen_o2", True)`.
+RESULTS: Compilación e import sin errores; 75 passed / 1 skipped; lógica efectiva
+  verificada en ambos estados del checkbox; layout final: campo + checkbox visibles
+  sin clics adicionales en la columna derecha bajo "Rendimiento de equipos".
+ERRORS: ninguno.
+ASSUMPTIONS: Decisión de UX documentada: al desmarcar el checkbox el campo
+  numérico se DESHABILITA (visible en gris, no oculto) con un caption
+  "se usará T_sumidero = <valor> K" — más claro que ocultarlo porque el usuario
+  ve el estado del dato. Se conservó el título de sección "Criterio de diseño
+  (cavitación)" y el default T_amb_diseno=303.55 K (comportamiento idéntico con
+  checkbox marcado). No hay tests de UI en el repo, así que no se tocaron test
+  files (los cambios son puramente de presentación/interacción, como pide el
+  TASK_CONTEXT).
+UNRESOLVED: ninguno.
+RECOMMENDATIONS: Si se quiere el mismo tratamiento en la pestaña de barrido
+  (ui_barrido) es una tarea aparte, como indica el TASK_CONTEXT — el checkbox
+  actual no afecta esa pestaña (solo lee claves de CAMPOS_CICLO vía `vals.get`).
+  Convendría commitear esta rama junto con los cambios de la tarea previa
+  (restricciones + ui_campos/ui_helpers/ui_inputs/app) cuando termine la tarea
+  paralela de rangos.
+```

@@ -1,0 +1,550 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT_fase2_libre.md
+[0m✱ [0mGlob "src/*.py"[90m 13 matches[0m
+[0m
+[0m$ [0mls -la && ls scripts/barridos_2026-09-19/ 2>/dev/null; ls resultados/barridos_2026-09-19/ 2>/dev/null
+total 733
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 14:47 .
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:56 ..
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 13:06 .claude
+-rw-r--r-- 1 Usuario 197121     79 Sep 19 09:56 .git
+-rw-r--r-- 1 Usuario 197121    257 Sep 19 09:56 .gitignore
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:29 .opencode
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 .pytest_cache
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:57 .streamlit
+-rw-r--r-- 1 Usuario 197121   3055 Sep 19 09:56 AGENTS.md
+-rw-r--r-- 1 Usuario 197121   9389 Sep 19 09:56 CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   8661 Sep 19 09:56 Kalina_ksc_11_tercero.md
+-rw-r--r-- 1 Usuario 197121   5323 Sep 19 09:56 README.md
+-rw-r--r-- 1 Usuario 197121  13653 Sep 19 10:26 TASK_CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   5992 Sep 19 14:46 TASK_CONTEXT_fase1_profesor.md
+-rw-r--r-- 1 Usuario 197121   5646 Sep 19 14:46 TASK_CONTEXT_fase2_libre.md
+-rw-r--r-- 1 Usuario 197121   6180 Sep 19 14:47 TASK_CONTEXT_fase3_real.md
+-rw-r--r-- 1 Usuario 197121   8297 Sep 19 09:57 VALIDACION_ELSAYED2013.md
+-rw-r--r-- 1 Usuario 197121   8540 Sep 19 09:57 app.py
+-rw-r--r-- 1 Usuario 197121  98946 Sep 19 09:56 opencode_run_001.log
+-rw-r--r-- 1 Usuario 197121  67576 Sep 19 09:56 opencode_run_002.log
+-rw-r--r-- 1 Usuario 197121  24933 Sep 19 09:56 opencode_run_003.log
+-rw-r--r-- 1 Usuario 197121  38052 Sep 19 09:56 opencode_run_004.log
+-rw-r--r-- 1 Usuario 197121  53849 Sep 19 09:56 opencode_run_005.log
+-rw-r--r-- 1 Usuario 197121  44948 Sep 19 09:56 opencode_run_006.log
+-rw-r--r-- 1 Usuario 197121  30767 Sep 19 09:56 opencode_run_007.log
+-rw-r--r-- 1 Usuario 197121  12765 Sep 19 09:56 opencode_run_008.log
+-rw-r--r-- 1 Usuario 197121  23465 Sep 19 09:56 opencode_run_009.log
+-rw-r--r-- 1 Usuario 197121 100602 Sep 19 09:57 opencode_run_010.log
+-rw-r--r-- 1 Usuario 197121  63280 Sep 19 12:17 opencode_run_011.log
+-rw-r--r-- 1 Usuario 197121  16575 Sep 19 13:29 opencode_run_012.log
+-rw-r--r-- 1 Usuario 197121    299 Sep 19 14:47 opencode_run_013_fase1.log
+-rw-r--r-- 1 Usuario 197121    345 Sep 19 14:47 opencode_run_014_fase2.log
+-rw-r--r-- 1 Usuario 197121    295 Sep 19 14:47 opencode_run_015_fase3.log
+-rw-r--r-- 1 Usuario 197121   1274 Sep 19 09:57 requirements.txt
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 resultados
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 scripts
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:59 src
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:59 tests
+-rw-r--r-- 1 Usuario 197121   3092 Sep 19 09:57 validacion_elsayed2013.json
+__pycache__
+b0_confirma_motor_real.py
+b0_scan_cementera.py
+fase1_profesor
+fase2_libre
+fase3_real
+test_b0_scan.py
+b0_confirmacion_motor_real.json
+b0_scan_cementera.csv
+fase1_profesor
+fase2_libre
+fase3_real
+figuras
+[0m
+[0m✱ [0mGlob "src/restricciones/*.py"[90m 7 matches[0m
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead src/restricciones/__init__.py
+[0m→ [0mRead src/ui_helpers.py
+[0m→ [0mRead src/restricciones/clasificacion.py
+[0m→ [0mRead src/restricciones/modelos.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/sensitivity.py
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_scan_cementera.py
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_confirma_motor_real.py
+[0m✱ [0mGlob "src/properties/*.py"[90m 10 matches[0m
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/teqp_adapter.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py[90m [limit=80][0m
+[0m
+[0m$ [0mls -la scripts/barridos_2026-09-19/fase2_libre/ resultados/barridos_2026-09-19/fase2_libre/ 2>/dev/null; echo "---"; ls scripts/barridos_2026-09-19/fase1_profesor/ scripts/barridos_2026-09-19/fase3_real/ 2>/dev/null
+resultados/barridos_2026-09-19/fase2_libre/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 ..
+
+scripts/barridos_2026-09-19/fase2_libre/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 ..
+---
+scripts/barridos_2026-09-19/fase1_profesor/:
+tamb_profesor.csv
+
+scripts/barridos_2026-09-19/fase3_real/:
+[0m
+[0m→ [0mRead src/restricciones/operativos.py
+[0m→ [0mRead src/restricciones/segunda_ley.py
+[0m→ [0mRead src/restricciones/numericos.py
+[0m→ [0mRead src/restricciones/composicion.py
+Now let me check the environment and the rest of the key infrastructure:
+[0m→ [0mRead src/_cycle_loops.py
+[0m
+[0m$ [0mpython -c "import sys; print(sys.version)"; python -c "import teqp; print('teqp OK')"; python -c "import iapws; print('iapws OK')"; python -c "import pandas, scipy; print('pandas/scipy OK')"
+3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+teqp OK
+iapws OK
+pandas/scipy OK
+[0m
+I have a full picture of the codebase now. Let me quickly time a single point with both backends to size the exploration grid:
+[0m$ [0mpython - <<'PY'
+import sys, time
+sys.path.insert(0, ".")
+from src.cycle_solver import resolver_ciclo, CicloNoConvergeError
+from src.properties.teqp_adapter import TeqpAdapter
+from src.properties.adapter import PropertyRangeError
+from src.restricciones import evaluar_ciclo
+
+D = dict(P_alta=3000.0, P_baja=400.0, x_b=0.50, T_fuente=470.0,
+         T_sumidero=300.032917, m_b=1.0, eta_t=0.85, eta_p=0.75,
+         eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80)
+
+t0 = time.perf_counter()
+bk = TeqpAdapter(x=0.5)
+try:
+    res = resolver_ciclo(bk, **D)
+    conv = True
+except (CicloNoConvergeError, PropertyRangeError, Exception) as e:
+    conv = False
+    msg = str(e)[:200]
+dt = time.perf_counter() - t0
+print(f"Teqp default point: convergio={conv} tiempo={dt:.2f}s")
+if conv:
+    val = evaluar_ciclo(bk, res, **D)
+    print("clasificacion:", val.clasificacion.value)
+    print("eta:", res["eta"], "Wnet:", res["Wnet"])
+    print("---- fallas:")
+    for f in val.fallas:
+        print(" ", f.codigo, "|", f.clasificacion.value, "|", f.mensaje, "| medido=", f.valor_medido, "| esperado=", f.valor_esperado)
+    e = res["estados"]
+    print("T2=", e["e2"].T, "q2=", e["e2"].q if hasattr(e['e2'],'q') else None, "fase2=", e["e2"].fase)
+    print("T4=", e["e4"].T, "q4(fase_de)=", bk.fase_de(400.0, e["e4"].T, e["e4"].x)[1])
+    print("x3,x5=", e["e3"].x, e["e5"].x)
+    print("T9=", e["e9"].T, "T10=", e["e10"].T, "T5=", e["e5"].T, "T1=", e["e1"].T)
+    print("mensaje:", val.mensaje_reporte()[:400])
+else:
+    print("msg:", msg)
+PY
+Teqp default point: convergio=True tiempo=70.85s
+Traceback (most recent call last):
+  File "<stdin>", line 23, in <module>
+TypeError: evaluar_ciclo() got an unexpected keyword argument 'eta_t'
+[0m
+The default point **converges** with TeqpAdapter (took 70s, likely cold start). Let me measure warm timing and compare with the real motor, then check the classification properly:
+[0m$ [0mpython - <<'PY'
+import sys, time
+sys.path.insert(0, ".")
+from src.cycle_solver import resolver_ciclo, CicloNoConvergeError
+from src.properties.teqp_adapter import TeqpAdapter
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.properties.adapter import PropertyRangeError
+from src.restricciones import evaluar_ciclo
+
+D = dict(P_alta=3000.0, P_baja=400.0, x_b=0.50, T_fuente=470.0,
+         T_sumidero=300.032917, m_b=1.0, eta_t=0.85, eta_p=0.75,
+         eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80)
+
+# warm run 1
+bk = TeqpAdapter(x=0.5)
+t0 = time.perf_counter()
+res = resolver_ciclo(bk, **D)
+print(f"Teqp run#2: {time.perf_counter()-t0:.2f}s")
+t0 = time.perf_counter()
+res = resolver_ciclo(bk, **D)
+print(f"Teqp run#3: {time.perf_counter()-t0:.2f}s")
+
+val = evaluar_ciclo(bk, res, P_alta=D["P_alta"], P_baja=D["P_baja"], T_fuente=D["T_fuente"],
+                    T_sumidero=D["T_sumidero"], x_b=D["x_b"], m_b=D["m_b"],
+                    eps_hrvg=D["eps_hrvg"], eps_reg=D["eps_reg"], eps_cond=D["eps_cond"])
+print("clasificacion:", val.clasificacion.value)
+print("eta:", res["eta"], "Wnet:", res["Wnet"])
+print("---- fallas:")
+for f in val.fallas:
+    print(" ", f.codigo, "|", f.clasificacion.value, "|", f.mensaje, "| medido=", f.valor_medido, "| esperado=", f.valor_esperado)
+e = res["estados"]
+_, q4 = bk.fase_de(400.0, e["e4"].T, e["e4"].x)
+_, q2 = bk.fase_de(3000.0, e["e2"].T, 0.5)
+print(f"T2={e['e2'].T:.2f} q2={q2:.4f} | T3={e['e3'].T:.2f} T4={e['e4'].T:.2f} q4={q4:.4f}")
+print(f"x3={e['e3'].x:.4f} x5={e['e5'].x:.4f} | T1={e['e1'].T:.2f} T5={e['e5'].T:.2f} T6={e['e6'].T:.2f} T10={e['e10'].T:.2f} T9={e['e9'].T:.2f} T8={e['e8'].T:.2f}")
+print(f"T_sat_L(P_baja,x_b)={bk.bubble_point(400.0,0.5):.2f}")
+print("N2 residuo:", abs(res["Qi"]-res["Qout"]-res["Wnet"]), " Qi=", res["Qi"], " Wt=", res["Wt"], " Wp=", res["Wp"])
+print("mensaje:", val.mensaje_reporte()[:600])
+PY
+Teqp run#2: 64.93s
+Teqp run#3: 76.64s
+clasificacion: CORREGIBLE
+eta: 0.13168618686411063 Wnet: 201.65133225092353
+---- fallas:
+  O2 | CORREGIBLE | succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) | medido= 320.92027058819014 | esperado= <= 304.537 K
+T2=464.07 q2=0.8074 | T3=464.07 T4=385.43 q4=0.9012
+x3=0.5821 x5=0.1559 | T1=386.52 T5=464.07 T6=399.82 T10=377.40 T9=320.14 T8=384.95
+T_sat_L(P_baja,x_b)=304.54
+N2 residuo: 3.668963569225525e-05  Qi= 1531.3020830272137  Wt= 242.48601711289325  Wp= 40.83468486196972
+mensaje: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=320.92027058819014, esperado=<= 304.537 K). Causa probable: subenfriamiento insuficiente a la salida del condensador bajo el peor caso ambiental. Sugerencia: aumentar eps_cond o el margen de subenfriamiento de dise�o del condensador
+[0m
+[0m# [0mTodos
+[•] Script 01: punto default CAMPOS_CICLO + escaneo focalizado eps_cond x P_baja (TeqpAdapter), registra busqueda_libre.csv
+[ ] Si no hay KALINA: script 02 refinamiento (variables adicionales según fallas observadas)
+[ ] Confirmar mejor(es) candidato(s) con motor real AmmoniaWaterAdapter -> confirmacion_motor_real.json
+[ ] Escribir BASE_LIBRE.md (reporte en español)
+[0m
+**Key finding:** The default `CAMPOS_CICLO` point converges with TeqpAdapter and is classified **CORREGIBLE** — the *only* failure is **O2 (cavitación)**: with the design floor T_amb=303.55 K, the condenser outlet re-solved at that sink (T9=320.92 K) exceeds the bubble point T_sat_L(400 kPa, x=0.5)=304.54 K. The suggested lever is `eps_cond`. Also notable: O1 passes but with only 0.0012 margin (q4=0.9012).
+
+Timing: ~70 s/point warm with TeqpAdapter → I must keep the exploration surgical and parallelize (like b0 did). Let me set up a todo list and write script 01 (default point + focused scan on eps_cond × P_baja):
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/01_punto_default_y_scan.py
+Wrote file successfully.
+[0m
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/01_punto_default_y_scan.py
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\01_punto_default_y_scan.py", line 34, in <module>
+    from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+ModuleNotFoundError: No module named 'src'
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/fase2_libre/01_punto_default_y_scan.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\01_punto_default_y_scan.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\01_punto_default_y_scan.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\fase2_libre\01_punto_default_y_scan.py
+@@ -27,9 +27,9 @@
+ from pathlib import Path
+ 
+ import pandas as pd
+ 
+-_RAIZ = Path(__file__).resolve().parents[2]  # script vive en scripts/barridos_2026-09-19/fase2_libre/
++_RAIZ = Path(__file__).resolve().parents[3]  # ruta: scripts/barridos_2026-09-19/fase2_libre/
+ sys.path.insert(0, str(_RAIZ))
+ 
+ from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+ from src.properties.adapter import PropertyRangeError
+
+[0m
+Path depth bug — my script is one level deeper than the b0 scripts. Fix:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/01_punto_default_y_scan.py
+Etapa 1: 10 puntos (default + eps_cond x P_baja) con 4 workers...
+  4/10 puntos (128 s)
+  8/10 puntos (197 s)
+
+Puntos evaluados: 10 en 227.3 s (22.73 s/punto)
+clasificacion
+CORREGIBLE      6
+KALINA          3
+NO_CONVERGIO    1
+Convergencias: 9
+
+CANDIDATOS KALINA encontrados:
+  P_baja=450.0 eps_cond=0.99 eta=0.12275 Wnet=218.77 kW
+  P_baja=500.0 eps_cond=0.98 eta=0.11739 Wnet=207.90 kW
+  P_baja=500.0 eps_cond=0.99 eta=0.11651 Wnet=207.63 kW
+
+CSV guardado en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\busqueda_libre.csv
+[0m
+**Success — 3 KALINA candidates found with TeqpAdapter.** Let me inspect the full CSV:
+[0m$ [0mpython - <<'PY'
+import pandas as pd
+df = pd.read_csv("resultados/barridos_2026-09-19/fase2_libre/busqueda_libre.csv")
+pd.set_option("display.width", 250)
+pd.set_option("display.max_colwidth", 130)
+cols = ["P_baja","eps_cond","convergio","clasificacion","eta","Wnet"]
+print(df[cols].to_string(index=False))
+print()
+for _, r in df.iterrows():
+    print(f"P_baja={r['P_baja']:.0f} eps_cond={r['eps_cond']:.2f} -> {r['clasificacion']}: {r['mensaje'][:200]}")
+    print()
+PY
+P_baja  eps_cond  convergio clasificacion      eta       Wnet
+  400.0      0.98      False  NO_CONVERGIO      NaN        NaN
+  400.0      0.99       True    CORREGIBLE 0.129659 231.085149
+  400.0      0.95       True    CORREGIBLE 0.133005 231.014066
+  450.0      0.95       True    CORREGIBLE 0.126237 219.264320
+  400.0      0.80       True    CORREGIBLE 0.131686 201.651332
+  450.0      0.99       True        KALINA 0.122754 218.773150
+  450.0      0.98       True    CORREGIBLE 0.123682 219.055743
+  500.0      0.95       True    CORREGIBLE 0.120020 208.455037
+  500.0      0.98       True        KALINA 0.117392 207.901309
+  500.0      0.99       True        KALINA 0.116506 207.631530
+
+P_baja=400 eps_cond=0.98 -> NO_CONVERGIO: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=295.34 K, P=4e+05 Pa, x=0.1390
+
+P_baja=400 eps_cond=0.99 -> CORREGIBLE: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=304.9856032136886, esperado=<= 304.537 K). Causa probable: subenfriamiento insuficiente a la sal
+
+P_baja=400 eps_cond=0.95 -> CORREGIBLE: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=307.7086994636182, esperado=<= 304.537 K). Causa probable: subenfriamiento insuficiente a la sal
+
+P_baja=450 eps_cond=0.95 -> CORREGIBLE: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=310.63248375052973, esperado=<= 308.147 K). Causa probable: subenfriamiento insuficiente a la sa
+
+P_baja=400 eps_cond=0.80 -> CORREGIBLE: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=320.92027058819014, esperado=<= 304.537 K). Causa probable: subenfriamiento insuficiente a la sa
+
+P_baja=450 eps_cond=0.99 -> KALINA: KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+
+P_baja=450 eps_cond=0.98 -> CORREGIBLE: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=308.5617200650265, esperado=<= 308.147 K). Causa probable: subenfriamiento insuficiente a la sal
+
+P_baja=500 eps_cond=0.95 -> CORREGIBLE: [CORREGIBLE] O2: succi�n de la bomba bif�sica bajo el peor caso de T_amb (riesgo de cavitaci�n) (medido=313.3140034638174, esperado=<= 311.467 K). Causa probable: subenfriamiento insuficiente a la sal
+
+P_baja=500 eps_cond=0.98 -> KALINA: KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+
+P_baja=500 eps_cond=0.99 -> KALINA: KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/02_confirmacion_motor_real.py
+Wrote file successfully.
+[0m
+The picture is crystal clear: **O2 (cavitación) was the only blocker**, and raising P_baja (raises T_sat_L) + eps_cond (more subcooling) fixes it. Now Step 3 — confirm the 3 KALINA candidates with the real motor (`AmmoniaWaterAdapter`):
+[0m$ [0mpython scripts/barridos_2026-09-19/fase2_libre/02_confirmacion_motor_real.py
+Confirmaci�n con motor real (AmmoniaWaterAdapter, iapws G4-01)...
+
+-- P_baja=450 kPa, eps_cond=0.99 --
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+  convergio=True clasificacion=KALINA (562.4 s)
+  mensaje: KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+  eta=0.12276  Wnet=218.784 kW
+
+-- P_baja=500 kPa, eps_cond=0.98 --
+  convergio=False clasificacion=NO_CONVERGIO (412.1 s)
+  mensaje: h(P, s, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONTEXT.md, IAPWS G4-01). Detalle del motor: equilibrio no resoluble en T=374.1076 K, P=0.5 MPa, w=0.5928
+
+-- P_baja=500 kPa, eps_cond=0.99 --
+
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 1200000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+[0m
+Critical results:
+- **Candidato (P_baja=450, eps_cond=0.99) → KALINA confirmado con motor real** (η=0.12276, Wnet=218.78 kW — coincide con Teqp: 0.12275/218.77). 
+- (500, 0.98) → **NO_CONVERGIO** en el motor real: el motor iapws no cubre un estado cerca del borde de la campana (discrepancia Teqp vs real, ya conocida).
+- (500, 0.99) quedó cortado por el timeout (el motor real tarda ~7-9 min/punto).
+
+Re-lanzo solo el tercer punto con timeout amplio:
+[0m$ [0mpython - <<'PY'
+import sys, time, json
+sys.path.insert(0, ".")
+from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+from src.properties.adapter import PropertyRangeError
+from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
+from src.restricciones import evaluar_ciclo
+
+CASO = dict(T_fuente=470.0, T_sumidero=300.032917, P_alta=3000.0, x_b=0.50,
+            m_b=1.0, eta_t=0.85, eta_p=0.75, eps_hrvg=0.85, eps_reg=0.75)
+pb, eps_c = 500.0, 0.99
+combo = dict(CASO, P_baja=pb, eps_cond=eps_c)
+backend = AmmoniaWaterAdapter(x=0.50)
+t0 = time.perf_counter()
+print(f"-- P_baja={pb:.0f} kPa, eps_cond={eps_c:.2f} --", flush=True)
+try:
+    res = resolver_ciclo(backend, **combo)
+    conv = True
+except (CicloNoConvergeError, PropertyRangeError) as exc:
+    conv = False
+    msg = str(exc)
+if conv:
+    val = evaluar_ciclo(backend, res, P_alta=CASO["P_alta"], P_baja=pb,
+                        T_fuente=CASO["T_fuente"], T_sumidero=CASO["T_sumidero"],
+                        x_b=CASO["x_b"], m_b=CASO["m_b"],
+                        eps_hrvg=CASO["eps_hrvg"], eps_reg=CASO["eps_reg"],
+                        eps_cond=eps_c)
+    r = dict(P_baja=pb, eps_cond=eps_c, convergio=True,
+             clasificacion=val.clasificacion.value, eta=res["eta"],
+             Wnet=res["Wnet"], mensaje=val.mensaje_reporte(),
+             tiempo_s=round(time.perf_counter()-t0, 1))
+else:
+    r = dict(P_baja=pb, eps_cond=eps_c, convergio=False,
+             clasificacion="NO_CONVERGIO", mensaje=msg,
+             tiempo_s=round(time.perf_counter()-t0, 1))
+print(json.dumps(r, ensure_ascii=False, indent=2))
+PY
+-- P_baja=500 kPa, eps_cond=0.99 --
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+  KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+{
+  "P_baja": 500.0,
+  "eps_cond": 0.99,
+  "convergio": true,
+  "clasificacion": "KALINA",
+  "eta": 0.11651275083486785,
+  "Wnet": 207.64180428518603,
+  "mensaje": "KALINA: r�gimen Kalina genuino y admisible, sin fallas.",
+  "tiempo_s": 569.8
+}
+[0m
+[0m← [0mWrite resultados/barridos_2026-09-19/fase2_libre/confirmacion_motor_real.json
+Wrote file successfully.
+[0m
+All 3 real-motor runs are done: **(450, 0.99) KALINA**, (500, 0.98) NO_CONVERGIO, **(500, 0.99) KALINA**. Now I'll write the final `confirmacion_motor_real.json` (the earlier run was killed by timeout before saving):
+[0m← [0mWrite resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE.md
+Wrote file successfully.
+[0m
+Now the report `BASE_LIBRE.md`:
+[0m→ [0mRead scripts/barridos_2026-09-19/test_b0_scan.py
+Let me verify the deliverables, check git status (make sure I touched nothing else), and review the existing test pattern for these scripts:
+[0m
+[0m$ [0mgit status --short && echo "--- CSV ---" && python -c "
+import pandas as pd
+df = pd.read_csv('resultados/barridos_2026-09-19/fase2_libre/busqueda_libre.csv')
+print('columnas:', list(df.columns))
+print('filas:', len(df))
+print(df[['P_baja','eps_cond','convergio','clasificacion']].to_string(index=False))
+"
+M TASK_CONTEXT.md
+?? TASK_CONTEXT_fase1_profesor.md
+?? TASK_CONTEXT_fase2_libre.md
+?? TASK_CONTEXT_fase3_real.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? opencode_run_013_fase1.log
+?? opencode_run_014_fase2.log
+?? opencode_run_015_fase3.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+--- CSV ---
+columnas: ['T_fuente', 'T_sumidero', 'P_alta', 'P_baja', 'x_b', 'm_b', 'eta_t', 'eta_p', 'eps_hrvg', 'eps_reg', 'eps_cond', 'convergio', 'clasificacion', 'eta', 'Wnet', 'mensaje']
+filas: 10
+ P_baja  eps_cond  convergio clasificacion
+  400.0      0.98      False  NO_CONVERGIO
+  400.0      0.99       True    CORREGIBLE
+  400.0      0.95       True    CORREGIBLE
+  450.0      0.95       True    CORREGIBLE
+  400.0      0.80       True    CORREGIBLE
+  450.0      0.99       True        KALINA
+  450.0      0.98       True    CORREGIBLE
+  500.0      0.95       True    CORREGIBLE
+  500.0      0.98       True        KALINA
+  500.0      0.99       True        KALINA
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py
+Wrote file successfully.
+[0m
+The deliverables are in place and git status shows I only touched my own folders (the `resultados/` and `scripts/barridos_2026-09-19/` untracked trees are the parallel phases' shared area — my files are confined to `fase2_libre/`). Let me add a small pytest that covers the deterministic logic of my scripts (following the `test_b0_scan.py` pattern — no slow solver runs):
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py -v 2>&1 | tail -20
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 4 items
+
+scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py::test_combinaciones_etapa1_vig�simo_por_defecto PASSED [ 25%]
+scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py::test_combinaciones_etapa1_dentro_de_campos_ciclo PASSED [ 50%]
+scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py::test_esquema_columnas_igual_a_tabla_barrido PASSED [ 75%]
+scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py::test_csv_registrado_tiene_esquema_y_10_puntos PASSED [100%]
+
+============================== 4 passed in 1.99s ==============================
+[0m
+All tests pass. Let me fix two small typos I noticed in the report:
+[0m✱ [0mGrep "LI BRE|lado\.\.\."[90m in resultados/barridos_2026-09-19/fase2_libre · 2 matches[0m
+[0m
+[0m← [0mEdit resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE.md
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE.md
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE.md
+@@ -2,9 +2,9 @@
+ 
+ **Task:** `2026-09-19-fase2-busqueda-libre` — Fase 2 de 3 (paralelas), rama
+ `test/vv-strategy`.
+ 
+-**Naturaleza del ejercicio:** búsqueda LI BRE del modelo, **sin anclaje a
++**Naturaleza del ejercicio:** búsqueda libre del modelo, **sin anclaje a
+ ningún caso real** (no confundir con la Fase 3, que sí debe ser realista).
+ Sin restricción de realismo industrial: el objetivo era demostrar que el
+ solver del repo puede producir al menos un punto que `evaluar_ciclo` clasifique
+ `KALINA`, como punto de partida para barridos de sensibilidad y para la Fase 3.
+
+[0m
+[0m← [0mEdit resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE.md
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE.md
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase2_libre\BASE_LIBRE.md
+@@ -111,9 +111,9 @@
+ 
+ | P_baja / eps_cond | Teqp | Motor real | Nota |
+ |---|---|---|---|
+ | 450 / 0.99 | KALINA (η=0.12275) | **KALINA** (η=0.12276, Wnet=218.78) | concordancia casi exacta |
+-| 500 / 0.98 | KALINA (η=0.11739) | **NO_CONVERGIO** | discrepancia: el motor iapws no cubre un estado del lado... del ciclo (equilibrio no resoluble T=374.1 K, P=0.5 MPa, w=0.593) — borde de campana |
++| 500 / 0.98 | KALINA (η=0.11739) | **NO_CONVERGIO** | discrepancia: el motor iapws no cubre un estado del ciclo (equilibrio no resoluble T=374.1 K, P=0.5 MPa, w=0.593) — borde de campana |
+ | 500 / 0.99 | KALINA (η=0.11651) | **KALINA** (η=0.11651, Wnet=207.64) | concordancia casi exacta |
+ 
+ La discrepancia del punto 500/0.98 es la misma clase de divergencia Teqp vs
+ real ya conocida en la B0 (cobertura del motor portado cerca de los bordes
+
+[0m
+Final verification — run the full test suite to confirm nothing is broken (I only added files, but a global green run is the honest check):
+[0m$ [0mpython -m pytest tests/ scripts/barridos_2026-09-19/ --ignore=scripts/barridos_2026-09-19/fase1_profesor -q 2>&1 | tail -15
+prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_teqp_adapter.py::test_bubble_point_coincide_con_el_motor_real
+  D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_validacion_elsayed2013.py::test_eta_dentro_de_5pct_del_caso_elsayed2013
+  D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+112 passed, 1 skipped, 9 warnings in 456.35s (0:07:36)
+[0m
+[0m# [0mTodos
+[✓] Script 01: punto default CAMPOS_CICLO + escaneo focalizado eps_cond x P_baja (TeqpAdapter), registra busqueda_libre.csv
+[✓] Si no hay KALINA: script 02 refinamiento (variables adicionales según fallas observadas)
+[✓] Confirmar mejor(es) candidato(s) con motor real AmmoniaWaterAdapter -> confirmacion_motor_real.json
+[✓] Escribir BASE_LIBRE.md (reporte en español)
+[0m
+Todo green: **112 passed, 1 skipped** (suite completa). Marking todos done:
+STATUS: done
+
+SUMMARY: Encontré y confirmé con el motor real una base del ciclo que `evaluar_ciclo` clasifica como **KALINA**, partiendo del punto por defecto exacto de `CAMPOS_CICLO` (que converge y solo falla el criterio O2 de cavitación). La base final es (P_alta=3000 kPa, P_baja=450 kPa, x_b=0.50, T_fuente=470.0 K, T_sumidero=300.032917 K, m_b=1.0, eta_t=0.85, eta_p=0.75, eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.99) con η=0.12276 y Wnet=218.78 kW, confirmada con `AmmoniaWaterAdapter`. Se confirmó además un segundo candidato (500/0.99). Todo el trabajo quedó confinado a `scripts/barridos_2026-09-19/fase2_libre/` y `resultados/barridos_2026-09-19/fase2_libre/`.
+
+FILES_CHANGED:
+- `scripts/barridos_2026-09-19/fase2_libre/01_punto_default_y_scan.py` (creado, 187 líneas; ≤200 OK)
+- `scripts/barridos_2026-09-19/fase2_libre/02_confirmacion_motor_real.py` (creado, 99 líneas)
+- `scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py` (creado, 78 líneas)
+- `resultados/barridos_2026-09-19/fase2_libre/busqueda_libre.csv` (creado, 10 puntos, esquema = `tabla_barrido`)
+- `resultados/barridos_2026-09-19/fase2_libre/confirmacion_motor_real.json` (creado, 3 puntos con motor real)
+- `resultados/barridos_2026-09-19/fase2_libre/BASE_LIBRE.md` (creado, reporte en español)
+
+TESTS: `pytest scripts/barridos_2026-09-19/fase2_libre/test_fase2_libre.py -v` → **4 passed** (combinaciones etapa 1 son las 11 variables dentro de `CAMPOS_CICLO` y empiezan por el default exacto; esquema de columnas idéntico a `tabla_barrido`; CSV registrado con 10 filas y clasificaciones válidas). Luego suite completa: `pytest tests/ scripts/barridos_2026-09-19/ --ignore=.../fase1_profesor -q` → **112 passed, 1 skipped** (sin tocar `src/`, nada roto).
+
+RESULTS:
+- Punto default de `CAMPOS_CICLO` (T_fuente=470.0 K, P_alta=3000, P_baja=400, x_b=0.50, eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80): **converge** (η=0.13169, Wnet=201.65 kW) y clasifica **CORREGIBLE** — única falla **O2 cavitación**: T9=320.92 K a T_amb de diseño 303.55 K vs bubble point 304.54 K.
+- Escaneo focalizado TeqpAdapter (10 puntos, ~70 s/pt, 4 workers): 9 convergen, 3 KALINA → (450, 0.99) η=0.12275; (500, 0.98) η=0.11739; (500, 0.99) η=0.11651.
+- Confirmación motor real (3 puntos, ~7-9 min/pt): **(450/0.99) → KALINA** (η=0.12276, Wnet=218.78); (500/0.98) → **NO_CONVERGIO** (iapws no cubre T=374.1 K, P=0.5 MPa, w=0.593 — discrepancia Teqp vs real conocida, borde de campana); **(500/0.99) → KALINA** (η=0.11651, Wnet=207.64).
+- Base final vs profesor: T_fuente 623.15→470.0 K (necesario: la campana a 3 MPa es 338.9-507.0 K y el separador flash no reparte fase única; también evita el sobrecalentamiento de la sonda del bracket), P_baja 400→450 kPa (sube T_sat_L 304.5→308.1 K, relaja O2), eps_cond 0.80→0.99 (subenfriamiento suficiente frente al piso de diseño 303.55 K). El resto de variables se quedó en los defaults de `CONTEXT.md`.
+
+ERRORS: ninguno propio. Se documentan como hallazgo honesto: el candidato Teqp (500, 0.98) no converge con el motor real (cobertura del motor iapws cerca del borde del dominio), y el punto (400, 0.98) no converge ni en Teqp (equilibrio no resoluble en el lado frío, T=295.34 K, P=400 kPa, x=0.139).
+
+ASSUMPTIONS: ninguno nuevo de ingeniería — todos los valores explorados dentro de `CAMPOS_CICLO`; no se inventaron fórmulas ni límites. El reporte deja explícito que la base es un punto del modelo sin realismo industrial (eso lo hace la Fase 3 paralela) y que eps_cond=0.99 está en el borde superior del rango de la UI.
+
+UNRESOLVED: ninguno. (No se requirió consultar fuentes externas ni datos fuera del repo.)
+
+RECOMMENDATIONS: (1) Que la Fase 3 ancle esta base (450/0.99) o la de (500/0.99) como punto de partida para el caso real, bajando eps_cond hacia valores realistas y midiendo qué criterios ceden (margen de O1 es escaso: q4=0.9012 contra umbral 0.90). (2) Diseñar barridos de sensibilidad desde esta base vigilando primero O1 y O2 (los dos criterios con margen más fino). (3) Para barridos masivos, TeqpAdapter es fiable lejos del borde de campana (concordancia ~1e-5 en η con el motor real), pero los puntos cercanos al borde deben confirmarse con el motor real antes de reportarlos como KALINA.
