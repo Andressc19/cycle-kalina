@@ -44,8 +44,8 @@ _PRIORIDAD = {
 
 def evaluar_ciclo(backend, resultado: dict, *, P_alta: float, P_baja: float,
                   T_fuente: float, T_sumidero: float, x_b: float, m_b: float,
-                  eps_hrvg: float, eps_reg: float, eps_cond: float
-                  ) -> ResultadoValidacion:
+                  eps_hrvg: float, eps_reg: float, eps_cond: float,
+                  T_amb_diseno: float = 303.55) -> ResultadoValidacion:
     """Corre los 17 criterios implementados sobre un punto ya resuelto.
 
     ``resultado`` es el dict que devuelve `resolver_ciclo` (estados + energías).
@@ -54,6 +54,11 @@ def evaluar_ciclo(backend, resultado: dict, *, P_alta: float, P_baja: float,
     clasificación final (la más severa entre todas las fallas encontradas, o
     KALINA si no hay ninguna) y la lista completa de fallas, para no perder
     trazabilidad.
+
+    ``T_amb_diseno`` es el piso de diseño del criterio O2 (cavitación) en K:
+    se propaga a `verificar_operativos`, que evalúa el condensador contra
+    `max(T_sumidero, T_amb_diseno)`. Default 303.55 K (decisión del vault);
+    configurable y retrocompatible para quien no lo pase.
     """
     fallas: list[Falla] = []
 
@@ -66,7 +71,8 @@ def evaluar_ciclo(backend, resultado: dict, *, P_alta: float, P_baja: float,
         eps_hrvg=eps_hrvg, eps_reg=eps_reg, eps_cond=eps_cond))
     fallas.extend(verificar_operativos(
         resultado, backend, P_alta=P_alta, P_baja=P_baja,
-        T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eps_cond=eps_cond))
+        T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eps_cond=eps_cond,
+        T_amb_diseno=T_amb_diseno))
     fallas.extend(verificar_composicion(resultado, x_b))
 
     if not fallas:

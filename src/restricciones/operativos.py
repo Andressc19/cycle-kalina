@@ -5,16 +5,18 @@ vault (evaluaba entradas, no la solución convergida; redundante con O3) — no
 se implementa aquí, es validación de entrada. O6/CD (rocío ácido, cierre
 declarado) no aplican: requieren C_g finito, no implementado en este repo.
 
-O2 se evalúa con un T_amb de diseño de al menos 30.4 °C (margen de diseño
-conservador — decisión explícita del vault, "no la media"): se re-resuelve
-el condensador con `max(T_sumidero_de_la_corrida, 30.4 °C)` a partir del
-mismo estado 8 ya convergido, sin re-resolver todo el ciclo (estado 8 no
-depende de T_sumidero). El máximo es necesario porque, si un barrido explora
-un T_sumidero por encima de 30.4 °C, evaluar solo contra el fijo
-subestimaría el riesgo real de cavitación en ese punto — 30.4 °C es un
-PISO de diseño, no un techo. Etiqueta CORREGIBLE, no INVIABLE (decisión del
-usuario: es una falla operativa evitable ajustando subenfriamiento, no una
-imposibilidad física).
+O2 se evalúa contra un T_amb de diseño de al menos 30.4 °C por defecto
+(margen de diseño conservador — decisión explícita del vault, "no la media").
+Ese piso es el parámetro configurable `T_amb_diseno` de `verificar_operativos`
+(default 303.55 K = 30.4 °C, expuesto también en la UI de la app): se
+re-resuelve el condensador con `max(T_sumidero_de_la_corrida, T_amb_diseno)`
+a partir del mismo estado 8 ya convergido, sin re-resolver todo el ciclo
+(estado 8 no depende de T_sumidero). El máximo es necesario porque, si un
+barrido explora un T_sumidero por encima del piso, evaluar solo contra el
+fijo subestimaría el riesgo real de cavitación en ese punto — el piso es un
+mínimo de diseño, no un techo. Etiqueta CORREGIBLE, no INVIABLE (decisión
+del usuario: es una falla operativa evitable ajustando subenfriamiento, no
+una imposibilidad física).
 """
 
 from __future__ import annotations
@@ -26,12 +28,19 @@ __all__ = ["verificar_operativos"]
 
 DQ = 1e-3               # margen del criterio O5 (mismo valor que el motor: ver
                         # `_kalina_flash.py::DQ`, "margen del criterio O5")
-T_AMB_CAVITACION = 303.55  # K = 30.4 degC, PISO de diseño (vault)
 
 
 def verificar_operativos(resultado: dict, backend, *, P_alta: float,
                          P_baja: float, T_sumidero: float, x_b: float,
-                         m_b: float, eps_cond: float) -> list[Falla]:
+                         m_b: float, eps_cond: float,
+                         T_amb_diseno: float = 303.55) -> list[Falla]:
+    """Criterios O1, O2, O3 y O5 sobre un punto ya resuelto.
+
+    ``T_amb_diseno`` es el PISO de diseño del criterio O2 (cavitación) en K:
+    el condensador se re-resuelve contra `max(T_sumidero, T_amb_diseno)`.
+    Default 303.55 K (30.4 °C, decisión del vault); configurable desde la UI
+    sin cambiar el comportamiento de quien no lo pase.
+    """
     fallas: list[Falla] = []
     e = resultado["estados"]
 
@@ -51,8 +60,8 @@ def verificar_operativos(resultado: dict, backend, *, P_alta: float,
                         "las tablas",
         ))
 
-    # O2 — cavitación de bomba, contra el peor caso: max(T_sumidero, T_amb piso)
-    T_amb_evaluar = max(T_sumidero, T_AMB_CAVITACION)
+    # O2 — cavitación de bomba, contra el peor caso: max(T_sumidero, T_amb_diseno)
+    T_amb_evaluar = max(T_sumidero, T_amb_diseno)
     estado9_amb, _ = condensador.resolver(
         e["e8"], backend, T_sumidero=T_amb_evaluar, eps=eps_cond, m=m_b)
     T_sat_L = backend.bubble_point(P_baja, x_b)
