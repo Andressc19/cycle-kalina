@@ -18,6 +18,7 @@ _MODULOS_NUEVOS = [
     "src/restricciones/composicion.py",
     "src/restricciones/clasificacion.py",
     "src/sensitivity.py",
+    "src/ui_campos.py",
     "tests/test_restricciones.py",
     "tests/test_sensitivity.py",
 ]

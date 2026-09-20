@@ -11,12 +11,13 @@ cada falla.
 from __future__ import annotations
 
 from dataclasses import replace
+import inspect
 
 import pytest
 
 from src.properties.adapter import PropertyBackend
 from src.restricciones import Clasificacion, evaluar_ciclo
-from src.restricciones.operativos import DQ, T_AMB_CAVITACION
+from src.restricciones.operativos import DQ, verificar_operativos
 from src.state import EstadoTermo
 
 
@@ -135,7 +136,9 @@ def test_o5_umbral_dq_es_el_margen_del_motor():
 
 
 def test_t_amb_cavitacion_es_30_4_c():
-    assert T_AMB_CAVITACION == pytest.approx(303.55)
+    """Piso de diseño O2 = 30.4 °C (default de T_amb_diseno, antes constante)."""
+    assert inspect.signature(verificar_operativos).parameters[
+        "T_amb_diseno"].default == pytest.approx(303.55)
 
 
 def test_o2_usa_el_peor_caso_entre_t_sumidero_y_t_amb_fijo(backend):
@@ -146,10 +149,10 @@ def test_o2_usa_el_peor_caso_entre_t_sumidero_y_t_amb_fijo(backend):
     # T_sumidero=340 K (66.85 degC) ya excede el piso de 303.55 K (30.4 degC)
     # en _PARAMS; comparamos contra recomputar el condensador manualmente.
     from src.components import condensador
-    from src.restricciones.operativos import T_AMB_CAVITACION
+    piso = inspect.signature(verificar_operativos).parameters["T_amb_diseno"].default
     e8 = resultado["estados"]["e8"]
     esperado_con_piso_fijo, _ = condensador.resolver(
-        e8, backend, T_sumidero=T_AMB_CAVITACION, eps=_PARAMS["eps_cond"],
+        e8, backend, T_sumidero=piso, eps=_PARAMS["eps_cond"],
         m=_PARAMS["m_b"])
     esperado_con_peor_caso, _ = condensador.resolver(
         e8, backend, T_sumidero=_PARAMS["T_sumidero"], eps=_PARAMS["eps_cond"],
@@ -172,3 +175,22 @@ def test_n2_no_marca_no_convergio_un_punto_bien_convergido():
 
     resultado = resolver_ciclo(_FB(), **_PARAMS_BASE)
     assert verificar_n2(resultado) is None
+
+
+def test_o2_responde_a_t_amb_diseno_configurable(backend):
+    """T_amb_diseno es configurable (default 303.55 K): un punto que cavita
+    con el default deja de cavitar al bajarlo a T_sumidero (290 K), y el
+    caso base sano empieza a cavitar si se sube el piso sobre el umbral."""
+    con_piso_alto = _resultado_base()
+    con_piso_alto["estados"]["e8"] = replace(
+        con_piso_alto["estados"]["e8"], h=555.4)
+    params = dict(_PARAMS, T_sumidero=290.0)
+    assert any(f.codigo == "O2" for f in evaluar_ciclo(
+        backend, con_piso_alto, **params).fallas)
+    assert not any(f.codigo == "O2" for f in evaluar_ciclo(
+        backend, con_piso_alto, **params, T_amb_diseno=290.0).fallas)
+    sano = _resultado_base()
+    assert not any(f.codigo == "O2" for f in evaluar_ciclo(
+        backend, sano, **_PARAMS).fallas)
+    assert any(f.codigo == "O2" for f in evaluar_ciclo(
+        backend, sano, **_PARAMS, T_amb_diseno=380.0).fallas)

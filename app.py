@@ -46,6 +46,11 @@ def _ejecutar(vals, backend_sel):
         "⏳ Resolviendo el ciclo con el motor NH3-H2O riguroso... esto puede "
         "tardar varios minutos. No cierres esta pestaña."
     )
+    # Margen de peor caso (2026-09-20-ui-tamb-diseno-visible): desmarcado → el
+    # valor efectivo de T_amb_diseno es T_sumidero (criterio O2 sin margen).
+    # Vale para el Excel (dict_parametros) y para evaluar_ciclo (más abajo).
+    if not vals.get("aplica_margen_o2", True):
+        vals["T_amb_diseno"] = vals["T_sumidero"]
     parametros = ui_helpers.dict_parametros(vals)
     try:
         with st.spinner(mensaje_espera):
@@ -63,7 +68,8 @@ def _ejecutar(vals, backend_sel):
                 backend, resultado, P_alta=vals["P_alta"], P_baja=vals["P_baja"],
                 T_fuente=vals["T_fuente"], T_sumidero=vals["T_sumidero"],
                 x_b=vals["x_b"], m_b=vals["m_b"], eps_hrvg=vals["eps_hrvg"],
-                eps_reg=vals["eps_reg"], eps_cond=vals["eps_cond"])
+                eps_reg=vals["eps_reg"], eps_cond=vals["eps_cond"],
+                T_amb_diseno=vals["T_amb_diseno"])
     except CicloNoConvergeError as exc:
         _limpiar_resultados()
         st.warning(
