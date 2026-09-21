@@ -3,14 +3,14 @@
 # El camino real de la mezcla NH3-H2O es el motor iapws portado
 # (src/properties/_nh3h2o_engine.py + _kalina_flash.py, ver CONTEXT.md).
 iapws==1.5.5
-numpy
-scipy
-pandas
-openpyxl
-matplotlib
-streamlit
-pytest
-pytest-cov
+numpy==2.5.3
+scipy==1.18.1
+pandas==3.0.6
+openpyxl==3.1.5
+matplotlib==3.11.2
+streamlit==1.64.0
+pytest==9.1.1
+pytest-cov==7.1.0
 
 # TeqpAdapter (src/properties/teqp_adapter.py): alternativa de rendimiento a
 # AmmoniaWaterAdapter, ~20x más rápida (ver TASK_CONTEXT 2026-09-18-validar-
