@@ -28,7 +28,7 @@ from .properties.adapter import PropertyRangeError
 from .restricciones import Clasificacion, evaluar_ciclo
 
 __all__ = ["Fijo", "Barrido", "generar_valores", "generar_combinaciones",
-          "ejecutar_barrido", "tabla_barrido"]
+          "ejecutar_barrido", "resolver_combinacion", "tabla_barrido"]
 
 VARIABLES_BARRIBLES = ("T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b",
                        "m_b", "eta_t", "eta_p", "eps_hrvg", "eps_reg",
@@ -85,6 +85,32 @@ def generar_combinaciones(variables: dict[str, Fijo | Barrido]
     return [dict(zip(claves, combo)) for combo in itertools.product(*listas)]
 
 
+def resolver_combinacion(backend, combo: dict[str, float]) -> dict:
+    """Resuelve un único punto del barrido (una fila de resultado).
+
+    Reutilizado por `ejecutar_barrido` y por la UI cuando resuelve la rejilla
+    en lotes (para poder cancelarla entre puntos). ``combo`` es una
+    combinación de las 11 variables de `VARIABLES_BARRIBLES`.
+    """
+    fila = dict(combo)
+    try:
+        resultado = resolver_ciclo(backend, **combo)
+    except (CicloNoConvergeError, PropertyRangeError) as exc:
+        fila.update(convergio=False,
+                    clasificacion=Clasificacion.NO_CONVERGIO.value,
+                    eta=None, Wnet=None, mensaje=str(exc))
+        return fila
+    validacion = evaluar_ciclo(
+        backend, resultado, P_alta=combo["P_alta"], P_baja=combo["P_baja"],
+        T_fuente=combo["T_fuente"], T_sumidero=combo["T_sumidero"],
+        x_b=combo["x_b"], m_b=combo["m_b"], eps_hrvg=combo["eps_hrvg"],
+        eps_reg=combo["eps_reg"], eps_cond=combo["eps_cond"])
+    fila.update(convergio=True, clasificacion=validacion.clasificacion.value,
+                eta=resultado["eta"], Wnet=resultado["Wnet"],
+                mensaje=validacion.mensaje_reporte())
+    return fila
+
+
 def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido]
                      ) -> list[dict]:
     """Resuelve el ciclo para cada combinación y clasifica cada punto.
@@ -102,27 +128,8 @@ def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido]
             f"faltan variables en el barrido: {sorted(faltantes)}; se "
             f"requieren las 11 de VARIABLES_BARRIBLES")
 
-    filas = []
-    for combo in generar_combinaciones(variables):
-        fila = dict(combo)
-        try:
-            resultado = resolver_ciclo(backend, **combo)
-        except (CicloNoConvergeError, PropertyRangeError) as exc:
-            fila.update(convergio=False,
-                       clasificacion=Clasificacion.NO_CONVERGIO.value,
-                       eta=None, Wnet=None, mensaje=str(exc))
-            filas.append(fila)
-            continue
-        validacion = evaluar_ciclo(
-            backend, resultado, P_alta=combo["P_alta"], P_baja=combo["P_baja"],
-            T_fuente=combo["T_fuente"], T_sumidero=combo["T_sumidero"],
-            x_b=combo["x_b"], m_b=combo["m_b"], eps_hrvg=combo["eps_hrvg"],
-            eps_reg=combo["eps_reg"], eps_cond=combo["eps_cond"])
-        fila.update(convergio=True, clasificacion=validacion.clasificacion.value,
-                   eta=resultado["eta"], Wnet=resultado["Wnet"],
-                   mensaje=validacion.mensaje_reporte())
-        filas.append(fila)
-    return filas
+    return [resolver_combinacion(backend, combo)
+            for combo in generar_combinaciones(variables)]
 
 
 def tabla_barrido(filas: list[dict]) -> pd.DataFrame:
