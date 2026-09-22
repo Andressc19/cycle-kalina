@@ -1,10 +1,11 @@
 # Tema visual de la UI del ciclo Kalina KSC-11.
-# Sobrio y académico: papel blanco, tinta oscura, serif y un azul acero
-# discreto como color primario. Sin modo oscuro ni ornamentos de marketing.
+# Dashboard moderno: sans-serif, neutros fríos (slate) y un teal profundo
+# como color primario. El pulido fino (tarjetas de métricas, botones,
+# sidebar, tabs) vive en `src/ui_estilo.py`.
 [theme]
 base = "light"
-primaryColor = "#1F4E79"
+primaryColor = "#0F766E"
 backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F5F3EE"
-textColor = "#1F2430"
-font = "serif"
+secondaryBackgroundColor = "#F1F5F9"
+textColor = "#0F172A"
+font = "sans-serif"

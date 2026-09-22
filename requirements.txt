@@ -8,7 +8,13 @@ scipy==1.18.1
 pandas==3.0.6
 openpyxl==3.1.5
 matplotlib==3.11.2
-streamlit==1.64.0
+streamlit==1.56.0
+# PyGWalker: explorador interactivo (drag-and-drop) de los DataFrames de
+# resultados. OJO — su integración con Streamlit usa la API interna
+# `streamlit.web.server.server_util.make_url_path_regex`, ELIMINADA en
+# Streamlit 1.57.0. Por eso streamlit queda pinneado en 1.56.0 (última con esa
+# función) mientras se use pygwalker. tornado lo trae streamlit 1.56.0.
+pygwalker==0.5.0.1
 pytest==9.1.1
 pytest-cov==7.1.0
 

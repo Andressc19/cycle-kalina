@@ -22,7 +22,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-from src import ui_backend, ui_helpers
+from src import ui_backend, ui_estilo, ui_helpers
 
 __all__ = ["renderizar_inputs", "renderizar_panel_ejecucion"]
 
@@ -50,7 +50,7 @@ def _render_filas(campos, destino):
 def _seccion(nombre, campos, destino):
     """Una sección bordeada con el encabezado del grupo y sus campos."""
     with st.container(border=True):
-        st.markdown(f"**{nombre}**")
+        ui_estilo.encabezado("", nombre)
         _render_filas(campos, destino)
 
 
@@ -71,7 +71,7 @@ def _seccion_tamb_diseno(campos, destino):
     criterio O2 colapsa a `T_sumidero`). El estado del checkbox viaja en
     `destino["aplica_margen_o2"]` para que `app.py` lo lea."""
     with st.container(border=True):
-        st.markdown("**Criterio de diseño (cavitación)**")
+        ui_estilo.encabezado("", "Criterio de diseño (cavitación)")
         aplica = st.checkbox(
             "Aplicar margen de peor caso", value=True,
             key="input_aplica_margen_o2",
@@ -110,7 +110,7 @@ def renderizar_inputs():
 def _seccion_backend():
     """Selector de motor de propiedades + nota al pie (texto plano)."""
     with st.container(border=True):
-        st.markdown("**Motor de propiedades**")
+        ui_estilo.encabezado("", "Motor de propiedades")
         backend = st.selectbox(
             "Backend de propiedades", ui_backend.BACKENDS, index=0,
             key="select_backend",
@@ -124,7 +124,7 @@ def _seccion_backend():
 
 def renderizar_panel_ejecucion():
     """Panel lateral de ejecución; devuelve (backend, botón_pulsado)."""
-    st.header("Ejecución")
+    ui_estilo.encabezado("⚙️", "Ejecución")
     st.caption("Defina los parámetros en el área principal y ejecute la "
                "simulación desde aquí.")
     backend = _seccion_backend()

@@ -25,7 +25,8 @@ from .components import (absorbedor, bomba, condensador, hrvg, regenerador,
 from .properties.adapter import PropertyBackend
 from .state import EstadoTermo
 
-__all__ = ["CicloNoConvergeError", "lazo_frio", "evaluar", "_bracketear"]
+__all__ = ["CicloNoConvergeError", "CicloCancelado", "lazo_frio", "evaluar",
+           "_bracketear"]
 
 
 class CicloNoConvergeError(Exception):
@@ -39,15 +40,36 @@ class CicloNoConvergeError(Exception):
     """
 
 
+class CicloCancelado(Exception):
+    """El usuario canceló la corrida desde la UI (flag de cancelación activado).
+
+    Solo se lanza si el llamador pasó ``cancelar`` a `resolver_ciclo`; con
+    ``cancelar=None`` (default) el solver nunca lo lanza. Es cooperativa: se
+    chequea entre iteraciones de los lazos, no interrumpe una evaluación en
+    curso del backend.
+    """
+
+
+def _chequear_cancelacion(cancelar):
+    """Lanza `CicloCancelado` si el flag ``cancelar`` (Event o similar) está
+    activo; con ``None`` no hace nada (comportamiento histórico)."""
+    if cancelar is not None and cancelar.is_set():
+        raise CicloCancelado("corrida cancelada por el usuario")
+
+
 def lazo_frio(estado4, estado5, m_v, m_l, backend, *, P_alta, P_baja, x_b,
               m_b, T_sumidero, eps_reg, eps_cond, eta_p, T10_inicial,
-              tol_T10=1e-4, max_iter=300):
+              tol_T10=1e-4, max_iter=300, cancelar=None, progreso=None):
     """Lazo interior: sustitución sucesiva sobre T10 (6 → 7 → 8 → 9 → 10).
 
     Parte de ``T10_inicial``, recorre regenerador → válvula → absorbedor →
     condensador → bomba con el estado 4 (salida turbina) y el 5 (líquido del
     separador) ya resueltos, y repite hasta que ``|estado10.T − T10_guess|``
     baja de ``tol_T10`` o se agotan ``max_iter``.
+
+    ``cancelar`` (Event o None) y ``progreso`` (callable o None) son
+    opcionales: con None el comportamiento es idéntico al histórico. Si se
+    pasan, se chequea la cancelación y se reporta progreso por iteración.
 
     Devuelve ``(estado6, estado7, estado8, estado9, estado10, info_reg,
     info_cond, info_bomba, convergio)`` — si no converge, los estados quedan en
@@ -56,7 +78,8 @@ def lazo_frio(estado4, estado5, m_v, m_l, backend, *, P_alta, P_baja, x_b,
     T10_guess = T10_inicial
     estado6 = estado7 = estado8 = estado9 = estado10 = None
     info_reg = info_cond = info_bomba = None
-    for _ in range(max_iter):
+    for iteracion in range(max_iter):
+        _chequear_cancelacion(cancelar)
         h_fria = backend.h(P_alta, T=T10_guess, x=x_b)
         s_fria = backend.s(P_alta, T=T10_guess, x=x_b)
         entrada_fria = EstadoTermo(T=T10_guess, P=P_alta, h=h_fria, s=s_fria,
@@ -70,6 +93,9 @@ def lazo_frio(estado4, estado5, m_v, m_l, backend, *, P_alta, P_baja, x_b,
             estado8, backend, T_sumidero=T_sumidero, eps=eps_cond, m=m_b)
         estado10, info_bomba = bomba.resolver(
             estado9, backend, P_salida=P_alta, eta_p=eta_p, m=m_b)
+        if progreso is not None:
+            progreso({"fase": "interior", "iteracion": iteracion + 1,
+                      "T10": estado10.T, "delta": abs(estado10.T - T10_guess)})
         if abs(estado10.T - T10_guess) < tol_T10:
             return (estado6, estado7, estado8, estado9, estado10,
                     info_reg, info_cond, info_bomba, True)
@@ -80,7 +106,7 @@ def lazo_frio(estado4, estado5, m_v, m_l, backend, *, P_alta, P_baja, x_b,
 
 def evaluar(T1_trial, backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b,
             m_b, eta_t, eta_p, eps_hrvg, eps_reg, eps_cond, tol_T10,
-            max_iter_frio, T10_inicial=None):
+            max_iter_frio, T10_inicial=None, cancelar=None, progreso=None):
     """Evalúa F(T1) = T1_nuevo − T1 para un T1 de prueba y recoge estados.
 
     Construye la cascada 1 → 2 → 3/5 → 4 → (lazo_frio 6..10) y cierra el
@@ -116,7 +142,8 @@ def evaluar(T1_trial, backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b,
         estado4, estado5, m_v, m_l, backend, P_alta=P_alta, P_baja=P_baja,
         x_b=x_b, m_b=m_b, T_sumidero=T_sumidero, eps_reg=eps_reg,
         eps_cond=eps_cond, eta_p=eta_p, T10_inicial=T10_guess_inicial,
-        tol_T10=tol_T10, max_iter=max_iter_frio)
+        tol_T10=tol_T10, max_iter=max_iter_frio, cancelar=cancelar,
+        progreso=progreso)
     if not conv_frio:
         raise CicloNoConvergeError(
             "lazo interior (frio) no convergio tras max_iter_frio")
@@ -132,7 +159,7 @@ def evaluar(T1_trial, backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b,
     return T1_nuevo, estados, energias
 
 
-def _bracketear(F, T_sumidero, T_fuente):
+def _bracketear(F, T_sumidero, T_fuente, cancelar=None):
     """Devuelve ``(lo, hi)`` con cambio de signo de F dentro del rango físico.
 
     T1 (entrada al HRVG) debe estar estrictamente entre ``T_sumidero`` y
@@ -149,6 +176,7 @@ def _bracketear(F, T_sumidero, T_fuente):
             "rango físico de T1 degenerado: T_fuente <= T_sumidero + 2 K; "
             "no hay bracket posible")
     while True:
+        _chequear_cancelacion(cancelar)
         f_lo, f_hi = F(lo), F(hi)
         if f_lo * f_hi <= 0.0:
             return lo, hi

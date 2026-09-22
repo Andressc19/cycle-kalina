@@ -31,9 +31,11 @@ está activo se muestra progreso y resultado parcial, con un botón
 
 from __future__ import annotations
 
+import time
+
 import streamlit as st
 
-from src import sensitivity, ui_backend, ui_helpers
+from src import sensitivity, ui_backend, ui_estilo, ui_explorador, ui_helpers
 
 __all__ = ["renderizar_panel_barrido"]
 
@@ -79,7 +81,7 @@ def _seccion_barrido(nombre: str, campos, vals: dict, destino: dict) -> None:
     """Una sección bordeada (mismo estilo que `ui_inputs._seccion`) con la
     fila Fijo/Barrido de cada variable del grupo, apiladas verticalmente."""
     with st.container(border=True):
-        st.markdown(f"**{nombre}**")
+        ui_estilo.encabezado("", nombre)
         for campo in campos:
             clave, spec = _fila_barrido(campo, vals.get(campo.clave, campo.default))
             destino[clave] = spec
@@ -119,6 +121,9 @@ def _procesar_barrido_en_curso(estado: dict) -> bool:
     st.progress(resueltos / total)
     st.caption(f"Puntos resueltos: **{resueltos} de {total}** — motor "
                f"{estado['nombre_backend']}.")
+    transcurrido = time.time() - estado["inicio"]
+    st.caption(f"Tiempo transcurrido: {transcurrido:.0f} s — estimado "
+               f"restante: ~{transcurrido / resueltos * (total - resueltos):.0f} s.")
     st.dataframe(sensitivity.tabla_barrido(estado["filas"])
                  .tail(_ULTIMOS_PREVIEW), hide_index=True)
     st.rerun()
@@ -173,6 +178,7 @@ def renderizar_panel_barrido(vals: dict, backend_sel: str) -> None:
                 "total": n_puntos,
                 "nombre_backend": nombre_backend,
                 "aviso": aviso,
+                "inicio": time.time(),
             }
             st.rerun()
 
@@ -186,6 +192,8 @@ def renderizar_panel_barrido(vals: dict, backend_sel: str) -> None:
             f"{st.session_state.get('backend_barrido', '—')})"
         )
         st.dataframe(tabla, hide_index=True)
+        with st.expander("🔎 Explorar el barrido (PyGWalker)"):
+            ui_explorador.explorar(tabla, gid="barrido")
         st.download_button(
             "⬇ Barrido (.csv)", tabla.to_csv(index=False).encode("utf-8"),
             file_name="kalina_barrido.csv", mime="text/csv")

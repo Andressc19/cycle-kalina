@@ -23,14 +23,16 @@ from __future__ import annotations
 
 from scipy.optimize import brentq
 
-from ._cycle_loops import CicloNoConvergeError, _bracketear, evaluar
+from ._cycle_loops import (CicloCancelado, CicloNoConvergeError, _bracketear,
+                           evaluar)
 
-__all__ = ["resolver_ciclo", "CicloNoConvergeError"]
+__all__ = ["resolver_ciclo", "CicloNoConvergeError", "CicloCancelado"]
 
 
 def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
                    eta_t, eta_p, eps_hrvg, eps_reg, eps_cond,
-                   tol_T1=1e-4, tol_T10=1e-3, max_iter_frio=300) -> dict:
+                   tol_T1=1e-4, tol_T10=1e-3, max_iter_frio=300,
+                   progreso=None, cancelar=None) -> dict:
     """Resuelve los 10 estados del ciclo KSC-11 hasta la convergencia.
 
     Parámetros: ``backend`` (PropertyBackend), P [kPa], T [K], ``x_b`` =
@@ -56,23 +58,36 @@ def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
     Lanza ``CicloNoConvergeError`` si el bracket agota el rango físico de T1 o
     si el lazo interior no converge; las excepciones reales del backend o de
     los componentes (p.ej. ``PropertyRangeError``) se propagan sin envolver.
+
+    ``progreso`` y ``cancelar`` (ambos opcionales, default ``None``) son el
+    gancho de la UI para una corrida larga: ``progreso`` es un callable que
+    recibe un dict por iteración (``{"fase": "exterior"/"interior", ...}``) y
+    ``cancelar`` un ``threading.Event`` chequeado entre iteraciones. Con
+    ``None`` el comportamiento es idéntico al histórico y, si ``cancelar`` se
+    activa, se lanza ``CicloCancelado`` (también re-exportado aquí).
     """
     kwargs = dict(P_alta=P_alta, P_baja=P_baja, T_fuente=T_fuente,
                   T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eta_t=eta_t,
                   eta_p=eta_p, eps_hrvg=eps_hrvg, eps_reg=eps_reg,
                   eps_cond=eps_cond, tol_T10=tol_T10,
-                  max_iter_frio=max_iter_frio)
+                  max_iter_frio=max_iter_frio, cancelar=cancelar,
+                  progreso=progreso)
 
     ultimo_T10 = None
+    iteraciones = [0]
 
     def F(T1):
         nonlocal ultimo_T10
         T1_nuevo, estados, _ = evaluar(T1, backend, **kwargs,
                                        T10_inicial=ultimo_T10)
         ultimo_T10 = estados["e10"].T
+        iteraciones[0] += 1
+        if progreso is not None:
+            progreso({"fase": "exterior", "iteracion": iteraciones[0],
+                      "T1": T1, "residual": T1_nuevo - T1})
         return T1_nuevo - T1
 
-    lo, hi = _bracketear(F, T_sumidero, T_fuente)
+    lo, hi = _bracketear(F, T_sumidero, T_fuente, cancelar=cancelar)
     T1_sol = brentq(F, lo, hi, xtol=tol_T1)
 
     _, estados, energias = evaluar(T1_sol, backend, **kwargs,
