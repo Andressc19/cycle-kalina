@@ -157,6 +157,48 @@ empíricamente el 2026-09-17 (ver `TASK_CONTEXT.md` de la tarea `scaffold-y-adap
   implementaciones `AmmoniaWaterAdapter` (mezcla, vía el motor portado) e `IAPWSAdapter` (agua
   pura). El solver del ciclo nunca importa `iapws`/el motor directamente, solo la interfaz.
 
+## Rango de validez del modelo NH3-H2O (Tillner-Roth & Friend 1998) — confirmado 2026-09-23
+
+Fuente: IAPWS G4-01 (2001), §6 "Range of Validity" y §7 "Estimates of Uncertainty"
+(https://iapws.org/public/documents/5_L4w/nh3h2o.pdf); artículo base Tillner-Roth & Friend,
+J. Phys. Chem. Ref. Data 27, 63 (1998). Aplica a los dos motores del proyecto
+(`AmmoniaWaterAdapter` y `TeqpAdapter` implementan el mismo modelo). En esta sección, x es la
+fracción **molar** de NH3 (convertir desde la másica del proyecto con `w2m`).
+
+- **Límite inferior**: línea sólido-líquido-vapor (puntos triples), ec. (9) de G4-01:
+  - 0 ≤ x ≤ 0.33367: T_tr/273.16 K − 1 = c11·x + c12·x² + c13·x⁷
+  - 0.33367 < x ≤ 0.58396: T_tr/193.549 K − 1 = c21·(x − 0.5)²
+  - 0.58396 < x ≤ 0.81473: T_tr/194.380 K − 1 = c31·(x − 2/3)² + c32·(x − 2/3)³
+  - 0.81473 < x ≤ 1: T_tr/195.495 K − 1 = c41·(1 − x) + c42·(1 − x)⁴
+  - c11 = −0.3439823, c12 = −1.3274271, c13 = −274.973, c21 = −4.987368,
+    c31 = −4.886151, c32 = 10.37298, c41 = −0.323998, c42 = −15.87560
+  - Valores de referencia (x_b másica → T_tr): 0.05 → 267 K, 0.20 → 236 K, 0.35 → 175 K,
+    0.55 → 190 K, 0.65 → 194 K, 0.75 → 188 K, 0.95 → 192 K.
+- **Límite superior**: el lugar crítico de la mezcla (se obtiene del propio modelo, puede
+  dar problemas de convergencia; su ubicación es incierta por datos escasos e inconsistentes).
+  Comportamiento clásico, no el teórico, en la vecindad inmediata del punto crítico.
+- **Presión**: válido en líquido y vapor hasta **40 MPa** (a temperaturas subcríticas).
+- **Respaldo experimental** (solo subcrítico): líquido **< 420 K** y < 40 MPa; vapor
+  **< 10 MPa**. Supercrítico: extrapolación "razonable" con **precisión desconocida**.
+- **Incertidumbres**: composiciones de equilibrio L-V ±0.01 (fracción molar), hasta ±0.04 cerca
+  del lugar crítico; densidad de vapor 1 %, de líquido 2 %; entalpía de exceso **±200 J/mol**
+  (≈ 11–12 kJ/kg para las composiciones del ciclo). Mal descrito: el lugar de máximos de
+  densidad cerca de la línea de fusión.
+- Tc de los puros en el modelo: agua 647.096 K, NH3 405.40 K.
+
+Implicaciones para el proyecto:
+- Un `PropertyRangeError` en un estado **dentro** de este rango **no** es un límite del
+  modelo: es del envoltorio numérico del backend o de un estado no físico pedido por el
+  solver. Así hay que reportarlo.
+- Los límites fijos del envoltorio de `TeqpAdapter` (bracket 230–650 K en `_T_de`,
+  extrapolación de Psat de NH3 con constante 2500 por encima de 405.3 K) **no** vienen del
+  modelo: 230 K recorta el dominio válido para la mayoría de composiciones y 650 K > Tc del
+  agua es extrapolación.
+- La incertidumbre de ±11 kJ/kg en h afecta sobre todo a los valores **absolutos** de η/Wnet
+  (p. ej. al comparar contra literatura). Entre puntos vecinos de un mismo barrido parte del
+  error es sistemático y se cancela, pero cuánto se cancela no está cuantificado. Si se
+  afirma que una diferencia pequeña es real, hay que decirlo con esa cautela.
+
 ## Arquitectura y límites
 
 - Python 3.13.x. Cada archivo `.py` ≤ 200 líneas.
