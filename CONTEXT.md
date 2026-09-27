@@ -157,6 +157,98 @@ empíricamente el 2026-09-17 (ver `TASK_CONTEXT.md` de la tarea `scaffold-y-adap
   implementaciones `AmmoniaWaterAdapter` (mezcla, vía el motor portado) e `IAPWSAdapter` (agua
   pura). El solver del ciclo nunca importa `iapws`/el motor directamente, solo la interfaz.
 
+## Rango de validez del modelo NH3-H2O (Tillner-Roth & Friend 1998) — confirmado 2026-09-23
+
+Fuente: IAPWS G4-01 (2001), §6 "Range of Validity" y §7 "Estimates of Uncertainty"
+(https://iapws.org/public/documents/5_L4w/nh3h2o.pdf); artículo base Tillner-Roth & Friend,
+J. Phys. Chem. Ref. Data 27, 63 (1998). Aplica a los dos motores del proyecto
+(`AmmoniaWaterAdapter` y `TeqpAdapter` implementan el mismo modelo). En esta sección, x es la
+fracción **molar** de NH3 (convertir desde la másica del proyecto con `w2m`).
+
+- **Límite inferior**: línea sólido-líquido-vapor (puntos triples), ec. (9) de G4-01:
+  - 0 ≤ x ≤ 0.33367: T_tr/273.16 K − 1 = c11·x + c12·x² + c13·x⁷
+  - 0.33367 < x ≤ 0.58396: T_tr/193.549 K − 1 = c21·(x − 0.5)²
+  - 0.58396 < x ≤ 0.81473: T_tr/194.380 K − 1 = c31·(x − 2/3)² + c32·(x − 2/3)³
+  - 0.81473 < x ≤ 1: T_tr/195.495 K − 1 = c41·(1 − x) + c42·(1 − x)⁴
+  - c11 = −0.3439823, c12 = −1.3274271, c13 = −274.973, c21 = −4.987368,
+    c31 = −4.886151, c32 = 10.37298, c41 = −0.323998, c42 = −15.87560
+  - Valores de referencia (x_b másica → T_tr): 0.05 → 267 K, 0.20 → 236 K, 0.35 → 175 K,
+    0.55 → 190 K, 0.65 → 194 K, 0.75 → 188 K, 0.95 → 192 K.
+- **Límite superior**: el lugar crítico de la mezcla (se obtiene del propio modelo, puede
+  dar problemas de convergencia; su ubicación es incierta por datos escasos e inconsistentes).
+  Comportamiento clásico, no el teórico, en la vecindad inmediata del punto crítico.
+- **Presión**: válido en líquido y vapor hasta **40 MPa** (a temperaturas subcríticas).
+- **Respaldo experimental** (solo subcrítico): líquido **< 420 K** y < 40 MPa; vapor
+  **< 10 MPa**. Supercrítico: extrapolación "razonable" con **precisión desconocida**.
+- **Incertidumbres**: composiciones de equilibrio L-V ±0.01 (fracción molar), hasta ±0.04 cerca
+  del lugar crítico; densidad de vapor 1 %, de líquido 2 %; entalpía de exceso **±200 J/mol**
+  (≈ 11–12 kJ/kg para las composiciones del ciclo). Mal descrito: el lugar de máximos de
+  densidad cerca de la línea de fusión.
+- Tc de los puros en el modelo: agua 647.096 K, NH3 405.40 K.
+
+Implicaciones para el proyecto:
+- Un `PropertyRangeError` en un estado **dentro** de este rango **no** es un límite del
+  modelo: es del envoltorio numérico del backend o de un estado no físico pedido por el
+  solver. Así hay que reportarlo.
+- Los límites fijos del envoltorio de `TeqpAdapter` (bracket 230–650 K en `_T_de`,
+  extrapolación de Psat de NH3 con constante 2500 por encima de 405.3 K) **no** vienen del
+  modelo: 230 K recorta el dominio válido para la mayoría de composiciones y 650 K > Tc del
+  agua es extrapolación.
+- La incertidumbre de ±11 kJ/kg en h afecta sobre todo a los valores **absolutos** de η/Wnet
+  (p. ej. al comparar contra literatura). Entre puntos vecinos de un mismo barrido parte del
+  error es sistemático y se cancela, pero cuánto se cancela no está cuantificado. Si se
+  afirma que una diferencia pequeña es real, hay que decirlo con esa cautela.
+
+## Motor teqp: protección A+B (decidido 2026-09-27)
+
+`TeqpAdapter` (NIST teqp) es mucho más rápido que el motor riguroso pero falla en la
+**zona de riesgo de fase**: si `T` cae dentro de la franja `Ta < T <= Ta + 0.3` de una
+mezcla rica en NH3 (la salida de turbina), decide la fase con un criterio barato y la
+inversión por brentq de `_T_de` puede caer en una raíz falsa sin que nada lo detecte
+(p. ej. 139 kJ/kg de error en `h4s` con x_b=0.60, P_alta=4000, T_fuente=394,
+P_baja=423.914831 kPa). El motor NO se toca: se corrige alrededor, con dos
+capas, y se usa **A+B**:
+
+- **A — `src/properties/teqp_verificado.py::TeqpVerificado`**: hereda de `TeqpAdapter`
+  y, solo cuando el resultado de una llamada cae en zona de riesgo, repite ESA MISMA
+  llamada con `AmmoniaWaterAdapter` y devuelve su valor. Fuera de la zona devuelve
+  exactamente lo de `TeqpAdapter`. Expone el registro: `n_recurrencias`, `n_fallos`,
+  `recurrencias`, `verificacion_incompleta`, `t_real`, `reiniciar_registro()`.
+  Costo medido: **+2.1 %** frente a teqp (31.08 → 31.73 s/punto).
+- **B — `src/verificacion_motor_real.py::verificar_turbina`**: para un punto YA
+  resuelto, una sola llamada al motor real que recalcula `h4s = h(P_baja, s3, x3)` y la
+  compara con la que usó el motor del ciclo. Si `|Δh4s| > 2.0 kJ/kg` el punto queda
+  marcado como **no verificado** — se señala, NO se corrige ni se reclasifica. Costo
+  medido: **+11.4 %** por punto verificado (31.08 → 34.62 s); con el motor real ya en
+  caché de la misma corrida, ~1.7 s. `verificado=None` + el mensaje real si el motor
+  real no cubre el estado: jamás devuelve el valor de teqp como verificado.
+  Detalle clave: en modo A+B un `Δh4s` pequeño significa "A ya lo sustituyó", no
+  "teqp acertó" (`h4s_teqp_fuente` dice de dónde salió el valor).
+
+**REGLA.** Todo barrido con teqp debe usar `TeqpVerificado` como backend y verificar
+sus puntos KALINA con `verificar_turbina`; B se aplica **solo a KALINA** (es donde se
+reporta y donde se paga). En el código: se construye `TeqpVerificado(x=...)` y un
+único `AmmoniaWaterAdapter` por barrido, y se pasa este último a
+`sensitivity.ejecutar_barrido(..., motor_real=)`, que añade `B_verificado`/`B_dh4s`/
+`B_t_s`/`B_error` y `A_recurrencias`/`A_verificacion_incompleta` a las filas. Sin
+`motor_real`, `ejecutar_barrido` se comporta exactamente como antes y su tabla no lleva
+esas columnas. **La interfaz (app Streamlit) NO usa A+B todavía**: sigue con
+`TeqpAdapter`; conectarla es una decisión aparte.
+
+`ejecutar_barrido` acepta además `T_amb_diseno=`, el piso de diseño del criterio O2
+(cavitación) que se pasa a `evaluar_ciclo`: `None` deja su default de 303.55 K. Sin él,
+el barrido hereda ese default y con `T_sumidero=283 K` ninguna fila llega a KALINA, con
+lo que B no correría nunca. Los scripts que exploran la zona KALINA
+(`frontera_tfuente_teqp.py`, `medicion_tiempos_AB.py`, `regresion_teqp_verificado.py`)
+lo fijan en `T_sumidero`; con esa convención el punto normal (x_b=0.65, P_alta=5000,
+T_fuente=423, P_baja=704.644595) sale KALINA con `B_verificado=True` y el espurio
+(x_b=0.60, P_alta=4000, T_fuente=394, P_baja=423.914831) sale con η=0.0802 y 6
+recurrencias de A — su `B_dh4s` sale **+0.0000 kJ/kg**, que es la firma de que A ya
+sustituyó el `h4s` espurio de teqp, no de que teqp acertara. Filas en
+`resultados/2026-09-27_integracion_AB/humo.csv`.
+
+Datos y tiempos completos: `resultados/2026-09-27_medicion_AB/REPORTE_MEDICION_AB.md`.
+
 ## Arquitectura y límites
 
 - Python 3.13.x. Cada archivo `.py` ≤ 200 líneas.

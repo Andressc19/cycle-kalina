@@ -61,13 +61,16 @@ def test_malla_2d_36_puntos_con_rejillas_cerradas():
     assert len(pares) == 36  # todas las celdas de la malla, sin repetir
 
 
-def test_ejecutar_barrido_no_pasa_t_amb_diseno():
-    """Documenta por que NO se usa `ejecutar_barrido` (default O2=303.55 K):
-    la firma no acepta T_amb_diseno y el esquema de la tarea exige 283.15."""
+def test_ejecutar_barrido_t_amb_diseno_es_opcional():
+    """Historia: Fase 3 usa su propio bucle porque, cuando se escribio,
+    `ejecutar_barrido` no aceptaba T_amb_diseno (su default O2 es 303.55 K y
+    la tarea exigia 283.15). Desde la proteccion A+B lo acepta como keyword
+    OPCIONAL con default None (= default de evaluar_ciclo, 303.55 K): quien no
+    lo pase obtiene exactamente el comportamiento anterior."""
     import inspect
     from src.sensitivity import ejecutar_barrido
-    assert "T_amb_diseno" not in inspect.signature(
-        ejecutar_barrido).parameters
+    p = inspect.signature(ejecutar_barrido).parameters["T_amb_diseno"]
+    assert p.kind is inspect.Parameter.KEYWORD_ONLY and p.default is None
 
 
 def test_criterio_ligante():

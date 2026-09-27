@@ -3,6 +3,11 @@
 Reusa el `PropertyBackend` fake y el caso base de `test_cycle_solver.py`
 (mismo bracket físico [351, 368] dentro de la campana bifásica del fake a
 x=0.5: burbuja 350 K, rocío 370 K).
+
+La verificación A+B del barrido (`motor_real=` → columnas `B_*`, y columnas
+`A_*` si el backend lleva registro de `TeqpVerificado`) tiene sus propios
+tests en `tests/test_sensitivity_verificacion.py`, que reutiliza el
+`FakeBackend` y el `_BASE` de aquí.
 """
 
 from __future__ import annotations
@@ -135,3 +140,4 @@ def test_tabla_barrido_devuelve_dataframe_con_columnas_esperadas(backend):
     assert list(df.columns)[-5:] == [
         "convergio", "clasificacion", "eta", "Wnet", "mensaje"]
     assert len(df) == 1
+
