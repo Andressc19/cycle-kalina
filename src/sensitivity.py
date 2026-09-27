@@ -116,17 +116,17 @@ def _anotar_ab(fila, combo, resultado, backend, motor_real, antes):
     `B_*` solo si se pasó `motor_real` y el punto es KALINA (donde se reporta y
     donde se paga); un KALINA con `B_verificado=False` conserva su
     clasificación. `A_*` requiere el registro de `TeqpVerificado`: su delta es
-    el de ESE punto, y la incompleta sale True si alguna recurrencia falló.
+    el de ESE punto. Sin registro ni `motor_real` la fila no gana columnas.
     """
-    for clave in COLUMNAS_A + COLUMNAS_B:
-        fila[clave] = None
     n_antes, fallos_antes = antes
     if n_antes is not None:
         fila["A_recurrencias"] = backend.n_recurrencias - n_antes
-        if fallos_antes is not None:
-            fila["A_verificacion_incompleta"] = (
-                backend.n_fallos - fallos_antes) > 0
-    if motor_real is not None and resultado is not None and (
+        fila["A_verificacion_incompleta"] = (
+            None if fallos_antes is None else (backend.n_fallos - fallos_antes) > 0)
+    if motor_real is None:
+        return fila
+    fila.update(dict.fromkeys(COLUMNAS_B))
+    if resultado is not None and (
             fila["clasificacion"] == Clasificacion.KALINA.value):
         v = verificar_turbina(resultado, P_baja=combo["P_baja"],
                               motor_real=motor_real, eta_t=combo["eta_t"])
