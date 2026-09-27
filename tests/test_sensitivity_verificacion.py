@@ -107,10 +107,10 @@ def _h4s_del_ciclo(combo: dict) -> float:
 
 
 def test_sin_motor_real_las_filas_no_cambian(backend):
-    """(a) Retrocompatibilidad: sin `motor_real` ni registro, todo en None."""
+    """(a) Retrocompat.: sin `motor_real` ni registro, ninguna columna A_/B_."""
     filas = ejecutar_barrido(backend, dict(_BASE))
     for clave in AB:
-        assert filas[0][clave] is None
+        assert clave not in filas[0]
     assert filas[0]["clasificacion"] == "INVIABLE"   # el caso base no cambia
     assert filas[0]["eta"] == pytest.approx(-0.13928229432107786)
     columnas = list(tabla_barrido(filas).columns)
@@ -156,11 +156,11 @@ def test_motor_real_que_falla_deja_error_sin_veredicto(backend, monkeypatch):
 
 
 def test_columnas_A_solo_si_el_backend_lleva_registro(backend, monkeypatch):
-    """Sin registro de A, sus columnas van en None; con registro, se rellenan."""
+    """Sin registro de A, sus columnas no aparecen; con registro, se rellenan."""
     monkeypatch.setattr("src.sensitivity.evaluar_ciclo", _etiquetador())
     filas = ejecutar_barrido(backend, _doble_base())
-    assert [f["A_recurrencias"] for f in filas] == [None, None]
-    assert [f["A_verificacion_incompleta"] for f in filas] == [None, None]
+    assert all("A_recurrencias" not in f for f in filas)
+    assert all("A_verificacion_incompleta" not in f for f in filas)
 
     filas = ejecutar_barrido(_FalsoRegistrado(n=0), _doble_base())
     assert [f["A_recurrencias"] for f in filas] == [0, 0]
