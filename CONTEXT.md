@@ -199,6 +199,56 @@ Implicaciones para el proyecto:
   error es sistemático y se cancela, pero cuánto se cancela no está cuantificado. Si se
   afirma que una diferencia pequeña es real, hay que decirlo con esa cautela.
 
+## Motor teqp: protección A+B (decidido 2026-09-27)
+
+`TeqpAdapter` (NIST teqp) es mucho más rápido que el motor riguroso pero falla en la
+**zona de riesgo de fase**: si `T` cae dentro de la franja `Ta < T <= Ta + 0.3` de una
+mezcla rica en NH3 (la salida de turbina), decide la fase con un criterio barato y la
+inversión por brentq de `_T_de` puede caer en una raíz falsa sin que nada lo detecte
+(p. ej. 139 kJ/kg de error en `h4s` con x_b=0.60, P_alta=4000, T_fuente=394,
+P_baja=423.914831 kPa). El motor NO se toca: se corrige alrededor, con dos
+capas, y se usa **A+B**:
+
+- **A — `src/properties/teqp_verificado.py::TeqpVerificado`**: hereda de `TeqpAdapter`
+  y, solo cuando el resultado de una llamada cae en zona de riesgo, repite ESA MISMA
+  llamada con `AmmoniaWaterAdapter` y devuelve su valor. Fuera de la zona devuelve
+  exactamente lo de `TeqpAdapter`. Expone el registro: `n_recurrencias`, `n_fallos`,
+  `recurrencias`, `verificacion_incompleta`, `t_real`, `reiniciar_registro()`.
+  Costo medido: **+2.1 %** frente a teqp (31.08 → 31.73 s/punto).
+- **B — `src/verificacion_motor_real.py::verificar_turbina`**: para un punto YA
+  resuelto, una sola llamada al motor real que recalcula `h4s = h(P_baja, s3, x3)` y la
+  compara con la que usó el motor del ciclo. Si `|Δh4s| > 2.0 kJ/kg` el punto queda
+  marcado como **no verificado** — se señala, NO se corrige ni se reclasifica. Costo
+  medido: **+11.4 %** por punto verificado (31.08 → 34.62 s); con el motor real ya en
+  caché de la misma corrida, ~1.7 s. `verificado=None` + el mensaje real si el motor
+  real no cubre el estado: jamás devuelve el valor de teqp como verificado.
+  Detalle clave: en modo A+B un `Δh4s` pequeño significa "A ya lo sustituyó", no
+  "teqp acertó" (`h4s_teqp_fuente` dice de dónde salió el valor).
+
+**REGLA.** Todo barrido con teqp debe usar `TeqpVerificado` como backend y verificar
+sus puntos KALINA con `verificar_turbina`; B se aplica **solo a KALINA** (es donde se
+reporta y donde se paga). En el código: se construye `TeqpVerificado(x=...)` y un
+único `AmmoniaWaterAdapter` por barrido, y se pasa este último a
+`sensitivity.ejecutar_barrido(..., motor_real=)`, que añade `B_verificado`/`B_dh4s`/
+`B_t_s`/`B_error` y `A_recurrencias`/`A_verificacion_incompleta` a las filas. Sin
+`motor_real`, `ejecutar_barrido` se comporta exactamente como antes y su tabla no lleva
+esas columnas. **La interfaz (app Streamlit) NO usa A+B todavía**: sigue con
+`TeqpAdapter`; conectarla es una decisión aparte.
+
+`ejecutar_barrido` acepta además `T_amb_diseno=`, el piso de diseño del criterio O2
+(cavitación) que se pasa a `evaluar_ciclo`: `None` deja su default de 303.55 K. Sin él,
+el barrido hereda ese default y con `T_sumidero=283 K` ninguna fila llega a KALINA, con
+lo que B no correría nunca. Los scripts que exploran la zona KALINA
+(`frontera_tfuente_teqp.py`, `medicion_tiempos_AB.py`, `regresion_teqp_verificado.py`)
+lo fijan en `T_sumidero`; con esa convención el punto normal (x_b=0.65, P_alta=5000,
+T_fuente=423, P_baja=704.644595) sale KALINA con `B_verificado=True` y el espurio
+(x_b=0.60, P_alta=4000, T_fuente=394, P_baja=423.914831) sale con η=0.0802 y 6
+recurrencias de A — su `B_dh4s` sale **+0.0000 kJ/kg**, que es la firma de que A ya
+sustituyó el `h4s` espurio de teqp, no de que teqp acertara. Filas en
+`resultados/2026-09-27_integracion_AB/humo.csv`.
+
+Datos y tiempos completos: `resultados/2026-09-27_medicion_AB/REPORTE_MEDICION_AB.md`.
+
 ## Arquitectura y límites
 
 - Python 3.13.x. Cada archivo `.py` ≤ 200 líneas.
