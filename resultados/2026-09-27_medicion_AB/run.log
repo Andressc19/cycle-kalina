@@ -1,0 +1,69 @@
+[09:31:20] MEDICION teqp / A / B / A+B (TASK 2026-09-27-medicion-tiempos-A-B)
+[09:31:20]   T_sumidero=283.0 K, T_amb_diseno=283.15 K, eta_t=eta_p=0.8, eps=(0.85, 0.8, 0.85), m_b=1.0 kg/s, umbral_B=2.0
+[09:31:20]   t_B usa la vía RECONSTRUIDA de h4s (sin backend_teqp): docstring de src/verificacion_motor_real.py
+[09:31:20]   t_init_motor_real (una vez) = 0.0061 ms
+[09:31:20] 22 KALINA de resultados\2026-09-24_margen2k\barrido_margen2k.csv + 1 espurio = 23 puntos
+[09:32:38]   KALINA-01 x=0.6 P*=523.750 | t_teqp=36.43 t_A=35.88 t_B=3.77 t_AB=37.34 | eta 0.103715729/0.103715729 | clas KALINA/KALINA | dh4s -1.0015->-1.0015 | verif True/True | rec A=0 t_real A=0.0s
+[09:34:11]   KALINA-02 x=0.6 P*=424.170 | t_teqp=43.91 t_A=45.50 t_B=2.26 t_AB=47.57 | eta 0.080412106/0.08041229 | clas KALINA/KALINA | dh4s -0.748->-0.748 | verif True/True | rec A=1 t_real A=3.88s
+[09:35:14]   KALINA-03 x=0.6 P*=752.472 | t_teqp=29.06 t_A=28.86 t_B=3.19 t_AB=30.53 | eta 0.096152424/0.096152424 | clas KALINA/KALINA | dh4s -1.4881->-1.4881 | verif True/True | rec A=0 t_real A=0.0s
+[09:36:21]   KALINA-04 x=0.6 P*=625.242 | t_teqp=31.77 t_A=30.84 t_B=2.53 t_AB=32.74 | eta 0.116752144/0.116752144 | clas KALINA/KALINA | dh4s -1.2771->-1.2771 | verif True/True | rec A=0 t_real A=0.0s
+[09:37:33]   KALINA-05 x=0.6 P*=535.443 | t_teqp=33.85 t_A=33.65 t_B=2.71 t_AB=35.27 | eta 0.120151383/0.120151383 | clas KALINA/KALINA | dh4s -1.0688->-1.0688 | verif True/True | rec A=0 t_real A=0.0s
+[09:38:46]   KALINA-06 x=0.65 P*=687.980 | t_teqp=30.35 t_A=29.75 t_B=11.85 t_AB=31.18 | eta 0.098608559/0.098608559 | clas KALINA/KALINA | dh4s -1.1173->-1.1173 | verif True/True | rec A=0 t_real A=0.0s
+[09:40:02]   KALINA-07 x=0.65 P*=568.015 | t_teqp=34.59 t_A=34.81 t_B=3.54 t_AB=37.16 | eta 0.103672926/0.103672926 | clas KALINA/KALINA | dh4s -0.8604->-0.8604 | verif True/True | rec A=0 t_real A=0.0s
+[09:41:33]   KALINA-08 x=0.65 P*=451.969 | t_teqp=42.32 t_A=42.69 t_B=4.44 t_AB=44.40 | eta 0.009114415/0.009114415 | clas KALINA/KALINA | dh4s -0.7142->-0.7142 | verif True/True | rec A=0 t_real A=0.0s
+[09:42:30]   KALINA-09 x=0.65 P*=967.999 | t_teqp=26.08 t_A=26.17 t_B=3.04 t_AB=28.04 | eta 0.08422344/0.08422344 | clas KALINA/KALINA | dh4s -1.5833->-1.5833 | verif True/True | rec A=0 t_real A=0.0s
+[09:43:29]   KALINA-10 x=0.65 P*=812.575 | t_teqp=27.41 t_A=27.75 t_B=2.56 t_AB=28.88 | eta 0.109810156/0.109810156 | clas KALINA/KALINA | dh4s -1.3743->-1.3743 | verif True/True | rec A=0 t_real A=0.0s
+[09:44:33]   KALINA-11 x=0.65 P*=704.645 | t_teqp=30.49 t_A=30.33 t_B=2.11 t_AB=31.86 | eta 0.121500395/0.121500395 | clas KALINA/KALINA | dh4s -1.1716->-1.1716 | verif True/True | rec A=0 t_real A=0.0s
+[09:45:33]   KALINA-12 x=0.7 P*=868.093 | t_teqp=27.41 t_A=27.76 t_B=2.64 t_AB=29.45 | eta 0.09055203/0.09055203 | clas KALINA/KALINA | dh4s -1.2161->-1.2161 | verif True/True | rec A=0 t_real A=0.0s
+[09:46:27]   KALINA-13 x=0.7 P*=731.746 | t_teqp=24.61 t_A=25.15 t_B=2.53 t_AB=27.12 | eta 0.106948892/0.106948892 | clas KALINA/KALINA | dh4s -0.9618->-0.9618 | verif True/True | rec A=0 t_real A=0.0s
+[09:47:50]   KALINA-14 x=0.7 P*=600.662 | t_teqp=38.67 t_A=38.63 t_B=3.57 t_AB=40.48 | eta 0.091447933/0.091447933 | clas KALINA/KALINA | dh4s -0.8171->-0.8171 | verif True/True | rec A=0 t_real A=0.0s
+[09:48:48]   KALINA-15 x=0.7 P*=1016.276 | t_teqp=27.08 t_A=27.03 t_B=2.57 t_AB=28.49 | eta 0.101529576/0.101529576 | clas KALINA/KALINA | dh4s -1.4596->-1.4596 | verif True/True | rec A=0 t_real A=0.0s
+[09:49:40]   KALINA-16 x=0.7 P*=890.811 | t_teqp=23.87 t_A=24.60 t_B=2.29 t_AB=26.23 | eta 0.118001733/0.118001733 | clas KALINA/KALINA | dh4s -1.2603->-1.2603 | verif True/True | rec A=0 t_real A=0.0s
+[09:50:45]   KALINA-17 x=0.75 P*=1060.025 | t_teqp=27.94 t_A=28.23 t_B=6.55 t_AB=29.83 | eta 0.081356002/0.081356002 | clas KALINA/KALINA | dh4s -1.2995->-1.2995 | verif True/True | rec A=0 t_real A=0.0s
+[09:51:51]   KALINA-18 x=0.75 P*=910.074 | t_teqp=28.82 t_A=31.96 t_B=2.92 t_AB=34.17 | eta 0.103581982/0.103581982 | clas KALINA/KALINA | dh4s -1.0505->-1.0505 | verif True/True | rec A=0 t_real A=0.0s
+[09:53:02]   KALINA-19 x=0.75 P*=767.936 | t_teqp=32.50 t_A=31.82 t_B=4.78 t_AB=33.79 | eta 0.108586549/0.108586549 | clas KALINA/KALINA | dh4s -0.9093->-0.9093 | verif True/True | rec A=0 t_real A=0.0s
+[09:53:56]   KALINA-20 x=0.75 P*=1089.671 | t_teqp=25.08 t_A=25.26 t_B=2.79 t_AB=26.85 | eta 0.112369281/0.112369281 | clas KALINA/KALINA | dh4s -1.3364->-1.3364 | verif True/True | rec A=0 t_real A=0.0s
+[09:54:54]   KALINA-21 x=0.8 P*=1101.511 | t_teqp=27.57 t_A=25.49 t_B=2.98 t_AB=27.39 | eta 0.097347953/0.097347953 | clas KALINA/KALINA | dh4s -1.1272->-1.1272 | verif True/True | rec A=0 t_real A=0.0s
+[09:55:58]   KALINA-22 x=0.8 P*=952.893 | t_teqp=29.03 t_A=29.15 t_B=3.71 t_AB=31.13 | eta 0.110590562/0.110590562 | clas KALINA/KALINA | dh4s -0.9923->-0.9923 | verif True/True | rec A=0 t_real A=0.0s
+[09:57:26]   ESPURIO x=0.6 P*=423.915 | t_teqp=35.98 t_A=48.42 t_B=2.12 t_AB=49.46 | eta 0.03359365/0.080184141 | clas KALINA/KALINA | dh4s 138.9672->0.0 | verif False/True | rec A=6 t_real A=13.46s
+[09:57:26]   -> medicion_puntos.csv (23 filas)
+[09:57:26] bubble_point: 5 pares (P,x) distintos x 5 reps = 25 llamadas
+[09:57:33]   KALINA-01 rep1 bubble_point(523.750, 0.6) = 300.0607 en 7.468s 
+[09:57:41]   KALINA-01 rep2 bubble_point(523.750, 0.6) = 300.0607 en 7.526s 
+[09:57:48]   KALINA-01 rep3 bubble_point(523.750, 0.6) = 300.0607 en 7.367s 
+[09:57:56]   KALINA-01 rep4 bubble_point(523.750, 0.6) = 300.0607 en 7.378s 
+[09:58:03]   KALINA-01 rep5 bubble_point(523.750, 0.6) = 300.0607 en 7.41s 
+[09:58:10]   KALINA-06 rep1 bubble_point(687.980, 0.65) = 303.7342 en 7.517s 
+[09:58:18]   KALINA-06 rep2 bubble_point(687.980, 0.65) = 303.7342 en 7.367s 
+[09:58:25]   KALINA-06 rep3 bubble_point(687.980, 0.65) = 303.7342 en 7.392s 
+[09:58:33]   KALINA-06 rep4 bubble_point(687.980, 0.65) = 303.7342 en 7.34s 
+[09:58:40]   KALINA-06 rep5 bubble_point(687.980, 0.65) = 303.7342 en 7.574s 
+[09:58:48]   KALINA-12 rep1 bubble_point(868.093, 0.7) = 307.3022 en 8.374s 
+[09:58:57]   KALINA-12 rep2 bubble_point(868.093, 0.7) = 307.3022 en 8.236s 
+[09:59:05]   KALINA-12 rep3 bubble_point(868.093, 0.7) = 307.3022 en 8.44s 
+[09:59:13]   KALINA-12 rep4 bubble_point(868.093, 0.7) = 307.3022 en 8.299s 
+[09:59:22]   KALINA-12 rep5 bubble_point(868.093, 0.7) = 307.3022 en 8.462s 
+[09:59:30]   KALINA-17 rep1 bubble_point(1060.025, 0.75) = 310.7684 en 8.521s 
+[09:59:39]   KALINA-17 rep2 bubble_point(1060.025, 0.75) = 310.7684 en 8.541s 
+[09:59:48]   KALINA-17 rep3 bubble_point(1060.025, 0.75) = 310.7684 en 8.529s 
+[09:59:56]   KALINA-17 rep4 bubble_point(1060.025, 0.75) = 310.7684 en 8.225s 
+[10:00:04]   KALINA-17 rep5 bubble_point(1060.025, 0.75) = 310.7684 en 8.2s 
+[10:00:13]   KALINA-22 rep1 bubble_point(952.893, 0.8) = 304.2197 en 8.586s 
+[10:00:21]   KALINA-22 rep2 bubble_point(952.893, 0.8) = 304.2197 en 8.649s 
+[10:00:30]   KALINA-22 rep3 bubble_point(952.893, 0.8) = 304.2197 en 8.486s 
+[10:00:38]   KALINA-22 rep4 bubble_point(952.893, 0.8) = 304.2197 en 8.667s 
+[10:00:47]   KALINA-22 rep5 bubble_point(952.893, 0.8) = 304.2197 en 8.499s 
+[10:00:47]   -> medicion_bubble_point.csv (25 filas)
+[10:01:19]   RUIDO teqp rep1: 32.00 s
+[10:01:52]   RUIDO teqp rep2: 32.68 s
+[10:02:24]   RUIDO teqp rep3: 32.36 s
+[10:02:56]   RUIDO A rep1: 32.49 s
+[10:03:29]   RUIDO A rep2: 32.44 s
+[10:04:01]   RUIDO A rep3: 32.62 s
+[10:04:01]   -> medicion_ruido_reloj.csv (6 filas)
+[10:04:01]   -> REPORTE_MEDICION_AB.md
+[10:04:01] OVERCOSTO A +2.1 % | B -88.6 % | A+B +7.6 % | bubble_point 8.04 s | t_init_motor_real 0.0061 ms
+CORRECCION 10:06: la linea de las 10:04 "OVERCOSTO ... B -88.6 %" comparaba t_B (coste ANADIDO al ciclo)
+contra t_teqp como si fueran sustitutos. El sobrecosto de B es 100*t_B/t_teqp = +11.4 %; t_BA ya no se
+muestra por ser solo diagnostico (cache _kalina_flash._ultimaT caliente). REPORTE_MEDICION_AB.md regenerado con
+scripts/medicion_tiempos_AB.py::reporte a partir de los mismos 3 CSV; los tiempos medidos NO cambian.

@@ -1,0 +1,296 @@
+.....................................................s..........FF...... [ 50%]
+..............................................x...FFFFFF..x...........   [100%]
+================================== FAILURES ===================================
+____________ test_archivos_nuevos_dentro_del_limite_de_200_lineas _____________
+
+    def test_archivos_nuevos_dentro_del_limite_de_200_lineas():
+        for ruta in _MODULOS_NUEVOS:
+>           n = len((_RAIZ / ruta).read_text(encoding="utf-8").splitlines())
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_restricciones_convenciones.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/Desktop/ciclo_kalina_tercero/.claude/worktrees/teqp-doble-verificacion/src/ui_campos.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Desktop\\ciclo_kalina_tercero\\.claude\\worktrees\\teqp-doble-verificacion\\src\\ui_campos.py'
+
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:537: FileNotFoundError
+_______ test_restricciones_y_sensitivity_no_importan_backends_concretos _______
+
+    def test_restricciones_y_sensitivity_no_importan_backends_concretos():
+        prohibidos = ("import pyfluids", "from pyfluids", "import iapws",
+                     "from iapws", "from . import _kalina_flash",
+                     "from . import _nh3h2o_engine", "from .. import _kalina_flash",
+                     "from .. import _nh3h2o_engine")
+        for ruta in _MODULOS_NUEVOS:
+            if not ruta.startswith("src/"):
+                continue
+            lineas_import = [l for l in
+>                            (_RAIZ / ruta).read_text(encoding="utf-8").splitlines()
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                             if l.startswith(("import ", "from "))]
+
+tests\test_restricciones_convenciones.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('D:/Desktop/ciclo_kalina_tercero/.claude/worktrees/teqp-doble-verificacion/src/ui_campos.py')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Desktop\\ciclo_kalina_tercero\\.claude\\worktrees\\teqp-doble-verificacion\\src\\ui_campos.py'
+
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:537: FileNotFoundError
+_____________________________ test_punto[clave12] _____________________________
+
+clave = ('teqp', '6', 'x0.1_T600_rho35')
+filas = [{'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho35', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6',...ho4', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho4', 'propiedad': 'Cv', ...}, ...]
+
+    @pytest.mark.parametrize("clave", vig.claves_puntos())
+    def test_punto(clave, filas):
+        motor, tabla, punto = clave
+        assert len(filas) == 96
+        rs = [f for f in filas if (f["motor"], f["tabla"], f["punto"]) == clave]
+        assert rs, f"sin filas para {clave}"
+        nc = [f["detalle"] for f in rs if f["cumple"] == "no_converge"]
+        if nc:
+            pytest.xfail(f"{motor} Tabla {tabla} {punto}: {nc[0]}")
+        fallos = []
+        for f in rs:
+            if f["cumple"] == "esperado_offset":
+                if f["motor"] != "teqp" or f["propiedad"] != "f":
+                    fallos.append(f"esperado_offset fuera de f/teqp: {f}")
+                float(f["valor_motor"])  # numérico aunque no se compara (offset de referencia)
+                continue
+            modo, tol = vig.TOL[(tabla, f["propiedad"])]
+            guia, val = float(f["valor_guia"]), float(f["valor_motor"])
+            err = abs(val - guia) / abs(guia) if modo == "rel" else abs(val - guia)
+            if not err < tol:
+                fallos.append(f"{f['propiedad']}: motor={val:.6g} vs guia={guia:.6g} "
+                              f"(err {err:.3e}, tol {modo}<{tol:.0e})")
+        if fallos:
+>           pytest.fail(f"{motor} Tabla {tabla} {punto}: " + "; ".join(fallos))
+E           Failed: teqp Tabla 6 x0.1_T600_rho35: Cv: motor=53.2177 vs guia=53.316 (err 1.842e-03, tol rel<1e-04); w: motor=884.365 vs guia=883.926 (err 4.971e-04, tol rel<1e-04)
+
+tests\test_verificacion_iapws_g4.py:55: Failed
+_____________________________ test_punto[clave13] _____________________________
+
+clave = ('teqp', '6', 'x0.1_T600_rho4')
+filas = [{'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho35', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6',...ho4', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho4', 'propiedad': 'Cv', ...}, ...]
+
+    @pytest.mark.parametrize("clave", vig.claves_puntos())
+    def test_punto(clave, filas):
+        motor, tabla, punto = clave
+        assert len(filas) == 96
+        rs = [f for f in filas if (f["motor"], f["tabla"], f["punto"]) == clave]
+        assert rs, f"sin filas para {clave}"
+        nc = [f["detalle"] for f in rs if f["cumple"] == "no_converge"]
+        if nc:
+            pytest.xfail(f"{motor} Tabla {tabla} {punto}: {nc[0]}")
+        fallos = []
+        for f in rs:
+            if f["cumple"] == "esperado_offset":
+                if f["motor"] != "teqp" or f["propiedad"] != "f":
+                    fallos.append(f"esperado_offset fuera de f/teqp: {f}")
+                float(f["valor_motor"])  # numérico aunque no se compara (offset de referencia)
+                continue
+            modo, tol = vig.TOL[(tabla, f["propiedad"])]
+            guia, val = float(f["valor_guia"]), float(f["valor_motor"])
+            err = abs(val - guia) / abs(guia) if modo == "rel" else abs(val - guia)
+            if not err < tol:
+                fallos.append(f"{f['propiedad']}: motor={val:.6g} vs guia={guia:.6g} "
+                              f"(err {err:.3e}, tol {modo}<{tol:.0e})")
+        if fallos:
+>           pytest.fail(f"{motor} Tabla {tabla} {punto}: " + "; ".join(fallos))
+E           Failed: teqp Tabla 6 x0.1_T600_rho4: Cv: motor=52.6662 vs guia=52.7645 (err 1.861e-03, tol rel<1e-04); w: motor=472.019 vs guia=471.762 (err 5.433e-04, tol rel<1e-04)
+
+tests\test_verificacion_iapws_g4.py:55: Failed
+_____________________________ test_punto[clave14] _____________________________
+
+clave = ('teqp', '6', 'x0.5_T500_rho32')
+filas = [{'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho35', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6',...ho4', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho4', 'propiedad': 'Cv', ...}, ...]
+
+    @pytest.mark.parametrize("clave", vig.claves_puntos())
+    def test_punto(clave, filas):
+        motor, tabla, punto = clave
+        assert len(filas) == 96
+        rs = [f for f in filas if (f["motor"], f["tabla"], f["punto"]) == clave]
+        assert rs, f"sin filas para {clave}"
+        nc = [f["detalle"] for f in rs if f["cumple"] == "no_converge"]
+        if nc:
+            pytest.xfail(f"{motor} Tabla {tabla} {punto}: {nc[0]}")
+        fallos = []
+        for f in rs:
+            if f["cumple"] == "esperado_offset":
+                if f["motor"] != "teqp" or f["propiedad"] != "f":
+                    fallos.append(f"esperado_offset fuera de f/teqp: {f}")
+                float(f["valor_motor"])  # numérico aunque no se compara (offset de referencia)
+                continue
+            modo, tol = vig.TOL[(tabla, f["propiedad"])]
+            guia, val = float(f["valor_guia"]), float(f["valor_motor"])
+            err = abs(val - guia) / abs(guia) if modo == "rel" else abs(val - guia)
+            if not err < tol:
+                fallos.append(f"{f['propiedad']}: motor={val:.6g} vs guia={guia:.6g} "
+                              f"(err {err:.3e}, tol {modo}<{tol:.0e})")
+        if fallos:
+>           pytest.fail(f"{motor} Tabla {tabla} {punto}: " + "; ".join(fallos))
+E           Failed: teqp Tabla 6 x0.5_T500_rho32: Cv: motor=57.8693 vs guia=58.0077 (err 2.386e-03, tol rel<1e-04); w: motor=830.805 vs guia=830.296 (err 6.127e-04, tol rel<1e-04)
+
+tests\test_verificacion_iapws_g4.py:55: Failed
+_____________________________ test_punto[clave15] _____________________________
+
+clave = ('teqp', '6', 'x0.5_T500_rho1')
+filas = [{'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho35', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6',...ho4', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho4', 'propiedad': 'Cv', ...}, ...]
+
+    @pytest.mark.parametrize("clave", vig.claves_puntos())
+    def test_punto(clave, filas):
+        motor, tabla, punto = clave
+        assert len(filas) == 96
+        rs = [f for f in filas if (f["motor"], f["tabla"], f["punto"]) == clave]
+        assert rs, f"sin filas para {clave}"
+        nc = [f["detalle"] for f in rs if f["cumple"] == "no_converge"]
+        if nc:
+            pytest.xfail(f"{motor} Tabla {tabla} {punto}: {nc[0]}")
+        fallos = []
+        for f in rs:
+            if f["cumple"] == "esperado_offset":
+                if f["motor"] != "teqp" or f["propiedad"] != "f":
+                    fallos.append(f"esperado_offset fuera de f/teqp: {f}")
+                float(f["valor_motor"])  # numérico aunque no se compara (offset de referencia)
+                continue
+            modo, tol = vig.TOL[(tabla, f["propiedad"])]
+            guia, val = float(f["valor_guia"]), float(f["valor_motor"])
+            err = abs(val - guia) / abs(guia) if modo == "rel" else abs(val - guia)
+            if not err < tol:
+                fallos.append(f"{f['propiedad']}: motor={val:.6g} vs guia={guia:.6g} "
+                              f"(err {err:.3e}, tol {modo}<{tol:.0e})")
+        if fallos:
+>           pytest.fail(f"{motor} Tabla {tabla} {punto}: " + "; ".join(fallos))
+E           Failed: teqp Tabla 6 x0.5_T500_rho1: Cv: motor=36.6844 vs guia=36.8228 (err 3.758e-03, tol rel<1e-04); w: motor=510.557 vs guia=510.258 (err 5.855e-04, tol rel<1e-04)
+
+tests\test_verificacion_iapws_g4.py:55: Failed
+_____________________________ test_punto[clave16] _____________________________
+
+clave = ('teqp', '6', 'x0.9_T400_rho30')
+filas = [{'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho35', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6',...ho4', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho4', 'propiedad': 'Cv', ...}, ...]
+
+    @pytest.mark.parametrize("clave", vig.claves_puntos())
+    def test_punto(clave, filas):
+        motor, tabla, punto = clave
+        assert len(filas) == 96
+        rs = [f for f in filas if (f["motor"], f["tabla"], f["punto"]) == clave]
+        assert rs, f"sin filas para {clave}"
+        nc = [f["detalle"] for f in rs if f["cumple"] == "no_converge"]
+        if nc:
+            pytest.xfail(f"{motor} Tabla {tabla} {punto}: {nc[0]}")
+        fallos = []
+        for f in rs:
+            if f["cumple"] == "esperado_offset":
+                if f["motor"] != "teqp" or f["propiedad"] != "f":
+                    fallos.append(f"esperado_offset fuera de f/teqp: {f}")
+                float(f["valor_motor"])  # numérico aunque no se compara (offset de referencia)
+                continue
+            modo, tol = vig.TOL[(tabla, f["propiedad"])]
+            guia, val = float(f["valor_guia"]), float(f["valor_motor"])
+            err = abs(val - guia) / abs(guia) if modo == "rel" else abs(val - guia)
+            if not err < tol:
+                fallos.append(f"{f['propiedad']}: motor={val:.6g} vs guia={guia:.6g} "
+                              f"(err {err:.3e}, tol {modo}<{tol:.0e})")
+        if fallos:
+>           pytest.fail(f"{motor} Tabla {tabla} {punto}: " + "; ".join(fallos))
+E           Failed: teqp Tabla 6 x0.9_T400_rho30: Cv: motor=51.8682 vs guia=51.8072 (err 1.176e-03, tol rel<1e-04); w: motor=895.501 vs guia=895.749 (err 2.767e-04, tol rel<1e-04)
+
+tests\test_verificacion_iapws_g4.py:55: Failed
+_____________________________ test_punto[clave17] _____________________________
+
+clave = ('teqp', '6', 'x0.9_T400_rho0.5')
+filas = [{'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho35', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6',...ho4', 'propiedad': 'p', ...}, {'motor': 'iapws', 'tabla': '6', 'punto': 'x0.1_T600_rho4', 'propiedad': 'Cv', ...}, ...]
+
+    @pytest.mark.parametrize("clave", vig.claves_puntos())
+    def test_punto(clave, filas):
+        motor, tabla, punto = clave
+        assert len(filas) == 96
+        rs = [f for f in filas if (f["motor"], f["tabla"], f["punto"]) == clave]
+        assert rs, f"sin filas para {clave}"
+        nc = [f["detalle"] for f in rs if f["cumple"] == "no_converge"]
+        if nc:
+            pytest.xfail(f"{motor} Tabla {tabla} {punto}: {nc[0]}")
+        fallos = []
+        for f in rs:
+            if f["cumple"] == "esperado_offset":
+                if f["motor"] != "teqp" or f["propiedad"] != "f":
+                    fallos.append(f"esperado_offset fuera de f/teqp: {f}")
+                float(f["valor_motor"])  # numérico aunque no se compara (offset de referencia)
+                continue
+            modo, tol = vig.TOL[(tabla, f["propiedad"])]
+            guia, val = float(f["valor_guia"]), float(f["valor_motor"])
+            err = abs(val - guia) / abs(guia) if modo == "rel" else abs(val - guia)
+            if not err < tol:
+                fallos.append(f"{f['propiedad']}: motor={val:.6g} vs guia={guia:.6g} "
+                              f"(err {err:.3e}, tol {modo}<{tol:.0e})")
+        if fallos:
+>           pytest.fail(f"{motor} Tabla {tabla} {punto}: " + "; ".join(fallos))
+E           Failed: teqp Tabla 6 x0.9_T400_rho0.5: Cv: motor=33.0313 vs guia=32.9704 (err 1.849e-03, tol rel<1e-04); w: motor=478.487 vs guia=478.608 (err 2.529e-04, tol rel<1e-04)
+
+tests\test_verificacion_iapws_g4.py:55: Failed
+============================== warnings summary ===============================
+tests/test_teqp_adapter.py::test_bubble_point_coincide_con_el_motor_real
+tests/test_teqp_verificado.py::test_caso_espurio_corregido_por_el_motor_real
+tests/test_verificacion_motor_real.py::test_punto_normal_verificado
+  D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_teqp_adapter.py::test_bubble_point_coincide_con_el_motor_real
+  D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\teqp-doble-verificacion\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_teqp_verificado.py::test_caso_espurio_corregido_por_el_motor_real
+tests/test_verificacion_motor_real.py::test_punto_normal_verificado
+  D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\teqp-doble-verificacion\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_restricciones_convenciones.py::test_archivos_nuevos_dentro_del_limite_de_200_lineas
+FAILED tests/test_restricciones_convenciones.py::test_restricciones_y_sensitivity_no_importan_backends_concretos
+FAILED tests/test_verificacion_iapws_g4.py::test_punto[clave12] - Failed: teq...
+FAILED tests/test_verificacion_iapws_g4.py::test_punto[clave13] - Failed: teq...
+FAILED tests/test_verificacion_iapws_g4.py::test_punto[clave14] - Failed: teq...
+FAILED tests/test_verificacion_iapws_g4.py::test_punto[clave15] - Failed: teq...
+FAILED tests/test_verificacion_iapws_g4.py::test_punto[clave16] - Failed: teq...
+FAILED tests/test_verificacion_iapws_g4.py::test_punto[clave17] - Failed: teq...
+8 failed, 131 passed, 1 skipped, 2 xfailed, 6 warnings in 384.56s (0:06:24)

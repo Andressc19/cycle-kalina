@@ -1,0 +1,51 @@
+[01:58:34] REGRESION TeqpAdapter vs TeqpVerificado sobre los puntos KALINA
+[01:58:34]   T_sumidero=283.0 K, T_amb_diseno=283.15 K, eta_t=eta_p=0.8, eps=(0.85, 0.8, 0.85), m_b=1.0
+[01:58:34] 22 filas con clasificacion == KALINA en resultados\2026-09-24_margen2k\barrido_margen2k.csv
+[01:59:42]   KALINA-01 x=0.6 P*=523.750 eta: teqp 0.103715729 / verif 0.103715729 (ref 0.103716)
+[01:59:42]       clas: KALINA / KALINA | t 34.4s -> 33.4s | rec=0 t_real=0.0s incompleta=False
+[02:01:03]   KALINA-02 x=0.6 P*=424.170 eta: teqp 0.080412106 / verif 0.08041229 (ref 0.080412)
+[02:01:03]       clas: KALINA / KALINA | t 40.06s -> 41.17s | rec=1 t_real=3.67s incompleta=False
+[02:01:57]   KALINA-03 x=0.6 P*=752.472 eta: teqp 0.096152424 / verif 0.096152424 (ref 0.096152)
+[02:01:57]       clas: KALINA / KALINA | t 27.32s -> 27.13s | rec=0 t_real=0.0s incompleta=False
+[02:02:56]   KALINA-04 x=0.6 P*=625.242 eta: teqp 0.116752144 / verif 0.116752144 (ref 0.116752)
+[02:02:56]       clas: KALINA / KALINA | t 29.47s -> 29.54s | rec=0 t_real=0.0s incompleta=False
+[02:03:59]   KALINA-05 x=0.6 P*=535.443 eta: teqp 0.120151383 / verif 0.120151383 (ref 0.120151)
+[02:03:59]       clas: KALINA / KALINA | t 31.07s -> 31.2s | rec=0 t_real=0.0s incompleta=False
+[02:04:56]   KALINA-06 x=0.65 P*=687.980 eta: teqp 0.098608559 / verif 0.098608559 (ref 0.098609)
+[02:04:56]       clas: KALINA / KALINA | t 28.32s -> 28.98s | rec=0 t_real=0.0s incompleta=False
+[02:06:07]   KALINA-07 x=0.65 P*=568.015 eta: teqp 0.103672926 / verif 0.103672926 (ref 0.103673)
+[02:06:07]       clas: KALINA / KALINA | t 35.51s -> 35.73s | rec=0 t_real=0.0s incompleta=False
+[02:07:34]   KALINA-08 x=0.65 P*=451.969 eta: teqp 0.009114415 / verif 0.009114415 (ref 0.009114)
+[02:07:34]       clas: KALINA / KALINA | t 43.71s -> 43.26s | rec=0 t_real=0.0s incompleta=False
+[02:08:27]   KALINA-09 x=0.65 P*=967.999 eta: teqp 0.08422344 / verif 0.08422344 (ref 0.084223)
+[02:08:27]       clas: KALINA / KALINA | t 26.6s -> 26.62s | rec=0 t_real=0.0s incompleta=False
+[02:09:24]   KALINA-10 x=0.65 P*=812.575 eta: teqp 0.109810156 / verif 0.109810156 (ref 0.10981)
+[02:09:24]       clas: KALINA / KALINA | t 27.98s -> 28.22s | rec=0 t_real=0.0s incompleta=False
+[02:10:26]   KALINA-11 x=0.65 P*=704.645 eta: teqp 0.121500395 / verif 0.121500395 (ref 0.1215)
+[02:10:26]       clas: KALINA / KALINA | t 30.81s -> 31.41s | rec=0 t_real=0.0s incompleta=False
+[02:11:22]   KALINA-12 x=0.7 P*=868.093 eta: teqp 0.09055203 / verif 0.09055203 (ref 0.090552)
+[02:11:22]       clas: KALINA / KALINA | t 27.9s -> 28.19s | rec=0 t_real=0.0s incompleta=False
+[02:12:13]   KALINA-13 x=0.7 P*=731.746 eta: teqp 0.106948892 / verif 0.106948892 (ref 0.106949)
+[02:12:13]       clas: KALINA / KALINA | t 25.45s -> 25.46s | rec=0 t_real=0.0s incompleta=False
+[02:13:32]   KALINA-14 x=0.7 P*=600.662 eta: teqp 0.091447933 / verif 0.091447933 (ref 0.091448)
+[02:13:32]       clas: KALINA / KALINA | t 39.63s -> 39.39s | rec=0 t_real=0.0s incompleta=False
+[02:14:27]   KALINA-15 x=0.7 P*=1016.276 eta: teqp 0.101529576 / verif 0.101529576 (ref 0.10153)
+[02:14:27]       clas: KALINA / KALINA | t 27.32s -> 27.57s | rec=0 t_real=0.0s incompleta=False
+[02:15:16]   KALINA-16 x=0.7 P*=890.811 eta: teqp 0.118001733 / verif 0.118001733 (ref 0.118002)
+[02:15:16]       clas: KALINA / KALINA | t 24.5s -> 24.63s | rec=0 t_real=0.0s incompleta=False
+[02:16:12]   KALINA-17 x=0.75 P*=1060.025 eta: teqp 0.081356002 / verif 0.081356002 (ref 0.081356)
+[02:16:12]       clas: KALINA / KALINA | t 28.27s -> 28.01s | rec=0 t_real=0.0s incompleta=False
+[02:17:10]   KALINA-18 x=0.75 P*=910.074 eta: teqp 0.103581982 / verif 0.103581982 (ref 0.103582)
+[02:17:10]       clas: KALINA / KALINA | t 29.02s -> 28.72s | rec=0 t_real=0.0s incompleta=False
+[02:18:10]   KALINA-19 x=0.75 P*=767.936 eta: teqp 0.108586549 / verif 0.108586549 (ref 0.108587)
+[02:18:10]       clas: KALINA / KALINA | t 30.04s -> 30.43s | rec=0 t_real=0.0s incompleta=False
+[02:18:58]   KALINA-20 x=0.75 P*=1089.671 eta: teqp 0.112369281 / verif 0.112369281 (ref 0.112369)
+[02:18:58]       clas: KALINA / KALINA | t 23.66s -> 23.69s | rec=0 t_real=0.0s incompleta=False
+[02:19:47]   KALINA-21 x=0.8 P*=1101.511 eta: teqp 0.097347953 / verif 0.097347953 (ref 0.097348)
+[02:19:47]       clas: KALINA / KALINA | t 24.68s -> 24.8s | rec=0 t_real=0.0s incompleta=False
+[02:20:48]   KALINA-22 x=0.8 P*=952.893 eta: teqp 0.110590562 / verif 0.110590562 (ref 0.110591)
+[02:20:48]       clas: KALINA / KALINA | t 30.32s -> 30.0s | rec=0 t_real=0.0s incompleta=False
+[02:20:48]   -> regresion_22.csv (22 filas)
+[02:20:48]   -> regresion_recurrencias.csv (1 filas)
+[02:20:48]   -> REPORTE_TEQP_VERIFICADO.md
+[02:20:48] SOBRECOSTO +0.23 % (30.27 -> 30.34 s/punto); recurrencias 1; cambios de clasificacion 0
