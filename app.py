@@ -95,8 +95,8 @@ def _ejecutar(vals, backend_sel):
 
 def _mostrar_clasificacion():
     """Caja con la etiqueta de clasificación termodinámica del punto
-    (`restricciones.evaluar_ciclo`: KALINA/VALIDO_ADVERTENCIA/CORREGIBLE/
-    DEGENERADO/INVIABLE) y el detalle de qué criterios la produjeron."""
+    (`restricciones.evaluar_ciclo`: KALINA/CORREGIBLE/INVIABLE/NO_CONVERGIO)
+    y el detalle de qué criterios la produjeron."""
     validacion = st.session_state.get("resultado_validacion")
     if validacion is None:
         return
