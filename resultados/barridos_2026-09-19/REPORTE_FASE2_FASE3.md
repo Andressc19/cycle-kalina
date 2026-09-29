@@ -53,8 +53,8 @@ como criterio limitante, pero en el ancla real es O1 el que casi se dispara.
 | x_b | 0.35–0.45 | 4 KALINA / 2 CORREGIBLE |
 | P_baja | 400–500 kPa | 5 KALINA / 1 NO_CONVERGIO |
 | **eps_cond** | 0.85–0.95 | **1 KALINA / 5 CORREGIBLE — variable dominante** |
-| eta_t | 0.80–0.90 | 3 KALINA / 3 VALIDO_ADVERTENCIA |
-| eps_hrvg | 0.80–0.99 (corregido tras pre-escaneo) | 7 KALINA / 1 NO_CONVERGIO / 1 VALIDO_ADVERTENCIA |
+| eta_t | 0.80–0.90 | 3 KALINA / 3 CORREGIBLE |
+| eps_hrvg | 0.80–0.99 (corregido tras pre-escaneo) | 7 KALINA / 1 NO_CONVERGIO / 1 CORREGIBLE |
 
 `eps_cond` es la variable más influyente: por debajo de ~0.93, prácticamente
 todo el rango cae a CORREGIBLE por O2.
@@ -118,7 +118,7 @@ necesario para pasar O2 bajó de 1200 a 690 kPa, y η subió de 0.088 a 0.127
 Tres de las cinco variables (P_baja, eps_cond, x_b) cruzan una frontera de
 clasificación dentro del rango explorado — el diseño experimental capturó bien
 la zona de transición. `eps_reg` y `eta_t` resultaron no limitantes en este
-caso (a diferencia de Fase 2, donde `eta_t` sí se acerca a VALIDO_ADVERTENCIA).
+caso (a diferencia de Fase 2, donde `eta_t` sí se acerca a CORREGIBLE).
 
 ### Malla 2D — P_baja × eps_reg (36 puntos)
 

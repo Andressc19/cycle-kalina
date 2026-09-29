@@ -174,8 +174,7 @@ def main() -> None:
     # Fase C: expandir P_alta/x_b alrededor de lo real con las 2 mejores
     # combinaciones de palancas de la Fase B (las de clasificación menos severa).
     conv = [f for f in filas_b if f["convergio"]]
-    peso = {"KALINA": 0, "VALIDO_ADVERTENCIA": 1, "CORREGIBLE": 2,
-            "DEGENERADO": 3, "INVIABLE": 4, "NO_CONVERGIO": 5}
+    peso = {"KALINA": 0, "CORREGIBLE": 1, "INVIABLE": 2, "NO_CONVERGIO": 3}
     mejores = sorted(conv, key=lambda f: (peso.get(f["clasificacion"], 9),
                                           -(f["eta"] or 0.0)))[:2]
     if not mejores:
