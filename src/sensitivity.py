@@ -92,9 +92,9 @@ def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido]
     ``variables`` debe declarar las 11 variables de `resolver_ciclo`
     (``VARIABLES_BARRIBLES``), cada una como `Fijo` o `Barrido`. Cada fila del
     resultado registra los valores de entrada usados, si convergió, la
-    clasificación (`NO_CONVERGIO`/`INVIABLE`/`DEGENERADO`/`CORREGIBLE`/
-    `VALIDO_ADVERTENCIA`/`KALINA`) y, si convergió, `eta`/`Wnet` y el mensaje
-    de validación jerárquico (principal + secundarias).
+    clasificación (`NO_CONVERGIO`/`INVIABLE`/`CORREGIBLE`/`KALINA`) y, si
+    convergió, `eta`/`Wnet` y el mensaje de validación jerárquico (principal +
+    secundarias).
     """
     faltantes = set(VARIABLES_BARRIBLES) - set(variables)
     if faltantes:

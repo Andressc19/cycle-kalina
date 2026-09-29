@@ -32,13 +32,12 @@ __all__ = ["evaluar_ciclo", "NO_APLICA"]
 NO_APLICA = ("F1", "S9", "O6", "CD", "O4", "C1b", "N4")
 
 # Prioridad de clasificación para elegir la peor entre varias fallas.
+# Mismo orden de severidad que `modelos._ORDEN_CLASIFICACION` (4 niveles).
 _PRIORIDAD = {
     Clasificacion.NO_CONVERGIO: 0,
     Clasificacion.INVIABLE: 1,
-    Clasificacion.DEGENERADO: 2,
-    Clasificacion.CORREGIBLE: 3,
-    Clasificacion.VALIDO_ADVERTENCIA: 4,
-    Clasificacion.KALINA: 5,
+    Clasificacion.CORREGIBLE: 2,
+    Clasificacion.KALINA: 3,
 }
 
 

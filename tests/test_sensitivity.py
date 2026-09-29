@@ -102,8 +102,7 @@ def test_ejecutar_barrido_registra_valores_de_todas_las_variables(backend):
     # NO_CONVERGIO si N2/N3 exceden la tolerancia numérica del fake (no es lo
     # que este test verifica — solo que se registran las 11 variables).
     assert fila["clasificacion"] in {
-        "KALINA", "INVIABLE", "DEGENERADO", "CORREGIBLE", "VALIDO_ADVERTENCIA",
-        "NO_CONVERGIO"}
+        "KALINA", "INVIABLE", "CORREGIBLE", "NO_CONVERGIO"}
 
 
 def test_ejecutar_barrido_marca_no_convergio_y_continua(backend):
