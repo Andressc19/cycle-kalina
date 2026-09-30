@@ -22,12 +22,23 @@ class Severidad(str, Enum):
 
 
 class Clasificacion(str, Enum):
-    """Etiqueta resultante de un punto del ciclo, de más a menos severa."""
+    """Etiqueta resultante de un punto del ciclo, de más a menos severa.
+
+    Cuatro niveles, en orden de severidad decreciente: `NO_CONVERGIO` (el
+    solver no llegó a una solución), `INVIABLE` (el punto viola un criterio
+    físico que no se puede ajustar: la segunda ley, la operación del
+    separador, la orden de composiciones), `CORREGIBLE` (el punto es
+    admisible solo con un ajuste de diseño) y `KALINA` (régimen Kalina
+    genuino y sin fallas).
+
+    Ojo: `Severidad` describe el TIPO de causa que produce la falla;
+    `Clasificacion` describe el RESULTADO final del punto. Son conceptos
+    separados: una misma `Clasificacion` puede venir de `Severidad` distintas
+    y al revés.
+    """
     NO_CONVERGIO = "NO_CONVERGIO"
     INVIABLE = "INVIABLE"
-    DEGENERADO = "DEGENERADO"          # topológico: ya no es Kalina (Rankine)
-    CORREGIBLE = "CORREGIBLE"          # O2: cavitación, ajustable en diseño
-    VALIDO_ADVERTENCIA = "VALIDO_ADVERTENCIA"
+    CORREGIBLE = "CORREGIBLE"          # O1: título de turbina, O2: cavitación
     KALINA = "KALINA"
 
 
@@ -36,10 +47,8 @@ class Clasificacion(str, Enum):
 _ORDEN_CLASIFICACION = {
     Clasificacion.NO_CONVERGIO: 0,
     Clasificacion.INVIABLE: 1,
-    Clasificacion.DEGENERADO: 2,
-    Clasificacion.CORREGIBLE: 3,
-    Clasificacion.VALIDO_ADVERTENCIA: 4,
-    Clasificacion.KALINA: 5,
+    Clasificacion.CORREGIBLE: 2,
+    Clasificacion.KALINA: 3,
 }
 
 

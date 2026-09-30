@@ -14,8 +14,6 @@ __all__ = ["CLASIFICACION_INFO"]
 CLASIFICACION_INFO = {
     "NO_CONVERGIO": ("NO CONVERGIÓ", "error"),
     "INVIABLE": ("INVIABLE", "error"),
-    "DEGENERADO": ("DEGENERADO — ya no opera como ciclo Kalina", "warning"),
     "CORREGIBLE": ("CORREGIBLE — ajustable en el diseño", "warning"),
-    "VALIDO_ADVERTENCIA": ("VÁLIDO CON ADVERTENCIA", "info"),
     "KALINA": ("KALINA — régimen genuino y admisible", "success"),
 }

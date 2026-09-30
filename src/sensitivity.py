@@ -143,7 +143,7 @@ def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido], *,
     ``variables`` debe declarar las 11 variables de `resolver_ciclo`
     (``VARIABLES_BARRIBLES``) como `Fijo` o `Barrido`. Cada fila registra los
     valores usados, si convergió, su clasificación (`NO_CONVERGIO`/`INVIABLE`/
-    `DEGENERADO`/`CORREGIBLE`/`VALIDO_ADVERTENCIA`/`KALINA`) y `eta`/`Wnet`.
+    `CORREGIBLE`/`KALINA`) y `eta`/`Wnet`.
 
     ``motor_real`` (keyword opcional, un `AmmoniaWaterAdapter`) activa la
     verificación B de cada fila KALINA; con un backend `TeqpVerificado` cada

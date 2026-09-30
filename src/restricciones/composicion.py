@@ -34,7 +34,7 @@ def verificar_composicion(resultado: dict, x_b: float) -> list[Falla]:
     elif (x_rico - x_pobre) <= _BANDA_C1:
         fallas.append(Falla(
             codigo="C1", severidad=Severidad.TECNOLOGICO,
-            clasificacion=Clasificacion.VALIDO_ADVERTENCIA,
+            clasificacion=Clasificacion.CORREGIBLE,
             mensaje="separación de composiciones bajo la banda de incertidumbre "
                     "del motor de propiedades",
             variable="x3 - x5", valor_medido=x_rico - x_pobre,

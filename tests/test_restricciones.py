@@ -98,23 +98,23 @@ def test_falla_a_condensador_da_corregible(backend):
     assert val.secundarias == []
 
 
-def test_falla_b_hrvg_sobrecalentado_da_degenerado(backend):
+def test_falla_b_hrvg_sobrecalentado_da_inviable(backend):
     """O5 (q2 > 1-DQ): el ciclo deja de ser Kalina, pasa a Rankine."""
     resultado = _resultado_base()
     resultado["estados"]["e2"] = replace(resultado["estados"]["e2"], T=375.0)
     val = evaluar_ciclo(backend, resultado, **_PARAMS)
-    assert val.clasificacion == Clasificacion.DEGENERADO
+    assert val.clasificacion == Clasificacion.INVIABLE
     assert val.principal.codigo == "O5"
     assert val.secundarias == []
 
 
 def test_fallas_a_y_b_simultaneas_jerarquia(backend):
-    """DEGENERADO (b, principal) sobre CORREGIBLE (a, secundaria) — b es peor."""
+    """INVIABLE por O5 (b, principal) sobre CORREGIBLE por O2 (a, secundaria)."""
     resultado = _resultado_base()
     resultado["estados"]["e2"] = replace(resultado["estados"]["e2"], T=375.0)
     resultado["estados"]["e8"] = replace(resultado["estados"]["e8"], h=564.2)
     val = evaluar_ciclo(backend, resultado, **_PARAMS)
-    assert val.clasificacion == Clasificacion.DEGENERADO
+    assert val.clasificacion == Clasificacion.INVIABLE
     assert val.principal.codigo == "O5"
     codigos_secundarios = {f.codigo for f in val.secundarias}
     assert "O2" in codigos_secundarios

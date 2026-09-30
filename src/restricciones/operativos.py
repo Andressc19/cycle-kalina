@@ -17,6 +17,16 @@ fijo subestimaría el riesgo real de cavitación en ese punto — el piso es un
 mínimo de diseño, no un techo. Etiqueta CORREGIBLE, no INVIABLE (decisión
 del usuario: es una falla operativa evitable ajustando subenfriamiento, no
 una imposibilidad física).
+
+`Severidad` y `Clasificacion` son conceptos separados y ambos se conservan:
+`Severidad` describe el TIPO de causa que dispara el criterio (numérico,
+crítico, topológico, tecnológico) y `Clasificacion` el RESULTADO final del
+punto. Por eso O1 conserva `Severidad.TECNOLOGICO` aunque su clasificación
+sea CORREGIBLE: el criterio sigue siendo una restricción tecnológica (umbral
+de erosión de álabes), no física; lo que cambió es que hoy se corrige
+ajustando el diseño en vez de aceptarse con una advertencia. Lo mismo aplica
+a las dos ramas de O5: ambas son INVIABLE, pero una es crítica (salida
+líquida) y la otra topológica (sobrecalentado).
 """
 
 from __future__ import annotations
@@ -44,12 +54,12 @@ def verificar_operativos(resultado: dict, backend, *, P_alta: float,
     fallas: list[Falla] = []
     e = resultado["estados"]
 
-    # O1 — título de turbina (tecnológico, VALIDO_ADVERTENCIA)
+    # O1 — título de turbina (tecnológico, CORREGIBLE)
     _, q4 = backend.fase_de(P_baja, e["e4"].T, e["e4"].x)
     if q4 < 0.90:
         fallas.append(Falla(
             codigo="O1", severidad=Severidad.TECNOLOGICO,
-            clasificacion=Clasificacion.VALIDO_ADVERTENCIA,
+            clasificacion=Clasificacion.CORREGIBLE,
             mensaje="título de vapor a la salida de la turbina bajo el umbral "
                     "tecnológico usual (erosión de álabes)",
             variable="q4", valor_medido=q4, valor_esperado=">= 0.90",
@@ -106,7 +116,7 @@ def verificar_operativos(resultado: dict, backend, *, P_alta: float,
     elif q2 > 1.0 - DQ:
         fallas.append(Falla(
             codigo="O5", severidad=Severidad.TOPOLOGICO,
-            clasificacion=Clasificacion.DEGENERADO,
+            clasificacion=Clasificacion.INVIABLE,
             mensaje="salida del HRVG sobrecalentada: el ciclo deja de ser "
                     "Kalina y pasa a comportarse como Rankine",
             variable="q2", valor_medido=q2, valor_esperado=f"<= {1.0 - DQ}",
