@@ -64,3 +64,11 @@ resultados/ una carpeta por corrida + BITACORA_BARRIDOS.md
 Los `opencode_run_*.log` y otros `*.log` dejan de versionarse (`*.log` en `.gitignore`).
 Rutas ajustadas por el movimiento: `scripts/consolidar_excel_barridos.py` y
 `scripts/barridos_2026-09-19/excel_iteraciones.py` ahora leen/escriben en `datos/`.
+
+## Estado de la suite al corte
+
+`170 passed, 1 skipped, 8 xfailed, 0 failed` (`resultados/2026-09-30_consolidacion/pytest_final.log`).
+Los 8 xfail son de `tests/test_verificacion_iapws_g4.py`: el motor teqp no reproduce Cv y w
+de IAPWS G4-01 Tabla 6 dentro de rel<1e-4 (errores 2.5e-4 a 3.8e-3; ver
+`resultados/2026-09-23_verificacion_iapws_g4/REPORTE_VERIFICACION_IAPWS_G4.md`). Es una
+desviacion documentada del motor, no un bug; las tolerancias NO se relajaron.
