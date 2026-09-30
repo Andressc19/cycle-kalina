@@ -41,8 +41,8 @@
         "eps_reg": 0.75,
         "eps_cond": 0.95
       },
-      "clasificacion_teqp": "VALIDO_ADVERTENCIA",
-      "clasificacion_real": "VALIDO_ADVERTENCIA",
+      "clasificacion_teqp": "CORREGIBLE",
+      "clasificacion_real": "CORREGIBLE",
       "motor_confirmado": true,
       "eta_real": 0.12578752543328,
       "margen_ligante": -0.0003093864011043,
@@ -87,8 +87,8 @@
         "eps_reg": 0.75,
         "eps_cond": 0.95
       },
-      "clasificacion_teqp": "VALIDO_ADVERTENCIA",
-      "clasificacion_real": "VALIDO_ADVERTENCIA",
+      "clasificacion_teqp": "CORREGIBLE",
+      "clasificacion_real": "CORREGIBLE",
       "motor_confirmado": true,
       "eta_real": 0.12588230502712322,
       "margen_ligante": -0.0003828810113337,
@@ -300,7 +300,7 @@
     {
       "csv": "sensibilidad_eta_t.csv",
       "fila_idx": 4,
-      "clasificacion": "VALIDO_ADVERTENCIA",
+      "clasificacion": "CORREGIBLE",
       "criterio": "O1",
       "margen": -0.0034356577433302
     },
@@ -342,7 +342,7 @@
     {
       "csv": "sensibilidad_eta_t.csv",
       "fila_idx": 5,
-      "clasificacion": "VALIDO_ADVERTENCIA",
+      "clasificacion": "CORREGIBLE",
       "criterio": "O1",
       "margen": -0.0065606781514272
     },

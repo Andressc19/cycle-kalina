@@ -97,7 +97,7 @@ real quedan en `skip` automático mientras el backend no cubra la mezcla.
 
 ## Documentación técnica
 
-- `Kalina_ksc_11_tercero.md`: especificación base (ciclo, propiedades, arquitectura).
+- `prompts/Kalina_ksc_11_tercero.md`: especificación base (ciclo, propiedades, arquitectura).
 - `CONTEXT.md`: datos de ingeniería confirmados (estados, fórmulas de efectividad,
   valores por defecto, estado muerto).
 - `AGENTS.md`: protocolo de trabajo (director técnico + ejecutor).
