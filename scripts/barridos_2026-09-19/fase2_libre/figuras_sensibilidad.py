@@ -5,7 +5,7 @@ prefijo `fase2_` y el resumen resumen_fase2.json. Figuras:
 
 - fase2_sensibilidad_<var>.png (5): eta vs la variable barrida, puntos
   coloreados por clasificacion (KALINA=#2ca02c, CORREGIBLE=#ff7f0e, otras
-  [INVIABLE/DEGENERADO/NO_CONVERGIO/VALIDO_ADVERTENCIA]=#d62728), leyenda.
+  [INVIABLE/NO_CONVERGIO]=#d62728), leyenda.
 - fase2_mapa_2d_pbaja_epscond.png: heatmap categorico de la clasificacion en
   el plano P_baja × eps_cond con la frontera KALINA/CORREGIBLE visible.
 
@@ -65,7 +65,7 @@ def fig_sensibilidad_ofat(df: pd.DataFrame, var: str) -> Figure:
     for grupo in ("KALINA", "CORREGIBLE", "OTRO"):
         if grupo == "OTRO":
             sub = df[~df["clasificacion"].isin(("KALINA", "CORREGIBLE"))]
-            nombre = "Otras (INVIABLE/DEGENERADO/NO_CONVERGIO)"
+            nombre = "Otras (INVIABLE/NO_CONVERGIO)"
         else:
             sub = df[df["clasificacion"] == grupo]
             nombre = grupo

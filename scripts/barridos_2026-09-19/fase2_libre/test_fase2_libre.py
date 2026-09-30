@@ -61,5 +61,4 @@ def test_csv_registrado_tiene_esquema_y_10_puntos():
     assert list(df.columns) == f2.COLUMNAS
     assert len(df) == 10
     assert set(df["clasificacion"]) <= {"KALINA", "CORREGIBLE",
-                                        "NO_CONVERGIO", "INVIABLE",
-                                        "DEGENERADO", "VALIDO_ADVERTENCIA"}
+                                        "NO_CONVERGIO", "INVIABLE"}

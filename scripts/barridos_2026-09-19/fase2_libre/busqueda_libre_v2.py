@@ -153,8 +153,7 @@ def main() -> None:
                   flush=True)
     else:
         print("\nSin KALINA. Mejores por clasificacion:", flush=True)
-        peso = {"VALIDO_ADVERTENCIA": 4, "CORREGIBLE": 3, "DEGENERADO": 2,
-                "INVIABLE": 1, "NO_CONVERGIO": 0}
+        peso = {"CORREGIBLE": 2, "INVIABLE": 1, "NO_CONVERGIO": 0}
         orden = df.assign(_p=lambda d: d["clasificacion"].map(peso))
         for _, r in orden.sort_values("_p", ascending=False).head(8).iterrows():
             print(f"  P_baja={r['P_baja']:.0f} x_b={r['x_b']:.2f} "

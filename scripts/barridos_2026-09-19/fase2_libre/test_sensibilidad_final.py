@@ -138,8 +138,7 @@ def test_factories_crean_adapters():
 # -------------------------------------------------------- CSV registrados ---
 
 def test_csvs_registrados_tienen_esquema_y_clasificaciones_validas():
-    validas = {"KALINA", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE",
-               "DEGENERADO", "VALIDO_ADVERTENCIA"}
+    validas = {"KALINA", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE"}
     n = 0
     for var in ofat.BARRIDOS:
         csv = ofat.SALIDAS / f"sensibilidad_{var}.csv"

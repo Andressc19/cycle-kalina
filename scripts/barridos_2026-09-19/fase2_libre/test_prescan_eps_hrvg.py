@@ -68,6 +68,5 @@ def test_csv_registrado_tiene_esquema_y_6_puntos():
     assert list(df.columns) == f2.COLUMNAS
     assert len(df) == 6
     assert set(df["clasificacion"]) <= {"KALINA", "CORREGIBLE",
-                                        "NO_CONVERGIO", "INVIABLE",
-                                        "DEGENERADO", "VALIDO_ADVERTENCIA"}
+                                        "NO_CONVERGIO", "INVIABLE"}
     assert sorted(df["eps_hrvg"]) == list(f2.EPS_HRVG_GRID)
