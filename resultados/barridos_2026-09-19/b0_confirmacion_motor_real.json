@@ -1,0 +1,44 @@
+{
+  "caso": {
+    "T_fuente": 583.15,
+    "T_sumidero": 300.032917,
+    "DT_COND": 3.0,
+    "eta_t": 0.85,
+    "eta_p": 0.75,
+    "eps_reg": 0.75,
+    "eps_cond": 0.8,
+    "m_b": 1.0
+  },
+  "puntos": [
+    {
+      "P_alta": 7000.0,
+      "P_baja": 157.88893698830577,
+      "x_b": 0.35,
+      "eps_hrvg": 0.5,
+      "convergio": false,
+      "clasificacion": "NO_CONVERGIO",
+      "mensaje": "equilibrio_liquido_vapor(P=7000.0 kPa, T=582.649582349027 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor IAPWS G4-01).",
+      "tiempo_s": 69.7
+    },
+    {
+      "P_alta": 7000.0,
+      "P_baja": 157.88893698830577,
+      "x_b": 0.35,
+      "eps_hrvg": 0.65,
+      "convergio": false,
+      "clasificacion": "NO_CONVERGIO",
+      "mensaje": "equilibrio_liquido_vapor(P=7000.0 kPa, T=582.7996201548433 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor IAPWS G4-01).",
+      "tiempo_s": 76.6
+    },
+    {
+      "P_alta": 6500.0,
+      "P_baja": 157.88893698830577,
+      "x_b": 0.35,
+      "eps_hrvg": 0.5,
+      "convergio": false,
+      "clasificacion": "NO_CONVERGIO",
+      "mensaje": "equilibrio_liquido_vapor(P=6500.0 kPa, T=582.6496358921854 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor IAPWS G4-01).",
+      "tiempo_s": 77.6
+    }
+  ]
+}

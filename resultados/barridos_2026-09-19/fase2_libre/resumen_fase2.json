@@ -1,0 +1,6 @@
+{
+  "fase": "2_libre",
+  "clasificacion_ancla": "KALINA",
+  "eta_ancla": 0.124296,
+  "leccion_aprendida": "El KALINA del ancla se sostiene con O2 comodo (+3.91 K) y S5 lejos, pero la frontera real del entorno es O1 (q4=0.9013, margen +0.0013, sin cruzar). La sensibilidad dominante es eps_cond: por debajo de ~0.93 todo el plano P_baja×eps_cond cae a CORREGIBLE por O2. En la frontera O1 el motor real IAPWS es numericamente fragil (no-convergencias no deterministas, ver spotcheck_motor_real_fase2.json)."
+}

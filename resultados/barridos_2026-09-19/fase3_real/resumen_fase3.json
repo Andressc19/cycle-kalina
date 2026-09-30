@@ -1,0 +1,6 @@
+{
+  "fase": "3_husavik",
+  "clasificacion_ancla": "KALINA",
+  "eta_ancla": 0.1273,
+  "leccion_aprendida": "P_baja y eps_cond gobiernan el margen O2; del ancla 690 kPa hacia abajo la frontera KALINA/CORREGIBLE se cruza rapidamente y 10/10 puntos de borde se confirmaron igual con motor real (eta_ancla=0.1273)."
+}

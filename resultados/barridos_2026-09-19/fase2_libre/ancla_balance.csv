@@ -1,0 +1,2 @@
+Qi,Qout,Wt,Wp,Wnet,eta,residuo_N2,limite_N2,cumple_N2,clasificacion_teqp,nota
+1340.534,1173.921,170.714,4.101,166.613,0.124289,0.000194,1.340534,True,KALINA,"Tablas con TeqpAdapter; motor real citado de confirmacion_motor_real_v2.json: eta=0.124296, KALINA, Wnet=166.62 kW"

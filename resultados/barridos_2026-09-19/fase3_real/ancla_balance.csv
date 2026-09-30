@@ -1,0 +1,10 @@
+magnitud,valor_teqp,motor_real_citado
+Qi [kW],923.5748,923.5947
+Qout [kW],805.9866,806.0251
+Wt [kW],122.2509,
+Wp [kW],4.6626,
+Wnet [kW],117.5883,117.5697
+eta [-],0.127319,0.127296
+N2 |Qi-Qout-Wnet| [kW],5.2e-05,
+N2 limite 1e-3*Qi [kW],0.923575,
+N2 cumple (<= limite),True,

@@ -1,0 +1,497 @@
+{
+  "T_amb_diseno": 303.55,
+  "tope_motor_real": 10,
+  "puntos": [
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 6,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.95,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "KALINA",
+      "motor_confirmado": true,
+      "eta_real": 0.12547938171504994,
+      "margen_ligante": 5.8823106638628e-05,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_eta_t.csv",
+      "fila_idx": 3,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.86,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "VALIDO_ADVERTENCIA",
+      "clasificacion_real": "VALIDO_ADVERTENCIA",
+      "motor_confirmado": true,
+      "eta_real": 0.12578752543328,
+      "margen_ligante": -0.0003093864011043,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 5,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.925,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "KALINA",
+      "motor_confirmado": true,
+      "eta_real": 0.12520943705505158,
+      "margen_ligante": 0.0003450509587302,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 8,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.99,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "VALIDO_ADVERTENCIA",
+      "clasificacion_real": "VALIDO_ADVERTENCIA",
+      "motor_confirmado": true,
+      "eta_real": 0.12588230502712322,
+      "margen_ligante": -0.0003828810113337,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 4,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.9,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "KALINA",
+      "motor_confirmado": true,
+      "eta_real": 0.12492353689243102,
+      "margen_ligante": 0.0006394655488002,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 3,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.875,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "KALINA",
+      "motor_confirmado": true,
+      "eta_real": 0.12461975299288988,
+      "margen_ligante": 0.0009423979519869,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_x_b.csv",
+      "fila_idx": 0,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.35,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "KALINA",
+      "motor_confirmado": true,
+      "eta_real": 0.11826728572655677,
+      "margen_ligante": 0.0011197492309662,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_x_b.csv",
+      "fila_idx": 1,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.37,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "KALINA",
+      "motor_confirmado": true,
+      "eta_real": 0.12084293023379292,
+      "margen_ligante": 0.0011773497275878,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_x_b.csv",
+      "fila_idx": 2,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.39,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "NO_CONVERGIO",
+      "motor_confirmado": false,
+      "eta_real": null,
+      "margen_ligante": 0.0012297804457234,
+      "tiempo_s": 0.0
+    },
+    {
+      "csv": "sensibilidad_P_baja.csv",
+      "fila_idx": 0,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 400.0,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eps_cond": 0.95
+      },
+      "clasificacion_teqp": "KALINA",
+      "clasificacion_real": "KALINA",
+      "motor_confirmado": true,
+      "eta_real": 0.12429590544149488,
+      "margen_ligante": 0.0012542120861269,
+      "tiempo_s": 0.0
+    }
+  ],
+  "exceso": [
+    {
+      "csv": "sensibilidad_eps_cond.csv",
+      "fila_idx": 5,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0012542120861269
+    },
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 2,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0012542120861269
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 5,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0012542120861269
+    },
+    {
+      "csv": "sensibilidad_x_b.csv",
+      "fila_idx": 3,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0012775268169319
+    },
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 1,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.001575293954404
+    },
+    {
+      "csv": "sensibilidad_eps_hrvg.csv",
+      "fila_idx": 0,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0019060784057799
+    },
+    {
+      "csv": "sensibilidad_eta_t.csv",
+      "fila_idx": 2,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0028181255968665
+    },
+    {
+      "csv": "sensibilidad_P_baja.csv",
+      "fila_idx": 1,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0028941566124055
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 11,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0028941566124055
+    },
+    {
+      "csv": "sensibilidad_eta_t.csv",
+      "fila_idx": 4,
+      "clasificacion": "VALIDO_ADVERTENCIA",
+      "criterio": "O1",
+      "margen": -0.0034356577433302
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 16,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0044554235545273
+    },
+    {
+      "csv": "sensibilidad_eta_t.csv",
+      "fila_idx": 1,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0059468665578276
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 22,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0059847056187015
+    },
+    {
+      "csv": "sensibilidad_P_baja.csv",
+      "fila_idx": 3,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0060053027329856
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 23,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0060053027329856
+    },
+    {
+      "csv": "sensibilidad_eta_t.csv",
+      "fila_idx": 5,
+      "clasificacion": "VALIDO_ADVERTENCIA",
+      "criterio": "O1",
+      "margen": -0.0065606781514272
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 28,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0074653198639881
+    },
+    {
+      "csv": "sensibilidad_P_baja.csv",
+      "fila_idx": 4,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0074857238088383
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 29,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0074857238088383
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 34,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0089010574980702
+    },
+    {
+      "csv": "sensibilidad_P_baja.csv",
+      "fila_idx": 5,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0089212684742494
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 35,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0089212684742494
+    },
+    {
+      "csv": "sensibilidad_eta_t.csv",
+      "fila_idx": 0,
+      "clasificacion": "KALINA",
+      "criterio": "O1",
+      "margen": 0.0090768263011321
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 10,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -0.0176433760165082
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 33,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -0.0461972423018437
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 27,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -0.3703013150731635
+    },
+    {
+      "csv": "sensibilidad_eps_cond.csv",
+      "fila_idx": 4,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -0.3829637074795755
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 4,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -0.3829637074795755
+    },
+    {
+      "csv": "sensibilidad_x_b.csv",
+      "fila_idx": 4,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -0.5528245567158478
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 21,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -0.702983244402617
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 15,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -1.044885666256164
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 9,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -1.3967522672777477
+    },
+    {
+      "csv": "sensibilidad_x_b.csv",
+      "fila_idx": 5,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -1.428079847888796
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 32,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -1.492376288333901
+    },
+    {
+      "csv": "sensibilidad_eps_cond.csv",
+      "fila_idx": 3,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -1.7593832269888594
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 3,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -1.7593832269888594
+    },
+    {
+      "csv": "mapa_2d_pbaja_epscond.csv",
+      "fila_idx": 26,
+      "clasificacion": "CORREGIBLE",
+      "criterio": "O2",
+      "margen": -1.814156609061854
+    }
+  ]
+}
