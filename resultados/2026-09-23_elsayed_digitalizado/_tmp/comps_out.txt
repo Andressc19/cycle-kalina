@@ -1,0 +1,241 @@
+FIG2 panel a data area (100..480,100..200) hist: [(0.0, 571), (32.0, 458), (64.0, 313), (96.0, 340), (128.0, 269), (160.0, 325), (192.0, 1437), (224.0, 34287)]
+FIG2 panel b data area hist: [(0.0, 1388), (32.0, 1258), (64.0, 993), (96.0, 1033), (128.0, 920), (160.0, 1346), (192.0, 3280), (224.0, 56982)]
+
+-- FIG2: componentes (th=170) panel a data region x 95..490 y 25..250, tam>=3px --
+  comp x=101..101 y= 34.. 39 w= 1 h= 6 npx=  6
+  comp x=170..176 y= 40.. 40 w= 7 h= 1 npx=  7
+  comp x=151..152 y= 40.. 42 w= 2 h= 3 npx=  4
+  comp x=170..177 y= 43.. 43 w= 8 h= 1 npx=  8
+  comp x=111..128 y= 38.. 45 w=18 h= 8 npx= 64
+  comp x=187..189 y= 38.. 46 w= 3 h= 9 npx= 15
+  comp x=191..193 y= 37.. 46 w= 3 h=10 npx= 19
+  comp x=131..137 y= 37.. 47 w= 7 h=11 npx= 38
+  comp x=139..144 y= 40.. 47 w= 6 h= 8 npx= 28
+  comp x=146..150 y= 40.. 47 w= 5 h= 8 npx= 18
+  comp x=154..160 y= 40.. 47 w= 7 h= 8 npx= 29
+  comp x=181..182 y= 37.. 47 w= 2 h=11 npx= 17
+  comp x=198..204 y= 36.. 47 w= 7 h=12 npx= 40
+  comp x=206..211 y= 40.. 47 w= 6 h= 8 npx= 30
+  comp x=213..217 y= 40.. 47 w= 5 h= 8 npx= 17
+  comp x=162..168 y= 40.. 50 w= 7 h=11 npx= 39
+  comp x=170..176 y= 62.. 62 w= 7 h= 1 npx=  7
+  comp x=170..177 y= 65.. 65 w= 8 h= 1 npx=  8
+  comp x=100..101 y= 59.. 66 w= 2 h= 8 npx=  9
+  comp x=188..193 y= 59.. 67 w= 6 h= 9 npx= 21
+  comp x=111..128 y= 59.. 68 w=18 h=10 npx= 60
+  comp x=131..137 y= 59.. 69 w= 7 h=11 npx= 39
+  comp x=139..144 y= 62.. 69 w= 6 h= 8 npx= 29
+  comp x=146..150 y= 62.. 69 w= 5 h= 8 npx= 18
+  comp x=154..156 y= 66.. 69 w= 3 h= 4 npx=  8
+  comp x=155..160 y= 62.. 69 w= 6 h= 8 npx= 20
+  comp x=181..182 y= 59.. 69 w= 2 h=11 npx= 16
+  comp x=187..189 y= 68.. 69 w= 3 h= 2 npx=  4
+  comp x=198..204 y= 59.. 69 w= 7 h=11 npx= 39
+  comp x=206..211 y= 62.. 69 w= 6 h= 8 npx= 30
+  comp x=213..217 y= 62.. 69 w= 5 h= 8 npx= 16
+  comp x=101..101 y= 70.. 72 w= 1 h= 3 npx=  3
+  comp x=162..168 y= 62.. 72 w= 7 h=11 npx= 39
+  comp x=170..177 y= 84.. 84 w= 8 h= 1 npx=  8
+  comp x=111..128 y= 84.. 86 w=18 h= 3 npx= 45
+  comp x=141..144 y= 84.. 86 w= 4 h= 3 npx=  7
+  comp x=179..184 y= 81.. 86 w= 6 h= 6 npx= 15
+  comp x=151..152 y= 84.. 87 w= 2 h= 4 npx=  5
+  comp x=170..177 y= 87.. 87 w= 8 h= 1 npx=  8
+  comp x=101..101 y= 87.. 89 w= 1 h= 3 npx=  3
+  comp x=201..204 y= 84.. 90 w= 4 h= 7 npx= 13
+  comp x=131..137 y= 81.. 91 w= 7 h=11 npx= 40
+  comp x=139..144 y= 85.. 91 w= 6 h= 7 npx= 18
+  comp x=146..150 y= 84.. 91 w= 5 h= 8 npx= 19
+  comp x=154..157 y= 88.. 91 w= 4 h= 4 npx=  9
+  comp x=155..160 y= 84.. 91 w= 6 h= 8 npx= 22
+  comp x=179..184 y= 90.. 91 w= 6 h= 2 npx= 12
+  comp x=187..193 y= 81.. 91 w= 7 h=11 npx= 38
+  comp x=198..201 y= 80.. 91 w= 4 h=12 npx= 25
+  comp x=206..211 y= 84.. 91 w= 6 h= 8 npx= 31
+  comp x=213..217 y= 84.. 91 w= 5 h= 8 npx= 16
+  comp x=162..168 y= 84.. 94 w= 7 h=11 npx= 40
+  comp x=101..228 y= 30.. 96 w=128 h=67 npx=321
+  comp x= 95..111 y=206..206 w=17 h= 1 npx= 17
+  comp x=113..285 y=206..206 w=173 h= 1 npx=173
+  comp x=266..489 y=100..209 w=224 h=110 npx=2251
+  comp x=148..154 y=216..217 w= 7 h= 2 npx= 14
+  comp x=148..155 y=219..219 w= 8 h= 1 npx=  8
+  comp x=160..164 y=213..221 w= 5 h= 9 npx= 24
+  comp x=166..171 y=213..221 w= 6 h= 9 npx= 26
+  comp x= 99..107 y=213..222 w= 9 h=10 npx= 34
+  comp x=108..112 y=216..222 w= 5 h= 7 npx= 24
+  comp x=114..119 y=216..222 w= 6 h= 7 npx= 29
+  comp x=121..126 y=216..222 w= 6 h= 7 npx= 34
+  comp x=129..133 y=216..222 w= 5 h= 7 npx= 23
+  comp x=135..139 y=217..222 w= 5 h= 6 npx= 17
+  comp x=137..146 y=216..222 w=10 h= 7 npx= 30
+  comp x=159..162 y=221..222 w= 4 h= 2 npx=  6
+  comp x=165..169 y=221..222 w= 5 h= 2 npx=  7
+  comp x=173..178 y=213..222 w= 6 h=10 npx= 33
+  comp x=189..195 y=213..222 w= 7 h=10 npx= 34
+  comp x=184..186 y=213..225 w= 3 h=13 npx= 25
+  comp x=198..199 y=213..225 w= 2 h=13 npx= 25
+  comp x=148..149 y=230..231 w= 2 h= 2 npx=  4
+  comp x=213..214 y=230..231 w= 2 h= 2 npx=  4
+  comp x=159..161 y=229..238 w= 3 h=10 npx= 14
+  comp x= 99..107 y=230..239 w= 9 h=10 npx= 36
+  comp x=110..119 y=232..239 w=10 h= 8 npx= 53
+  comp x=121..131 y=232..239 w=11 h= 8 npx= 55
+  comp x=133..138 y=233..239 w= 6 h= 7 npx= 29
+  comp x=140..145 y=233..239 w= 6 h= 7 npx= 34
+  comp x=148..149 y=233..239 w= 2 h= 7 npx= 14
+  comp x=152..157 y=233..239 w= 6 h= 7 npx= 29
+  comp x=163..166 y=233..239 w= 4 h= 7 npx= 16
+  comp x=167..170 y=233..239 w= 4 h= 7 npx= 16
+  comp x=173..178 y=232..239 w= 6 h= 8 npx= 34
+  comp x=180..182 y=231..239 w= 3 h= 9 npx= 18
+  comp x=185..189 y=233..239 w= 5 h= 7 npx= 24
+  comp x=192..197 y=233..239 w= 6 h= 7 npx= 20
+  comp x=201..211 y=233..239 w=11 h= 7 npx= 54
+  comp x=213..214 y=233..239 w= 2 h= 7 npx= 13
+  comp x=218..222 y=233..239 w= 5 h= 7 npx= 18
+  comp x=224..227 y=231..239 w= 4 h= 9 npx= 22
+  comp x=229..234 y=233..239 w= 6 h= 7 npx= 32
+  comp x=237..241 y=233..239 w= 5 h= 7 npx= 19
+  comp x=243..247 y=233..239 w= 5 h= 7 npx= 25
+  comp x=286..287 y=206..249 w= 2 h=44 npx= 45
+
+-- FIG2: componentes (th=170) panel b region x 615..1025 y 25..250 --
+  comp x=620..626 y= 26.. 26 w= 7 h= 1 npx=  7
+  comp x=631..719 y= 26.. 26 w=89 h= 1 npx= 89
+  comp x=1024..1024 y= 25.. 30 w= 1 h= 6 npx=  6
+  comp x=675..680 y= 33.. 33 w= 6 h= 1 npx=  6
+  comp x=654..655 y= 33.. 34 w= 2 h= 2 npx=  3
+  comp x=625..642 y= 30.. 37 w=18 h= 8 npx= 63
+  comp x=656..659 y= 33.. 37 w= 4 h= 5 npx=  9
+  comp x=688..690 y= 30.. 37 w= 3 h= 8 npx= 13
+  comp x=692..693 y= 31.. 37 w= 2 h= 7 npx= 11
+  comp x=644..649 y= 30.. 38 w= 6 h= 9 npx= 28
+  comp x=651..653 y= 34.. 38 w= 3 h= 5 npx=  7
+  comp x=662..664 y= 36.. 38 w= 3 h= 3 npx=  5
+  comp x=664..666 y= 33.. 38 w= 3 h= 6 npx= 11
+  comp x=683..684 y= 30.. 38 w= 2 h= 9 npx= 11
+  comp x=697..702 y= 30.. 38 w= 6 h= 9 npx= 25
+  comp x=704..707 y= 33.. 38 w= 4 h= 6 npx= 19
+  comp x=709..712 y= 33.. 38 w= 4 h= 6 npx= 14
+  comp x=1024..1024 y= 35.. 38 w= 1 h= 4 npx=  4
+  comp x=668..680 y= 33.. 41 w=13 h= 9 npx= 34
+  comp x=1024..1024 y= 40.. 43 w= 1 h= 4 npx=  4
+  comp x=674..679 y= 47.. 47 w= 6 h= 1 npx=  6
+  comp x=647..649 y= 45.. 48 w= 3 h= 4 npx= 10
+  comp x=654..655 y= 47.. 48 w= 2 h= 2 npx=  3
+  comp x=701..702 y= 47.. 48 w= 2 h= 2 npx=  3
+  comp x=625..642 y= 44.. 51 w=18 h= 8 npx= 68
+  comp x=689..692 y= 44.. 51 w= 4 h= 8 npx= 14
+  comp x=644..645 y= 45.. 52 w= 2 h= 8 npx= 16
+  comp x=651..654 y= 48.. 52 w= 4 h= 5 npx=  8
+  comp x=657..659 y= 47.. 52 w= 3 h= 6 npx=  9
+  comp x=663..666 y= 47.. 52 w= 4 h= 6 npx= 18
+  comp x=683..684 y= 45.. 52 w= 2 h= 8 npx= 10
+  comp x=689..691 y= 52.. 52 w= 3 h= 1 npx=  3
+  comp x=695..699 y= 44.. 52 w= 5 h= 9 npx= 22
+  comp x=701..705 y= 47.. 52 w= 5 h= 6 npx= 17
+  comp x=707..709 y= 47.. 52 w= 3 h= 6 npx= 11
+  comp x=668..674 y= 47.. 55 w= 7 h= 9 npx= 30
+  comp x=690..692 y= 59.. 59 w= 3 h= 1 npx=  3
+  comp x=682..686 y= 59.. 62 w= 5 h= 4 npx= 10
+  comp x=689..691 y= 60.. 62 w= 3 h= 3 npx=  5
+  comp x=654..654 y= 61.. 63 w= 1 h= 3 npx=  3
+  comp x=625..642 y= 58.. 65 w=18 h= 8 npx= 63
+  comp x=692..692 y= 63.. 65 w= 1 h= 3 npx=  3
+  comp x=656..659 y= 61.. 66 w= 4 h= 6 npx= 11
+  comp x=671..673 y= 61.. 66 w= 3 h= 6 npx=  9
+  comp x=688..691 y= 66.. 66 w= 4 h= 1 npx=  4
+  comp x=697..702 y= 59.. 66 w= 6 h= 8 npx= 28
+  comp x=644..649 y= 59.. 67 w= 6 h= 9 npx= 28
+  comp x=651..654 y= 62.. 67 w= 4 h= 6 npx= 10
+  comp x=663..666 y= 61.. 67 w= 4 h= 7 npx= 18
+  comp x=682..686 y= 66.. 67 w= 5 h= 2 npx=  6
+  comp x=704..707 y= 61.. 67 w= 4 h= 7 npx= 16
+  comp x=709..712 y= 61.. 67 w= 4 h= 7 npx= 14
+  comp x=668..669 y= 61.. 69 w= 2 h= 9 npx= 17
+  comp x=676..679 y= 76.. 76 w= 4 h= 1 npx=  4
+  comp x=653..655 y= 76.. 77 w= 3 h= 2 npx=  4
+  comp x=676..679 y= 78.. 78 w= 4 h= 1 npx=  4
+  comp x=625..642 y= 73.. 80 w=18 h= 8 npx= 50
+  comp x=683..686 y= 73.. 80 w= 4 h= 8 npx= 13
+  comp x=688..691 y= 73.. 80 w= 4 h= 8 npx= 15
+  comp x=692..693 y= 74.. 80 w= 2 h= 7 npx= 10
+  comp x=697..702 y= 73.. 80 w= 6 h= 8 npx= 25
+  comp x=644..649 y= 73.. 81 w= 6 h= 9 npx= 28
+  comp x=651..654 y= 76.. 81 w= 4 h= 6 npx= 10
+  comp x=656..659 y= 76.. 81 w= 4 h= 6 npx= 10
+  comp x=663..663 y= 79.. 81 w= 1 h= 3 npx=  3
+  comp x=665..666 y= 76.. 81 w= 2 h= 6 npx= 11
+  comp x=704..707 y= 76.. 81 w= 4 h= 6 npx= 14
+  comp x=709..712 y= 76.. 81 w= 4 h= 6 npx= 14
+  comp x=668..673 y= 76.. 83 w= 6 h= 8 npx= 24
+  comp x=675..679 y= 90.. 90 w= 5 h= 1 npx=  5
+  comp x=625..642 y= 90.. 91 w=18 h= 2 npx= 36
+  comp x=647..649 y= 88.. 91 w= 3 h= 4 npx=  9
+  comp x=653..654 y= 90.. 91 w= 2 h= 2 npx=  3
+  comp x=676..680 y= 92.. 92 w= 5 h= 1 npx=  5
+  comp x=692..693 y= 88.. 94 w= 2 h= 7 npx= 10
+  comp x=644..646 y= 87.. 95 w= 3 h= 9 npx= 18
+  comp x=651..654 y= 91.. 95 w= 4 h= 5 npx=  9
+  comp x=656..659 y= 90.. 95 w= 4 h= 6 npx= 10
+  comp x=662..666 y= 90.. 95 w= 5 h= 6 npx= 17
+  comp x=682..686 y= 87.. 95 w= 5 h= 9 npx= 18
+  comp x=688..691 y= 88.. 95 w= 4 h= 8 npx= 15
+  comp x=697..702 y= 87.. 95 w= 6 h= 9 npx= 27
+  comp x=703..707 y= 90.. 95 w= 5 h= 6 npx= 16
+  comp x=709..712 y= 90.. 95 w= 4 h= 6 npx= 14
+  comp x=617..619 y= 27.. 97 w= 3 h=71 npx= 74
+  comp x=632..634 y= 97.. 97 w= 3 h= 1 npx=  3
+  comp x=649..651 y= 97.. 97 w= 3 h= 1 npx=  3
+  comp x=642..645 y= 97.. 98 w= 4 h= 2 npx=  6
+  comp x=667..673 y= 90.. 98 w= 7 h= 9 npx= 33
+  comp x=678..681 y= 97.. 98 w= 4 h= 2 npx=  6
+  comp x=692..697 y= 97.. 98 w= 6 h= 2 npx=  9
+  comp x=755..756 y=103..104 w= 2 h= 2 npx=  3
+  comp x=727..729 y=227..228 w= 3 h= 2 npx=  4
+  comp x=680..686 y=230..230 w= 7 h= 1 npx=  7
+  comp x=680..686 y=233..233 w= 7 h= 1 npx=  7
+  comp x=689..693 y=227..235 w= 5 h= 9 npx= 26
+  comp x=630..638 y=227..236 w= 9 h=10 npx= 33
+  comp x=640..644 y=230..236 w= 5 h= 7 npx= 23
+  comp x=645..651 y=230..236 w= 7 h= 7 npx= 32
+  comp x=653..658 y=230..236 w= 6 h= 7 npx= 32
+  comp x=661..665 y=230..236 w= 5 h= 7 npx= 20
+  comp x=667..671 y=230..236 w= 5 h= 7 npx= 21
+  comp x=673..678 y=230..236 w= 6 h= 7 npx= 23
+  comp x=688..691 y=235..236 w= 4 h= 2 npx=  6
+  comp x=695..701 y=227..236 w= 7 h=10 npx= 26
+  comp x=702..707 y=227..236 w= 6 h=10 npx= 34
+  comp x=721..730 y=227..236 w=10 h=10 npx= 50
+  comp x=716..717 y=227..239 w= 2 h=13 npx= 24
+  comp x=732..734 y=227..239 w= 3 h=13 npx= 26
+  comp x=837..837 y=224..241 w= 1 h=18 npx= 18
+  comp x=680..681 y=244..245 w= 2 h= 2 npx=  4
+  comp x=745..746 y=243..245 w= 2 h= 3 npx=  6
+  comp x=624..1020 y= 27..249 w=397 h=223 npx=5655
+  comp x=632..633 y=248..249 w= 2 h= 2 npx=  3
+  comp x=634..637 y=244..249 w= 4 h= 6 npx= 15
+  comp x=641..650 y=246..249 w=10 h= 4 npx= 25
+  comp x=653..662 y=246..249 w=10 h= 4 npx= 26
+  comp x=664..670 y=247..249 w= 7 h= 3 npx= 16
+  comp x=672..677 y=246..249 w= 6 h= 4 npx= 15
+  comp x=680..681 y=247..249 w= 2 h= 3 npx=  6
+  comp x=684..688 y=246..249 w= 5 h= 4 npx= 14
+  comp x=691..693 y=243..249 w= 3 h= 7 npx= 10
+  comp x=695..702 y=247..249 w= 8 h= 3 npx= 16
+  comp x=705..706 y=247..249 w= 2 h= 3 npx=  5
+  comp x=708..710 y=247..249 w= 3 h= 3 npx=  7
+  comp x=712..714 y=245..249 w= 3 h= 5 npx= 14
+  comp x=717..721 y=246..249 w= 5 h= 4 npx= 15
+  comp x=724..728 y=246..249 w= 5 h= 4 npx= 11
+  comp x=733..742 y=246..249 w=10 h= 4 npx= 24
+  comp x=745..746 y=247..249 w= 2 h= 3 npx=  6
+  comp x=749..752 y=247..249 w= 4 h= 3 npx= 10
+  comp x=756..758 y=245..249 w= 3 h= 5 npx= 14
+  comp x=761..762 y=247..249 w= 2 h= 3 npx=  6
+  comp x=765..766 y=247..249 w= 2 h= 3 npx=  6
+  comp x=768..773 y=246..249 w= 6 h= 4 npx= 12
+  comp x=775..779 y=247..249 w= 5 h= 3 npx= 13
+  comp x=837..837 y=243..249 w= 1 h= 7 npx=  7
+  comp x=1024..1024 y= 63..249 w= 1 h=187 npx=187

@@ -1,0 +1,6 @@
+opcion,s_por_punto,s_30_puntos,base
+teqp puro (TeqpAdapter),30.98,929.4,medido: 24 ciclos con TeqpContado (Parte 1)
+"A: teqp verificado, 3 normales (sin recurrencia)",31.37,941.0,medido: 3 ciclos con TeqpVerificado (Parte 3)
+"A: teqp verificado, 5 puntos (con recurrencias)",37.26,1117.7,medido: 5 ciclos con TeqpVerificado (Parte 3)
+B: teqp + verificacion final (h + T_from_Ps reales),38.0,1140.1,medido: media teqp (P1) + media de 2 llamadas reales (P2)
+motor real puro (AmmoniaWaterAdapter),312.37,9371.0,medido antes en 2026-09-24_verificacion (n=3)

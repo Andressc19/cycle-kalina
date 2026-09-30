@@ -1,0 +1,4 @@
+P,h_ramaA,T_ramaA,faseA,h_ramaB,T_ramaB,faseB,h_real,T_real,coincide_ramaA,coincide_ramaB,tiempo_h_s,tiempo_T_s,error,veredicto
+420.0,1626.2727,272.869,liquido,1484.8729,281.8391,bifasico,1485.616762,282.143239,no,si,4.57,2.71,,rama_B
+422.0,1626.3965,272.9955,liquido,1485.4294,282.0029,bifasico,1486.175253,282.30855,no,si,4.41,2.62,,rama_B
+424.169832,1626.53,273.1322,liquido,1486.0306,282.18,bifasico,1486.778592,282.487402,no,si,4.12,2.4,,rama_B

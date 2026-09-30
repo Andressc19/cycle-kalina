@@ -1,0 +1,118 @@
+x_b,P_alta,P_baja,etiqueta_punto,convergio,clasificacion,eta,Wnet,fallas,detalle_error,T2,q2,O2_margen_K
+0.78,6000,400.0,ventana,True,CORREGIBLE,0.021994,12.792,"O1,O2",,463.22,0.947,-36.4099
+0.78,6250,400.0,ventana,True,CORREGIBLE,0.019905,11.39,"O1,O2",,464.633,0.9439,-36.2227
+0.78,6500,400.0,ventana,True,CORREGIBLE,0.012635,6.9316,"O1,O2",,465.07,0.931,-35.7745
+0.78,6750,400.0,ventana,True,CORREGIBLE,0.002716,1.4157,"O1,O2",,465.151,0.9153,-35.2655
+0.78,7000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=499.06 K, P=7e+06 Pa, x=0.7895",,,
+0.78,7250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=498.55 K, P=7.25e+06 Pa, x=0.7895",,,
+0.78,7500,400.0,ventana,True,INVIABLE,-0.032299,-14.5107,"O1,O2,O3",,465.445,0.873,-33.9763
+0.78,7750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=500.89 K, P=7.75e+06 Pa, x=0.7895",,,
+0.78,8000,400.0,ventana,True,INVIABLE,-0.060834,-24.8154,"O1,O2,O3",,465.675,0.8478,-33.2704
+0.78,8250,400.0,ventana,True,INVIABLE,-0.07697,-29.9248,"O1,O2,O3",,465.799,0.8359,-32.9536
+0.78,8500,400.0,ventana,True,INVIABLE,-0.09453,-35.0251,"O1,O2,O3",,465.927,0.8243,-32.6575
+0.78,8750,400.0,ventana,True,INVIABLE,-0.113675,-40.1301,"O1,O2,O3",,466.06,0.8129,-32.38
+0.78,9000,400.0,ventana,True,INVIABLE,-0.134591,-45.2526,"O1,O2,O3",,466.197,0.8017,-32.1195
+0.78,9250,400.0,ventana,True,INVIABLE,-0.157501,-50.4056,"O1,O2,O3",,466.338,0.7907,-31.8743
+0.78,9500,400.0,ventana,True,INVIABLE,-0.182664,-55.6012,"O1,O2,O3",,466.481,0.7799,-31.643
+0.78,9750,400.0,ventana,True,INVIABLE,-0.210388,-60.852,"O1,O2,O3",,466.628,0.769,-31.4246
+0.78,10000,400.0,ventana,True,INVIABLE,-0.241042,-66.1703,"O1,O2,O3",,466.776,0.7582,-31.2179
+0.78,6000,500,barrido_pbaja,True,CORREGIBLE,0.068624,47.6373,"O1,O2",,462.193,0.9359,-29.6449
+0.78,6000,600,barrido_pbaja,True,CORREGIBLE,0.101489,83.0367,"O1,O2",,461.038,0.9238,-23.0691
+0.78,6000,700,barrido_pbaja,True,CORREGIBLE,0.129155,126.34,"O1,O2",,459.512,0.9081,-16.5206
+0.78,6000,800,barrido_pbaja,True,CORREGIBLE,0.156193,191.826,"O1,O2",,457.042,0.8837,-9.9372
+0.78,6000,900,barrido_pbaja,True,CORREGIBLE,0.152747,195.1469,"O1,O2",,456.541,0.8789,-3.9295
+0.78,6000,1000,barrido_pbaja,True,CORREGIBLE,0.146334,187.1345,"O1,O2",,456.528,0.8788,-3.4401
+0.78,6000,1100,barrido_pbaja,True,CORREGIBLE,0.140344,179.6097,O2,,456.518,0.8787,-3.2762
+0.78,6000,1200,barrido_pbaja,True,CORREGIBLE,0.134715,172.5057,O2,,456.511,0.8786,-3.1204
+0.78,6000,1300,barrido_pbaja,True,CORREGIBLE,0.129397,165.7694,O2,,456.505,0.8786,-2.9716
+0.78,6000,1400,barrido_pbaja,True,CORREGIBLE,0.12435,159.3573,O2,,456.501,0.8785,-2.8286
+0.78,6000,1500,barrido_pbaja,True,CORREGIBLE,0.119544,153.234,O2,,456.498,0.8785,-2.6906
+0.8,6000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=492.90 K, P=6e+06 Pa, x=0.8088",,,
+0.8,6250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=493.40 K, P=6.25e+06 Pa, x=0.8088",,,
+0.8,6500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=493.87 K, P=6.5e+06 Pa, x=0.8088",,,
+0.8,6750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.32 K, P=6.75e+06 Pa, x=0.8088",,,
+0.8,7000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=493.30 K, P=7e+06 Pa, x=0.8088",,,
+0.8,7250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=493.22 K, P=7.25e+06 Pa, x=0.8088",,,
+0.8,7500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=495.10 K, P=7.5e+06 Pa, x=0.8088",,,
+0.8,7750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.28 K, P=7.75e+06 Pa, x=0.8088",,,
+0.8,8000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.24 K, P=8e+06 Pa, x=0.8088",,,
+0.8,8250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.97 K, P=8.25e+06 Pa, x=0.8088",,,
+0.8,8500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=493.77 K, P=8.5e+06 Pa, x=0.8088",,,
+0.8,8750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.30 K, P=8.75e+06 Pa, x=0.8088",,,
+0.8,9000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.71 K, P=9e+06 Pa, x=0.8088",,,
+0.8,9250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.44 K, P=9.25e+06 Pa, x=0.8088",,,
+0.8,9500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.54 K, P=9.5e+06 Pa, x=0.8088",,,
+0.8,9750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.66 K, P=9.75e+06 Pa, x=0.8088",,,
+0.8,10000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=494.78 K, P=1e+07 Pa, x=0.8088",,,
+0.8,5000.0,400.0,diagnostico_borde,True,INVIABLE,-0.00397,-2.1655,"O1,O2,O3",,454.194,0.9722,-37.6655
+0.8,5250.0,400.0,diagnostico_borde,True,INVIABLE,-0.006942,-3.718,"O1,O2,O3",,455.924,0.9698,-37.4594
+0.8,5500.0,400.0,diagnostico_borde,True,INVIABLE,-0.01011,-5.3164,"O1,O2,O3",,457.565,0.9673,-37.2583
+0.8,5750.0,400.0,diagnostico_borde,True,INVIABLE,-0.013485,-6.9615,"O1,O2,O3",,459.121,0.9647,-37.0616
+0.8,10500.0,400.0,diagnostico_borde,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=495.08 K, P=1.05e+07 Pa, x=0.8088",,,
+0.8,5000.0,500,barrido_pbaja,True,CORREGIBLE,0.044523,28.9713,"O1,O2",,453.243,0.9623,-31.0285
+0.8,5000.0,600,barrido_pbaja,True,CORREGIBLE,0.077985,59.6599,"O1,O2",,452.189,0.9516,-24.5224
+0.8,5000.0,700,barrido_pbaja,True,CORREGIBLE,0.105509,96.0421,"O1,O2",,450.817,0.9381,-17.9763
+0.8,5000.0,800,barrido_pbaja,True,CORREGIBLE,0.132728,151.1566,O2,,448.582,0.9168,-11.3541
+0.8,5000.0,900,barrido_pbaja,True,CORREGIBLE,0.140034,179.9023,O2,,447.106,0.9033,-5.1318
+0.8,5000.0,1000,barrido_pbaja,True,CORREGIBLE,0.133401,171.5604,O2,,447.092,0.9032,-3.0756
+0.8,5000.0,1100,barrido_pbaja,True,CORREGIBLE,0.12721,163.7323,O2,,447.081,0.9031,-2.9439
+0.8,5000.0,1200,barrido_pbaja,True,CORREGIBLE,0.121394,156.347,O2,,447.073,0.903,-2.8184
+0.8,5000.0,1300,barrido_pbaja,True,CORREGIBLE,0.115898,149.3457,O2,,447.066,0.9029,-2.6982
+0.8,5000.0,1400,barrido_pbaja,True,CORREGIBLE,0.110685,142.6858,O2,,447.061,0.9029,-2.5823
+0.8,5000.0,1500,barrido_pbaja,True,CORREGIBLE,0.105723,136.3296,O2,,447.057,0.9028,-2.4701
+0.82,6000,400.0,ventana,True,INVIABLE,-0.070222,-30.2874,"O1,O2,O3",,457.883,0.9776,-37.1866
+0.82,6250,400.0,ventana,True,INVIABLE,-0.07676,-32.3771,"O1,O2,O3",,459.279,0.9755,-36.9934
+0.82,6500,400.0,ventana,True,INVIABLE,-0.083655,-34.4971,"O1,O2,O3",,460.608,0.9733,-36.8035
+0.82,6750,400.0,ventana,True,INVIABLE,-0.090941,-36.6502,"O1,O2,O3",,461.872,0.971,-36.6164
+0.82,7000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=487.77 K, P=7e+06 Pa, x=0.8281",,,
+0.82,7250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=487.85 K, P=7.25e+06 Pa, x=0.8281",,,
+0.82,7500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=488.88 K, P=7.5e+06 Pa, x=0.8281",,,
+0.82,7750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=490.21 K, P=7.75e+06 Pa, x=0.8281",,,
+0.82,8000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=488.94 K, P=8e+06 Pa, x=0.8281",,,
+0.82,8250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=488.98 K, P=8.25e+06 Pa, x=0.8281",,,
+0.82,8500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=489.03 K, P=8.5e+06 Pa, x=0.8281",,,
+0.82,8750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=490.03 K, P=8.75e+06 Pa, x=0.8281",,,
+0.82,9000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=489.37 K, P=9e+06 Pa, x=0.8281",,,
+0.82,9250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=488.73 K, P=9.25e+06 Pa, x=0.8281",,,
+0.82,9500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=488.15 K, P=9.5e+06 Pa, x=0.8281",,,
+0.82,9750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=487.66 K, P=9.75e+06 Pa, x=0.8281",,,
+0.82,10000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=490.11 K, P=1e+07 Pa, x=0.8281",,,
+0.82,6000,500,barrido_pbaja,False,NO_CONVERGIO,,,,"PropertyRangeError: h(P, s, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=487.68 K, P=6e+06 Pa, x=0.8281",,,
+0.82,6000,600,barrido_pbaja,True,CORREGIBLE,0.059139,38.1579,"O1,O2",,455.741,0.9569,-24.5324
+0.82,6000,700,barrido_pbaja,True,CORREGIBLE,0.099142,77.7323,"O1,O2",,454.307,0.9435,-18.2627
+0.82,6000,800,barrido_pbaja,True,CORREGIBLE,0.136419,136.3925,"O1,O2",,452.007,0.9228,-11.9142
+0.82,6000,900,barrido_pbaja,True,CORREGIBLE,0.157186,195.3015,"O1,O2",,449.314,0.8996,-5.8133
+0.82,6000,1000,barrido_pbaja,True,CORREGIBLE,0.150586,187.2981,O2,,449.299,0.8995,-2.4414
+0.82,6000,1100,barrido_pbaja,True,CORREGIBLE,0.144422,179.7796,O2,,449.288,0.8994,-2.3372
+0.82,6000,1200,barrido_pbaja,True,CORREGIBLE,0.13863,172.68,O2,,449.279,0.8993,-2.2374
+0.82,6000,1300,barrido_pbaja,True,CORREGIBLE,0.133158,165.9467,O2,,449.272,0.8992,-2.1413
+0.82,6000,1400,barrido_pbaja,True,CORREGIBLE,0.127967,159.537,O2,,449.267,0.8992,-2.0483
+0.82,6000,1500,barrido_pbaja,True,CORREGIBLE,0.123023,153.4154,O2,,449.263,0.8991,-1.9579
+0.85,6000,400.0,ventana,True,NO_CONVERGIO,-0.194926,-61.5129,"N2,O1,O2,O3,O5,C1,C3,C3",,454.157,1.0,-37.5634
+0.85,6250,400.0,ventana,True,INVIABLE,-0.213902,-65.7527,"O1,O2,O3,O5",,454.979,0.9998,-37.1893
+0.85,6500,400.0,ventana,True,INVIABLE,-0.229572,-68.3738,"O1,O2,O3",,456.297,0.9983,-36.9917
+0.85,6750,400.0,ventana,True,INVIABLE,-0.246197,-70.9969,"O1,O2,O3",,457.555,0.9968,-36.7974
+0.85,7000,400.0,ventana,True,INVIABLE,-0.263883,-73.6252,"O1,O2,O3",,458.754,0.9953,-36.606
+0.85,7250,400.0,ventana,True,INVIABLE,-0.282755,-76.2623,"O1,O2,O3",,459.898,0.9938,-36.4172
+0.85,7500,400.0,ventana,True,INVIABLE,-0.302952,-78.9116,"O1,O2,O3",,460.99,0.9922,-36.2307
+0.85,7750,400.0,ventana,True,INVIABLE,-0.324641,-81.5767,"O1,O2,O3",,462.031,0.9906,-36.0461
+0.85,8000,400.0,ventana,True,INVIABLE,-0.348016,-84.2613,"O1,O2,O3",,463.024,0.989,-35.8632
+0.85,8250,400.0,ventana,True,INVIABLE,-0.373306,-86.9693,"O1,O2,O3",,463.97,0.9874,-35.6816
+0.85,8500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=479.60 K, P=8.5e+06 Pa, x=0.8570",,,
+0.85,8750,400.0,ventana,True,INVIABLE,-0.430771,-92.4723,"O1,O2,O3",,465.727,0.9839,-35.3216
+0.85,9000,400.0,ventana,True,INVIABLE,-0.463667,-95.2762,"O1,O2,O3",,466.54,0.9821,-35.1426
+0.85,9250,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=478.80 K, P=9.25e+06 Pa, x=0.8570",,,
+0.85,9500,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=479.17 K, P=9.5e+06 Pa, x=0.8570",,,
+0.85,9750,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=479.85 K, P=9.75e+06 Pa, x=0.8570",,,
+0.85,10000,400.0,ventana,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=480.50 K, P=1e+07 Pa, x=0.8570",,,
+0.85,6000,500,barrido_pbaja,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=479.82 K, P=6e+06 Pa, x=0.8570",,,
+0.85,6000,600,barrido_pbaja,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=480.93 K, P=6e+06 Pa, x=0.8570",,,
+0.85,6000,700,barrido_pbaja,True,CORREGIBLE,0.063926,40.7245,"O1,O2",,450.128,0.9708,-19.3205
+0.85,6000,800,barrido_pbaja,True,CORREGIBLE,0.112882,92.9462,"O1,O2",,448.013,0.9531,-13.1683
+0.85,6000,900,barrido_pbaja,True,CORREGIBLE,0.160406,194.1579,"O1,O2",,443.388,0.9167,-7.0062
+0.85,6000,1000,barrido_pbaja,True,CORREGIBLE,0.153886,187.1945,O2,,443.313,0.9161,-1.8497
+0.85,6000,1100,barrido_pbaja,True,CORREGIBLE,0.147584,179.6835,O2,,443.3,0.916,-1.7547
+0.85,6000,1200,barrido_pbaja,True,CORREGIBLE,0.141662,172.59,O2,,443.29,0.9159,-1.6864
+0.85,6000,1300,barrido_pbaja,True,CORREGIBLE,0.136068,165.8618,O2,,443.282,0.9159,-1.6202
+0.85,6000,1400,barrido_pbaja,True,CORREGIBLE,0.130761,159.4564,O2,,443.276,0.9158,-1.5555
+0.85,6000,1500,barrido_pbaja,True,CORREGIBLE,0.125706,153.3389,O2,,443.272,0.9158,-1.4921

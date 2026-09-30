@@ -1,0 +1,31 @@
+x_b,P_alta,T_fuente,pinch,P_baja,eps_hrvg,eps_reg,eps_cond,eps_realista,convergio,clasificacion,eta,Wnet,fallas,detalle_error
+0.6,3000.0,394.0,6.0,360.842155,0.829602,0.931184,0.942866,True,True,KALINA,0.131964,53.9679,,
+0.6,4000.0,394.0,6.0,360.842178,,,,,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=-8906.82 fuera de dominio a P=3.6084e+05 Pa, x=0.6134"
+0.6,5000.0,394.0,6.0,360.842178,,,,,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=-10827.9 fuera de dominio a P=3.6084e+05 Pa, x=0.6134"
+0.6,3000.0,423.0,6.0,360.842155,0.898067,0.938657,0.966534,False,True,KALINA,0.140771,119.6794,,
+0.6,4000.0,423.0,6.0,360.842178,0.881557,0.9445,0.957646,False,True,KALINA,0.154607,96.8723,,
+0.6,5000.0,423.0,6.0,360.842178,0.84226,0.94888,0.945917,True,True,KALINA,0.156843,66.9044,,
+0.65,3000.0,394.0,6.0,426.696669,0.869432,0.925255,0.953128,False,True,KALINA,0.130284,72.7864,,
+0.65,4000.0,394.0,6.0,426.696688,0.762855,0.934903,0.932831,True,True,KALINA,0.128502,38.6902,,
+0.65,5000.0,394.0,6.0,426.696688,,,,,False,NO_CONVERGIO,,,,"PropertyRangeError: equilibrio_liquido_vapor(P=5000.0 kPa, T=354.7305111191538 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor teqp)."
+0.65,3000.0,423.0,6.0,426.696669,0.90849,0.934434,0.970049,False,True,KALINA,0.13458,133.6305,,
+0.65,4000.0,423.0,6.0,426.696688,0.900119,0.940768,0.963301,False,True,KALINA,0.150851,117.4476,,
+0.65,5000.0,423.0,6.0,426.696688,0.877031,0.945514,0.955323,False,True,KALINA,0.158416,93.4713,,
+0.7,3000.0,394.0,6.0,488.458529,,,,,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=-9.62024e+09 fuera de dominio a P=3e+06 Pa, x=0.7117"
+0.7,4000.0,394.0,6.0,488.458544,0.833879,0.929271,0.947608,True,True,KALINA,0.1354,63.475,,
+0.7,5000.0,394.0,6.0,488.458545,,,,,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=-15557.5 fuera de dominio a P=4.8846e+05 Pa, x=0.7117"
+0.7,3000.0,423.0,6.0,488.458529,0.916342,0.929825,0.97278,False,True,KALINA,0.129452,146.3317,,
+0.7,4000.0,423.0,6.0,488.458544,0.913392,0.936649,0.967445,False,True,KALINA,0.147299,136.3665,,
+0.7,5000.0,423.0,6.0,488.458545,0.899724,0.941767,0.961678,False,True,KALINA,0.157547,118.1629,,
+0.75,3000.0,394.0,6.0,544.028258,0.914173,0.910074,0.964871,False,True,KALINA,0.124502,105.3543,,
+0.75,4000.0,394.0,6.0,544.02827,0.876589,0.922577,0.956702,False,True,KALINA,0.136657,86.8504,,
+0.75,5000.0,394.0,6.0,544.02827,0.75782,0.9329,0.941855,True,True,KALINA,0.132273,48.3141,,
+0.75,3000.0,423.0,6.0,544.028258,0.922465,0.924796,0.974953,False,True,CORREGIBLE,0.125403,158.3847,O2,
+0.75,4000.0,423.0,6.0,544.02827,,,,,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=-4.41648e+08 fuera de dominio a P=4e+06 Pa, x=0.7604"
+0.75,5000.0,423.0,6.0,544.02827,0.915799,0.937551,0.966248,False,True,KALINA,0.156187,141.5322,,
+0.8,3000.0,394.0,6.0,592.935448,0.928236,0.899922,0.968531,False,True,CORREGIBLE,0.122053,120.1187,O2,
+0.8,4000.0,394.0,6.0,592.935458,0.905422,0.914374,0.962856,False,True,KALINA,0.136365,109.0885,,
+0.8,5000.0,394.0,6.0,592.935458,0.837582,0.926201,0.954146,False,True,KALINA,0.14078,79.6857,,
+0.8,3000.0,423.0,6.0,592.935448,0.927375,0.919305,0.976718,False,True,CORREGIBLE,0.122281,170.1279,O2,
+0.8,4000.0,423.0,6.0,592.935458,,,,,False,NO_CONVERGIO,,,,"PropertyRangeError: T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=495.67 K, P=4e+06 Pa, x=0.8088"
+0.8,5000.0,423.0,6.0,592.935458,0.927861,0.932732,0.969686,False,True,CORREGIBLE,0.15492,164.0059,O2,
