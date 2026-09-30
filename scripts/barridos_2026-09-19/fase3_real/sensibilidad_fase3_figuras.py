@@ -35,8 +35,7 @@ COLORES = {"KALINA": "#2ca02c", "CORREGIBLE": "#ff7f0e"}
 TITULOS = {"P_baja": "P_baja [kPa]", "eps_cond": "eps_cond [-]",
            "eps_reg": "eps_reg [-]", "x_b": "x_b (fracción NH3) [-]",
            "eta_t": "η_turbina [-]"}
-ORDEN_MAPA = "KALINA", "CORREGIBLE", "INVIABLE", "DEGENERADO", \
-             "NO_CONVERGIO", "VALIDO_ADVERTENCIA"
+ORDEN_MAPA = "KALINA", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO"
 
 
 def figura_sensibilidad(df: pd.DataFrame, var: str) -> Figure:
