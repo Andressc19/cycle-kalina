@@ -1,0 +1,558 @@
+{
+  "tarea": "2026-09-29-fase2-ronda4-spotcheck-motor-real",
+  "fuente": "busqueda_libre_v2.csv, filas 186-798 = 613 puntos ronda 4 (las 184 previas son rondas 1-3)",
+  "motor_real": "AmmoniaWaterAdapter (iapws.ammonia.H2ONH3, IAPWS G4-01)",
+  "motor_csv": "TeqpAdapter",
+  "T_amb_diseno": 303.55,
+  "n_previas": 184,
+  "n_ronda4": 613,
+  "n_kalina_ronda4": 256,
+  "seleccion": "clasificacion=KALINA por |O2_margen| creciente",
+  "cerca_del_filo_corregible_no_verificados": [
+    {
+      "fila_csv": 756,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1069.375,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.75,
+        "eps_reg": 0.8,
+        "eps_cond": 0.85
+      },
+      "teqp": {
+        "clasificacion": "CORREGIBLE",
+        "eta": 0.0747208965845245,
+        "O2_margen": -0.0097583732556358
+      }
+    },
+    {
+      "fila_csv": 773,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 2536.5,
+        "x_b": 0.5,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.75,
+        "eps_cond": 0.8
+      },
+      "teqp": {
+        "clasificacion": "CORREGIBLE",
+        "eta": 0.0138827949466262,
+        "O2_margen": -0.0110498779816339
+      }
+    },
+    {
+      "fila_csv": 779,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1259.25,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eps_cond": 0.85
+      },
+      "teqp": {
+        "clasificacion": "CORREGIBLE",
+        "eta": 0.0637530410179863,
+        "O2_margen": -0.0152092274875599
+      }
+    },
+    {
+      "fila_csv": 789,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1917.375,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.85,
+        "eps_cond": 0.8
+      },
+      "teqp": {
+        "clasificacion": "CORREGIBLE",
+        "eta": 0.0354320561007743,
+        "O2_margen": -0.0216453329464911
+      }
+    },
+    {
+      "fila_csv": 741,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 2524.5,
+        "x_b": 0.5,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8
+      },
+      "teqp": {
+        "clasificacion": "CORREGIBLE",
+        "eta": 0.0143134261526546,
+        "O2_margen": -0.0249924101677834
+      }
+    }
+  ],
+  "resumen": {
+    "n": 10,
+    "coinciden": 8,
+    "difieren": 0,
+    "no_convergio_motor_real": 2,
+    "quedan_KALINA_solo_teqp": 2,
+    "segundos_pared": 1674.3
+  },
+  "puntos": [
+    {
+      "fila_csv": 731,
+      "linea_csv": 733,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 2631.75,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.75
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0109193457781782,
+        "Wnet": 13.48359227338252,
+        "T_sat_L": 388.1809277166924,
+        "T9_amb": 388.0571750445567,
+        "O2_margen": 0.1237526721357085
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.010919929960112314,
+        "Wnet": 13.484245649640245,
+        "O2_margen": 0.11320713105146751,
+        "T_sat_L": 388.180203893109,
+        "T9_amb": 388.06699676205756,
+        "q4": 0.9901408136588495,
+        "margen_O1": 0.09014081365884952,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.09014081365884952,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0105,
+      "delta_eta": 1e-06
+    },
+    {
+      "fila_csv": 724,
+      "linea_csv": 726,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 781.625,
+        "x_b": 0.4,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.85
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0921641692089842,
+        "Wnet": 108.1439671786505,
+        "T_sat_L": 344.0653127595682,
+        "T9_amb": 343.9112617408809,
+        "O2_margen": 0.154051018687312
+      },
+      "real": {
+        "convergio": false,
+        "clasificacion": "NO_CONVERGIO",
+        "eta": null,
+        "Wnet": null,
+        "O2_margen": null,
+        "T_sat_L": null,
+        "T9_amb": null,
+        "q4": null,
+        "margen_O1": null,
+        "criterio_ligante": null,
+        "margen_ligante": null,
+        "mensaje": "T_from_Ph(P, h, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONTEXT.md, IAPWS G4-01). Detalle del motor: equilibrio no resoluble en T=387.8140 K, P=0.78163 MPa, w=0.4000"
+      },
+      "coincide_clasificacion": false,
+      "veredicto": "NO_CONVERGIO_MOTOR_REAL",
+      "delta_O2_margen": null,
+      "delta_eta": null
+    },
+    {
+      "fila_csv": 795,
+      "linea_csv": 797,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1759.0,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.85,
+        "eps_cond": 0.8
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0418245115222859,
+        "Wnet": 53.79475202954295,
+        "T_sat_L": 368.2910803349497,
+        "T9_amb": 368.1274284912348,
+        "O2_margen": 0.1636518437148879
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.04182725726702787,
+        "Wnet": 53.79794345772244,
+        "O2_margen": 0.16077783498263898,
+        "T_sat_L": 368.2903885402399,
+        "T9_amb": 368.1296107052573,
+        "q4": 0.9645503127768614,
+        "margen_O1": 0.06455031277686141,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.06455031277686141,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0029,
+      "delta_eta": 3e-06
+    },
+    {
+      "fila_csv": 785,
+      "linea_csv": 787,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1259.25,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.8,
+        "eps_cond": 0.85
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0640767578860203,
+        "Wnet": 91.58991126316666,
+        "T_sat_L": 353.5590468512619,
+        "T9_amb": 353.3930367485078,
+        "O2_margen": 0.1660101027540577
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.06408098719321702,
+        "Wnet": 91.5951458071865,
+        "O2_margen": 0.16804865646548706,
+        "T_sat_L": 353.55838052905506,
+        "T9_amb": 353.39033187258957,
+        "q4": 0.9468124268248911,
+        "margen_O1": 0.04681242682489106,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.04681242682489106,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": 0.002,
+      "delta_eta": 4e-06
+    },
+    {
+      "fila_csv": 725,
+      "linea_csv": 727,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 2149.75,
+        "x_b": 0.425,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.75
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0267853611451714,
+        "Wnet": 31.192222614430108,
+        "T_sat_L": 382.8935476612997,
+        "T9_amb": 382.7101213898378,
+        "O2_margen": 0.1834262714618262
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.02678695195148683,
+        "Wnet": 31.193939178448908,
+        "O2_margen": 0.1753043174448976,
+        "T_sat_L": 382.8928152703462,
+        "T9_amb": 382.7175109529013,
+        "q4": 0.9764937760627168,
+        "margen_O1": 0.07649377606271679,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.07649377606271679,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0081,
+      "delta_eta": 2e-06
+    },
+    {
+      "fila_csv": 231,
+      "linea_csv": 233,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1450.0,
+        "x_b": 0.425,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0547762011612275,
+        "Wnet": 66.51270408799432,
+        "T_sat_L": 364.40196430377625,
+        "T9_amb": 364.2001071858783,
+        "O2_margen": 0.2018571178979868
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.05477995370253877,
+        "Wnet": 66.51684263115823,
+        "O2_margen": 0.20048978803225737,
+        "T_sat_L": 364.4012618515057,
+        "T9_amb": 364.20077206347344,
+        "q4": 0.9541273346090349,
+        "margen_O1": 0.05412733460903485,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.05412733460903485,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0014,
+      "delta_eta": 4e-06
+    },
+    {
+      "fila_csv": 763,
+      "linea_csv": 765,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1069.375,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.75,
+        "eps_reg": 0.85,
+        "eps_cond": 0.85
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0752934736761416,
+        "Wnet": 94.023628914875,
+        "T_sat_L": 346.8620704299575,
+        "T9_amb": 346.6373686614864,
+        "O2_margen": 0.2247017684711068
+      },
+      "real": {
+        "convergio": false,
+        "clasificacion": "NO_CONVERGIO",
+        "eta": null,
+        "Wnet": null,
+        "O2_margen": null,
+        "T_sat_L": null,
+        "T9_amb": null,
+        "q4": null,
+        "margen_O1": null,
+        "criterio_ligante": null,
+        "margen_ligante": null,
+        "mensaje": "T_from_Ph(P, h, x): el motor NH3-H2O portado no cubre el estado pedido (ver CONTEXT.md, IAPWS G4-01). Detalle del motor: equilibrio no resoluble en T=411.0118 K, P=1.0694 MPa, w=0.4500"
+      },
+      "coincide_clasificacion": false,
+      "veredicto": "NO_CONVERGIO_MOTOR_REAL",
+      "delta_O2_margen": null,
+      "delta_eta": null
+    },
+    {
+      "fila_csv": 742,
+      "linea_csv": 744,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 2545.5,
+        "x_b": 0.5,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0136310483966418,
+        "Wnet": 19.605383206148623,
+        "T_sat_L": 376.964639982898,
+        "T9_amb": 376.6806861820601,
+        "O2_margen": 0.2839538008378213
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.013631834531746056,
+        "Wnet": 19.6063601234769,
+        "O2_margen": 0.2773307569648864,
+        "T_sat_L": 376.963987121886,
+        "T9_amb": 376.68665636492113,
+        "q4": 0.9877978347351455,
+        "margen_O1": 0.08779783473514546,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.08779783473514546,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0066,
+      "delta_eta": 1e-06
+    },
+    {
+      "fila_csv": 782,
+      "linea_csv": 784,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1801.0,
+        "x_b": 0.5,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eps_cond": 0.85
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0397437051524566,
+        "Wnet": 63.681606039395376,
+        "T_sat_L": 360.3042036697206,
+        "T9_amb": 360.0182993523723,
+        "O2_margen": 0.2859043173482973
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.03974619409523399,
+        "Wnet": 63.68497426063445,
+        "O2_margen": 0.2859543197705534,
+        "T_sat_L": 360.30357941107195,
+        "T9_amb": 360.0176250913014,
+        "q4": 0.9657074291583353,
+        "margen_O1": 0.06570742915833527,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.06570742915833527,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": 0.0001,
+      "delta_eta": 2e-06
+    },
+    {
+      "fila_csv": 736,
+      "linea_csv": 738,
+      "combo": {
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "P_alta": 3000.0,
+        "P_baja": 1168.25,
+        "x_b": 0.45,
+        "m_b": 1.0,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.85
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0689936907131403,
+        "Wnet": 92.6105911558578,
+        "T_sat_L": 350.4467061040783,
+        "T9_amb": 350.1474287220957,
+        "O2_margen": 0.2992773819825629
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.06899856938129305,
+        "Wnet": 92.61641297737064,
+        "O2_margen": 0.3021471037678225,
+        "T_sat_L": 350.4460451224387,
+        "T9_amb": 350.1438980186709,
+        "q4": 0.9436407575573147,
+        "margen_O1": 0.04364075755731467,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.04364075755731467,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": 0.0029,
+      "delta_eta": 5e-06
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT_fase3_confirma_690.md
+[0m
+[0m$ [0mls -la scripts/barridos_2026-09-19/ && ls -la scripts/barridos_2026-09-19/fase3_real/ 2>/dev/null; ls -la resultados/barridos_2026-09-19/fase3_real/ 2>/dev/null
+total 52
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 15:45 .
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 11:01 ..
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 13:16 __pycache__
+-rw-r--r-- 1 Usuario 197121 4481 Sep 19 11:42 b0_confirma_motor_real.py
+-rw-r--r-- 1 Usuario 197121 9232 Sep 19 13:16 b0_scan_cementera.py
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 15:52 fase1_profesor
+drwxr-xr-x 1 Usuario 197121    0 Sep 20 02:32 fase2_libre
+drwxr-xr-x 1 Usuario 197121    0 Sep 20 03:05 fase3_real
+-rw-r--r-- 1 Usuario 197121 4716 Sep 19 13:16 test_b0_scan.py
+total 60
+drwxr-xr-x 1 Usuario 197121    0 Sep 20 03:05 .
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 15:45 ..
+drwxr-xr-x 1 Usuario 197121    0 Sep 20 03:05 __pycache__
+-rw-r--r-- 1 Usuario 197121 5286 Sep 19 16:17 ajuste_p_baja_husavik.py
+-rw-r--r-- 1 Usuario 197121 9068 Sep 19 15:58 busqueda_base_husavik.py
+-rw-r--r-- 1 Usuario 197121 7990 Sep 20 02:42 busqueda_husavik_v2.py
+-rw-r--r-- 1 Usuario 197121 4833 Sep 19 16:19 confirma_motor_real.py
+-rw-r--r-- 1 Usuario 197121 3684 Sep 20 02:58 confirma_motor_real_v2.py
+-rw-r--r-- 1 Usuario 197121 4576 Sep 19 16:26 sensibilidad_husavik.py
+total 88
+drwxr-xr-x 1 Usuario 197121     0 Sep 20 03:04 .
+drwxr-xr-x 1 Usuario 197121     0 Sep 19 15:45 ..
+-rw-r--r-- 1 Usuario 197121  5948 Sep 19 16:30 CASO_HUSAVIK.md
+-rw-r--r-- 1 Usuario 197121  7618 Sep 20 03:04 CASO_HUSAVIK_v2.md
+-rw-r--r-- 1 Usuario 197121 28361 Sep 19 16:18 busqueda_husavik.csv
+-rw-r--r-- 1 Usuario 197121 12966 Sep 20 02:46 busqueda_husavik_v2.csv
+-rw-r--r-- 1 Usuario 197121  1840 Sep 19 16:25 confirmacion_motor_real.json
+-rw-r--r-- 1 Usuario 197121  1830 Sep 20 03:03 confirmacion_motor_real_v2.json
+-rw-r--r-- 1 Usuario 197121  1378 Sep 19 16:27 sensibilidad_palta.csv
+-rw-r--r-- 1 Usuario 197121  1379 Sep 19 16:28 sensibilidad_pbaja.csv
+-rw-r--r-- 1 Usuario 197121  1379 Sep 19 16:28 sensibilidad_xb.csv
+[0m
+[0m✱ [0mGlob "**/confirma_motor_real_v2.py"[90m 1 match[0m
+[0m✱ [0mGlob "**/confirmacion_motor_real_v2.json"[90m 2 matches[0m
+[0m→ [0mRead scripts/barridos_2026-09-19/fase3_real/confirma_motor_real_v2.py
+[0m→ [0mRead resultados/barridos_2026-09-19/fase3_real/confirmacion_motor_real_v2.json
+[0m→ [0mRead resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK_v2.md
+[0m→ [0mRead scripts/barridos_2026-09-19/fase3_real/busqueda_husavik_v2.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase3_real/confirma_motor_real.py
+[0m✱ [0mGlob "src/**/*.py"[90m 40 matches[0m
+[0m✱ [0mGrep "def resolver_ciclo|def evaluar_ciclo|T_amb_diseno"[90m in src · 22 matches[0m
+[0m✱ [0mGrep "690"[90m in resultados/barridos_2026-09-19/fase3_real/busqueda_husavik_v2.csv · 6 matches[0m
+Now let me check the TeqpAdapter reference value for the 690/0.75/0.95 point in the CSV, and verify the run environment (Python, deps):
+[0m
+[0m$ [0mpython -c "import sys; print(sys.version)" && python -c "import iapws, teqp; print('iapws', iapws.__version__ if hasattr(iapws,'__version__') else 'ok'); print('teqp ok')"
+3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+iapws 1.5.5
+teqp ok
+[0m
+[0m→ [0mRead src/cycle_solver.py[90m [limit=70][0m
+[0m→ [0mRead src/restricciones/clasificacion.py[90m [limit=90][0m
+The CSV doesn't contain the 690/0.75/0.95 point (that came from the §2 relaxation diagnostic). Let me check the exact signatures of `resolver_ciclo` and `evaluar_ciclo`:
+[0m
+[0m# [0mTodos
+[•] Crear scripts/barridos_2026-09-19/fase3_real/confirma_690.py (motor real AmmoniaWaterAdapter en 690/0.75/0.95 + referencia Teqp)
+[ ] Ejecutar confirma_690.py y guardar confirmacion_motor_real_690.json
+[ ] Comparar eta/Wnet motor real vs TeqpAdapter (0.12732)
+[ ] Actualizar CASO_HUSAVIK_v2.md: ancla final 690/0.75/0.95 con confirmación motor real, sin borrar historial 670
+[0m
+I have everything I need. Let me set up the plan and write the confirmation script.
+[0m← [0mWrite scripts/barridos_2026-09-19/fase3_real/confirma_690.py
+Wrote file successfully.
+[0m
+[0m# [0mTodos
+[✓] Crear scripts/barridos_2026-09-19/fase3_real/confirma_690.py (motor real AmmoniaWaterAdapter en 690/0.75/0.95 + referencia Teqp)
+[•] Ejecutar confirma_690.py y guardar confirmacion_motor_real_690.json
+[ ] Comparar eta/Wnet motor real vs TeqpAdapter (0.12732)
+[ ] Actualizar CASO_HUSAVIK_v2.md: ancla final 690/0.75/0.95 con confirmación motor real, sin borrar historial 670
+[0m
+Script created (113 lines, under the 200-line limit). Now let me run it — the real motor is slow (~3–5 min for one point), so I'll set a generous timeout:
+[0m$ [0mpython scripts/barridos_2026-09-19/fase3_real/confirma_690.py
+Confirmacion ANCLA 690/0.75/0.95 - T_amb_diseno=283.15 K
+
+-- Motor real (AmmoniaWaterAdapter, iapws G4-01) --
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+  [AmmoniaWaterAdapter] KALINA eta=0.12730 Wnet=117.570 kW (246 s)
+    mensaje: KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+
+-- Referencia TeqpAdapter --
+  [TeqpAdapter] KALINA eta=0.12732 Wnet=117.588 kW (29 s)
+    mensaje: KALINA: r�gimen Kalina genuino y admisible, sin fallas.
+
+Dif. relativa motor real vs Teqp: eta -0.0180 %   Wnet -0.0158 %
+
+Guardado D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\confirmacion_motor_real_690.json
+[0m
+[0m→ [0mRead resultados/barridos_2026-09-19/fase3_real/confirmacion_motor_real_690.json
+Excellent. Real motor confirmed: **KALINA, η=0.12730, Wnet=117.570 kW** — matches the Teqp reference (0.12732) within 0.02%. Let me verify the JSON output:
+[0m
+[0m← [0mEdit resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK_v2.md
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+@@ -12,8 +12,38 @@
+ ---
+ 
+ ## 1. Candidato base v2 (confirmado con el motor real)
+ 
++### 1.0 ANCLA FINAL (decisión del director, 2026-09-20): 690 / 0.75 / 0.95
++
++> **El candidato elegido es `P_baja=690 kPa, eps_reg=0.75, eps_cond=0.95`** —
++> no 670/0.95/0.95. Decisión por robustez (margen O2 +1.19 K vs +0.30 K del
++> 670, que quedaba al filo) y realismo físico (eps_reg vuelve a su default
++> 0.75; el forzado 0.95 era poco realista). Este punto SOLO se había probado
++> con `TeqpAdapter`; se confirma aquí con el motor real — cierra el vacío
++> metodológico de anclar un barrido de sensibilidad a un punto no verificado
++> con el motor riguroso, dado que ya se documentó que `TeqpAdapter` y el motor
++> real discrepan cerca de fronteras de clasificación.
++
++**Confirmación con motor real (`AmmoniaWaterAdapter`, iapws G4-01) — punto
++exacto (3300/690/0.82/0.90/0.80/0.85/0.75/0.95, `T_amb_diseno=283.15 K`):**
++
++| Métrica | TeqpAdapter | Motor real | Dif. rel. |
++|---|---|---|---|
++| Clasificación | KALINA | **KALINA** (17/17) | — |
++| η | 0.12732 | **0.12730** | −0.018 % |
++| Wnet | 117.588 kW | 117.570 kW | −0.016 % |
++
++(Archivo: `confirmacion_motor_real_690.json`. Los valores Teqp se
++re-calcularon en la misma corrida, like-for-like, y reproducen la tabla de
++diagnóstico del §2.)
++
++**Histórico conservado (sigue siendo un punto de referencia válido, ya NO es
++el candidato elegido):** la comparación 670/0.95/0.95 de la tabla de abajo se
++mantiene intacta como referencia de menor pinch y mayor η (0.13445), pero se
++descarta como ancla por margen O2 al filo (+0.30 K) y por el `eps_reg=0.95`
++forzado.
++
+ | Variable | v2 (nuevo) | v1 (viejo) | caso real citado |
+ |---|---|---|---|
+ | P_alta | 3300 kPa | 3300 kPa | 3300 (32-34 bar) |
+ | **P_baja** | **670 kPa** | **1200 kPa** | no publicada (calibrada) |
+
+[0m
+JSON follows the v2 schema exactly. Now let me update `CASO_HUSAVIK_v2.md` — adding the final-anchor declaration with real-motor confirmation while preserving the 670 historical comparison:
+[0m← [0mEdit resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK_v2.md
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+@@ -124,13 +124,14 @@
+ (η=0.12732, −3.7 % respecto a 0.95). Solo `eps_cond=0.95` sigue siendo
+ necesario (0.80 no alcanza). En v1 ambas efectividades tenían que llevarse a
+ 0.95.
+ 
+-**Candidato de menor pinch (lo que pidió el director):** P_baja=670 kPa,
+-eps (0.95/0.95), margen O2 +0.30 K, η=0.13447. Alternativa con más colchón:
+-P_baja=690 (margen +1.19 K, η=0.13223, −1.7 %) y/o eps_reg=0.75 — queda a
+-decisión del director; el barrido de sensibilidad posterior debería cubrir
+-esas 4 combinaciones.
++**Resolución (2026-09-20):** el director eligió la alternativa con más colchón
++como ANCLA FINAL: **P_baja=690 kPa, eps_reg=0.75, eps_cond=0.95** (margen O2
+++1.19 K, η=0.12730 confirmado con motor real — ver §1.0). El punto de menor
++pinch (670/0.95/0.95, η=0.13445) queda como referencia histórica válida, no
++como candidato. El barrido de sensibilidad posterior deberá cubrir las 4
++combinaciones de esta tabla alrededor del ancla 690/0.75/0.95.
+ 
+ ---
+ 
+ ## 3. Estados de la base v2 (motor real, m_b = 1.0 kg/s, P_baja=670)
+
+[0m
+[0m← [0mEdit resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK_v2.md
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+@@ -161,15 +161,15 @@
+ ## 4. Tabla de rangos propuesta para el análisis de sensibilidad posterior
+ 
+ (NO se ejecuta en esta tarea — requiere autorización del director.)
+ 
+-Alrededor del candidato v2 (3300 / 670 / 0.82 / 0.90 / 0.85 / 0.95 / 0.95):
++Alrededor del ANCLA FINAL (3300 / 690 / 0.82 / 0.90 / 0.85 / 0.75 / 0.95):
+ 
+ | # | Variable | Límites | Centro (candidato) | Justificación |
+ |---|---|---|---|---|
+-| 1 | `P_baja` | 600 – 800 kPa | **670** | Variable crítica: frontera O2 en ~660-670; mapear ambos lados (CORREGIBLE abajo, KALINA arriba) |
++| 1 | `P_baja` | 600 – 800 kPa | **690** | Variable crítica: frontera O2 en ~660-670; mapear ambos lados (CORREGIBLE abajo, KALINA arriba) |
+ | 2 | `eps_cond` | 0.90 – 0.99 | **0.95** | Única efectividad que no se puede relajar (0.80 falla; verificar hasta dónde aguanta) |
+-| 3 | `eps_reg` | 0.75 – 0.95 | 0.75 o 0.95 | Ahora relajable: incluir el default (0.75) para decidir si se abandona el forzado |
++| 3 | `eps_reg` | 0.75 – 0.95 | **0.75** | Relajado al default (decisión de ancla); probar si 0.90/0.85 siguen pasando |
+ | 4 | `x_b` | 0.78 – 0.86 | **0.82** | Frontera O2 de composición ya vista en v1 (~0.83) |
+ | 5 | `eta_t` | 0.85 – 0.95 | **0.90** | Valor citado; vigilar O1 (q4 ≥ 0.90) y η |
+ 
+ Fijas: `P_alta=3300`, `T_fuente=394.15`, `T_sumidero=278.15`, `m_b=1.0`,
+
+[0m
+[0m← [0mEdit resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK_v2.md
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase3_real\CASO_HUSAVIK_v2.md
+@@ -183,8 +183,12 @@
+ 
+ - Archivos nuevos con sufijo `_v2` (no se tocó el historial v1):
+   `busqueda_husavik_v2.py`, `confirma_motor_real_v2.py`,
+   `busqueda_husavik_v2.csv`, `confirmacion_motor_real_v2.json`, este informe.
++- Confirmación del ANCLA final (tarea `2026-09-20-fase3-confirma-690`):
++  `confirma_690.py` + `confirmacion_motor_real_690.json`. Motor real: **+1
++  punto** (690/0.75/0.95 → KALINA, η=0.12730). Teqp: **+1 punto** de referencia
++  like-for-like en la misma corrida (η=0.12732) — ver §1.0.
+ - Puntos Teqp: **40** (37 línea A + 3 línea B; tope ~150). Motor real: **1
+   punto, 2 clasificaciones** (mismo punto con 283.15 y 303.55 — cabe en el tope
+   de 1-2 confirmaciones).
+ - Calibración B0 intacta: `bubble_point(P_baja, 0.82) = 281.15 K` →
+
+[0m
+Now let me add a traceability entry for the new files in §5:
+[0m→ [0mRead resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK_v2.md
+Let me verify the full updated file for consistency:
+Document is consistent. Now let me verify git status to confirm only the intended files changed and `fase2_libre/` was untouched:
+[0m
+[0m$ [0mgit status --short && echo "---" && git diff --stat
+M .claude/launch.json
+ M TASK_CONTEXT.md
+ M app.py
+ M src/restricciones/clasificacion.py
+ M src/restricciones/operativos.py
+ M src/ui_helpers.py
+ M src/ui_inputs.py
+ M tests/test_restricciones.py
+ M tests/test_restricciones_convenciones.py
+?? TASK_CONTEXT_fase1_profesor.md
+?? TASK_CONTEXT_fase2_eps_hrvg.md
+?? TASK_CONTEXT_fase2_libre.md
+?? TASK_CONTEXT_fase3_confirma_690.md
+?? TASK_CONTEXT_fase3_real.md
+?? TASK_CONTEXT_rangos_actualizados.md
+?? TASK_CONTEXT_ui_tamb.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? opencode_run_013_fase1.log
+?? opencode_run_014_fase2.log
+?? opencode_run_015_fase3.log
+?? opencode_run_016_fix_tamb.log
+?? opencode_run_017_rangos.log
+?? opencode_run_018_ui_tamb.log
+?? opencode_run_019_fase2_eps.log
+?? opencode_run_020_fase3_confirma.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+?? src/ui_campos.py
+---
+warning: in the working copy of 'TASK_CONTEXT.md', LF will be replaced by CRLF the next time Git touches it
+ .claude/launch.json                      |   2 +-
+ TASK_CONTEXT.md                          | 236 +++++++++++++++----------------
+ app.py                                   |   8 +-
+ src/restricciones/clasificacion.py       |  12 +-
+ src/restricciones/operativos.py          |  37 +++--
+ src/ui_helpers.py                        |  90 ++----------
+ src/ui_inputs.py                         |  62 ++++++--
+ tests/test_restricciones.py              |  30 +++-
+ tests/test_restricciones_convenciones.py |   1 +
+ 9 files changed, 239 insertions(+), 239 deletions(-)
+[0m
+All my changes are confined to the three intended files (the `src/`, `TASK_CONTEXT.md` etc. modifications pre-existed from parallel tasks — I never touched them). Let me run the required validation — schema comparison of the new JSON against the reference `confirmacion_motor_real_v2.json` and the Teqp-vs-real discrepancy check:
+[0m$ [0mpython - <<'EOF'
+import json
+from pathlib import Path
+
+base = Path("resultados/barridos_2026-09-19/fase3_real")
+nuevo = json.loads((base/"confirmacion_motor_real_690.json").read_text(encoding="utf-8"))
+ref   = json.loads((base/"confirmacion_motor_real_v2.json").read_text(encoding="utf-8"))
+
+# 1) Esquema: mismas claves top-level y dentro de puntos (salvo valores).
+assert set(nuevo) == set(ref), f"top-level: {set(nuevo)} vs {set(ref)}"
+k_punto = set(ref["puntos"][0]) - {"eta","Wnet"}
+assert set(nuevo["puntos"][0]) == k_punto, "puntos keys mismatched"
+print("esquema OK: claves idénticas a confirmacion_motor_real_v2.json")
+
+# 2) Comparación motor real vs Teqp (tarea: reportar discrepancia sin suavizarla).
+real = nuevo["puntos"][0]
+# Teqp re-calculado en la misma corrida (salida de consola) y documento §2: eta=0.12732
+teqp_eta, teqp_wnet = 0.127316695, 117.5879  # valores printed por confirma_690.py
+d_eta = (real["eta"] - teqp_eta) / teqp_eta * 100
+d_wnet = (real["Wnet"] - teqp_wnet) / teqp_wnet * 100
+assert real["clasificacion"] == "KALINA"
+assert abs(d_eta) < 1.0 and abs(d_wnet) < 1.0
+print(f"clasificación={real['clasificacion']}  eta_real={real['eta']:.6f}  Wnet_real={real['Wnet']:.3f} kW")
+print(f"dif rel vs Teqp (0.12732): eta {d_eta:+.4f} %  Wnet {d_wnet:+.4f} %  -> <1% OK")
+EOF
+Traceback (most recent call last):
+  File "<stdin>", line 11, in <module>
+AssertionError: puntos keys mismatched
+[0m
+[0m$ [0mpython - <<'EOF'
+import json
+from pathlib import Path
+base = Path("resultados/barridos_2026-09-19/fase3_real")
+nuevo = json.loads((base/"confirmacion_motor_real_690.json").read_text(encoding="utf-8"))
+ref   = json.loads((base/"confirmacion_motor_real_v2.json").read_text(encoding="utf-8"))
+print("nuevo:", sorted(nuevo["puntos"][0]))
+print("ref:  ", sorted(ref["puntos"][0]))
+print("diff nuevo-ref:", set(nuevo["puntos"][0]) ^ set(ref["puntos"][0]))
+EOF
+nuevo: ['Qi', 'Qout', 'T1', 'T2', 'T8', 'T9', 'T_amb_diseno', 'Wnet', 'clasificacion', 'convergio', 'eta', 'm_l', 'm_v', 'mensaje', 'tiempo_s', 'x3', 'x5']
+ref:   ['Qi', 'Qout', 'T1', 'T2', 'T8', 'T9', 'T_amb_diseno', 'Wnet', 'clasificacion', 'convergio', 'eta', 'm_l', 'm_v', 'mensaje', 'tiempo_s', 'x3', 'x5']
+diff nuevo-ref: set()
+[0m
+My assertion was faulty (I subtracted keys from only one set) — the actual key sets are identical. Re-running the corrected validation:
+[0m$ [0mpython - <<'EOF'
+import json
+from pathlib import Path
+base = Path("resultados/barridos_2026-09-19/fase3_real")
+nuevo = json.loads((base/"confirmacion_motor_real_690.json").read_text(encoding="utf-8"))
+ref   = json.loads((base/"confirmacion_motor_real_v2.json").read_text(encoding="utf-8"))
+
+assert set(nuevo) == set(ref), f"top-level: {set(nuevo)} vs {set(ref)}"
+assert set(nuevo["puntos"][0]) == set(ref["puntos"][0]), "puntos keys mismatched"
+print("esquema OK: claves idénticas a confirmacion_motor_real_v2.json")
+
+real = nuevo["puntos"][0]
+teqp_eta, teqp_wnet = 0.127316695, 117.5879  # Teqp re-calculado en la misma corrida (consola)
+d_eta = (real["eta"] - teqp_eta) / teqp_eta * 100
+d_wnet = (real["Wnet"] - teqp_wnet) / teqp_wnet * 100
+assert real["clasificacion"] == "KALINA"
+assert abs(d_eta) < 1.0 and abs(d_wnet) < 1.0
+print(f"clasificación={real['clasificacion']}  eta_real={real['eta']:.6f}  Wnet_real={real['Wnet']:.3f} kW")
+print(f"dif rel vs Teqp (0.12732): eta {d_eta:+.4f} %  Wnet {d_wnet:+.4f} %  -> <1% OK")
+EOF
+esquema OK: claves id�nticas a confirmacion_motor_real_v2.json
+clasificaci�n=KALINA  eta_real=0.127296  Wnet_real=117.570 kW
+dif rel vs Teqp (0.12732): eta -0.0165 %  Wnet -0.0155 %  -> <1% OK
+[0m
+[0m# [0mTodos
+[✓] Crear scripts/barridos_2026-09-19/fase3_real/confirma_690.py (motor real AmmoniaWaterAdapter en 690/0.75/0.95 + referencia Teqp)
+[✓] Ejecutar confirma_690.py y guardar confirmacion_motor_real_690.json
+[✓] Comparar eta/Wnet motor real vs TeqpAdapter (0.12732)
+[✓] Actualizar CASO_HUSAVIK_v2.md: ancla final 690/0.75/0.95 con confirmación motor real, sin borrar historial 670
+[0m
+All validations pass. Updating the todo list and finalizing:
+STATUS: done
+SUMMARY: Confirmé con el motor real (`AmmoniaWaterAdapter`, iapws G4-01) el punto ancla aprobado 690/0.75/0.95, que hasta ahora solo se había probado con `TeqpAdapter`. El motor real clasifica **KALINA** con η=0.12730 y Wnet=117.570 kW, con diferencia relativa < 0.02 % frente a Teqp (0.12732) — vacío metodológico cerrado. Guardé el JSON con el mismo esquema que `confirmacion_motor_real_v2.json` y actualicé `CASO_HUSAVIK_v2.md` dejando explícito que el ANCLA final es 690/0.75/0.95 y que 670/0.95/0.95 se conserva como referencia histórica (comparación no borrada).
+
+FILES_CHANGED:
+- `scripts/barridos_2026-09-19/fase3_real/confirma_690.py` (nuevo, 113 líneas ≤ 200)
+- `resultados/barridos_2026-09-19/fase3_real/confirmacion_motor_real_690.json` (nuevo, esquema idéntico a `confirmacion_motor_real_v2.json`)
+- `resultados/barridos_2026-09-19/fase3_real/CASO_HUSAVIK_v2.md` (editado: §1.0 ANCLA FINAL con confirmación motor real; §2 resolución del director; §4 centro de rangos → 690/0.75; §5 trazabilidad)
+- No se tocó nada de `src/`, ni `TASK_CONTEXT*.md`, ni `scripts/barridos_2026-09-19/fase2_libre/` (verificado con `git status`)
+
+TESTS:
+- Corrida directa del script: `python scripts/barridos_2026-09-19/fase3_real/confirma_690.py` (motor real + referencia Teqp en la misma corrida, like-for-like).
+- Validación de esquema: claves del JSON nuevo idénticas (`set` diff vacío) a `confirmacion_motor_real_v2.json`.
+- Verificación de discrepancia < 1 % entre motor real y Teqp (assert en el script de validación).
+
+RESULTS:
+- **Motor real (AmmoniaWaterAdapter, iapws G4-01)**, punto (3300/690/0.82/0.90/0.80/0.85/0.75/0.95), `T_amb_diseno=283.15 K`: clasificación **KALINA** (17/17), **η=0.12730 (0.1272957)**, **Wnet=117.570 kW**, Qi=923.59 kW, Qout=806.03 kW, T8=310.83 K, T9=287.16 K, margen O2 +1.19 K, tiempo 246 s.
+- **TeqpAdapter** (misma corrida): KALINA, η=0.12732, Wnet=117.588 kW — reproduce el valor documentado del §2 (0.12732).
+- **Diferencia relativa motor real vs Teqp: η −0.018 % , Wnet −0.016 %** (< 1 %, esperado; sin discrepancia que reportar).
+
+ERRORS: ninguno (solo RuntimeWarnings numéricos del motor iapws en el dominio de baja P, ya presentes en corridas anteriores — no afectan la convergencia ni la clasificación).
+
+ASSUMPTIONS:
+- La referencia Teqp se re-calculó en la misma corrida para comparar like-for-like; coincide con el valor documentado (0.12732), que es el que usa la tarea como referencia de comparación.
+- El "1 punto con motor real" de la tarea se interpretó como el punto del ancla con `T_amb_diseno=283.15` (no se re-corrió 303.55, que ya está documentado como CORREGIBLE/O2 en el barrido v2).
+- En §4 actualicé el centro de los rangos del barrido posterior a 690/0.75 (coherencia con el nuevo ancla) — cambio mínimo dentro del mismo archivo autorizado.
+
+UNRESOLVED: ninguno.
+
+RECOMMENDATIONS: El ancla 690/0.75/0.95 queda verificado con motor real y listo para el barrido de sensibilidad posterior (los rangos propuestos ya están actualizados en §4 de `CASO_HUSAVIK_v2.md`, cubriendo las 4 combinaciones de la tabla de diagnóstico del §2). El barrido de sensibilidad completo debe ejecutarse con el motor real (no solo Teqp), dado el criterio ya documentado de discrepancia cerca de fronteras.

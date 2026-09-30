@@ -1,0 +1,355 @@
+{
+  "tarea": "2026-09-29-fase2-ronda5-xb-alto",
+  "fuente": "ronda5_diagnostico.csv (companion ronda 5, 148 puntos)",
+  "motor_real": "AmmoniaWaterAdapter (iapws.ammonia.H2ONH3, IAPWS G4-01)",
+  "motor_companion": "TeqpAdapter",
+  "T_amb_diseno": 303.55,
+  "seleccion": "KALINA por min(margen_O1/0.02, margen_O2/2, margen_S5/2)",
+  "n_kalina_ronda5": 14,
+  "resumen": {
+    "n": 8,
+    "coinciden": 8,
+    "difieren": 0,
+    "no_convergio_motor_real": 0,
+    "quedan_KALINA_solo_teqp": 0,
+    "segundos_pared": 1210.2
+  },
+  "puntos": [
+    {
+      "fila_diag": 131,
+      "combo": {
+        "P_alta": 4500.0,
+        "P_baja": 3400.0,
+        "x_b": 0.7,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.75,
+        "eps_reg": 0.75,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0257500678279184,
+        "margen_O1": 0.0773040556138603,
+        "margen_O2": 0.6790662595573167,
+        "margen_S5": 18.855248641878347,
+        "q4": 0.9773040556138604
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.025752903345870725,
+        "Wnet": 31.774247891477422,
+        "margen_O1": 0.07731206728260442,
+        "margen_O2": 0.6786683842462935,
+        "q4": 0.9773120672826044,
+        "T_sat_L": 364.275075333064,
+        "T9_amb": 363.59640694881773,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.07731206728260442,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0004,
+      "delta_eta": 3e-06
+    },
+    {
+      "fila_diag": 145,
+      "combo": {
+        "P_alta": 4500.0,
+        "P_baja": 4000.0,
+        "x_b": 0.8,
+        "eta_t": 0.8,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0110910511767828,
+        "margen_O1": 0.0905936322618989,
+        "margen_O2": 0.8157442670996602,
+        "margen_S5": 30.915835710770807,
+        "q4": 0.990593632261899
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.01109248439993309,
+        "Wnet": 13.557748282879823,
+        "margen_O1": 0.0905936959252005,
+        "margen_O2": 0.8157482645924574,
+        "q4": 0.9905936959252005,
+        "T_sat_L": 364.07961382014366,
+        "T9_amb": 363.2638655555512,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.0905936959252005,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": 0.0,
+      "delta_eta": 1e-06
+    },
+    {
+      "fila_diag": 95,
+      "combo": {
+        "P_alta": 4500.0,
+        "P_baja": 4000.0,
+        "x_b": 0.8,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0118388406216869,
+        "margen_O1": 0.090075693677206,
+        "margen_O2": 0.852361187089457,
+        "margen_S5": 30.91795400813152,
+        "q4": 0.990075693677206
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.011840365158523204,
+        "Wnet": 14.473474373035303,
+        "margen_O1": 0.09007572308314249,
+        "margen_O2": 0.8523892128222883,
+        "q4": 0.9900757230831425,
+        "T_sat_L": 364.07961382014366,
+        "T9_amb": 363.2272246073214,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.09007572308314249,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": 0.0,
+      "delta_eta": 2e-06
+    },
+    {
+      "fila_diag": 144,
+      "combo": {
+        "P_alta": 4500.0,
+        "P_baja": 4000.0,
+        "x_b": 0.8,
+        "eta_t": 0.9,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0125864239661495,
+        "margen_O1": 0.0895578583828304,
+        "margen_O2": 0.888980261479162,
+        "margen_S5": 30.920072217391635,
+        "q4": 0.9895578583828304
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.012588039763779627,
+        "Wnet": 15.389154419453515,
+        "margen_O1": 0.08955785636775992,
+        "margen_O2": 0.889032315734994,
+        "q4": 0.98955785636776,
+        "T_sat_L": 364.07961382014366,
+        "T9_amb": 363.19058150440867,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.08955785636775992,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": 0.0001,
+      "delta_eta": 2e-06
+    },
+    {
+      "fila_diag": 51,
+      "combo": {
+        "P_alta": 4400.0,
+        "P_baja": 3960.0,
+        "x_b": 0.75,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0102030841522368,
+        "margen_O1": 0.0909965003873138,
+        "margen_O2": 1.717165620953665,
+        "margen_S5": 23.12798699364936,
+        "q4": 0.990996500387314
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.010204240162192537,
+        "Wnet": 12.949558965026274,
+        "margen_O1": 0.09099956199691717,
+        "margen_O2": 1.7156418103763258,
+        "q4": 0.9909995619969172,
+        "T_sat_L": 367.5676063175216,
+        "T9_amb": 365.8519645071453,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.09099956199691717,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0015,
+      "delta_eta": 1e-06
+    },
+    {
+      "fila_diag": 119,
+      "combo": {
+        "P_alta": 4500.0,
+        "P_baja": 3790.0,
+        "x_b": 0.7,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0159099577304083,
+        "margen_O1": 0.0852642302213116,
+        "margen_O2": 2.196826243699548,
+        "margen_S5": 14.727112454004669,
+        "q4": 0.9852642302213116
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.01591149738982894,
+        "Wnet": 20.81376675657315,
+        "margen_O1": 0.08527356162033539,
+        "margen_O2": 2.1943486502325413,
+        "q4": 0.9852735616203354,
+        "T_sat_L": 369.92935443985266,
+        "T9_amb": 367.7350057896201,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.08527356162033539,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0025,
+      "delta_eta": 2e-06
+    },
+    {
+      "fila_diag": 72,
+      "combo": {
+        "P_alta": 4500.0,
+        "P_baja": 4000.0,
+        "x_b": 0.75,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.8,
+        "eps_reg": 0.8,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0113716885787241,
+        "margen_O1": 0.0898480141160683,
+        "margen_O2": 2.44153936520189,
+        "margen_S5": 22.35770340912785,
+        "q4": 0.9898480141160684
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.011372977734871049,
+        "Wnet": 14.401147202597349,
+        "margen_O1": 0.08985166347169105,
+        "margen_O2": 2.4401252550844106,
+        "q4": 0.9898516634716911,
+        "T_sat_L": 368.09601667480024,
+        "T9_amb": 365.65589141971583,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.08985166347169105,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": -0.0014,
+      "delta_eta": 1e-06
+    },
+    {
+      "fila_diag": 147,
+      "combo": {
+        "P_alta": 4500.0,
+        "P_baja": 4000.0,
+        "x_b": 0.8,
+        "eta_t": 0.85,
+        "eta_p": 0.75,
+        "eps_hrvg": 0.75,
+        "eps_reg": 0.75,
+        "eps_cond": 0.8,
+        "T_fuente": 470.0,
+        "T_sumidero": 300.032917,
+        "m_b": 1.0
+      },
+      "teqp": {
+        "clasificacion": "KALINA",
+        "eta": 0.0117842259089404,
+        "margen_O1": 0.0902115472626174,
+        "margen_O2": 4.101170313836803,
+        "margen_S5": 35.960921249972046,
+        "q4": 0.9902115472626176
+      },
+      "real": {
+        "convergio": true,
+        "clasificacion": "KALINA",
+        "eta": 0.011785846192190565,
+        "Wnet": 13.586699412451427,
+        "margen_O1": 0.09020963440051466,
+        "margen_O2": 4.1029173774183505,
+        "q4": 0.9902096344005147,
+        "T_sat_L": 364.07961382014366,
+        "T9_amb": 359.9766964427253,
+        "criterio_ligante": "O1",
+        "margen_ligante": 0.09020963440051466,
+        "mensaje": "KALINA: régimen Kalina genuino y admisible, sin fallas."
+      },
+      "coincide_clasificacion": true,
+      "veredicto": "COINCIDE",
+      "delta_O2_margen": 0.0017,
+      "delta_eta": 2e-06
+    }
+  ]
+}

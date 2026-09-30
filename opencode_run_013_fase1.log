@@ -1,0 +1,606 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT_fase1_profesor.md
+[0m✱ [0mGlob "src/**/*.py"[90m 39 matches[0m
+[0m
+[0m$ [0mls -la && ls scripts/barridos_2026-09-19/ && ls scripts/barridos_2026-09-19/fase1_profesor/ && ls resultados/ 2>/dev/null && ls resultados/barridos_2026-09-19/ 2>/dev/null
+total 736
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 14:47 .
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:56 ..
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 13:06 .claude
+-rw-r--r-- 1 Usuario 197121     79 Sep 19 09:56 .git
+-rw-r--r-- 1 Usuario 197121    257 Sep 19 09:56 .gitignore
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:29 .opencode
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 .pytest_cache
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:57 .streamlit
+-rw-r--r-- 1 Usuario 197121   3055 Sep 19 09:56 AGENTS.md
+-rw-r--r-- 1 Usuario 197121   9389 Sep 19 09:56 CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   8661 Sep 19 09:56 Kalina_ksc_11_tercero.md
+-rw-r--r-- 1 Usuario 197121   5323 Sep 19 09:56 README.md
+-rw-r--r-- 1 Usuario 197121  13653 Sep 19 10:26 TASK_CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   5992 Sep 19 14:46 TASK_CONTEXT_fase1_profesor.md
+-rw-r--r-- 1 Usuario 197121   5646 Sep 19 14:46 TASK_CONTEXT_fase2_libre.md
+-rw-r--r-- 1 Usuario 197121   6180 Sep 19 14:47 TASK_CONTEXT_fase3_real.md
+-rw-r--r-- 1 Usuario 197121   8297 Sep 19 09:57 VALIDACION_ELSAYED2013.md
+-rw-r--r-- 1 Usuario 197121   8540 Sep 19 09:57 app.py
+-rw-r--r-- 1 Usuario 197121  98946 Sep 19 09:56 opencode_run_001.log
+-rw-r--r-- 1 Usuario 197121  67576 Sep 19 09:56 opencode_run_002.log
+-rw-r--r-- 1 Usuario 197121  24933 Sep 19 09:56 opencode_run_003.log
+-rw-r--r-- 1 Usuario 197121  38052 Sep 19 09:56 opencode_run_004.log
+-rw-r--r-- 1 Usuario 197121  53849 Sep 19 09:56 opencode_run_005.log
+-rw-r--r-- 1 Usuario 197121  44948 Sep 19 09:56 opencode_run_006.log
+-rw-r--r-- 1 Usuario 197121  30767 Sep 19 09:56 opencode_run_007.log
+-rw-r--r-- 1 Usuario 197121  12765 Sep 19 09:56 opencode_run_008.log
+-rw-r--r-- 1 Usuario 197121  23465 Sep 19 09:56 opencode_run_009.log
+-rw-r--r-- 1 Usuario 197121 100602 Sep 19 09:57 opencode_run_010.log
+-rw-r--r-- 1 Usuario 197121  63280 Sep 19 12:17 opencode_run_011.log
+-rw-r--r-- 1 Usuario 197121  16575 Sep 19 13:29 opencode_run_012.log
+-rw-r--r-- 1 Usuario 197121    299 Sep 19 14:47 opencode_run_013_fase1.log
+-rw-r--r-- 1 Usuario 197121   3228 Sep 19 14:47 opencode_run_014_fase2.log
+-rw-r--r-- 1 Usuario 197121    295 Sep 19 14:47 opencode_run_015_fase3.log
+-rw-r--r-- 1 Usuario 197121   1274 Sep 19 09:57 requirements.txt
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 resultados
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 scripts
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:59 src
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:59 tests
+-rw-r--r-- 1 Usuario 197121   3092 Sep 19 09:57 validacion_elsayed2013.json
+__pycache__
+b0_confirma_motor_real.py
+b0_scan_cementera.py
+fase1_profesor
+fase2_libre
+fase3_real
+test_b0_scan.py
+tamb_profesor.csv
+barridos_2026-09-19
+b0_confirmacion_motor_real.json
+b0_scan_cementera.csv
+fase1_profesor
+fase2_libre
+fase3_real
+figuras
+[0m
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_scan_cementera.py
+[0m→ [0mRead src/sensitivity.py
+[0m→ [0mRead scripts/barridos_2026-09-19/fase1_profesor/tamb_profesor.csv
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/restricciones/__init__.py
+[0m→ [0mRead src/restricciones/clasificacion.py
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/__init__.py
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_confirma_motor_real.py
+[0m
+[0m$ [0mls -la scripts/barridos_2026-09-19/fase1_profesor/ scripts/barridos_2026-09-19/fase2_libre/ scripts/barridos_2026-09-19/fase3_real/ resultados/barridos_2026-09-19/fase1_profesor/ resultados/barridos_2026-09-19/fase2_libre/ resultados/barridos_2026-09-19/fase3_real/ 2>&1
+resultados/barridos_2026-09-19/fase1_profesor/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 ..
+
+resultados/barridos_2026-09-19/fase2_libre/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 ..
+
+resultados/barridos_2026-09-19/fase3_real/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 ..
+
+scripts/barridos_2026-09-19/fase1_profesor/:
+total 5
+drwxr-xr-x 1 Usuario 197121   0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121   0 Sep 19 14:45 ..
+-rw-r--r-- 1 Usuario 197121 246 Sep 19 14:45 tamb_profesor.csv
+
+scripts/barridos_2026-09-19/fase2_libre/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 ..
+
+scripts/barridos_2026-09-19/fase3_real/:
+total 4
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 14:45 ..
+[0m
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead src/restricciones/modelos.py
+[0m→ [0mRead src/properties/teqp_adapter.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py[90m [limit=80][0m
+[0m
+[0m$ [0mls tests/ && cat scripts/barridos_2026-09-19/test_b0_scan.py 2>/dev/null | head -60
+__init__.py
+__pycache__
+_datos_ejemplo.py
+test_ammonia_water_adapter.py
+test_components.py
+test_cycle_solver.py
+test_exergy.py
+test_export.py
+test_plots.py
+test_properties.py
+test_restricciones.py
+test_restricciones_convenciones.py
+test_sensitivity.py
+test_teqp_adapter.py
+test_validacion_elsayed2013.py
+"""Tests de la lógica de apoyo del escaneo B0 (caso cementera).
+
+Cubre las piezas deterministas que el escaneo usa (rejillas, calibración de
+P_baja contra bubble_point, anotación de la sonda del bracket). NO corre el
+escaneo completo (352 puntos, lento): eso es responsabilidad de ejecutar
+`b0_scan_cementera.py`.
+
+Usa TeqpAdapter (rápido, validado al <0.01% en saturación contra el motor
+real) para la calibración de P_baja. Mismas constantes que el script. El
+módulo a probar vive en un directorio con guiones (no importable por nombre),
+así que se carga por ruta con importlib.
+"""
+
+from __future__ import annotations
+
+import importlib.util
+import sys
+from pathlib import Path
+
+import pytest
+
+from src.properties.adapter import PropertyRangeError
+from src.properties.teqp_adapter import TeqpAdapter
+
+_RAIZ = Path(__file__).resolve().parents[2]  # script vive en scripts/barridos_2026-09-19/
+if str(_RAIZ) not in sys.path:
+    sys.path.insert(0, str(_RAIZ))
+
+_RUTA_B0 = (_RAIZ / "scripts" / "barridos_2026-09-19"
+            / "b0_scan_cementera.py")
+_spec = importlib.util.spec_from_file_location("b0_scan_cementera", _RUTA_B0)
+b0 = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(b0)
+
+T_OBJ = b0.T_SUMIDERO + b0.DT_COND  # 303.032917 K
+
+
+@pytest.fixture(scope="module")
+def backend():
+    return TeqpAdapter(x=0.5)
+
+
+def test_rejillas():
+    p = b0.rejilla_p_alta()
+    assert p == [2000.0, 2500.0, 3000.0, 3500.0, 4000.0, 4500.0,
+                 5000.0, 5500.0, 6000.0, 6500.0, 7000.0]
+    assert len(p) == 11
+    x = b0.rejilla_x_b()
+    assert x == [0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70]
+    assert len(x) == 8
+    assert len(b0.EPS_GRID) == 4
+    # 11 x 8 x 4 = 352 puntos (tope del TASK_CONTEXT: 300-400)
+    assert 11 * 8 * len(b0.EPS_GRID) == 352
+    assert 300 <= 352 <= 400
+
+
+def test_calibrar_p_baja_raiz_dentro_de_campos_ciclo(backend):
+    for xb in (0.35, 0.50, 0.70):
+        pb, modo = b0.calibrar_p_baja(backend, xb)
+        assert modo == "raiz"
+[0m
+[0m$ [0mpython -c "import sys; print(sys.version)" && python -c "import pandas, scipy, iapws; print('pandas', pandas.__version__); print('scipy ok'); print('iapws', iapws.__version__)" && python -c "import teqp; print('teqp ok')" 2>&1; git log --oneline -8; git status --short | head -30
+3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]
+pandas 3.0.5
+scipy ok
+iapws 1.5.5
+teqp ok
+8496a42 test(v&v): validacion externa contra Elsayed et al. (2013), KCS11
+9692c30 feat(ui): pestanas de nivel superior, TeqpAdapter en ejecucion, y clasificacion termodinamica en resultados
+58b60e5 fix(properties): corrige 2 bugs reales de integracion en TeqpAdapter
+bf7c511 feat(properties): TeqpAdapter, alternativa de rendimiento a AmmoniaWaterAdapter
+6fd0f81 feat(restricciones): barrido parametrico y 17 criterios de admisibilidad
+4924f1d fix(tests): mockear FluidsList en test de par binario no soportado
+b899dae feat(ui): rediseño visual del apartado de inputs del ciclo
+98c591c first commit
+ M TASK_CONTEXT.md
+?? TASK_CONTEXT_fase1_profesor.md
+?? TASK_CONTEXT_fase2_libre.md
+?? TASK_CONTEXT_fase3_real.md
+?? opencode_run_011.log
+?? opencode_run_012.log
+?? opencode_run_013_fase1.log
+?? opencode_run_014_fase2.log
+?? opencode_run_015_fase3.log
+?? resultados/
+?? scripts/barridos_2026-09-19/
+[0m
+[0m$ [0mcat resultados/barridos_2026-09-19/b0_confirmacion_motor_real.json 2>/dev/null | head -80; ls -la; head -5 resultados/barridos_2026-09-19/b0_scan_cementera.csv; wc -l resultados/barridos_2026-09-19/b0_scan_cementera.csv
+{
+  "caso": {
+    "T_fuente": 583.15,
+    "T_sumidero": 300.032917,
+    "DT_COND": 3.0,
+    "eta_t": 0.85,
+    "eta_p": 0.75,
+    "eps_reg": 0.75,
+    "eps_cond": 0.8,
+    "m_b": 1.0
+  },
+  "puntos": [
+    {
+      "P_alta": 7000.0,
+      "P_baja": 157.88893698830577,
+      "x_b": 0.35,
+      "eps_hrvg": 0.5,
+      "convergio": false,
+      "clasificacion": "NO_CONVERGIO",
+      "mensaje": "equilibrio_liquido_vapor(P=7000.0 kPa, T=582.649582349027 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor IAPWS G4-01).",
+      "tiempo_s": 69.7
+    },
+    {
+      "P_alta": 7000.0,
+      "P_baja": 157.88893698830577,
+      "x_b": 0.35,
+      "eps_hrvg": 0.65,
+      "convergio": false,
+      "clasificacion": "NO_CONVERGIO",
+      "mensaje": "equilibrio_liquido_vapor(P=7000.0 kPa, T=582.7996201548433 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor IAPWS G4-01).",
+      "tiempo_s": 76.6
+    },
+    {
+      "P_alta": 6500.0,
+      "P_baja": 157.88893698830577,
+      "x_b": 0.35,
+      "eps_hrvg": 0.5,
+      "convergio": false,
+      "clasificacion": "NO_CONVERGIO",
+      "mensaje": "equilibrio_liquido_vapor(P=6500.0 kPa, T=582.6496358921854 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor IAPWS G4-01).",
+      "tiempo_s": 77.6
+    }
+  ]
+}total 762
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 14:47 .
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:56 ..
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 13:06 .claude
+-rw-r--r-- 1 Usuario 197121     79 Sep 19 09:56 .git
+-rw-r--r-- 1 Usuario 197121    257 Sep 19 09:56 .gitignore
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:29 .opencode
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 .pytest_cache
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:57 .streamlit
+-rw-r--r-- 1 Usuario 197121   3055 Sep 19 09:56 AGENTS.md
+-rw-r--r-- 1 Usuario 197121   9389 Sep 19 09:56 CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   8661 Sep 19 09:56 Kalina_ksc_11_tercero.md
+-rw-r--r-- 1 Usuario 197121   5323 Sep 19 09:56 README.md
+-rw-r--r-- 1 Usuario 197121  13653 Sep 19 10:26 TASK_CONTEXT.md
+-rw-r--r-- 1 Usuario 197121   5992 Sep 19 14:46 TASK_CONTEXT_fase1_profesor.md
+-rw-r--r-- 1 Usuario 197121   5646 Sep 19 14:46 TASK_CONTEXT_fase2_libre.md
+-rw-r--r-- 1 Usuario 197121   6180 Sep 19 14:47 TASK_CONTEXT_fase3_real.md
+-rw-r--r-- 1 Usuario 197121   8297 Sep 19 09:57 VALIDACION_ELSAYED2013.md
+-rw-r--r-- 1 Usuario 197121   8540 Sep 19 09:57 app.py
+-rw-r--r-- 1 Usuario 197121  98946 Sep 19 09:56 opencode_run_001.log
+-rw-r--r-- 1 Usuario 197121  67576 Sep 19 09:56 opencode_run_002.log
+-rw-r--r-- 1 Usuario 197121  24933 Sep 19 09:56 opencode_run_003.log
+-rw-r--r-- 1 Usuario 197121  38052 Sep 19 09:56 opencode_run_004.log
+-rw-r--r-- 1 Usuario 197121  53849 Sep 19 09:56 opencode_run_005.log
+-rw-r--r-- 1 Usuario 197121  44948 Sep 19 09:56 opencode_run_006.log
+-rw-r--r-- 1 Usuario 197121  30767 Sep 19 09:56 opencode_run_007.log
+-rw-r--r-- 1 Usuario 197121  12765 Sep 19 09:56 opencode_run_008.log
+-rw-r--r-- 1 Usuario 197121  23465 Sep 19 09:56 opencode_run_009.log
+-rw-r--r-- 1 Usuario 197121 100602 Sep 19 09:57 opencode_run_010.log
+-rw-r--r-- 1 Usuario 197121  63280 Sep 19 12:17 opencode_run_011.log
+-rw-r--r-- 1 Usuario 197121  16575 Sep 19 13:29 opencode_run_012.log
+-rw-r--r-- 1 Usuario 197121   8993 Sep 19 14:48 opencode_run_013_fase1.log
+-rw-r--r-- 1 Usuario 197121   4896 Sep 19 14:49 opencode_run_014_fase2.log
+-rw-r--r-- 1 Usuario 197121   4623 Sep 19 14:49 opencode_run_015_fase3.log
+-rw-r--r-- 1 Usuario 197121   1274 Sep 19 09:57 requirements.txt
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 resultados
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 10:01 scripts
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:59 src
+drwxr-xr-x 1 Usuario 197121      0 Sep 19 09:59 tests
+-rw-r--r-- 1 Usuario 197121   3092 Sep 19 09:57 validacion_elsayed2013.json
+P_alta,P_baja,x_b,eta_t,eta_p,eps_hrvg,eps_reg,eps_cond,convergio,clasificacion,eta,Wnet,mensaje
+2000.0,157.88536139565775,0.35,0.85,0.75,0.5,0.75,0.8,False,NO_CONVERGIO,,,"bracket_sonda: T2_sonda=582.6 K > dew=464.9 K (sobrecalentado: sonda T1 del arranque del bracket pega el estado 2 fuera de campana) || equilibrio_liquido_vapor(P=2000.0 kPa, T=582.6499664015699 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor teqp)."
+2000.0,157.88536139565775,0.35,0.85,0.75,0.65,0.75,0.8,False,NO_CONVERGIO,,,"bracket_sonda: T2_sonda=582.8 K > dew=464.9 K (sobrecalentado: sonda T1 del arranque del bracket pega el estado 2 fuera de campana) || equilibrio_liquido_vapor(P=2000.0 kPa, T=582.7999694738063 K): no existe equilibrio bifásico para ninguna composición (T fuera de la campana binaria a esa P, motor teqp)."
+2000.0,157.88536139565775,0.35,0.85,0.75,0.8,0.75,0.8,False,NO_CONVERGIO,,,"lado_frio(P_baja=157.9 kPa, T=290.8 K, estado fuera del dominio/cobertura del motor teqp — sin relacion con la campana de la sonda || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=290.75 K, P=1.5789e+05 Pa, x=0.0813"
+2000.0,157.88536139565775,0.35,0.85,0.75,0.9,0.75,0.8,False,NO_CONVERGIO,,,"lado_frio(P_baja=157.9 kPa, estado fuera del dominio/cobertura del motor teqp — sin relacion con la campana de la sonda || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=64714.1 fuera de dominio a P=1.5789e+05 Pa, x=0.3629"
+353 resultados/barridos_2026-09-19/b0_scan_cementera.csv
+[0m
+[0m$ [0mls pytest.ini setup.cfg pyproject.toml tox.ini 2>&1; python -m pytest --version 2>&1 | head -3
+ls: cannot access 'pytest.ini': No such file or directory
+ls: cannot access 'setup.cfg': No such file or directory
+ls: cannot access 'pyproject.toml': No such file or directory
+ls: cannot access 'tox.ini': No such file or directory
+pytest 9.1.1
+[0m
+[0m→ [0mRead src/_cycle_loops.py
+Entorno verificado (Python 3.13.7, pandas/scipy/iapws/teqp OK). Ahora reviso el lazo del ciclo para anticipar el mecanismo de fallo esperado y mido el costo de un punto con `TeqpAdapter`:
+[0m
+[0m$ [0mpython - <<'PY'
+import sys, time
+sys.path.insert(0, ".")
+from src.properties.teqp_adapter import TeqpAdapter
+from src.cycle_solver import resolver_ciclo, CicloNoConvergeError
+from src.properties.adapter import PropertyRangeError
+
+b = TeqpAdapter(x=0.5)
+combo = dict(P_alta=3000.0, P_baja=400.0, T_fuente=623.15,
+             T_sumidero=300.032917, x_b=0.50, m_b=1.0, eta_t=0.85,
+             eta_p=0.75, eps_hrvg=0.85, eps_reg=0.75, eps_cond=0.80)
+t0 = time.perf_counter()
+try:
+    res = resolver_ciclo(b, **combo)
+    print("convergio. eta=", res["eta"], "en", round(time.perf_counter()-t0, 2), "s")
+except (CicloNoConvergeError, PropertyRangeError) as exc:
+    print("NO_CONVERGIO en", round(time.perf_counter()-t0, 2), "s")
+    print(str(exc)[:300])
+PY
+NO_CONVERGIO en 7.6 s
+equilibrio_liquido_vapor(P=3000.0 kPa, T=622.9999953066318 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+[0m
+[0m# [0mTodos
+[•] Escribir correr_fase1_profesor.py (punto base motor real + 3 barridos TeqpAdapter, paralelo)
+[ ] Escribir test_fase1_profesor.py (piezas deterministas + esquema de fila)
+[ ] Correr pytest del test de fase1
+[ ] Ejecutar el script de corrida (40 puntos teqp + 1 punto motor real)
+[ ] Verificar los 3 CSV generados (conteos por clasificacion)
+[ ] Redactar CONSTANCIA_PROFESOR.md con numeros reales
+[0m
+Mecanismo de fallo confirmado con un punto de prueba del motor rápido: `equilibrio_liquido_vapor(P=3000 kPa, T=623 K)` → T2 queda sobrecalentado fuera de la campana (rocio ≈507 K a 3 MPa) → `PropertyRangeError` → `NO_CONVERGIO`, ~7.6 s/punto. Con 40 puntos (~5 min) conviene paralelizar como ya hizo el escaneo B0. Planifico y escribo:
+[0m← [0mWrite scripts/barridos_2026-09-19/fase1_profesor/correr_fase1_profesor.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py
+Wrote file successfully.
+[0m
+[0m# [0mTodos
+[✓] Escribir correr_fase1_profesor.py (punto base motor real + 3 barridos TeqpAdapter, paralelo)
+[✓] Escribir test_fase1_profesor.py (piezas deterministas + esquema de fila)
+[•] Correr pytest del test de fase1
+[ ] Ejecutar el script de corrida (40 puntos teqp + 1 punto motor real)
+[ ] Verificar los 3 CSV generados (conteos por clasificacion)
+[ ] Redactar CONSTANCIA_PROFESOR.md con numeros reales
+[0m
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py -v 2>&1 | tail -25
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 5 items
+
+scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py::test_leer_tamb_tabla_horaria_24_horas PASSED [ 20%]
+scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py::test_base_contiene_las_11_variables_barribles PASSED [ 40%]
+scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py::test_rejilla_p_alta_9_puntos PASSED [ 60%]
+scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py::test_rejilla_x_b_7_puntos PASSED [ 80%]
+scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py::test_resolver_punto_esquema_y_sintoma_documentado PASSED [100%]
+
+============================= 5 passed in 11.65s ==============================
+[0m
+[0m# [0mTodos
+[✓] Escribir correr_fase1_profesor.py (punto base motor real + 3 barridos TeqpAdapter, paralelo)
+[✓] Escribir test_fase1_profesor.py (piezas deterministas + esquema de fila)
+[✓] Correr pytest del test de fase1
+[•] Ejecutar el script de corrida (40 puntos teqp + 1 punto motor real)
+[ ] Verificar los 3 CSV generados (conteos por clasificacion)
+[ ] Redactar CONSTANCIA_PROFESOR.md con numeros reales
+[0m
+Tests 5/5 PASSED. Ahora ejecuto la corrida completa (punto base con motor real ~1-2 min + 40 puntos con TeqpAdapter en 4 workers):
+[0m$ [0mpython scripts/barridos_2026-09-19/fase1_profesor/correr_fase1_profesor.py
+Tabla horaria: 24 filas, promedio T_amb = 300.032917 K (la base usa 300.032917 K)
+
+[1/2] Punto base con motor real (AmmoniaWaterAdapter)...
+C:\Users\Usuario\AppData\Local\Programs\Python\Python313\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+  convergio=False clasificacion=NO_CONVERGIO (104.5 s)
+  mensaje: equilibrio_liquido_vapor(P=3000.0 kPa, T=623.000001690135 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor IAPWS G4-01).
+
+[2/2] Barridos con TeqpAdapter: 40 puntos (P_alta 9 + x_b 7 + T_ambiente 24) con 4 workers...
+  10/40 puntos (41 s)
+  20/40 puntos (67 s)
+  30/40 puntos (104 s)
+  40/40 puntos (139 s)
+  40 puntos en 140 s (3.50 s/punto promedio)
+  eta_vs_Palta_profesor.csv: 9 puntos -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase1_profesor\eta_vs_Palta_profesor.csv
+  eta_vs_xb_profesor.csv: 7 puntos -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase1_profesor\eta_vs_xb_profesor.csv
+  eta_vs_Tambiente_profesor.csv: 24 puntos -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\fase1_profesor\eta_vs_Tambiente_profesor.csv
+
+Resumen por clasificacion (alimenta CONSTANCIA_PROFESOR.md):
+  P_alta (9 puntos):
+clasificacion
+NO_CONVERGIO    9
+    convergencias: 0
+  x_b (7 puntos):
+clasificacion
+NO_CONVERGIO    7
+    convergencias: 0
+  T_ambiente (24 puntos):
+clasificacion
+NO_CONVERGIO    24
+    convergencias: 0
+
+Punto base: NO_CONVERGIO (convergio=False)
+LISTO � los n�meros de arriba alimentan CONSTANCIA_PROFESOR.md
+[0m
+Corrida completa: 41/41 puntos → todos `NO_CONVERGIO` (0 convergencias), tal como se esperaba documentar. Verifico los CSV generados:
+[0m$ [0mpython - <<'PY'
+import pandas as pd
+from pathlib import Path
+d = Path("resultados/barridos_2026-09-19/fase1_profesor")
+for f in ("eta_vs_Palta_profesor.csv", "eta_vs_xb_profesor.csv", "eta_vs_Tambiente_profesor.csv"):
+    df = pd.read_csv(d / f)
+    print("="*70)
+    print(f, "->", len(df), "filas | columnas:", list(df.columns))
+    print(df[["P_alta","P_baja","x_b","T_fuente","T_sumidero","convergio","clasificacion"]].to_string(index=False) if f.startswith("eta_vs_Palta") else ("---"))
+    if f.startswith("eta_vs_xb"):
+        print(df[["x_b","P_alta","P_baja","T_sumidero","convergio","clasificacion"]].to_string(index=False))
+    if f.startswith("eta_vs_Tambiente"):
+        print(df[["hora","T_sumidero","T_fuente","P_alta","P_baja","x_b","convergio","clasificacion"]].to_string(index=False))
+    # mensaje: verificar que es el sintoma esperado
+    m = df["mensaje"].iloc[0]
+    print("mensaje[0][:220]:", m[:220])
+PY
+======================================================================
+eta_vs_Palta_profesor.csv -> 9 filas | columnas: ['T_fuente', 'T_sumidero', 'P_alta', 'P_baja', 'x_b', 'm_b', 'eta_t', 'eta_p', 'eps_hrvg', 'eps_reg', 'eps_cond', 'convergio', 'clasificacion', 'eta', 'Wnet', 'mensaje']
+ P_alta  P_baja  x_b  T_fuente  T_sumidero  convergio clasificacion
+ 2000.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 2250.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 2500.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 2750.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 3000.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 3250.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 3500.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 3750.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+ 4000.0   400.0  0.5    623.15  300.032917      False  NO_CONVERGIO
+mensaje[0][:220]: equilibrio_liquido_vapor(P=2000.0 kPa, T=623.0000091226806 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+======================================================================
+eta_vs_xb_profesor.csv -> 7 filas | columnas: ['T_fuente', 'T_sumidero', 'P_alta', 'P_baja', 'x_b', 'm_b', 'eta_t', 'eta_p', 'eps_hrvg', 'eps_reg', 'eps_cond', 'convergio', 'clasificacion', 'eta', 'Wnet', 'mensaje']
+---
+ x_b  P_alta  P_baja  T_sumidero  convergio clasificacion
+0.40  3000.0   400.0  300.032917      False  NO_CONVERGIO
+0.45  3000.0   400.0  300.032917      False  NO_CONVERGIO
+0.50  3000.0   400.0  300.032917      False  NO_CONVERGIO
+0.55  3000.0   400.0  300.032917      False  NO_CONVERGIO
+0.60  3000.0   400.0  300.032917      False  NO_CONVERGIO
+0.65  3000.0   400.0  300.032917      False  NO_CONVERGIO
+0.70  3000.0   400.0  300.032917      False  NO_CONVERGIO
+mensaje[0][:220]: equilibrio_liquido_vapor(P=3000.0 kPa, T=622.999986634595 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+======================================================================
+eta_vs_Tambiente_profesor.csv -> 24 filas | columnas: ['hora', 'T_fuente', 'T_sumidero', 'P_alta', 'P_baja', 'x_b', 'm_b', 'eta_t', 'eta_p', 'eps_hrvg', 'eps_reg', 'eps_cond', 'convergio', 'clasificacion', 'eta', 'Wnet', 'mensaje']
+---
+ hora  T_sumidero  T_fuente  P_alta  P_baja  x_b  convergio clasificacion
+   11     297.950    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   10     298.000    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    9     298.200    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    8     298.300    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    7     298.500    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   12     298.650    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    6     298.700    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    5     298.900    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    4     298.950    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    3     299.100    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   24     299.150    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    2     299.200    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   23     299.200    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+    1     299.400    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   22     299.800    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   13     300.485    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   21     300.900    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   14     301.550    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   20     301.655    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   19     302.250    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   15     302.400    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   18     302.900    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   16     303.100    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+   17     303.550    623.15  3000.0   400.0  0.5      False  NO_CONVERGIO
+mensaje[0][:220]: equilibrio_liquido_vapor(P=3000.0 kPa, T=622.9999953066318 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+[0m
+Los 3 CSV son correctos (el "bifásico" con caracteres raros es solo la consola Windows; el archivo está en UTF-8 — lo confirmo y redacto la constancia):
+[0m$ [0mpython - <<'PY'
+from pathlib import Path
+p = Path("resultados/barridos_2026-09-19/fase1_profesor/eta_vs_Palta_profesor.csv")
+raw = p.read_bytes()
+print("tiene BOM:", raw[:3] == b"\xef\xbb\xbf")
+print("contiene 'bifásico' en utf-8:", "bifásico".encode("utf-8") in raw)
+PY
+tiene BOM: False
+contiene 'bif�sico' en utf-8: True
+[0m
+[0m# [0mTodos
+[✓] Escribir correr_fase1_profesor.py (punto base motor real + 3 barridos TeqpAdapter, paralelo)
+[✓] Escribir test_fase1_profesor.py (piezas deterministas + esquema de fila)
+[✓] Correr pytest del test de fase1
+[✓] Ejecutar el script de corrida (40 puntos teqp + 1 punto motor real)
+[✓] Verificar los 3 CSV generados (conteos por clasificacion)
+[•] Redactar CONSTANCIA_PROFESOR.md con numeros reales
+[0m
+[0m← [0mWrite resultados/barridos_2026-09-19/fase1_profesor/CONSTANCIA_PROFESOR.md
+Wrote file successfully.
+[0m
+Verificación final: línea por archivo, estado git (no toqué nada fuera de mi carpeta) y lista de entregables:
+[0m$ [0mwc -l scripts/barridos_2026-09-19/fase1_profesor/correr_fase1_profesor.py scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py; echo ---; git status --short | grep -v TASK_CONTEXT | grep -v opencode_run; echo ---; ls -la scripts/barridos_2026-09-19/fase1_profesor/ resultados/barridos_2026-09-19/fase1_profesor/
+186 scripts/barridos_2026-09-19/fase1_profesor/correr_fase1_profesor.py
+   75 scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py
+  261 total
+---
+?? resultados/
+?? scripts/barridos_2026-09-19/
+---
+resultados/barridos_2026-09-19/fase1_profesor/:
+total 32
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 14:57 .
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 14:45 ..
+-rw-r--r-- 1 Usuario 197121 6697 Sep 19 14:57 CONSTANCIA_PROFESOR.md
+-rw-r--r-- 1 Usuario 197121 2459 Sep 19 14:56 eta_vs_Palta_profesor.csv
+-rw-r--r-- 1 Usuario 197121 6321 Sep 19 14:56 eta_vs_Tambiente_profesor.csv
+-rw-r--r-- 1 Usuario 197121 1935 Sep 19 14:56 eta_vs_xb_profesor.csv
+
+scripts/barridos_2026-09-19/fase1_profesor/:
+total 29
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 14:52 .
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 14:45 ..
+drwxr-xr-x 1 Usuario 197121    0 Sep 19 14:52 __pycache__
+-rw-r--r-- 1 Usuario 197121 8547 Sep 19 14:51 correr_fase1_profesor.py
+-rw-r--r-- 1 Usuario 197121  246 Sep 19 14:45 tamb_profesor.csv
+-rw-r--r-- 1 Usuario 197121 2948 Sep 19 14:51 test_fase1_profesor.py
+[0m
+Todo verificado y en su lugar. Reporte final:
+
+```
+STATUS: done
+SUMMARY: Se transcribieron los datos EXACTOS del enunciado del profesor al solver del
+  repo (sin ajustar ninguna variable, como exige la tarea), se corrió el punto base con
+  el motor real (AmmoniaWaterAdapter/IAPWS G4-01) y los 3 barridos de sensibilidad
+  pedidos con TeqpAdapter (40 puntos), y se dejó constancia escrita del resultado: los
+  41 puntos fallan todos con `NO_CONVERGIO`, ninguno clasifica `KALINA`. Entregables:
+  corredor (186 líneas), test (75 líneas), 3 CSV + CONSTANCIA_PROFESOR.md en
+  resultados/barridos_2026-09-19/fase1_profesor/. No se tocó ninguna carpeta de
+  fase2_libre/fase3_real ni archivo de src/.
+FILES_CHANGED:
+  - scripts/barridos_2026-09-19/fase1_profesor/correr_fase1_profesor.py (nuevo)
+  - scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py (nuevo)
+  - resultados/barridos_2026-09-19/fase1_profesor/eta_vs_Palta_profesor.csv (nuevo)
+  - resultados/barridos_2026-09-19/fase1_profesor/eta_vs_xb_profesor.csv (nuevo)
+  - resultados/barridos_2026-09-19/fase1_profesor/eta_vs_Tambiente_profesor.csv (nuevo)
+  - resultados/barridos_2026-09-19/fase1_profesor/CONSTANCIA_PROFESOR.md (nuevo)
+  - (tamb_profesor.csv ya existía; no se modificó)
+TESTS: python -m pytest scripts/barridos_2026-09-19/fase1_profesor/test_fase1_profesor.py -v
+  -> 5 passed in 11.65s (tabla horaria 24 h/promedio 300.032917 K; BASE con las 11
+  variables barribles; rejilla P_alta 9 puntos 2000-4000 paso 250; rejilla x_b 7 puntos
+  0.40-0.70 paso 0.05; esquema de fila completo y síntoma NO_CONVERGIO del punto base).
+RESULTS:
+  - Punto base (motor real, 104.5 s): NO_CONVERGIO — "equilibrio_liquido_vapor(P=3000.0
+    kPa, T=623.000001690135 K): no existe equilibrio bifásico… (motor IAPWS G4-01)".
+  - Barrido P_alta (9 puntos): 9 NO_CONVERGIO, 0 KALINA, 0 convergencias.
+  - Barrido x_b (7 puntos):       7 NO_CONVERGIO, 0 KALINA, 0 convergencias.
+  - Barrido T_ambiente (24 puntos): 24 NO_CONVERGIO, 0 KALINA, 0 convergencias.
+  - Total 41 puntos: 41 NO_CONVERGIO, 0 convergencias. 40 puntos teqp en 140 s con 4
+    workers (3.50 s/punto promedio). Conteos volcados a CONSTANCIA_PROFESOR.md.
+  - Mecanismo (idéntico al B0 y a la nota 2026-09-17 del CONTEXT.md): con
+    T_fuente=623.15 K y eps_hrvg=0.85, el estado 2 del HRVG cae a T≈623 K, muy por
+    encima del rocío de la campana (≈465-510 K según P_alta): el separador ideal
+    (flash P,T) no puede repartir una corriente monofásica -> PropertyRangeError ->
+    NO_CONVERGIO; ninguna variable barrida (P_alta, x_b, T_sumidero) puede mover T2
+    de vuelta a la campana.
+ERRORS: ninguno en la ejecución. El motor real emitió RuntimeWarnings internos de iapws
+  (overflow en exp / divide-by-zero en log del flash fuera de la campana) — no afectan
+  el resultado, que es NO_CONVERGIO limpio; se anotó en la constancia.
+ASSUMPTIONS:
+  - Punto base con T_sumidero = 300.032917 K (promedio de la tabla; opción autorizada
+    por el TASK_CONTEXT; las 24 horas se barren aparte). T_fuente siempre 623.15 K: la
+    tabla de T_ambiente es el sumidero, no la fuente (el enunciado las fija por separado).
+  - El tope ~25 puntos del TASK_CONTEXT se supera (40) porque la enumeración explícita
+    del enunciado (9+7+24) prevalece; documentado en la constancia §6.
+  - El barrido T_ambiente incluye columna extra `hora` para trazabilidad con la tabla
+    horaria (T_sumidero es la variable barrida); las horas 2 y 23 comparten T_amb=299.20
+    K y dan el mismo resultado, como es físico.
+  - Paralelización con ProcessPoolExecutor (patrón ya usado por b0_scan_cementera.py);
+    workers crean su propio backend: resultado idéntico al secuencial.
+UNRESOLVED: ninguno.
+RECOMMENDATIONS: La constancia queda lista para que el director decida la Fase 2
+  (arreglar el régimen — p. ej. reducir T_fuente o revisar eps_hrvg/bracket del estado 2)
+  y la Fase 3 (corrida con motor real). Convendría que fase2/fase3 confirmen sus propios
+  archivos en sus carpetas; yo no toqué esas rutas.
+```

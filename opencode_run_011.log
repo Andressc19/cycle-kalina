@@ -1,0 +1,980 @@
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+El sistema no puede encontrar la ruta especificada.
+[0m
+> executor · big-pickle
+[0m
+[0m→ [0mRead TASK_CONTEXT.md
+[0m→ [0mRead CONTEXT.md
+[0m→ [0mRead .
+[0m→ [0mRead src
+[0m→ [0mRead scripts
+[0m→ [0mRead resultados
+[0m→ [0mRead scripts/barridos_2026-09-19
+[0m→ [0mRead resultados/barridos_2026-09-19
+[0m→ [0mRead src/ui_helpers.py
+[0m→ [0mRead src/cycle_solver.py
+[0m→ [0mRead src/sensitivity.py
+[0m→ [0mRead src/_cycle_loops.py
+[0m→ [0mRead src/properties
+[0m→ [0mRead src/restricciones
+[0m→ [0mRead src/properties/adapter.py
+[0m→ [0mRead src/properties/teqp_adapter.py
+[0m→ [0mRead src/restricciones/__init__.py
+[0m→ [0mRead src/restricciones/clasificacion.py
+[0m→ [0mRead src/restricciones/modelos.py
+[0m→ [0mRead src/restricciones/segunda_ley.py
+[0m→ [0mRead src/restricciones/operativos.py
+[0m→ [0mRead src/components
+[0m→ [0mRead src/components/separador.py
+[0m→ [0mRead src/components/hrvg.py
+[0m→ [0mRead src/components/regenerador.py
+[0m→ [0mRead src/components/condensador.py
+[0m→ [0mRead src/components/turbina.py
+[0m→ [0mRead src/components/bomba.py
+[0m→ [0mRead src/components/absorbedor.py
+[0m→ [0mRead src/components/valvula.py
+[0m→ [0mRead src/restricciones/numericos.py
+[0m→ [0mRead src/restricciones/composicion.py
+[0m→ [0mRead scripts/validacion_elsayed2013.py
+[0m→ [0mRead src/properties/ammonia_water_adapter.py
+[0m→ [0mRead scripts/diagnostico_rendimiento.py
+[0m→ [0mRead requirements.txt
+[0m→ [0mRead src/properties/__init__.py
+[0m
+[0m$ [0mpython --version && python -c "import teqp, scipy, pandas, iapws; print('teqp', teqp.__version__); print('scipy ok'); print('pandas ok'); print('iapws', iapws.__version__)"
+Python 3.13.7
+teqp 0.23.2
+scipy ok
+pandas ok
+iapws 1.5.5
+[0m
+[0m← [0mWrite C:/Users/Usuario/AppData/Local/Temp/opencode/b0_explore.py
+Wrote file successfully.
+[0m
+Ahora tengo el panorama completo del código. Voy a empezar con una exploración rápida para (1) confirmar la geometría de la campana bifásica en el rango realista, (2) calibrar `P_baja(x_b)` con el supuesto de ΔT_app,cond≈3 K, y (3) ver el fallo real de `resolver_ciclo` — todo con `TeqpAdapter` (rápido), antes de escribir el escaneo formal.
+[0m$ [0mpython "C:\Users\Usuario\AppData\Local\Temp\opencode\b0_explore.py"
+=== dew(P, x) en el rango realista (P_alta 2000-7000 kPa) ===
+P= 2000: x=0.35:d396/464.9 | x=0.40:d385/461.4 | x=0.45:d374/457.7 | x=0.50:d365/453.8 | x=0.55:d357/449.6 | x=0.60:d350/445.1 | x=0.65:d344/440.2 | x=0.70:d339/434.7
+P= 2500: x=0.35:d407/475.2 | x=0.40:d396/471.5 | x=0.45:d386/467.7 | x=0.50:d376/463.5 | x=0.55:d368/459.1 | x=0.60:d360/454.4 | x=0.65:d354/449.2 | x=0.70:d349/443.5
+P= 3000: x=0.35:d417/484.0 | x=0.40:d406/480.2 | x=0.45:d395/476.1 | x=0.50:d386/471.8 | x=0.55:d377/467.2 | x=0.60:d370/462.3 | x=0.65:d363/456.9 | x=0.70:d358/451.0
+P= 3500: x=0.35:d426/491.7 | x=0.40:d415/487.7 | x=0.45:d404/483.5 | x=0.50:d394/479.0 | x=0.55:d385/474.2 | x=0.60:d378/469.1 | x=0.65:d371/463.5 | x=0.70:d366/457.4
+P= 4000: x=0.35:d434/498.6 | x=0.40:d423/494.4 | x=0.45:d412/490.0 | x=0.50:d402/485.4 | x=0.55:d393/480.5 | x=0.60:d385/475.2 | x=0.65:d378/469.4 | x=0.70:d373/463.1
+P= 4500: x=0.35:d442/504.8 | x=0.40:d430/500.5 | x=0.45:d419/495.9 | x=0.50:d409/491.2 | x=0.55:d400/486.1 | x=0.60:d392/480.6 | x=0.65:d385/474.7 | x=0.70:d379/468.2
+P= 5000: x=0.35:d449/510.4 | x=0.40:d437/506.0 | x=0.45:d426/501.3 | x=0.50:d416/496.4 | x=0.55:d406/491.2 | x=0.60:d398/485.5 | x=0.65:d391/479.5 | x=0.70:d385/472.8
+P= 5500: x=0.35:d455/515.6 | x=0.40:d443/511.1 | x=0.45:d432/506.3 | x=0.50:d422/501.2 | x=0.55:d413/495.8 | x=0.60:d404/490.1 | x=0.65:d397/483.8 | x=0.70:d391/477.0
+P= 6000: x=0.35:d461/520.5 | x=0.40:d449/515.8 | x=0.45:d438/510.9 | x=0.50:d428/505.7 | x=0.55:d418/500.2 | x=0.60:d410/494.3 | x=0.65:d403/487.9 | x=0.70:d396/480.9
+P= 6500: x=0.35:d467/525.0 | x=0.40:d455/520.2 | x=0.45:d444/515.1 | x=0.50:d433/509.8 | x=0.55:d424/504.2 | x=0.60:d415/498.1 | x=0.65:d408/491.6 | x=0.70:d402/484.4
+P= 7000: x=0.35:d472/529.2 | x=0.40:d461/524.3 | x=0.45:d449/519.1 | x=0.50:d439/513.7 | x=0.55:d429/507.9 | x=0.60:d421/501.7 | x=0.65:d413/495.0 | x=0.70:d406/487.7
+
+=== Tsat agua pura (l�mite superior te�rico de la campana) ===
+P=2000 kPa -> Tsat_agua = 485.53 K
+P=4000 kPa -> Tsat_agua = 523.51 K
+P=7000 kPa -> Tsat_agua = 558.98 K
+P=7000 kPa -> Tsat_agua = 558.98 K
+
+=== P_baja(x_b): bubble(P_baja, x_b) = 303.0329 K ===
+x=0.35: P_baja=157.89 kPa (bubble=303.0329)
+x=0.40: P_baja=218.69 kPa (bubble=303.0329)
+x=0.45: P_baja=293.41 kPa (bubble=303.0329)
+x=0.50: P_baja=380.47 kPa (bubble=303.0329)
+x=0.55: P_baja=476.25 kPa (bubble=303.0329)
+x=0.60: P_baja=575.70 kPa (bubble=303.0329)
+x=0.65: P_baja=673.34 kPa (bubble=303.0329)
+x=0.70: P_baja=764.64 kPa (bubble=303.0329)
+
+=== 2 intentos resolver_ciclo (teqp) para ver el modo de fallo ===
+
+-- P_alta=4000.0, x_b=0.6, eps_hrvg=0.8, P_baja=575.7 --
+FALLO: PropertyRangeError: equilibrio_liquido_vapor(P=4000.0 kPa, T=582.9499606595923 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+
+-- P_alta=7000.0, x_b=0.35, eps_hrvg=0.6, P_baja=157.9 --
+FALLO: PropertyRangeError: equilibrio_liquido_vapor(P=7000.0 kPa, T=582.749591031785 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+[0m
+[0m$ [0mgit status --short && git log --oneline -5 && git branch --show-current
+M TASK_CONTEXT.md
+?? opencode_run_011.log
+8496a42 test(v&v): validacion externa contra Elsayed et al. (2013), KCS11
+9692c30 feat(ui): pestanas de nivel superior, TeqpAdapter en ejecucion, y clasificacion termodinamica en resultados
+58b60e5 fix(properties): corrige 2 bugs reales de integracion en TeqpAdapter
+bf7c511 feat(properties): TeqpAdapter, alternativa de rendimiento a AmmoniaWaterAdapter
+6fd0f81 feat(restricciones): barrido parametrico y 17 criterios de admisibilidad
+claude/barridos-tercero-f7448d
+[0m
+[0m→ [0mRead src/properties/_teqp_flash.py[90m [limit=60][0m
+Exploración clave confirmada: en todo el rango realista `P_alta ∈ [2000, 7000] kPa` el rocío máximo es **529.2 K** (P=7000, x=0.35) — el techo teórico absoluto de la campana es Tsat_agua(7 MPa)=558.98 K — y ambos intentos de `resolver_ciclo` fallan con `equilibrio_liquido_vapor(..., T≈582.7-583.0 K)`, exactamente la sonda `hi = T_fuente−1` de `_bracketear`. La hipótesis del punto 3 queda confirmada de forma preliminar. `P_baja(x_b)` calibrada en [157.9, 764.6] kPa, dentro de `CAMPOS_CICLO`.
+
+Reviso el estado git antes de escribir el escaneo formal:
+[0m✱ [0mGrep "lazo_frio=.*s \||T1=.*convergi|CONVERGIO|motor\.estado.*n="[90m in . · 23 matches[0m
+El motor real cuesta ~50-90 s por `evaluar` (lazo_frio): 3 puntos de confirmación ≈ 5-6 min, aceptable. Reviso la estructura de tests existente antes de escribir el escaneo:
+[0m→ [0mRead tests
+[0m→ [0mRead tests/test_sensitivity.py
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/b0_scan_cementera.py
+Wrote file successfully.
+[0m
+Confirmado el modo de fallo. Escribo ahora el escaneo formal (rejilla: `P_alta` 2000-7000 kPa paso 500 × `x_b` 0.35-0.70 paso 0.05 × `eps_hrvg` {0.50, 0.65, 0.80, 0.90} = 352 puntos, dentro del tope 300-400):
+[0m← [0mWrite scripts/barridos_2026-09-19/b0_confirma_motor_real.py
+Wrote file successfully.
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/test_b0_scan.py
+Wrote file successfully.
+[0m
+Ahora el test de pytest para la lógica de apoyo del escaneo (también dentro de `scripts/barridos_2026-09-19/` para respetar la restricción "todo lo nuevo va en esa carpeta"):
+[0m← [0mWrite scripts/barridos_2026-09-19/test_b0_scan.py
+Wrote file successfully.
+[0m
+El directorio `barridos_2026-09-19` tiene guiones (no es importable como módulo). Corrijo el test para cargar el script vía `importlib` desde la ruta y limpio los imports:
+Ejecuto el test de la lógica de apoyo primero (rápido), luego lanzo el escaneo grueso:
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v 2>&1 | tail -25
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+________ ERROR collecting scripts/barridos_2026-09-19/test_b0_scan.py _________
+scripts\barridos_2026-09-19\test_b0_scan.py:33: in <module>
+    _spec.loader.exec_module(b0)
+<frozen importlib._bootstrap_external>:1022: in exec_module
+    ???
+<frozen importlib._bootstrap_external>:1159: in get_code
+    ???
+<frozen importlib._bootstrap_external>:1217: in get_data
+    ???
+E   FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Desktop\\ciclo_kalina_tercero\\.claude\\worktrees\\barridos-tercero-f7448d\\scripts\\scripts\\barridos_2026-09-19\\b0_scan_cementera.py'
+=========================== short test summary info ===========================
+ERROR scripts/barridos_2026-09-19/test_b0_scan.py - FileNotFoundError: [Errno...
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 3.75s ===============================
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/test_b0_scan.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+@@ -21,9 +21,9 @@
+ 
+ from src.properties.adapter import PropertyRangeError
+ from src.properties.teqp_adapter import TeqpAdapter
+ 
+-_RAIZ = Path(__file__).resolve().parents[1]
++_RAIZ = Path(__file__).resolve().parents[2]  # script vive en scripts/barridos_2026-09-19/
+ if str(_RAIZ) not in sys.path:
+     sys.path.insert(0, str(_RAIZ))
+ 
+ _RUTA_B0 = (_RAIZ / "scripts" / "barridos_2026-09-19"
+
+[0m
+El test está en `scripts/barridos_2026-09-19/`, así que la raíz es `parents[2]`, no `parents[1]`. Corrijo:
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v 2>&1 | tail -20
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 6 items
+
+scripts/barridos_2026-09-19/test_b0_scan.py::test_rejillas PASSED        [ 16%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_calibrar_p_baja_raiz_dentro_de_campos_ciclo PASSED [ 33%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_sobrecalentado PASSED [ 50%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_liquido PASSED [ 66%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_dentro_de_campana_sospechosa PASSED [ 83%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_parsea_t_de_la_excepcion PASSED [100%]
+
+============================= 6 passed in 27.68s ==============================
+[0m
+6/6 tests pasan. Lanzo el escaneo grueso completo (352 puntos, teqp):
+[0m$ [0mpython scripts/barridos_2026-09-19/b0_scan_cementera.py
+Traceback (most recent call last):
+  File "D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py", line 31, in <module>
+    from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+ModuleNotFoundError: No module named 'src'
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -24,9 +24,9 @@
+ 
+ import pandas as pd
+ from scipy.optimize import brentq
+ 
+-_RAIZ = Path(__file__).resolve().parents[1]
++_RAIZ = Path(__file__).resolve().parents[2]  # script vive en scripts/barridos_2026-09-19/
+ sys.path.insert(0, str(_RAIZ))
+ 
+ from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+ from src.properties.adapter import PropertyRangeError
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_confirma_motor_real.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_confirma_motor_real.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_confirma_motor_real.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_confirma_motor_real.py
+@@ -26,9 +26,9 @@
+ from pathlib import Path
+ 
+ from scipy.optimize import brentq
+ 
+-_RAIZ = Path(__file__).resolve().parents[1]
++_RAIZ = Path(__file__).resolve().parents[2]  # script vive en scripts/barridos_2026-09-19/
+ sys.path.insert(0, str(_RAIZ))
+ 
+ from src.cycle_solver import CicloNoConvergeError, resolver_ciclo
+ from src.properties.adapter import PropertyRangeError
+
+[0m
+Mismo error de profundidad: los scripts están un nivel más abajo (`scripts/barridos_2026-09-19/`), necesitan `parents[2]`. Corrijo ambos scripts:
+[0m$ [0mpython scripts/barridos_2026-09-19/b0_scan_cementera.py
+(no output)
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 2700000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+[0m
+[0m$ [0mls -la resultados/barridos_2026-09-19/ && ls resultados/barridos_2026-09-19/*.csv 2>/dev/null; echo "---"; ls -la resultados/barridos_2026-09-19/figuras/
+total 0
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 10:01 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 10:01 ..
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 10:01 figuras
+---
+total 0
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 10:01 .
+drwxr-xr-x 1 Usuario 197121 0 Sep 19 10:01 ..
+[0m
+[0m→ [0mRead src/properties/_teqp_flash.py[90m [offset=100][0m
+El escaneo no terminó en 45 min y no hubo salida (buffering de `print`). Reviso si el CSV se escribió y mido el costo real por punto para rediseñar el bucle:
+[0m→ [0mRead src/properties/_teqp_flash.py[90m [limit=100][0m
+[0m
+[0m← [0mWrite C:/Users/Usuario/AppData/Local/Temp/opencode/b0_timing.py
+Wrote file successfully.
+[0m
+`flash_TP` descarta rápido las T fuera de campana, pero el costo real está en `estado()`/`T_from_Ph` dentro de la banda de flash (fsolve por cada evaluación) y en `bubble/dewT`. Mido tiempos reales por operación y por intento completo antes de rediseñar el bucle:
+[0m$ [0mpython "C:\Users\Usuario\AppData\Local\Temp\opencode\b0_timing.py"
+h(P=7000,T=582.15,x=0.35)                         0.027 s  (    27.2 ms/op)
+h(P=7000,T=583.15,x=0.35)                         0.002 s  (     1.6 ms/op)
+T_from_Ph(P=7000,h2,x=0.35)                       0.014 s  (    14.0 ms/op)
+bubble_point(P=7000,x=0.35)                       0.519 s  (   519.4 ms/op)
+dew_point(P=7000,x=0.35)                          0.575 s  (   575.2 ms/op)
+h(P=4000,T=442,x=0.6) (en campana)                0.013 s  (    13.2 ms/op)
+
+resolver_ciclo (4000, 0.6, 0.5): lo probe en campana -> evaluar completo + hi fail
+  FALLO en 6.9 s: PropertyRangeError
+
+resolver_ciclo (7000, 0.35, 0.5): lo probe liquido -> fallo rapido
+  FALLO en 6.4 s: PropertyRangeError
+
+resolver_ciclo (7000, 0.35, 0.9): lo probe sobrecalentado -> fallo rapido
+  FALLO en 8.6 s: PropertyRangeError
+[0m
+[0m← [0mWrite scripts/barridos_2026-09-19/b0_scan_cementera.py
+Wrote file successfully.
+[0m
+El costo real por punto es ~6-9 s (cada fallo paga un intento de flash `fsolve` en el separador), así que 352 puntos ≈ 40 min en un solo hilo. Reescribo el escaneo con: (1) tabla de campana precomputada una sola vez, (2) `ProcessPoolExecutor` con 4 workers (~11-15 min), (3) `flush=True` y CSV al final:
+## Objective
+- Ejecutar la tarea `2026-09-19-b0-scan-base-cementera` (Fase B0): escanear la región del caso cementera (`T_fuente=583.15 K`, `T_sumidero=300.032917 K` fijos) dentro de `CAMPOS_CICLO`, proponer la base realista `(P_alta, P_baja, x_b, eps_hrvg, eps_reg, eps_cond)` que `evaluar_ciclo` clasifique `KALINA`, o reportar honestamente por qué no existe, siguiendo restricciones y formato de reporte de `AGENTS.md`.
+- El escaneo debe registrar TODAS las combinaciones probadas (converjan o no) en un CSV bajo `resultados/barridos_2026-09-19/`, confirmar los 1-3 mejores candidatos con el motor real (`AmmoniaWaterAdapter`) y reportar en el formato RESULTS/UNRESOLVED.
+
+### ARS Pipeline State
+- No se invocó ningún comando `/ars-*` en esta sesión. No hay pipeline ARS activo, ni Material Passport, ni verificación de citas pendiente.
+
+## Important Details
+- Raíz del proyecto (worktree): `D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d`; rama `claude/barridos-tercero-f7448d`. Estado git: `M TASK_CONTEXT.md` y `?? opencode_run_011.log` preexistentes (no tocar).
+- Restricciones duras del TASK_CONTEXT:
+  - **NO modificar** `_bracketear` (código validado) — solo reportarlo si se confirma como causa raíz. **NO modificar** `src/`, `CONTEXT.md`. Todo lo nuevo en `scripts/barridos_2026-09-19/`; salidas en `resultados/barridos_2026-09-19/`. Scripts ≤200 líneas.
+  - No subir `P_alta` por encima de 7000 kPa. Tope de escaneo grueso ~300-400 puntos con `TeqpAdapter` (~1-10 s/punto).
+  - Si ningún punto clasifica `KALINA` tras esfuerzo razonable → reportar en UNRESOLVED con mejor candidato y clasificación real; NO forzar/maquillar un KALINA. Registrar reducciones de dominio no intentadas y cancelaciones en UNRESOLVED.
+  - Para fallos `PropertyRangeError` de "equilibrio no resoluble": anotar sospecha de limitación del motor rápido y confirmar con motor real (no descartar silenciosamente).
+- Parámetros: `T_fuente=583.15 K`, `T_sumidero=300.032917 K`, `m_b=1.0`, `eta_t=0.85`, `eta_p=0.75`, `eps_reg=0.75`, `eps_cond=0.80` (defaults CONTEXT.md; no se abren a barrido salvo evidencia). `P_baja` por combinación: solución de `bubble_point(P_baja, x_b) = T_sumidero + 3 K` (`ΔT_app,cond≈3 K`, supuesto autorizado) en `[50, 5000] kPa`.
+- Rejilla elegida (352 puntos, dentro del tope): `P_alta` 2000-7000 kPa paso 500 (11 valores); `x_b` 0.35-0.70 paso 0.05 (8 valores); `eps_hrvg ∈ {0.50, 0.65, 0.80, 0.90}` (4 valores).
+- Causa raíz confirmada (exploración previa): la sonda `hi = T_fuente − 1 = 582.15 K` de `_bracketear` produce estado 2 con `T2 ≈ 582.2–582.9 K` (independiente de `eps_hrvg` porque `h1 ≈ h2_max` cuando `T1 ≈ T_fuente`), siempre fuera de la campana: rocío máximo medido 529.2 K (P=7000, x_b=0.35); techo teórico absoluto `Tsat_agua(7 MPa) = 558.98 K`. Por tanto se espera 100% `NO_CONVERGIO`.
+- `P_baja` calibrada (teqp): 157.9 kPa (x=0.35) a 764.6 kPa (x=0.70), todas con raíz interior en [50,5000]; x_b=0.60 → ~575-585 kPa.
+- Tiempos del motor real (logs opencode_run_006/007): `estado` ~187 ms, `estado_de` ~2.4 s, `lazo_frio` 40-90 s/evaluar en frío, `resolver_ciclo` completo ~500 s → cada punto de confirmación real ≈ 90-120 s; 3 puntos ≈ 5-6 min.
+- Puntos de confirmación real elegidos (máximo rocío, eps mínimo): `(7000, 0.35, 0.50)`, `(7000, 0.35, 0.65)`, `(6500, 0.35, 0.50)`.
+- CSV esperado: `resultados/barridos_2026-09-19/b0_scan_cementera.csv`, columnas exactas `P_alta, P_baja, x_b, eta_t, eta_p, eps_hrvg, eps_reg, eps_cond, convergio, clasificacion, eta, Wnet, mensaje`; `mensaje` con prefijo `bracket_sonda: ...` anotando `sobrecalentado`/`liquido`/`DENTRO de campana ... SOSPECHOSO`.
+- **AGENTS.md nunca fue leído** en esta sesión: leerlo antes de redactar el reporte final (formato RESULTS/UNRESOLVED requerido).
+
+## Work State
+### Completed
+- Exploración confirmatoria ejecutada (script desechable en temp): matriz dew/bubble en P 2000-7000 kPa × x 0.35-0.70; verificación `Tsat_agua(7 MPa)=558.98 K`; calibración `P_baja(x_b)`; 2 intentos `resolver_ciclo` con `TeqpAdapter` (4000,0.60,0.80) y (7000,0.35,0.60) fallan con `PropertyRangeError` de `equilibrio_liquido_vapor(..., T≈582.7–583.0 K)` — hipótesis del punto 3 del TASK_CONTEXT confirmada preliminarmente.
+- Archivo `scripts/barridos_2026-09-19/b0_scan_cementera.py` escrito (helpers `rejilla_p_alta`, `rejilla_x_b`, `calibrar_p_baja`, `anotar_sonda`, `mensaje_fallo`, `resolver_punto`, `main`; modelo `resolver_ciclo` directo + `evaluar_ciclo` en éxito).
+- Archivo `scripts/barridos_2026-09-19/b0_confirma_motor_real.py` escrito (3 puntos, `AmmoniaWaterAdapter`, guarda `b0_confirmacion_motor_real.json`).
+- Archivo `scripts/barridos_2026-09-19/test_b0_scan.py` escrito (test_b0_scan.py, carga el módulo con guiones vía `importlib` por ruta; 6 tests: rejillas/352 puntos, calibración P_baja, anotaciones de sonda, parseo de `T=` en mensaje). Última acción de la conversación: write OK.
+- Entorno verificado: Python 3.13.7, teqp 0.23.2, scipy, pandas, iapws 1.5.5 instalados; `python` directo desde la raíz.
+
+### Active
+- Nada en ejecución: los tres archivos están escritos pero **ninguno ha sido ejecutado** (ni pytest, ni escaneo, ni confirmación real).
+
+### Blocked
+- Nada bloquea; el reporte final no puede redactarse hasta leer `AGENTS.md` y tener resultados del escaneo/confirmación.
+
+## Next Move
+1. Leer `AGENTS.md` (formato de reporte requerido) — no se ha leído en esta sesión.
+2. Ejecutar tests: `python -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v` (desde la raíz; `python -m` añade cwd a sys.path para los imports `from src...`).
+3. Ejecutar escaneo: `python scripts/barridos_2026-09-19/b0_scan_cementera.py` con timeout ≥3600 s → esperar 352 filas en CSV, 100% `NO_CONVERGIO` con anotación `bracket_sonda`.
+4. Ejecutar confirmación real: `python scripts/barridos_2026-09-19/b0_confirma_motor_real.py` con timeout ≥1800 s → esperar mismo fallo estructural con motor iapws (descarta limitación de teqp).
+5. Analizar CSV/JSON, verificar que no haya sorpresas (punto convergente o fallo "DENTRO de campana"), y redactar el reporte final según AGENTS.md: sección de resultados (distribución de clasificaciones, mejores candidatos con su clasificación real, confirmación motor real) y sección UNRESOLVED: no existe base KALINA en `P_alta ≤ 7000 kPa`; causa raíz = sonda de arranque de `_bracketear` (T1=582.15 K → T2≈582-583 K > rocío máximo 529.2 K; techo Tsat_agua(7 MPa)=558.98 K); `eps_hrvg` no puede remediarlo; soluciones físicamente válidas en T1 interior quedan inalcanzables sin modificar `_bracketear` o subir `P_alta` (ambos prohibidos por la tarea); mejores candidatos (7000,0.35), (6500,0.35), (7000,0.40).
+
+## Relevant Files
+- `TASK_CONTEXT.md`: especificación completa de la Fase B0 (objetivo, contexto investigado, approach, constraints, expected output). Ya leído.
+- `CONTEXT.md`: única fuente de verdad (mapa de 10 estados, fórmulas de efectividad, separador ideal, defaults). Ya leído.
+- `AGENTS.md`: formato de reporte/restricciones del proyecto — **pendiente de leer**.
+- `scripts/barridos_2026-09-19/b0_scan_cementera.py`: escaneo grueso teqp → `resultados/barridos_2026-09-19/b0_scan_cementera.csv` (escrito, no ejecutado).
+- `scripts/barridos_2026-09-19/b0_confirma_motor_real.py`: confirmación 3 puntos con `AmmoniaWaterAdapter` → `b0_confirmacion_motor_real.json` (escrito, no ejecutado).
+- `scripts/barridos_2026-09-19/test_b0_scan.py`: tests pytest de la lógica de apoyo (escrito, no ejecutado).
+- `src/cycle_solver.py` y `src/_cycle_loops.py`: `resolver_ciclo`, `_bracketear` (sondas `lo=T_sumidero+1`, `hi=T_fuente−1`), `CicloNoConvergeError`, `evaluar`, `lazo_frio`.
+- `src/restricciones/`: `evaluar_ciclo` (17 criterios N2-N4, S1-S8, O1-O3/O5, C1-C3), `Clasificacion` (NO_CONVERGIO/INVIABLE/DEGENERADO/CORREGIBLE/VALIDO_ADVERTENCIA/KALINA), `Falla`, `Severidad`.
+- `src/properties/`: `adapter.py` (`PropertyBackend`, `PropertyRangeError`), `teqp_adapter.py`, `ammonia_water_adapter.py` (motor real iapws G4-01, ~20× más lento).
+- `src/components/` (separador, hrvg, regenerador, condensador, turbina, bomba, absorbedor, valvula) y `src/sensitivity.py` (`Fijo/Barrido`, `VARIABLES_BARRIBLES`) como referencia del patrón de barrido.
+- `resultados/barridos_2026-09-19/` (existe con subcarpeta `figuras/`): destino de CSV y JSON.
+- `opencode_run_005/006/007.log`: mediciones de rendimiento del motor real (~500 s/resolver_ciclo, `lazo_frio` 40-90 s) usadas para dimensionar la confirmación.
+Continue if you have next steps, or stop and ask for clarification if you are unsure how to proceed.
+[0m→ [0mRead scripts/barridos_2026-09-19/test_b0_scan.py
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -67,8 +67,16 @@
+     n = int(round((X_MAX - X_MIN) / PASO_X)) + 1
+     return [round(X_MIN + i * PASO_X, 6) for i in range(n)]
+ 
+ 
++def calibrar_p_baja(backend, xb: float) -> tuple[float, str]:
++    """P_baja tal que bubble_point(P_baja, x_b) = T_sumidero + 3 K
++    (ΔT_app,cond≈3 K, único supuesto físico nuevo — autorizado)."""
++    f = lambda P: backend.bubble_point(P, xb) - T_OBJ_COND
++    pb = brentq(f, P_BAJA_MIN, P_BAJA_MAX, xtol=1e-4)
++    return float(pb), "raiz"
++
++
+ # -- trabajo por worker --------------------------------------------------------
+ def importar_backend():
+     from src.properties.teqp_adapter import TeqpAdapter
+     return TeqpAdapter(x=0.5)
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -134,10 +134,9 @@
+ # Precomputo (una sola vez) de dews/bubbles y P_baja por (P_alta, x_b).
+ campana: dict[tuple, tuple] = {}
+ p_bajas: dict[float, float] = {}
+ for xb in rejilla_x_b():
+-    f = lambda P: backend.bubble_point(P, xb) - T_OBJ_COND
+-    p_bajas[xb] = brentq(f, P_BAJA_MIN, P_BAJA_MAX, xtol=1e-4)
++    p_bajas[xb], _ = calibrar_p_baja(backend, xb)
+     for pa in rejilla_p_alta():
+         campana[(pa, xb)] = (backend.bubble_point(pa, xb),
+                              backend.dew_point(pa, xb))
+ print(f"Precomputo de campana/P_baja listo "
+
+[0m
+Los tests referencian la API vieja (`calibrar_p_baja(backend, xb)`, `anotar_sonda(backend, pa, xb, t2)`). Restauro `calibrar_p_baja` como helper (main lo usa) y actualizo los tests a las firmas nuevas basadas en floats:
+[0m← [0mEdit scripts/barridos_2026-09-19/test_b0_scan.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+@@ -67,29 +67,37 @@
+ 
+ 
+ def test_anotar_sonda_sobrecalentado(backend):
+     # sonda a 582.7 K en P_alta=4000, x_b=0.6: dew=475.2 K -> sobrecalentado
+-    an = b0.anotar_sonda(backend, 4000.0, 0.6, 582.7)
++    bub = backend.bubble_point(4000.0, 0.6)
++    dew = backend.dew_point(4000.0, 0.6)
++    an = b0.anotar_sonda(bub, dew, 582.7)
+     assert "sobrecalentado" in an
+ 
+ 
+ def test_anotar_sonda_liquido(backend):
+     # sonda a 442 K en P_alta=7000, x_b=0.35: bubble=472 K -> liquido
+-    an = b0.anotar_sonda(backend, 7000.0, 0.35, 442.0)
++    bub = backend.bubble_point(7000.0, 0.35)
++    dew = backend.dew_point(7000.0, 0.35)
++    an = b0.anotar_sonda(bub, dew, 442.0)
+     assert "liquido" in an
+ 
+ 
+ def test_anotar_sonda_dentro_de_campana_sospechosa(backend):
+     # T2 dentro de la campana: 430 K a P=4000, x=0.6 (bubble 385, dew 475)
+-    an = b0.anotar_sonda(backend, 4000.0, 0.6, 430.0)
++    bub = backend.bubble_point(4000.0, 0.6)
++    dew = backend.dew_point(4000.0, 0.6)
++    an = b0.anotar_sonda(bub, dew, 430.0)
+     assert "DENTRO de campana" in an
+     assert "SOSPECHOSO" in an
+ 
+ 
+ def test_mensaje_fallo_parsea_t_de_la_excepcion(backend):
+     exc = PropertyRangeError(
+         "equilibrio_liquido_vapor(P=4000.0 kPa, T=582.9499 K): no existe "
+         "equilibrio bifásico para ninguna composición")
+-    msg = b0.mensaje_fallo(backend, exc, 4000.0, 0.60)
++    bub = backend.bubble_point(4000.0, 0.60)
++    dew = backend.dew_point(4000.0, 0.60)
++    msg = b0.mensaje_fallo(exc, bub, dew)
+     assert "bracket_sonda" in msg
+     assert "sobrecalentado" in msg
+     assert "582.9" in msg
+\ No newline at end of file
+
+[0m
+Ahora actualizo los tests a las firmas nuevas (`anotar_sonda(bub, dew, t2)` / `mensaje_fallo(exc, bub, dew)`):
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v 2>&1 | tail -14
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\Usuario\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 6 items
+
+scripts/barridos_2026-09-19/test_b0_scan.py::test_rejillas PASSED        [ 16%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_calibrar_p_baja_raiz_dentro_de_campos_ciclo PASSED [ 33%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_sobrecalentado PASSED [ 50%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_liquido PASSED [ 66%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_dentro_de_campana_sospechosa PASSED [ 83%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_parsea_t_de_la_excepcion PASSED [100%]
+
+============================= 6 passed in 21.54s ==============================
+[0m
+6/6 en verde. Ejecuto el escaneo completo (352 puntos, 4 workers — estimo ~12-20 min):
+[0m$ [0mpython scripts/barridos_2026-09-19/b0_scan_cementera.py 2>&1
+Precomputo de campana/P_baja listo (88 pares (P,x)).
+Puntos a evaluar: 352 (rejilla 11 x 8 x 4 = 352) con 4 workers...
+  25/352 puntos (73 s)
+  50/352 puntos (143 s)
+  75/352 puntos (220 s)
+  100/352 puntos (298 s)
+  125/352 puntos (381 s)
+  150/352 puntos (476 s)
+  175/352 puntos (571 s)
+  200/352 puntos (656 s)
+  225/352 puntos (732 s)
+  250/352 puntos (820 s)
+  275/352 puntos (907 s)
+  300/352 puntos (986 s)
+  325/352 puntos (1067 s)
+  350/352 puntos (1120 s)
+
+Puntos evaluados: 352 en 1122.4 s (3.19 s/punto)
+Distribuci�n por clasificaci�n:
+clasificacion
+NO_CONVERGIO    352
+Convergencias: 0
+
+Mejores candidatos (m�ximo roc�o = m�s cerca de ser v�lidos):
+  P_alta= 7000 kPa x_b=0.35: bubble=472.3 K, dew=529.2 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6500 kPa x_b=0.35: bubble=466.9 K, dew=525.0 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 7000 kPa x_b=0.40: bubble=460.6 K, dew=524.3 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6000 kPa x_b=0.35: bubble=461.1 K, dew=520.5 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6500 kPa x_b=0.40: bubble=455.2 K, dew=520.2 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 7000 kPa x_b=0.45: bubble=449.4 K, dew=519.1 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+
+CSV guardado en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\b0_scan_cementera.csv
+[0m
+Escaneo completo: 352/352 `NO_CONVERGIO`, 0 convergencias — exactamente lo que predice la física. Verifico el CSV (columnas, anotaciones de sonda):
+[0m$ [0mpython -c "
+import pandas as pd
+df = pd.read_csv('resultados/barridos_2026-09-19/b0_scan_cementera.csv')
+print('filas:', len(df))
+print('columnas:', list(df.columns))
+print('convergio sum:', df.convergio.sum())
+print('clasificaciones:', df.clasificacion.value_counts().to_dict())
+print()
+print(df.head(3).to_string())
+print()
+# variedad de mensajes
+print('mensajes distintos:', df.mensaje.nunique())
+print()
+print(df.mensaje.iloc[0])
+print(df.mensaje.iloc[44])
+print(df.mensaje.iloc[87])
+" 2>&1
+filas: 352
+columnas: ['P_alta', 'P_baja', 'x_b', 'eta_t', 'eta_p', 'eps_hrvg', 'eps_reg', 'eps_cond', 'convergio', 'clasificacion', 'eta', 'Wnet', 'mensaje']
+convergio sum: 0
+clasificaciones: {'NO_CONVERGIO': 352}
+
+   P_alta      P_baja   x_b  eta_t  eta_p  eps_hrvg  eps_reg  eps_cond  convergio clasificacion  eta  Wnet                                                                                                                                                                                                                                                                                                            mensaje
+0  2000.0  157.885361  0.35   0.85   0.75      0.80     0.75       0.8      False  NO_CONVERGIO  NaN   NaN     bracket_sonda: T2_sonda=290.8 K < bubble=395.5 K (liquido: sonda T1 del arranque del bracket cae fuera de campana) || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=290.75 K, P=1.5789e+05 Pa, x=0.0813
+1  2000.0  157.885361  0.35   0.85   0.75      0.90     0.75       0.8      False  NO_CONVERGIO  NaN   NaN                                                                            bracket_sonda: sonda T1 no identificada en el mensaje || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=64714.1 fuera de dominio a P=1.5789e+05 Pa, x=0.3629
+2  2000.0  157.885361  0.35   0.85   0.75      0.65     0.75       0.8      False  NO_CONVERGIO  NaN   NaN  bracket_sonda: T2_sonda=582.8 K > dew=464.9 K (sobrecalentado: sonda T1 del arranque del bracket pega el estado 2 fuera de campana) || equilibrio_liquido_vapor(P=2000.0 kPa, T=582.7999694738063 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+
+mensajes distintos: 352
+
+bracket_sonda: T2_sonda=290.8 K < bubble=395.5 K (liquido: sonda T1 del arranque del bracket cae fuera de campana) || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=290.75 K, P=1.5789e+05 Pa, x=0.0813
+bracket_sonda: sonda T1 no identificada en el mensaje || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=84743.6 fuera de dominio a P=3.8047e+05 Pa, x=0.5140
+bracket_sonda: T2_sonda=582.8 K > dew=462.3 K (sobrecalentado: sonda T1 del arranque del bracket pega el estado 2 fuera de campana) || equilibrio_liquido_vapor(P=3000.0 kPa, T=582.7999786865958 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -94,14 +94,31 @@
+     return (f"T2_sonda={t2:.1f} K DENTRO de campana [{bub:.1f},{dew:.1f}] K — "
+             "SOSPECHOSO de limitacion numerica del motor rapido (no estructural)")
+ 
+ 
+-def mensaje_fallo(exc, bub: float, dew: float) -> str:
++def mensaje_fallo(exc, pa: float, pb: float, bub: float, dew: float) -> str:
++    """Clasifica el fallo contra (a) la campana de la sonda del bracket (P_alta)
++    o (b) el lado frio (P_baja, cobertura del motor teqp) según la presion que
++    aparece en el mensaje de la excepcion."""
+     m = str(exc)
+-    mm = re.search(r"T=([0-9.]+)", m)
+-    anot = (anotar_sonda(bub, dew, float(mm.group(1)))
+-            if mm else "sonda T1 no identificada en el mensaje")
+-    return f"bracket_sonda: {anot} || {m}"[:400]
++    mm_p = re.search(r"P=([0-9.eE+]+)\s*kPa", m)
++    mm_t = re.search(r"T=([0-9.]+)", m)
++    if mm_p:
++        p = float(mm_p.group(1))
++        if abs(p - pb) < 0.02 * pb + 0.5:   # estado del lado frio (P_baja)
++            t = float(mm_t.group(1)) if mm_t else float("nan")
++            prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, T~{t:.1f} K): estado "
++                       f"fuera del dominio/cobertura del motor teqp (ver "
++                       f"TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o) — sin "
++                       f"relacion con la campana de la sonda")
++        elif abs(p - pa) < 0.02 * pa + 0.5:  # estado de la sonda (P_alta)
++            t = float(mm_t.group(1)) if mm_t else float("nan")
++            prefijo = "bracket_sonda: " + anotar_sonda(bub, dew, t)
++        else:
++            prefijo = f"otra_ubicacion(P={p:.5g} kPa)"
++    else:
++        prefijo = "sonda T1 no identificada en el mensaje"
++    return f"{prefijo} || {m}"[:400]
+ 
+ 
+ def resolver_punto(pa: float, pb: float, xb: float, eps_h: float,
+                    bub: float, dew: float) -> dict:
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -132,9 +132,10 @@
+ try:
+     res = resolver_ciclo(backend, **combo)
+ except (CicloNoConvergeError, PropertyRangeError) as exc:
+     fila.update(convergio=False, clasificacion="NO_CONVERGIO",
+-                eta=None, Wnet=None, mensaje=mensaje_fallo(exc, bub, dew))
++                eta=None, Wnet=None,
++                mensaje=mensaje_fallo(exc, pa, pb, bub, dew))
+     return fila
+ val = evaluar_ciclo(backend, res, P_alta=pa, P_baja=pb,
+                     T_fuente=T_FUENTE, T_sumidero=T_SUMIDERO,
+                     x_b=xb, m_b=MB, eps_hrvg=eps_h, eps_reg=EPS_REG,
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -182,8 +182,9 @@
+                   f"({time.perf_counter() - t0:.0f} s)", flush=True)
+ dt = time.perf_counter() - t0
+ 
+ df = pd.DataFrame(filas)[list(COLUMNAS)]
++df = df.sort_values(["P_alta", "x_b", "eps_hrvg"])
+ df.to_csv(CSV, index=False, encoding="utf-8")
+ 
+ print(f"\nPuntos evaluados: {len(filas)} en {dt:.1f} s "
+       f"({dt / len(filas):.2f} s/punto)", flush=True)
+
+[0m
+El CSV está completo (352 filas, 0 convergencias). Pero los mensajes revelan **dos familias de fallo** en la sonda inferior, no solo la prevista: fallos en el lado frío (P_baja, T≈290.7 K — cobertura del motor teqp, ver TASK_CONTEXT 2026-09-18) y la anotación actual los etiqueta mal como si fueran T2 de la sonda. Corrijo `mensaje_fallo` para clasificar por la presión del mensaje de excepción, ordeno el CSV por rejilla, y actualizo el test:
+[0m← [0mEdit scripts/barridos_2026-09-19/test_b0_scan.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+@@ -96,8 +96,24 @@
+         "equilibrio_liquido_vapor(P=4000.0 kPa, T=582.9499 K): no existe "
+         "equilibrio bifásico para ninguna composición")
+     bub = backend.bubble_point(4000.0, 0.60)
+     dew = backend.dew_point(4000.0, 0.60)
+-    msg = b0.mensaje_fallo(exc, bub, dew)
++    msg = b0.mensaje_fallo(exc, 4000.0, 575.7, bub, dew)
+     assert "bracket_sonda" in msg
+     assert "sobrecalentado" in msg
+-    assert "582.9" in msg
+\ No newline at end of file
++    assert "582.9" in msg
++
++
++def test_mensaje_fallo_lado_frio_p_baja(backend):
++    # Estado del lado frio (P_baja): fallo de cobertura del motor teqp, NO
++    # debe clasificarse como sonda de campana aunque la T este en el mensaje.
++    exc = PropertyRangeError(
++        "T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver "
++        "TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no "
++        "resoluble en T=290.75 K, P=1.5789e+05 Pa, x=0.0813")
++    bub = backend.bubble_point(2000.0, 0.35)
++    dew = backend.dew_point(2000.0, 0.35)
++    msg = b0.mensaje_fallo(exc, 2000.0, 157.9, bub, dew)
++    assert "lado_frio" in msg
++    assert "P_baja=157.9" in msg
++    assert "290.75" in msg
++    assert "bracket_sonda" not in msg
+\ No newline at end of file
+
+[0m
+Actualizo el test del mensaje de fallo y añado un caso de lado frío:
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v 2>&1 | tail -12
+"TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no "
+            "resoluble en T=290.75 K, P=1.5789e+05 Pa, x=0.0813")
+        bub = backend.bubble_point(2000.0, 0.35)
+        dew = backend.dew_point(2000.0, 0.35)
+        msg = b0.mensaje_fallo(exc, 2000.0, 157.9, bub, dew)
+>       assert "lado_frio" in msg
+E       AssertionError: assert 'lado_frio' in 'sonda T1 no identificada en el mensaje || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: equilibrio no resoluble en T=290.75 K, P=1.5789e+05 Pa, x=0.0813'
+
+scripts\barridos_2026-09-19\test_b0_scan.py:116: AssertionError
+=========================== short test summary info ===========================
+FAILED scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_lado_frio_p_baja
+======================== 1 failed, 6 passed in 20.69s =========================
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -99,12 +99,14 @@
+ """Clasifica el fallo contra (a) la campana de la sonda del bracket (P_alta)
+ o (b) el lado frio (P_baja, cobertura del motor teqp) según la presion que
+ aparece en el mensaje de la excepcion."""
+ m = str(exc)
+-mm_p = re.search(r"P=([0-9.eE+]+)\s*kPa", m)
++mm_p = re.search(r"P=([0-9.eE+\-]+)\s*(kPa|Pa)", m)
+ mm_t = re.search(r"T=([0-9.]+)", m)
+ if mm_p:
+     p = float(mm_p.group(1))
++    if mm_p.group(2) == "Pa":
++        p = p / 1000.0  # normaliza a kPa
+     if abs(p - pb) < 0.02 * pb + 0.5:   # estado del lado frio (P_baja)
+         t = float(mm_t.group(1)) if mm_t else float("nan")
+         prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, T~{t:.1f} K): estado "
+                    f"fuera del dominio/cobertura del motor teqp (ver "
+
+[0m
+El mensaje real usa `Pa` (Pascal) en el lado frío, no `kPa`. Hago el parseo con ambas unidades y normalizo a kPa:
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v 2>&1 | tail -11
+collecting ... collected 7 items
+
+scripts/barridos_2026-09-19/test_b0_scan.py::test_rejillas PASSED        [ 14%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_calibrar_p_baja_raiz_dentro_de_campos_ciclo PASSED [ 28%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_sobrecalentado PASSED [ 42%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_liquido PASSED [ 57%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_anotar_sonda_dentro_de_campana_sospechosa PASSED [ 71%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_parsea_t_de_la_excepcion PASSED [ 85%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_lado_frio_p_baja PASSED [100%]
+
+============================= 7 passed in 18.61s ==============================
+[0m
+7/7 en verde. Re-ejecuto el escaneo con la anotación corregida (~19 min):
+[0m$ [0mpython scripts/barridos_2026-09-19/b0_scan_cementera.py 2>&1
+Precomputo de campana/P_baja listo (88 pares (P,x)).
+Puntos a evaluar: 352 (rejilla 11 x 8 x 4 = 352) con 4 workers...
+  25/352 puntos (59 s)
+  50/352 puntos (118 s)
+  75/352 puntos (181 s)
+  100/352 puntos (237 s)
+  125/352 puntos (309 s)
+  150/352 puntos (397 s)
+  175/352 puntos (501 s)
+  200/352 puntos (595 s)
+  225/352 puntos (688 s)
+  250/352 puntos (791 s)
+  275/352 puntos (883 s)
+  300/352 puntos (964 s)
+  325/352 puntos (1046 s)
+  350/352 puntos (1103 s)
+
+Puntos evaluados: 352 en 1106.0 s (3.14 s/punto)
+Distribuci�n por clasificaci�n:
+clasificacion
+NO_CONVERGIO    352
+Convergencias: 0
+
+Mejores candidatos (m�ximo roc�o = m�s cerca de ser v�lidos):
+  P_alta= 7000 kPa x_b=0.35: bubble=472.3 K, dew=529.2 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6500 kPa x_b=0.35: bubble=466.9 K, dew=525.0 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 7000 kPa x_b=0.40: bubble=460.6 K, dew=524.3 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6000 kPa x_b=0.35: bubble=461.1 K, dew=520.5 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 6500 kPa x_b=0.40: bubble=455.2 K, dew=520.2 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+  P_alta= 7000 kPa x_b=0.45: bubble=449.4 K, dew=519.1 K  (T_fuente=583.15 K, sonda_hi=582.15 K)
+
+CSV guardado en D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\resultados\barridos_2026-09-19\b0_scan_cementera.csv
+[0m
+Ahora caracterizo las familias de fallo del CSV corregido:
+[0m$ [0mpython -c "
+import pandas as pd
+df = pd.read_csv('resultados/barridos_2026-09-19/b0_scan_cementera.csv')
+print('filas:', len(df), '| convergio sum:', df.convergio.sum())
+import re
+def fam(m):
+    if 'lado_frio' in m: return 'lado_frio (P_baja, cobertura teqp)'
+    if 'sobrecalentado' in m: return 'sonda_hi sobrecalentado (T2>dew)'
+    if 'liquido' in m: return 'sonda_lo liquido (T2<bubble)'
+    if 'DENTRO de campana' in m: return 'DENTRO campana (sospechoso)'
+    if 'otra_ubicacion' in m: return 'otra_ubicacion'
+    return 'no_identificada'
+df['familia'] = df.mensaje.apply(fam)
+print(df.familia.value_counts().to_string())
+print()
+# cruce familia x eps_hrvg
+print(pd.crosstab(df.eps_hrvg, df.familia).to_string())
+print()
+# cruce familia x x_b (para ver el lado frio)
+print(pd.crosstab(df.x_b, df.familia).to_string())
+print()
+# T del lado frio: rango
+cold = df[df.familia.str.startswith('lado_frio')]
+ts = cold.mensaje.str.extract(r'T~([0-9.]+)')[0].astype(float)
+print('lado_frio: n=%d, T min=%.2f max=%.2f' % (len(cold), ts.min(), ts.max()))
+print('P_baja rango en lado_frio: %.1f a %.1f kPa' % (cold.P_baja.min(), cold.P_baja.max()))
+" 2>&1
+filas: 352 | convergio sum: 0
+familia
+sonda_hi sobrecalentado (T2>dew)      309
+lado_frio (P_baja, cobertura teqp)     42
+no_identificada                         1
+
+familia   lado_frio (P_baja, cobertura teqp)  no_identificada  sonda_hi sobrecalentado (T2>dew)
+eps_hrvg                                                                                       
+0.50                                       0                1                                87
+0.65                                       0                0                                88
+0.80                                       1                0                                87
+0.90                                      41                0                                47
+
+familia  lado_frio (P_baja, cobertura teqp)  no_identificada  sonda_hi sobrecalentado (T2>dew)
+x_b                                                                                           
+0.35                                      3                0                                41
+0.40                                      3                1                                40
+0.45                                      2                0                                42
+0.50                                      4                0                                40
+0.55                                      5                0                                39
+0.60                                      7                0                                37
+0.65                                      8                0                                36
+0.70                                     10                0                                34
+
+lado_frio: n=42, T min=290.80 max=370.50
+P_baja rango en lado_frio: 157.9 a 764.6 kPa
+[0m
+[0m$ [0mpython -c "
+import pandas as pd
+df = pd.read_csv('resultados/barridos_2026-09-19/b0_scan_cementera.csv')
+pd.set_option('display.max_colwidth', 260)
+m = df.mensaje.str.contains('no_identificada')
+print(df[m][['P_alta','P_baja','x_b','eps_hrvg','mensaje']].to_string(index=False))
+print()
+print('--- (2000, 0.35, 0.50):')
+print(df[(df.P_alta==2000)&(df.x_b==0.35)&(df.eps_hrvg==0.50)]['mensaje'].iloc[0])
+print()
+print('--- (7000, 0.35, 0.50):')
+print(df[(df.P_alta==7000)&(df.x_b==0.35)&(df.eps_hrvg==0.50)]['mensaje'].iloc[0])
+print()
+print('--- (2000, 0.35, 0.90):')
+print(df[(df.P_alta==2000)&(df.x_b==0.35)&(df.eps_hrvg==0.90)]['mensaje'].iloc[0])
+" 2>&1
+Empty DataFrame
+Columns: [P_alta, P_baja, x_b, eps_hrvg, mensaje]
+Index: []
+
+--- (2000, 0.35, 0.50):
+bracket_sonda: T2_sonda=582.6 K > dew=464.9 K (sobrecalentado: sonda T1 del arranque del bracket pega el estado 2 fuera de campana) || equilibrio_liquido_vapor(P=2000.0 kPa, T=582.6499664015699 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+
+--- (7000, 0.35, 0.50):
+bracket_sonda: T2_sonda=582.6 K > dew=529.2 K (sobrecalentado: sonda T1 del arranque del bracket pega el estado 2 fuera de campana) || equilibrio_liquido_vapor(P=7000.0 kPa, T=582.6495738334323 K): no existe equilibrio bif�sico para ninguna composici�n (T fuera de la campana binaria a esa P, motor teqp).
+
+--- (2000, 0.35, 0.90):
+lado_frio(P_baja=157.9 kPa, T~nan K): estado fuera del dominio/cobertura del motor teqp (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o) � sin relacion con la campana de la sonda || T_from_Ph(P, h, x): el motor teqp no cubre el estado pedido (ver TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o). Detalle: h=64714.1 fuera de dominio a P=1.5789e+05 Pa, x=0.3629
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -106,13 +106,15 @@
+ p = float(mm_p.group(1))
+ if mm_p.group(2) == "Pa":
+     p = p / 1000.0  # normaliza a kPa
+ if abs(p - pb) < 0.02 * pb + 0.5:   # estado del lado frio (P_baja)
+-    t = float(mm_t.group(1)) if mm_t else float("nan")
+-    prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, T~{t:.1f} K): estado "
+-               f"fuera del dominio/cobertura del motor teqp (ver "
+-               f"TASK_CONTEXT 2026-09-18-validar-teqp-nh3h2o) — sin "
+-               f"relacion con la campana de la sonda")
++    t = (f"{float(mm_t.group(1)):.1f} K, ") if mm_t else ""
++    prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, "
++               f"{t}estado fuera del dominio/cobertura del motor "
++               f"teqp (ver TASK_CONTEXT 2026-09-18-")
++    prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, {t}estado fuera del "
++               f"dominio/cobertura del motor teqp — sin relacion "
++               f"con la campana de la sonda")
+ elif abs(p - pa) < 0.02 * pa + 0.5:  # estado de la sonda (P_alta)
+     t = float(mm_t.group(1)) if mm_t else float("nan")
+     prefijo = "bracket_sonda: " + anotar_sonda(bub, dew, t)
+ else:
+
+[0m
+Detalle cosmético: el prefijo `lado_frio` imprime `T~nan` cuando la excepción no trae T. Limpio eso y localizo la fila que cayó al fallthrough:
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_scan_cementera.py[90m [offset=88, limit=40][0m
+Ese edit quedó mal (duplicó el `prefijo`). Reviso y corrijo el bloque completo:
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -106,12 +106,9 @@
+ p = float(mm_p.group(1))
+ if mm_p.group(2) == "Pa":
+     p = p / 1000.0  # normaliza a kPa
+ if abs(p - pb) < 0.02 * pb + 0.5:   # estado del lado frio (P_baja)
+-    t = (f"{float(mm_t.group(1)):.1f} K, ") if mm_t else ""
+-    prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, "
+-               f"{t}estado fuera del dominio/cobertura del motor "
+-               f"teqp (ver TASK_CONTEXT 2026-09-18-")
++    t = (f"T={float(mm_t.group(1)):.1f} K, ") if mm_t else ""
+     prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, {t}estado fuera del "
+                f"dominio/cobertura del motor teqp — sin relacion "
+                f"con la campana de la sonda")
+ elif abs(p - pa) < 0.02 * pa + 0.5:  # estado de la sonda (P_alta)
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -111,10 +111,13 @@
+         prefijo = (f"lado_frio(P_baja={pb:.1f} kPa, {t}estado fuera del "
+                    f"dominio/cobertura del motor teqp — sin relacion "
+                    f"con la campana de la sonda")
+     elif abs(p - pa) < 0.02 * pa + 0.5:  # estado de la sonda (P_alta)
+-        t = float(mm_t.group(1)) if mm_t else float("nan")
+-        prefijo = "bracket_sonda: " + anotar_sonda(bub, dew, t)
++        if mm_t:
++            prefijo = ("bracket_sonda: "
++                       + anotar_sonda(bub, dew, float(mm_t.group(1))))
++        else:
++            prefijo = "sonda T1 no identificada en el mensaje"
+     else:
+         prefijo = f"otra_ubicacion(P={p:.5g} kPa)"
+ else:
+     prefijo = "sonda T1 no identificada en el mensaje"
+
+[0m
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v 2>&1 | tail -4
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_parsea_t_de_la_excepcion PASSED [ 85%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_lado_frio_p_baja PASSED [100%]
+
+============================= 7 passed in 22.24s ==============================
+[0m
+Antes de re-ejecutar, verifico si la fila del fallthrough sigue existiendo y qué mensaje tiene (para caracterizar bien la familia):
+[0m$ [0mpython -c "
+import pandas as pd
+df = pd.read_csv('resultados/barridos_2026-09-19/b0_scan_cementera.csv')
+pd.set_option('display.max_colwidth', 300)
+m = df.mensaje.str.contains('no identificada', case=False)
+print('filas sin P= en mensaje:', int(m.sum()))
+print(df[m][['P_alta','P_baja','x_b','eps_hrvg','mensaje']].to_string(index=False))
+" 2>&1
+filas sin P= en mensaje: 1
+ P_alta     P_baja  x_b  eps_hrvg                                                                                        mensaje
+ 3500.0 218.689249  0.4       0.5 sonda T1 no identificada en el mensaje || lazo interior (frio) no convergio tras max_iter_frio
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -99,9 +99,14 @@
+ """Clasifica el fallo contra (a) la campana de la sonda del bracket (P_alta)
+ o (b) el lado frio (P_baja, cobertura del motor teqp) según la presion que
+ aparece en el mensaje de la excepcion."""
+ m = str(exc)
+-mm_p = re.search(r"P=([0-9.eE+\-]+)\s*(kPa|Pa)", m)
++if "lazo interior (frio) no convergio" in m:
++    prefijo = ("lazo_frio_no_conv (sin P/T): el lazo interior frio no "
++               "convergio en la 1a evaluacion del bracket — no es un "
++               "estado de campana")
++else:
++    mm_p = re.search(r"P=([0-9.eE+\-]+)\s*(kPa|Pa)", m)
+ mm_t = re.search(r"T=([0-9.]+)", m)
+ if mm_p:
+     p = float(mm_p.group(1))
+     if mm_p.group(2) == "Pa":
+
+[0m
+La fila es un `CicloNoConvergeError` del lazo interior (tercera familia, 1 de 352) — no es `PropertyRangeError`, por eso no tiene P=. Le doy etiqueta propia en `mensaje_fallo`:
+[0m→ [0mRead scripts/barridos_2026-09-19/b0_scan_cementera.py[90m [limit=36, offset=98][0m
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/b0_scan_cementera.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\b0_scan_cementera.py
+@@ -103,10 +103,10 @@
+ if "lazo interior (frio) no convergio" in m:
+     prefijo = ("lazo_frio_no_conv (sin P/T): el lazo interior frio no "
+                "convergio en la 1a evaluacion del bracket — no es un "
+                "estado de campana")
+-else:
+-    mm_p = re.search(r"P=([0-9.eE+\-]+)\s*(kPa|Pa)", m)
++    return f"{prefijo} || {m}"[:400]
++mm_p = re.search(r"P=([0-9.eE+\-]+)\s*(kPa|Pa)", m)
+ mm_t = re.search(r"T=([0-9.]+)", m)
+ if mm_p:
+     p = float(mm_p.group(1))
+     if mm_p.group(2) == "Pa":
+
+[0m
+[0m← [0mEdit scripts/barridos_2026-09-19/test_b0_scan.py
+Index: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+===================================================================
+--- D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
++++ D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barridos-tercero-f7448d\scripts\barridos_2026-09-19\test_b0_scan.py
+@@ -115,5 +115,14 @@
+     msg = b0.mensaje_fallo(exc, 2000.0, 157.9, bub, dew)
+     assert "lado_frio" in msg
+     assert "P_baja=157.9" in msg
+     assert "290.75" in msg
++    assert "bracket_sonda" not in msg
++
++
++def test_mensaje_fallo_lazo_frio_no_convergio():
++    # CicloNoConvergeError del lazo interior: sin P/T, etiqueta propia.
++    msg = b0.mensaje_fallo(
++        Exception("lazo interior (frio) no convergio tras max_iter_frio"),
++        3500.0, 218.7, 400.0, 480.0)
++    assert "lazo_frio_no_conv" in msg
+     assert "bracket_sonda" not in msg
+\ No newline at end of file
+
+[0m
+Añado un test para el caso `lazo_frio_no_conv`:
+[0m$ [0mpython -m pytest scripts/barridos_2026-09-19/test_b0_scan.py -v 2>&1 | tail -5
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_parsea_t_de_la_excepcion PASSED [ 75%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_lado_frio_p_baja PASSED [ 87%]
+scripts/barridos_2026-09-19/test_b0_scan.py::test_mensaje_fallo_lazo_frio_no_convergio PASSED [100%]
+
+============================= 8 passed in 23.91s ==============================
+[0m
+8/8 en verde. Re-ejecuto el escaneo con el código final (18 min) y después la confirmación con motor real:
