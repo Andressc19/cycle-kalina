@@ -189,8 +189,7 @@ def generar_reporte(todas: list) -> None:
     if errs:
         hal.append("Errores registrados (nunca ocultados): " + "; ".join(errs[:4]) + ".")
 
-    cls = ("KALINA", "VALIDO_ADVERTENCIA", "CORREGIBLE", "DEGENERADO",
-           "INVIABLE", "NO_CONVERGIO")
+    cls = ("KALINA", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO")
     ct = ("| Clasificacion | Puntos |\n|---|---|\n"
           + "\n".join(f"| {c} | {c_clas.get(c, 0)} |" for c in cls)
           + f"\n| **Total** | **{n}** |\n| **KALINA con eps_realista=True** | **{len(kr)}** |")

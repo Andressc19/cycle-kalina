@@ -19,8 +19,7 @@ from openpyxl.utils import get_column_letter
 REPO = Path(__file__).resolve().parents[1]
 ORIGEN = REPO / "datos" / "primeros_barridos_e_iteraciones_kalina.xlsx"
 DESTINO = REPO / "datos" / "barridos_e_iteraciones_kalina_consolidado.xlsx"
-CLASES = ("KALINA", "VALIDO_ADVERTENCIA", "CORREGIBLE", "DEGENERADO",
-          "INVIABLE", "NO_CONVERGIO")
+CLASES = ("KALINA", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO")
 _W = ""   # resultados A+B: ya en resultados/ tras traer fix/teqp-doble-verificacion
 NEGRITA = Font(bold=True)
 GRIS = PatternFill("solid", fgColor="DDDDDD")
@@ -151,8 +150,8 @@ def principal() -> None:
     ws_res.append(cab)
     fila_cab = ws_res.max_row
     for f in previo:
-        fase, n_csv, n, kal, corr, noc, val, _otras, nota = f
-        ws_res.append([fase, n_csv, n, kal, val, corr, 0, 0, noc, nota])
+        fase, n_csv, n, kal, corr, noc, inv, _otras, nota = f
+        ws_res.append([fase, n_csv, n, kal, corr, inv, noc, nota])
     for hoja, ruta, col, nota in NUEVOS:
         n, cuenta = _agregar_csv(wb, hoja, ruta, col)
         clases = (["-"] * len(CLASES) if cuenta is None

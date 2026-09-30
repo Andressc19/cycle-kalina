@@ -192,7 +192,7 @@ def generar_reporte(todas: list) -> None:
                    v(_pendiente(Pp, [ES(e, "margen") for e in ep]))))
     T = lambda hd, filas: ("| " + " | ".join(hd) + " |\n" + "|" + "---|" * len(hd) + "\n"
                            + ("\n".join("| " + " | ".join(r) + " |" for r in filas) if filas else "—"))  # noqa: E731
-    cls = ("KALINA", "VALIDO_ADVERTENCIA", "CORREGIBLE", "DEGENERADO", "INVIABLE", "NO_CONVERGIO")
+    cls = ("KALINA", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO")
     ct = T(("Clasificacion", "Puntos"), [(c, str(c_clas.get(c, 0))) for c in cls]
            + [("**Total**", f"**{n}**"), ("**KALINA**", f"**{len(k)}**"), ("**P* encontrada**", f"**{len(enc)}**")])
     kr = T(("x_b", "P_alta", "T_fuente", "P*", "T9_amb", "T_bur", "margen", "eta", "Wnet [kW]"),

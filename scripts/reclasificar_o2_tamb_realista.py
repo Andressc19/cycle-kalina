@@ -173,7 +173,7 @@ def generar_reporte(todas: list) -> None:
     if errs:
         hal.append("Errores registrados (nunca ocultados): " + "; ".join(errs[:4]) + ".")
 
-    kl = ("KALINA", "VALIDO_ADVERTENCIA", "CORREGIBLE", "DEGENERADO", "INVIABLE", "NO_CONVERGIO")
+    kl = ("KALINA", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO")
     ct = "| Clasificacion | Tropical (303.55 K) | Realista (283.15 K) |\n|---|---|---|\n" + "\n".join(f"| {k} | {c_t.get(k, 0)} | {c_r.get(k, 0)} |" for k in kl) + f"\n| **Total** | **{n}** | **{n}** |"
     fc_txt = "| x_b | P_alta [kPa] | T_fuente [K] | eta | Wnet [kW] | Tropical (fallas) | Realista (fallas) |\n|---|---|---|---|---|---|---|\n" + "\n".join(fc) if cambios else "Ninguno: todos los puntos conservan su clasificacion."
     xb_txt = "| x_b | Criterio trop | Clasif trop | eta trop | Punto trop (P_alta/T_fuente) | Criterio real | Clasif real | eta real | Punto real (P_alta/T_fuente) |\n|---|---|---|---|---|---|---|---|---|\n" + "\n".join(filas_xb)

@@ -187,8 +187,7 @@ def generar_reporte(todas: list) -> None:
         "| Clasificacion | Puntos |",
         "|---|---|",
         *(f"| {k} | {conteo.get(k, 0)} |" for k in
-          ("KALINA", "VALIDO_ADVERTENCIA", "CORREGIBLE", "DEGENERADO",
-           "INVIABLE", "NO_CONVERGIO")),
+          ("KALINA", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO")),
         "",
         "## Hallazgos inesperados",
         "",

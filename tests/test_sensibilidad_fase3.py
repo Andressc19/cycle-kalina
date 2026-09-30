@@ -61,12 +61,12 @@ def test_malla_2d_36_puntos_con_rejillas_cerradas():
     assert len(pares) == 36  # todas las celdas de la malla, sin repetir
 
 
-def test_ejecutar_barrido_no_pasa_t_amb_diseno():
-    """Documenta por que NO se usa `ejecutar_barrido` (default O2=303.55 K):
-    la firma no acepta T_amb_diseno y el esquema de la tarea exige 283.15."""
+def test_ejecutar_barrido_acepta_t_amb_diseno():
+    """Desde A+B, `ejecutar_barrido` acepta `T_amb_diseno=` (piso O2); sin el,
+    hereda el default de 303.55 K."""
     import inspect
     from src.sensitivity import ejecutar_barrido
-    assert "T_amb_diseno" not in inspect.signature(
+    assert "T_amb_diseno" in inspect.signature(
         ejecutar_barrido).parameters
 
 

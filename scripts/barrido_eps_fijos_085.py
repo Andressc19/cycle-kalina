@@ -179,7 +179,7 @@ def generar_reporte(todas: list) -> None:
     sub_pb = sum(dpbs) / len(dpbs) if dpbs else 0.0
     perd_eta = (sum(e_old) / len(e_old) - sum(e_new) / len(e_new)) * 100 if e_old else 0.0
     dom = f"{bloqueos.most_common(1)[0][0]} ({bloqueos.most_common(1)[0][1]})" if bloqueos else "ninguno"
-    cls = ("KALINA", "VALIDO_ADVERTENCIA", "CORREGIBLE", "DEGENERADO", "INVIABLE", "NO_CONVERGIO")
+    cls = ("KALINA", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO")
     ct = ("| Clasificacion | Puntos |\n|---|---|\n" + "\n".join(f"| {c} | {c_clas.get(c, 0)} |" for c in cls)
           + f"\n| **Total** | **{n}** |\n| **KALINA** | **{len(k)}** |")
     bk = ("| Criterio | Puntos |\n|---|---|\n" + "\n".join(
