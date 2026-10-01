@@ -12,6 +12,8 @@ import csv
 from collections import Counter
 from pathlib import Path
 
+import sys
+
 import openpyxl
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
@@ -181,6 +183,9 @@ def principal() -> None:
     ws_res.freeze_panes = ws_res.cell(row=fila_cab + 1, column=1)
     wb.save(DESTINO)
     print(f"Guardado {DESTINO} con {len(wb.sheetnames)} hojas")
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import formatear_excel_barridos
+    formatear_excel_barridos.main()
 
 
 if __name__ == "__main__":
