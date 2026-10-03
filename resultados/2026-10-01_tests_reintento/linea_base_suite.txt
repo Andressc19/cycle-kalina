@@ -1,0 +1,28 @@
+........................................................................ [ 37%]
+.......................s................................................ [ 75%]
+.......................x...xxxxxx..x...........                          [100%]
+============================== warnings summary ===============================
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_teqp_adapter.py::test_bubble_point_coincide_con_el_motor_real
+tests/test_teqp_verificado.py::test_caso_espurio_corregido_por_el_motor_real
+tests/test_validacion_elsayed2013.py::test_eta_dentro_de_5pct_del_caso_elsayed2013
+tests/test_verificacion_motor_real.py::test_punto_normal_verificado
+  D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+    prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+
+tests/test_ammonia_water_adapter.py::test_ammonia_burbuja_y_rocio_entre_saturaciones_de_puros
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_teqp_adapter.py::test_bubble_point_coincide_con_el_motor_real
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_nh3h2o_engine.py:143: RuntimeWarning: divide by zero encountered in scalar divide
+    KA, KW = L["phiA"]/V["phiA"], L["phiW"]/V["phiW"]
+
+tests/test_ammonia_water_adapter.py::test_ammonia_inversion_dentro_de_la_campana_bifasica
+tests/test_teqp_verificado.py::test_caso_espurio_corregido_por_el_motor_real
+tests/test_validacion_elsayed2013.py::test_eta_dentro_de_5pct_del_caso_elsayed2013
+tests/test_verificacion_motor_real.py::test_punto_normal_verificado
+  D:\Desktop\ciclo_kalina_tercero\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+    np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+182 passed, 1 skipped, 8 xfailed, 13 warnings in 686.56s (0:11:26)

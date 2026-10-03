@@ -1,0 +1,231 @@
+# RED hoy: pytest tests/test_bracket_tolerante.py contra src/ ACTUAL (sin MA todavia)
+# rama: feature/rango_motores | fecha: 2026-10-02 | python: .venv/Scripts/python
+# esperado: fallar por TypeError (API inexistente) salvo los casos que no usan el flag (1 y 14a).
+#
+============================= test session starts =============================
+collecting ... collected 16 items
+
+tests/test_bracket_tolerante.py::test_1_sin_flag_identico_bit_a_bit_al_actual PASSED [  6%]
+tests/test_bracket_tolerante.py::test_2_flag_sin_fallos_mismo_eta_T1_y_mismo_nF FAILED [ 12%]
+tests/test_bracket_tolerante.py::test_3_extremo_alto_falla_converge_con_el_mismo_eta FAILED [ 18%]
+tests/test_bracket_tolerante.py::test_4_extremo_bajo_falla_y_ambos_extremos_fallando FAILED [ 25%]
+tests/test_bracket_tolerante.py::test_5_rango_entero_falla_no_converge_y_acota_llamadas FAILED [ 31%]
+tests/test_bracket_tolerante.py::test_6_sin_cambio_de_signo_no_converge FAILED [ 37%]
+tests/test_bracket_tolerante.py::test_7_respeta_max_repliegues FAILED    [ 43%]
+tests/test_bracket_tolerante.py::test_8_por_defecto_no_hay_tope_de_repliegues FAILED [ 50%]
+tests/test_bracket_tolerante.py::test_9_paso_repliegue_se_respeta FAILED [ 56%]
+tests/test_bracket_tolerante.py::test_10_otra_excepcion_se_propaga_sin_reintento FAILED [ 62%]
+tests/test_bracket_tolerante.py::test_11_punto_interior_no_evaluable_durante_brentq FAILED [ 68%]
+tests/test_bracket_tolerante.py::test_12_presupuesto_de_tiempo_agota FAILED [ 75%]
+tests/test_bracket_tolerante.py::test_13_presupuesto_none_o_muy_grande_no_cambia_el_resultado FAILED [ 81%]
+tests/test_bracket_tolerante.py::test_14a_sin_flag_no_hay_estado_compartido PASSED [ 87%]
+tests/test_bracket_tolerante.py::test_14b_llamada_fallida_con_el_flag_no_contamina_la_siguiente FAILED [ 93%]
+tests/test_bracket_tolerante.py::test_15_clave_bracket_solo_con_el_flag_y_coherente FAILED [100%]
+
+================================== FAILURES ===================================
+_______________ test_2_flag_sin_fallos_mismo_eta_T1_y_mismo_nF ________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001CD36023CE0>
+
+    def test_2_flag_sin_fallos_mismo_eta_T1_y_mismo_nF(monkeypatch):
+        marcas = _espia_F(monkeypatch)
+        ref = resolver_ciclo(BackendQueFalla(), **BASE); n_ref = len(marcas)
+>       res = resolver_ciclo(BackendQueFalla(), **BASE, bracket_tolerante=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:85: TypeError
+_____________ test_3_extremo_alto_falla_converge_con_el_mismo_eta _____________
+
+    def test_3_extremo_alto_falla_converge_con_el_mismo_eta():
+        ref = resolver_ciclo(BackendQueFalla(), **BASE)
+        be = BackendQueFalla(fallos={_HI})                        # extremo hi = Tf-1
+>       res = resolver_ciclo(be, **BASE, bracket_tolerante=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:94: TypeError
+_____________ test_4_extremo_bajo_falla_y_ambos_extremos_fallando _____________
+
+    def test_4_extremo_bajo_falla_y_ambos_extremos_fallando():
+        ref = resolver_ciclo(BackendQueFalla(), **ANCHO)
+        lo, hi = 331.0, 364.0                                     # extremos de ANCHO
+>       res = resolver_ciclo(BackendQueFalla(fallos={lo}), **ANCHO, bracket_tolerante=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:102: TypeError
+___________ test_5_rango_entero_falla_no_converge_y_acota_llamadas ____________
+
+    def test_5_rango_entero_falla_no_converge_y_acota_llamadas():
+        be = BackendQueFalla(bandas=[(300.0, 500.0)])            # nada es evaluable
+>       _falla(CicloNoConvergeError, be, **BASE, bracket_tolerante=True)
+
+tests\test_bracket_tolerante.py:111: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+exc = <class 'src._cycle_loops.CicloNoConvergeError'>
+a = (<tests.test_bracket_tolerante.BackendQueFalla object at 0x000001CD36155750>,)
+kw = {'P_alta': 3000.0, 'P_baja': 400.0, 'T_fuente': 369.0, 'T_sumidero': 350.0, ...}
+
+    def _falla(exc, *a, **kw):
+>       with pytest.raises(exc): resolver_ciclo(*a, **kw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:62: TypeError
+___________________ test_6_sin_cambio_de_signo_no_converge ____________________
+
+    def test_6_sin_cambio_de_signo_no_converge():
+        be = BackendQueFalla(delta=20.0)                          # F no cambia de signo
+>       _falla(CicloNoConvergeError, be, **BASE, bracket_tolerante=True)
+
+tests\test_bracket_tolerante.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+exc = <class 'src._cycle_loops.CicloNoConvergeError'>
+a = (<tests.test_bracket_tolerante.BackendQueFalla object at 0x000001CD36155A50>,)
+kw = {'P_alta': 3000.0, 'P_baja': 400.0, 'T_fuente': 369.0, 'T_sumidero': 350.0, ...}
+
+    def _falla(exc, *a, **kw):
+>       with pytest.raises(exc): resolver_ciclo(*a, **kw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:62: TypeError
+________________________ test_7_respeta_max_repliegues ________________________
+
+    def test_7_respeta_max_repliegues():
+        ref, fallos = resolver_ciclo(BackendQueFalla(), **ANCHO), {364.0, 359.0, 354.0}
+>       _falla(CicloNoConvergeError, BackendQueFalla(fallos=fallos), **ANCHO,
+               bracket_tolerante=True, max_repliegues=2)         # tope 2 -> 3 intentos
+
+tests\test_bracket_tolerante.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+exc = <class 'src._cycle_loops.CicloNoConvergeError'>
+a = (<tests.test_bracket_tolerante.BackendQueFalla object at 0x000001CD3617A4E0>,)
+kw = {'P_alta': 3000.0, 'P_baja': 400.0, 'T_fuente': 365.0, 'T_sumidero': 330.0, ...}
+
+    def _falla(exc, *a, **kw):
+>       with pytest.raises(exc): resolver_ciclo(*a, **kw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:62: TypeError
+________________ test_8_por_defecto_no_hay_tope_de_repliegues _________________
+
+    def test_8_por_defecto_no_hay_tope_de_repliegues():
+        ref = resolver_ciclo(BackendQueFalla(), **BASE)
+        fallos = {_HI - i for i in range(12)}                     # 368..357 K fallan
+        be = BackendQueFalla(fallos=fallos)
+>       res = resolver_ciclo(be, **BASE, bracket_tolerante=True, paso_repliegue=1.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:133: TypeError
+______________________ test_9_paso_repliegue_se_respeta _______________________
+
+    def test_9_paso_repliegue_se_respeta():
+        be = BackendQueFalla(fallos={_HI})
+>       br = resolver_ciclo(be, **BASE, bracket_tolerante=True, paso_repliegue=2.0)["bracket"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:141: TypeError
+_______________ test_10_otra_excepcion_se_propaga_sin_reintento _______________
+
+    def test_10_otra_excepcion_se_propaga_sin_reintento():
+        be = BackendQueFalla(fallos={_HI}, exc=ValueError)
+>       _falla(ValueError, be, **BASE, bracket_tolerante=True)
+
+tests\test_bracket_tolerante.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+exc = <class 'ValueError'>
+a = (<tests.test_bracket_tolerante.BackendQueFalla object at 0x000001CD360AA390>,)
+kw = {'P_alta': 3000.0, 'P_baja': 400.0, 'T_fuente': 369.0, 'T_sumidero': 350.0, ...}
+
+    def _falla(exc, *a, **kw):
+>       with pytest.raises(exc): resolver_ciclo(*a, **kw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:62: TypeError
+_____________ test_11_punto_interior_no_evaluable_durante_brentq ______________
+
+    def test_11_punto_interior_no_evaluable_durante_brentq():
+        # 368 repliega a 363; la banda solo la toca un punto INTERIOR de brentq
+        # (T=355.555093 K medido con el prototipo), nunca la cascada de los extremos.
+        be = BackendQueFalla(fallos={_HI}, bandas=[(355.5, 355.6)])
+        with pytest.raises(CicloNoConvergeError) as ei:
+>           resolver_ciclo(be, **BASE, bracket_tolerante=True)
+E           TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:155: TypeError
+_____________________ test_12_presupuesto_de_tiempo_agota _____________________
+
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001CD36023CE0>
+
+    def test_12_presupuesto_de_tiempo_agota(monkeypatch):
+        be = BackendQueFalla()
+        marcas = _espia_F(monkeypatch, be)                        # llamadas al backend hechas
+        monkeypatch.setattr(time, "perf_counter", lambda: be.n * 10.0)   # 10 s por llamada
+        with pytest.raises(CicloNoConvergeError) as ei:
+>           resolver_ciclo(be, **BASE, bracket_tolerante=True, presupuesto_s=5.0)
+E           TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:164: TypeError
+________ test_13_presupuesto_none_o_muy_grande_no_cambia_el_resultado _________
+
+    def test_13_presupuesto_none_o_muy_grande_no_cambia_el_resultado():
+>       base = resolver_ciclo(BackendQueFalla(), **BASE, bracket_tolerante=True)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:172: TypeError
+_______ test_14b_llamada_fallida_con_el_flag_no_contamina_la_siguiente ________
+
+    def test_14b_llamada_fallida_con_el_flag_no_contamina_la_siguiente():
+        be1 = BackendQueFalla(bandas=[(300.0, 500.0)])           # se agota el rango
+>       _falla(CicloNoConvergeError, be1, **BASE, bracket_tolerante=True)
+
+tests\test_bracket_tolerante.py:189: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+exc = <class 'src._cycle_loops.CicloNoConvergeError'>
+a = (<tests.test_bracket_tolerante.BackendQueFalla object at 0x000001CD36265550>,)
+kw = {'P_alta': 3000.0, 'P_baja': 400.0, 'T_fuente': 369.0, 'T_sumidero': 350.0, ...}
+
+    def _falla(exc, *a, **kw):
+>       with pytest.raises(exc): resolver_ciclo(*a, **kw)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:62: TypeError
+_____________ test_15_clave_bracket_solo_con_el_flag_y_coherente ______________
+
+    def test_15_clave_bracket_solo_con_el_flag_y_coherente():
+        assert "bracket" not in resolver_ciclo(BackendQueFalla(), **_PARAMS_BASE)
+        be = BackendQueFalla(fallos={_HI})
+>       br = resolver_ciclo(be, **BASE, bracket_tolerante=True)["bracket"]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'bracket_tolerante'
+
+tests\test_bracket_tolerante.py:198: TypeError
+=========================== short test summary info ===========================
+FAILED tests/test_bracket_tolerante.py::test_2_flag_sin_fallos_mismo_eta_T1_y_mismo_nF
+FAILED tests/test_bracket_tolerante.py::test_3_extremo_alto_falla_converge_con_el_mismo_eta
+FAILED tests/test_bracket_tolerante.py::test_4_extremo_bajo_falla_y_ambos_extremos_fallando
+FAILED tests/test_bracket_tolerante.py::test_5_rango_entero_falla_no_converge_y_acota_llamadas
+FAILED tests/test_bracket_tolerante.py::test_6_sin_cambio_de_signo_no_converge
+FAILED tests/test_bracket_tolerante.py::test_7_respeta_max_repliegues - TypeE...
+FAILED tests/test_bracket_tolerante.py::test_8_por_defecto_no_hay_tope_de_repliegues
+FAILED tests/test_bracket_tolerante.py::test_9_paso_repliegue_se_respeta - Ty...
+FAILED tests/test_bracket_tolerante.py::test_10_otra_excepcion_se_propaga_sin_reintento
+FAILED tests/test_bracket_tolerante.py::test_11_punto_interior_no_evaluable_durante_brentq
+FAILED tests/test_bracket_tolerante.py::test_12_presupuesto_de_tiempo_agota
+FAILED tests/test_bracket_tolerante.py::test_13_presupuesto_none_o_muy_grande_no_cambia_el_resultado
+FAILED tests/test_bracket_tolerante.py::test_14b_llamada_fallida_con_el_flag_no_contamina_la_siguiente
+FAILED tests/test_bracket_tolerante.py::test_15_clave_bracket_solo_con_el_flag_y_coherente
+======================== 14 failed, 2 passed in 1.09s =========================
