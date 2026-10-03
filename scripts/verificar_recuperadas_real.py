@@ -116,7 +116,14 @@ def main():
     global CSV_OUT
     with CSV_IN.open(encoding="utf-8-sig", newline="") as fh:
         filas = list(csv.DictReader(fh))
-    if "--corregibles" in sys.argv:
+    if "--fase2" in sys.argv:                      # N CORREGIBLE de la Fase 2, paso uniforme
+        n = int(sys.argv[sys.argv.index("--fase2") + 1])
+        CSV_OUT = OUT / "verificacion_real_fase2.csv"
+        val = [dict(f, motivo="CORREGIBLE: busqueda_libre_v2") for f in filas
+               if f["convergio"] == "True" and f["clasificacion"] == "CORREGIBLE"
+               and f["csv_origenes"].split(";")[0].endswith("busqueda_libre_v2.csv")]
+        muestra = [val[int(i * len(val) / n)] for i in range(min(n, len(val)))]
+    elif "--corregibles" in sys.argv:
         CSV_OUT = OUT / "verificacion_real_corregibles.csv"
         muestra = seleccionar_corregibles(filas, int(sys.argv[sys.argv.index("--corregibles") + 1]))
     else:
