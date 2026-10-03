@@ -49,8 +49,11 @@ Causas de los 216 que siguen sin converger: sin cambio de signo 78, punto interi
 | CORREGIBLE | 6 | 6 | ≤ 0.014 % |
 | Espurias (N2 / η extremas) | 7 | 7 | 6 por debajo de 0.5 %; 1 con 1.1 % |
 | CORREGIBLE Fase 2 (`--fase2 10`, paso uniforme) | 10 | 9 (1 sin resultado) | ≤ 0.021 % en los 9 |
+| CORREGIBLE cementera (`--cementera 10`, paso uniforme) | 10 | 7 (3 sin resultado) | ≤ 0.022 % en los 7 |
 
 Fase 2: el punto sin resultado (P_alta 3000, P_baja 450 kPa, x_b 0.45, `eps_cond` 0.9) hace fallar al motor riguroso dentro de la búsqueda ("punto interior no evaluable", T = 362.2 K); teqp lo resolvió como CORREGIBLE con η = 12.6 %. No contradice a teqp ni lo confirma. Archivo: `verificacion_real_fase2.csv`.
+
+Cementera (`--cementera 10`, paso uniforme): 7 de 10 coinciden (|Δη|/η ≤ 0.022 %, misma clase); 3 sin resultado porque el motor riguroso falla dentro de la búsqueda. Los 3 sin resultado son exactamente los de `eps_hrvg` = 0.65 de la muestra (los de 0.5 y 0.8 verificaron todos); x_b no explica el patrón (x_b 0.35 verificó). Uno de ellos falló en T = 301.03 K, el extremo inferior original del bracket, que teqp sí evaluó. Archivo: `verificacion_real_cementera.csv`.
 
 Las soluciones espurias aparecen igual con el motor riguroso: son puntos fijos falsos del modelo del ciclo, no artefactos de teqp.
 
@@ -68,14 +71,14 @@ Las soluciones espurias aparecen igual con el motor riguroso: son puntos fijos f
 
 ## Lo que no sabemos
 
-- **Los CORREGIBLE de la cementera no se verificaron con el motor riguroso** (la Fase 2 sí: 9 de 10 coinciden y 1 queda sin resultado).
+- **4 de 20 puntos verificados quedan sin resultado** con el motor riguroso (1 Fase 2, 3 cementera): no se sabe si son reales. En la cementera coinciden con `eps_hrvg` = 0.65; con solo 3 casos el patrón puede ser casualidad.
 - **Dependencia del estado del proceso:** el resultado de un punto puede depender de lo calculado antes en el mismo proceso (cachés de los motores). Se registraron `pid` y orden, pero no se analizó.
 - Los 67 "punto interior no evaluable" podrían recuperarse con otra estrategia; no se probó.
 - La cementera usa `eps_hrvg` de 0.5 en algunos puntos (fuera de la banda 0.75–0.85 del proyecto): es un parámetro del barrido original, no de esta re-ejecución.
 
 ## Qué sigue
 
-1. Verificar con el motor riguroso una muestra de CORREGIBLE de la cementera.
+1. Opcional: entender por qué el motor riguroso falla en los 4 puntos sin resultado (¿`eps_hrvg` = 0.65?).
 2. Decidir si se incorporan estos resultados a los CSV/Excel de barridos (columna nueva, sin sobrescribir los originales).
 3. Decidir el merge de la rama a `master`.
 4. Opcional: cortar también las evaluaciones lentas (presupuesto dentro del lazo interior o menos iteraciones).

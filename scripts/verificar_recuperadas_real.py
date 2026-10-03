@@ -116,12 +116,16 @@ def main():
     global CSV_OUT
     with CSV_IN.open(encoding="utf-8-sig", newline="") as fh:
         filas = list(csv.DictReader(fh))
-    if "--fase2" in sys.argv:                      # N CORREGIBLE de la Fase 2, paso uniforme
-        n = int(sys.argv[sys.argv.index("--fase2") + 1])
-        CSV_OUT = OUT / "verificacion_real_fase2.csv"
-        val = [dict(f, motivo="CORREGIBLE: busqueda_libre_v2") for f in filas
+    por_barrido = {"--fase2": ("busqueda_libre_v2.csv", "verificacion_real_fase2.csv"),
+                   "--cementera": ("b0_scan_cementera.csv", "verificacion_real_cementera.csv")}
+    opcion = next((o for o in por_barrido if o in sys.argv), None)
+    if opcion:                                     # N CORREGIBLE de un barrido, paso uniforme
+        n = int(sys.argv[sys.argv.index(opcion) + 1])
+        origen, salida = por_barrido[opcion]
+        CSV_OUT = OUT / salida
+        val = [dict(f, motivo=f"CORREGIBLE: {origen[:-4]}") for f in filas
                if f["convergio"] == "True" and f["clasificacion"] == "CORREGIBLE"
-               and f["csv_origenes"].split(";")[0].endswith("busqueda_libre_v2.csv")]
+               and f["csv_origenes"].split(";")[0].endswith(origen)]
         muestra = [val[int(i * len(val) / n)] for i in range(min(n, len(val)))]
     elif "--corregibles" in sys.argv:
         CSV_OUT = OUT / "verificacion_real_corregibles.csv"
