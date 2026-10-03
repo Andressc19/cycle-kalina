@@ -34,8 +34,7 @@ __all__ = ["resolver_ciclo", "CicloNoConvergeError"]
 def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
                    eta_t, eta_p, eps_hrvg, eps_reg, eps_cond,
                    tol_T1=1e-4, tol_T10=1e-3, max_iter_frio=300,
-                   bracket_tolerante=False, paso_repliegue=5.0,
-                   max_repliegues=None, presupuesto_s=None) -> dict:
+                   bracket_tolerante=False, presupuesto_s=None) -> dict:
     """Resuelve los 10 estados del ciclo KSC-11 hasta la convergencia.
 
     Parámetros: ``backend`` (PropertyBackend), P [kPa], T [K], ``x_b`` =
@@ -59,10 +58,9 @@ def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
     (`PropertyRangeError`, p.ej. dos fases que el motor no cubre):
 
     - el bracket físico ``(T_sumidero + 1, T_fuente − 1)`` se repliega hacia
-      dentro ``paso_repliegue`` K (5.0 por defecto) por extremo y por intento,
-      hasta que ambos extremos sean evaluables y F cambie de signo;
-    - ``max_repliegues=None`` (por defecto) = sin tope; si es un entero, es el
-      máximo de repliegues **por extremo** (el primer intento no cuenta);
+      dentro 5 K por extremo y por intento, sin tope, hasta que ambos extremos
+      sean evaluables; si entonces F no cambia de signo se rinde (sin el
+      ensanche final de `_bracketear`; ver `_bracket_tolerante`);
     - un punto **interior** de Brent no evaluable no tiene recuperación y
       lanza ``CicloNoConvergeError`` con la T en el mensaje; solo se tolera
       ``PropertyRangeError`` (cualquier otra excepción sube sin envolver);
@@ -75,8 +73,8 @@ def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
       final, con T1 ya resuelto, no cuenta).
 
     Con ``bracket_tolerante=False`` (por defecto) el camino es exactamente el
-    anterior (mismas llamadas, mismo resultado, mismas claves) y los otros
-    tres parámetros se ignoran.
+    anterior (mismas llamadas, mismo resultado, mismas claves) y
+    ``presupuesto_s`` se ignora.
 
     Devuelve un dict con ``estados`` (claves e1..e10, ``EstadoTermo``) y las
     energías ``Qi``, ``Qout``, ``Wt``, ``Wp``, ``Qreg``, ``Wnet`` [kW] y
@@ -95,9 +93,7 @@ def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
 
     if bracket_tolerante:                                # MA (ver _bracket_tolerante)
         ma = BracketTolerante(evaluar, backend, kwargs, T_sumidero=T_sumidero,
-                              T_fuente=T_fuente, paso_repliegue=paso_repliegue,
-                              max_repliegues=max_repliegues,
-                              presupuesto_s=presupuesto_s)
+                              T_fuente=T_fuente, presupuesto_s=presupuesto_s)
         lo, hi = ma.bracketear()
         res = ma.cerrar(brentq(ma.F_brentq, lo, hi, xtol=tol_T1))
         res["bracket"] = ma.info_bracket(lo, hi)

@@ -5,8 +5,15 @@ Complemento de `src/cycle_solver.py` (tarea `2026-10-02-implementar-ma`): con
 motor de propiedades no puede evaluar.
 
 - **Extremos**: si F(lo) o F(hi) no son evaluables, el extremo se repliega
-  hacia dentro ``paso_repliegue`` K por intento mientras ``lo + paso < hi``
-  (resp. ``hi − paso > lo``); ``max_repliegues=None`` = sin tope.
+  hacia dentro ``PASO_REPLIEGUE`` K por intento mientras ``lo + paso < hi``
+  (resp. ``hi − paso > lo``), sin tope de repliegues (los topes medidos en el
+  benchmark de 2026-10-01 perdían recuperaciones).
+- **Sin ensanche final**: a diferencia de `_bracketear`, si los extremos son
+  evaluables pero F no cambia de signo, NO se ensancha hasta ``T_sumidero +
+  1e-6`` / ``T_fuente − 1e-6``: se rinde. Por física la raíz no puede estar
+  a menos de 1 K del sumidero (condensador con eps < 1 y bomba) ni de la
+  fuente (T1 es la entrada fría del HRVG), así que ese ensanche no salva
+  puntos; no se pudo medir con los barridos porque sus CSV no guardan T1.
 - **Punto interior**: un estado no evaluable durante ``brentq`` NO tiene
   recuperación (el buscador necesita un valor) y aborta con la T en el mensaje.
 - **Presupuesto**: con ``presupuesto_s`` el reloj de pared se comprueba ENTRE
@@ -29,7 +36,8 @@ from .properties.adapter import PropertyRangeError
 
 __all__ = ["BracketTolerante"]
 
-APARTE_T10 = 5.0    # K: arranque tibio del lazo interior en la 1a evaluación de F
+APARTE_T10 = 5.0      # K: arranque tibio del lazo interior en la 1a evaluación de F
+PASO_REPLIEGUE = 5.0  # K: repliegue de un extremo no evaluable (mismo paso que `_bracketear`)
 
 
 class BracketTolerante:
@@ -43,10 +51,10 @@ class BracketTolerante:
     """
 
     def __init__(self, evaluar, backend, kwargs, *, T_sumidero, T_fuente,
-                 paso_repliegue=5.0, max_repliegues=None, presupuesto_s=None):
+                 presupuesto_s=None):
         self._evaluar, self._backend, self._kwargs = evaluar, backend, kwargs
         self.T_sumidero, self.T_fuente = T_sumidero, T_fuente
-        self.paso, self.max_repliegues = paso_repliegue, max_repliegues
+        self.paso = PASO_REPLIEGUE
         self.presupuesto_s = presupuesto_s
         self.ultimo_T10 = None       # arranque tibio entre evaluaciones de F
         self.repliegues_lo = 0
@@ -107,11 +115,11 @@ class BracketTolerante:
                 "no hay bracket posible")
         r_lo, r_hi = 0, 0
         f_lo = self.F_seguro(lo)
-        while f_lo is None and lo + self.paso < hi and self._queda(r_lo):
+        while f_lo is None and lo + self.paso < hi:
             r_lo += 1
             lo, f_lo = lo + self.paso, self.F_seguro(lo + self.paso)
         f_hi = self.F_seguro(hi)
-        while f_hi is None and hi - self.paso > lo and self._queda(r_hi):
+        while f_hi is None and hi - self.paso > lo:
             r_hi += 1
             hi, f_hi = hi - self.paso, self.F_seguro(hi - self.paso)
         self.repliegues_lo, self.repliegues_hi = r_lo, r_hi
@@ -125,11 +133,6 @@ class BracketTolerante:
                 f"extremos [{lo:.4f}, {hi:.4f}] K sin cambio de signo de F "
                 f"(F(lo)={f_lo:.5g}, F(hi)={f_hi:.5g})")
         return lo, hi
-
-    def _queda(self, n_repliegues):
-        """``max_repliegues=None`` = sin tope; si es entero, tope por extremo
-        (el primer intento no cuenta: tope 2 ⇒ hasta 3 evaluaciones)."""
-        return self.max_repliegues is None or n_repliegues < self.max_repliegues
 
     # ------------------------------------------------------------- cierre --
     def cerrar(self, T1_sol):

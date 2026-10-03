@@ -1,6 +1,7 @@
 """Tests PRIMERO del bracket tolerante MA de `resolver_ciclo` (RED hoy: la API no existe).
 
-Fijan los 15 casos de `prompts/TASK_CONTEXT_tests_ma.md` con el andamiaje calibrado de
+Fijan los casos de `prompts/TASK_CONTEXT_tests_ma.md` (sin los de `max_repliegues` y
+`paso_repliegue`, retirados en la simplificación del análisis final) con el andamiaje calibrado de
 `tests/test_reintento_tolerante.py` (OBSOLETO_MB) sobre el `FakeBackend` de
 `tests/test_cycle_solver.py`: tol_T1=1e-10 / tol_T10=1e-8 (con las defaults el delta
 entre brackets llega a 7e-7) y `nF` = llamadas espiadas a `src.cycle_solver.evaluar`
@@ -117,30 +118,12 @@ def test_6_sin_cambio_de_signo_no_converge():
     _falla(CicloNoConvergeError, be, **BASE, bracket_tolerante=True)
     assert be.n > 0 and be.T_fallos == []                    # fallo de bracket, no backend
 
-def test_7_respeta_max_repliegues():
+def test_8_no_hay_tope_de_repliegues():
     ref, fallos = resolver_ciclo(BackendQueFalla(), **ANCHO), {364.0, 359.0, 354.0}
-    _falla(CicloNoConvergeError, BackendQueFalla(fallos=fallos), **ANCHO,
-           bracket_tolerante=True, max_repliegues=2)         # tope 2 -> 3 intentos
-    be = BackendQueFalla(fallos=fallos)
-    res = resolver_ciclo(be, **ANCHO, bracket_tolerante=True, max_repliegues=3)
+    be = BackendQueFalla(fallos=fallos)                        # 3 repliegues de 5 K
+    res = resolver_ciclo(be, **ANCHO, bracket_tolerante=True)
     assert abs(_eta(res) - _eta(ref)) < 1e-9 and res["bracket"]["repliegues_hi"] == 3
     assert 349.0 in be.Ts and be.T_fallos == [364.0, 359.0, 354.0]
-
-def test_8_por_defecto_no_hay_tope_de_repliegues():
-    ref = resolver_ciclo(BackendQueFalla(), **BASE)
-    fallos = {_HI - i for i in range(12)}                     # 368..357 K fallan
-    be = BackendQueFalla(fallos=fallos)
-    res = resolver_ciclo(be, **BASE, bracket_tolerante=True, paso_repliegue=1.0)
-    assert res["bracket"]["repliegues_hi"] == 12 and be.T_fallos == [_HI - i for i in range(12)]
-    assert 356.0 in be.Ts and abs(_eta(res) - _eta(ref)) < 1e-9
-    _falla(CicloNoConvergeError, BackendQueFalla(fallos=fallos), **BASE,
-           bracket_tolerante=True, paso_repliegue=1.0, max_repliegues=6)   # tope 6 no da
-
-def test_9_paso_repliegue_se_respeta():
-    be = BackendQueFalla(fallos={_HI})
-    br = resolver_ciclo(be, **BASE, bracket_tolerante=True, paso_repliegue=2.0)["bracket"]
-    assert be.T_fallos == [_HI] and 366.0 in be.Ts and 363.0 not in be.Ts   # paso de 2 K
-    assert br["hi"] == 366.0 and br["repliegues_hi"] == 1
 
 def test_10_otra_excepcion_se_propaga_sin_reintento():
     be = BackendQueFalla(fallos={_HI}, exc=ValueError)
