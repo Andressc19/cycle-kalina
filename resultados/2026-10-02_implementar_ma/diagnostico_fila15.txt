@@ -1,0 +1,18 @@
+# Diagnostico de la fila 15/18 (lit_bifasico fila_csv=10): sonda V2 vs MA en este worktree
+# inicio: 2026-10-02 23:19:33
+
+kw={'x_b': 0.55, 'P_alta': 1000.0, 'P_baja': 273.545422, 'T_fuente': 463.0, 'T_sumidero': 283.0, 'm_b': 1.0, 'eta_t': 0.8, 'eta_p': 0.8, 'eps_hrvg': 0.85, 'eps_reg': 0.75, 'eps_cond': 0.8, 'tol_T10': 0.001, 'max_iter_frio': 300}
+x_backend=0.55  (CSV x_b=0.55)
+SONDA V2 (codigo de referencia, verbatim, motor frio) -> PuntoNoEvaluable: punto interior no evaluable (T=340.4629 K)  [34.3 s]
+# (las dos lineas "Traceback" son un error de MI script de sonda al imprimir la lista
+#  de T evaluadas: no afecta al resultado de V2, que ya estaba impreso antes)
+Traceback (most recent call last):
+  File "<stdin>", line 30, in <module>
+TypeError: 'float' object is not subscriptable
+
+=== Causa: estado global de los motores (cache de arranque) ===
+# V0 primero (como en la ablacion, que corria V0->V1->V2 en el MISMO proceso) y luego MA
+ref V2 del CSV: eta=0.074722 T1=339.3539 nF=19 (convergi� el 2026-10-01)
+V0 (mismo proceso, primero) -> PropertyRangeError: equilibrio_liquido_vapor(P=1000.0 kPa, T=462.8499610351539 K): no existe equilibrio bif�si  [10.3 s]  T1=[284.0, 462.0]
+MA tras V0 -> CONVERGIO eta=0.074722 T1=339.3539 bracket={'lo': 284.0, 'hi': 412.0, 'repliegues_lo': 0, 'repliegues_hi': 10, 'nF': 8}  [48.1 s]  n_evals=19
+T1 de MA: [284.0, 462.0, 457.0, 452.0, 447.0, 442.0, 437.0, 432.0, 427.0, 422.0, 417.0, 412.0, 284.0, 412.0, 340.4629, 339.364, 339.3539, 339.3539, 339.3539]

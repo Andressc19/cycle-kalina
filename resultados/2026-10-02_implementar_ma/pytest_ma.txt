@@ -1,0 +1,29 @@
+# pytest tests/test_bracket_tolerante.py -v  (tarea 2026-10-02-implementar-ma)
+# python: D:/Desktop/ciclo_kalina_tercero/.venv/Scripts/python.exe  cwd: worktree solver-bracket
+# fecha: 2026-10-02 22:45:13
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\solver-bracket
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 16 items
+
+tests/test_bracket_tolerante.py::test_1_sin_flag_identico_bit_a_bit_al_actual PASSED [  6%]
+tests/test_bracket_tolerante.py::test_2_flag_sin_fallos_mismo_eta_T1_y_mismo_nF PASSED [ 12%]
+tests/test_bracket_tolerante.py::test_3_extremo_alto_falla_converge_con_el_mismo_eta PASSED [ 18%]
+tests/test_bracket_tolerante.py::test_4_extremo_bajo_falla_y_ambos_extremos_fallando PASSED [ 25%]
+tests/test_bracket_tolerante.py::test_5_rango_entero_falla_no_converge_y_acota_llamadas PASSED [ 31%]
+tests/test_bracket_tolerante.py::test_6_sin_cambio_de_signo_no_converge PASSED [ 37%]
+tests/test_bracket_tolerante.py::test_7_respeta_max_repliegues PASSED    [ 43%]
+tests/test_bracket_tolerante.py::test_8_por_defecto_no_hay_tope_de_repliegues PASSED [ 50%]
+tests/test_bracket_tolerante.py::test_9_paso_repliegue_se_respeta PASSED [ 56%]
+tests/test_bracket_tolerante.py::test_10_otra_excepcion_se_propaga_sin_reintento PASSED [ 62%]
+tests/test_bracket_tolerante.py::test_11_punto_interior_no_evaluable_durante_brentq PASSED [ 68%]
+tests/test_bracket_tolerante.py::test_12_presupuesto_de_tiempo_agota PASSED [ 75%]
+tests/test_bracket_tolerante.py::test_13_presupuesto_none_o_muy_grande_no_cambia_el_resultado PASSED [ 81%]
+tests/test_bracket_tolerante.py::test_14a_sin_flag_no_hay_estado_compartido PASSED [ 87%]
+tests/test_bracket_tolerante.py::test_14b_llamada_fallida_con_el_flag_no_contamina_la_siguiente PASSED [ 93%]
+tests/test_bracket_tolerante.py::test_15_clave_bracket_solo_con_el_flag_y_coherente PASSED [100%]
+
+============================= 16 passed in 0.93s ==============================
