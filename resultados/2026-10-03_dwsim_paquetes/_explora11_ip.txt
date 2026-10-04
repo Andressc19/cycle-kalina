@@ -1,0 +1,58 @@
+
+-- Peng-Robinson (PR) -> DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage
+   PengRobinsonPropertyPackage.MAT_KIJ: tipo=Object[,] (no inspeccionado)
+   PengRobinsonPropertyPackage.ip: NoneType Columns=- filas=-
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- Soave-Redlich-Kwong (SRK) -> DWSIM.Thermodynamics.PropertyPackages.SRKPropertyPackage
+   SRKPropertyPackage.MAT_KIJ: tipo=Object[,] (no inspeccionado)
+   SRKPropertyPackage.ip: NoneType Columns=- filas=-
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- Peng-Robinson 1978 (PR78) -> DWSIM.Thermodynamics.PropertyPackages.PengRobinson1978PropertyPackage
+   PengRobinson1978PropertyPackage.MAT_KIJ: tipo=Object[,] (no inspeccionado)
+   PengRobinson1978PropertyPackage.ip: NoneType Columns=- filas=-
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- Peng-Robinson-Stryjek-Vera 2 (PRSV2-M) -> DWSIM.Thermodynamics.PropertyPackages.PRSV2PropertyPackage
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- Peng-Robinson-Stryjek-Vera 2 (PRSV2-VL) -> DWSIM.Thermodynamics.PropertyPackages.PRSV2VLPropertyPackage
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- PR/LK: no crea: KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System
+
+-- Peng-Robinson / Lee-Kesler (PR/LK) -> DWSIM.Thermodynamics.PropertyPackages.PengRobinsonLKPropertyPackage
+   PengRobinsonPropertyPackage.MAT_KIJ: tipo=Object[,] (no inspeccionado)
+   PengRobinsonPropertyPackage.ip: NoneType Columns=- filas=-
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- SRK Advanced: no crea: KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System
+
+-- Soave-Redlich-Kwong (SRK) Advanced -> DWSIM.Thermodynamics.AdvancedEOS.SoaveRedlichKwongAdvancedPropertyPackage
+   SRKPropertyPackage.MAT_KIJ: tipo=Object[,] (no inspeccionado)
+   SRKPropertyPackage.ip: NoneType Columns=- filas=-
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- Peng-Robinson 1978 (PR78) Advanced -> DWSIM.Thermodynamics.AdvancedEOS.PengRobinson1978AdvancedPropertyPackage
+   PengRobinson1978PropertyPackage.MAT_KIJ: tipo=Object[,] (no inspeccionado)
+   PengRobinson1978PropertyPackage.ip: NoneType Columns=- filas=-
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- CoolProp -> DWSIM.Thermodynamics.PropertyPackages.CoolPropPropertyPackage
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]
+
+-- PC-SAFT (with Association Support) (.NET Code) -> DWSIM.Thermodynamics.AdvancedEOS.PCSAFT2PropertyPackage
+   PropertyPackage.m_Henry: tipo=Dictionary[String,HenryParam] (no inspeccionado)
+   PropertyPackage.m_ip: DataTable Columns=[] filas=[]

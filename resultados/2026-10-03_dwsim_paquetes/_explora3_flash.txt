@@ -1,0 +1,8 @@
+paquete: None
+ReturnInstance tipo: <class 'CLR.MethodBinding'>
+ReturnInstance miembros BIP: []
+
+CalculateEquilibrium doc: DWSIM.Interfaces.IFlashCalculationResult CalculateEquilibrium(DWSIM.Interfaces.Enums.FlashCalculationType, Double, Double, Double[], Double[], Double)
+CalculateEquilibrium2 doc: DWSIM.Interfaces.IFlashCalculationResult CalculateEquilibrium2(DWSIM.Interfaces.Enums.FlashCalculationType, Double, Double, Double)
+
+SetOverallMassComposition doc: Void SetOverallMassComposition(Double[])

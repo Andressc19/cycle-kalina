@@ -1,0 +1,29 @@
+# scripts/verificar_controles_ma.py (18 filas, TeqpVerificado) — tarea 2026-10-02-implementar-ma
+# SECUENCIAL tras la suite (no simultaneo: los tiempos se contaminarian)
+# python: D:/Desktop/ciclo_kalina_tercero/.venv/Scripts/python.exe  cwd: worktree solver-bracket
+# progreso por fila del script: resultados/2026-10-02_tests_ma/progreso.log
+#   (copia sin tocar: resultados/2026-10-02_implementar_ma/controles_progreso.log)
+# inicio: 2026-10-02 23:00:28
+
+18 filas (10 controles + 8 rescatadas) desde ablacion_filas.csv
+1/18 control   grupo=ctl_literatura fila_csv=   0 OK   eta=0.087667 d_eta=-2.60e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 284.0, 'hi': 372.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 7} [33.5 s]
+2/18 control   grupo=ctl_literatura fila_csv=  17 OK   eta=0.115983 d_eta=-1.90e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 284.0, 'hi': 372.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 8} [35.1 s]
+3/18 control   grupo=ctl_literatura fila_csv=  31 OK   eta=0.094917 d_eta=-2.30e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 284.0, 'hi': 372.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 7} [29.6 s]
+4/18 control   grupo=ctl_literatura fila_csv=  45 OK   eta=0.059646 d_eta=+2.65e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 284.0, 'hi': 372.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 7} [38.8 s]
+5/18 control   grupo=ctl_literatura fila_csv=  59 OK   eta=0.158862 d_eta=+8.14e-08 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 284.0, 'hi': 462.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 9} [39.3 s]
+6/18 control   grupo=ctl_KALINA_f2  fila_csv=   0 OK   eta=0.118260 d_eta=+3.63e-07 clas=KALINA (ref KALINA) bracket={'lo': 301.032917, 'hi': 469.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 8} [47.1 s]
+7/18 control   grupo=ctl_KALINA_f2  fila_csv=  13 OK   eta=0.107529 d_eta=-4.67e-07 clas=KALINA (ref KALINA) bracket={'lo': 301.032917, 'hi': 469.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 8} [67.8 s]
+8/18 control   grupo=ctl_KALINA_f2  fila_csv=  21 OK   eta=0.124289 d_eta=-2.20e-07 clas=KALINA (ref KALINA) bracket={'lo': 301.032917, 'hi': 469.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 8} [43.2 s]
+9/18 control   grupo=ctl_KALINA_f2  fila_csv=  33 OK   eta=0.109923 d_eta=+6.86e-09 clas=KALINA (ref KALINA) bracket={'lo': 301.032917, 'hi': 469.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 11} [56.7 s]
+10/18 control   grupo=ctl_KALINA_f2  fila_csv= 159 OK   eta=0.119244 d_eta=+3.11e-07 clas=KALINA (ref KALINA) bracket={'lo': 301.032917, 'hi': 469.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 8} [42.7 s]
+11/18 rescatada grupo=f2_T_from_Ph   fila_csv= 802 OK   eta=0.024697 d_eta=-1.56e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 301.032917, 'hi': 454.0, 'repliegues_lo': 0, 'repliegues_hi': 3, 'nF': 8} [66.6 s]
+12/18 rescatada grupo=f2_T_from_Ph   fila_csv= 885 OK   eta=0.062350 d_eta=+2.46e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 301.032917, 'hi': 419.0, 'repliegues_lo': 0, 'repliegues_hi': 10, 'nF': 8} [85.0 s]
+13/18 rescatada grupo=lit_T_from_Ph  fila_csv=   5 OK   eta=0.075082 d_eta=-2.58e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 284.0, 'hi': 422.0, 'repliegues_lo': 0, 'repliegues_hi': 0, 'nF': 8} [39.3 s]
+14/18 rescatada grupo=lit_T_from_Ph  fila_csv=  11 OK   eta=0.099628 d_eta=+4.11e-08 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 284.0, 'hi': 432.0, 'repliegues_lo': 0, 'repliegues_hi': 6, 'nF': 8} [59.5 s]
+15/18 rescatada grupo=lit_bifasico   fila_csv=  10 ERROR CicloNoConvergeError: punto interior no evaluable durante brentq (T=340.462948 K)
+16/18 rescatada grupo=lit_bifasico   fila_csv=  25 OK   eta=0.064480 d_eta=+3.98e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 294.0, 'hi': 407.0, 'repliegues_lo': 2, 'repliegues_hi': 11, 'nF': 8} [57.9 s]
+17/18 rescatada grupo=f2_h_Ps        fila_csv=1411 OK   eta=0.034644 d_eta=+2.03e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 336.032917, 'hi': 404.0, 'repliegues_lo': 7, 'repliegues_hi': 19, 'nF': 8} [145.7 s]
+18/18 rescatada grupo=f2_T_from_Ph   fila_csv= 907 OK   eta=0.096148 d_eta=-1.85e-07 clas=CORREGIBLE (ref CORREGIBLE) bracket={'lo': 301.032917, 'hi': 464.0, 'repliegues_lo': 0, 'repliegues_hi': 1, 'nF': 9} [63.1 s]
+
+18 filas en 985 s -> resultados\2026-10-02_tests_ma\progreso.log
+1/18 filas no reproducen las columnas V2.

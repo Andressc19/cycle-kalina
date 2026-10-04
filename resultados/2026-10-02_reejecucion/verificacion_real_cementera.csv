@@ -1,0 +1,11 @@
+﻿clave,csv_origenes,motivo,eta_teqp,clas_teqp,eta_real,clas_real,d_eta_rel,misma_clas,verificada,t_s,msg
+4000|380.465|583.15|300.033|0.5|1|0.85|0.75|0.65|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.153138,CORREGIBLE,,,,,False,534.0,CicloNoConvergeError: punto interior no evaluable durante brentq (T=301.032917 K)
+3000|218.689|583.15|300.033|0.4|1|0.85|0.75|0.65|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.160342,CORREGIBLE,,,,,False,1434.4,CicloNoConvergeError: punto interior no evaluable durante brentq (T=392.612640 K)
+2000|157.885|583.15|300.033|0.35|1|0.85|0.75|0.8|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.151829,CORREGIBLE,0.151837,CORREGIBLE,5.1e-05,True,True,1732.7,
+3500|293.413|583.15|300.033|0.45|1|0.85|0.75|0.8|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.157038,CORREGIBLE,0.157049,CORREGIBLE,6.8e-05,True,True,1794.1,
+4500|476.253|583.15|300.033|0.55|1|0.85|0.75|0.8|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.150318,CORREGIBLE,0.150326,CORREGIBLE,5.5e-05,True,True,1854.0,
+5000|575.702|583.15|300.033|0.6|1|0.85|0.75|0.65|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.150537,CORREGIBLE,,,,,False,1349.1,CicloNoConvergeError: punto interior no evaluable durante brentq (T=383.681285 K)
+2500|157.885|583.15|300.033|0.35|1|0.85|0.75|0.8|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.166033,CORREGIBLE,0.166043,CORREGIBLE,6e-05,True,True,1925.0,
+5500|575.702|583.15|300.033|0.6|1|0.85|0.75|0.8|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.155705,CORREGIBLE,0.155714,CORREGIBLE,5.8e-05,True,True,1088.0,
+6000|673.345|583.15|300.033|0.65|1|0.85|0.75|0.5|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.157178,CORREGIBLE,0.157208,CORREGIBLE,0.00019,True,True,937.0,
+6500|764.638|583.15|300.033|0.7|1|0.85|0.75|0.5|0.75|0.8|303.55,barridos_2026-09-19/b0_scan_cementera.csv,CORREGIBLE: b0_scan_cementera,0.159689,CORREGIBLE,0.159724,CORREGIBLE,0.00022,True,True,886.1,

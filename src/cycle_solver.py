@@ -6,7 +6,9 @@ devuelve estados + energías. Algoritmo (diseñado por el director, ver
 
 - EXTERIOR sobre T1 (entrada al HRVG) por Brent: F(T1) = T1_nuevo − T1, con el
   balance a nivel de ciclo del regenerador  h1 = h10 + (m_l/m_b)·(h5 − h6).
-  La búsqueda de bracket físico (T_sumidero, T_fuente) vive en `_bracketear`.
+  La búsqueda de bracket físico (T_sumidero, T_fuente) vive en `_bracketear`;
+  con `bracket_tolerante=True` la variante MA (extremos replegados hacia
+  dentro y presupuesto de tiempo) vive en `_bracket_tolerante`.
 - INTERIOR (`_cycle_loops.lazo_frio`): sustitución sucesiva sobre T10.
 
 Convención de signos de las energías (todas magnitudes [kW]): Qi entra al
@@ -23,6 +25,7 @@ from __future__ import annotations
 
 from scipy.optimize import brentq
 
+from ._bracket_tolerante import BracketTolerante
 from ._cycle_loops import CicloNoConvergeError, _bracketear, evaluar
 
 __all__ = ["resolver_ciclo", "CicloNoConvergeError"]
@@ -30,7 +33,8 @@ __all__ = ["resolver_ciclo", "CicloNoConvergeError"]
 
 def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
                    eta_t, eta_p, eps_hrvg, eps_reg, eps_cond,
-                   tol_T1=1e-4, tol_T10=1e-3, max_iter_frio=300) -> dict:
+                   tol_T1=1e-4, tol_T10=1e-3, max_iter_frio=300,
+                   bracket_tolerante=False, presupuesto_s=None) -> dict:
     """Resuelve los 10 estados del ciclo KSC-11 hasta la convergencia.
 
     Parámetros: ``backend`` (PropertyBackend), P [kPa], T [K], ``x_b`` =
@@ -49,19 +53,51 @@ def resolver_ciclo(backend, *, P_alta, P_baja, T_fuente, T_sumidero, x_b, m_b,
     en vez de partir siempre de ``T1_trial``. Optimización numérica pura: no
     cambia ninguna fórmula ni criterio físico.
 
+    Con ``bracket_tolerante=True`` (modo MA, tarea 2026-10-02-implementar-ma)
+    el lazo exterior **nunca se rinde ante un estado no evaluable**
+    (`PropertyRangeError`, p.ej. dos fases que el motor no cubre):
+
+    - el bracket físico ``(T_sumidero + 1, T_fuente − 1)`` se repliega hacia
+      dentro 5 K por extremo y por intento, sin tope, hasta que ambos extremos
+      sean evaluables; si entonces F no cambia de signo se rinde (sin el
+      ensanche final de `_bracketear`; ver `_bracket_tolerante`);
+    - un punto **interior** de Brent no evaluable no tiene recuperación y
+      lanza ``CicloNoConvergeError`` con la T en el mensaje; solo se tolera
+      ``PropertyRangeError`` (cualquier otra excepción sube sin envolver);
+    - ``presupuesto_s`` [s] opcional: con reloj de pared ``time.perf_counter``
+      desde el inicio de esta llamada, comprobado **entre evaluaciones de F**
+      (nunca a mitad de una); al agotarse lanza ``CicloNoConvergeError`` con
+      "presupuesto de tiempo agotado" y el nº de evaluaciones hechas;
+    - añade al dict la clave ``bracket`` = ``dict(lo, hi, repliegues_lo,
+      repliegues_hi, nF)``, donde ``nF`` es el nº de evaluaciones de F (la
+      final, con T1 ya resuelto, no cuenta).
+
+    Con ``bracket_tolerante=False`` (por defecto) el camino es exactamente el
+    anterior (mismas llamadas, mismo resultado, mismas claves) y
+    ``presupuesto_s`` se ignora.
+
     Devuelve un dict con ``estados`` (claves e1..e10, ``EstadoTermo``) y las
     energías ``Qi``, ``Qout``, ``Wt``, ``Wp``, ``Qreg``, ``Wnet`` [kW] y
     ``eta`` [-].
 
     Lanza ``CicloNoConvergeError`` si el bracket agota el rango físico de T1 o
     si el lazo interior no converge; las excepciones reales del backend o de
-    los componentes (p.ej. ``PropertyRangeError``) se propagan sin envolver.
+    los componentes (p.ej. ``PropertyRangeError``, si no se pide tolerancia)
+    se propagan sin envolver.
     """
     kwargs = dict(P_alta=P_alta, P_baja=P_baja, T_fuente=T_fuente,
                   T_sumidero=T_sumidero, x_b=x_b, m_b=m_b, eta_t=eta_t,
                   eta_p=eta_p, eps_hrvg=eps_hrvg, eps_reg=eps_reg,
                   eps_cond=eps_cond, tol_T10=tol_T10,
                   max_iter_frio=max_iter_frio)
+
+    if bracket_tolerante:                                # MA (ver _bracket_tolerante)
+        ma = BracketTolerante(evaluar, backend, kwargs, T_sumidero=T_sumidero,
+                              T_fuente=T_fuente, presupuesto_s=presupuesto_s)
+        lo, hi = ma.bracketear()
+        res = ma.cerrar(brentq(ma.F_brentq, lo, hi, xtol=tol_T1))
+        res["bracket"] = ma.info_bracket(lo, hi)
+        return res
 
     ultimo_T10 = None
 

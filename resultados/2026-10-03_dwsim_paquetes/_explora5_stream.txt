@@ -1,0 +1,5 @@
+SetFlashSpec doc: System.String SetFlashSpec(System.String)
+SpecType nombre: Temperature_and_Pressure
+SpecType valores: []
+GetFlashSpec doc: System.String GetFlashSpec()
+molarfraction doc: The type of the None singleton.

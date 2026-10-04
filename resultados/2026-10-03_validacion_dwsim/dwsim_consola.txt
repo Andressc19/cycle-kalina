@@ -1,0 +1,17 @@
+ELSAYED    convergio=True iter=10 relajaciones=0 arranque=motor_puntos.csv:real
+   T: T1=342.188 T2=368.698 T3=368.698 T4=303.977 T5=368.698 T6=291.860 T7=292.126 T8=302.030 T9=285.241 T10=286.673
+   x3=0.96717 x5=0.38887 x8=0.55000 dx9=-0.00000 m3=0.27862 m5=0.72138
+   Wt=56.746 Wp=2.0620 Qi=469.621 Qout=414.947 Wnet=54.684 kW  eta=0.116442 (11.644 %)  cierre=-0.0101 kW
+   equipo (equipo - corrientes, kW): TURBINA=-0.0000  BOMBA=-0.0000  HRVG=+0.0000  CONDENSADOR=-0.0000
+   eps pedida -> resultante: hrvg 0.888202 -> 0.888208 (d=+5.4e-06)  reg 0.938033 -> 0.938037 (d=+4.7e-06)  cond 0.962503 -> 0.962475 (d=-2.8e-05)
+KALINA-11  NO CONVERGE (iter=1) -> hrvg sin calcular: ; reg sin calcular: PT/PV/TV Flash: Maximum number of iterations reached. (T = 314,71 K, P = 5.000.0; turb sin calcular: ; val sin calcular: ; cond sin calcular: ; reciclo S5 sin converger
+KALINA-22  NO CONVERGE (iter=1) -> bomba sin calcular: PT/PV/TV Flash: Maximum number of iterations reached. (T = 301,32 K, P = 5.000.0; hrvg sin calcular: ; reg sin calcular: ; turb sin calcular: ; val sin calcular: ; cond sin calcular: ; reciclo S5 sin converger
+KALINA-21  NO CONVERGE (iter=1) -> hrvg sin calcular: ; reg sin calcular: PT/PV/TV Flash: Maximum number of iterations reached. (T = 297,15 K, P = 4.000.0; turb sin calcular: ; val sin calcular: ; cond sin calcular: ; reciclo S5 sin converger
+KALINA-01  convergio=True iter=8 relajaciones=0 arranque=motor_puntos.csv:real
+   T: T1=352.639 T2=388.475 T3=388.475 T4=313.595 T5=388.475 T6=317.424 T7=314.264 T8=314.220 T9=298.506 T10=298.926
+   x3=0.96812 x5=0.47314 x8=0.60000 dx9=+0.00000 m3=0.25629 m5=0.74371
+   Wt=53.463 Wp=4.3646 Qi=457.117 Qout=408.020 Wnet=49.098 kW  eta=0.107408 (10.741 %)  cierre=-0.0015 kW
+   equipo (equipo - corrientes, kW): TURBINA=-0.0000  BOMBA=-0.0000  HRVG=-0.0000  CONDENSADOR=+0.0000
+   eps pedida -> resultante: hrvg 0.850000 -> 0.850000 (d=-4.8e-07)  reg 0.800000 -> 0.800000 (d=+1.6e-07)  cond 0.850000 -> 0.849995 (d=-5.0e-06)
+KALINA-16  NO CONVERGE (iter=1) -> hrvg sin calcular: ; reg sin calcular: PT/PV/TV Flash: Maximum number of iterations reached. (T = 312,68 K, P = 5.000.0; turb sin calcular: ; val sin calcular: ; cond sin calcular: ; reciclo S5 sin converger
+-> D:\Desktop\ciclo_kalina_tercero\scripts\dwsim\..\..\resultados\2026-10-03_validacion_dwsim\dwsim_puntos.csv

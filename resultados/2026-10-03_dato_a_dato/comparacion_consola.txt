@@ -1,0 +1,158 @@
+
+===== KALINA-01 {'P_alta': 3000.0, 'P_baja': 523.749936, 'T_fuente': 394.0, 'T_sumidero': 283.0, 'x_b': 0.6, 'm_b': 1.0, 'eta_t': 0.8, 'eta_p': 0.8, 'eps_hrvg': 0.85, 'eps_reg': 0.8, 'eps_cond': 0.85}
+  e estado                                    T_mot     T_dw      dT |   x_mot    x_dw |    m_mot     m_dw       dm | hrel_mot  hrel_dw       dh
+  1 salida regenerador frío / entrada HRVG   352.85   352.64   -0.21 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |   255.42   251.87    -3.55
+  2 salida HRVG / entrada separador          388.73   388.48   -0.25 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |   698.57   708.98   +10.41
+  3 vapor rico -> turbina                    388.73   388.48   -0.25 |  0.9672  0.9681 |   0.2417   0.2563  +0.0146 |  1391.12  1414.39   +23.27
+  4 salida turbina                           314.48   313.60   -0.88 |  0.9672  0.9681 |   0.2417   0.2563  +0.0146 |  1184.63  1205.79   +21.16
+  5 líquido pobre -> regenerador             388.73   388.48   -0.25 |  0.4830  0.4731 |   0.7583   0.7437  -0.0146 |   426.35   426.86    +0.50
+  6 salida regenerador caliente              317.07   317.42   +0.36 |  0.4830  0.4731 |   0.7583   0.7437  -0.0146 |    79.08    81.25    +2.17
+  7 salida válvula                           315.95   314.26   -1.69 |  0.4830  0.4731 |   0.7583   0.7437  -0.0146 |    79.08    81.25    +2.17
+  8 salida absorbedor                        315.85   314.22   -1.63 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |   385.32   398.49   +13.17
+  9 salida condensador / entrada bomba       297.92   298.51   +0.58 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |   -11.88    -9.53    +2.35
+ 10 salida bomba                             298.35   298.93   +0.57 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |    -7.93    -5.16    +2.77
+
+HRVG  Qi = m1(h2-h1)                       motor=  443.1535  dwsim=  457.1166  dif= +13.9631  ( +3.15 %)
+Turbina  Wt = m3(h3-h4)                    motor=   49.9005  dwsim=   53.4625  dif=  +3.5620  ( +7.14 %)
+Bomba  Wp = m9(h10-h9)                     motor=    3.9437  dwsim=    4.3639  dif=  +0.4201  (+10.65 %)
+Regenerador caliente  m5(h5-h6)            motor=  263.3501  dwsim=  257.0284  dif=  -6.3217  ( -2.40 %)
+Regenerador frío  m10(h1-h10)              motor=  263.3501  dwsim=  257.0307  dif=  -6.3195  ( -2.40 %)
+Válvula  h6-h7 [kJ/kg]                     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Condensador  Qout = m8(h8-h9)              motor=  397.1967  dwsim=  408.0201  dif= +10.8234  ( +2.72 %)
+Separador  m2h2-m3h3-m5h5 (debe ser 0)     motor=   -0.0000  dwsim=    0.0000  dif=  +0.0000  (-100.00 %)
+Absorbedor  m4h4+m7h7-m8h8 (debe ser 0)    motor=    0.0000  dwsim=    0.0000  dif=  +0.0000  (  +nan %)
+Wnet = Wt - Wp                             motor=   45.9568  dwsim=   49.0986  dif=  +3.1418  ( +6.84 %)
+eta [%]                                    motor=   10.3704  dwsim=   10.7408  dif=  +0.3704  ( +3.57 %)
+
+===== KALINA-03 {'P_alta': 3000.0, 'P_baja': 752.471907, 'T_fuente': 423.0, 'T_sumidero': 283.0, 'x_b': 0.6, 'm_b': 1.0, 'eta_t': 0.8, 'eta_p': 0.8, 'eps_hrvg': 0.85, 'eps_reg': 0.8, 'eps_cond': 0.85}
+  e estado                                    T_mot     T_dw      dT |   x_mot    x_dw |    m_mot     m_dw       dm | hrel_mot  hrel_dw       dh
+  1 salida regenerador frío / entrada HRVG   355.70   356.21   +0.51 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |   269.61   269.60    -0.01
+  2 salida HRVG / entrada separador          413.88   413.32   -0.56 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |  1059.29  1052.25    -7.04
+  3 vapor rico -> turbina                    413.88   413.32   -0.56 |  0.9063  0.9105 |   0.4349   0.4434  +0.0085 |  1571.95  1579.94    +7.99
+  4 salida turbina                           360.37   359.39   -0.98 |  0.9063  0.9105 |   0.4349   0.4434  +0.0085 |  1389.00  1395.63    +6.63
+  5 líquido pobre -> regenerador             413.88   413.32   -0.56 |  0.3642  0.3527 |   0.5651   0.5566  -0.0085 |   535.56   546.25   +10.69
+  6 salida regenerador caliente              331.77   331.48   -0.28 |  0.3642  0.3527 |   0.5651   0.5566  -0.0085 |   143.05   146.63    +3.58
+  7 salida válvula                           332.15   331.92   -0.23 |  0.3642  0.3527 |   0.5651   0.5566  -0.0085 |   143.05   146.63    +3.58
+  8 salida absorbedor                        349.97   347.34   -2.62 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |   757.91   748.07    -9.84
+  9 salida condensador / entrada bomba       309.69   309.69   -0.01 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |    44.17    43.11    -1.06
+ 10 salida bomba                             310.11   310.10   -0.01 |  0.6000  0.6000 |   1.0000   1.0000  +0.0000 |    47.81    47.16    -0.65
+
+HRVG  Qi = m1(h2-h1)                       motor=  789.6732  dwsim=  782.6498  dif=  -7.0234  ( -0.89 %)
+Turbina  Wt = m3(h3-h4)                    motor=   79.5657  dwsim=   81.7241  dif=  +2.1584  ( +2.71 %)
+Bomba  Wp = m9(h10-h9)                     motor=    3.6371  dwsim=    4.0438  dif=  +0.4067  (+11.18 %)
+Regenerador caliente  m5(h5-h6)            motor=  221.8060  dwsim=  222.4214  dif=  +0.6153  ( +0.28 %)
+Regenerador frío  m10(h1-h10)              motor=  221.8061  dwsim=  222.4422  dif=  +0.6360  ( +0.29 %)
+Válvula  h6-h7 [kJ/kg]                     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Condensador  Qout = m8(h8-h9)              motor=  713.7447  dwsim=  704.9837  dif=  -8.7610  ( -1.23 %)
+Separador  m2h2-m3h3-m5h5 (debe ser 0)     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (-100.00 %)
+Absorbedor  m4h4+m7h7-m8h8 (debe ser 0)    motor=    0.0000  dwsim=    0.0000  dif=  +0.0000  (  +nan %)
+Wnet = Wt - Wp                             motor=   75.9286  dwsim=   77.6804  dif=  +1.7517  ( +2.31 %)
+eta [%]                                    motor=    9.6152  dwsim=    9.9244  dif=  +0.3092  ( +3.22 %)
+
+===== KALINA-06 {'P_alta': 3000.0, 'P_baja': 687.98037, 'T_fuente': 394.0, 'T_sumidero': 283.0, 'x_b': 0.65, 'm_b': 1.0, 'eta_t': 0.8, 'eta_p': 0.8, 'eps_hrvg': 0.85, 'eps_reg': 0.8, 'eps_cond': 0.85}
+  e estado                                    T_mot     T_dw      dT |   x_mot    x_dw |    m_mot     m_dw       dm | hrel_mot  hrel_dw       dh
+  1 salida regenerador frío / entrada HRVG   347.14   347.16   +0.02 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |   228.77   226.07    -2.70
+  2 salida HRVG / entrada separador          387.08   386.81   -0.27 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |   781.66   790.95    +9.29
+  3 vapor rico -> turbina                    387.08   386.81   -0.27 |  0.9696  0.9706 |   0.3312   0.3431  +0.0120 |  1381.74  1405.63   +23.89
+  4 salida turbina                           322.74   321.92   -0.81 |  0.9696  0.9706 |   0.3312   0.3431  +0.0120 |  1205.65  1227.68   +22.03
+  5 líquido pobre -> regenerador             387.08   386.81   -0.27 |  0.4917  0.4825 |   0.6688   0.6569  -0.0120 |   419.04   418.90    -0.14
+  6 salida regenerador caliente              319.61   320.06   +0.45 |  0.4917  0.4825 |   0.6688   0.6569  -0.0120 |    91.20    93.69    +2.49
+  7 salida válvula                           319.98   320.52   +0.54 |  0.4917  0.4825 |   0.6688   0.6569  -0.0120 |    91.20    93.69    +2.49
+  8 salida absorbedor                        322.66   321.44   -1.22 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |   504.07   516.28   +12.21
+  9 salida condensador / entrada bomba       301.59   302.26   +0.67 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |     5.70     8.25    +2.56
+ 10 salida bomba                             302.03   302.69   +0.66 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |     9.50    12.45    +2.95
+
+HRVG  Qi = m1(h2-h1)                       motor=  552.8867  dwsim=  564.8843  dif= +11.9976  ( +2.17 %)
+Turbina  Wt = m3(h3-h4)                    motor=   58.3164  dwsim=   61.0638  dif=  +2.7474  ( +4.71 %)
+Bomba  Wp = m9(h10-h9)                     motor=    3.8032  dwsim=    4.2011  dif=  +0.3979  (+10.46 %)
+Regenerador caliente  m5(h5-h6)            motor=  219.2745  dwsim=  213.6117  dif=  -5.6628  ( -2.58 %)
+Regenerador frío  m10(h1-h10)              motor=  219.2745  dwsim=  213.6163  dif=  -5.6582  ( -2.58 %)
+Válvula  h6-h7 [kJ/kg]                     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Condensador  Qout = m8(h8-h9)              motor=  498.3734  dwsim=  508.0260  dif=  +9.6526  ( +1.94 %)
+Separador  m2h2-m3h3-m5h5 (debe ser 0)     motor=   -0.0000  dwsim=    0.0000  dif=  +0.0000  (-100.00 %)
+Absorbedor  m4h4+m7h7-m8h8 (debe ser 0)    motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Wnet = Wt - Wp                             motor=   54.5133  dwsim=   56.8628  dif=  +2.3495  ( +4.31 %)
+eta [%]                                    motor=    9.8598  dwsim=   10.0663  dif=  +0.2065  ( +2.09 %)
+
+===== KALINA-09 {'P_alta': 3000.0, 'P_baja': 967.9991, 'T_fuente': 423.0, 'T_sumidero': 283.0, 'x_b': 0.65, 'm_b': 1.0, 'eta_t': 0.8, 'eta_p': 0.8, 'eps_hrvg': 0.85, 'eps_reg': 0.8, 'eps_cond': 0.85}
+  e estado                                    T_mot     T_dw      dT |   x_mot    x_dw |    m_mot     m_dw       dm | hrel_mot  hrel_dw       dh
+  1 salida regenerador frío / entrada HRVG   350.58   351.16   +0.58 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |   246.01   245.98    -0.02
+  2 salida HRVG / entrada separador          412.67   412.06   -0.61 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |  1136.14  1128.06    -8.07
+  3 vapor rico -> turbina                    412.67   412.06   -0.61 |  0.9104  0.9146 |   0.5185   0.5245  +0.0060 |  1561.33  1569.72    +8.39
+  4 salida turbina                           367.84   366.85   -0.99 |  0.9104  0.9146 |   0.5185   0.5245  +0.0060 |  1410.18  1417.49    +7.31
+  5 líquido pobre -> regenerador             412.67   412.06   -0.61 |  0.3695  0.3581 |   0.4815   0.4755  -0.0060 |   530.41   540.17    +9.76
+  6 salida regenerador caliente              334.30   334.17   -0.13 |  0.3695  0.3581 |   0.4815   0.4755  -0.0060 |   154.93   159.32    +4.39
+  7 salida válvula                           334.64   334.56   -0.08 |  0.3695  0.3581 |   0.4815   0.4755  -0.0060 |   154.93   159.32    +4.39
+  8 salida absorbedor                        358.41   356.14   -2.27 |  0.6500  0.6500 |   1.0000   1.0000  -0.0000 |   876.98   867.14    -9.84
+  9 salida condensador / entrada bomba       313.27   313.42   +0.15 |  0.6500  0.6500 |   1.0000   1.0000  -0.0000 |    61.82    61.12    -0.70
+ 10 salida bomba                             313.68   313.83   +0.15 |  0.6500  0.6500 |   1.0000   1.0000  +0.0000 |    65.22    64.91    -0.31
+
+HRVG  Qi = m1(h2-h1)                       motor=  890.1308  dwsim=  882.0799  dif=  -8.0509  ( -0.90 %)
+Turbina  Wt = m3(h3-h4)                    motor=   78.3712  dwsim=   79.8485  dif=  +1.4773  ( +1.89 %)
+Bomba  Wp = m9(h10-h9)                     motor=    3.4010  dwsim=    3.7823  dif=  +0.3813  (+11.21 %)
+Regenerador caliente  m5(h5-h6)            motor=  180.7834  dwsim=  181.0755  dif=  +0.2921  ( +0.16 %)
+Regenerador frío  m10(h1-h10)              motor=  180.7834  dwsim=  181.0780  dif=  +0.2946  ( +0.16 %)
+Válvula  h6-h7 [kJ/kg]                     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Condensador  Qout = m8(h8-h9)              motor=  815.1607  dwsim=  806.0168  dif=  -9.1439  ( -1.12 %)
+Separador  m2h2-m3h3-m5h5 (debe ser 0)     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (-100.00 %)
+Absorbedor  m4h4+m7h7-m8h8 (debe ser 0)    motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Wnet = Wt - Wp                             motor=   74.9701  dwsim=   76.0661  dif=  +1.0960  ( +1.46 %)
+eta [%]                                    motor=    8.4224  dwsim=    8.6235  dif=  +0.2011  ( +2.39 %)
+
+===== KALINA-12 {'P_alta': 3000.0, 'P_baja': 868.092712, 'T_fuente': 394.0, 'T_sumidero': 283.0, 'x_b': 0.7, 'm_b': 1.0, 'eta_t': 0.8, 'eta_p': 0.8, 'eps_hrvg': 0.85, 'eps_reg': 0.8, 'eps_cond': 0.85}
+  e estado                                    T_mot     T_dw      dT |   x_mot    x_dw |    m_mot     m_dw       dm | hrel_mot  hrel_dw       dh
+  1 salida regenerador frío / entrada HRVG   342.08   342.23   +0.15 |  0.7000  0.7000 |   1.0000   1.0000  +0.0000 |   204.79   203.02    -1.77
+  2 salida HRVG / entrada separador          385.32   385.00   -0.32 |  0.7000  0.7000 |   1.0000   1.0000  +0.0000 |   860.91   870.78    +9.88
+  3 vapor rico -> turbina                    385.32   385.00   -0.32 |  0.9722  0.9731 |   0.4220   0.4311  +0.0092 |  1371.92  1396.34   +24.42
+  4 salida turbina                           329.73   328.93   -0.81 |  0.9722  0.9731 |   0.4220   0.4311  +0.0092 |  1222.53  1245.35   +22.82
+  5 líquido pobre -> regenerador             385.32   385.00   -0.32 |  0.5013  0.4930 |   0.5780   0.5689  -0.0092 |   411.16   410.21    -0.94
+  6 salida regenerador caliente              322.05   322.59   +0.54 |  0.5013  0.4930 |   0.5780   0.5689  -0.0092 |   102.92   105.65    +2.74
+  7 salida válvula                           322.38   323.00   +0.62 |  0.5013  0.4930 |   0.5780   0.5689  -0.0092 |   102.92   105.65    +2.74
+  8 salida absorbedor                        328.73   327.81   -0.92 |  0.7000  0.7000 |   1.0000   1.0000  +0.0000 |   619.70   632.43   +12.73
+  9 salida condensador / entrada bomba       305.15   305.93   +0.77 |  0.7000  0.7000 |   1.0000   1.0000  +0.0000 |    22.99    25.78    +2.78
+ 10 salida bomba                             305.60   306.37   +0.76 |  0.7000  0.7000 |   1.0000   1.0000  +0.0000 |    26.63    29.77    +3.14
+
+HRVG  Qi = m1(h2-h1)                       motor=  656.1124  dwsim=  667.7566  dif= +11.6441  ( +1.77 %)
+Turbina  Wt = m3(h3-h4)                    motor=   63.0386  dwsim=   65.0994  dif=  +2.0608  ( +3.27 %)
+Bomba  Wp = m9(h10-h9)                     motor=    3.6327  dwsim=    3.9934  dif=  +0.3607  ( +9.93 %)
+Regenerador caliente  m5(h5-h6)            motor=  178.1677  dwsim=  173.2520  dif=  -4.9157  ( -2.76 %)
+Regenerador frío  m10(h1-h10)              motor=  178.1676  dwsim=  173.2549  dif=  -4.9127  ( -2.76 %)
+Válvula  h6-h7 [kJ/kg]                     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Condensador  Qout = m8(h8-h9)              motor=  596.7066  dwsim=  606.6535  dif=  +9.9469  ( +1.67 %)
+Separador  m2h2-m3h3-m5h5 (debe ser 0)     motor=   -0.0000  dwsim=    0.0000  dif=  +0.0000  (-100.00 %)
+Absorbedor  m4h4+m7h7-m8h8 (debe ser 0)    motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Wnet = Wt - Wp                             motor=   59.4058  dwsim=   61.1060  dif=  +1.7001  ( +2.86 %)
+eta [%]                                    motor=    9.0542  dwsim=    9.1509  dif=  +0.0967  ( +1.07 %)
+
+===== KALINA-17 {'P_alta': 3000.0, 'P_baja': 1060.024938, 'T_fuente': 394.0, 'T_sumidero': 283.0, 'x_b': 0.75, 'm_b': 1.0, 'eta_t': 0.8, 'eta_p': 0.8, 'eps_hrvg': 0.85, 'eps_reg': 0.8, 'eps_cond': 0.85}
+  e estado                                    T_mot     T_dw      dT |   x_mot    x_dw |    m_mot     m_dw       dm | hrel_mot  hrel_dw       dh
+  1 salida regenerador frío / entrada HRVG   337.63   337.84   +0.21 |  0.7500  0.7500 |   1.0000   1.0000  +0.0000 |   183.40   182.67    -0.73
+  2 salida HRVG / entrada separador          383.37   382.98   -0.40 |  0.7500  0.7500 |   1.0000   1.0000  +0.0000 |   936.81   948.42   +11.61
+  3 vapor rico -> turbina                    383.37   382.98   -0.40 |  0.9747  0.9757 |   0.5142   0.5204  +0.0062 |  1361.39  1386.28   +24.89
+  4 salida turbina                           335.56   334.71   -0.85 |  0.9747  0.9757 |   0.5142   0.5204  +0.0062 |  1235.52  1259.05   +23.53
+  5 líquido pobre -> regenerador             383.37   382.98   -0.40 |  0.5121  0.5051 |   0.4858   0.4796  -0.0062 |   402.44   400.52    -1.92
+  6 salida regenerador caliente              324.37   324.96   +0.59 |  0.5121  0.5051 |   0.4858   0.4796  -0.0062 |   114.19   116.91    +2.72
+  7 salida válvula                           324.67   325.33   +0.66 |  0.5121  0.5051 |   0.4858   0.4796  -0.0062 |   114.19   116.91    +2.72
+  8 salida absorbedor                        334.06   333.33   -0.73 |  0.7500  0.7500 |   1.0000   1.0000  -0.0000 |   732.06   746.19   +14.13
+  9 salida condensador / entrada bomba       308.62   309.45   +0.83 |  0.7500  0.7500 |   1.0000   1.0000  -0.0000 |    39.93    42.90    +2.97
+ 10 salida bomba                             309.07   309.90   +0.83 |  0.7500  0.7500 |   1.0000   1.0000  +0.0000 |    43.36    46.64    +3.28
+
+HRVG  Qi = m1(h2-h1)                       motor=  753.4144  dwsim=  765.7571  dif= +12.3427  ( +1.64 %)
+Turbina  Wt = m3(h3-h4)                    motor=   64.7230  dwsim=   66.2134  dif=  +1.4904  ( +2.30 %)
+Bomba  Wp = m9(h10-h9)                     motor=    3.4348  dwsim=    3.7462  dif=  +0.3114  ( +9.07 %)
+Regenerador caliente  m5(h5-h6)            motor=  140.0308  dwsim=  136.0193  dif=  -4.0115  ( -2.86 %)
+Regenerador frío  m10(h1-h10)              motor=  140.0307  dwsim=  136.0216  dif=  -4.0091  ( -2.86 %)
+Válvula  h6-h7 [kJ/kg]                     motor=    0.0000  dwsim=   -0.0000  dif=  -0.0000  (  +nan %)
+Condensador  Qout = m8(h8-h9)              motor=  692.1261  dwsim=  703.2922  dif= +11.1661  ( +1.61 %)
+Separador  m2h2-m3h3-m5h5 (debe ser 0)     motor=   -0.0000  dwsim=    0.0000  dif=  +0.0000  (-100.00 %)
+Absorbedor  m4h4+m7h7-m8h8 (debe ser 0)    motor=    0.0000  dwsim=    0.0000  dif=  +0.0000  (  +nan %)
+Wnet = Wt - Wp                             motor=   61.2882  dwsim=   62.4672  dif=  +1.1790  ( +1.92 %)
+eta [%]                                    motor=    8.1347  dwsim=    8.1576  dif=  +0.0228  ( +0.28 %)
+
+ciclo        x_b   Tf  eta_mot   eta_dw   d_eta  maxdT  dh_liq  dh_vap    dm3%    dWt%    dWp%
+KALINA-01   0.60  394  10.370%  10.741% +0.370   1.69    3.55   23.27   +6.06   +7.14  +10.65
+KALINA-03   0.60  423   9.615%   9.924% +0.309   2.62   10.69    9.84   +1.95   +2.71  +11.18
+KALINA-06   0.65  394   9.860%  10.066% +0.207   1.22    2.95   23.89   +3.62   +4.71  +10.46
+KALINA-09   0.65  423   8.422%   8.624% +0.201   2.27    9.76    9.84   +1.16   +1.89  +11.21
+KALINA-12   0.70  394   9.054%   9.151% +0.097   0.92    3.14   24.42   +2.17   +3.27   +9.93
+KALINA-17   0.75  394   8.135%   8.158% +0.023   0.85    3.28   24.89   +1.20   +2.30   +9.07

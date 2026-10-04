@@ -1,0 +1,7 @@
+﻿clave,csv_origenes,motivo,eta_teqp,clas_teqp,eta_real,clas_real,d_eta_rel,misma_clas,verificada,t_s,msg
+4000|592.935|423|283|0.8|1|0.8|0.8|0.85|0.8|0.85|283.15,2026-09-24_margen2k/barrido_margen2k.csv;2026-09-23_eps_fijos_085/barrido_eps_fijos_085.csv,CORREGIBLE: barrido_margen2k.csv,0.145808,CORREGIBLE,0.145808,CORREGIBLE,2e-06,True,True,557.2,
+1500|273.545|350|283|0.55|1|0.8|0.8|0.85|0.75|0.8|283.15,2026-09-22_frontera_tfuente/frontera_tfuente_teqp.csv,CORREGIBLE: frontera_tfuente_teqp.csv,0.057894,CORREGIBLE,0.057894,CORREGIBLE,3e-06,True,True,598.7,
+5000|488.459|394|283|0.7|1|0.8|0.8|0.85|0.75|0.8|283.15,2026-09-23_pinch6_realista/barrido_pinch6_realista.csv,CORREGIBLE: barrido_pinch6_realista.csv,0.093528,CORREGIBLE,0.093523,CORREGIBLE,5.1e-05,True,True,621.6,
+1500|456.323|333|283|0.7|1|0.8|0.8|0.85|0.75|0.8|283.15,2026-09-22_tfuente_bajo/exploracion_tfuente_bajo.csv,CORREGIBLE: exploracion_tfuente_bajo.csv,0.066691,CORREGIBLE,0.066688,CORREGIBLE,4.4e-05,True,True,667.8,
+3000|660.399|423|283|0.8|1|0.8|0.8|0.85|0.8|0.85|283.15,2026-09-23_eps_fijos_085/barrido_eps_fijos_085.csv,CORREGIBLE: barrido_eps_fijos_085.csv,0.119953,CORREGIBLE,0.119961,CORREGIBLE,6.6e-05,True,True,671.9,
+1500|336.095|463|283|0.6|1|0.8|0.8|0.85|0.75|0.8|303.55,2026-09-22_literatura_kcs11/barrido_literatura_kcs11.csv,CORREGIBLE: barrido_literatura_kcs11.csv,0.089974,CORREGIBLE,0.089986,CORREGIBLE,0.000137,True,True,796.0,

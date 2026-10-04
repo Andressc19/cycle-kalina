@@ -1,0 +1,132 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.6.0 -- D:\Desktop\ciclo_kalina_tercero\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: D:\Desktop\ciclo_kalina_tercero
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 11 items
+
+tests/test_reintento_tolerante.py::test_1_sin_flag_identico_bit_a_bit_al_actual PASSED [  9%]
+tests/test_reintento_tolerante.py::test_2_flag_sin_fallos_no_reintenta FAILED [ 18%]
+tests/test_reintento_tolerante.py::test_3_extremo_alto_falla_converge_con_el_mismo_eta FAILED [ 27%]
+tests/test_reintento_tolerante.py::test_4_extremo_bajo_y_ambos_extremos_fallando FAILED [ 36%]
+tests/test_reintento_tolerante.py::test_5_rango_entero_falla_no_converge_y_acota_llamadas FAILED [ 45%]
+tests/test_reintento_tolerante.py::test_6_sin_cambio_de_signo_no_converge FAILED [ 54%]
+tests/test_reintento_tolerante.py::test_7_respeta_max_repliegues FAILED  [ 63%]
+tests/test_reintento_tolerante.py::test_8_paso_repliegue_se_respeta FAILED [ 72%]
+tests/test_reintento_tolerante.py::test_9_otra_excepcion_se_propaga_sin_reintento FAILED [ 81%]
+tests/test_reintento_tolerante.py::test_10_punto_interior_no_evaluable_durante_brentq FAILED [ 90%]
+tests/test_reintento_tolerante.py::test_11_el_intento_fallido_no_deja_estado_compartido FAILED [100%]
+
+================================== FAILURES ===================================
+_____________________ test_2_flag_sin_fallos_no_reintenta _____________________
+
+    def test_2_flag_sin_fallos_no_reintenta():
+        be_ref, be = BackendQueFalla(), BackendQueFalla()
+        ref = resolver_ciclo(be_ref, **_PARAMS_BASE)
+>       res = resolver_ciclo(be, **_PARAMS_BASE, reintento_tolerante=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:97: TypeError
+_____________ test_3_extremo_alto_falla_converge_con_el_mismo_eta _____________
+
+    def test_3_extremo_alto_falla_converge_con_el_mismo_eta():
+        ref = resolver_ciclo(BackendQueFalla(), **BASE)
+        be = BackendQueFalla(fallos={368.0})                       # extremo hi = Tf-1
+>       res = resolver_ciclo(be, **BASE, reintento_tolerante=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:106: TypeError
+________________ test_4_extremo_bajo_y_ambos_extremos_fallando ________________
+
+    def test_4_extremo_bajo_y_ambos_extremos_fallando():
+        ref = resolver_ciclo(BackendQueFalla(), **BASE_ANCHO)
+        be = BackendQueFalla(fallos={331.0})                       # extremo lo = Ts+1
+>       res = resolver_ciclo(be, **BASE_ANCHO, reintento_tolerante=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:118: TypeError
+___________ test_5_rango_entero_falla_no_converge_y_acota_llamadas ____________
+
+    def test_5_rango_entero_falla_no_converge_y_acota_llamadas():
+        mr = 6
+        be = BackendQueFalla(bandas=[(300.0, 500.0)])              # nada es evaluable
+        with pytest.raises(CicloNoConvergeError):
+>           resolver_ciclo(be, **BASE, reintento_tolerante=True, max_repliegues=mr)
+E           TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:133: TypeError
+___________________ test_6_sin_cambio_de_signo_no_converge ____________________
+
+    def test_6_sin_cambio_de_signo_no_converge():
+        be = BackendDesplazado(delta=20.0)                         # F no cambia de signo
+        with pytest.raises(CicloNoConvergeError):
+>           resolver_ciclo(be, **BASE, reintento_tolerante=True)
+E           TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:142: TypeError
+________________________ test_7_respeta_max_repliegues ________________________
+
+    def test_7_respeta_max_repliegues():
+        ref = resolver_ciclo(BackendQueFalla(), **BASE_ANCHO)
+        fallos = {364.0, 359.0, 354.0}                            # hi falla 3 veces (paso 5)
+        be2 = BackendQueFalla(fallos=fallos)
+        with pytest.raises(CicloNoConvergeError):
+>           resolver_ciclo(be2, **BASE_ANCHO, reintento_tolerante=True, max_repliegues=2)
+E           TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:151: TypeError
+______________________ test_8_paso_repliegue_se_respeta _______________________
+
+    def test_8_paso_repliegue_se_respeta():
+        ref = resolver_ciclo(BackendQueFalla(), **BASE)
+        be = BackendQueFalla(fallos={368.0})
+>       res = resolver_ciclo(be, **BASE, reintento_tolerante=True, paso_repliegue=2.0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:165: TypeError
+_______________ test_9_otra_excepcion_se_propaga_sin_reintento ________________
+
+    def test_9_otra_excepcion_se_propaga_sin_reintento():
+        be = BackendQueFalla(fallos={368.0}, exc=ValueError)
+        with pytest.raises(ValueError):
+>           resolver_ciclo(be, **BASE, reintento_tolerante=True)
+E           TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:174: TypeError
+_____________ test_10_punto_interior_no_evaluable_durante_brentq ______________
+
+    def test_10_punto_interior_no_evaluable_durante_brentq():
+        # el extremo 368 falla -> hay reintento; la banda solo la toca un punto
+        # INTERIOR de brentq (T=355.555 K medido), nunca la cascada de los extremos.
+        be = BackendQueFalla(fallos={368.0}, bandas=[(355.5, 355.6)])
+        with pytest.raises(CicloNoConvergeError) as ei:
+>           resolver_ciclo(be, **BASE, reintento_tolerante=True)
+E           TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:183: TypeError
+____________ test_11_el_intento_fallido_no_deja_estado_compartido _____________
+
+    def test_11_el_intento_fallido_no_deja_estado_compartido():
+        be1 = BackendQueFalla(fallos={368.0})
+        be2 = BackendQueFalla(fallos={368.0})
+>       r1 = resolver_ciclo(be1, **BASE, reintento_tolerante=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       TypeError: resolver_ciclo() got an unexpected keyword argument 'reintento_tolerante'
+
+tests\test_reintento_tolerante.py:193: TypeError
+=========================== short test summary info ===========================
+FAILED tests/test_reintento_tolerante.py::test_2_flag_sin_fallos_no_reintenta
+FAILED tests/test_reintento_tolerante.py::test_3_extremo_alto_falla_converge_con_el_mismo_eta
+FAILED tests/test_reintento_tolerante.py::test_4_extremo_bajo_y_ambos_extremos_fallando
+FAILED tests/test_reintento_tolerante.py::test_5_rango_entero_falla_no_converge_y_acota_llamadas
+FAILED tests/test_reintento_tolerante.py::test_6_sin_cambio_de_signo_no_converge
+FAILED tests/test_reintento_tolerante.py::test_7_respeta_max_repliegues - Typ...
+FAILED tests/test_reintento_tolerante.py::test_8_paso_repliegue_se_respeta - ...
+FAILED tests/test_reintento_tolerante.py::test_9_otra_excepcion_se_propaga_sin_reintento
+FAILED tests/test_reintento_tolerante.py::test_10_punto_interior_no_evaluable_durante_brentq
+FAILED tests/test_reintento_tolerante.py::test_11_el_intento_fallido_no_deja_estado_compartido
+======================== 10 failed, 1 passed in 0.99s =========================
