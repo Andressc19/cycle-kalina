@@ -1,0 +1,52 @@
+
+===== orden: comp -> stream -> paquete -> composicion =====
+n comps antes de paquete: 2
+nombre del paquete: None | UniqueID: '43131040-61e9-41a6-9a6a-1975ac101a99'
+n comps tras crear paquete (stream aun sin paquete): 2
+n comps tras asignar paquete: 2
+ComponentIds: ['Water', 'Ammonia']
+ComponentName: ['M', 'A', 'T', '-', '1', '5', '7', '8', '1', '8', '7', 'c', '-', '0', '3', '1', 'c', '-', '4', '3', '2', 'f', '-', '8', '9', 'e', '5', '-', 'e', '5', '8', 'd', 'e', '2', '3', '6', 'e', '2', '5', 'e']
+
+===== SetOverallMassComposition con System.Double[] =====
+EXCEPCION ArgumentOutOfRangeException El índice estaba fuera del intervalo. Debe ser un valor no negativo e inferior al tamaño de la colección.
+Nombre del parámetro: index
+   en System.ThrowHelper.ThrowArgumentOutOfRangeException(Except
+
+===== Phase.Properties.massfraction / molarfraction =====
+q: <class 'DWSIM.Interfaces.IPhaseProperties'>
+  massfraction = None
+  molarfraction = None
+  massflow = 1.0
+  temperature = 298.15
+  pressure = 101325.0
+
+===== rutas de composicion: SetOverallCompoundMolarFlow / SetOverallCompoundMassFlow =====
+  SetOverallCompoundMolarFlow: Void SetOverallCompoundMolarFlow(Int32, Double)
+Void SetOverallCompoundMolarFlow(System.String, Double)
+  SetOverallCompoundMassFlow: Void SetOverallCompoundMassFlow(Int32, Double)
+Void SetOverallCompoundMassFlow(System.String, Double)
+  SetOverallComposition: Void SetOverallComposition(System.Array)
+  SetPhaseComposition: Void SetPhaseComposition(System.Array, DWSIM.Thermodynamics.PropertyPackages.Phase)
+  SetOverallMassComposition: Void SetOverallMassComposition(Double[])
+  NormalizeOverallMassComposition: Void NormalizeOverallMassComposition()
+  MassFractionsToMoleFractions: Double[] MassFractionsToMoleFractions(Double[])
+  MoleFractionsToMassFractions: Double[] MoleFractionsToMassFractions(Double[])
+
+===== flujo completo PR: PVF para T_burbuja y T_rocio =====
+composicion molar: [0.4361300189230316, 0.5638699810769684]
+
+  [PT 1500kPa/369K] tipo=<class 'DWSIM.Interfaces.IFlashCalculationResult'>
+    miembros: ['BaseMoleAmount', 'CalcMolarWeight', 'CalculatedEnthalpy', 'CalculatedEntropy', 'CalculatedPressure', 'CalculatedTemperature', 'CompoundProperties', 'ConvertToMassFractions', 'Equals', 'FlashAlgorithmType', 'GetHashCode', 'GetLiquidPhase1MassFraction', 'GetLiquidPhase1MassFractions', 'GetLiquidPhase1MoleFraction', 'GetLiquidPhase1MoleFractions', 'GetLiquidPhase2MassFraction', 'GetLiquidPhase2MassFractions', 'GetLiquidPhase2MoleFraction', 'GetLiquidPhase2MoleFractions', 'GetSolidPhaseMassFraction', 'GetSolidPhaseMassFractions', 'GetSolidPhaseMoleFraction', 'GetSolidPhaseMoleFractions', 'GetType', 'GetVaporPhaseMassFraction', 'GetVaporPhaseMassFractions', 'GetVaporPhaseMoleFraction', 'GetVaporPhaseMoleFractions', 'IterationsTaken', 'Kvalues', 'LiquidPhase1MoleAmounts', 'LiquidPhase2MoleAmounts', 'MixtureMoleAmounts', 'ResultException', 'SolidPhaseMoleAmounts', 'TimeTaken', 'ToString', 'VaporPhaseMoleAmounts', 'get_BaseMoleAmount', 'get_CalculatedEnthalpy', 'get_CalculatedEntropy', 'get_CalculatedPressure', 'get_CalculatedTemperature', 'get_CompoundProperties', 'get_FlashAlgorithmType', 'get_IterationsTaken', 'get_Kvalues', 'get_LiquidPhase1MoleAmounts', 'get_LiquidPhase2MoleAmounts', 'get_MixtureMoleAmounts', 'get_ResultException', 'get_SolidPhaseMoleAmounts', 'get_TimeTaken', 'get_VaporPhaseMoleAmounts', 'set_BaseMoleAmount', 'set_CalculatedEnthalpy', 'set_CalculatedEntropy', 'set_CalculatedPressure', 'set_CalculatedTemperature', 'set_CompoundProperties', 'set_FlashAlgorithmType', 'set_IterationsTaken', 'set_Kvalues', 'set_LiquidPhase1MoleAmounts', 'set_LiquidPhase2MoleAmounts', 'set_MixtureMoleAmounts', 'set_ResultException', 'set_SolidPhaseMoleAmounts', 'set_TimeTaken', 'set_VaporPhaseMoleAmounts']
+    ToString: DWSIM.Thermodynamics.PropertyPackages.Auxiliary.FlashAlgorithms.FlashCalculationResult
+
+  [TVF T=300 VF=0 (burbuja)] EXCEPCION Exception: PR EOS: Unable to calculate compressility factor at given conditions.
+   en DWSIM.Thermodynamics.PropertyPackages.PropertyPackage.CalculateEquilibrium(FlashCalculationType calctype, Double val1, Double val2, Double[] mi
+
+  [TVF T=300 VF=1 (rocio)] EXCEPCION Exception: PR EOS: Unable to calculate compressility factor at given conditions.
+   en DWSIM.Thermodynamics.PropertyPackages.PropertyPackage.CalculateEquilibrium(FlashCalculationType calctype, Double val1, Double val2, Double[] mi
+
+  [PVF P=1500kPa VF=0 (Tbub)] EXCEPCION Exception: PR EOS: Unable to calculate compressility factor at given conditions.
+   en DWSIM.Thermodynamics.PropertyPackages.PropertyPackage.CalculateEquilibrium(FlashCalculationType calctype, Double val1, Double val2, Double[] mi
+
+  [PVF P=1500kPa VF=1 (Tdew)] EXCEPCION Exception: PR EOS: Unable to calculate compressility factor at given conditions.
+   en DWSIM.Thermodynamics.PropertyPackages.PropertyPackage.CalculateEquilibrium(FlashCalculationType calctype, Double val1, Double val2, Double[] mi

@@ -1,0 +1,135 @@
+paquetes: 28
+
+-- Black Oil: BlackOilPropertyPackage | VF1500kPa369K=nan
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Peng-Robinson-Stryjek-Vera 2 (PRSV2-M): PRSV2PropertyPackage | VF1500kPa369K=0.5733896498947342
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Peng-Robinson 1978 (PR78): PengRobinson1978PropertyPackage | VF1500kPa369K=0.2882169531793202
+     PengRobinson1978PropertyPackage.ip = [[0.0, -0.2533], [-0.2533, 0.0]]
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Soave-Redlich-Kwong (SRK): SRKPropertyPackage | VF1500kPa369K=0.5736218109017645
+     SRKPropertyPackage.ip = [[0.0, 0.0], [0.0, 0.0]]
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Peng-Robinson-Stryjek-Vera 2 (PRSV2-VL): PRSV2VLPropertyPackage | VF1500kPa369K=0.5733896498947342
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Peng-Robinson / Lee-Kesler (PR/LK): PengRobinsonLKPropertyPackage | VF1500kPa369K=0.2882162880050316
+     PengRobinsonPropertyPackage.ip = [[0.0, -0.2533], [-0.2533, 0.0]]
+     m_ip: 0 columnas, 0 filas -> []
+
+-- GERG-2008: GERG2008PropertyPackage | VF1500kPa369K=0.4512684880748861
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Peng-Robinson (PR): PengRobinsonPropertyPackage | VF1500kPa369K=0.2882162880050316
+     PengRobinsonPropertyPackage.ip = [[0.0, -0.2533], [-0.2533, 0.0]]
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Wilson: WilsonPropertyPackage | VF1500kPa369K=0.44407433603352403
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- PC-SAFT (with Association Support) (.NET Code): PCSAFT2PropertyPackage | flash FALLO KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en DWSIM.Thermodynamics.Prope
+
+-- PC-SAFT (with Association Support) (.NET Code): PCSAFT2PropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- NRTL: NRTLPropertyPackage | flash FALLO Exception: NRTL error: missing interaction parameters for binary pair Water/Ammonia.
+   en DWSIM.The
+
+-- NRTL: NRTLPropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- CoolProp: CoolPropPropertyPackage | VF1500kPa369K=0.4451913943686556
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- CoolProp (Incompressible Fluids): CoolPropIncompressiblePurePropertyPackage | VF1500kPa369K=0.0
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- UNIFAC: UNIFACPropertyPackage | flash FALLO Exception: Error calculating excess enthalpy from activity coefficients. If this error persists, try 
+
+-- UNIFAC: UNIFACPropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- CoolProp (Incompressible Mixtures): CoolPropIncompressibleMixturePropertyPackage | flash FALLO IndexOutOfRangeException: Índice fuera de los límites de la matriz.
+   en DWSIM.Thermodynamics.PropertyPackages.Pro
+
+-- CoolProp (Incompressible Mixtures): CoolPropIncompressibleMixturePropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Steam Tables (IAPWS-IF97): SteamTablesPropertyPackage | VF1500kPa369K=0.0
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Seawater IAPWS-08: SeawaterPropertyPackage | flash FALLO Exception: Salt compound not found. Please setup your simulation accordingly.
+   en DWSIM.Thermodyna
+
+-- Seawater IAPWS-08: SeawaterPropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Modified UNIFAC (Dortmund): MODFACPropertyPackage | flash FALLO Exception: Error calculating excess enthalpy from activity coefficients. If this error persists, try 
+
+-- Modified UNIFAC (Dortmund): MODFACPropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Modified UNIFAC (NIST): NISTMFACPropertyPackage | flash FALLO Exception: Error calculating excess enthalpy from activity coefficients. If this error persists, try 
+
+-- Modified UNIFAC (NIST): NISTMFACPropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- UNIQUAC: UNIQUACPropertyPackage | flash FALLO Exception: UNIQUAC error: missing interaction parameters for binary pair Water/Ammonia.
+   en DWSIM.
+
+-- UNIQUAC: UNIQUACPropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Peng-Robinson 1978 (PR78) Advanced: PengRobinson1978AdvancedPropertyPackage | VF1500kPa369K=0.13606262866826838
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- UNIFAC-LL: UNIFACLLPropertyPackage | flash FALLO Exception: Error calculating excess enthalpy from activity coefficients. If this error persists, try 
+
+-- UNIFAC-LL: UNIFACLLPropertyPackage | VF1500kPa369K=None
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Chao-Seader: ChaoSeaderPropertyPackage | VF1500kPa369K=0.38930318933109187
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Soave-Redlich-Kwong (SRK) Advanced: SoaveRedlichKwongAdvancedPropertyPackage | VF1500kPa369K=0.5736218109017645
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Grayson-Streed: GraysonStreedPropertyPackage | VF1500kPa369K=0.39891325409835454
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Raoult's Law: RaoultPropertyPackage | VF1500kPa369K=0.4452380994464936
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- Lee-Kesler-Plöcker: LKPPropertyPackage | VF1500kPa369K=0.20052095646071008
+     None = None
+     m_ip: 0 columnas, 0 filas -> []
+
+-- CAPE-OPEN: CAPEOPENPropertyPackage | flash FALLO NullReferenceException: Referencia a objeto no establecida como instancia de un objeto.
+   en DWSIM.Thermodynamic

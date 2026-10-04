@@ -1,0 +1,115 @@
+{
+  "motor": "src.properties.AmmoniaWaterAdapter (IAPWS G4-01, Tillner-Roth & Friend 1998)",
+  "unidades": {
+    "P": "kPa",
+    "T": "K",
+    "h": "kJ/kg",
+    "x": "fraccion MASICA de NH3"
+  },
+  "conversion_molar_masica": {
+    "molar_a_masica": "w = x*M_NH3 / (x*M_NH3 + (1-x)*M_H2O)",
+    "masica_a_molar": "x = (w/M_NH3) / ((w/M_NH3) + ((1-w)/M_H2O))",
+    "M_NH3_g_por_mol": 17.03052,
+    "M_H2O_g_por_mol": 18.015268
+  },
+  "punto_diseno": {
+    "P_baja_kPa": 273.55,
+    "P_alta_kPa": 1500.0,
+    "w_b_masica_NH3": 0.55,
+    "T2_K": 369.0,
+    "x_b_molar_NH3": 0.5638699810769684
+  },
+  "tabla7_re": [
+    {
+      "xL_molar_NH3": 0.2,
+      "T_K": 300.0,
+      "p_bub_MPa": 0.04071,
+      "xv_molar_NH3": 0.936
+    },
+    {
+      "xL_molar_NH3": 0.4,
+      "T_K": 400.0,
+      "p_bub_MPa": 2.5545,
+      "xv_molar_NH3": 0.9363
+    },
+    {
+      "xL_molar_NH3": 0.6,
+      "T_K": 500.0,
+      "p_bub_MPa": 16.698,
+      "xv_molar_NH3": 0.7844
+    }
+  ],
+  "tabla8_re": [
+    {
+      "xv_molar_NH3": 0.2,
+      "T_K": 300.0,
+      "p_dew_MPa": 0.00437062,
+      "xL_molar_NH3": 0.010672
+    },
+    {
+      "xv_molar_NH3": 0.4,
+      "T_K": 400.0,
+      "p_dew_MPa": 0.394694,
+      "xL_molar_NH3": 0.051541
+    },
+    {
+      "xv_molar_NH3": 0.6,
+      "T_K": 500.0,
+      "p_dew_MPa": 6.52607,
+      "xL_molar_NH3": 0.22135
+    }
+  ],
+  "puntos_ciclo": {
+    "a_Tburbuja_273p55kPa": {
+      "T_K": 287.0000129065268,
+      "error": null,
+      "segundos": 11.93
+    },
+    "b_Tburbuja_1500kPa": {
+      "T_K": 344.3857142664445,
+      "error": null,
+      "segundos": 12.62
+    },
+    "b_Trocio_1500kPa": {
+      "T_K": 437.85004225819034,
+      "error": null,
+      "segundos": 8.18
+    },
+    "c_flash_1500kPa_369K": {
+      "error": null,
+      "segundos": 0.58,
+      "xL_masica_NH3": 0.40957150720802277,
+      "xV_masica_NH3": 0.9666427601875816,
+      "xL_molar_NH3": 0.4232308240052106,
+      "xV_molar_NH3": 0.9684085259502243,
+      "vapor_fraction": 0.25208353875896405,
+      "nota_VF": "VF por regla de balanza (w - xL)/(xV - xL) a partir de equilibrio_liquido_vapor; la interfaz publica no devuelve VF"
+    },
+    "d_delta_h_1500kPa_369K_menos_300K": {
+      "h_369K_kJ_kg": 712.3579257182421,
+      "h_300K_kJ_kg": 63.56683186792057,
+      "error_h_369K": null,
+      "error_h_300K": null,
+      "segundos": 0.03,
+      "delta_h_kJ_kg": 648.7910938503215
+    }
+  },
+  "ciclo_extra": {
+    "Tburbuja_P_baja_273p55kPa": {
+      "T_K": 287.0000129065268,
+      "error": null
+    },
+    "Trocio_P_baja_273p55kPa": {
+      "T_K": 379.7179019259934,
+      "error": null
+    },
+    "Tburbuja_P_alta_1500kPa": {
+      "T_K": 344.3857142664445,
+      "error": null
+    },
+    "Trocio_P_alta_1500kPa": {
+      "T_K": 437.85004225819034,
+      "error": null
+    }
+  }
+}

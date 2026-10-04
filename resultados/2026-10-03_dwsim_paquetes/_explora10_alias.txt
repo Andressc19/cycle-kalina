@@ -1,0 +1,92 @@
+== alias: PRSV2-VL y Lee-Kesler-Plucker ==
+   'Peng-Robinson-Stryjek-Vera 2 (PRSV2-VL)': OK
+   'PRSV2-VL': KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelp
+   'Lee-Kesler-Plücker': KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelp
+   'Lee-Kesler-Plucker': KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelp
+   'Lee-Kesler-Plücker (LKP)': KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelp
+   'Lee-Kesler-Plucker (LKP)': KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelp
+
+== BIP: campo ip (Double[,]) y m_ip (DataTable) por paquete ==
+
+-- Peng-Robinson (PR) (PengRobinsonPropertyPackage)
+   no hay campo ip/m_ip
+
+-- Soave-Redlich-Kwong (SRK) (SRKPropertyPackage)
+   no hay campo ip/m_ip
+
+-- Peng-Robinson 1978 (PR78) (PengRobinson1978PropertyPackage)
+   no hay campo ip/m_ip
+
+-- PRSV2-M: no se pudo crear: KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelp
+
+-- Peng-Robinson-Stryjek-Vera 2 (PRSV2-M) (PRSV2PropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- NRTL (NRTLPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- UNIQUAC (UNIQUACPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- Modified UNIFAC (NIST) (NISTMFACPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- UNIFAC (UNIFACPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- Raoult's Law (RaoultPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- CoolProp (CoolPropPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- Chao-Seader (ChaoSeaderPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- Grayson-Streed (GraysonStreedPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- Wilson (WilsonPropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]
+
+-- PC-SAFT (with Association Support) (.NET Code) (PCSAFT2PropertyPackage)
+   campo 'm_ip' tipo=<class 'System.Data.DataTable'>
+   no es array: AttributeError: 'DataTable' object has no attribute 'Rank'
+   Columns=[]
+   Rows=[]

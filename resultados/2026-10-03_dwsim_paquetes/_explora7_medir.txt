@@ -1,0 +1,147 @@
+
+===== A) composicion: SetOverallCompoundMassFlow + NormalizeOverallMassComposition =====
+molefrac global: None
+masa molar global: 0.0
+molarfraction fase0: None
+
+===== B) flash PT: como leer VF y composiciones de IFlashCalculationResult =====
+CalculatedTemperature: 369.0
+CalculatedPressure: 1500000.0
+BaseMoleAmount: 1.0
+LiquidPhase1MoleAmounts: [0.42702947905373806, 0.28475423294123026]
+VaporPhaseMoleAmounts: [0.00910196109200896, 0.2791143269130226]
+GetLiquidPhase1MoleFractions(): [0.5999427520712314, 0.40005724792876857]
+GetVaporPhaseMoleFractions(): [0.031580314752544664, 0.9684196852474554]
+GetLiquidPhase1MassFractions(): [0.6133556903132501, 0.3866443096867499]
+GetVaporPhaseMassFractions(): [0.03334549972834689, 0.9666545002716532]
+ResultException: None
+IterationsTaken: 10 TimeTaken: 00:00:00.0640668
+
+VF a 1500 kPa/369 K, w=0.55: (0.2882162880050316, [0.5999427520712314, 0.40005724792876857], [0.031580314752544664, 0.9684196852474554])
+
+===== C) bisection: p_burbuja y p_rocio a T=300 K con x=0.2 molar =====
+p_burbuja brackets: 0.2 0.2 MPa (ref 0.040710)
+p_rocio brackets: 0.003737220844431478 0.0037372208444314786 MPa (ref 0.00437062)
+
+===== D) ruta stream: SetFlashSpec('PT') + CalcEquilibrium + enthalpy =====
+SpecType tras SetFlashSpec('PT'): Temperature_and_Pressure
+EXCEPCION TypeError No method matches given arguments for MaterialStream.CalcEquilibrium: ()
+
+===== E) enthalpia en dos estados para Delta h (misma ruta) =====
+EXCEPCION TypeError No method matches given arguments for MaterialStream.CalcEquilibrium: ()
+
+===== F) BIP: reflexion por paquete (con stream asignado) =====
+
+-- Peng-Robinson (PR)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage
+   miembrosBIP=[]
+
+-- Soave-Redlich-Kwong (SRK)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.SRKPropertyPackage
+   miembrosBIP=[]
+
+-- PRSV2-VL: EXCEPCION KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelper.ThrowKeyNotFoundException()
+   en System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   en DWSIM.FlowsheetB
+
+-- NRTL
+   tipo=DWSIM.Thermodynamics.PropertyPackages.NRTLPropertyPackage
+   miembrosBIP=[]
+
+-- Modified UNIFAC (NIST)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.NISTMFACPropertyPackage
+   miembrosBIP=[]
+
+-- Modified UNIFAC (Dortmund)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.MODFACPropertyPackage
+   miembrosBIP=[]
+
+-- UNIQUAC
+   tipo=DWSIM.Thermodynamics.PropertyPackages.UNIQUACPropertyPackage
+   miembrosBIP=[]
+
+-- UNIFAC
+   tipo=DWSIM.Thermodynamics.PropertyPackages.UNIFACPropertyPackage
+   miembrosBIP=[]
+
+-- UNIFAC-LL
+   tipo=DWSIM.Thermodynamics.PropertyPackages.UNIFACLLPropertyPackage
+   miembrosBIP=[]
+
+-- Raoult's Law
+   tipo=DWSIM.Thermodynamics.PropertyPackages.RaoultPropertyPackage
+   miembrosBIP=[]
+
+-- CoolProp
+   tipo=DWSIM.Thermodynamics.PropertyPackages.CoolPropPropertyPackage
+   miembrosBIP=[]
+
+-- Chao-Seader
+   tipo=DWSIM.Thermodynamics.PropertyPackages.ChaoSeaderPropertyPackage
+   miembrosBIP=[]
+
+-- Grayson-Streed
+   tipo=DWSIM.Thermodynamics.PropertyPackages.GraysonStreedPropertyPackage
+   miembrosBIP=[]
+
+-- Wilson
+   tipo=DWSIM.Thermodynamics.WilsonPropertyPackage
+   miembrosBIP=[]
+
+-- Lee-Kesler-Plucker: EXCEPCION KeyNotFoundException: La clave proporcionada no se encontró en el diccionario.
+   en System.ThrowHelper.ThrowKeyNotFoundException()
+   en System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   en DWSIM.FlowsheetB
+
+-- PC-SAFT (with Association Support) (.NET Code)
+   tipo=DWSIM.Thermodynamics.AdvancedEOS.PCSAFT2PropertyPackage
+   miembrosBIP=[]
+
+-- GERG-2008
+   tipo=DWSIM.Thermodynamics.AdvancedEOS.GERG2008PropertyPackage
+   miembrosBIP=[]
+
+-- Steam Tables (IAPWS-IF97)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.SteamTablesPropertyPackage
+   miembrosBIP=[]
+
+-- Seawater IAPWS-08
+   tipo=DWSIM.Thermodynamics.PropertyPackages.SeawaterPropertyPackage
+   miembrosBIP=[]
+
+-- Black Oil
+   tipo=DWSIM.Thermodynamics.PropertyPackages.BlackOilPropertyPackage
+   miembrosBIP=[]
+
+-- Peng-Robinson-Stryjek-Vera 2 (PRSV2-M)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.PRSV2PropertyPackage
+   miembrosBIP=[]
+
+-- Peng-Robinson / Lee-Kesler (PR/LK)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.PengRobinsonLKPropertyPackage
+   miembrosBIP=[]
+
+-- Peng-Robinson 1978 (PR78)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.PengRobinson1978PropertyPackage
+   miembrosBIP=[]
+
+-- Peng-Robinson 1978 (PR78) Advanced
+   tipo=DWSIM.Thermodynamics.AdvancedEOS.PengRobinson1978AdvancedPropertyPackage
+   miembrosBIP=[]
+
+-- Soave-Redlich-Kwong (SRK) Advanced
+   tipo=DWSIM.Thermodynamics.AdvancedEOS.SoaveRedlichKwongAdvancedPropertyPackage
+   miembrosBIP=[]
+
+-- CAPE-OPEN
+   tipo=DWSIM.Thermodynamics.PropertyPackages.CAPEOPENPropertyPackage
+   miembrosBIP=[]
+
+-- CoolProp (Incompressible Fluids)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.CoolPropIncompressiblePurePropertyPackage
+   miembrosBIP=[]
+
+-- CoolProp (Incompressible Mixtures)
+   tipo=DWSIM.Thermodynamics.PropertyPackages.CoolPropIncompressibleMixturePropertyPackage
+   miembrosBIP=[]
