@@ -22,8 +22,13 @@ Rama `feature/rango_motores`, 2026-10-03.
 | T en líquido (o bifásico) | ≤ 420 K | respaldo experimental | G4-01 §6 |
 | P en vapor (o bifásico) | ≤ 10 MPa | respaldo experimental | G4-01 §6 |
 
-**No vigilado:** el techo real del modelo es el lugar crítico de la mezcla. La guía avisa que
-calcularlo da problemas de convergencia y que su ubicación es incierta, así que no se aproxima.
+**Techo del modelo — decisión (usuario, 2026-10-03):** el techo real del modelo es el lugar
+crítico de la mezcla, y **no lo conocemos**: la guía avisa que calcularlo da problemas de
+convergencia y que su ubicación es incierta por datos escasos e inconsistentes. Por eso no se
+aproxima ni se inventa un sustituto. **Los límites de trabajo del proyecto son los que declara
+IAPWS G4-01 §6** (la tabla de arriba), y nada más. Cualquier límite adicional (lugar crítico o
+fallos propios de cada motor) se añadirá solo si sale de una fuente documentada o de lo que
+encontremos al iterar, en una tarea aparte.
 
 La fase de cada estado sale de `estado.fase`; si es `None`, de `backend.fase_de`. Si la fase no
 se puede determinar, se registra una violación `parametro="fase"` en lugar de adivinarla.
