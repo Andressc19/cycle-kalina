@@ -29,6 +29,8 @@ from io import BytesIO
 
 from openpyxl import Workbook
 
+from .excel_rango import LEYENDA_RANGO, marcar_estados
+
 __all__ = ["generar_excel", "VERSION_PROYECTO"]
 
 VERSION_PROYECTO = "ciclo_kalina_tercero v0.1"
@@ -126,7 +128,7 @@ def _hoja_resumen(wb, resultado_ciclo, resultado_exergia, backend_nombre):
 
 
 def generar_excel(resultado_ciclo, resultado_exergia, parametros,
-                  backend_nombre) -> bytes:
+                  backend_nombre, violaciones_rango=None) -> bytes:
     """Libro ``.xlsx`` completo (bytes) de una corrida del ciclo.
 
     Argumentos: ``resultado_ciclo`` (dict de ``resolver_ciclo``),
@@ -134,6 +136,9 @@ def generar_excel(resultado_ciclo, resultado_exergia, parametros,
     (dict ``{nombre: (valor, unidad)}`` de las entradas de la corrida, ver
     docstring del módulo) y ``backend_nombre`` (str, añadido a las hojas
     ``Entradas`` y ``Resumen``).
+
+    ``violaciones_rango`` (opcional, de ``rangos_motor.evaluar_rango``) pinta
+    de gris las celdas T/P afectadas de ``Estados``; ``None`` = libro de siempre.
 
     Devuelve ``bytes`` — en memoria, sin escribir a disco.
     """
@@ -143,6 +148,10 @@ def generar_excel(resultado_ciclo, resultado_exergia, parametros,
     _hoja_componentes(wb, resultado_ciclo)
     _hoja_exergia(wb, resultado_ciclo, resultado_exergia)
     _hoja_resumen(wb, resultado_ciclo, resultado_exergia, backend_nombre)
+    if violaciones_rango is not None:
+        marcar_estados(wb["Estados"], violaciones_rango)
+        wb["Resumen"].append(["Fuera de rango del motor",
+                              len(violaciones_rango), LEYENDA_RANGO])
     buf = BytesIO()
     wb.save(buf)
     return buf.getvalue()

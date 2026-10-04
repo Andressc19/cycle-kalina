@@ -13,6 +13,9 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
 REPO = Path(__file__).resolve().parents[1]
+import sys  # noqa: E402
+sys.path.insert(0, str(REPO))
+from src.excel_rango import GRIS_RANGO, LEYENDA_RANGO, marcar_tabla  # noqa: E402
 XLSX = REPO / "datos" / "barridos_e_iteraciones_kalina_consolidado.xlsx"
 
 COLOR_CLASE = {"KALINA": "C6EFCE", "CORREGIBLE": "FFD9A0",
@@ -61,12 +64,12 @@ RE_UNIDAD = [
 ]
 TEXTO = re.compile(r"^(mensaje|fallas.*|detalle.*|error.*|err_.*|criterio_ligante"
                    r"|motor|caso|etiqueta.*|opcion|base|nota|fase4s|estado_filtro"
-                   r"|B_error|rama_fisica)$")
+                   r"|B_error|rama_fisica|detalle_rango|columnas_rango)$")
 BOOL = re.compile(r"^(convergio|pbaja_convergio|pbaja_encontrada|al_filo_O1"
                   r"|motor_confirmado|spot_check|estable|clases_distintas"
                   r"|cambia_clasificacion|verificacion_incompleta|verificado_.*"
                   r"|verif_incompleta_A|A_verificacion_incompleta|B_verificado"
-                  r"|cumple_N2)$")
+                  r"|cumple_N2|fuera_rango)$")
 RESULTADOS = {"eta", "Wnet", "O2_margen", "eta_real", "Wnet_real"}
 
 
@@ -226,6 +229,8 @@ def escribe_hoja(wb, nombre, cab, filas, extra, bloques):
                 c = ws.cell(r, j)
                 if c.value in COLOR_CLASE:
                     c.fill = PatternFill("solid", fgColor=COLOR_CLASE[c.value])
+    if marcar_tabla(ws, cab):
+        extra = [*extra, LEYENDA_RANGO]
     ws.row_dimensions[1].height = 34
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = f"A1:{get_column_letter(len(cab))}{ws.max_row}"
@@ -330,6 +335,9 @@ def formatea_resumen(ws) -> None:
     for k, (n, c) in enumerate(COLOR_CLASE.items()):
         cell = ws.cell(r + 1 + k, 1, n)
         cell.fill = PatternFill("solid", fgColor=c)
+    k = len(COLOR_CLASE)
+    ws.cell(r + 1 + k, 1, "FUERA_RANGO").fill = PatternFill("solid", fgColor=GRIS_RANGO)
+    ws.cell(r + 1 + k, 2, LEYENDA_RANGO)
 
 
 if __name__ == "__main__":
