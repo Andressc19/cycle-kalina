@@ -353,3 +353,91 @@ apiladas: (1) EOS distinta (Tillner-Roth/Friend vs. Ibrahim/Klein), (2) traducci
 paso pinch→efectividad en vez de seguir el *glide* real, y (3) $P_{baja}$ asumida por no estar
 dada en el paper. El test de regresión (`tests/test_validacion_elsayed2013.py`) fija estos
 valores calibrados y exige $|\eta-0.1138|/0.1138 < 5\%$.
+
+---
+
+## 8. Verificación cruzada con DWSIM (2026-10-03)
+
+**Qué es y qué no es.** DWSIM (simulador de procesos independiente, v9, vía pythonnet) se
+usó para comprobar que este código **implementa correctamente** las ecuaciones de §1–§3
+(topología, balances, cierre por efectividad). No es una validación experimental: DWSIM
+también es una simulación, y su modelo de propiedades es otro.
+
+**Modelo de propiedades en DWSIM.** De los 28 paquetes de DWSIM, solo Peng-Robinson (PR)
+trae parámetro de interacción binaria NH₃-H₂O ($k_{ij}=-0.2533$). Contra IAPWS G4-01 se
+desvía ~14 % en presiones de saturación, 0.012 en composiciones de fase y ~4 % en $\Delta h$
+(`resultados/2026-10-03_dwsim_paquetes/REPORTE_PAQUETES_DWSIM.md`).
+
+**Mismas ecuaciones de cierre.** Las efectividades de §2.1, §2.4 y §2.7 se impusieron en
+DWSIM con las mismas definiciones (entalpías de referencia calculadas con el mismo PR,
+traducidas a temperaturas de salida y resueltas por un lazo externo hasta residuo
+$<10^{-3}$ K). En cada punto: energía de cada equipo = cambio de entalpía de sus corrientes
+($|\text{dif}|\le 3\times10^{-4}$ kW), cierre global $\le 0.007$ kW y efectividades
+resultantes = pedidas ($|\Delta\varepsilon|\le 2.4\times10^{-5}$).
+
+**Comparación dato a dato** (6 ciclos KALINA de `regresion_22.csv`, $P_{alta}=3000$ kPa,
+$T_{sumidero}=283$ K, $\varepsilon=0.85/0.80/0.85$, $\eta_t=\eta_p=0.80$). Entalpías llevadas
+a referencia común $h_{rel}=h-h(P_{alta},T_0,x_{estado})$:
+
+| Ciclo | $x_b$ | $T_{fuente}$ | $\eta$ código | $\eta$ DWSIM | $\Delta\eta$ |
+|---|---|---|---|---|---|
+| KALINA-01 | 0.60 | 394 K | 10.370 % | 10.741 % | +0.37 pp |
+| KALINA-03 | 0.60 | 423 K | 9.615 % | 9.924 % | +0.31 pp |
+| KALINA-06 | 0.65 | 394 K | 9.860 % | 10.066 % | +0.21 pp |
+| KALINA-09 | 0.65 | 423 K | 8.422 % | 8.624 % | +0.20 pp |
+| KALINA-12 | 0.70 | 394 K | 9.054 % | 9.151 % | +0.10 pp |
+| KALINA-17 | 0.75 | 394 K | 8.135 % | 8.158 % | +0.02 pp |
+
+- Coinciden: temperaturas de los 10 estados (±2.6 K), composiciones globales, balances
+  internos (separador, absorbedor, válvula y regenerador cierran a 0 en los dos), entalpías
+  de los estados líquidos fríos (≤ 4.4 kJ/kg) y el **orden de los 6 ciclos por $\eta$**.
+- Difieren de forma sistemática (atribuido a PR, no a este código): DWSIM separa más vapor
+  (caudal a turbina +1 a +6 %), da ~10 % más trabajo de bomba y hasta ~25 kJ/kg más
+  entalpía en estados con vapor; la brecha de $\eta$ baja al subir $x_b$.
+- Caso Elsayed (§7) con efectividades: DWSIM 11.64 % vs código 11.05 %. La diferencia de
+  1.15 pp frente a DWSIM con pinch (12.20 %) se reparte en +0.59 pp por propiedades y
+  +0.56 pp por la forma de cierre (`resultados/2026-10-03_validacion_dwsim/`).
+
+**Límites.** DWSIM-PR no resuelve los ciclos con $P_{alta}$ de 4000–5000 kPa (su flash
+P-T no converge en líquido comprimido), así que esa zona no está cubierta. La causa del
++10 % de la bomba (probablemente el volumen del líquido en PR) no se midió.
+
+**Constancia.** `tests/test_verificacion_dwsim.py` comprueba sobre los resultados guardados
+los criterios anteriores (31 casos). Reporte completo:
+`resultados/2026-10-03_dato_a_dato/REPORTE_DATO_A_DATO.md`; scripts en `scripts/dwsim/`.
+
+---
+
+## 9. Segunda fuente independiente — Nemati et al. (2017)
+
+Nemati, Nami, Ranjbar & Yari (2017), *Case Studies in Thermal Engineering* 9, 1–13
+(Univ. de Tabriz; EES): KCS11 con la misma topología, Tabla 5 con los 9 estados del ciclo
+($x_b=0.90$, 50/10.61 bar, $\eta_t=0.85$, $\eta_p=0.75$, gas a 429 K, agua a 298.15 K). Grupo
+distinto al de Elsayed/Embaye y a 5000 kPa (zona sin cobertura de DWSIM). No da $\eta$ del
+Kalina para ese caso: se comparan estados.
+
+| Prueba | Nemati | Este código | Diferencia |
+|---|---|---|---|
+| $T_{burbuja}$(1061 kPa, 0.90) | 303.15 K | 303.54 K | +0.39 K |
+| NH₃ en vapor, 50 bar/415 K (molar) | 0.9567 | 0.9511 | −0.006 (dentro de ±0.01 G4-01) |
+| NH₃ en líquido, 50 bar/415 K (molar) | 0.5313 | 0.5174 | −0.014 (borde de ±0.01) |
+| $T_1, T_4, T_8, T_{10}$ (no fijadas por la calibración) | — | — | −0.78, +2.49, +2.07, +0.20 K |
+| Fracción de vapor (masa) del separador | 0.873 | 0.891 | +0.018 |
+
+Efectividades calibradas en un paso desde sus $T_2, T_6, T_9$ (como en §7). Constancia:
+`tests/test_benchmark_nemati2017.py`; reporte `resultados/2026-10-03_benchmark_nemati/`.
+
+## 10. Banda de incertidumbre de $\eta$ por el modelo de propiedades
+
+Propagando a $\eta$ la incertidumbre publicada de G4-01 (equilibrio L-V ±0.01 molar; entalpía
+de exceso ±200 J/mol con forma supuesta $4x_m(1-x_m)$), una perturbación a la vez:
+
+| Punto | $\eta$ | Banda | Comparación externa | ¿Dentro? |
+|---|---|---|---|---|
+| ELSAYED | 11.06 % | +0.46 / −0.34 pp | Elsayed 11.38 % (+0.33 pp) | Sí |
+| KALINA-01 | 10.37 % | +0.59 / −0.46 pp | DWSIM-PR 10.74 % (+0.37 pp) | Sí |
+| KALINA-11 | 12.15 % | +0.45 / −0.42 pp | — | — |
+
+La banda (~±0.4–0.7 pp) la domina el equilibrio L-V del separador; la entalpía de exceso
+aporta ≤ 0.003 pp. La diferencia típica del benchmark de 23 puntos (0.28 pp) también cae
+dentro; su máximo (1.16 pp) no. Reporte: `resultados/2026-10-03_incertidumbre_eta/`.

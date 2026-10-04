@@ -1,0 +1,143 @@
+
+===== A) jerarquia de tipos del paquete PR y todos los campos (no publicos incluidos) =====
+
+-- nivel 0: DWSIM.Thermodynamics.PropertyPackages.PengRobinsonPropertyPackage
+     campo  MAT_KIJ : Object[,]
+     campo  m_props : PROPS
+     campo  m_pr : PengRobinson
+     campo  prn : PR
+     campo  ip : Double[,]
+     campo  ClassId : String
+     campo  m_Henry : Dictionary`2
+     campo  _packagetype : PackageType
+     campo  _phasemappings : Dictionary`2
+     campo  IsElectrolytePP : Boolean
+     campo  KvalFugacityCoefficientOverride : Func`5
+     campo  EnthalpyCalculationOverride : Func`5
+     campo  EntropyCalculationOverride : Func`5
+     campo  _availablecomps : Dictionary`2
+     campo  _selectedcomps : Dictionary`2
+     campo  _pme : Object
+     campo  ClassId : String
+     prop   ActivityCoefficientModels_IgnoreMissingInteractionParameters : Boolean
+     prop   ParametersXMLString : Object
+     prop   parameters1 : Object
+     prop   interfaceName : String
+
+-- nivel 1: DWSIM.Thermodynamics.PropertyPackages.PropertyPackage
+     campo  CompoundPropCache : Dictionary`2
+     campo  _LiquidDensityCalculationMode_Subcritical : LiquidDensityCalcMode
+     campo  _LiquidDensityCalculationMode_Supercritical : LiquidDensityCalcMode
+     campo  _LiquidDensity_UsePenelouxVolumeTranslation : Boolean
+     campo  _LiquidDensity_CorrectExpDataForPressure : Boolean
+     campo  _LiquidViscosityCalculationMode_Subcritical : LiquidViscosityCalcMode
+     campo  _LiquidViscosityCalculationMode_Supercritical : LiquidViscosityCalcMode
+     campo  _LiquidViscosity_CorrectExpDataForPressure : Boolean
+     campo  _LiquidViscosity_MixingRule : LiquidViscosityMixRule
+     campo  _LiquidFugacity_UsePoyntingCorrectionFactor : Boolean
+     campo  _ActivityCoefficientModels_IgnoreMissingInteractionParameters : Boolean
+     campo  _VaporPhaseFugacityCalculationMode : VaporPhaseFugacityCalcMode
+     campo  _SolidPhaseFugacityCalculationMethod : SolidPhaseFugacityCalcMode
+     campo  _SolidPhaseFugacity_UseIdealLiquidPhaseFugacity : Boolean
+     campo  _SolidPhaseEnthalpy_UsesCp : Boolean
+     campo  _EnthalpyEntropyCpCvCalculationMode : EnthalpyEntropyCpCvCalcMode
+     campo  _IgnoreVaporFractionLimit : Boolean
+     campo  _IgnoreSalinityLimit : Boolean
+     campo  _CalculateAdditionalMaterialStreamProperties : Boolean
+     campo  _FlashCalculationApproach : FlashCalculationApproachType
+     campo  _SingleCompoundCheckThreshold : Double
+     campo  _ParametersXMLString : Object
+     campo  m_ms : IMaterialStream
+     campo  m_ss : List`1
+     campo  m_configurable : Boolean
+     campo  m_Henry : Dictionary`2
+     campo  m_ip : DataTable
+     campo  _packagetype : PackageType
+     campo  _phasemappings : Dictionary`2
+     campo  IsElectrolytePP : Boolean
+     campo  LoopVarF : Double
+     campo  LoopVarX : Double
+     campo  LoopVarState : State
+     campo  m_Flowsheet : IFlowsheet
+     campo  _como : Object
+     campo  dummyipvec : Double[,]
+     campo  _OverrideKvalFugCoeff : Boolean
+     campo  KvalFugacityCoefficientOverride : Func`5
+     campo  _OverrideEnthalpyCalculation : Boolean
+     campo  EnthalpyCalculationOverride : Func`5
+     campo  _OverrideEntropyCalculation : Boolean
+     campo  EntropyCalculationOverride : Func`5
+     campo  _ForceNewFlashAlgorithmInstance : Boolean
+     campo  _FlashSettings : Dictionary`2
+     campo  _ExceptionLog : String
+     campo  _ImplementsAnalyticalDerivatives : Boolean
+     campo  _IsFunctional : Boolean
+     campo  _ShouldUseKvalueMethod2 : Boolean
+     campo  _ForcedSolids : List`1
+     campo  _PropertyOverrides : Dictionary`2
+     campo  _UniqueID : String
+     campo  _Tag : String
+     campo  _compdesc : String
+     campo  _compname : String
+     campo  _availablecomps : Dictionary`2
+     campo  _selectedcomps : Dictionary`2
+     campo  _pme : Object
+     campo  m_dirty : Boolean
+     campo  _name : String
+     campo  _description : String
+     campo  _interfacename : String
+     campo  _moreinfo : String
+     campo  _operation : String
+     campo  _scope : String
+     campo  _code : Int32
+     campo  disposedValue : Boolean
+     campo  _FlashAlgorithm : IFlashAlgorithm
+     campo  ClassId : String
+     prop   ActivityCoefficientModels_IgnoreMissingInteractionParameters : Boolean
+     prop   ParametersXMLString : Object
+     prop   parameters1 : Object
+     prop   interfaceName : String
+
+-- nivel 2: System.Object
+
+===== B) ParametersXMLString (contenido truncado) por paquete =====
+
+-- Peng-Robinson (PR): EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- Soave-Redlich-Kwong (SRK): EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- NRTL: EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- UNIQUAC: EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- Modified UNIFAC (NIST): EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- Raoult's Law: EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- UNIFAC: EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- Chao-Seader: EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- CoolProp: EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+-- Steam Tables (IAPWS-IF97): EXC AttributeError: 'IPropertyPackage' object has no attribute 'ParametersXMLString'
+
+===== C) VF casi extremos para obtener ambas composiciones (PR, T=300, x_NH3=0.2) =====
+   VF=0 -> P=0.06238334 MPa xL=[0.8, 0.2] xV=[0.0, 0.0] nL=[0.8, 0.2] nV=[0.0, 0.0] err=None
+   VF=1e-09 -> P=0.06238334 MPa xL=[0.8, 0.2] xV=[0.035169, 0.964831] nL=[0.8, 0.2] nV=[0.0, 0.0] err=None
+   VF=1e-06 -> P=0.06238293 MPa xL=[0.800001, 0.199999] xV=[0.035169, 0.964831] nL=[0.8, 0.199999] nV=[0.0, 1e-06] err=None
+   VF=0.999999 -> P=0.00373740 MPa xL=[0.993672, 0.006328] xV=[0.8, 0.2] nL=[1e-06, 0.0] nV=[0.799999, 0.2] err=None
+   VF=0.999999999 -> P=0.00373740 MPa xL=[0.993672, 0.006328] xV=[0.8, 0.2] nL=[0.0, 0.0] nV=[0.8, 0.2] err=None
+   VF=1 -> P=0.00373740 MPa xL=[0.0, 0.0] xV=[0.8, 0.2] nL=[0.0, 0.0] nV=[0.8, 0.2] err=None
+
+===== D) PVF (burbuja/rocio en T a P dada) con K iniciales =====
+   P=1500.0 kPa VF=0.0 -> T=41.0000 K xL=[0.8, 0.2] xV=[0.0, 0.0] err=None
+   P=1500.0 kPa VF=1.0 -> T=11.0000 K xL=[0.0, 0.0] xV=[0.8, 0.2] err=None
+   P=273.55 kPa VF=0.0 -> T=41.0000 K xL=[0.8, 0.2] xV=[0.0, 0.0] err=None
+
+===== E) entalpia: ruta Calculate del stream =====
+   h: {369.0: -1304.5637844600578, 300.0: -1979.6265948587434} Delta h: 675.0628103986855
+
+===== F) ruta alternativa: entalpia desde el resultado del flash =====
+   T=369.0: CalculatedEnthalpy=-1304.5643 CalculatedEntropy=-3.992540 nL=0.711784 nV=0.288216
+   T=300.0: CalculatedEnthalpy=-1979.6268 CalculatedEntropy=-5.958944 nL=1.000000 nV=0.000000

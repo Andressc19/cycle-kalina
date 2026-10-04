@@ -1,0 +1,5 @@
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\scripts\..\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+{'punto': 'KALINA-11', 'caso': 'yV-', 'motor': 'real', 'error': '', 'eta': np.float64(0.12145801410151907), 'Wnet': np.float64(72.17411013232248), 'Qi': np.float64(594.2309419944633), 'm3': 0.3435584165574335, 't_s': 544.9}
