@@ -1,15 +1,11 @@
 """Barrido paramétrico del ciclo Kalina KSC-11: producto cartesiano sobre
 cualquier combinación de variables de entrada declaradas `Fijo`/`Barrido`.
 
-Diseño (ver TASK_CONTEXT.md de la tarea de barrido + restricciones):
-- Cada variable de `resolver_ciclo` se declara como `Fijo(valor)` (constante)
-  o `Barrido(inicio, fin, paso)` (rejilla equiespaciada, cerrando el rango en
-  `fin` aunque `paso` no lo divida exacto). Un `Fijo` es un `Barrido` de un
-  solo punto: no hay dos modos separados, uno es caso particular del otro.
-- Con varias variables en `Barrido`, el resultado es su producto cartesiano
-  (decisión ya tomada en el diseño del proyecto, no una elección de esta
-  tarea: la rejilla completa —no un optimizador— es el resultado, porque el
-  dominio tiene discontinuidades del separador y huecos por cavitación).
+Diseño:
+- Cada variable de `resolver_ciclo` es `Fijo(valor)` o `Barrido(inicio, fin,
+  paso)` (cerrando en `fin`); un `Fijo` es un `Barrido` de un punto. Varias en
+  `Barrido` dan su producto cartesiano (la rejilla completa, no un optimizador:
+  el dominio tiene discontinuidades del separador y huecos por cavitación).
 - Un punto que no converge (`CicloNoConvergeError`) o cuyo backend no cubre
   el estado pedido (`PropertyRangeError`) se marca `NO_CONVERGIO` con la
   razón, y el barrido CONTINÚA con el siguiente punto — nunca se detiene.
@@ -19,6 +15,8 @@ Diseño (ver TASK_CONTEXT.md de la tarea de barrido + restricciones):
   no verificado NO se reclasifica ni se oculta: se señala en `B_*` (señalar, no
   corregir). Con un `TeqpVerificado` (opción A) cada fila anota las recurrencias
   del punto; `T_amb_diseno=` fija el piso O2 (ver `ejecutar_barrido`).
+- RANGO CONFIABLE (opcional): con `motor_rango=` cada fila lleva `COLUMNAS_RANGO`
+  (ver `rangos_motor`); la clasificación no cambia.
 """
 
 from __future__ import annotations
@@ -29,13 +27,15 @@ from dataclasses import dataclass
 import pandas as pd
 
 from ._cycle_loops import CicloNoConvergeError
+from ._rango_barrido import COLUMNAS_RANGO, anotar_rango
 from .cycle_solver import resolver_ciclo
 from .properties.adapter import PropertyRangeError
 from .restricciones import Clasificacion, evaluar_ciclo
 from .verificacion_motor_real import verificar_turbina
 
 __all__ = ["Fijo", "Barrido", "generar_valores", "generar_combinaciones",
-           "ejecutar_barrido", "tabla_barrido", "COLUMNAS_A", "COLUMNAS_B"]
+           "ejecutar_barrido", "tabla_barrido", "COLUMNAS_A", "COLUMNAS_B",
+           "COLUMNAS_RANGO"]
 
 VARIABLES_BARRIBLES = ("T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b",
                        "m_b", "eta_t", "eta_p", "eps_hrvg", "eps_reg",
@@ -111,13 +111,9 @@ def _contadores(backend):
 
 
 def _anotar_ab(fila, combo, resultado, backend, motor_real, antes):
-    """Rellena en `fila` las columnas A/B de UN punto y la devuelve.
-
-    `B_*` solo si se pasó `motor_real` y el punto es KALINA (donde se reporta y
-    donde se paga); un KALINA con `B_verificado=False` conserva su
-    clasificación. `A_*` requiere el registro de `TeqpVerificado`: su delta es
-    el de ESE punto. Sin registro ni `motor_real` la fila no gana columnas.
-    """
+    """Rellena en `fila` las columnas A/B de UN punto y la devuelve. `B_*` solo
+    con `motor_real` y punto KALINA (que conserva su clase aunque no verifique);
+    `A_*` requiere el registro de `TeqpVerificado` (delta de ESE punto)."""
     n_antes, fallos_antes = antes
     if n_antes is not None:
         fila["A_recurrencias"] = backend.n_recurrencias - n_antes
@@ -136,8 +132,9 @@ def _anotar_ab(fila, combo, resultado, backend, motor_real, antes):
 
 
 def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido], *,
-                     motor_real=None,
-                     T_amb_diseno: float | None = None) -> list[dict]:
+                     motor_real=None, T_amb_diseno: float | None = None,
+                     motor_rango: str | None = None,
+                     modo_rango: str = "extrapolar_marcar") -> list[dict]:
     """Resuelve el ciclo para cada combinación y clasifica cada punto.
 
     ``variables`` debe declarar las 11 variables de `resolver_ciclo`
@@ -145,12 +142,11 @@ def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido], *,
     valores usados, si convergió, su clasificación (`NO_CONVERGIO`/`INVIABLE`/
     `CORREGIBLE`/`KALINA`) y `eta`/`Wnet`.
 
-    ``motor_real`` (keyword opcional, un `AmmoniaWaterAdapter`) activa la
-    verificación B de cada fila KALINA; con un backend `TeqpVerificado` cada
-    fila lleva además `COLUMNAS_A`. Sin él, el resultado es el de siempre.
-    ``T_amb_diseno`` (keyword opcional) es el piso de diseño del criterio O2
-    que se pasa a `evaluar_ciclo`: ``None`` deja su default de 303.55 K; para
-    explorar la zona KALINA se fija en ``T_sumidero``.
+    ``motor_real`` (un `AmmoniaWaterAdapter`) activa la verificación B de cada
+    KALINA; con `TeqpVerificado` las filas llevan `COLUMNAS_A`. ``T_amb_diseno``
+    es el piso O2 de `evaluar_ciclo` (``None`` = 303.55 K; para la zona KALINA,
+    ``T_sumidero``). ``motor_rango`` ("real"/"teqp") añade `COLUMNAS_RANGO`.
+    Sin estos keywords el resultado es exactamente el de siempre.
     """
     faltantes = set(VARIABLES_BARRIBLES) - set(variables)
     if faltantes:
@@ -168,8 +164,9 @@ def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido], *,
             fila.update(convergio=False,
                        clasificacion=Clasificacion.NO_CONVERGIO.value,
                        eta=None, Wnet=None, mensaje=str(exc))
-            filas.append(_anotar_ab(fila, combo, None, backend, motor_real,
-                                    antes))
+            fila = _anotar_ab(fila, combo, None, backend, motor_real, antes)
+            filas.append(anotar_rango(fila, combo, None, motor_rango, backend,
+                                      modo_rango))
             continue
         crit = {k: combo[k] for k in _CRIT}
         if T_amb_diseno is not None:
@@ -178,8 +175,9 @@ def ejecutar_barrido(backend, variables: dict[str, Fijo | Barrido], *,
         fila.update(convergio=True, clasificacion=validacion.clasificacion.value,
                    eta=resultado["eta"], Wnet=resultado["Wnet"],
                    mensaje=validacion.mensaje_reporte())
-        filas.append(_anotar_ab(fila, combo, resultado, backend, motor_real,
-                                antes))
+        fila = _anotar_ab(fila, combo, resultado, backend, motor_real, antes)
+        filas.append(anotar_rango(fila, combo, resultado, motor_rango, backend,
+                                  modo_rango))
     return filas
 
 
@@ -197,4 +195,6 @@ def tabla_barrido(filas: list[dict]) -> pd.DataFrame:
             columnas += list(COLUMNAS_A)
         if any(f.get("B_verificado") is not None for f in filas):
             columnas += list(COLUMNAS_B)
+        if any(f.get("fuera_rango") is not None for f in filas):
+            columnas += list(COLUMNAS_RANGO)
     return pd.DataFrame(filas)[columnas]
