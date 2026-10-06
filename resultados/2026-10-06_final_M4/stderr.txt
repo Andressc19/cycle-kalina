@@ -1,0 +1,822 @@
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=427.269 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=427.269 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=427.269 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=427.269 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=472.112 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=472.112 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=427.302 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=427.302 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=472.112 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=472.112 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=426.556 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=426.556 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=446.676 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=446.676 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=446.676 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=446.676 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=436.123 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.123 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.123 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.123 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=472.364 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=472.364 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=472.364 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=472.364 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=445.314 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.314 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=422.378 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=422.378 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.314 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.314 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=421.31 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=421.31 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=440.771 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.771 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.771 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.771 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=433.15 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=433.15 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=433.15 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=433.15 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=450.096 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=450.096 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=425.605 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=425.605 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=450.096 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=450.096 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=424.904 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=424.904 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=449.206 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.206 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.206 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.206 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=455.268 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.268 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.268 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.268 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=458.842 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=458.842 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=458.842 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=458.842 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=432.41 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=432.41 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=432.41 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=432.41 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=451.747 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=451.747 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=451.747 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.747 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=461.635 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=461.635 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=461.635 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=461.635 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=463.781 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=463.781 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=463.781 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=463.781 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=427.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=427.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=427.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=427.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\properties\_teqp_flash.py:51: RuntimeWarning: overflow encountered in scalar multiply
+  Pn = P * S if kind == "bub" else P / S
+fuera de rango confiable: T2=458.738 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=458.738 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=458.738 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=458.738 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=437.064 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.064 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.064 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.064 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=448.878 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=448.878 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=448.878 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=448.878 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=441.369 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=441.369 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=441.369 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.369 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=430.776 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.776 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.776 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.776 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=434.006 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=434.006 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=434.006 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=434.006 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=424.609 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=424.609 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=424.609 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=424.609 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=432.678 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=432.678 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=432.678 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=432.678 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=438.757 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=438.757 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=438.757 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.757 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=451.579 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=451.579 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=451.579 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.579 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=450.138 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=450.138 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=450.138 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=450.138 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=430.614 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.614 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.614 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.614 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=469.965 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=469.965 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T6=427.194 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T6=427.194 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=441.509 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=441.509 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=441.509 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.509 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=431.756 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=431.756 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=431.756 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=431.756 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=437.879 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.879 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.879 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.879 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=429.274 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=429.274 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=429.274 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=429.274 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=438.287 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=438.287 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=438.287 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.287 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=462.438 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=462.438 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=462.438 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=462.438 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=442.337 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=442.337 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=442.337 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=442.337 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=458.79 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=458.79 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=458.79 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=458.79 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=423.066 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=423.066 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=423.066 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=423.066 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=441.407 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=441.407 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=441.407 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.407 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=436.549 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.549 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.549 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.549 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=441.657 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=441.657 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=441.657 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.657 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=440.292 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.292 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=421.964 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=421.964 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.292 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.292 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=450.287 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=450.287 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=450.287 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=450.287 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=462.825 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=462.825 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=462.825 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=462.825 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=442.365 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=442.365 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=442.365 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=442.365 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=434.494 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=434.494 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=434.494 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=434.494 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=465.242 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=465.242 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=425.513 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=425.513 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=465.242 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=465.242 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=424.869 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=424.869 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=452.99 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=452.99 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=452.99 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=452.99 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=464.725 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=464.725 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=464.725 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=464.725 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=445.7 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.7 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.7 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.7 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=426.574 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=426.574 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=426.574 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=426.574 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=449.045 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.045 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.045 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.045 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=430.843 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.843 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.843 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.843 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=437.247 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.247 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.247 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.247 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=431.022 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=431.022 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=431.022 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=431.022 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=453.372 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=453.372 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=453.372 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=453.372 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=428.634 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.634 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.634 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.634 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=431.53 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=431.53 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=431.53 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=431.53 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=439.956 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=439.956 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=439.956 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=439.956 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=451.119 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=451.119 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=451.119 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.119 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=421.309 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=421.309 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=421.309 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=421.309 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=420.191 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=420.191 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=420.191 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=420.191 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=455.547 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.547 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.547 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.547 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T6=424.501 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T6=424.501 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=437.519 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.519 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.519 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.519 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=476.897 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=476.897 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=476.897 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=476.897 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=450.776 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=450.776 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=450.776 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=450.776 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=437.635 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.635 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.635 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.635 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=444.17 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=444.17 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=444.17 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=444.17 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=432.757 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=432.757 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=432.757 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=432.757 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=445.222 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.222 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.222 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.222 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=437.271 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.271 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.271 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.271 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=469.577 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=469.577 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=469.577 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=469.577 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=451.413 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=451.413 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=451.413 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.413 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=426.668 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=426.668 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=426.668 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=426.668 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=433.371 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=433.371 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=433.371 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=433.371 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=420.364 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=420.364 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=420.364 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=420.364 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=420.457 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=420.457 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=420.457 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=420.457 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=435.738 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.738 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.738 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.738 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\properties\_teqp_flash.py:51: RuntimeWarning: overflow encountered in scalar multiply
+  Pn = P * S if kind == "bub" else P / S
+fuera de rango confiable: T2=460.13 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=460.13 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=460.13 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=460.13 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=460.302 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=460.302 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=460.302 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=460.302 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=449.916 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.916 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.916 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.916 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=439.539 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=439.539 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=439.539 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=439.539 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=421.15 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=421.15 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=421.15 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=421.15 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=459.402 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=459.402 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=459.402 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=459.402 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=436.142 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.142 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.142 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.142 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=462.518 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=462.518 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=462.518 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=462.518 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=438.695 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=438.695 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=438.695 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.695 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=444.875 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=444.875 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=444.875 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=444.875 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=438.443 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=438.443 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=438.443 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.443 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=429.747 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=429.747 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=429.747 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=429.747 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=433.398 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=433.398 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=433.398 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=433.398 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=440.396 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.396 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.396 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.396 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=453.84 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=453.84 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=453.84 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=453.84 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=431.955 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=431.955 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=431.955 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=431.955 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=428.455 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.455 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.455 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.455 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=455.529 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.529 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.529 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.529 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=423.875 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=423.875 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=423.875 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=423.875 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=453.506 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=453.506 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=453.506 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=453.506 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=462.976 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=462.976 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=462.976 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=462.976 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=467.899 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=467.899 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=467.899 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=467.899 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=441.304 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=441.304 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=441.304 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.304 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=442.963 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=442.963 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=442.963 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=442.963 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=436.225 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.225 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.225 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.225 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=424.871 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=424.871 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=424.871 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=424.871 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=442.768 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=442.768 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=442.768 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=442.768 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=445.968 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.968 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.968 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.968 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=447.675 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=447.675 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=447.675 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=447.675 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=440.277 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.277 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.277 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.277 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=457.265 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=457.265 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=457.265 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=457.265 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=428.439 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.439 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.439 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.439 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=421.433 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=421.433 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=421.433 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=421.433 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=449.138 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.138 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.138 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.138 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=434.259 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=434.259 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=434.259 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=434.259 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=446.261 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=446.261 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=446.261 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=446.261 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=430.52 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.52 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.52 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.52 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=443.123 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=443.123 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=443.123 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=443.123 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=451.441 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=451.441 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=451.441 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.441 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=423.021 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=423.021 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=423.021 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=423.021 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=435.044 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.044 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.044 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.044 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=422.84 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=422.84 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=422.84 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=422.84 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=440.195 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.195 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.195 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.195 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=445.46 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.46 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.46 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.46 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=422.419 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=422.419 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=422.419 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=422.419 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=435.375 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.375 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.375 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.375 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=445.817 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.817 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.817 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.817 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=452.591 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=452.591 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=452.591 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=452.591 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=456.999 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=456.999 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=456.999 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\barrido-final\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=456.999 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)

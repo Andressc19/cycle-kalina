@@ -1,0 +1,12 @@
+puntos = 6 · KALINA = 2 · no KALINA = 4
+parametros = {'max_depth': 4, 'min_samples_leaf': 5, 'random_state': 0}
+
+exactitud CV (5 particiones): NO CALCULADA (muestra pequeña)
+exactitud in-sample = 0.6667
+
+reglas (export_text):
+|--- class: False
+
+
+reglas en palabras:
+- si (sin condiciones) → **no KALINA** (n = 6, 33.3 % KALINA)
