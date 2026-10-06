@@ -41,7 +41,8 @@ VARS = VARIABLES_BARRIBLES
 MARGENES = ("m_O1", "m_O2", "m_O3", "m_O5")
 VIOL = ("viol_O1", "viol_O2", "viol_O3", "viol_O5")
 
-COLS = (["tag", "motor", "pid", "convergio", "clasificacion", "codigos_falla",
+COLS = (["tag", "motor", "pid", "T_amb_diseno", "convergio", "clasificacion",
+         "codigos_falla",
          "eta", "Wnet", "mensaje"] + list(VARS)
         + ["q4", "q2", "T9_amb", "T_bub"] + list(MARGENES) + ["D"] + list(VIOL)
         + ["err_margenes"] + list(sensitivity.COLUMNAS_A)
@@ -61,13 +62,14 @@ def _intenta(m: dict, clave: str, fn) -> None:
                              if m["err_margenes"] else msg)
 
 
-def margenes(backend, resultado: dict, combo: dict) -> dict:
+def margenes(backend, resultado: dict, combo: dict, t_amb_diseno=None) -> dict:
     """Márgenes O1/O2/O3/O5 como NÚMEROS (no `Falla`s).
 
     Réplica exacta de `src/restricciones/operativos.py::verificar_operativos`:
-    `m_O1 = q4 − 0.90`, `m_O2 = T_bub − T9(max(T_sumidero, T_AMB_DISENO))`,
-    `m_O3 = Wnet` y `m_O5 = min(q2 − 0.001, 0.999 − q2)`. Un cálculo que lance
-    deja su valor en `None` y anota el motivo en `err_margenes`.
+    `m_O1 = q4 − 0.90`, `m_O2 = T_bub − T9(max(T_sumidero, piso))`,
+    `m_O3 = Wnet` y `m_O5 = min(q2 − 0.001, 0.999 − q2)`, con `piso =
+    t_amb_diseno` si se dio y `T_AMB_DISENO` en caso contrario. Un cálculo que
+    lance deja su valor en `None` y anota el motivo en `err_margenes`.
     """
     e = resultado["estados"]
     m = dict.fromkeys(MARGENES + ("q4", "q2", "T9_amb", "T_bub"))
@@ -78,7 +80,7 @@ def margenes(backend, resultado: dict, combo: dict) -> dict:
         combo["P_alta"], e["e2"].T, combo["x_b"])[1])
 
     def _t9() -> float:
-        T_amb = max(combo["T_sumidero"], T_AMB_DISENO)
+        T_amb = max(combo["T_sumidero"], t_amb_diseno or T_AMB_DISENO)
         return condensador.resolver(e["e8"], backend, T_sumidero=T_amb,
                                     eps=combo["eps_cond"],
                                     m=combo["m_b"])[0].T
@@ -113,17 +115,23 @@ def indice_D(m: dict) -> tuple:
     return (None if falta else D), viol
 
 
-def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None) -> dict:
+def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None,
+                  t_amb_diseno=None) -> dict:
     """Resuelve, clasifica y mide UN punto; devuelve su fila. Nunca lanza.
 
     `motor="teqp"` usa `TeqpVerificado` (protección A) más un `AmmoniaWaterAdapter`
     para la verificación B; `motor="real"` usa el motor riguroso como backend y
     sin B. Siempre con `bracket_tolerante=True` y `presupuesto_s=PRESUPUESTO_S`.
+
+    `t_amb_diseno` es el piso de O2 del punto: `None` deja `T_AMB_DISENO`
+    (comportamiento de siempre); si se da, ese valor se pasa a `evaluar_ciclo`
+    y a `margenes`, y queda guardado en la columna `T_amb_diseno` de la fila.
     """
     from src.properties.ammonia_water_adapter import AmmoniaWaterAdapter
     from src.properties.teqp_verificado import TeqpVerificado
     from src.restricciones import evaluar_ciclo
 
+    piso = T_AMB_DISENO if t_amb_diseno is None else t_amb_diseno
     x_b = combo["x_b"]
     if motor == "teqp":
         backend, motor_real = TeqpVerificado(x=x_b), AmmoniaWaterAdapter(x=x_b)
@@ -133,7 +141,8 @@ def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None) -> dict:
              getattr(backend, "n_fallos", None))
 
     fila = dict.fromkeys(COLS)
-    fila.update(tag=tag, motor=motor, pid=os.getpid(), **combo)
+    fila.update(tag=tag, motor=motor, pid=os.getpid(), T_amb_diseno=piso,
+                **combo)
     t0 = time.perf_counter()
     try:
         res = resolver_ciclo(backend, **combo, bracket_tolerante=True,
@@ -150,7 +159,7 @@ def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None) -> dict:
         fila["error_inesperado"] = f"{type(exc).__name__}: {exc}"[:300]
     else:
         crit = {k: combo[k] for k in sensitivity._CRIT}
-        crit["T_amb_diseno"] = T_AMB_DISENO
+        crit["T_amb_diseno"] = piso
         val = evaluar_ciclo(backend, res, **crit)
         fila.update(convergio=True, clasificacion=val.clasificacion.value,
                     codigos_falla=",".join(f.codigo for f in val.fallas),
@@ -161,7 +170,7 @@ def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None) -> dict:
                                           motor_real, antes)
         fila = anotar_rango(fila, combo, res, motor, backend,
                             "extrapolar_marcar")
-        m = margenes(backend, res, combo)
+        m = margenes(backend, res, combo, t_amb_diseno=piso)
         D, viol = indice_D(m)
         fila.update(m, D=D, **viol)
         br = res.get("bracket") or {}
