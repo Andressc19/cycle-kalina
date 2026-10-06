@@ -1,0 +1,5 @@
+parte,var1,val1,var2,n_genuinos,n_kalina,n_N2,menor_d,menor_d_val1,menor_d_val2,menor_d_eta,mayor_eta,mayor_eta_val1,mayor_eta_val2,bloqueantes
+n1,eps_hrvg,,,1,0,0,,,,,,,,O2(1)
+n2a,eps_hrvg,0.4,eps_cond,1,0,0,,,,,,,,O2(1)
+n2b,eps_hrvg,0.4,P_baja,1,0,0,,,,,,,,O2(1)
+n3,T_fuente,403.0,eps_cond,1,0,0,,,,,,,,O2(1)

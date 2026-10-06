@@ -1,0 +1,11 @@
+variable,valor_ancla,a,b,E_eta,motivo_E,delta_eta,eta_min,eta_max,n_genuinos,n_kalina,valor_eta_max_kalina,kalina_desde,kalina_hasta,criterios_bloqueantes
+T_fuente,403.0,340.0,623.15,,faltan los dos vecinos,,0.11356437456711237,0.11356437456711237,1,0,,,,O2(1)
+T_sumidero,300.032917,283.15,303.55,,faltan los dos vecinos,,,,0,0,,,,
+P_alta,3000.0,1000.0,10000.0,,faltan los dos vecinos,,,,0,0,,,,
+P_baja,563.6363636363637,150.0,1500.0,,faltan los dos vecinos,,,,0,0,,,,
+x_b,0.5,0.3,0.9,,faltan los dos vecinos,,,,0,0,,,,
+eta_t,0.85,0.4,0.95,,faltan los dos vecinos,,,,0,0,,,,
+eta_p,0.75,0.4,0.95,,faltan los dos vecinos,,,,0,0,,,,
+eps_hrvg,0.85,0.4,0.95,,faltan los dos vecinos,,,,0,0,,,,
+eps_reg,0.75,0.4,0.95,,faltan los dos vecinos,,,,0,0,,,,
+eps_cond,0.8,0.4,0.95,,faltan los dos vecinos,,,,0,0,,,,
