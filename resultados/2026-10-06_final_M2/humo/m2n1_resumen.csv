@@ -1,0 +1,11 @@
+variable,tipo,n_converge,n_kalina,n_corregible,n_inviable,n_no_convergio,valor_conv_mas_cercano_prof,valor_kalina_mas_cercano_prof,d_normalizada,D_minimo,valor_D_minimo,criterios_bloqueantes_frecuentes
+P_alta,diseño,0,0,0,0,2,,,,,,
+P_baja,diseño,0,0,0,0,2,,,,,,
+x_b,diseño,,,,,,,,,,,
+eta_t,diseño,,,,,,,,,,,
+eta_p,diseño,,,,,,,,,,,
+eps_hrvg,diseño,,,,,,,,,,,
+eps_reg,diseño,,,,,,,,,,,
+eps_cond,diseño,,,,,,,,,,,
+T_fuente,sitio,,,,,,,,,,,
+T_sumidero,sitio,,,,,,,,,,,

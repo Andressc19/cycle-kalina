@@ -41,8 +41,8 @@ VARS = VARIABLES_BARRIBLES
 MARGENES = ("m_O1", "m_O2", "m_O3", "m_O5")
 VIOL = ("viol_O1", "viol_O2", "viol_O3", "viol_O5")
 
-COLS = (["tag", "motor", "pid", "convergio", "clasificacion", "eta", "Wnet",
-         "mensaje"] + list(VARS)
+COLS = (["tag", "motor", "pid", "convergio", "clasificacion", "codigos_falla",
+         "eta", "Wnet", "mensaje"] + list(VARS)
         + ["q4", "q2", "T9_amb", "T_bub"] + list(MARGENES) + ["D"] + list(VIOL)
         + ["err_margenes"] + list(sensitivity.COLUMNAS_A)
         + list(sensitivity.COLUMNAS_B) + list(COLUMNAS_RANGO)
@@ -153,6 +153,7 @@ def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None) -> dict:
         crit["T_amb_diseno"] = T_AMB_DISENO
         val = evaluar_ciclo(backend, res, **crit)
         fila.update(convergio=True, clasificacion=val.clasificacion.value,
+                    codigos_falla=",".join(f.codigo for f in val.fallas),
                     eta=res["eta"], Wnet=res["Wnet"],
                     mensaje=val.mensaje_reporte()[:300])
         if motor == "teqp":

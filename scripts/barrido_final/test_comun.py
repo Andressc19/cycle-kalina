@@ -161,7 +161,7 @@ def test_configuracion_congelada_de_m0():
 
 def test_cols_contiene_margenes_y_d():
     for c in ("m_O1", "m_O2", "m_O3", "m_O5", "D", "err_margenes",
-              "clasificacion", "convergio", "t_s"):
+              "codigos_falla", "clasificacion", "convergio", "t_s"):
         assert c in comun.COLS
 
 
@@ -192,3 +192,9 @@ def test_m1_las_tareas_cubren_el_enunciado():
     assert all(x["combo"]["T_sumidero"] == x["valor"] for x in t
                if x["grupo"] == "T_amb")
     assert all(x["combo"]["T_fuente"] == 623.15 for x in t)
+
+
+def test_codigos_falla_en_la_rama_que_converge(monkeypatch):  # une `val.fallas` con ","; "" si es KALINA
+    V = lambda v, cs: type("V", (), dict(clasificacion=type("C", (), {"value": v})(), fallas=[type("F", (), {"codigo": c})() for c in cs], mensaje_reporte=lambda s: "simulado"))()  # noqa: E731
+    estado = {"v": V("KALINA", [])}; monkeypatch.setattr("src.restricciones.evaluar_ciclo", lambda *a, **k: estado["v"]); monkeypatch.setattr(comun, "resolver_ciclo", lambda *a, **k: {**_res(), "eta": 0.07}); monkeypatch.setattr(comun, "anotar_rango", lambda f, *a, **k: f)
+    assert "codigos_falla" in comun.COLS and comun.evaluar_punto(_combo(), motor="real")["codigos_falla"] == ""; estado.update(v=V("CORREGIBLE", ["O2", "O1"])); assert comun.evaluar_punto(_combo(), motor="real")["codigos_falla"] == "O2,O1"
