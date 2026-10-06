@@ -62,7 +62,14 @@ Todas las fases usan la misma configuración. Si algo cambia a mitad de la campa
 - **Hipótesis H2:** el bloqueo está en el lado caliente (T2 queda por encima del rocío). Solo las
   variables que mueven T2 o el rocío (T_fuente, P_alta, x_b, ε_HRVG) pueden destrabarlo. Las demás
   (P_baja, η_t, η_p) intervienen después, para cerrar O1 y O2.
-- **Diseño:**
+- **Diseño por niveles (conservar la mayor cantidad posible de datos del profesor):**
+  - Nivel 1: se cambia **una sola** variable.
+  - Nivel 2: se cambian pares, solo si el nivel 1 no alcanza.
+  - Nivel 3: tríos, solo si el nivel 2 no alcanza.
+
+  La búsqueda se detiene en el primer nivel que da KALINA y se reportan **todas** las soluciones
+  de ese nivel. Dentro de cada nivel se prueban primero las variables de diseño (P_alta, P_baja,
+  x_b, η_t, η_p) y después las del sitio (T_fuente, T_sumidero). En cada paso:
   1. **Búsqueda 1D por variable** desde PP, con el resto fijo. Primero se localiza la frontera
      NO_CONVERGIO → convergente por bisección y luego la frontera → KALINA.
      - T_fuente: 623.15 K hacia abajo, hasta 380 K.
