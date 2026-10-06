@@ -27,3 +27,4 @@ CoolProp==8.0.0
 # backends libres de CoolProp, ver CONTEXT.md). PyfluidsAdapter se conserva
 # como referencia; no se instala por defecto.
 # pyfluids>=4.0.0
+scikit-learn==1.9.1
