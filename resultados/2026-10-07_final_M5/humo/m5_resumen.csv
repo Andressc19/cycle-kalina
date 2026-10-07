@@ -1,0 +1,6 @@
+escenario,n,omitidos,evaluados,KALINA,genuinos,N2,fuera_rango,factible,bloqueante,bloqueante_n,mejor_D,mejor_D_id,cercano_id,cercano_d,cercano_eta,mejor_eta_id,mejor_eta,suma_t_s
+1,2,0,2,0,0,0,0,False,,0,,,,,,,,56.311354199948255
+2,2,0,2,0,1,0,0,False,O2,1,2.186689305136838,0,,,,,,207.24103869998362
+3,2,0,2,0,1,0,0,False,O3,1,88.23665328575497,0,,,,,,187.70476890000282
+4,2,0,2,0,1,0,1,False,O2,1,14.023026120365728,0,,,,,,184.2960600000224
+5,2,0,2,1,2,0,2,True,O2,1,0.0,1,1,2.960546957501435,0.046958116001258106,1,0.046958116001258106,154.56903380004223
