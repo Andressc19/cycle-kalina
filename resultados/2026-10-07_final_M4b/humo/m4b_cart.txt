@@ -1,0 +1,56 @@
+puntos = 304 · KALINA = 77 · no KALINA = 227
+parametros = {'max_depth': 4, 'min_samples_leaf': 5, 'random_state': 0}
+
+exactitud CV (5 particiones): media = 0.7828 · por particion = [0.7049, 0.8197, 0.7705, 0.8689, 0.75]
+exactitud in-sample = 0.8947
+
+reglas (export_text):
+|--- P_baja <= 881.1281
+|   |--- eps_cond <= 0.9392
+|   |   |--- eps_hrvg <= 0.6242
+|   |   |   |--- x_b <= 0.6780
+|   |   |   |   |--- class: True
+|   |   |   |--- x_b >  0.6780
+|   |   |   |   |--- class: False
+|   |   |--- eps_hrvg >  0.6242
+|   |   |   |--- T_sumidero <= 281.6056
+|   |   |   |   |--- class: False
+|   |   |   |--- T_sumidero >  281.6056
+|   |   |   |   |--- class: False
+|   |--- eps_cond >  0.9392
+|   |   |--- class: True
+|--- P_baja >  881.1281
+|   |--- eps_cond <= 0.9029
+|   |   |--- x_b <= 0.5858
+|   |   |   |--- eta_p <= 0.7193
+|   |   |   |   |--- class: False
+|   |   |   |--- eta_p >  0.7193
+|   |   |   |   |--- class: True
+|   |   |--- x_b >  0.5858
+|   |   |   |--- T_fuente <= 406.2269
+|   |   |   |   |--- class: True
+|   |   |   |--- T_fuente >  406.2269
+|   |   |   |   |--- class: False
+|   |--- eps_cond >  0.9029
+|   |   |--- eta_t <= 0.8826
+|   |   |   |--- P_baja <= 1111.5941
+|   |   |   |   |--- class: True
+|   |   |   |--- P_baja >  1111.5941
+|   |   |   |   |--- class: True
+|   |   |--- eta_t >  0.8826
+|   |   |   |--- class: False
+
+
+reglas en palabras:
+- si P_baja <= 881.1 y eps_cond <= 0.9392 y eps_hrvg <= 0.6242 y x_b <= 0.678 → **KALINA** (n = 5, 60.0 % KALINA)
+- si P_baja <= 881.1 y eps_cond <= 0.9392 y eps_hrvg <= 0.6242 y x_b > 0.678 → **no KALINA** (n = 6, 0.0 % KALINA)
+- si P_baja <= 881.1 y eps_cond <= 0.9392 y eps_hrvg > 0.6242 y T_sumidero <= 281.6 → **no KALINA** (n = 19, 15.8 % KALINA)
+- si P_baja <= 881.1 y eps_cond <= 0.9392 y eps_hrvg > 0.6242 y T_sumidero > 281.6 → **no KALINA** (n = 111, 0.9 % KALINA)
+- si P_baja <= 881.1 y eps_cond > 0.9392 → **KALINA** (n = 6, 83.3 % KALINA)
+- si P_baja > 881.1 y eps_cond <= 0.9029 y x_b <= 0.5858 y eta_p <= 0.7193 → **no KALINA** (n = 9, 33.3 % KALINA)
+- si P_baja > 881.1 y eps_cond <= 0.9029 y x_b <= 0.5858 y eta_p > 0.7193 → **KALINA** (n = 22, 81.8 % KALINA)
+- si P_baja > 881.1 y eps_cond <= 0.9029 y x_b > 0.5858 y T_fuente <= 406.2 → **KALINA** (n = 16, 62.5 % KALINA)
+- si P_baja > 881.1 y eps_cond <= 0.9029 y x_b > 0.5858 y T_fuente > 406.2 → **no KALINA** (n = 79, 10.1 % KALINA)
+- si P_baja > 881.1 y eps_cond > 0.9029 y eta_t <= 0.8826 y P_baja <= 1112 → **KALINA** (n = 6, 66.7 % KALINA)
+- si P_baja > 881.1 y eps_cond > 0.9029 y eta_t <= 0.8826 y P_baja > 1112 → **KALINA** (n = 20, 100.0 % KALINA)
+- si P_baja > 881.1 y eps_cond > 0.9029 y eta_t > 0.8826 → **no KALINA** (n = 5, 40.0 % KALINA)

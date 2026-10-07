@@ -1,0 +1,12 @@
+zona,codigos_falla,n
+rP < p5 KALINA,O2,7
+"rP dentro de [p5, p95]",O2,199
+"rP dentro de [p5, p95]",O3,3
+"rP dentro de [p5, p95]","O2,O3",1
+"rP dentro de [p5, p95]",S3,1
+rP > p95 KALINA,O2,82
+rP > p95 KALINA,"O1,O2",18
+rP > p95 KALINA,"O2,O3",16
+rP > p95 KALINA,O1,2
+rP > p95 KALINA,"O1,O2,O3",1
+rP > p95 KALINA,O3,1
