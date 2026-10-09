@@ -151,6 +151,72 @@ x = no converge o espurio):
 - Un ε_HRVG demasiado alto saca al ciclo de KALINA: sobrecalienta la salida del HRVG o rompe O2.
 - El óptimo B2 está apoyado en los bordes de η_t, ε_reg y ε_cond, con puntos espurios cerca.
 
+## 5b. M6 — verificación con el motor real y margen de subenfriamiento (O2)
+
+**Procedimiento:**
+
+- Se tomaron 12 puntos finales: el ancla, M2, M5c, los 5 óptimos de M7, M4b, M4c y M2R.
+- Cada uno se evaluó con teqp y con el motor real. Además, con teqp:
+  - con el piso de 30.4 °C que trae el código por defecto;
+  - con una bisección de P_baja para tener 2 K y 5 K de subenfriamiento.
+
+**Resultados:**
+
+- **teqp coincide con el motor real.** Con 300 s, el motor real solo terminó 2 de los 12 puntos; los
+  otros 10 se cortaron por el límite de tiempo, no por la física. En M9, con 1500 s, convergieron
+  el ancla, A4 y Húsavík. Los 5 puntos convergidos son todos KALINA en los dos motores, con
+  |Δη| ≤ 0.003 pp.
+- **O2 no tiene margen propio de subenfriamiento.** El código exige T9 ≤ T_burbuja al piso, es
+  decir, ≥ 0 K. Varios puntos quedan con 0.04–0.4 K. Con el piso de 30.4 °C, 9 de 12 pasan a
+  CORREGIBLE.
+- **El costo de un margen real es bajo:**
+
+  | Margen | P_baja adicional | Pérdida de η |
+  |---|---|---|
+  | 2 K | +25–46 kPa | −0.3 a −0.5 pp |
+  | 5 K | +19–116 kPa | −0.3 a −1.2 pp |
+
+  Con las presiones del profesor, 2 K de margen piden 400 → ~425 kPa. Esto no cambia de forma
+  material ningún rango KALINA. La bisección del óptimo A1 no es confiable, porque tiene un hueco
+  NO_CONVERGIO.
+
+## 5c. M9 — escalera de conservación de los datos del profesor + Húsavík
+
+**Pregunta (planteada por el usuario):** si se conserva solo un grupo de los datos del profesor y
+se libera el resto, ¿hay KALINA? ¿Y si se van sumando grupos?
+
+**Procedimiento:**
+
+- 6 grupos: T_fuente, las η/ε, P_alta, P_baja, T_sumidero y x_b.
+- Paso 1: 100 puntos LHS por grupo conservado.
+- Paso 2: al grupo con más KALINA confiables (dentro de rango y verificados con B) se le suma cada
+  uno de los demás, con 30 puntos por conjunto.
+- Tope de ~4 h. Por eso la ronda 2 no se exploró, lo que NO equivale a "sin KALINA".
+
+**Resultados:**
+
+| Se conserva | KALINA | Confiables |
+|---|---|---|
+| x_b = 0.50 | 29/100 | **15** |
+| T_sumidero = 300 K | 17/100 | 13 |
+| P_alta = 3000 kPa | 19/100 | 12 |
+| las η/ε (0.85/0.75/0.85/0.75/0.80) | 13/100 | 11 |
+| P_baja = 400 kPa | 1/100 | 1 |
+| T_fuente = 623 K | 7/100 | **0** |
+| x_b + P_alta | 11/30 | 7 |
+| x_b + las η/ε (6 de 11 datos) | 11/30 | 6 |
+| x_b + T_sumidero | 9/30 | 5 |
+| x_b + P_baja | 4/30 | 3 |
+| x_b + T_fuente | 2/30 | 0 |
+
+Rangos con x_b + P_alta: P_baja 545–1850 kPa, rP 1.6–5.5, T_fuente 391–483 K.
+
+**Húsavík:** con su piso de diseño (10 °C), la P_baja mínima KALINA es **690 kPa, exactamente su
+valor real**; η = 12.7 %. El motor real lo confirma (KALINA, Δη −0.002 pp).
+
+**Deducción:** la planta real cae justo en el borde de cavitación de nuestra ventana KALINA. Eso
+respalda tanto el criterio O2 como el mapa.
+
 ## 6. Conclusiones (acumuladas)
 
 1. **Región KALINA:**
@@ -165,9 +231,19 @@ x = no converge o espurio):
      clima, ≥ 0.925 para un rango útil);
    - **sus temperaturas**, con ε_HRVG ≈ 0.5, P_baja alta y ε_cond alto;
    - **su fuente y su x_b**, con P_baja de ~900–1800 kPa (fuera de rango).
+   - **Consolidado M2 + M5c + M9:**
+     - se pueden conservar **9 de sus 11 datos**: todo salvo T_fuente y P_baja (M2), o todo salvo
+       T_fuente y ε_cond (M5c);
+     - el único dato que **no se sostiene con confianza** es **T_fuente = 623 K**: sus KALINA
+       quedan todos fuera del rango confiable;
+     - P_baja = 400 kPa es el segundo más restrictivo;
+     - x_b, P_alta, T_sumidero y las η/ε se conservan sin problema.
 3. **Eficiencia máxima dentro de los límites del proyecto: ≈ 15–15.6 %.** Conservando las
    temperaturas del profesor: ≈ 12.7 %.
 4. **El criterio limitante en todo el estudio es O2** (cavitación); con rP alta también O1.
+   Conviene reportar los rangos con ~2 K de subenfriamiento: P_baja_min sube unos 25–45 kPa.
+5. **Validación externa:** Húsavík cae en el borde de la ventana KALINA con su P_baja real, y teqp
+   coincide con el motor riguroso en los 5 puntos convergidos.
 
 ## 7. Lo que no se sabe
 
@@ -179,5 +255,6 @@ x = no converge o espurio):
 
 ## 8. Archivos
 
-`resultados/2026-10-07_final_M5c/`, `..._M4c/`, `..._M7/` y `..._M8_anecdotico/` (CSV, PNG y
-`REPORTE_*.md`). Excel: `datos/Excel_final_kalina.xlsx`. Protocolos en `prompts/TASK_CONTEXT_final_*.md`.
+`resultados/2026-10-07_final_M5c/`, `..._M4c/`, `..._M7/`, `..._M8_anecdotico/`,
+`resultados/2026-10-08_final_M6/` y `..._M9/` (CSV, PNG y `REPORTE_*.md`). Excel:
+`datos/Excel_final_kalina.xlsx` (72 hojas). Protocolos en `prompts/TASK_CONTEXT_final_*.md`.
