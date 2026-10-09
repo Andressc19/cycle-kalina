@@ -14,7 +14,7 @@ solo se usó en puntos de control, porque tarda ~800–1000 s por punto.
 |---|---|---|---|
 | M6 | ¿Coinciden teqp y el motor real? ¿Cuánto margen tiene O2? | 36 + 131 | Sí coinciden. O2 exige ≥ 0 K; 2 K de margen cuestan +25–46 kPa de P_baja |
 | M9, escalera | ¿Cuántos datos del profesor se conservan a la vez? | 960 + 24 + 3 | **8 de 10** (sus presiones, x_b, η y ε) |
-| M10, Húsavík | ¿Eran correctas las corridas de la Fase 3? ¿Qué faltaba? | 311 | 97/97 confirmados; x_b de 0.60–0.95 y T_fuente, T_sumidero, η_p y ε_HRVG nuevos |
+| M10 + M10b, Húsavík | ¿Eran correctas las corridas de la Fase 3? ¿Qué faltaba? | 311 + 71 | 97/97 confirmados; x_b de 0.60–0.95 y T_fuente, T_sumidero, η_p y ε_HRVG nuevos |
 
 ---
 
@@ -119,6 +119,25 @@ en el borde de O2, coherente con una planta diseñada al mínimo de P_baja.
 
 ---
 
+### 4.4 M10b — concentración de amoníaco baja (x_b 0.30–0.70)
+
+**Motivo:** el usuario preguntó por qué no se bajó de 0.60. Se corrieron 71 puntos: un OFAT de 17
+puntos a 690 kPa y una malla x_b × P_baja de 200 a 700 kPa.
+
+| x_b | Resultado | P_baja mínima KALINA | Criterio |
+|---|---|---|---|
+| 0.30–0.375 | No hay ciclo (el solver no encuentra T1) | — | — |
+| 0.40–0.475 | Espurio N2; separador con líquido, W_net < 0 | — | **O5, O3** |
+| 0.50 | KALINA formal, η 0.1–1.2 % (~2 % de vapor) | 200 kPa | borde de O5 |
+| 0.55 | KALINA | 300 kPa | O2 abajo |
+| 0.60 | KALINA | 400 kPa | O2 abajo |
+| 0.65–0.70 | KALINA, η hasta 13.3 % | 500 kPa | O2 abajo |
+
+**Deducción:** al bajar el amoníaco, el criterio que limita pasa de **O2** (cavitación, con x_b alto)
+a **O5/O3** (no hay vapor, con x_b bajo). Con la fuente de Húsavík (394 K), la ventana útil es
+**x_b ≈ 0.55–0.82** a su P_baja real, y llega a 0.91 con P_baja de 800 kPa. Los valores x_b < 0.55
+quedan marcados como "fuera de lo habitual en Kalina".
+
 ## 5. Conclusiones de la sección de barridos
 
 1. **Datos del profesor:** se conservan 8 de 10 (sus presiones 3000/400 kPa, x_b 0.50 y sus η/ε). Hay
@@ -146,7 +165,7 @@ en el borde de O2, coherente con una planta diseñada al mínimo de P_baja.
 
 ## 7. Archivos
 
-- `resultados/2026-10-08_final_M6/`, `..._M9/` y `resultados/2026-10-09_final_M10_husavik/` (CSV, PNG
+- `resultados/2026-10-08_final_M6/`, `..._M9/` , `resultados/2026-10-09_final_M10_husavik/` y `..._M10b_xb_bajo/` (CSV, PNG
   y `REPORTE_*.md` con notas del director).
-- Excel: `datos/Excel_final_kalina.xlsx`.
+- Excel: `datos/Excel_final_kalina.xlsx` (81 hojas).
 - Protocolos: `prompts/TASK_CONTEXT_final_M6.md`, `..._M9*.md` y `..._M10_husavik.md`.
