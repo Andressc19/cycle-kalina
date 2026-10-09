@@ -10,3 +10,10 @@ ronda,conservados,n_conservadas,n_eval,n_genuinos,n_kalina,n_kalina_confiable,D_
 1,XB+PA,2,30,28,11,7,0.0,O2:17,True,False
 1,XB+PB,2,30,27,4,3,0.0,O2:23,False,False
 1,XB+TS,2,30,26,9,5,0.0,O2:16,False,False
+2,XB+PA+TF,3,30,19,3,0,0.0,O2:16,False,False
+2,XB+PA+EF,7,30,28,13,7,0.0,O2:14,True,False
+2,XB+PA+PB,3,30,28,2,2,0.0,O2:26,False,False
+2,XB+PA+TS,3,30,27,8,6,0.0,O2:19,False,False
+3,XB+PA+EF+TF,8,30,0,0,0,,,False,False
+3,XB+PA+EF+PB,8,30,28,5,5,0.0,O2:22,True,False
+3,XB+PA+EF+TS,8,30,29,6,4,0.0,O2:21,False,False
