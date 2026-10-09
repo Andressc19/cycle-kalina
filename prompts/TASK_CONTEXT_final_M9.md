@@ -187,3 +187,30 @@ En `resultados/2026-10-08_final_M9/`:
 ## Formato de salida
 
 El obligatorio de `AGENTS.md`.
+
+## LECCIONES DE LA CORRIDA ANTERIOR (071, abortada por el director) — OBLIGATORIAS
+
+La corrida 071 se detuvo porque:
+
+1. Inventó funciones que NO existen en `comun.py` (`_inicializar_csv`, `_fila_desde_res`,
+   `_append_csv`, `_fila_omitido`, `COLS_MUESTRA`).
+2. Corría en serie, sin pool.
+3. Pasaba `t_amb_diseno` dentro de `combo`.
+4. Lanzó la corrida con el timeout por defecto de 120 s de la herramienta shell, y la corrida murió.
+5. Ejecutó `taskkill /IM python.exe /F`, que está PROHIBIDO porque puede matar procesos ajenos.
+
+Por eso, ahora:
+
+- `comun.py` exporta SOLO `PROFESOR`, `T_AMB_DISENO`, `TAU`, `PRESUPUESTO_S`, `VARS`, `COLS`,
+  `margenes`, `indice_D` y `evaluar_punto`. No uses nada más de `comun`.
+- **Plantilla obligatoria:** `scripts/barrido_final/m5_corrida.py`. Léelo entero y copia su
+  estructura: muestra LHS → `ProcessPoolExecutor(max_workers=7)` + `as_completed` → `csv.DictWriter`
+  con flush por fila. El `combo` lleva solo las 11 variables (las de `PROFESOR`) y `t_amb_diseno` va
+  como argumento aparte de `evaluar_punto`.
+- Los archivos `scripts/barrido_final/m9_corrida.py`, `m9_humo.py` y `m9_main.py` que dejó la 071
+  están mal. SOBRESCRÍBELOS con `write`, o reemplázalos por scripts nuevos.
+- **Cada comando de corrida larga se lanza con el parámetro `timeout` de la herramienta shell en
+  14400000 ms (4 h).** Nunca con el valor por defecto.
+- Nunca `taskkill /IM python.exe`, ni `Stop-Process` por nombre.
+- La carpeta `resultados/2026-10-08_final_M9/` está vacía salvo `humo/`. El reloj de 4 h arranca de
+  nuevo con el paso 0.

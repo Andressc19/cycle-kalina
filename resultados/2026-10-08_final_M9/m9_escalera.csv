@@ -1,0 +1,7 @@
+ronda,conservados,n_conservadas,n_eval,n_genuinos,n_kalina,n_kalina_confiable,D_min,criterio_mas_roto,elegido,kalina_por_busqueda
+0,TF,1,100,60,7,0,0.0,O2:53,False,False
+0,EF,5,100,88,13,11,0.0,O2:75,False,False
+0,PA,1,100,88,19,12,0.0,O2:69,False,False
+0,PB,1,100,85,1,1,0.0,O2:84,False,False
+0,TS,1,100,87,17,13,0.0,O2:68,False,False
+0,XB,1,100,85,29,15,0.0,O2:51,True,False

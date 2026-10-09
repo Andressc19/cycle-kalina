@@ -1,0 +1,16 @@
+ronda,conservados,n_conservadas,n_eval,n_genuinos,n_kalina,n_kalina_confiable,D_min,criterio_mas_roto,elegido,kalina_por_busqueda
+0,TF,1,2,1,1,1,0.0,,True,False
+0,EF,5,2,2,0,0,1.7323197428026447,O2:2,False,False
+0,PB,1,2,2,0,0,1.894120459596195,O2:2,False,False
+0,PA,1,2,2,0,0,8.123796673145819,O2:2,False,False
+0,TS,1,2,2,1,1,0.0,O2:1,False,False
+0,XB,1,2,1,0,0,31.892450152313017,O2:1,False,False
+1,TF+EF,6,2,0,0,0,,,False,False
+1,TF+PA,2,2,2,0,0,2.4079858521118354,O2:2,False,False
+1,TF+PB,2,2,1,0,0,3.221942685601391,O2:1,False,False
+1,TF+TS,2,2,1,0,0,3.7715270457881616,O2:1,False,False
+1,TF+XB,2,2,2,1,0,0.0,O2:1,True,False
+2,TF+XB+EF,7,2,0,0,0,,,False,False
+2,TF+XB+PA,3,2,2,0,0,17.761207597251193,O2:2,False,False
+2,TF+XB+PB,3,2,1,0,0,23.493346652628343,O2:1,False,False
+2,TF+XB+TS,3,2,2,0,0,15.010025569899994,O2:2,True,False
