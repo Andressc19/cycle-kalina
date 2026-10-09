@@ -72,15 +72,24 @@ def _campanas() -> dict:
 
 
 def _fila_resumen(hoja, df, camp) -> list:
+    """[hoja, filas, KALINA, CORREGIBLE, INVIABLE, NO_CONVERGIO, errores].
+
+    La clase sale del propio df (`clasificacion` o `clase_real`); si no la
+    tiene y hay campaña de la que derivarla, de esa campaña. Cuando no hay
+    ninguna fuente de clases (hoja sin columna de clases y sin campaña), la
+    fila se escribe sin conteos (`None`).
+    """
     if "clasificacion" in df.columns:
         n = df["clasificacion"].value_counts()
         err = int(df["error_inesperado"].notna().sum()) if "error_inesperado" in df.columns else 0
     elif "clase_real" in df.columns:
         n = df["clase_real"].value_counts()
         err = 0
-    else:
+    elif camp is not None and "clasificacion" in camp.columns:
         n = camp["clasificacion"].value_counts()
         err = int(camp["error_inesperado"].notna().sum())
+    else:
+        return [hoja, len(df)] + [None] * (len(ef.CLASES) + 1)
     return [hoja, len(df)] + [int(n.get(c, 0)) for c in ef.CLASES] + [err]
 
 

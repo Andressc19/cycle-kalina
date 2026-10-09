@@ -79,7 +79,8 @@ def _bloqueo(esc_rows: list, rescate: list) -> list:
                          f"{e['criterio_mas_roto'] or '—'}).")
             else:
                 L.append(f"El conjunto `{e['conservados']}` todavía da KALINA.")
-        if "3 h 15" in motivo and ult < rmax:
+        if ("3 h 15" in motivo or "presupuesto de tiempo" in motivo) \
+                and ult < rmax:
             L.append(f"El paso 2 se detuvo tras la ronda {ult} — {motivo}. Las "
                      f"rondas siguientes (hasta conservar 4 grupos) quedaron "
                      f"**no exploradas**; eso no significa 'sin KALINA'.")
@@ -109,6 +110,8 @@ def _rango_libre(m: dict, ran: list, esc: dict) -> list:
 def escribir(ran: list, esc_rows: list, esc: dict) -> int:
     """Escribe `REPORTE_M9.md` y devuelve su número de líneas."""
     m, rescate = maximo(esc_rows)
+    r1 = [e["n_eval"] for e in esc_rows if e["ronda"] == 1]
+    n_r1 = max(r1) if r1 else 0
     L = ["# REPORTE M9 — escalera de conservación de los datos del profesor", "",
          "## La pregunta",
          "¿Qué datos del profesor se pueden conservar tal cual y aun así obtener "
@@ -142,11 +145,15 @@ def escribir(ran: list, esc_rows: list, esc: dict) -> int:
                  f"(grupos `{m['conservados']}`) y aun así hay KALINA: "
                  f"{m['n_kalina']} KALINA ({m['n_kalina_confiable']} "
                  f"confiables) en {m['n_eval']} corridas.")
+        L.append(f"Así, la escalera llegó a {len(m['conservados'].split('+'))} "
+                 f"grupos conservados (`{m['conservados']}`).")
         L += _rango_libre(m, ran, esc)
     L += ["", "## Qué bloquea"] + _bloqueo(esc_rows, rescate)
     L += ["", "## Húsavík", husavik_parrafo(),
           "", "## Los 3 puntos del motor real", motor_parrafo(),
           "", "## Lo que no se sabe",
+          f"- La ronda 1 se corrió con {n_r1} puntos por conjunto, así que es "
+          "una exploración y no un mapa fino de la frontera KALINA.",
           "- El barrido es por muestreo (LHS + búsqueda por patrones): un "
           "conjunto que dio 0 KALINA en la muestra puede tener franjas angostas "
           "no vistas (la búsqueda dirigida lo mitiga para la última ronda).",

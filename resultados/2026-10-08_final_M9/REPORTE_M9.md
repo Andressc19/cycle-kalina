@@ -16,24 +16,29 @@ Se evaluó el ciclo con `comun.evaluar_punto` (motor teqp) sobre un barrido LHS.
 | 0 | TF | 1 | 100 | 60 | 7 | 0 | 0 | O2:53 | no |
 | 0 | TS | 1 | 100 | 87 | 17 | 13 | 0 | O2:68 | no |
 | 0 | XB | 1 | 100 | 85 | 29 | 15 | 0 | O2:51 | sí |
+| 1 | XB+EF | 6 | 30 | 26 | 11 | 6 | 0 | O2:15 | no |
+| 1 | XB+PA | 2 | 30 | 28 | 11 | 7 | 0 | O2:17 | sí |
+| 1 | XB+PB | 2 | 30 | 27 | 4 | 3 | 0 | O2:23 | no |
+| 1 | XB+TF | 2 | 30 | 20 | 2 | 0 | 0 | O2:18 | no |
+| 1 | XB+TS | 2 | 30 | 26 | 9 | 5 | 0 | O2:16 | no |
 
 ## El conjunto máximo de datos del profesor compatible con KALINA
-Se conservan **1 datos del profesor** (grupos `XB`) y aun así hay KALINA: 29 KALINA (15 confiables) en 100 corridas.
-- `T_fuente`: KALINA en 388 – 515 (mediana 429, n=29).
-- `T_sumidero`: KALINA en 279 – 303 (mediana 289, n=29).
-- `P_alta`: KALINA en 2.02e+03 – 4.9e+03 (mediana 3.37e+03, n=29).
-- `P_baja`: KALINA en 340 – 2e+03 (mediana 1.36e+03, n=29).
-- `eta_t`: KALINA en 0.415 – 0.929 (mediana 0.703, n=29).
-- `eta_p`: KALINA en 0.427 – 0.929 (mediana 0.662, n=29).
-- `eps_hrvg`: KALINA en 0.41 – 0.95 (mediana 0.613, n=29).
-- `eps_reg`: KALINA en 0.402 – 0.941 (mediana 0.751, n=29).
-- `eps_cond`: KALINA en 0.493 – 0.948 (mediana 0.857, n=29).
-- `dP`: KALINA en 526 – 4.07e+03 (mediana 2.23e+03, n=29).
-- `rP`: KALINA en 1.29 – 9 (mediana 2.56, n=29).
+Se conservan **2 datos del profesor** (grupos `XB+PA`) y aun así hay KALINA: 11 KALINA (7 confiables) en 30 corridas.
+Así, la escalera llegó a 2 grupos conservados (`XB+PA`).
+- `T_fuente`: KALINA en 391 – 483 (mediana 423, n=11).
+- `T_sumidero`: KALINA en 280 – 301 (mediana 290, n=11).
+- `P_baja`: KALINA en 545 – 1.85e+03 (mediana 1.39e+03, n=11).
+- `eta_t`: KALINA en 0.411 – 0.901 (mediana 0.679, n=11).
+- `eta_p`: KALINA en 0.428 – 0.947 (mediana 0.798, n=11).
+- `eps_hrvg`: KALINA en 0.448 – 0.904 (mediana 0.692, n=11).
+- `eps_reg`: KALINA en 0.416 – 0.93 (mediana 0.719, n=11).
+- `eps_cond`: KALINA en 0.53 – 0.946 (mediana 0.84, n=11).
+- `dP`: KALINA en 1.15e+03 – 2.45e+03 (mediana 1.61e+03, n=11).
+- `rP`: KALINA en 1.62 – 5.5 (mediana 2.16, n=11).
 
 ## Qué bloquea
-El conjunto `XB` todavía da KALINA.
-El paso 2 se detuvo tras la ronda 0 — se pasaron 3 h 15 min. Las rondas siguientes (hasta conservar 4 grupos) quedaron **no exploradas**; eso no significa 'sin KALINA'.
+El conjunto `XB+PA` todavía da KALINA.
+El paso 2 se detuvo tras la ronda 1 — la ronda 2 no se exploró por presupuesto de tiempo. Las rondas siguientes (hasta conservar 4 grupos) quedaron **no exploradas**; eso no significa 'sin KALINA'.
 
 ## Húsavík
 En la malla de P_baja 500–1000 kPa: con el piso 278.15 K hay KALINA desde P_baja = 600 kPa; con el piso 283.15 K hay KALINA desde P_baja = 690 kPa. η a 690 kPa: 0.127.
@@ -46,6 +51,31 @@ En la malla de P_baja 500–1000 kPa: con el piso 278.15 K hay KALINA desde P_ba
 | HUS | KALINA | KALINA | 0.127 | 0.127 | -0.00229 |
 
 ## Lo que no se sabe
+- La ronda 1 se corrió con 30 puntos por conjunto, así que es una exploración y no un mapa fino de la frontera KALINA.
 - El barrido es por muestreo (LHS + búsqueda por patrones): un conjunto que dio 0 KALINA en la muestra puede tener franjas angostas no vistas (la búsqueda dirigida lo mitiga para la última ronda).
 - Las corridas usan presupuestos de tiempo fijos (teqp 300 s, motor real 1500 s); un punto en el borde del presupuesto puede no converger.
 - El reporte de rangos vale para la caja explorada, no fuera de ella.
+
+## Nota del director (Claude, auditoría 2026-10-08)
+
+- **"Conjunto máximo = 2 datos" se lee mal si se cuentan grupos y no variables.** El ranking elige
+  por número de KALINA confiables, y por eso queda `XB+PA` (2 variables, 7 confiables). Pero
+  `XB+EF` conserva **6 de los 11 datos del profesor** (x_b, η_t, η_p, ε_HRVG, ε_reg y ε_cond) y da
+  11 KALINA, 6 de ellos confiables. Medido en datos conservados, ese es el conjunto mayor de M9.
+- **Fases previas conservan aún más: 9 de 11.**
+  - M2, ruta B, conserva P_alta, x_b, T_sumidero, las η y las ε; mueve solo T_fuente (390–434 K)
+    y P_baja (≥ 445–945 kPa).
+  - M5c conserva las 2 presiones, x_b, las η, ε_HRVG, ε_reg y su clima; mueve T_fuente
+    (~390–410 K) y ε_cond (≥ 0.875).
+
+  M9 se mueve por grupos y con muestreo grueso: confirma la tendencia, pero no supera a esas
+  búsquedas dirigidas.
+- **Lectura consolidada (M2 + M5c + M9):**
+  - el dato del profesor que NO se puede conservar con confianza es **T_fuente = 623.15 K**
+    (0 KALINA confiables en C_TF y en XB+TF);
+  - el segundo más restrictivo es **P_baja = 400 kPa** (1/100 sola, 3/30 con x_b). Solo funciona
+    en la franja angosta de M5c;
+  - todos los demás (x_b, P_alta, T_sumidero, las η y las ε) se conservan sin problema;
+  - el criterio que manda en TODOS los conjuntos es O2 (cavitación).
+- **Húsavík cae dentro de la ventana.** Con su piso de diseño (10 °C), la P_baja mínima KALINA es
+  exactamente su valor real (690 kPa), y el motor real lo confirma (η 12.73 %, Δ −0.002 pp).

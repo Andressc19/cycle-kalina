@@ -11,7 +11,7 @@ Salidas: `m9_paso2.csv`, `m9_busqueda.csv` y `m9_escalera.csv`. Reanudable por
 """
 from __future__ import annotations
 
-import csv, sys, time  # noqa: E401,E402
+import csv, os, sys, time  # noqa: E401,E402
 from concurrent.futures import ProcessPoolExecutor  # noqa: E402
 from pathlib import Path
 
@@ -24,8 +24,13 @@ import m9_datos as m9  # noqa: E402
 import m9_busqueda  # noqa: E402
 
 N_WORKERS = 7
-N_LHS = 2 if m9.HUMO else 50
-RONDAS_MAX = 2 if m9.HUMO else 3
+# Por defecto, la corrida completa del TASK_CONTEXT final_M9. Con las variables
+# de entorno M9_P2_N (puntos por conjunto), M9_P2_RONDAS (rondas a correr) y
+# M9_P2_SIN_CORTE=1 (sin tope de 3 h 15 min) se corre solo una ronda (ronda 1
+# de la escalera, 30 puntos por conjunto, sin corte de tiempo).
+N_LHS = int(os.environ.get("M9_P2_N", 2 if m9.HUMO else 50))
+RONDAS_MAX = int(os.environ.get("M9_P2_RONDAS", 2 if m9.HUMO else 3))
+SIN_CORTE = os.environ.get("M9_P2_SIN_CORTE") == "1"
 SEED0 = 20261108
 T_TOPE = 3 * 3600 + 15 * 60
 TODOS = ("TF", "EF", "PA", "PB", "TS", "XB")
@@ -123,7 +128,7 @@ def main() -> None:
     inicio = m9.leer_inicio() or time.time()
     escalera, rank = _parte1()
     S, ultima, i_corr, ronda = [rank[0]], [], 0, 0
-    corte = "S alcanzó 4 grupos"
+    corte = None
     fh, esc, _v = m9.reanudar(
         m9.OUT / "m9_paso2.csv", CAMP,
         lambda f: (str(f.get("ronda")), f.get("conservados"), str(f.get("id"))))
@@ -138,7 +143,7 @@ def main() -> None:
             escb.writeheader(); fb.flush()
             with ProcessPoolExecutor(max_workers=N_WORKERS) as pool:
                 while len(S) < 4 and ronda < RONDAS_MAX:
-                    if time.time() - inicio > T_TOPE:
+                    if not SIN_CORTE and time.time() - inicio > T_TOPE:
                         corte = "se pasaron 3 h 15 min"; break
                     ronda += 1
                     otros = [g for g in TODOS if g not in S]
@@ -160,6 +165,10 @@ def main() -> None:
                     if not any(m9.es_kalina(f) for f in gan[1]):
                         corte = "ningún S∪g de la ronda tiene KALINA"; break
                     S = gan[0]
+                if corte is None:
+                    corte = ("S alcanzó 4 grupos" if len(S) >= 4 else
+                             f"la ronda {ronda + 1} no se exploró por "
+                             f"presupuesto de tiempo")
                 tocados = _busqueda_dirigida(ultima, pool, fb, escb)
     finally:
         fh.close()

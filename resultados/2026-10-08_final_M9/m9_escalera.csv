@@ -5,3 +5,8 @@ ronda,conservados,n_conservadas,n_eval,n_genuinos,n_kalina,n_kalina_confiable,D_
 0,PB,1,100,85,1,1,0.0,O2:84,False,False
 0,TS,1,100,87,17,13,0.0,O2:68,False,False
 0,XB,1,100,85,29,15,0.0,O2:51,True,False
+1,XB+TF,2,30,20,2,0,0.0,O2:18,False,False
+1,XB+EF,6,30,26,11,6,0.0,O2:15,False,False
+1,XB+PA,2,30,28,11,7,0.0,O2:17,True,False
+1,XB+PB,2,30,27,4,3,0.0,O2:23,False,False
+1,XB+TS,2,30,26,9,5,0.0,O2:16,False,False
