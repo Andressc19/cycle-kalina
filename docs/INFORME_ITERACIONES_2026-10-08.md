@@ -191,7 +191,8 @@ se libera el resto, ¿hay KALINA? ¿Y si se van sumando grupos?
 - Paso 1: 100 puntos LHS por grupo conservado.
 - Paso 2: al grupo con más KALINA confiables (dentro de rango y verificados con B) se le suma cada
   uno de los demás, con 30 puntos por conjunto.
-- Tope de ~4 h. Por eso la ronda 2 no se exploró, lo que NO equivale a "sin KALINA".
+- Tope de ~4 h para el paso 1 y la ronda 1. El 9 de octubre se completaron las rondas 2 y 3, también
+  con 30 puntos por conjunto: la escalera tiene 4 rondas y 18 conjuntos.
 
 **Resultados:**
 
@@ -208,6 +209,20 @@ se libera el resto, ¿hay KALINA? ¿Y si se van sumando grupos?
 | x_b + T_sumidero | 9/30 | 5 |
 | x_b + P_baja | 4/30 | 3 |
 | x_b + T_fuente | 2/30 | 0 |
+| x_b + P_alta + las η/ε (7 datos) | 13/30 | 7 |
+| x_b + P_alta + T_sumidero | 8/30 | 6 |
+| x_b + P_alta + P_baja | 2/30 | 2 |
+| x_b + P_alta + T_fuente | 3/30 | 0 |
+| **x_b + P_alta + η/ε + P_baja (8 de 10 datos)** | **5/30** | **5** |
+| x_b + P_alta + η/ε + T_sumidero (8 de 10) | 6/30 | 4 |
+| x_b + P_alta + η/ε + T_fuente (8 de 10) | 0/30 (30 NO_CONVERGIO) | 0 |
+
+**Final de la escalera:** se conservan **8 de los 10 datos de diseño del profesor**: sus 2
+presiones, x_b y las 5 η/ε. Hay que mover solo T_fuente (**391–409 K**) y T_sumidero (**280–293 K**).
+Los 5 KALINA son confiables, con η de hasta 10.6 % y ≥ 2 K de subenfriamiento.
+
+Con su clima (300 K) en lugar de P_baja también hay KALINA: T_fuente 392–417 K y P_baja 587–1660 kPa.
+Su fuente de 623 K bloquea siempre: es el mismo modo de fallo que el punto original.
 
 Rangos con x_b + P_alta: P_baja 545–1850 kPa, rP 1.6–5.5, T_fuente 391–483 K.
 
@@ -231,6 +246,10 @@ respalda tanto el criterio O2 como el mapa.
      clima, ≥ 0.925 para un rango útil);
    - **sus temperaturas**, con ε_HRVG ≈ 0.5, P_baja alta y ε_cond alto;
    - **su fuente y su x_b**, con P_baja de ~900–1800 kPa (fuera de rango).
+   - **Escalera M9 completa:**
+     - sus 2 presiones, x_b y las η/ε (8 de 10 datos) son compatibles con KALINA si
+       T_fuente ≈ 391–409 K y T_sumidero ≤ ~293 K;
+     - con su clima de 300 K hace falta, además, ε_cond ≥ 0.875 (M5c).
    - **Consolidado M2 + M5c + M9:**
      - se pueden conservar **9 de sus 11 datos**: todo salvo T_fuente y P_baja (M2), o todo salvo
        T_fuente y ε_cond (M5c);
