@@ -1,0 +1,6 @@
+Figura FIG-M10-02. Húsavík: eficiencia según cada variable, una a la vez (casi todas rompen por O2).
+Caso(s): KF-M10-OFAT (bloque B14-OFAT). Punto base: Ancla de Húsavík (Fase 3): P_alta 3300 kPa, P_baja 690 kPa, T_fuente 394.15 K, T_sumidero 278.15 K
+Punto base (las demás variables quedan fijas en): T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; P_baja = 690 kPa; x_b = 0.82; m_b = 1 kg/s; eta_t = 0.9; eta_p = 0.8; eps_hrvg = 0.85; eps_reg = 0.75; eps_cond = 0.95; T_amb_diseno = 283.15 K; motor = teqp. Cada panel o tramo mueve solo su variable.
+Datos barridos (uno a la vez): T_fuente [380–430] K (16 valores); T_sumidero [273.15–293.15] K (16 valores); P_alta [2500–4000] kPa (16 valores); P_baja [500–1200] kPa (16 valores); x_b [0.6–0.95] (16 valores); eta_t [0.75–0.95] (16 valores); eta_p [0.6–0.9] (16 valores); eps_hrvg [0.6–0.95] (15 valores); eps_reg [0.4–0.95] (16 valores); eps_cond [0.7–0.95] (15 valores).
+Filtro: η solo en genuinos con W_net > 0; ✕ sobre el eje = no genuino.
+n = 150. Fuente: todos_los_puntos.csv.
