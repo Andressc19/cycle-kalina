@@ -1,0 +1,7 @@
+clase,etiqueta,color,orden
+KALINA,KALINA,#2E7D32,1
+CORREGIBLE,Corregible,#EF8A17,2
+INVIABLE,Inviable,#C9A227,3
+NO_CONVERGIO,No convergió,#C62828,4
+N2,Falso convergido (N2),#9E9E9E,5
+OMITIDO,Omitido (no evaluado),#BDBDBD,6

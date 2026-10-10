@@ -1,0 +1,20 @@
+variable,nombre_presentacion,unidad
+T_fuente,"Temperatura de la fuente, T_fuente [K]",K
+T_sumidero,"Temperatura del sumidero, T_sumidero [K]",K
+P_alta,"Presión de alta, P_alta [kPa]",kPa
+P_baja,"Presión de baja, P_baja [kPa]",kPa
+x_b,"Fracción de amoníaco de la mezcla base, x_b [–]",–
+m_b,"Flujo másico base, m_b [kg/s]",kg/s
+eta_t,"Eficiencia isentrópica de la turbina, η_t [–]",–
+eta_p,"Eficiencia isentrópica de la bomba, η_p [–]",–
+eps_hrvg,"Efectividad del generador de vapor, ε_HRVG [–]",–
+eps_reg,"Efectividad del regenerador, ε_reg [–]",–
+eps_cond,"Efectividad del condensador, ε_cond [–]",–
+T_amb_diseno,Piso de O2 (T de diseño de la bomba) [K],K
+eta_pct,"Eficiencia térmica del ciclo, η [%]",%
+Wnet,"Trabajo neto, W_net [kW] (m_b = 1 kg/s)",kW
+dP,"Diferencia de presiones, ΔP [kPa]",kPa
+rP,"Razón de presiones, r_P [–]",–
+dT_fs,Diferencia de temperatura fuente–sumidero [K],K
+clasificacion,Clase del ciclo,
+D,Índice de cercanía D [–],–
