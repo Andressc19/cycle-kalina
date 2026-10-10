@@ -5,7 +5,7 @@
 **Datos fijos: T_sumidero = 300.03 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; motor = teqp.**  
 **Datos barridos: T_fuente [403–560] K (7 valores); P_baja [400–2000] kPa (20 valores); eta_t [0.4–0.95] (12 valores); eta_p [0.4–0.95] (12 valores); eps_hrvg [0.4–0.95] (32 valores); eps_reg [0.4–0.95] (12 valores); eps_cond [0.4–0.95] (12 valores).**  
 
-| Subcaso | Corridas | Omitidos | Genuinos | KALINA | N KALINA confiables | N corregibles | N inviables | N no convergidos | N espurios (N2) | Fuera de rango |
+| Subcaso | Corridas | Omitidos | Genuinos | KALINA | KALINA confiables | Corregibles | Inviables | No convergidos | Falsos convergidos (N2) | Fuera de rango |
 |---|---|---|---|---|---|---|---|---|---|---|
 | KF-M02R-n1 | 80 | 0 | 24 | 0 | 0 | 24 | 0 | 52 | 4 | 28 |
 | KF-M02R-n2a | 60 | 0 | 48 | 0 | 0 | 48 | 0 | 12 | 0 | 48 |

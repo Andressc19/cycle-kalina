@@ -1,14 +1,14 @@
-﻿Subcaso,Variable,Estado,Valor o rango,n valores,¿Igual al profesor?,Unidad
-KF-M02-N1,"Temperatura de la fuente, T_fuente [K]",Barrida,340.0 – 623.1,22.0,,K
-KF-M02-N1,"Temperatura del sumidero, T_sumidero [K]",Barrida,283.1 – 303.6,11.0,,K
-KF-M02-N1,"Presión de alta, P_alta [kPa]",Barrida,1000 – 10000,24.0,,kPa
-KF-M02-N1,"Presión de baja, P_baja [kPa]",Barrida,150.0 – 1500,11.0,,kPa
-KF-M02-N1,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.300 – 0.900,14.0,,–
-KF-M02-N1,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
-KF-M02-N1,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.750 – 0.900,10.0,,–
-KF-M02-N1,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.650 – 0.850,11.0,,–
-KF-M02-N1,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.750 – 0.850,12.0,,–
-KF-M02-N1,"Efectividad del regenerador, ε_reg [–]",Barrida,0.750 – 0.850,10.0,,–
-KF-M02-N1,"Efectividad del condensador, ε_cond [–]",Barrida,0.750 – 0.850,11.0,,–
-KF-M02-N1,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
-KF-M02-N1,motor,Fija,teqp,,,–
+﻿Subcaso,Variable,Estado,Valor en el punto base,Valor o rango,n valores,¿Igual al profesor?,Unidad
+KF-M02-N1,"Temperatura de la fuente, T_fuente [K]",Una a la vez,623.1,340.0 – 623.1,22.0,,K
+KF-M02-N1,"Temperatura del sumidero, T_sumidero [K]",Una a la vez,300.0,283.1 – 303.6,11.0,,K
+KF-M02-N1,"Presión de alta, P_alta [kPa]",Una a la vez,3000,1000 – 10000,24.0,,kPa
+KF-M02-N1,"Presión de baja, P_baja [kPa]",Una a la vez,400.0,150.0 – 1500,11.0,,kPa
+KF-M02-N1,"Fracción de amoníaco de la mezcla base, x_b [–]",Una a la vez,0.500,0.300 – 0.900,14.0,,–
+KF-M02-N1,"Flujo másico base, m_b [kg/s]",Fija,1,1.0,,sí,kg/s
+KF-M02-N1,"Eficiencia isentrópica de la turbina, η_t [–]",Una a la vez,0.850,0.750 – 0.900,10.0,,–
+KF-M02-N1,"Eficiencia isentrópica de la bomba, η_p [–]",Una a la vez,0.750,0.650 – 0.850,11.0,,–
+KF-M02-N1,"Efectividad del generador de vapor, ε_HRVG [–]",Una a la vez,0.850,0.750 – 0.850,12.0,,–
+KF-M02-N1,"Efectividad del regenerador, ε_reg [–]",Una a la vez,0.750,0.750 – 0.850,10.0,,–
+KF-M02-N1,"Efectividad del condensador, ε_cond [–]",Una a la vez,0.800,0.750 – 0.850,11.0,,–
+KF-M02-N1,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,,K
+KF-M02-N1,motor,Fija,,teqp,,,–

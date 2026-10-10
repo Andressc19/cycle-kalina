@@ -63,13 +63,21 @@ def tabla_condiciones(mnn):
             val = f"{formatear(tipo, r['min'])} – {formatear(tipo, r['max'])}"
         else:
             val = ""
+        oat = r.get("es_oat") == "sí"
+        estado = {"fijo": "Fija", "barrido": "Barrida", "sin_dato": "Sin dato"}[r["estado"]]
+        if oat and r["estado"] == "barrido":
+            estado = "Una a la vez"
         filas.append({"Subcaso": r["id_subcaso"], "Variable": nombre_es(r["variable"]) or r["variable"],
-                      "Estado": {"fijo": "Fija", "barrido": "Barrida", "sin_dato": "Sin dato"}[r["estado"]],
+                      "Estado": estado,
+                      "Valor en el punto base": formatear(tipo, r["valor_base"]) if oat and pd.notna(r.get("valor_base")) else "",
                       "Valor o rango": val, "n valores": r["n_valores"],
                       "¿Igual al profesor?": r["igual_al_profesor"] if pd.notna(r["igual_al_profesor"]) else "",
                       "Unidad": r["unidad"] if pd.notna(r["unidad"]) else "–"})
     df = pd.DataFrame(filas)
+    if not (df["Valor en el punto base"] != "").any():
+        df = df.drop(columns="Valor en el punto base")
     tipos = {"Subcaso": "txt", "Variable": "txt", "Estado": "txt", "Valor o rango": "txt",
+             "Valor en el punto base": "txt",
              "n valores": "int", "¿Igual al profesor?": "txt", "Unidad": "txt"}
     meta = _meta(mnn, "00", "condiciones", f"Condiciones del caso {mnn}", "KF-" + mnn,
                  subcasos_de("KF-" + mnn), "condiciones_por_subcaso (cada subcaso y variable)",

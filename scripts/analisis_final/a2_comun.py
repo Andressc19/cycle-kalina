@@ -41,24 +41,11 @@ COLOR_CLASE = {"KALINA": "C6EFCE", "CORREGIBLE": "FFD9A0", "NO_CONVERGIO": "F8B4
 _trad_pend = {}
 
 
-def leer(ruta):
-    return pd.read_csv(ruta)
-
-
-def leer_canon():
-    return leer(CANON)
-
-
-def leer_conteo():
-    return leer(os.path.join(INV, "conteo_por_subcaso.csv"))
-
-
-def leer_condiciones():
-    return leer(os.path.join(INV, "condiciones_por_subcaso.csv"))
-
-
-def leer_bloques():
-    return leer(os.path.join(INV, "bloques.csv"))
+def leer(ruta): return pd.read_csv(ruta)
+def leer_canon(): return leer(CANON)
+def leer_conteo(): return leer(os.path.join(INV, "conteo_por_subcaso.csv"))
+def leer_condiciones(): return leer(os.path.join(INV, "condiciones_por_subcaso.csv"))
+def leer_bloques(): return leer(os.path.join(INV, "bloques.csv"))
 
 
 def subcasos_de(id_caso):
@@ -74,7 +61,6 @@ def bloques_de(subcasos):
     return list(dict.fromkeys(vistos))
 
 
-def nombre_es(col):
     """Nombre en español de una columna (NOMBRE tiene prioridad; si no, PROPIAS)."""
     if col in NOMBRE:
         return NOMBRE[col]
@@ -146,7 +132,7 @@ def formatear(tipo, valor):
         return f"{v:.1f}" if abs(v) < 1000 else f"{v:.0f}"
     if tipo == "temp":
         return f"{v:.1f}"
-    if tipo == "pct":
+    if tipo in ("pct", "pp"):
         return f"{v:.2f}"
     if tipo == "pct1":
         return f"{v:.1f}"
@@ -164,7 +150,7 @@ def fmt_excel(tipo, valor):
             return "0.0" if abs(float(valor)) < 1000 else "0"
         except (TypeError, ValueError):
             return None
-    return {"temp": "0.0", "pct": "0.00", "pct1": "0.0", "dec3": "0.000",
+    return {"temp": "0.0", "pct": "0.00", "pp": "0.00", "pct1": "0.0", "dec3": "0.000",
             "idx": "0.000", "int": "0"}.get(tipo)
 
 
@@ -183,7 +169,8 @@ def escribir_tabla(meta, df, tipos):
     carpeta = os.path.join(TABLAS, meta["carpeta"])
     os.makedirs(carpeta, exist_ok=True)
     df.to_csv(os.path.join(carpeta, meta["tabla"] + ".csv"), index=False, encoding="utf-8-sig")
-    texto = pies.condiciones_texto(meta["subcasos"])
+    # Síntesis (carpeta G): sin encabezado de condiciones común; cada fila trae los suyos.
+    texto = "" if meta["carpeta"] == "G" else pies.condiciones_texto(meta["subcasos"])
     notas = (f"Filtro: {meta['filtro']}. n = {meta['n']}. "
              "† = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). "
              f"Fuente: {meta['fuente']}.")
@@ -192,7 +179,8 @@ def escribir_tabla(meta, df, tipos):
     md = [f"# {meta['tabla']} · {meta['titulo']}", "",
           f"**Caso(s):** {meta['casos']} · **Bloque(s):** {meta['bloques']}  ",
           f"**Punto base:** {meta['punto_base']}  ",
-          "**" + texto.replace("\n", "**  \n**") + "**  ", "",
+          ("**" + texto.replace("\n", "**  \n**") + "**  ") if texto else
+          "*Tabla de síntesis: cada fila es un caso con sus propios datos fijos.*", "",
           _md_tabla(df, tipos), "", f"**Notas:** {notas}"]
     with open(os.path.join(carpeta, meta["tabla"] + ".md"), "w", encoding="utf-8") as f:
         f.write("\n".join(md) + "\n")

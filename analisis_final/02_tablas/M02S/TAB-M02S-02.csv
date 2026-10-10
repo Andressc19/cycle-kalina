@@ -1,4 +1,4 @@
-﻿Base,"Temperatura del sumidero, T_sumidero [K]",N genuinos,N KALINA,N espurios (N2),P_baja mínima KALINA [kPa],η mínima KALINA [%],B verificado en la mínima KALINA,Fuera de rango en la mínima KALINA,η máxima KALINA [%],P_baja en la η máxima KALINA [kPa],Bloqueantes (genuinos),Códigos de bloqueo
+﻿Base,"Temperatura del sumidero, T_sumidero [K]",N genuinos,N KALINA,Falsos convergidos (N2),P_baja mínima KALINA [kPa],η mínima KALINA [%],B verificado en la mínima KALINA,Fuera de rango en la mínima KALINA,η máxima KALINA [%],P_baja en la η máxima KALINA [kPa],Bloqueantes (genuinos),Códigos de bloqueo
 B1,278.15,18,11,0,290.625,10.40861607895899,True,False,10.40861607895899,290.625,CORREGIBLE(7),O2(7)
 B1,283.15,18,12,0,337.5,10.033542352965439,True,False,10.033542352965439,337.5,CORREGIBLE(6),O2(6)
 B1,288.15,18,12,0,393.75,9.60604387263622,True,False,9.60604387263622,393.75,CORREGIBLE(6),O2(6)

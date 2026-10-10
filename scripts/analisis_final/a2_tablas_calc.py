@@ -38,7 +38,7 @@ def tabla_m03():
         gen = sub[(sub["genuino"].astype(bool)) & (sub["wnet_pos"].astype(bool))
                   & (sub["tipo_punto"] == "malla")]
         delta = gen["eta_pct"].max() - gen["eta_pct"].min() if len(gen) else None
-        kal = sub[sub["clasificacion"] == "KALINA"]
+        kal = sub[(sub["clasificacion"] == "KALINA") & (sub["tipo_punto"] == "malla")]
         if len(kal):
             i = kal["eta_pct"].idxmax()
             eta_max = kal.loc[i, "eta_pct"]
@@ -55,8 +55,8 @@ def tabla_m03():
             "Valor en A*": formatear(tipo, r["valor_ancla"]),
             "Elasticidad E en A*": r["E_eta"],
             "Δη (genuinos) [pp]": delta,
-            "η máx. KALINA [%]": eta_max,
-            "Valor de la η máx. KALINA": val_max,
+            "η máx. KALINA en la malla [%]": eta_max,
+            "Valor de esa η máx.": val_max,
             "Zona KALINA": (f"{formatear(tipo, r['kalina_desde'])} – "
                             f"{formatear(tipo, r['kalina_hasta'])}")
             if pd.notna(r["kalina_desde"]) else "sin KALINA",
@@ -67,13 +67,14 @@ def tabla_m03():
     df["_orden"] = df["Elasticidad E en A*"].abs()
     df = df.sort_values("_orden", ascending=False).drop(columns="_orden").reset_index(drop=True)
     tipos = {"Variable": "txt", "Rango explorado": "txt", "Valor en A*": "gen",
-             "Elasticidad E en A*": "idx", "Δη (genuinos) [pp]": "gen", "η máx. KALINA [%]": "pct",
-             "Valor de la η máx. KALINA": "gen", "Zona KALINA": "txt",
+             "Elasticidad E en A*": "idx", "Δη (genuinos) [pp]": "pp", "η máx. KALINA en la malla [%]": "pct",
+             "Valor de esa η máx.": "gen", "Zona KALINA": "txt",
              "Criterios que bloquean": "txt", "Distancia a la frontera de O2 [–]": "idx"}
     meta = _meta("M03", "02", "ranking_delta", "Influencia y margen por variable (Δη y O2)",
                  "KF-M03", subcasos_de("KF-M03"),
                  "puntos genuinos con W_net > 0 de la malla B06", "canónico + m3_resumen.csv + m3_cruces.csv",
-                 len(df), "Ordenado por |E| de mayor a menor.")
+                 len(df), "Ordenado por |E| de mayor a menor. η máx. KALINA: solo los 15 puntos de la malla "
+                 "(sin A* ni sus vecinos ±1 %), como en la nota del director de REPORTE_M3 §11.")
     escribir_tabla(meta, df, tipos)
 
 

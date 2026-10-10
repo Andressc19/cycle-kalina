@@ -1,4 +1,4 @@
-﻿Identificador,Origen,"Subenfriamiento, ΔT_sub [K]",Alcanzable,P_baja original [kPa],P_baja requerida [kPa],ΔP_baja [kPa],η original [%],η requerida [%],Δη [pp],rP_req,Margen O1 requerido [–],Iteraciones,Nota
+﻿Identificador,Origen,"Subenfriamiento, ΔT_sub [K]",Alcanzable,P_baja original [kPa],P_baja requerida [kPa],ΔP_baja [kPa],η original [%],η requerida [%],Δη [pp],"Razón de presiones requerida, r_P [–]",Margen O1 requerido [–],Iteraciones,Nota
 P05,"M7, óptimo A1",2.0,True,808.3402577390962,1251.079330908942,442.7390731698458,14.97793863825945,11.307786887513439,-3.6701517507460064,3.502434191235706,0.0316453272088761,9,"hueco NO_CONVERGIO en 1231.3 kPa, 1244.5 kPa, 1247.8 kPa"
 P03,"M5c, presiones del profesor, techo",5.0,True,400.0,468.359375,68.359375,10.80651724015787,10.007798947608219,-0.7987182925496563,6.405337781484571,0.0263524169347577,9,
 P03,"M5c, presiones del profesor, techo",2.0,True,400.0,424.609375,24.609375,10.80651724015787,10.50578691682796,-0.3007303233299133,7.065317387304508,0.0239004118480895,9,

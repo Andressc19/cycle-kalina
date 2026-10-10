@@ -5,7 +5,7 @@
 **Datos fijos: m_b = 1 kg/s; motor = teqp.**  
 **Datos barridos: T_fuente [380.29–499.53] K (200 valores); T_sumidero [278.18–303.47] K (200 valores); P_alta [2009.9–4986.6] kPa (200 valores); P_baja [304.74–1497.2] kPa (200 valores); x_b [0.50012–0.84879] (200 valores); eta_t [0.75036–0.91969] (200 valores); eta_p [0.65092–0.89886] (200 valores); eps_hrvg [0.60061–0.94834] (200 valores); eps_reg [0.60167–0.94916] (200 valores); eps_cond [0.70052–0.94921] (200 valores); T_amb_diseno [278.18–303.47] K (200 valores).**  
 
-| Subcaso | Corridas | Omitidos | Genuinos | KALINA | N KALINA confiables | N corregibles | N inviables | N no convergidos | N espurios (N2) | Fuera de rango |
+| Subcaso | Corridas | Omitidos | Genuinos | KALINA | KALINA confiables | Corregibles | Inviables | No convergidos | Falsos convergidos (N2) | Fuera de rango |
 |---|---|---|---|---|---|---|---|---|---|---|
 | KF-M04b | 200 | 0 | 186 | 45 | 26 | 127 | 14 | 8 | 6 | 94 |
 
