@@ -421,10 +421,11 @@ Hay tres formas de mostrar los **mismos datos** (la tabla canónica y `condicion
 | **Matplotlib** (PNG/SVG) | Informe escrito, presentación y tesis: figuras fijas con pie completo | ninguna | A3 | §4 |
 | **Tablero HTML** (`tablero_kalina.html`) | **El tablero principal para el profesor.** Se abre con doble clic en cualquier navegador, sin instalar nada, y se puede compartir como enlace privado | alta: filtros por bloque, caso y clase, ejes a elección, tooltips, tabla ordenable | A5 (nuevo) | §4B.2 |
 | **Tablero en Excel** (hoja `Tablero` del libro nuevo) | Que el profesor explore desde Excel, que ya conoce | media: lista desplegable de bloque → KPIs y gráficos que se actualizan solos, más filtros de tabla | A2 | §4B.3 |
-| **Power BI** | Opcional, más adelante | alta | el usuario, con la guía | §4B.4 |
+| **Power BI** | **Descartado** (decisión del usuario, 2026-10-10) | — | — | §4B.4 |
 
-**Decisión:** el tablero HTML es el principal; el de Excel lo complementa. Power BI queda opcional
-porque **Power BI Desktop no está instalado** en este equipo: el chequeo del 2026-10-10 encontró solo
+**Decisión (2026-10-10, usuario):** todo queda en **Excel** por practicidad; la hoja `Tablero` es el
+tablero interactivo oficial y el HTML es un extra. Power BI se descarta: no lo exige ninguna skill y,
+además, **Power BI Desktop no está instalado** en este equipo: el chequeo del 2026-10-10 encontró solo
 Office ProPlus 2024. Además, un `.pbix` no se puede generar desde un script; hay que armarlo a mano en
 Power BI Desktop. Lo que sí se deja listo es el modelo de datos para importarlo.
 
@@ -479,13 +480,13 @@ Funciona sin macros y con funciones de Excel 2024 (las del Office instalado):
 - [SUPUESTO] El profesor abre el libro con Excel 2021 o posterior (`FILTRAR`). Si fuera más antiguo,
   el bloque de condiciones se muestra estático por bloque.
 
-### 4B.4 Power BI (opcional)
+### 4B.4 Power BI (descartado; datos conservados por si acaso)
 
 A1 deja los datos en **esquema estrella**, que es lo que Power BI importa directo:
 `hechos_puntos.csv` (un punto por fila), `dim_caso.csv`, `dim_bloque.csv`, `dim_condiciones.csv`,
 `dim_variable.csv` (nombre en español y unidad) y `dim_clase.csv` (color y orden). Con eso, más una
 guía de 1 página con las medidas DAX básicas (conteos por clase y % KALINA), el usuario puede armar el
-tablero en Power BI Desktop cuando lo instale. No se hace ahora.
+tablero en Power BI Desktop cuando lo instale. **No se hará:** el usuario decidió quedarse en Excel.
 
 ---
 
@@ -708,7 +709,7 @@ Nombres: minúsculas con guion bajo en scripts y CSV; IDs en mayúsculas con gui
 | 6 | REPORTE_ANALISIS_FINAL.md + BLUF final + Obsidian; auditoría final con `data:validate-data` | Claude | — |
 | 7 | Publicar el tablero HTML como enlace privado para el profesor | Claude | **pedir antes de publicar** |
 | 8 | Merge de ramas `analisis/*` a `test/barrido_final` → master local | Claude | pedir antes de push/PR |
-| (opc.) | Tablero en Power BI con `07_powerbi/` | usuario | cuando instale Power BI Desktop |
+| — | ~~Tablero en Power BI~~ | — | descartado: todo queda en Excel |
 
 ## 13. Checklist de verificación
 

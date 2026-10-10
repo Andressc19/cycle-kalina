@@ -48,7 +48,7 @@ ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conse
 | Tablas | `analisis_final/02_tablas/` | 3 conteos al azar iguales a `conteo_por_subcaso`; ranking de M3 igual al validado |
 | Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (89 hojas) | Tablero recalculado en Excel con 6 bloques: cifras resumen correctas |
 | Tablero web | `analisis_final/06_tablero/tablero_kalina.html` | Revisado en el navegador: sin errores, cifras resumen iguales a la verificación, gráficos visibles |
-| Power BI | `analisis_final/07_powerbi/` + `GUIA_POWERBI.md` | Esquema estrella generado; el tablero no se arma porque Power BI no está instalado |
+| Power BI | `analisis_final/07_powerbi/` + `GUIA_POWERBI.md` | Descartado por el usuario (todo queda en Excel); los CSV se conservan |
 
 ## 4. Conclusiones (validadas)
 
@@ -98,4 +98,4 @@ Volví a revisar todo contra los objetivos. Encontré y corregí:
 1. Que el usuario revise las fichas, las figuras, el Excel y el tablero, y diga qué corregir.
 2. Decidir si el tablero web se publica como enlace privado para el profesor.
 3. Llevar `test/barrido_final` a master local; push o PR solo si el usuario lo pide.
-4. Opcional: un informe Word en APA 7 con las figuras y tablas, y Power BI si se instala.
+4. Opcional: un informe Word en APA 7 con las figuras y tablas. Power BI descartado: todo queda en Excel.

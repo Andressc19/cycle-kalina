@@ -14,7 +14,7 @@
 | Figuras Matplotlib | ✅ | 30 de 30, cada una con título-conclusión, condiciones y pie |
 | `Excel_kalina_final_final_final.xlsx` | ✅ | 89 hojas; Tablero recalculado y verificado en Excel |
 | Tablero web | ✅ | Revisado en el navegador: cifras resumen correctas, sin errores |
-| Power BI | ⚠️ | Datos y guía listos; no está instalado |
+| Power BI | — | Descartado: todo queda en Excel (decisión del usuario) |
 | Ejecución vía OpenCode | ⚠️ | El proveedor se cayó; Claude terminó el código (autorizado) |
 
 ### Decisiones requeridas
