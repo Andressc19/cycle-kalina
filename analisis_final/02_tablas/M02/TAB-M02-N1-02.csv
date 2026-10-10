@@ -1,4 +1,4 @@
-﻿Variable,Tipo,N que convergen,N KALINA,Corregibles,Inviables,No convergidos,Valor convergido más cercano al PP,Valor KALINA más cercano al PP,d normalizado,D mínimo,Valor de D mínimo,Criterios bloqueantes frecuentes
+﻿Variable,Tipo,Convergen,KALINA,Corregibles,Inviables,No convergidos,Valor convergido más cercano al PP,Valor KALINA más cercano al PP,d normalizado,D mínimo,Valor de D mínimo,Criterios bloqueantes frecuentes
 P_alta,diseño,13,0,0,0,24,5414.0625,,,28.588479708778568,8000.0,C3(26) · N2(13) · O1(13) · O2(13) · O5(13) · C1(13)
 P_baja,diseño,0,0,0,0,10,,,,,,
 x_b,diseño,2,0,0,1,13,0.3166666666666666,,,17.194072192543377,0.3,O1(2) · O2(2) · O5(2) · C3(2) · N2(1) · C1(1)

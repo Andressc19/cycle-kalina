@@ -3,7 +3,6 @@
 excepción de la regla 1). Pies con el formato de pies.armar_pie."""
 import matplotlib
 matplotlib.use("Agg")
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -61,10 +60,9 @@ def fig_g01():
                    {k: sum(n_por_clase[k]) for k in ORDEN_CLASE})
     print(f"FIG-G01: {total} puntos; omitidos por caso: {dict(zip(casos, omitidos))}")
 
-
 # ---------------------------------------------------------------- FIG-G02
 CEL_BARRIDO, CEL_PP, CEL_FIJO, CEL_NADA = 3, 2, 1, 0
-COLOR_CELDA = {CEL_BARRIDO: "#2E7D32", CEL_PP: "#D6D6D6", CEL_FIJO: "#EF8A17",
+COLOR_CELDA = {CEL_BARRIDO: "#90CAF9", CEL_PP: "#E0E0E0", CEL_FIJO: "#FFB74D",  # azul: no se confunde con KALINA
                CEL_NADA: "white"}
 VARS_CXV = ["T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b", "m_b",
             "eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond",
@@ -94,6 +92,7 @@ def _celda(v):
 
 def fig_g02():
     cxv = pd.read_csv("analisis_final/00_inventario/casos_x_variables.csv")
+    cxv = cxv[~cxv["id_subcaso"].str.startswith("KF-M08")].reset_index(drop=True)
     sub = cxv["id_subcaso"].tolist()
     nrows, ncols = len(sub), len(VARS_CXV)
     codes = np.zeros((nrows, ncols), dtype=int)
@@ -105,24 +104,24 @@ def fig_g02():
     y = np.arange(nrows + 1)
     cmap = np.array([COLOR_CELDA[k] for k in (CEL_NADA, CEL_FIJO, CEL_PP,
                                               CEL_BARRIDO)])
-    fig, ax = plt.subplots(figsize=(13, 9.5))
+    fig, ax = plt.subplots(figsize=(13, 0.24 * nrows + 2.5))
     ax.pcolormesh(x, y, codes.astype(float)[::-1], cmap=matplotlib.colors
                   .ListedColormap(cmap),
                   vmin=0, vmax=len(cmap) - 1)
     for i in range(nrows):
         for j in range(ncols):
-            if labels[i][j]:
+            if labels[i][j] and codes[i, j] == CEL_FIJO:   # solo el valor fijo distinto del profesor
                 ax.text(j + 0.5, nrows - i - 0.5, labels[i][j], ha="center",
-                        va="center", fontsize=5.6, color="#111111")
+                        va="center", fontsize=6.5, color="#111111")
     ax.set_xticks(np.arange(ncols) + 0.5)
     ax.set_xticklabels([NOMBRE_CORTO[v] for v in VARS_CXV], fontsize=8)
     ax.set_yticks(np.arange(nrows) + 0.5)
-    ax.set_yticklabels(sub, fontsize=6)
+    ax.set_yticklabels(sub, fontsize=7)
     ax.set_xlim(0, ncols)
     ax.set_ylim(0, nrows)
     ax.set_facecolor("white")
     titulo_fig(fig, "Qué variables se movieron y cuáles quedaron fijas en cada barrido",
-               "Síntesis: una fila por barrido (59), una columna por variable")
+               "Síntesis: una fila por barrido, sin KF-M08; los rangos están en TAB-G02")
     ax.legend(handles=[Patch(color=COLOR_CELDA[CEL_BARRIDO], label="Barrido"),
                        Patch(color=COLOR_CELDA[CEL_PP],
                              label="Fijo: valor del profesor (PP / teqp)"),
@@ -130,18 +129,16 @@ def fig_g02():
                              label="Fijo: valor distinto del profesor")],
               loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3,
               frameon=False, fontsize=8)
-    fig.subplots_adjust(bottom=0.20)
     pie = ("Figura FIG-G02. Qué variables se movieron y cuáles quedaron fijas en "
-           "cada barrido.\nCaso(s): 59 barridos de la campaña (figura de síntesis: "
+           "cada barrido.\nCaso(s): los barridos de la campaña (sin KF-M08) (figura de síntesis: "
            "una fila por id_subcaso).\n"
            "Datos fijos: celda gris (PP/teqp), naranja (valor fijo distinto del "
            "profesor) o vacía (no aplica).\n"
-           "Datos barridos: celdas verdes con el rango [mín, máx] o 'n = 2'.\n"
+           "Datos barridos: celdas azules (rango en TAB-G02); antes: celdas con el rango [mín, máx] o 'n = 2'.\n"
            "Filtro: casos_x_variables.csv, una fila por barrido.\n"
            f"n = {nrows} barridos. Fuente: 00_inventario/casos_x_variables.csv.")
     guardar_fig(fig, "G", "FIG-G02_matriz_variables_por_barrido", pie)
     print(f"FIG-G02: {nrows} barridos x {ncols} variables")
-
 
 # ---------------------------------------------------------------- FIG-M09-01
 def fig_m09_01():
@@ -149,22 +146,25 @@ def fig_m09_01():
     e = m9[m9["elegido"]]
     n = int(e["n_conservadas"].iloc[-1])
     rondas = sorted(m9["ronda"].unique())
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ancho = 0.14
-    for k, r in enumerate(rondas):
+    fig, ax = plt.subplots(figsize=(11, 5.2))
+    pos, etiq, x0 = [], [], 0                   # posición acumulada: rondas de distinto tamaño
+    for r in rondas:
         fila = m9[m9["ronda"] == r]
-        x = np.arange(len(fila)) + k * (len(fila) + 1)
-        barras = ax.bar(x, fila["n_kalina_confiable"], width=ancho * 2.4,
-                        color="#2E7D32", alpha=0.85)
+        x = np.arange(len(fila)) + x0
+        barras = ax.bar(x, fila["n_kalina_confiable"], width=0.7, color="#2E7D32", alpha=0.85)
         for b2, sel in zip(barras, fila["elegido"]):
             if sel:
                 b2.set_edgecolor("black")
                 b2.set_linewidth(1.8)
-        ax.text(x.mean() - 0.35, max(fila["n_kalina_confiable"]) + 0.4, f"Ronda {r}",
-                fontsize=9)
-        ax.set_xticks(x)
-        ax.set_xticklabels(fila["conservados"], fontsize=7.5, rotation=30,
-                           ha="right")
+        ax.text(x.mean(), max(fila["n_kalina_confiable"]) + 1.2, f"Ronda {r}",
+                fontsize=9, ha="center")
+        pos += list(x); etiq += list(fila["conservados"])
+        if r != rondas[-1]:
+            ax.axvline(x[-1] + 1, color="0.8", lw=0.8)
+        x0 = x[-1] + 2
+    ax.set_xticks(pos)
+    ax.set_xticklabels(etiq, fontsize=7.5, rotation=35, ha="right")
+    ax.set_ylim(0, m9["n_kalina_confiable"].max() + 3)
     ax.set_ylabel("KALINA confiables")
     ax.set_xlabel("Conjunto de datos del profesor conservados")
     titulo_fig(fig,

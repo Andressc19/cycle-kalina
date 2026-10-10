@@ -24,8 +24,8 @@ cambiando solo variables de diseño, ahora que η y ε pueden moverse en [0.40, 
 | Parte | Qué se mueve | Corridas |
 |---|---|---|
 | n1 | una variable a la vez, con η/ε en [0.40, 0.95] | 80 |
-| n2a | ε_cond × P_baja | 60 |
-| n2b | ε_HRVG (hasta 0.80) × P_baja (hasta 2000 kPa) | 64 |
+| n2a | ε_HRVG (0.40–0.80) × ε_cond (0.40–0.95), con P_baja = 400 kPa | 60 |
+| n2b | ε_HRVG (0.40–0.70) × P_baja (400–2000 kPa) | 64 |
 | n3 | T_fuente × ε_cond, con la P_baja del profesor | 21 |
 
 ### ¿Por qué se barrió?
@@ -50,15 +50,15 @@ genuinos se cuentan como en M2 (los N2 no cuentan).
 | Parte | KALINA (filas) | KALINA confiables | Lectura |
 |---|---|---|---|
 | n1 | 0 | 0 | un solo cambio sigue sin alcanzar |
-| n2a | 0 | 0 | ε_cond y P_baja con la fuente de 623 K: no alcanza |
-| n2b | 19 | **0** | ε_HRVG = 0.40 y P_baja ≈ 1318–1855 kPa: KALINA, pero **todos fuera de rango** |
+| n2a | 0 | 0 | ε_HRVG y ε_cond con la fuente de 623 K y P_baja = 400 kPa: no alcanza (48 corregibles, todos por O2) |
+| n2b | 19 (13 distintos) | **0** | ε_HRVG = 0.40 con P_baja 1318–2000 kPa (η ≤ 6.3 %) y ε_HRVG = 0.50 con P_baja 1736–2000 kPa (η ≤ 4.3 %): KALINA, pero **todos fuera de rango** |
 | n3 | 1 | **1** | **T_fuente = 403 K y ε_cond = 0.95 con las presiones del profesor:** KALINA confiable, η = 9.50 % |
 
 - Tablas: TAB-M02R-00/01/02. Figuras FIG-M02R-n1, -n2a, -n2b y -n3 (una por parte).
 
 ### Conclusiones del caso:
 1. **Con la fuente del profesor (623 K) sí aparece KALINA**: hay que bajar mucho la efectividad del
-   HRVG (0.40) y subir P_baja a ~1300 kPa o más. Pero **ninguno de esos puntos es confiable**:
+   HRVG (0.40–0.50) y subir P_baja a ~1300–2000 kPa. Pero **ninguno de esos puntos es confiable**:
    quedan fuera del rango validado del modelo de propiedades.
 2. **Con las presiones exactas del profesor (3000 y 400 kPa) también hay KALINA**, si la fuente
    baja a 403 K y el condensador es muy efectivo (ε_cond = 0.95). Este punto es confiable.

@@ -72,17 +72,22 @@ def dispersion(ax, sub, x, y, s=14, zorder=3, alfa=0.9):
                        marker=MARCADOR_CLASE[c], zorder=zorder)
 
 
-def tira(ax, sub, x, y=0.0, s=16):
-    """Franja de puntos en y fijo (FIG-M02-01 y M02R-n1): un punto por valor."""
+def tira(ax, sub, x, y=0.0, s=16, etiquetas=True):
+    """Tira de clases (FIG-M02-01 y M02R-n1): x = valor de la variable movida; cada clase
+    en su propia fila (KALINA arriba). Antes se repartían en una diagonal que parecía tendencia."""
     sub = sub[~sub["omitido"]]
+    filas = {c: i for i, c in enumerate(ORDEN_CLASE[::-1])}      # N2 = 0 … KALINA = 4
     for c in ORDEN_CLASE[::-1]:
         s2 = sub[sub["clase_trazo"] == c]
         if s2.empty:
             continue
-        jit = np.linspace(-0.35, 0.35, len(s2)) if len(s2) > 1 else [0.0]
-        ax.scatter(s2[x], np.full(len(s2), y) + jit, s=s,
-                   color=COLOR_CLASE[c], marker=MARCADOR_CLASE[c], alpha=0.9,
+        jit = (np.arange(len(s2)) % 3 - 1) * 0.12                   # leve, solo para no tapar
+        ax.scatter(s2[x], filas[c] + jit, s=s, color=COLOR_CLASE[c],
+                   marker=MARCADOR_CLASE[c], alpha=0.9,
                    label=f"{ETIQUETA_CLASE[c]} (n = {len(s2)})")
+    ax.set_ylim(-0.6, len(filas) - 0.4)
+    ax.set_yticks(list(filas.values()))
+    ax.set_yticklabels([ETIQUETA_CLASE[c] if etiquetas else "" for c in filas], fontsize=6.5)
 
 
 def sin_eta_sobre_eje(ax, sub, x, ymin, s=16):
@@ -95,17 +100,6 @@ def sin_eta_sobre_eje(ax, sub, x, ymin, s=16):
             continue
         ax.scatter(s2[x], np.full(len(s2), ymin), s=s, color=COLOR_CLASE[c],
                    marker=MARCADOR_CLASE[c], alpha=0.9)
-
-
-def base_referencia(ax, v_ancla=None, eta_ancla=None, band=0.7):
-    """Referencia del ancla: línea en su valor y banda en η (±0.7 pp)."""
-    if v_ancla is not None:
-        ax.axvline(v_ancla, color="0.3", ls="--", lw=0.8, zorder=1)
-    if eta_ancla is not None:
-        ax.axhline(eta_ancla, color="0.3", ls="--", lw=0.8, zorder=1)
-    if eta_ancla is not None:
-        ax.axhspan(eta_ancla - band, eta_ancla + band, color="#2E7D32",
-                   alpha=0.12, zorder=0)
 
 
 def titulo(ax, linea1, linea2, f1=9, f2=8):
@@ -123,10 +117,6 @@ def titulo_fig(fig, linea1, linea2, f1=10, f2=8):
     fig.text(0.5, 0.995, linea1, ha="center", va="top", fontsize=f1)
     fig.text(0.5, 0.962, linea2, ha="center", va="top", fontsize=f2)
     fig._multipanel = True   # estilo.guardar deja sitio arriba (título/leyenda) y abajo (recuadro)
-
-
-def leyenda(ax, loc="upper left", fu=8):
-    ax.legend(loc=loc, fontsize=fu)
 
 
 def texto_condiciones_corto(ax, texto, n_lineas=3, ancho=70):
@@ -192,8 +182,3 @@ def guardar_fig(fig, carpeta, nombre, pie):
     os.makedirs(f"analisis_final/03_figuras/{carpeta}", exist_ok=True)
     from estilo import guardar
     guardar(fig, f"analisis_final/03_figuras/{carpeta}/{nombre}", pie)
-
-
-def sn_matriz(m):
-    """Matriz de sensibilidad (filas y columnas en 'variable') con índice."""
-    return pd.DataFrame(m, columns=m.columns, index=m.index)

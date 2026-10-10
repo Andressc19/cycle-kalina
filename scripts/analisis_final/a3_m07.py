@@ -41,9 +41,11 @@ def fig_m06():
         g = par[par["fuente"] == f]
         ax.scatter(100 * g["eta_teqp"], 100 * g["eta_real"], marker=m, s=60, color=c,
                    label=f"{f} (n = {len(g)})", zorder=3)
-        for _, r in g.iterrows():
-            ax.annotate(str(r["id"]), (100 * r["eta_teqp"], 100 * r["eta_real"]),
-                        fontsize=7, xytext=(4, -10), textcoords="offset points")
+    # un rótulo por posición: P08 (M6) y A4 (M9) son el mismo punto y se superponían
+    rot = par.assign(k=(100 * par["eta_teqp"]).round(2)).groupby("k")
+    for k, g in rot:
+        ax.annotate(" = ".join(str(i) for i in g["id"]), (k, 100 * g["eta_real"].iloc[0]),
+                    fontsize=7, xytext=(6, -12), textcoords="offset points")
     ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
     ax.set_xlabel("η con teqp [%]"); ax.set_ylabel("η con el motor real [%]")
     ax.legend(loc="upper left", fontsize=8)

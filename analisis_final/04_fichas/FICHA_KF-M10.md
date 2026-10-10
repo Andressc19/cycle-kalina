@@ -29,10 +29,21 @@
 Para validar la campaña con un caso real: si el modelo actual reproduce una planta que existe, sus
 conclusiones sobre el caso del profesor ganan credibilidad.
 
-### Datos o variables barridas / Datos modificados:
-Ver arriba. En OFAT y MALLA, lo que no se mueve queda en el ancla de Húsavík. Los puntos F3
-conservan sus datos de septiembre: varias familias, con pisos de O2 de 283.15 y 303.55 K.
+### Datos o variables barridas:
+
+| Subcaso | Variables barridas | Rango | n |
+|---|---|---|---|
+| F3 (re-evaluación) | P_alta, P_baja, x_b, η_t, ε_reg, ε_cond (según la familia) | P_alta 3300–3500 kPa · P_baja 670–1500 kPa · x_b 0.78–0.83 · η_t 0.85–0.98 · ε_reg 0.75–0.95 · ε_cond 0.95–0.99 | 97 |
+| OFAT | las 10 variables, una a la vez | T_fuente 380–430 K · T_sumidero 273–293 K · P_alta 2500–4000 kPa · P_baja 500–1200 kPa · x_b 0.60–0.95 · η_t 0.75–0.95 · η_p 0.60–0.90 · ε_HRVG 0.60–0.95 · ε_reg 0.40–0.95 · ε_cond 0.70–0.95 | 150 |
+| MALLA | x_b × P_baja | x_b 0.70–0.91 (8) × P_baja 500–1200 kPa (8) | 64 |
+
 Total: **311 corridas**.
+
+### Datos modificados:
+No se parte del profesor, sino del **ancla de Húsavík**: P_alta 3300 kPa, P_baja 690 kPa,
+T_fuente 394.15 K, T_sumidero 278.15 K, η_t 0.90, η_p 0.80, ε_HRVG 0.85, ε_reg 0.75, ε_cond 0.95,
+con el piso de O2 en 283.15 K. Lo que no se barre en OFAT y MALLA queda en esos valores. Los puntos
+F3 conservan sus datos de septiembre, con pisos de O2 de 283.15 o 303.55 K según la familia.
 
 ### Métodos aplicados:
 Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D completa.
@@ -68,6 +79,10 @@ Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D comple
 - OFAT de 15 puntos: las fronteras quedan entre dos muestras; no se bisecaron.
 - Solo se re-evaluaron los KALINA de septiembre, no los CORREGIBLE ni los no convergidos.
 - OFAT y MALLA solo con teqp.
+- **Algunos puntos F3 de septiembre usan η_t hasta 0.98 y ε_cond hasta 0.99**, por encima del
+  tope realista del proyecto (0.95): son **14 de los 97** (11 de la familia F3-A y 3 de F3-D). Se
+  reproducen tal cual porque son los de la Fase 3, pero no deben citarse como diseño. Los otros
+  **83 KALINA tienen todas sus η y ε ≤ 0.95**, así que la validación con Húsavík no depende de ellos.
 
 ### Recomendaciones:
 Citar Húsavík en el informe como validación del modelo, y su P_baja (690 kPa) como referencia real

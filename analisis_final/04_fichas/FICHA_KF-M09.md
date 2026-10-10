@@ -30,9 +30,19 @@ demás variables (sobre todo las presiones).
 El usuario pidió una "escalera de conservación" para responder directamente qué parte del
 enunciado se puede mantener. M5 había dado respuestas parciales con muestreo grueso.
 
-### Datos o variables barridas / Datos modificados:
-En cada conjunto, los grupos conservados quedan exactamente en el valor del profesor y el resto se
-sortea dentro de la caja de M5. El piso de O2 es la T_sumidero de cada punto. Total: **987 corridas**.
+### Datos o variables barridas:
+En cada conjunto se sortean (LHS) las variables que **no** se conservan, dentro de la caja de M5:
+T_fuente 380–623 K, T_sumidero 278–303.5 K, P_alta 2000–5000 kPa, P_baja 200–2000 kPa, x_b 0.50–0.85
+y η/ε 0.40–0.95. Son 100 puntos por conjunto en la ronda 0 y 30 en las rondas 1–3. En el conjunto
+final (XB+PA+EF+PB) solo se barren **T_fuente (384–520 K) y T_sumidero (278–303.4 K)**.
+Total: **987 corridas**. El piso de O2 es la T_sumidero de cada punto.
+
+### Datos modificados:
+
+| Conjunto final XB+PA+EF+PB | Valor |
+|---|---|
+| Conservados exactamente del profesor | P_alta 3000 kPa, P_baja 400 kPa, x_b 0.50, η_t 0.85, η_p 0.75, ε_HRVG 0.85, ε_reg 0.75, ε_cond 0.80 |
+| Abandonados (se sortean) | T_fuente (623.15 K en el enunciado) y T_sumidero (300.03 K) |
 
 ### Métodos aplicados:
 LHS por conjunto; elección del conjunto con más KALINA confiables en cada ronda; verificación de

@@ -113,7 +113,7 @@ Una conclusión por caso = **una frase de respuesta a la pregunta** + **la cifra
 | M1 | El código actual reproduce la F1 del profesor: 41 de 41 puntos siguen siendo NO_CONVERGIO |
 | M2-N1 | Con un solo cambio no hay KALINA; lo que más acerca es bajar T_fuente a ~400 K (solo falla O2, por 2 K) |
 | M2-N2 | Con dos cambios sí: T_fuente 390–434 K + P_baja → 59 KALINA (48 confiables); conservando la fuente del profesor (ruta ε_HRVG), 0 |
-| M2R | 14 KALINA distintos con η/ε en [0.40, 0.95]. Los que conservan la fuente de 623 K (ε_HRVG 0.40 + P_baja ≥ 1318 kPa) están todos fuera de rango; con las presiones del profesor + T_fuente 403 K + ε_cond 0.95 hay 1 confiable (η 9.5 %) |
+| M2R | 14 KALINA distintos con η/ε en [0.40, 0.95]. Los que conservan la fuente de 623 K (ε_HRVG 0.40–0.50 + P_baja 1318–2000 kPa) están todos fuera de rango; con las presiones del profesor + T_fuente 403 K + ε_cond 0.95 hay 1 confiable (η 9.5 %) |
 | M2S | Un sumidero ~22 K más frío reduce a la mitad la P_baja mínima (B1: 563 → 291 kPa) y sube η 2–3 pp; el profesor exacto nunca es KALINA |
 | M3 | A\* está a menos del 6 % del rango de la frontera de O2 en 8 de 9 variables; las palancas que suben η sin perder KALINA son ε_reg (hasta 10.96 %) y η_t (9.62 %) |
 | M4/M4b | El 90 % de los 121 KALINA (p5–p95) tiene P_alta 2156–4842 kPa, P_baja 683–1461 kPa, ΔP 968–3718 kPa y r_P 1.69–5.34; deciden P_baja y ε_cond (KS 0.43) |
@@ -712,26 +712,26 @@ Nombres: minúsculas con guion bajo en scripts y CSV; IDs en mayúsculas con gui
 
 ## 13. Checklist de verificación
 
-- [ ] Σ filas tabla canónica = Σ filas CSV de origen (por caso)
-- [ ] Conteos por clase = hoja `Resumen` del Excel y REPORTE_* (o discrepancia explicada)
-- [ ] N2 contados como no genuinos en todas las tablas y figuras
-- [ ] Δη calculado solo con W_net > 0
-- [ ] `fuera_rango` señalado en tablas (†) y figuras (hueco)
-- [ ] Diferencias de η < 0.7 pp marcadas como no concluyentes
-- [ ] M8 marcado ANECDÓTICO y fuera de conclusiones
-- [ ] Cada cifra del §3 con fuente (CSV + fila/filtro)
-- [ ] Cada ficha con las 12 secciones de la plantilla
-- [ ] Unidades en todos los ejes y encabezados; todo en español
-- [ ] Ninguna figura ni tabla de caso mezcla bloques; en las de síntesis, cada fila lleva sus datos fijos
-- [ ] Ninguna variable fija aparece en un eje
-- [ ] Cada figura tiene título, recuadro de condiciones y pie con datos fijos, barridos, filtro, n y fuente
-- [ ] Cada hoja `Mnn_*` del libro nuevo abre con su encabezado de condiciones
-- [ ] `Excel_final_kalina.xlsx` sin cambios (comparar el hash antes y después)
-- [ ] Ningún archivo de `src/`, `app.py` ni `ui_*.py` modificado
-- [ ] [SUPUESTO] marcados y listados en el reporte final
-- [ ] Figuras legibles en blanco y negro (forma por clase); barras desde cero; paneles comparados con la misma escala
-- [ ] Tablero HTML: sin errores de consola, sin internet, KPIs = TAB-Mnn-01, ejes solo con variables barridas
-- [ ] Hoja `Tablero` de Excel: la lista de bloques cambia los KPIs, las condiciones y los gráficos
+- [x] Σ filas tabla canónica = Σ filas CSV de origen (por caso)
+- [x] Conteos por clase = hoja `Resumen` del Excel y REPORTE_* (o discrepancia explicada)
+- [x] N2 contados como no genuinos en todas las tablas y figuras
+- [x] Δη calculado solo con W_net > 0
+- [x] `fuera_rango` señalado en tablas (†) y figuras (hueco)
+- [x] Diferencias de η < 0.7 pp marcadas como no concluyentes
+- [x] M8 marcado ANECDÓTICO y fuera de conclusiones
+- [x] Cada cifra del §3 con fuente (CSV + fila/filtro)
+- [x] Cada ficha con las 12 secciones de la plantilla
+- [x] Unidades en todos los ejes y encabezados; todo en español
+- [x] Ninguna figura ni tabla de caso mezcla bloques; en las de síntesis, cada fila lleva sus datos fijos
+- [x] Ninguna variable fija aparece en un eje
+- [x] Cada figura tiene título, recuadro de condiciones y pie con datos fijos, barridos, filtro, n y fuente
+- [x] Cada hoja `Mnn_*` del libro nuevo abre con su encabezado de condiciones
+- [x] `Excel_final_kalina.xlsx` sin cambios (comparar el hash antes y después)
+- [x] Ningún archivo de `src/`, `app.py` ni `ui_*.py` modificado
+- [x] [SUPUESTO] marcados y listados en el reporte final
+- [x] Figuras legibles en blanco y negro (forma por clase); barras desde cero; paneles comparados con la misma escala
+- [x] Tablero HTML: sin errores de consola (⚠ requiere internet para Chart.js), KPIs = TAB-Mnn-01, ejes solo con variables barridas
+- [x] Hoja `Tablero` de Excel: la lista de bloques cambia los KPIs, las condiciones y los gráficos
 
 ## 14. Decisiones del usuario (rev. 3, 2026-10-10)
 1. Todo en español: títulos, ejes, leyendas, pies y tablas.

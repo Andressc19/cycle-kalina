@@ -1,4 +1,4 @@
-﻿Variable,Mínimo KALINA,Máximo KALINA,Criterio al bajar de x_b,Criterio al subir de x_b,η mínima [%],η máxima [%],N KALINA
+﻿Variable,Mínimo KALINA,Máximo KALINA,Criterio que rompe al bajar la variable,Criterio que rompe al subir la variable,η mínima [%],η máxima [%],KALINA
 T_fuente,380.0,401.4285714285714,,CORREGIBLE (O2),12.208231276552151,12.961840990947701,7
 T_sumidero,273.15,283.15,,CORREGIBLE (O2),12.509390748250802,12.962872382347149,8
 P_alta,2821.428571428572,4000.0,CORREGIBLE (O2),,11.83568349674035,13.601555402122708,12

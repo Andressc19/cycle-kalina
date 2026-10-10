@@ -38,15 +38,13 @@ def fig_m02r_n1():
     sub = PUNTOS[PUNTOS["bloque_director"] == "B04-n1"]
     vars_ = [v for v in SEC_VAR if v in set(sub["var1"].dropna())]
     n_kal = int((sub["clasificacion"] == "KALINA").sum())
-    fig, axs = plt.subplots(1, len(vars_), figsize=(12.5, 3.0))
+    fig, axs = plt.subplots(1, len(vars_), figsize=(13, 4.6))
     if len(vars_) == 1:
         axs = [axs]
     for ax, v in zip(axs, vars_):
         sv = sub[sub["var1"] == v]
-        tira(ax, sv, "val1")
+        tira(ax, sv, "val1", etiquetas=(v == vars_[0]))
         ax.set_title(v, fontsize=8)
-        ax.set_yticks([])
-        ax.set_ylim(-0.6, 0.6)
         ax.set_xlabel(NOMBRE[v], fontsize=7)
     leyenda_fig(fig, sub)
     recuadro_fig(fig, ["KF-M02R-n1"])
@@ -66,7 +64,7 @@ def _disp_r(bloque, id_sub, parte, nombre):
     dispersion(ax, sub, "val2", "val1")
     ax.set_xlabel(NOMBRE[var2])
     ax.set_ylabel(NOMBRE[var1])
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=8, frameon=False)  # fuera: no tapa datos
     titulo(ax, TIT.format(p=parte, n=n_kal), f"Bloque {bloque} · {id_sub}")
     recuadro_oat(ax, [id_sub])
     n = contar_clases(sub)

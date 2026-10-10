@@ -80,7 +80,7 @@ def fig_m04_02():
         ax.plot(pa, pa / rp, "k--", lw=0.8)
     ax.set_xlabel(NOMBRE["P_alta"])
     ax.set_ylabel(NOMBRE["P_baja"])
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=8, frameon=False)  # fuera: no tapa datos
     titulo(ax,
            f"El 90 % de los KALINA tiene razón de presiones entre {rp5:.1f} y "
            f"{rp95:.1f}",

@@ -63,6 +63,8 @@ def hoja_tabla(wb, meta, condiciones):
     for i, fila in enumerate(df.itertuples(index=False), 9):
         for j, (col, v) in enumerate(zip(df.columns, fila), 1):
             v = None if (isinstance(v, float) and pd.isna(v)) else v
+            if isinstance(v, float) and not float(v).is_integer():
+                v = float(f"{v:.5g}")              # 10.87115255 → 10.871
             cel = ws.cell(i, j, v)
             fmt = fmt_excel(tipo_por_unidad(col), v) if isinstance(v, (int, float)) else None
             if fmt:

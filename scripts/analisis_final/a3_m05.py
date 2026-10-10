@@ -25,11 +25,11 @@ COND = pd.read_csv("analisis_final/00_inventario/condiciones_por_subcaso.csv")
 FUENTE = "todos_los_puntos.csv"
 PP = ("PP = datos del enunciado del profesor (T_fuente 623.15 K, P_alta 3000 kPa, "
       "P_baja 400 kPa, x_b 0.50)")
-ESCENARIO = {"1": "sus temperaturas (T_fuente y T_sumidero)",
-             "2": "sus presiones (P_alta y P_baja)",
+ESCENARIO = {"1": "sus temperaturas, T_fuente y T_sumidero",
+             "2": "sus presiones, P_alta y P_baja",
              "3": "sus presiones y su clima",
              "4": "su P_alta y sus temperaturas",
-             "5": "su fuente y su composición (T_fuente y x_b)"}
+             "5": "su fuente y su composición, T_fuente y x_b"}
 ORDEN_X = ["P_alta", "T_fuente", "x_b", "T_sumidero", "eps_cond"]
 ORDEN_Y = ["P_baja", "eps_cond", "x_b", "T_fuente"]
 
@@ -56,7 +56,7 @@ def fig_m05(k):
     fig, ax = plt.subplots(figsize=(8.5, 5.4))
     dispersion(ax, sub, x, y, s=22)
     ax.set_xlabel(NOMBRE[x]); ax.set_ylabel(NOMBRE[y])
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=8, frameon=False)  # fuera: no tapa datos
     t1 = (f"Escenario S{k} (conserva {ESCENARIO[k]}): {n_kal} KALINA de {len(ev)} "
           f"evaluados, {n_conf} confiables")
     titulo(ax, t1, f"Bloque {bloque} · {id_sub}")

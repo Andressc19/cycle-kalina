@@ -108,19 +108,23 @@ def _hoja(wb, bloques, filas, variables, nb, ncol_p):
     dv = DataValidation(type="list", formula1=f"=Aux_tablero!$B$1:${L(ult)}$1", allow_blank=False)
     ws.add_data_validation(dv); dv.add("B2")
     ws["C2"] = "=" + _idx(filas.index("descripcion") + 2, ult)[1:]
-    for j, k in enumerate(KPI, 1):
-        ws.cell(4, j, k).font = Font(bold=True, size=9)
-        c = ws.cell(5, j, _idx(j + 1, ult)); c.font = Font(bold=True, size=14, color="2E7D32")
-    ws["H4"], ws["H5"] = "Eje X:", "Eje Y:"
-    ws["I4"], ws["I5"] = _idx(filas.index("eje_x") + 2, ult), _idx(filas.index("eje_y") + 2, ult)
+    for j, k in enumerate(KPI, 4):            # cifras en D..I, columnas propias (no cortan)
+        c = ws.cell(4, j, k); c.font = Font(bold=True, size=9); c.alignment = Alignment(wrap_text=True)
+        c = ws.cell(5, j, _idx(j - 2, ult)); c.font = Font(bold=True, size=14, color="2E7D32")
+        ws.column_dimensions[L(j)].width = 16
+    ws["K4"], ws["K5"] = "Eje X:", "Eje Y:"
+    ws["L4"], ws["L5"] = _idx(filas.index("eje_x") + 2, ult), _idx(filas.index("eje_y") + 2, ult)
     ws["A7"] = "Condiciones de este bloque"; ws["A7"].font = Font(bold=True)
     for i, v in enumerate(variables):
         ws.cell(8 + i, 1, NOMBRE.get(v, v))
         ws.cell(8 + i, 2, _idx(filas.index(f"cond_{v}") + 2, ult))
     fp = 9 + len(variables)
     ws.cell(fp, 1, "Pie del bloque:").font = Font(bold=True)
-    c = ws.cell(fp + 1, 1, _idx(filas.index("pie") + 2, ult)); c.alignment = Alignment(wrap_text=True)
-    ws.column_dimensions["A"].width, ws.column_dimensions["B"].width = 44, 70
+    c = ws.cell(fp + 1, 1, _idx(filas.index("pie") + 2, ult))
+    c.alignment = Alignment(wrap_text=True, vertical="top")
+    ws.merge_cells(start_row=fp + 1, start_column=1, end_row=fp + 6, end_column=2)   # pie completo
+    ws.column_dimensions["A"].width, ws.column_dimensions["B"].width = 44, 62
+    ws.column_dimensions["C"].width = 2
     # datos auxiliares de los gráficos (columnas ocultas desde Z)
     for i, (etq, k) in enumerate(CLASES):
         ws.cell(F_ini + i, 26, etq); ws.cell(F_ini + i, 27, _idx(filas.index(f"clase_{k}") + 2, ult))
@@ -145,16 +149,20 @@ def _graficos(ws):
     b1.add_data(Reference(ws, min_col=27, min_row=F_ini, max_row=F_ini + 4), titles_from_data=False)
     b1.set_categories(Reference(ws, min_col=26, min_row=F_ini, max_row=F_ini + 4))
     b1.legend = None; b1.height, b1.width = 7, 13
-    ws.add_chart(b1, "D7")
+    from openpyxl.chart.marker import DataPoint      # una barra por clase, con su color
+    for i, col in enumerate(["2E7D32", "EF8A17", "C9A227", "C62828", "9E9E9E"]):
+        pt = DataPoint(idx=i); pt.graphicalProperties.solidFill = col
+        b1.series[0].dPt.append(pt)
+    ws.add_chart(b1, "D8")
     b2 = BarChart(); b2.title = "Criterios que bloquean (genuinos no KALINA)"
     b2.add_data(Reference(ws, min_col=27, min_row=F_ini + 7, max_row=F_ini + 10), titles_from_data=False)
     b2.set_categories(Reference(ws, min_col=26, min_row=F_ini + 7, max_row=F_ini + 10))
     b2.legend = None; b2.height, b2.width = 7, 13
     b2.series[0].graphicalProperties.solidFill = "C62828"
-    ws.add_chart(b2, "D23")
-    sc = ScatterChart(); sc.title = "Dispersión del bloque (ejes en I4:I5)"
+    ws.add_chart(b2, "D24")
+    sc = ScatterChart(); sc.title = "Dispersión del bloque (ejes en L4:L5)"
     sc.style = 13; sc.height, sc.width = 14, 18
-    sc.x_axis.title, sc.y_axis.title = "Eje X (ver I4)", "Eje Y (ver I5)"
+    sc.x_axis.title, sc.y_axis.title = "Eje X (ver L4)", "Eje Y (ver L5)"
     for s, (cod, etq, _, color, simb) in enumerate(SERIES):
         xs = Reference(ws, min_col=29 + 2 * s, min_row=F_ini, max_row=F_ini + MAXP - 1)
         ys = Reference(ws, min_col=30 + 2 * s, min_row=F_ini, max_row=F_ini + MAXP - 1)
@@ -164,4 +172,7 @@ def _graficos(ws):
         ser.marker.graphicalProperties.line.solidFill = color
         ser.graphicalProperties.line.noFill = True
         sc.series.append(ser)
-    ws.add_chart(sc, "K7")
+    for g in (b1, b2, sc):                    # columnas auxiliares ocultas: graficarlas igual
+        g.visible_cells_only = False
+        g.x_axis.delete = g.y_axis.delete = False
+    ws.add_chart(sc, "K8")

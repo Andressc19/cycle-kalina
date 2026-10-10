@@ -114,8 +114,8 @@ del director del REPORTE_M3 §11.*
 - *Figura FIG-M03-04. Distancia entre A\* y cada frontera de clase, medida como fracción del rango
   de la variable (0 = justo en A\*). Mismos datos fijos. Fuente: `m3_cruces.csv`.*
 
-Las versiones actuales (`m3_tornado.png`, `m3_elasticidad.png`, `m3_curvas.png`) se rehacen. El
-tornado original usa el Δη con W_net ≤ 0 y les faltan los títulos en español y el recuadro de condiciones.
+Las cuatro figuras ya están rehechas con estas reglas en `analisis_final/03_figuras/M03/` (el tornado
+usa el Δη con W_net > 0).
 
 ### Conclusiones del caso:
 1. **A\* está al filo de O2.** En 8 de las 9 variables con frontera medida, O2 está a menos del 6 % del

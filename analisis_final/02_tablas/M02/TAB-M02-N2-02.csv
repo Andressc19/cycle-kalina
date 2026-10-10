@@ -1,4 +1,4 @@
-﻿Ruta,Variable 1,Valor 1,N genuinos,N KALINA,Falsos convergidos (N2),P_baja mínima KALINA [kPa],η mínima KALINA [%],Fuera de rango en la mínima KALINA,P_baja mínima con O2 [kPa],D mínimo,P_baja del mejor D [kPa],Criterios bloqueantes frecuentes
+﻿Ruta,Variable 1,Valor 1,Genuinos,KALINA,Falsos convergidos (N2),P_baja mínima KALINA [kPa],η mínima KALINA [%],Fuera de rango en la mínima KALINA,P_baja mínima con O2 [kPa],D mínimo,P_baja del mejor D [kPa],Criterios bloqueantes frecuentes
 A,eps_hrvg,0.75,12,0,0,,,,,5.7734880637426045,2000.0,O2(12) · O1(1)
 A,eps_hrvg,0.78,12,0,0,,,,,6.6861847562146295,2000.0,O2(12) · O1(1)
 A,eps_hrvg,0.81,12,0,0,,,,,7.608772705079275,2000.0,O2(12) · O1(1)

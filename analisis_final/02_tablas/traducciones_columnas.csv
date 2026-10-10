@@ -1,0 +1,438 @@
+﻿tabla,columna_original,nombre_propuesto,unidad
+TAB-M01-01,corregible,Corregibles,–
+TAB-M01-01,fuera_rango,Fuera de rango,–
+TAB-M01-01,genuinos,Genuinos,–
+TAB-M01-01,id_subcaso,Subcaso,–
+TAB-M01-01,invariable,Inviables,–
+TAB-M01-01,kalina,KALINA,–
+TAB-M01-01,kalina_confiables,KALINA confiables,–
+TAB-M01-01,n2,Falsos convergidos (N2),–
+TAB-M01-01,n_puntos,Corridas,–
+TAB-M01-01,no_convergio,No convergidos,–
+TAB-M01-01,omitidos,Omitidos,–
+TAB-M01-02,clase_ahora,Clase (ahora),–
+TAB-M01-02,clase_antes,Clase (antes),–
+TAB-M01-02,d_eta_pp,Δη [pp],pp
+TAB-M01-02,eta_ahora,η (ahora) [%],%
+TAB-M01-02,eta_antes,η (antes) [%],%
+TAB-M01-02,grupo,Grupo,–
+TAB-M01-02,mensaje_ahora,Mensaje (ahora),–
+TAB-M01-02,mensaje_antes,Mensaje (antes),–
+TAB-M01-02,misma_clase,Misma clase,–
+TAB-M01-02,valor,Valor,–
+TAB-M02-N1-01,corregible,Corregibles,–
+TAB-M02-N1-01,fuera_rango,Fuera de rango,–
+TAB-M02-N1-01,genuinos,Genuinos,–
+TAB-M02-N1-01,id_subcaso,Subcaso,–
+TAB-M02-N1-01,invariable,Inviables,–
+TAB-M02-N1-01,kalina,KALINA,–
+TAB-M02-N1-01,kalina_confiables,KALINA confiables,–
+TAB-M02-N1-01,n2,Falsos convergidos (N2),–
+TAB-M02-N1-01,n_puntos,Corridas,–
+TAB-M02-N1-01,no_convergio,No convergidos,–
+TAB-M02-N1-01,omitidos,Omitidos,–
+TAB-M02-N1-02,D_minimo,D mínimo,–
+TAB-M02-N1-02,criterios_bloqueantes_frecuentes,Criterios bloqueantes frecuentes,–
+TAB-M02-N1-02,d_normalizada,d normalizado,–
+TAB-M02-N1-02,n_converge,Convergen,–
+TAB-M02-N1-02,n_corregible,Corregibles,–
+TAB-M02-N1-02,n_inviable,Inviables,–
+TAB-M02-N1-02,n_kalina,KALINA,–
+TAB-M02-N1-02,n_no_convergio,No convergidos,–
+TAB-M02-N1-02,tipo,Tipo,–
+TAB-M02-N1-02,valor_D_minimo,Valor de D mínimo,–
+TAB-M02-N1-02,valor_conv_mas_cercano_prof,Valor convergido más cercano al PP,–
+TAB-M02-N1-02,valor_kalina_mas_cercano_prof,Valor KALINA más cercano al PP,–
+TAB-M02-N1-02,variable,Variable,–
+TAB-M02-N2-01,corregible,Corregibles,–
+TAB-M02-N2-01,fuera_rango,Fuera de rango,–
+TAB-M02-N2-01,genuinos,Genuinos,–
+TAB-M02-N2-01,id_subcaso,Subcaso,–
+TAB-M02-N2-01,invariable,Inviables,–
+TAB-M02-N2-01,kalina,KALINA,–
+TAB-M02-N2-01,kalina_confiables,KALINA confiables,–
+TAB-M02-N2-01,n2,Falsos convergidos (N2),–
+TAB-M02-N2-01,n_puntos,Corridas,–
+TAB-M02-N2-01,no_convergio,No convergidos,–
+TAB-M02-N2-01,omitidos,Omitidos,–
+TAB-M02-N2-02,P_baja_mejor_D,P_baja del mejor D [kPa],kPa
+TAB-M02-N2-02,P_baja_min_O2,P_baja mínima con O2 [kPa],kPa
+TAB-M02-N2-02,P_baja_min_kalina,P_baja mínima KALINA [kPa],kPa
+TAB-M02-N2-02,criterios_bloqueantes_frecuentes,Criterios bloqueantes frecuentes,–
+TAB-M02-N2-02,eta_min_kalina,η mínima KALINA [%],%
+TAB-M02-N2-02,fuera_rango_min_kalina,Fuera de rango en la mínima KALINA,–
+TAB-M02-N2-02,mejor_D,D mínimo,–
+TAB-M02-N2-02,n_espurios_N2,Falsos convergidos (N2),–
+TAB-M02-N2-02,n_genuinos,Genuinos,–
+TAB-M02-N2-02,n_kalina,KALINA,–
+TAB-M02-N2-02,ruta,Ruta,–
+TAB-M02-N2-02,val1,Valor 1,–
+TAB-M02-N2-02,var1,Variable 1,–
+TAB-M02R-01,corregible,Corregibles,–
+TAB-M02R-01,fuera_rango,Fuera de rango,–
+TAB-M02R-01,genuinos,Genuinos,–
+TAB-M02R-01,id_subcaso,Subcaso,–
+TAB-M02R-01,invariable,Inviables,–
+TAB-M02R-01,kalina,KALINA,–
+TAB-M02R-01,kalina_confiables,KALINA confiables,–
+TAB-M02R-01,n2,Falsos convergidos (N2),–
+TAB-M02R-01,n_puntos,Corridas,–
+TAB-M02R-01,no_convergio,No convergidos,–
+TAB-M02R-01,omitidos,Omitidos,–
+TAB-M02R-02,bloqueantes,Bloqueantes,–
+TAB-M02R-02,mayor_eta,η mayor [%],%
+TAB-M02R-02,mayor_eta_val1,Valor 1 de la η mayor,–
+TAB-M02R-02,mayor_eta_val2,Valor 2 de la η mayor,–
+TAB-M02R-02,menor_d,d menor,–
+TAB-M02R-02,menor_d_eta,η en el d menor [%],%
+TAB-M02R-02,menor_d_val1,Valor 1 del d menor,–
+TAB-M02R-02,menor_d_val2,Valor 2 del d menor,–
+TAB-M02R-02,n_N2,Falsos convergidos (N2),–
+TAB-M02R-02,n_genuinos,Genuinos,–
+TAB-M02R-02,n_kalina,KALINA,–
+TAB-M02R-02,parte,Parte,–
+TAB-M02R-02,val1,Valor 1,–
+TAB-M02R-02,var1,Variable 1,–
+TAB-M02R-02,var2,Variable 2,–
+TAB-M02S-01,corregible,Corregibles,–
+TAB-M02S-01,fuera_rango,Fuera de rango,–
+TAB-M02S-01,genuinos,Genuinos,–
+TAB-M02S-01,id_subcaso,Subcaso,–
+TAB-M02S-01,invariable,Inviables,–
+TAB-M02S-01,kalina,KALINA,–
+TAB-M02S-01,kalina_confiables,KALINA confiables,–
+TAB-M02S-01,n2,Falsos convergidos (N2),–
+TAB-M02S-01,n_puntos,Corridas,–
+TAB-M02S-01,no_convergio,No convergidos,–
+TAB-M02S-01,omitidos,Omitidos,–
+TAB-M02S-02,B_verificado_min_kalina,B verificado en la mínima KALINA,–
+TAB-M02S-02,P_baja_eta_max_kalina,P_baja en la η máxima KALINA [kPa],kPa
+TAB-M02S-02,P_baja_min_kalina,P_baja mínima KALINA [kPa],kPa
+TAB-M02S-02,base,Base,–
+TAB-M02S-02,bloqueantes_genuinos,Bloqueantes (genuinos),–
+TAB-M02S-02,codigos_bloqueo,Códigos de bloqueo,–
+TAB-M02S-02,eta_max_kalina,η máxima KALINA [%],%
+TAB-M02S-02,eta_min_kalina,η mínima KALINA [%],%
+TAB-M02S-02,fuera_rango_min_kalina,Fuera de rango en la mínima KALINA,–
+TAB-M02S-02,n_N2,Falsos convergidos (N2),–
+TAB-M02S-02,n_genuinos,Genuinos,–
+TAB-M02S-02,n_kalina,KALINA,–
+TAB-M03-01,corregible,Corregibles,–
+TAB-M03-01,fuera_rango,Fuera de rango,–
+TAB-M03-01,genuinos,Genuinos,–
+TAB-M03-01,id_subcaso,Subcaso,–
+TAB-M03-01,invariable,Inviables,–
+TAB-M03-01,kalina,KALINA,–
+TAB-M03-01,kalina_confiables,KALINA confiables,–
+TAB-M03-01,n2,Falsos convergidos (N2),–
+TAB-M03-01,n_puntos,Corridas,–
+TAB-M03-01,no_convergio,No convergidos,–
+TAB-M03-01,omitidos,Omitidos,–
+TAB-M04-01,corregible,Corregibles,–
+TAB-M04-01,fuera_rango,Fuera de rango,–
+TAB-M04-01,genuinos,Genuinos,–
+TAB-M04-01,id_subcaso,Subcaso,–
+TAB-M04-01,invariable,Inviables,–
+TAB-M04-01,kalina,KALINA,–
+TAB-M04-01,kalina_confiables,KALINA confiables,–
+TAB-M04-01,n2,Falsos convergidos (N2),–
+TAB-M04-01,n_puntos,Corridas,–
+TAB-M04-01,no_convergio,No convergidos,–
+TAB-M04-01,omitidos,Omitidos,–
+TAB-M04-02,KS,KS,–
+TAB-M04-02,fav_p05,"Rango favorable, p05",–
+TAB-M04-02,fav_p95,"Rango favorable, p95",–
+TAB-M04-02,ic_hi,IC superior,–
+TAB-M04-02,ic_lo,IC inferior,–
+TAB-M04-02,n_B,n en B (KALINA),–
+TAB-M04-02,n_Bbar,n en B̄ (no KALINA),–
+TAB-M04-02,n_excluidos,n excluidos,–
+TAB-M04-02,p_valor,Valor p,–
+TAB-M04-02,separacion,Separación,–
+TAB-M04-02,variable,Variable,–
+TAB-M04-03,ic_hi,IC superior,–
+TAB-M04-03,ic_lo,IC inferior,–
+TAB-M04-03,n,N,–
+TAB-M04-03,p_valor,Valor p,–
+TAB-M04-03,prcc,PRCC,–
+TAB-M04-03,salida,Salida,–
+TAB-M04-03,t,t de Student,–
+TAB-M04-03,variable,Variable,–
+TAB-M04-04,KS,KS,–
+TAB-M04-04,grupo,Grupo,–
+TAB-M04-04,max,Máximo,–
+TAB-M04-04,mediana,Mediana,–
+TAB-M04-04,min,Mínimo,–
+TAB-M04-04,n,N,–
+TAB-M04-04,p05,Percentil 5,–
+TAB-M04-04,p95,Percentil 95,–
+TAB-M04-04,p_valor,Valor p,–
+TAB-M04-04,variable,Variable,–
+TAB-M04-05,P_baja_max,P_baja máxima [kPa],kPa
+TAB-M04-05,P_baja_min,P_baja mínima [kPa],kPa
+TAB-M04-05,dP_max,ΔP máxima [kPa],kPa
+TAB-M04-05,dP_min,ΔP mínima [kPa],kPa
+TAB-M04-05,franja,Franja,–
+TAB-M04-05,hi,Límite superior,–
+TAB-M04-05,lo,Límite inferior,–
+TAB-M04-05,n,N,–
+TAB-M04-05,n_kalina,KALINA,–
+TAB-M04-05,pct_kalina,KALINA [%],%
+TAB-M04-05,rP_max,r_P máxima [–],–
+TAB-M04-05,rP_min,r_P mínima [–],–
+TAB-M04-05,variable,Variable,–
+TAB-M04-06,P_baja_max,P_baja máxima [kPa],kPa
+TAB-M04-06,P_baja_min,P_baja mínima [kPa],kPa
+TAB-M04-06,dP_max,ΔP máxima [kPa],kPa
+TAB-M04-06,dP_min,ΔP mínima [kPa],kPa
+TAB-M04-06,franja,Franja,–
+TAB-M04-06,hi,Límite superior,–
+TAB-M04-06,lo,Límite inferior,–
+TAB-M04-06,n,N,–
+TAB-M04-06,n_kalina,KALINA,–
+TAB-M04-06,pct_kalina,KALINA [%],%
+TAB-M04-06,rP_max,r_P máxima [–],–
+TAB-M04-06,rP_min,r_P mínima [–],–
+TAB-M04-06,variable,Variable,–
+TAB-M04-07,P_baja_max,P_baja máxima [kPa],kPa
+TAB-M04-07,P_baja_min,P_baja mínima [kPa],kPa
+TAB-M04-07,dP_max,ΔP máxima [kPa],kPa
+TAB-M04-07,dP_min,ΔP mínima [kPa],kPa
+TAB-M04-07,franja,Franja,–
+TAB-M04-07,hi,Límite superior,–
+TAB-M04-07,lo,Límite inferior,–
+TAB-M04-07,n,N,–
+TAB-M04-07,n_kalina,KALINA,–
+TAB-M04-07,pct_kalina,KALINA [%],%
+TAB-M04-07,rP_max,r_P máxima [–],–
+TAB-M04-07,rP_min,r_P mínima [–],–
+TAB-M04-07,variable,Variable,–
+TAB-M04b-01,corregible,Corregibles,–
+TAB-M04b-01,fuera_rango,Fuera de rango,–
+TAB-M04b-01,genuinos,Genuinos,–
+TAB-M04b-01,id_subcaso,Subcaso,–
+TAB-M04b-01,invariable,Inviables,–
+TAB-M04b-01,kalina,KALINA,–
+TAB-M04b-01,kalina_confiables,KALINA confiables,–
+TAB-M04b-01,n2,Falsos convergidos (N2),–
+TAB-M04b-01,n_puntos,Corridas,–
+TAB-M04b-01,no_convergio,No convergidos,–
+TAB-M04b-01,omitidos,Omitidos,–
+TAB-M04c-01,corregible,Corregibles,–
+TAB-M04c-01,fuera_rango,Fuera de rango,–
+TAB-M04c-01,genuinos,Genuinos,–
+TAB-M04c-01,id_subcaso,Subcaso,–
+TAB-M04c-01,invariable,Inviables,–
+TAB-M04c-01,kalina,KALINA,–
+TAB-M04c-01,kalina_confiables,KALINA confiables,–
+TAB-M04c-01,n2,Falsos convergidos (N2),–
+TAB-M04c-01,n_puntos,Corridas,–
+TAB-M04c-01,no_convergio,No convergidos,–
+TAB-M04c-01,omitidos,Omitidos,–
+TAB-M04c-02,P_baja_max_kalina,P_baja máxima KALINA [kPa],kPa
+TAB-M04c-02,franja,Franja,–
+TAB-M04c-02,fuente,Fuente,–
+TAB-M04c-02,hi,Límite superior,–
+TAB-M04c-02,lo,Límite inferior,–
+TAB-M04c-02,n,N,–
+TAB-M04c-02,n_kalina,KALINA,–
+TAB-M04c-02,pct_kalina,KALINA [%],%
+TAB-M04c-03,P_baja_max_kalina,P_baja máxima KALINA [kPa],kPa
+TAB-M04c-03,franja,Franja,–
+TAB-M04c-03,hi,Límite superior,–
+TAB-M04c-03,lo,Límite inferior,–
+TAB-M04c-03,n,N,–
+TAB-M04c-03,n_kalina,KALINA,–
+TAB-M04c-03,pct_kalina,KALINA [%],%
+TAB-M05-01,corregible,Corregibles,–
+TAB-M05-01,fuera_rango,Fuera de rango,–
+TAB-M05-01,genuinos,Genuinos,–
+TAB-M05-01,id_subcaso,Subcaso,–
+TAB-M05-01,invariable,Inviables,–
+TAB-M05-01,kalina,KALINA,–
+TAB-M05-01,kalina_confiables,KALINA confiables,–
+TAB-M05-01,n2,Falsos convergidos (N2),–
+TAB-M05-01,n_puntos,Corridas,–
+TAB-M05-01,no_convergio,No convergidos,–
+TAB-M05-01,omitidos,Omitidos,–
+TAB-M05-02,KALINA,KALINA,–
+TAB-M05-02,N2,Falsos convergidos (N2),–
+TAB-M05-02,bloqueante,Criterio bloqueante,–
+TAB-M05-02,bloqueante_n,Veces que bloquea,–
+TAB-M05-02,cercano_d,d del más cercano,–
+TAB-M05-02,cercano_eta,η del más cercano [%],%
+TAB-M05-02,cercano_id,Identificador del más cercano,–
+TAB-M05-02,escenario,Escenario,–
+TAB-M05-02,evaluados,Evaluados,–
+TAB-M05-02,factible,Factible,–
+TAB-M05-02,fuera_rango,Fuera de rango,–
+TAB-M05-02,genuinos,Genuinos,–
+TAB-M05-02,mejor_D,D mínimo,–
+TAB-M05-02,mejor_D_id,Identificador del D mínimo,–
+TAB-M05-02,mejor_eta,η máxima [%],%
+TAB-M05-02,mejor_eta_id,Identificador de la η máxima,–
+TAB-M05-02,n,N,–
+TAB-M05-02,omitidos,Omitidos,–
+TAB-M05-02,suma_t_s,Tiempo total [s],s
+TAB-M05-03,KS,KS,–
+TAB-M05-03,escenario,Escenario,–
+TAB-M05-03,grupo,Grupo,–
+TAB-M05-03,max,Máximo,–
+TAB-M05-03,mediana,Mediana,–
+TAB-M05-03,min,Mínimo,–
+TAB-M05-03,n,N,–
+TAB-M05-03,p05,Percentil 5,–
+TAB-M05-03,p95,Percentil 95,–
+TAB-M05-03,p_valor,Valor p,–
+TAB-M05-03,variable,Variable,–
+TAB-M05c-01,corregible,Corregibles,–
+TAB-M05c-01,fuera_rango,Fuera de rango,–
+TAB-M05c-01,genuinos,Genuinos,–
+TAB-M05c-01,id_subcaso,Subcaso,–
+TAB-M05c-01,invariable,Inviables,–
+TAB-M05c-01,kalina,KALINA,–
+TAB-M05c-01,kalina_confiables,KALINA confiables,–
+TAB-M05c-01,n2,Falsos convergidos (N2),–
+TAB-M05c-01,n_puntos,Corridas,–
+TAB-M05c-01,no_convergio,No convergidos,–
+TAB-M05c-01,omitidos,Omitidos,–
+TAB-M05c-02,T_fuente_max,T_fuente máxima [K],K
+TAB-M05c-02,T_fuente_min,T_fuente mínima [K],K
+TAB-M05c-02,eta_en_Tmax,η en T_fuente máxima [%],%
+TAB-M05c-02,eta_en_Tmin,η en T_fuente mínima [%],%
+TAB-M05c-02,n_kalina,KALINA,–
+TAB-M06-01,corregible,Corregibles,–
+TAB-M06-01,fuera_rango,Fuera de rango,–
+TAB-M06-01,genuinos,Genuinos,–
+TAB-M06-01,id_subcaso,Subcaso,–
+TAB-M06-01,invariable,Inviables,–
+TAB-M06-01,kalina,KALINA,–
+TAB-M06-01,kalina_confiables,KALINA confiables,–
+TAB-M06-01,n2,Falsos convergidos (N2),–
+TAB-M06-01,n_puntos,Corridas,–
+TAB-M06-01,no_convergio,No convergidos,–
+TAB-M06-01,omitidos,Omitidos,–
+TAB-M06-02,B_verificado,B verificado,–
+TAB-M06-02,clase_real,Clase con el motor real,–
+TAB-M06-02,clase_teqp,Clase con teqp,–
+TAB-M06-02,coincide_clase,Coincide la clase,–
+TAB-M06-02,d_eta_pp,Δη [pp],pp
+TAB-M06-02,dentro_banda,Dentro de la banda,–
+TAB-M06-02,eta_real,η con el motor real [%],%
+TAB-M06-02,eta_teqp,η con teqp [%],%
+TAB-M06-02,fuera_rango,Fuera de rango,–
+TAB-M06-02,id,Identificador,–
+TAB-M06-02,m_O1_real,Margen O1 con el motor real [–],–
+TAB-M06-02,m_O1_teqp,Margen O1 con teqp [–],–
+TAB-M06-02,m_O2_real,Margen O2 con el motor real [K],K
+TAB-M06-02,m_O2_teqp,Margen O2 con teqp [K],K
+TAB-M06-02,origen,Origen,–
+TAB-M06-03,P_baja_orig,P_baja original [kPa],kPa
+TAB-M06-03,P_baja_req,P_baja requerida [kPa],kPa
+TAB-M06-03,alcanzable,Alcanzable,–
+TAB-M06-03,d_eta_pp,Δη [pp],pp
+TAB-M06-03,eta_orig,η original [%],%
+TAB-M06-03,eta_req,η requerida [%],%
+TAB-M06-03,id,Identificador,–
+TAB-M06-03,iteraciones,Iteraciones,–
+TAB-M06-03,m_O1_req,Margen O1 requerido [–],–
+TAB-M06-03,nota,Nota,–
+TAB-M06-03,origen,Origen,–
+TAB-M06-03,rP_req,"Razón de presiones requerida, r_P [–]",–
+TAB-M06-03,ΔP_baja,ΔP_baja [kPa],kPa
+TAB-M06-03,ΔT_sub,"Subenfriamiento, ΔT_sub [K]",K
+TAB-M07-01,corregible,Corregibles,–
+TAB-M07-01,fuera_rango,Fuera de rango,–
+TAB-M07-01,genuinos,Genuinos,–
+TAB-M07-01,id_subcaso,Subcaso,–
+TAB-M07-01,invariable,Inviables,–
+TAB-M07-01,kalina,KALINA,–
+TAB-M07-01,kalina_confiables,KALINA confiables,–
+TAB-M07-01,n2,Falsos convergidos (N2),–
+TAB-M07-01,n_puntos,Corridas,–
+TAB-M07-01,no_convergio,No convergidos,–
+TAB-M07-01,omitidos,Omitidos,–
+TAB-M07-02,B_verificado,B verificado,–
+TAB-M07-02,arranque,Arranque,–
+TAB-M07-02,eta,"Eficiencia térmica del ciclo, η [%]",%
+TAB-M07-02,evaluaciones,Evaluaciones,–
+TAB-M07-02,fuera_rango,Fuera de rango,–
+TAB-M07-02,iteraciones,Iteraciones,–
+TAB-M07-02,m_O1,Margen O1 [–],–
+TAB-M07-02,m_O2,Margen O2 [K],K
+TAB-M07-02,m_O5,Margen O5 [–],–
+TAB-M09-01,corregible,Corregibles,–
+TAB-M09-01,fuera_rango,Fuera de rango,–
+TAB-M09-01,genuinos,Genuinos,–
+TAB-M09-01,id_subcaso,Subcaso,–
+TAB-M09-01,invariable,Inviables,–
+TAB-M09-01,kalina,KALINA,–
+TAB-M09-01,kalina_confiables,KALINA confiables,–
+TAB-M09-01,n2,Falsos convergidos (N2),–
+TAB-M09-01,n_puntos,Corridas,–
+TAB-M09-01,no_convergio,No convergidos,–
+TAB-M09-01,omitidos,Omitidos,–
+TAB-M09-02,D_min,D mínimo,–
+TAB-M09-02,conservados,Datos conservados,–
+TAB-M09-02,criterio_mas_roto,Criterio más roto,–
+TAB-M09-02,elegido,Elegido,–
+TAB-M09-02,kalina_por_busqueda,KALINA por búsqueda,–
+TAB-M09-02,n_conservadas,Datos del profesor conservados,–
+TAB-M09-02,n_eval,Evaluadas,–
+TAB-M09-02,n_genuinos,Genuinos,–
+TAB-M09-02,n_kalina,KALINA,–
+TAB-M09-02,n_kalina_confiable,KALINA confiables,–
+TAB-M09-02,ronda,Ronda,–
+TAB-M09-03,B_verificado,B verificado,–
+TAB-M09-03,clase_real,Clase con el motor real,–
+TAB-M09-03,clase_teqp,Clase con teqp,–
+TAB-M09-03,coincide_clase,Coincide la clase,–
+TAB-M09-03,d_eta_pp,Δη [pp],pp
+TAB-M09-03,eta_real,η con el motor real [%],%
+TAB-M09-03,eta_teqp,η con teqp [%],%
+TAB-M09-03,fuera_rango,Fuera de rango,–
+TAB-M09-03,id,Identificador,–
+TAB-M09-03,mensaje,Mensaje,–
+TAB-M09-03,origen,Origen,–
+TAB-M09-03,t_s,Tiempo [s],s
+TAB-M10-01,corregible,Corregibles,–
+TAB-M10-01,fuera_rango,Fuera de rango,–
+TAB-M10-01,genuinos,Genuinos,–
+TAB-M10-01,id_subcaso,Subcaso,–
+TAB-M10-01,invariable,Inviables,–
+TAB-M10-01,kalina,KALINA,–
+TAB-M10-01,kalina_confiables,KALINA confiables,–
+TAB-M10-01,n2,Falsos convergidos (N2),–
+TAB-M10-01,n_puntos,Corridas,–
+TAB-M10-01,no_convergio,No convergidos,–
+TAB-M10-01,omitidos,Omitidos,–
+TAB-M10-02,KALINA_ahora,KALINA (ahora),–
+TAB-M10-02,KALINA_sept,KALINA (septiembre),–
+TAB-M10-02,coincide,Coincide,–
+TAB-M10-02,confiables_ahora,Confiables ahora,–
+TAB-M10-02,d_eta_pp_max_abs,|Δη| máximo [pp],pp
+TAB-M10-02,d_eta_pp_medio_abs,|Δη| medio [pp],pp
+TAB-M10-02,familia,Familia,–
+TAB-M10-02,n,N,–
+TAB-M10-02,origen,Origen,–
+TAB-M10-02,piso_O2,Piso de O2 [K],K
+TAB-M10-02,variables_movidas,Variables movidas,–
+TAB-M10-03,criterio_alto,Criterio que rompe al subir la variable,–
+TAB-M10-03,criterio_bajo,Criterio que rompe al bajar la variable,–
+TAB-M10-03,eta_max,η máxima [%],%
+TAB-M10-03,eta_min,η mínima [%],%
+TAB-M10-03,max_kalina,Máximo KALINA,–
+TAB-M10-03,min_kalina,Mínimo KALINA,–
+TAB-M10-03,n_kalina,KALINA,–
+TAB-M10-03,variable,Variable,–
+TAB-M10b-01,corregible,Corregibles,–
+TAB-M10b-01,fuera_rango,Fuera de rango,–
+TAB-M10b-01,genuinos,Genuinos,–
+TAB-M10b-01,id_subcaso,Subcaso,–
+TAB-M10b-01,invariable,Inviables,–
+TAB-M10b-01,kalina,KALINA,–
+TAB-M10b-01,kalina_confiables,KALINA confiables,–
+TAB-M10b-01,n2,Falsos convergidos (N2),–
+TAB-M10b-01,n_puntos,Corridas,–
+TAB-M10b-01,no_convergio,No convergidos,–
+TAB-M10b-01,omitidos,Omitidos,–

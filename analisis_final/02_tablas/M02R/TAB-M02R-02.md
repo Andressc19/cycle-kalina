@@ -5,7 +5,7 @@
 **Datos fijos: T_sumidero = 300.03 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; motor = teqp.**  
 **Datos barridos: T_fuente [403–560] K (7 valores); P_baja [400–2000] kPa (20 valores); eta_t [0.4–0.95] (12 valores); eta_p [0.4–0.95] (12 valores); eps_hrvg [0.4–0.95] (32 valores); eps_reg [0.4–0.95] (12 valores); eps_cond [0.4–0.95] (12 valores).**  
 
-| Parte | Variable 1 | Valor 1 | Variable 2 | N genuinos | N KALINA | Falsos convergidos (N2) | d menor | Valor 1 del d menor | Valor 2 del d menor | η en el d menor [%] | η mayor [%] | Valor 1 de la η mayor | Valor 2 de la η mayor | Bloqueantes |
+| Parte | Variable 1 | Valor 1 | Variable 2 | Genuinos | KALINA | Falsos convergidos (N2) | d menor | Valor 1 del d menor | Valor 2 del d menor | η en el d menor [%] | η mayor [%] | Valor 1 de la η mayor | Valor 2 de la η mayor | Bloqueantes |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | n1 | eps_hrvg |  |  | 24 | 0 | 2 |  |  |  |  |  |  |  | O2(24) · O1(4) |
 | n1 | eps_reg |  |  | 0 | 0 | 0 |  |  |  |  |  |  |  |  |

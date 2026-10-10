@@ -342,6 +342,8 @@ const sig=(v)=>esNulo(v)?"—":Number(v).toLocaleString("es-CO",{maximumSignific
 const fmt=(v)=>typeof v==="string"?(v.trim()!==""&&!isNaN(Number(v))?sig(Number(v)):v):sig(v);
 const iniS=(v)=>typeof v==="string"&&v.trim().toLowerCase().charAt(0)==="s";
 const iniN=(v)=>typeof v==="string"&&v.trim().toLowerCase().charAt(0)==="n";
+/* punto del profesor (para marcar con * los valores del punto base que difieren de él) */
+const PP={T_fuente:623.15,T_sumidero:300.032917,P_alta:3000,P_baja:400,x_b:0.5,m_b:1,eta_t:0.85,eta_p:0.75,eps_hrvg:0.85,eps_reg:0.75,eps_cond:0.8};
 function sel(a,f){const o=[];for(let i=0;i<a.length;i++)if(f(a[i]))o.push(a[i]);return o;}
 function uno(a,f){for(let i=0;i<a.length;i++)if(f(a[i]))return a[i];return null;}
 const BLOQUES=D.BLOQUES||[], COND=D.CONDICIONES||[];
@@ -455,7 +457,8 @@ function renderCond(){
     for(const v of VARS){
       const rv=sel(COND,(c)=>cb.subs.indexOf(c.id_subcaso)>=0&&c.variable===v);
       if(!rv.length||sel(rv,(r)=>r.estado!=="sin_dato").length===0) continue;
-      filas.push({v:v,val:!esNulo(rv[0].valor_base)?rv[0].valor_base:rv[0].valor_fijo,u:rv[0].unidad,ig:rv[0].igual_al_profesor});
+      const vb=rv[0].valor_base, ig=!esNulo(vb)&&PP[v]!==undefined?(Math.abs(vb-PP[v])>1e-4*Math.abs(PP[v])?"no":"sí"):rv[0].igual_al_profesor;
+      filas.push({v:v,val:!esNulo(vb)?vb:rv[0].valor_fijo,u:rv[0].unidad,ig:ig});
     }
   }else filas=cb.fijos;
   let h='<table><thead><tr><th>Variable</th><th>Valor</th><th>Unidad</th></tr></thead><tbody>';

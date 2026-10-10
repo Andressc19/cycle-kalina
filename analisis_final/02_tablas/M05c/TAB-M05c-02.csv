@@ -1,4 +1,4 @@
-﻿"Temperatura del sumidero, T_sumidero [K]","Efectividad del condensador, ε_cond [–]",N KALINA,T_fuente mínima [K],T_fuente máxima [K],η en T_fuente mínima [%],η en T_fuente máxima [%]
+﻿"Temperatura del sumidero, T_sumidero [K]","Efectividad del condensador, ε_cond [–]",KALINA,T_fuente mínima [K],T_fuente máxima [K],η en T_fuente mínima [%],η en T_fuente máxima [%]
 278.15,0.85,8,390.0,407.5,1.9248677216256698,9.82727640453614
 278.15,0.875,9,390.0,410.0,1.8934319301572098,10.13331419447346
 278.15,0.9,9,390.0,410.0,1.8637082939979102,10.01622606824301

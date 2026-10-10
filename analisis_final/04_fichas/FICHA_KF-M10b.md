@@ -25,8 +25,19 @@ Extender hacia abajo el rango de x_b de M10 (0.60–0.95) y ver hasta dónde fun
 El enunciado del profesor usa x_b = 0.50, que es baja para un Kalina. Había que saber si con poco
 amoníaco el ciclo puede funcionar.
 
-### Datos o variables barridas / Datos modificados:
-Solo x_b y P_baja; lo demás queda en el ancla de Húsavík. Total: **71 corridas**.
+### Datos o variables barridas:
+
+| Subcaso | Variable | Rango | n |
+|---|---|---|---|
+| OFAT | x_b (P_baja fija en 690 kPa) | 0.30 – 0.70 | 17 |
+| MALLA | x_b × P_baja | x_b 0.30–0.70 (9) × P_baja 200–700 kPa (6) | 54 |
+
+Total: **71 corridas**.
+
+### Datos modificados:
+Ancla de Húsavík: P_alta 3300 kPa, T_fuente 394.15 K, T_sumidero 278.15 K, η_t 0.90, η_p 0.80,
+ε_HRVG 0.85, ε_reg 0.75, ε_cond 0.95, con el piso de O2 en 283.15 K. Respecto a M10, solo cambia el
+rango de x_b, que baja hasta 0.30.
 
 ### Métodos aplicados:
 Una variable a la vez y malla 2D completa. Los x_b menores que 0.55 se etiquetan como "x_b bajo,

@@ -35,15 +35,9 @@ def fig_m02_01():
     fig, axs = plt.subplots(2, 5, figsize=(12.5, 6))
     for ax, v in zip(axs.flat, vars_):
         sv = sub[sub["variable"] == v]
-        tira(ax, sv, "valor")
+        tira(ax, sv, "valor", etiquetas=ax.get_subplotspec().is_first_col())
         ax.set_title(v, fontsize=8)
-        ax.set_yticks([])
-        ax.set_ylabel("")
-        vi = ax.get_ylim()[1]
-        ax.set_ylim(-0.6, 0.6)
         ax.set_xlabel(NOMBRE[v], fontsize=7)
-        if ax.get_subplotspec().is_first_col():
-            ax.set_ylabel("…", fontsize=7)
     leyenda_fig(fig, sub)
     recuadro_fig(fig, ["KF-M02-N1"])
     titulo_fig(fig,
@@ -68,7 +62,7 @@ def _disp_02a(bloque, id_sub, nombre):
     dispersion(ax, sub, "P_baja", "val1")
     ax.set_xlabel(NOMBRE["P_baja"])
     ax.set_ylabel(NOMBRE[var1])
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=8, frameon=False)  # fuera: no tapa datos
     return sub, n_kal, fig, ax
 
 
@@ -100,7 +94,7 @@ def fig_m02_02b():
     dispersion(ax, sub, "P_baja", "val1")
     ax.set_xlabel(NOMBRE["P_baja"])
     ax.set_ylabel(NOMBRE["T_fuente"])
-    ax.legend(loc="upper left", fontsize=8)
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=8, frameon=False)  # fuera: no tapa datos
     titulo(ax,
            f"Ruta B: KALINA con T_fuente entre {tmin:.0f} y {tmax:.0f} K",
            "Bloque B03-B · KF-M02-N2-B")

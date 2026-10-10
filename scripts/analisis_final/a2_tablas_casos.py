@@ -8,7 +8,7 @@ import pandas as pd
 
 from a2_comun import (RAIZ, RES, TABLAS, MNN, PROFESOR, bloques_de, leer, leer_canon,
                       leer_conteo, nombre_es, tipo_de, formatear, escribir_tabla,
-                      subcasos_de, renombrar)
+                      subcasos_de, renombrar, volcar_traducciones)
 
 PUNTO_BASE = {
     "M01": "PP = punto del profesor (los 11 datos del enunciado; ver GLOSARIO)",
@@ -171,6 +171,7 @@ def main():
     for mnn, num, slug, ruta, titulo, caso, filtro in RESULTADOS:
         sub = casos.get(mnn) or subcasos_de("KF-" + mnn)
         tabla_resultado(mnn, num, slug, ruta, titulo, caso, sub, filtro)
+    volcar_traducciones()   # deja 02_tablas/traducciones_columnas.csv para revisión
     print("Tablas de casos y de resultados escritas.")
 
 

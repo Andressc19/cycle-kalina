@@ -5,7 +5,7 @@
 **Datos fijos: P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; eta_t = 0.85; eta_p = 0.75; eps_reg = 0.75; eps_cond = 0.8; motor = teqp.**  
 **Datos barridos: T_sumidero [278.15–300.03] K (5 valores); P_baja [150–1500] kPa (30 valores); T_amb_diseno [278.15–300.03] K (5 valores).**  
 
-| Base | Temperatura del sumidero, T_sumidero [K] | N genuinos | N KALINA | Falsos convergidos (N2) | P_baja mínima KALINA [kPa] | η mínima KALINA [%] | B verificado en la mínima KALINA | Fuera de rango en la mínima KALINA | η máxima KALINA [%] | P_baja en la η máxima KALINA [kPa] | Bloqueantes (genuinos) | Códigos de bloqueo |
+| Base | Temperatura del sumidero, T_sumidero [K] | Genuinos | KALINA | Falsos convergidos (N2) | P_baja mínima KALINA [kPa] | η mínima KALINA [%] | B verificado en la mínima KALINA | Fuera de rango en la mínima KALINA | η máxima KALINA [%] | P_baja en la η máxima KALINA [kPa] | Bloqueantes (genuinos) | Códigos de bloqueo |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | B1 | 278.1 | 18 | 11 | 0 | 290.6 | 10.41 | sí | no | 10.41 | 290.6 | CORREGIBLE(7) | O2(7) |
 | B1 | 283.1 | 18 | 12 | 0 | 337.5 | 10.03 | sí | no | 10.03 | 337.5 | CORREGIBLE(6) | O2(6) |

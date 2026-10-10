@@ -33,7 +33,9 @@ CRIT = ["O1", "O2", "O3", "O5"]
 
 
 def _meta(num, titulo, filtro, fuente, n, subcasos, notas=""):
-    return {"tabla": f"TAB-G{num}", "carpeta": "G", "hoja": f"G{num}_{titulo.split()[0].lower()}",
+    hoja = {"01": "G01_resumen_casos", "02": "G02_que_se_movio", "03": "G03_rangos_KALINA",
+            "04": "G04_datos_profesor", "05": "G05_bloqueos"}[num]
+    return {"tabla": f"TAB-G{num}", "carpeta": "G", "hoja": hoja,
             "titulo": titulo, "casos": "todos (síntesis)", "bloques": "uno por fila",
             "subcasos": subcasos, "punto_base": "el de cada fila (columna 'Punto base' o 'Datos fijos')",
             "filtro": filtro, "fuente": fuente, "n": n, "notas": notas}

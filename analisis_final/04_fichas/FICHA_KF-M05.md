@@ -29,17 +29,27 @@ P_baja 200–2000 kPa, T_fuente 380–623.15 K, T_sumidero 278.15–303.55 K, x_
 ### ¿Por qué se barrió?
 El usuario priorizó saber cuánto del enunciado se puede conservar, por encima de maximizar η.
 
-### Datos o variables barridas / Datos modificados:
+### Datos o variables barridas:
 
-| Escenario | Datos del profesor conservados (fijos) | Se sortean |
+| Escenario | Variables sorteadas (LHS, 120 puntos) | Rangos |
 |---|---|---|
-| S1 | sus temperaturas: T_fuente 623.15 K y T_sumidero 300.03 K | las otras 8 |
-| S2 | sus presiones: P_alta 3000 y P_baja 400 kPa | las otras 8 |
-| S3 | sus presiones y su clima: P_alta, P_baja y T_sumidero | las otras 7 |
-| S4 | su P_alta y sus temperaturas | las otras 7 |
-| S5 | su fuente y su composición: T_fuente 623.15 K y x_b 0.50 | las otras 8 |
+| S1 | P_alta, P_baja, x_b, η_t, η_p, ε_HRVG, ε_reg, ε_cond | P_alta 2000–5000 kPa · P_baja 200–2000 kPa · x_b 0.50–0.85 · η/ε 0.40–0.95 |
+| S2 | T_fuente, T_sumidero, x_b, η_t, η_p, ε (×3) | T_fuente 380–623 K · T_sumidero 278–303.5 K · x_b 0.50–0.85 · η/ε 0.40–0.95 |
+| S3 | T_fuente, x_b, η_t, η_p, ε (×3) | T_fuente 380–623 K · x_b 0.50–0.85 · η/ε 0.40–0.95 |
+| S4 | P_baja, x_b, η_t, η_p, ε (×3) | P_baja 200–2000 kPa · x_b 0.50–0.85 · η/ε 0.40–0.95 |
+| S5 | T_sumidero, P_alta, P_baja, η_t, η_p, ε (×3) | T_sumidero 278–303.5 K · P_alta 2000–5000 kPa · P_baja 200–2000 kPa · η/ε 0.40–0.95 |
 
-600 puntos en total: 2 omitidos y 598 evaluados.
+600 puntos en total: 2 omitidos y 598 evaluados. El piso de O2 es la T_sumidero de cada punto.
+
+### Datos modificados:
+
+| Escenario | Datos del profesor conservados exactamente | Datos del profesor que se abandonan |
+|---|---|---|
+| S1 | T_fuente 623.15 K, T_sumidero 300.03 K | los otros 8 (se sortean) |
+| S2 | P_alta 3000 kPa, P_baja 400 kPa | los otros 8 |
+| S3 | P_alta, P_baja y T_sumidero 300.03 K | los otros 7 |
+| S4 | P_alta 3000 kPa, T_fuente 623.15 K y T_sumidero 300.03 K | los otros 7 |
+| S5 | T_fuente 623.15 K y x_b 0.50 | los otros 8 |
 
 ### Métodos aplicados:
 Un LHS por escenario (semilla 20261007 + k) y rangos p5–p95 dentro de KALINA. Se buscó también el

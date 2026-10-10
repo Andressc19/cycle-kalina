@@ -70,6 +70,21 @@ ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conse
    - coincide con el motor real en los 5 puntos que el motor real alcanzó a resolver (M6/M9);
    - pasa la validación cruzada de A4.
 
+## 4b. Revisión de calidad (2026-10-10, segunda pasada)
+
+Volví a revisar todo contra los objetivos. Encontré y corregí:
+
+| Producto | Defecto encontrado | Corrección |
+|---|---|---|
+| Fichas | 5 fichas (M05, M07, M09, M10, M10b) juntaban "Datos barridos" y "Datos modificados" en una sola sección | Separadas, con tablas de rangos sacadas de `condiciones_por_subcaso.csv`; las 16 tienen las 12 secciones |
+| Ficha M02R | Describía mal la parte n2a, y en n2b omitía los KALINA con ε_HRVG = 0.50 | Corregida con los datos: n2a = ε_HRVG × ε_cond; n2b = KALINA con ε_HRVG 0.40–0.50 y P_baja 1318–2000 kPa (13 puntos distintos, todos fuera de rango) |
+| Ficha M10 | No advertía que 14 de los 97 puntos de la Fase 3 usan η_t hasta 0.98 o ε_cond hasta 0.99 | Advertencia agregada: los otros 83 tienen todas sus η y ε ≤ 0.95 |
+| Figuras | El recuadro de condiciones tapaba datos (en M02R-n3 tapaba el único KALINA); leyendas sobre los puntos; tiras en diagonal que parecían tendencia; matriz G02 ilegible; escalera de M9 sin rótulos | Recuadro debajo del eje, leyendas fuera, tiras por clase, matriz con alto proporcional y solo los valores relevantes, escalera rehecha |
+| Excel, hoja Tablero | **Los 3 gráficos salían vacíos en Excel** (graficaban columnas ocultas); cifras resumen cortadas; pie truncado | Gráficos visibles (verificado en Excel: 1, 1 y 4 series), cifras en columnas propias, pie completo, colores de clase |
+| Excel, tablas | Decimales sin redondear; nombres de columna inconsistentes; `criterio_bajo/alto` mal traducidos; hojas "G02_qué" | 5 cifras significativas; nombres unificados; `traducciones_columnas.csv` generado; hojas G con nombre claro |
+| Tablero web | No marcaba con * los valores del punto base que difieren del profesor | Corregido (en B06 marca solo T_fuente y P_baja) |
+| Código | Funciones muertas en `a3_comun.py`; 2 scripts de más de 200 líneas | Eliminadas; todos los scripts ≤ 200 líneas |
+
 ## 5. Lo que no se sabe
 
 - Los muestreos LHS por escenario (M5, M9) son exploraciones. Las franjas angostas solo se mapearon

@@ -33,7 +33,7 @@ def fig_m10_01():
     ax.axvspan(0.28, 0.475, color="0.85", zorder=0)
     ax.text(0.30, sub["P_baja"].max() * 0.97, "sin ciclo\n(x_b ≤ 0.475)", fontsize=8, va="top")
     ax.set_xlabel(NOMBRE["x_b"]); ax.set_ylabel(NOMBRE["P_baja"])
-    ax.legend(loc="lower right", fontsize=8)
+    ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=8, frameon=False)  # fuera: no tapa datos
     t1 = "Húsavík: la P_baja mínima de KALINA sube con la fracción de amoníaco x_b"
     titulo(ax, t1, "Bloque B14-MALLA · KF-M10-MALLA + KF-M10b-MALLA")
     recuadro_oat(ax, ["KF-M10-MALLA", "KF-M10b-MALLA"], 3)

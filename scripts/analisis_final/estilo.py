@@ -36,9 +36,10 @@ ETIQUETA_CLASE = {"KALINA": "KALINA", "CORREGIBLE": "Corregible", "INVIABLE": "I
 
 
 def recuadro_condiciones(ax, texto):
-    """Recuadro con el bloque y los datos fijos esenciales, dentro de la figura."""
-    ax.text(0.99, 0.01, texto, transform=ax.transAxes, ha="right", va="bottom",
-            fontsize=7, bbox=dict(boxstyle="round", fc="white", ec="0.7", alpha=0.9))
+    """Recuadro con el bloque y los datos fijos esenciales, DEBAJO del eje x (fuera del
+    área de datos: dentro del gráfico tapaba puntos, p. ej. el único KALINA de M02R-n3)."""
+    ax.text(0.0, -0.27, texto, transform=ax.transAxes, ha="left", va="top",
+            fontsize=7, bbox=dict(boxstyle="round", fc="white", ec="0.7"))
 
 
 def guardar(fig, ruta_sin_ext, pie):

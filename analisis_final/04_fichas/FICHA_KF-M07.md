@@ -25,7 +25,15 @@ Las variables libres de cada arranque, moviéndose paso a paso hacia la mejor η
 Para dar una cota superior de η realista y mostrar cuánto se pierde al conservar datos del enunciado.
 **Nota:** el objetivo principal de la campaña son los rangos KALINA; η es secundaria.
 
-### Datos o variables barridas / Datos modificados:
+### Datos o variables barridas:
+En cada arranque se mueven las variables que no conserva, con pasos de ±10 % del rango que se van
+achicando. No es una malla: la búsqueda solo visita los puntos que le sirven. Recorrido real
+(mín–máx visitado):
+- A3: P_alta 3606–5000 kPa, P_baja 1140–1580 kPa, x_b 0.79–0.85.
+- A4: T_fuente 391–427 K y η/ε hasta 0.95.
+- A5: P_alta 4508–5000 kPa, P_baja 802–1462 kPa.
+
+### Datos modificados:
 
 | Arranque | Datos del profesor conservados | Parte de |
 |---|---|---|
