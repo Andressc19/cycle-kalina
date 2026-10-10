@@ -1,7 +1,7 @@
 # Metodología de análisis, organización y reporte de resultados — campaña final M1–M10b
 
 **Fecha:** 2026-10-10 · **Rama:** `test/barrido_final` (worktree `.claude/worktrees/barrido-final`) ·
-**Estado:** diseño; nada ejecutado todavía. **Rev. 2 (2026-10-10):** se agregan las reglas de
+**Estado:** EJECUTADA el 2026-10-10 (ver `analisis_final/REPORTE_ANALISIS_FINAL.md`). **Rev. 2 (2026-10-10):** se agregan las reglas de
 presentación del §3A (bloques de comparabilidad, condiciones fijas en cada figura y tabla, pies de
 figura completos y todo en español) y el libro nuevo `datos/Excel_kalina_final_final_final.xlsx`.
 **Alcance:** solo la campaña final (M1–M10b). Las fases F1/F2/F3 de septiembre

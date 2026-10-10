@@ -1,0 +1,86 @@
+# Reporte final del análisis de resultados — campaña de barridos M1–M10b
+
+**Fecha:** 2026-10-10 · **Rama:** `test/barrido_final` · **Metodología:** `docs/METODOLOGIA_ANALISIS_RESULTADOS.md`
+
+## 1. La pregunta
+
+Con los barridos ya terminados: ¿qué dicen los datos, organizados de modo que no se mezclen casos con
+datos fijos distintos? Y ¿cómo se presentan al profesor con tablas, figuras y tableros que se entiendan solos?
+
+## 2. Qué se hizo, en simple
+
+1. **Una sola tabla con los 4 741 puntos** de la campaña, cada uno con su caso, subcaso y **bloque**.
+   Un bloque reúne los puntos que comparten las mismas variables fijas en los mismos valores. Las
+   condiciones (qué quedó fijo y en qué valor, y qué se barrió) se **detectaron desde los datos**, no
+   se escribieron a mano.
+2. **Validación cruzada:** se recalcularon desde esa tabla 78 cifras de los reportes. Coinciden 76;
+   las 2 restantes eran diferencias de definición y quedaron corregidas.
+3. **Productos de presentación** (todo en español):
+   - 30 figuras Matplotlib, cada una con su título-conclusión, su recuadro de condiciones y su pie completo;
+   - 63 tablas en CSV y Markdown;
+   - un libro Excel nuevo con una hoja interactiva `Tablero`;
+   - un tablero web interactivo;
+   - los datos preparados para Power BI;
+   - 16 fichas para los 17 casos (M4 y M4b comparten ficha porque son el mismo bloque).
+
+### Cómo se ejecutó
+
+Claude diseñó todo y lo auditó. El código lo empezó OpenCode con 5 agentes, cada uno en su propio
+worktree (A1 datos, A2 tablas y Excel, A3 figuras, A4 validación, A5 tablero). A mitad de camino, el
+modelo de OpenCode (big-pickle) dejó de responder. Un modelo alternativo gratuito (nemotron) se perdió
+en las rutas y también se colgó. Con autorización del usuario, Claude terminó lo que faltaba, en los
+mismos worktrees y con los mismos verificadores:
+- 4 scripts de figuras y los arreglos de diseño de las figuras;
+- la integración del tablero;
+- el libro Excel.
+
+Los vigilantes (skill `vigilante-tareas`) detectaron el cuelgue a los 10 minutos y comprobaron que
+ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conserva su huella SHA-256.
+
+## 3. Productos
+
+| Producto | Ruta | Cómo se verificó |
+|---|---|---|
+| Tabla canónica y condiciones | `analisis_final/01_datos/`, `00_inventario/` | 4 741 filas = suma de las filas de los CSV de origen; 0 identificadores vacíos o repetidos |
+| Validación cruzada | `analisis_final/05_validacion/checks_A4.md` | 76 de 78 coinciden; 2 diferencias de definición explicadas |
+| Fichas por caso | `analisis_final/04_fichas/` | 16 fichas (17 casos) con las 12 secciones de la plantilla, más un recuadro "Antes de leer" |
+| Figuras | `analisis_final/03_figuras/` | 30 de 30 con PNG, SVG y pie; conteos de cada figura iguales a los de la validación; revisión visual |
+| Tablas | `analisis_final/02_tablas/` | 3 conteos al azar iguales a `conteo_por_subcaso`; ranking de M3 igual al validado |
+| Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (89 hojas) | Tablero recalculado en Excel con 6 bloques: cifras resumen correctas |
+| Tablero web | `analisis_final/06_tablero/tablero_kalina.html` | Revisado en el navegador: sin errores, cifras resumen iguales a la verificación, gráficos visibles |
+| Power BI | `analisis_final/07_powerbi/` + `GUIA_POWERBI.md` | Esquema estrella generado; el tablero no se arma porque Power BI no está instalado |
+
+## 4. Conclusiones (validadas)
+
+1. **El bloqueo del enunciado es la fuente a 623 K.** Con ella el punto del profesor no converge.
+   Solo hay KALINA confiables alejándose mucho del resto del enunciado: x_b de ~0.7 a 0.85, P_alta
+   hasta 5000 kPa y P_baja de ~1.4 a 2 MPa.
+2. **Bajando la fuente a ~390–410 K se conserva casi todo el enunciado**:
+   - 8 de los 10 datos de diseño, con un sumidero de 280–293 K (M9);
+   - o las dos presiones del profesor, con ε_cond ≥ 0.875 en su clima de 300 K (M5c).
+3. **La cavitación (O2) es el criterio que manda**: bloquea al 87–100 % de los puntos genuinos que no
+   son KALINA en casi todos los casos (TAB-G05). Darle un margen de 2 K cuesta solo 25–46 kPa más de
+   P_baja (M6).
+4. **Ventana de presiones**: el 90 % de los KALINA tiene P_baja de 683 a 1461 kPa y r_P de 1.7 a 5.3
+   (M4/M4b). Un clima frío baja la P_baja necesaria (M2S); más amoníaco la sube (M10).
+5. **Eficiencia (secundaria)**: ~8–11 % con equipos de eficiencia media, y hasta 15.6 % con equipos
+   a 0.95 conservando las presiones del profesor (M7).
+6. **El modelo está validado**:
+   - reproduce el resultado del profesor (M1) y los 97 KALINA de Húsavík (M10);
+   - coincide con el motor real en los 5 puntos que el motor real alcanzó a resolver (M6/M9);
+   - pasa la validación cruzada de A4.
+
+## 5. Lo que no se sabe
+
+- Los muestreos LHS por escenario (M5, M9) son exploraciones. Las franjas angostas solo se mapearon
+  con mallas dirigidas (M5c).
+- En M5c no se exploró T_fuente > 410 K: el borde superior de la franja no está medido.
+- El motor real solo confirmó 5 puntos; los otros se cortaron por tiempo, no por la física.
+- Las diferencias de η menores que 0.7 pp no son concluyentes.
+
+## 6. Qué sigue
+
+1. Que el usuario revise las fichas, las figuras, el Excel y el tablero, y diga qué corregir.
+2. Decidir si el tablero web se publica como enlace privado para el profesor.
+3. Llevar `test/barrido_final` a master local; push o PR solo si el usuario lo pide.
+4. Opcional: un informe Word en APA 7 con las figuras y tablas, y Power BI si se instala.
