@@ -1,0 +1,14 @@
+﻿Subcaso,Variable,Estado,Valor o rango,n valores,¿Igual al profesor?,Unidad
+KF-M04c,"Temperatura de la fuente, T_fuente [K]",Barrida,380.7 – 499.8,150.0,,K
+KF-M04c,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.3 – 303.4,150.0,,K
+KF-M04c,"Presión de alta, P_alta [kPa]",Barrida,2016 – 4996,150.0,,kPa
+KF-M04c,"Presión de baja, P_baja [kPa]",Barrida,1501 – 2495,150.0,,kPa
+KF-M04c,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.502 – 0.850,150.0,,–
+KF-M04c,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+KF-M04c,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.751 – 0.919,150.0,,–
+KF-M04c,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.651 – 0.900,150.0,,–
+KF-M04c,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.601 – 0.948,150.0,,–
+KF-M04c,"Efectividad del regenerador, ε_reg [–]",Barrida,0.600 – 0.948,150.0,,–
+KF-M04c,"Efectividad del condensador, ε_cond [–]",Barrida,0.700 – 0.950,150.0,,–
+KF-M04c,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.3 – 303.4,135.0,,K
+KF-M04c,motor,Fija,teqp,,,–
