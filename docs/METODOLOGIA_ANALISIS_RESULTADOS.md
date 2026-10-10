@@ -106,34 +106,42 @@ Las columnas que un CSV no trae quedan vacías (nunca rellenadas con supuestos).
 Una conclusión por caso = **una frase de respuesta a la pregunta** + **la cifra que la sostiene** +
 **el criterio que bloquea** + **la confianza** (n genuinos, n KALINA confiables, banda de η).
 
-### 3.2 Borrador de conclusiones (tomadas de los REPORTE_* y notas del director; el agente A4 las valida contra los CSV)
+### 3.2 Conclusiones por barrido (validadas por A4 el 2026-10-10: 76 de 78 cifras coinciden; las 2 diferencias son de definición y están corregidas aquí)
 
 | Caso | Conclusión en una línea |
 |---|---|
-| M1 | El código actual reproduce la F1 del profesor: 41/41 NO_CONVERGIO, mismo mecanismo |
-| M2-N1 | Con un solo cambio no hay KALINA; TF, PA, XB, εH al menos hacen converger |
-| M2-N2 | Con dos cambios sí: TF 390–434 K + PB → 49 KALINA; con la fuente del profesor (ruta εH) no |
-| M2R | Abriendo η/ε a [0.40, 0.95] hay KALINA con la fuente del profesor (εH 0.40 + PB ≈ 1318 kPa), pero casi todo fuera de rango |
-| M2S | Un sumidero más frío baja la PB mínima a la mitad y sube η 2–3 pp (con piso O2 = T_sumidero) |
-| M3 | A\* está al filo de O2 en 9 de 10 variables; las palancas que suben η sin perder KALINA son εR y ηt |
-| M4/M4b | Ventana KALINA (p5–p95, 121 KALINA de 500): PA 2156–4842 kPa, PB 683–1461 kPa, dP 968–3718 kPa, rP 1.69–5.34 |
-| M4c | Al subir PB por encima de 1500 kPa, KALINA no se corta por PB sino por rP y η |
-| M5 | Con las temperaturas del profesor (S1), su PA + temperaturas (S4) o su fuente + XB (S5) hay KALINA; con sus presiones solo en una franja angosta |
-| M5c | Presiones del profesor: 104/165 KALINA desde TF ≈ 390 K con εC ≥ 0.875 |
-| M6 | teqp coincide con el motor real si éste tiene ~1500 s; O2 no tiene margen propio (2 K cuestan +25–46 kPa de PB) |
-| M7 | η máx. 15.0–15.6 %; 12.7 % con las temperaturas del profesor; óptimos en bordes, al filo de O1/O2 |
+| M1 | El código actual reproduce la F1 del profesor: 41 de 41 puntos siguen siendo NO_CONVERGIO |
+| M2-N1 | Con un solo cambio no hay KALINA; lo que más acerca es bajar T_fuente a ~400 K (solo falla O2, por 2 K) |
+| M2-N2 | Con dos cambios sí: T_fuente 390–434 K + P_baja → 59 KALINA (48 confiables); conservando la fuente del profesor (ruta ε_HRVG), 0 |
+| M2R | 14 KALINA distintos con η/ε en [0.40, 0.95]. Los que conservan la fuente de 623 K (ε_HRVG 0.40 + P_baja ≥ 1318 kPa) están todos fuera de rango; con las presiones del profesor + T_fuente 403 K + ε_cond 0.95 hay 1 confiable (η 9.5 %) |
+| M2S | Un sumidero ~22 K más frío reduce a la mitad la P_baja mínima (B1: 563 → 291 kPa) y sube η 2–3 pp; el profesor exacto nunca es KALINA |
+| M3 | A\* está a menos del 6 % del rango de la frontera de O2 en 8 de 9 variables; las palancas que suben η sin perder KALINA son ε_reg (hasta 10.96 %) y η_t (9.62 %) |
+| M4/M4b | El 90 % de los 121 KALINA (p5–p95) tiene P_alta 2156–4842 kPa, P_baja 683–1461 kPa, ΔP 968–3718 kPa y r_P 1.69–5.34; deciden P_baja y ε_cond (KS 0.43) |
+| M4c | Entre 1500 y 2500 kPa de P_baja sigue habiendo KALINA (33–75 % por franja): el límite superior es de eficiencia y de r_P, no de cavitación |
+| M5 | Por muestreo, los escenarios que conservan la fuente de 623 K dan 2 KALINA confiables de 20; las presiones del profesor solo funcionan en una franja angosta que el LHS no alcanzó |
+| M5c | Con las presiones del profesor: 104 de 165 KALINA, todos confiables, con T_fuente 390–410 K; con su clima (300 K) hace falta ε_cond ≥ 0.875 |
+| M6 | teqp coincide con el motor real (que necesita ~1500 s por punto); O2 no tiene margen propio y 2 K de subenfriamiento cuestan +25–46 kPa de P_baja y < 0.5 pp de η |
+| M7 | η máx. 15.6 % conservando las presiones y el clima del profesor (T_fuente 415 K, equipos a 0.95); 12.7 % conservando sus temperaturas (con x_b 0.85 y P_alta 5000 kPa) |
 | M8 | Anecdótico; no se usa en conclusiones |
-| M9 | Se conservan 8 de 10 datos de diseño (XB+PA+EF+PB) con TF 391–409 K y TS 280–293 K; TF = 623 K da 30/30 NO_CONVERGIO |
-| M10 | Húsavík: 97/97 KALINA de la Fase 3 reproducidos; PB mínima 500→800 kPa al pasar XB 0.70→0.91 |
-| M10b | Con XB ≤ 0.475 no hay ciclo (O5/O3); KALINA útil desde XB ≈ 0.55 con PB mín. 300 kPa |
+| M9 | Se conservan 8 de 10 datos de diseño (XB+PA+EF+PB) moviendo solo T_fuente (391–409 K) y T_sumidero (280–293 K): 5 de 5 KALINA confiables; ningún conjunto con TF da KALINA confiables |
+| M10 | Húsavík: 97 de 97 KALINA de la Fase 3 reproducidos; P_baja mínima de 500 a 800 kPa al pasar x_b de 0.70 a 0.91; su P_baja real (690 kPa) coincide con la mínima KALINA |
+| M10b | Con x_b ≤ 0.475 no hay ciclo (O5/O3); x_b = 0.50 es KALINA formal con η < 1.3 %; el KALINA útil empieza en x_b ≈ 0.55 (P_baja mín. 300 kPa) |
 
-### 3.3 Conclusiones generales (borrador, a validar)
-1. **El bloqueo estructural del enunciado es la fuente a 623 K**: ningún barrido logra KALINA confiable con ella.
-2. **O2 es el criterio dominante** en todas las familias; se cierra subiendo P_baja.
-3. **Ventana de presiones robusta**: rP ≈ 1.7–5.3 es lo que separa KALINA del resto (M4b), con PB que crece con PA.
-4. **Datos del profesor conservables**: 8 de 10 de diseño, a cambio de mover T_fuente a ~390–410 K.
-5. **η es secundaria**: 8–10 % alrededor de A\*, techo ~15.6 % en bordes; diferencias < 0.7 pp no concluyentes.
-6. **Húsavík valida el modelo en un caso real**, con XB ≥ 0.55.
+### 3.3 Conclusiones generales (validadas)
+1. **El bloqueo estructural del enunciado es la fuente a 623 K.** Con ella el punto del profesor no
+   converge. Solo aparecen KALINA confiables alejándose mucho del resto del enunciado (x_b ~0.7–0.85,
+   P_alta hasta 5000 kPa, P_baja ~1.4–2 MPa; M7-A3 y M5-S1). Combinada con la x_b o las presiones
+   del profesor, no hay ninguno (M9, M2S-B3, M5-S4/S5 y M7-A5: 0 confiables).
+2. **Bajando la fuente a ~390–410 K, casi todo el enunciado se conserva:** 8 de 10 datos de diseño
+   (M9), o las 2 presiones con ε_cond ≥ 0.875 en su clima de 300 K (M5c).
+3. **La cavitación (O2) es el criterio que manda** en todas las familias. Se cierra subiendo P_baja,
+   y dar 2 K de margen cuesta poco (M6).
+4. **Ventana de presiones:** el 90 % de los KALINA tiene P_baja de 683 a 1461 kPa y r_P de 1.7 a 5.3
+   (M4/M4b). La P_baja mínima baja con un clima frío (M2S) y sube con más amoníaco (M10).
+5. **η es secundaria:** ~8–11 % en diseños con eficiencias medias (A\*, M5c, M9) y hasta 15.6 % con
+   equipos a 0.95 (M7). Las diferencias menores que 0.7 pp no son concluyentes.
+6. **El modelo queda validado** por la reproducción de M1 y Húsavík (M10), la coincidencia con el
+   motor real (M6/M9) y la validación cruzada de A4.
 
 ---
 
