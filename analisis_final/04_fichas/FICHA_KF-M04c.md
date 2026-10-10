@@ -38,10 +38,10 @@ LHS, conteo por franjas de 100 kPa de P_baja y de 500 kPa de P_alta, y conteo de
 
 ### Resultados obtenidos:
 - **135 evaluados: 120 genuinos, 75 KALINA (45 confiables)** (A4, V14).
-- **Hay KALINA en todas las franjas, de 1500 a 2500 kPa**, con un 33–75 % de KALINA por franja.
+- **Hay KALINA en todas las franjas, de 1500 a 2500 kPa**, con un 33–75 % de KALINA por franja (sobre los puntos evaluados).
   El KALINA de mayor P_baja tiene 2494.5 kPa.
 - Dentro de esta zona, los no KALINA fallan por O2 (44 de 45).
-- Los KALINA de M4c tienen r_P de 1.16 a 3.04, y η baja: mediana de 4.35 % y máximo de 8.35 %.
+- Los KALINA de M4c tienen r_P de 1.16 a 3.04, y η baja: mediana de 4.29 % y máximo de 8.35 % (recalculado desde los datos; el REPORTE_M4c dice 4.35 %).
 - Tablas: TAB-M04c-00 a -03. Figura FIG-M04c-01 (% de KALINA por franja).
 
 ### Conclusiones del caso:

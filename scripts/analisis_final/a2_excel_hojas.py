@@ -2,7 +2,7 @@
 """A2 · Hojas del libro Excel_kalina_final_final_final.xlsx (todas menos el Tablero).
 
 Escrito por el director (Claude) el 2026-10-10 (OpenCode sin modelo disponible).
-Formato §6.3: filas 1–6 = encabezado de condiciones; tabla desde la fila 8 con filtro;
+Formato §6.3: encabezado de condiciones (todas sus líneas, bloque por bloque); tabla después de una fila en blanco, con filtro;
 notas al final; colores por clase; todo en español.
 """
 import glob
@@ -43,24 +43,26 @@ def _anchos(ws, n_col, fila_ini, fila_fin):
 
 
 def hoja_tabla(wb, meta, condiciones):
-    """Una tabla TAB-* con encabezado (1–6), cuerpo (8…) y notas."""
+    """Una tabla TAB-* con encabezado (todas las líneas de condiciones), cuerpo y notas."""
     carpeta = os.path.join(TABLAS, meta["carpeta"])
     df = pd.read_csv(os.path.join(carpeta, meta["tabla"] + ".csv"))
     ws = wb.create_sheet(nombre_hoja(meta["hoja"]))
     ws["A1"] = f"{meta['tabla']} · {meta['titulo']}"; ws["A1"].font = TITULO
     ws["A2"] = f"Caso(s): {meta['casos']} · Bloque(s): {meta['bloques']}"
     ws["A3"] = f"Punto base: {meta['punto_base']}"
-    lineas = condiciones.splitlines() if condiciones else \
-        ["Tabla de síntesis: cada fila es un caso con sus propios datos fijos."]
-    ws["A4"] = lineas[0]
-    ws["A5"] = lineas[1] if len(lineas) > 1 else ""
-    ws["A6"] = f"Filtro: {meta['filtro']} · Fuente: {meta['fuente']}"
-    for r in range(1, 7):
+    lineas = condiciones.splitlines() if condiciones else         ["Tabla de síntesis: cada fila es un caso con sus propios datos fijos."]
+    # Todas las líneas: con varios bloques, cortar a 2 mostraba solo el primero.
+    for k, linea in enumerate(lineas):
+        ws.cell(4 + k, 1, linea).font = NEGRITA if linea.startswith("Bloque ") else Font()
+    r_filtro = 4 + len(lineas)
+    ws.cell(r_filtro, 1, f"Filtro: {meta['filtro']} · Fuente: {meta['fuente']}")
+    for r in range(1, r_filtro + 1):
         ws.cell(r, 1).alignment = Alignment(wrap_text=False)
+    h = r_filtro + 2                                  # fila de encabezados de la tabla
     for j, col in enumerate(df.columns, 1):
-        c = ws.cell(8, j, col); c.font = NEGRITA; c.fill = GRIS
+        c = ws.cell(h, j, col); c.font = NEGRITA; c.fill = GRIS
         c.alignment = Alignment(wrap_text=True, vertical="top")
-    for i, fila in enumerate(df.itertuples(index=False), 9):
+    for i, fila in enumerate(df.itertuples(index=False), h + 1):
         for j, (col, v) in enumerate(zip(df.columns, fila), 1):
             v = None if (isinstance(v, float) and pd.isna(v)) else v
             if isinstance(v, float) and not float(v).is_integer():
@@ -72,14 +74,14 @@ def hoja_tabla(wb, meta, condiciones):
             clase = CLASES_TXT.get(str(v)) if isinstance(v, str) else None
             if clase:
                 cel.fill = PatternFill("solid", fgColor=COLOR_CLASE[clase])
-    fin = 8 + len(df)
+    fin = h + len(df)
     if len(df):
-        ws.auto_filter.ref = f"A8:{get_column_letter(len(df.columns))}{fin}"
+        ws.auto_filter.ref = f"A{h}:{get_column_letter(len(df.columns))}{fin}"
     nota = (f"Notas: n = {meta['n']}. † = fuera del rango confiable (IAPWS G4-01); "
             f"‡ = falso convergido (N2). {meta['notas'] if isinstance(meta['notas'], str) else ''}")
     ws.cell(fin + 2, 1, nota).font = Font(italic=True)
-    ws.freeze_panes = "B9"
-    _anchos(ws, len(df.columns), 8, fin)
+    ws.freeze_panes = f"B{h + 1}"
+    _anchos(ws, len(df.columns), h, fin)
     return ws.title
 
 
@@ -116,8 +118,9 @@ def hoja_leeme(wb):
              "Para qué es este libro: presentar las tablas y figuras del análisis, organizadas por bloque.",
              "Un bloque reúne puntos con las MISMAS variables fijas en los MISMOS valores: solo se comparan "
              "puntos de un mismo bloque.",
-             "Cómo leer cada hoja: filas 1–6 = qué caso es, punto base, datos fijos y barridos, filtro y "
-             "fuente; la tabla empieza en la fila 8 (con filtros); las notas van al final.",
+             "Cómo leer cada hoja: las primeras filas dicen qué caso es, el punto base, los datos fijos y "
+             "barridos (bloque por bloque si hay varios), el filtro y la fuente; la tabla empieza después "
+             "de una fila en blanco (con filtros); las notas van al final.",
              "Hoja Tablero: elija un bloque en la celda B2 y se actualizan las cifras, las condiciones y "
              "los gráficos.", "", "Glosario:"]
     filas += [f"• {k}: {v}" for k, v in GLOSARIO.items()]

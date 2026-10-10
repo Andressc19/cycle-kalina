@@ -1,8 +1,8 @@
 # FICHA KF-M03 — Sensibilidad local alrededor de A\* (ficha piloto)
 
-> Ficha piloto para validar el formato. Las cifras vienen de `resultados/2026-10-06_final_M3/REPORTE_M3.md`
-> (incluida la nota del director del 2026-10-06). El agente A4 las vuelve a calcular desde
-> `m3_ofat.csv`; hasta entonces van marcadas como **pendientes de validación cruzada**.
+> Ficha piloto del formato. Las cifras vienen de `resultados/2026-10-06_final_M3/REPORTE_M3.md`
+> (incluida la nota del director del 2026-10-06) y están **validadas contra `m3_ofat.csv`** (A4 y la
+> revisión del 2026-10-10).
 
 > **Antes de leer: qué son el punto del profesor y el punto ancla A\***
 >
@@ -77,7 +77,6 @@ Además, A\* ± h con h = 1 % del rango, para la elasticidad (20 corridas), y el
 ### Resultados obtenidos:
 
 **Conteo:** 171 corridas, 148 genuinas y 86 KALINA; 8 fuera de rango (líquido por encima de 420 K).
-*(pendiente de validación cruzada)*
 
 **Ranking local (TAB-M03-02).** El conteo por clase es TAB-M03-01 y las condiciones son TAB-M03-00:
 las tablas de "Datos barridos" y "Datos modificados" de esta ficha.
@@ -126,7 +125,8 @@ usa el Δη con W_net > 0).
    10.96 % y 9.62 %, respectivamente, contra 8.48 % en A\*.
 4. **x_b y P_alta** mueven mucho η, pero casi toda su malla cae fuera de KALINA (por O2 o O3). Para
    esas dos variables, A\* está en un pasillo angosto.
-5. Fuera de la zona KALINA, el criterio que bloquea es siempre **O2** (cavitación). Eso confirma la
+5. Fuera de la zona KALINA, el criterio que bloquea es casi siempre **O2** (cavitación); la excepción
+   es x_b baja, que falla por trabajo neto (O3), y T_fuente baja, que no converge. Eso confirma la
    regla del proyecto de cerrar O2 con P_baja.
 
 ### Advertencias, supuestos y limitaciones:
@@ -142,14 +142,13 @@ usa el Δη con W_net > 0).
   (le pasa a T_fuente, x_b y P_alta, cuya zona medida es de un solo punto).
 - M6 encontró que el motor real, con presupuesto de 300 s, marca A\* como NO_CONVERGIO. Con ~1500 s
   coincide con teqp. A\* es válido con teqp y con el motor real con presupuesto suficiente.
-- [SUPUESTO] Los pasos de la tabla de variables barridas son (b − a)/14. Coinciden con "15 valores
-  equiespaciados" del REPORTE; A4 los confirma contra el CSV.
+- Los pasos de la tabla de variables barridas son (b − a)/14 (15 valores equiespaciados),
+  confirmados contra el CSV.
 
 ### Recomendaciones:
 - Para el diseño, no tomar A\* tal cual: conviene alejarse de O2 subiendo P_baja unos 70 kPa (zona
   KALINA de P_baja desde 632 kPa en la malla) o subir ε_reg.
 - Usar el ranking |E| solo como lectura local. Para decidir rangos, usar el RSA de M4/M4b.
-- Rehacer FIG-M03-01 con el Δη filtrado (W_net > 0) y agregar FIG-M03-04 (distancia a la frontera).
 
 **Fuentes:** `resultados/2026-10-06_final_M3/REPORTE_M3.md` (§3, §5, §8, §9, §11), `m3_ofat.csv`,
 `m3_resumen.csv`, `m3_cruces.csv`, hojas `M3_ofat`, `M3_resumen` y `M3_cruces` del Excel, commit `ef30e9f`,

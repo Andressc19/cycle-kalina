@@ -93,6 +93,10 @@ def g03(d):
         g = d[d["bloque_director"].isin(bl) & d["kalina_confiable"].astype(bool)]
         subs = list(d[d["bloque_director"].isin(bl)]["id_subcaso"].unique())
         fijos = pies.condiciones_texto(subs).splitlines()[0]
+        if g.empty:       # una sola fila en vez de 6 vacías
+            filas.append({"Caso": nombre, "Bloque": ", ".join(bl), "Datos fijos": fijos,
+                          "Variable": "— (sin KALINA confiables)", "n KALINA confiables": 0})
+            continue
         for v in ["P_alta", "P_baja", "dP", "rP", "T_fuente", "x_b"]:
             x = pd.to_numeric(g[v], errors="coerce").dropna()
             fila = {"Caso": nombre, "Bloque": ", ".join(bl), "Datos fijos": fijos,
@@ -112,7 +116,7 @@ def g03(d):
 def g04():
     datos = [("P_alta", "3000 kPa", "sí", "M9 (XB+PA+EF+PB), M5c"),
              ("P_baja", "400 kPa", "sí", "M9; con su clima de 300 K exige ε_cond ≥ 0.875 (M5c)"),
-             ("x_b", "0.50", "sí", "M9; es el límite inferior útil (M10b)"),
+             ("x_b", "0.50", "sí", "M9 (η hasta 10.6 %); con el ancla de Húsavík queda al límite, η < 1.3 % (M10b)"),
              ("η_t", "0.85", "sí", "M9 (grupo EF)"), ("η_p", "0.75", "sí", "M9 (grupo EF)"),
              ("ε_HRVG", "0.85", "sí", "M9 (grupo EF)"), ("ε_reg", "0.75", "sí", "M9 (grupo EF)"),
              ("ε_cond", "0.80", "sí, si el sitio es más frío (≤ ~293 K)", "M9; con 300 K hace falta ≥ 0.875 (M5c)"),

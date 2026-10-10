@@ -8,7 +8,7 @@
 |---|---|---|---|
 | P_alta | 3000 kPa | sí | M9 (XB+PA+EF+PB), M5c |
 | P_baja | 400 kPa | sí | M9; con su clima de 300 K exige ε_cond ≥ 0.875 (M5c) |
-| x_b | 0.50 | sí | M9; es el límite inferior útil (M10b) |
+| x_b | 0.50 | sí | M9 (η hasta 10.6 %); con el ancla de Húsavík queda al límite, η < 1.3 % (M10b) |
 | η_t | 0.85 | sí | M9 (grupo EF) |
 | η_p | 0.75 | sí | M9 (grupo EF) |
 | ε_HRVG | 0.85 | sí | M9 (grupo EF) |

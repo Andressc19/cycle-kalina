@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from pies import SIMBOLO
 from a3_comun import recuadro_fig, leyenda_fig
 from a3_comun import (SEC_VAR, cargar, dispersion, tira, contar_clases,
                       titulo, titulo_fig, recuadro_oat, guardar_fig,
@@ -36,7 +37,7 @@ def fig_m02_01():
     for ax, v in zip(axs.flat, vars_):
         sv = sub[sub["variable"] == v]
         tira(ax, sv, "valor", etiquetas=ax.get_subplotspec().is_first_col())
-        ax.set_title(v, fontsize=8)
+        ax.set_title(SIMBOLO.get(v, v), fontsize=8)
         ax.set_xlabel(NOMBRE[v], fontsize=7)
     leyenda_fig(fig, sub)
     recuadro_fig(fig, ["KF-M02-N1"])

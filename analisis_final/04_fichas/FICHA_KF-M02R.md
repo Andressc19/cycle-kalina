@@ -65,7 +65,7 @@ genuinos se cuentan como en M2 (los N2 no cuentan).
 3. El bloqueo de fondo es siempre el mismo: el lado caliente y la cavitación (O2).
 
 ### Advertencias, supuestos y limitaciones:
-- 13 de los 14 KALINA distintos están fuera de rango: sus η (~6.3 %) se toman con cautela.
+- 13 de los 14 KALINA distintos están fuera de rango: sus η (3.1 a 6.3 %) se toman con cautela.
 - 4 puntos N2 se descartaron.
 - El paso de 0.05 en η/ε puede dejar sin ver zonas KALINA angostas.
 

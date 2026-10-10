@@ -11,7 +11,7 @@ KF-M02-N2-A,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.750 �
 KF-M02-N2-A,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
 KF-M02-N2-A,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
 KF-M02-N2-A,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
-KF-M02-N2-A,motor,Fija,teqp,,,–
+KF-M02-N2-A,motor de propiedades,Fija,teqp,,,–
 KF-M02-N2-B,"Temperatura de la fuente, T_fuente [K]",Barrida,380.0 – 560.0,9.0,,K
 KF-M02-N2-B,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
 KF-M02-N2-B,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
@@ -24,4 +24,4 @@ KF-M02-N2-B,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,�
 KF-M02-N2-B,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
 KF-M02-N2-B,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
 KF-M02-N2-B,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
-KF-M02-N2-B,motor,Fija,teqp,,,–
+KF-M02-N2-B,motor de propiedades,Fija,teqp,,,–

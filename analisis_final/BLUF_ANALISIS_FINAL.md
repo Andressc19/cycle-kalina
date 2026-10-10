@@ -1,7 +1,7 @@
 # Análisis de resultados de la campaña M1–M10b — terminado
 
 > **Metodología ejecutada completa: 4 741 puntos organizados en 51 bloques, 76 de 78 cifras validadas,
-> 30 figuras, 63 tablas, Excel interactivo (89 hojas) y tablero web.** Hay 2 decisiones pendientes:
+> 30 figuras, 62 tablas, Excel interactivo (88 hojas) y tablero web.** Hay 2 decisiones pendientes:
 > publicar el tablero y fusionar a master.
 
 ### Estado
@@ -12,7 +12,7 @@
 | Validación cruzada (A4) | ✅ | 76 de 78 ✔; 2 diferencias de definición corregidas |
 | Fichas por caso | ✅ | 16 fichas (17 casos), cada una con su recuadro "Antes de leer" |
 | Figuras Matplotlib | ✅ | 30 de 30, cada una con título-conclusión, condiciones y pie |
-| `Excel_kalina_final_final_final.xlsx` | ✅ | 89 hojas; Tablero recalculado y verificado en Excel |
+| `Excel_kalina_final_final_final.xlsx` | ✅ | 88 hojas; Tablero recalculado y verificado en Excel |
 | Tablero web | ✅ | Revisado en el navegador: cifras resumen correctas, sin errores |
 | Power BI | — | Descartado: todo queda en Excel (decisión del usuario) |
 | Ejecución vía OpenCode | ⚠️ | El proveedor se cayó; Claude terminó el código (autorizado) |

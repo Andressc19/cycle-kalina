@@ -77,7 +77,8 @@ Tablas: TAB-M07-00/01/02. Figura FIG-M07-01 (η por iteración, una línea por a
 
 ### Advertencias, supuestos y limitaciones:
 - Es una búsqueda local: puede haber óptimos mejores no visitados.
-- Los óptimos están al filo de O2. Con un margen de 2 K, η baja 0.3–3.7 pp según el punto (M6).
+- Los óptimos de A1 y A4 están al filo de O2: con un margen de 2 K, η baja ~0.5 pp en A4 (M6). Los de
+  A2, A3 y A5 ya tienen ese margen. El costo calculado para A1 (−3.7 pp) no es confiable (ver ficha M06).
 - η_t = 0.95 y ε = 0.95 son el tope del rango aceptado: son optimistas.
 
 ### Recomendaciones:

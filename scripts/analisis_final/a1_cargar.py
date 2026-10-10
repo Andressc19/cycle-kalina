@@ -77,7 +77,9 @@ def main():
     tabla["kalina_confiable"] = clase.eq("KALINA") & ~fuera
     tabla["omitido"] = tabla["omitido"].map(es_verdadero)
     wnet = pd.to_numeric(tabla["Wnet"], errors="coerce")
-    tabla["wnet_pos"] = wnet > 0                     # NaN -> False
+    eta = pd.to_numeric(tabla["eta"], errors="coerce")
+    # Sin W_net en la fuente (m6_subenfriamiento_evals) vale η > 0: η = W_net/Q_in con Q_in > 0.
+    tabla["wnet_pos"] = (wnet > 0) | (wnet.isna() & (eta > 0))
     tabla["eta_pct"] = pd.to_numeric(tabla["eta"], errors="coerce") * 100
     pa = pd.to_numeric(tabla["P_alta"], errors="coerce")
     pb = pd.to_numeric(tabla["P_baja"], errors="coerce")

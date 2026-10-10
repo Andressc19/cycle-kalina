@@ -11,7 +11,7 @@ KF-M02R-n1,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.400 –
 KF-M02R-n1,"Efectividad del regenerador, ε_reg [–]",Barrida,0.400 – 0.950,12.0,,–
 KF-M02R-n1,"Efectividad del condensador, ε_cond [–]",Barrida,0.400 – 0.950,12.0,,–
 KF-M02R-n1,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
-KF-M02R-n1,motor,Fija,teqp,,,–
+KF-M02R-n1,motor de propiedades,Fija,teqp,,,–
 KF-M02R-n2a,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
 KF-M02R-n2a,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
 KF-M02R-n2a,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
@@ -24,7 +24,7 @@ KF-M02R-n2a,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.400 �
 KF-M02R-n2a,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
 KF-M02R-n2a,"Efectividad del condensador, ε_cond [–]",Barrida,0.400 – 0.950,12.0,,–
 KF-M02R-n2a,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
-KF-M02R-n2a,motor,Fija,teqp,,,–
+KF-M02R-n2a,motor de propiedades,Fija,teqp,,,–
 KF-M02R-n2b,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
 KF-M02R-n2b,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
 KF-M02R-n2b,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
@@ -37,7 +37,7 @@ KF-M02R-n2b,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.400 �
 KF-M02R-n2b,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
 KF-M02R-n2b,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
 KF-M02R-n2b,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
-KF-M02R-n2b,motor,Fija,teqp,,,–
+KF-M02R-n2b,motor de propiedades,Fija,teqp,,,–
 KF-M02R-n3,"Temperatura de la fuente, T_fuente [K]",Barrida,403.0 – 560.0,7.0,,K
 KF-M02R-n3,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
 KF-M02R-n3,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
@@ -50,4 +50,4 @@ KF-M02R-n3,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,�
 KF-M02R-n3,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
 KF-M02R-n3,"Efectividad del condensador, ε_cond [–]",Barrida,0.850 – 0.950,3.0,,–
 KF-M02R-n3,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
-KF-M02R-n3,motor,Fija,teqp,,,–
+KF-M02R-n3,motor de propiedades,Fija,teqp,,,–

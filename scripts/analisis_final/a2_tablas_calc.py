@@ -100,7 +100,7 @@ def tabla_m10b():
     tipos = {"x_b": "dec3", "P_baja mínima KALINA [kPa]": "pres", "η en ese punto [%]": "pct",
              "Criterio que más bloquea": "txt"}
     meta = _meta("M10b", "02", "xb_bajo", "Frontera KALINA al variar x_b (Húsavík, x_b bajo)",
-                 "KF-M10b", subcasos_de("KF-M10b"),
+                 "KF-M10b", ["KF-M10b-MALLA"],
                  "todos los puntos de KF-M10b-MALLA", "canónico (KF-M10b-MALLA)",
                  len(df), "Una fila por valor de x_b; el criterio cuenta solo O1/O2/O3/O5.")
     escribir_tabla(meta, df, tipos)

@@ -21,9 +21,10 @@ def main():
     random.seed(1)
     for m in random.sample(hojas01, 5):
         ws = wb[m["hoja"][:31]]
-        cab = [c.value for c in ws[8]]
+        h = next(r for r in range(1, 80) if ws.cell(r, 1).value == "Subcaso")   # encabezado variable
+        cab = [c.value for c in ws[h]]
         ok = True
-        for fila in ws.iter_rows(min_row=9, values_only=True):
+        for fila in ws.iter_rows(min_row=h + 1, values_only=True):
             if not fila[0] or str(fila[0]).startswith("Notas"):
                 continue
             ref = conteo.loc[fila[0]]

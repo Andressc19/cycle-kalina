@@ -61,7 +61,7 @@ def fig_m02s_01():
         ax.set_xticks(ts)
         ax.set_xticklabels([f"{t:.2f}" for t in ts], fontsize=7)
     ax1.legend(loc="upper left", fontsize=8)
-    ax2.legend(loc="lower right", fontsize=8)
+    ax2.legend(loc="lower left", fontsize=8)   # abajo a la derecha tapaba la línea B3
     recuadro_condiciones(ax2, "Síntesis: cada base es su propio bloque\n"
                               "B4 (datos del profesor): 0 KALINA — no se dibuja")
     titulo_fig(fig, "Un sumidero más frío baja la P_baja mínima de KALINA y sube η",

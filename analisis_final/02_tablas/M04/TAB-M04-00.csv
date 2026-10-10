@@ -11,4 +11,4 @@ KF-M04,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.600 – 0.9
 KF-M04,"Efectividad del regenerador, ε_reg [–]",Barrida,0.601 – 0.950,300.0,,–
 KF-M04,"Efectividad del condensador, ε_cond [–]",Barrida,0.700 – 0.949,300.0,,–
 KF-M04,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.2 – 303.5,300.0,,K
-KF-M04,motor,Fija,teqp,,,–
+KF-M04,motor de propiedades,Fija,teqp,,,–

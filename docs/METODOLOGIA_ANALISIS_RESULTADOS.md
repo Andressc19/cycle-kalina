@@ -79,8 +79,8 @@ Familias: **R** reproducibilidad · **F** factibilidad / distancia al profesor �
 **G** sensibilidad global · **C** conservación de datos del profesor · **O** optimización de η ·
 **V** verificación · **H** caso real Húsavík · **X** anecdótico (fuera de rango realista).
 
-[SUPUESTO] Los conteos "ver CSV" y los marcados "aprox." los fija el agente A1 (§9) leyendo los CSV;
-este documento no los inventa.
+Los conteos "ver CSV" y los marcados "aprox." quedaron fijados por A1 leyendo los CSV
+(`analisis_final/00_inventario/conteo_por_subcaso.csv`; revisado el 2026-10-10).
 
 ### 2.2 "Qué se modificó" respecto al profesor
 
@@ -125,12 +125,12 @@ Una conclusión por caso = **una frase de respuesta a la pregunta** + **la cifra
 | M8 | Anecdótico; no se usa en conclusiones |
 | M9 | Se conservan 8 de 10 datos de diseño (XB+PA+EF+PB) moviendo solo T_fuente (391–409 K) y T_sumidero (280–293 K): 5 de 5 KALINA confiables; ningún conjunto con TF da KALINA confiables |
 | M10 | Húsavík: 97 de 97 KALINA de la Fase 3 reproducidos; P_baja mínima de 500 a 800 kPa al pasar x_b de 0.70 a 0.91; su P_baja real (690 kPa) coincide con la mínima KALINA |
-| M10b | Con x_b ≤ 0.475 no hay ciclo (O5/O3); x_b = 0.50 es KALINA formal con η < 1.3 %; el KALINA útil empieza en x_b ≈ 0.55 (P_baja mín. 300 kPa) |
+| M10b | Con x_b < 0.50 el modelo no encuentra ciclo (0 genuinos de 32); x_b = 0.50 es KALINA formal con η < 1.3 %; el KALINA útil empieza en x_b ≈ 0.55 (P_baja mín. 300 kPa) |
 
 ### 3.3 Conclusiones generales (validadas)
 1. **El bloqueo estructural del enunciado es la fuente a 623 K.** Con ella el punto del profesor no
-   converge. Solo aparecen KALINA confiables alejándose mucho del resto del enunciado (x_b ~0.7–0.85,
-   P_alta hasta 5000 kPa, P_baja ~1.4–2 MPa; M7-A3 y M5-S1). Combinada con la x_b o las presiones
+   converge. Solo aparecen KALINA confiables alejándose mucho del resto del enunciado (x_b 0.71–0.85,
+   P_alta 3200–5000 kPa, P_baja 1.36–1.97 MPa; M7-A3 y M5-S1). Combinada con la x_b o las presiones
    del profesor, no hay ninguno (M9, M2S-B3, M5-S4/S5 y M7-A5: 0 confiables).
 2. **Bajando la fuente a ~390–410 K, casi todo el enunciado se conserva:** 8 de 10 datos de diseño
    (M9), o las 2 presiones con ε_cond ≥ 0.875 en su clima de 300 K (M5c).
@@ -177,8 +177,8 @@ puntos de un mismo bloque.
 | B14 | KF-M10, KF-M10b (según §3A.2) | base Húsavík | OFAT o x_b × P_baja |
 | BX | KF-M08 | — | **ANECDÓTICO**; nunca se mezcla con nada |
 
-**[SUPUESTO]** La columna "qué tienen en común" sale de los REPORTE_*. El agente A1 la confirma o
-la corrige al **detectar desde los datos** qué columnas son constantes en cada subcaso (§3A.2). Si A1
+**Confirmado por A1 (2026-10-10):** la columna "qué tienen en común" sale de los REPORTE_* y A1 la confirmó o
+la corrigió al **detectar desde los datos** qué columnas son constantes en cada subcaso (§3A.2). Si A1
 encuentra que dos subcasos que aquí aparecen en el mismo bloque no tienen las mismas condiciones, el
 bloque se parte.
 
@@ -265,7 +265,7 @@ casos lado a lado, no mezcla sus puntos.
 | eta | Eficiencia térmica del ciclo, η [%] |
 | Wnet | Trabajo neto, W_net [kW] (base m_b = 1 kg/s) |
 | dP / rP | Diferencia de presiones, ΔP [kPa] / Razón de presiones, r_P [–] |
-| m_O2 | Margen de cavitación en la bomba, O2 [K] **[SUPUESTO: unidad K; A1 la confirma en el clasificador]** |
+| m_O2 | Margen de cavitación en la bomba, O2 [K] (T de burbuja a P_baja − T9; confirmado en `src/restricciones/operativos.py`) |
 | clasificacion | Clase del ciclo |
 | N2 | Falso convergido (N2) |
 
@@ -433,8 +433,8 @@ Power BI Desktop. Lo que sí se deja listo es el modelo de datos para importarlo
 
 Un solo archivo HTML con los datos embebidos en JSON (~4 000 puntos, dentro del rango de 1 000–10 000
 filas que la skill recomienda embeber). Usa Chart.js 4 y no necesita servidor.
-**[SUPUESTO]** Chart.js se incrusta dentro del archivo para que funcione sin internet en la sala;
-si se publica como enlace, puede cargarse desde el CDN.
+**Estado real (2026-10-10):** Chart.js 4.5.1 se carga desde el CDN, así que el tablero web necesita
+internet. Incrustarlo queda a decisión del usuario; desde el 2026-10-10 el tablero oficial es el de Excel.
 
 **Tres pestañas:**
 
@@ -477,8 +477,8 @@ Funciona sin macros y con funciones de Excel 2024 (las del Office instalado):
   `bloques.csv`), alimentada por rangos auxiliares de tamaño fijo rellenos con `#N/A`.
 - Limitación: `openpyxl` no crea segmentaciones (slicers) ni tablas dinámicas. Si se quieren, se
   agregan a mano en 2 minutos (A2 deja la Tabla lista para eso).
-- [SUPUESTO] El profesor abre el libro con Excel 2021 o posterior (`FILTRAR`). Si fuera más antiguo,
-  el bloque de condiciones se muestra estático por bloque.
+- La hoja `Tablero` usa solo fórmulas clásicas (INDEX/MATCH/IF/NA), sin `FILTRAR` ni macros: funciona
+  en cualquier versión de Excel.
 
 ### 4B.4 Power BI (descartado; datos conservados por si acaso)
 
@@ -562,8 +562,9 @@ unidades en los títulos, descripción al final).
 | 7 | `X_M08_anecdotico` | Con una franja de aviso "ANECDÓTICO — fuera del rango realista" |
 | 8 | `Datos`, `Condiciones`, `Bloques`, `Aux_tablero` | Al final: la tabla canónica y las condiciones (como Tablas de Excel con filtros) que alimentan el `Tablero`; `Aux_tablero` está oculta |
 
-Cada hoja `Mnn_*` empieza con el mismo bloque de encabezado (filas 1–6): título; caso y bloque;
-datos fijos; datos barridos; filtro; fuente. La tabla empieza en la fila 8 y las notas van al final.
+Cada hoja `Mnn_*` empieza con el mismo bloque de encabezado: título; caso y bloque; punto base;
+datos fijos y barridos (bloque por bloque si la tabla abarca varios); filtro y fuente. La tabla
+empieza tras una fila en blanco y las notas van al final.
 Los nombres de hoja respetan el límite de 31 caracteres de Excel.
 
 ---

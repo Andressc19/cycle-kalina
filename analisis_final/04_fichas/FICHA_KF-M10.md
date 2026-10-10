@@ -49,7 +49,8 @@ F3 conservan sus datos de septiembre, con pisos de O2 de 283.15 o 303.55 K segú
 Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D completa.
 
 ### Resultados obtenidos:
-- **F3: 97 de 97 KALINA, todos confiables, y ninguno cambia de clase** (A4, V21). Las η coinciden
+- **F3: 97 de 97 siguen siendo KALINA y ninguno cambia de clase** (A4, V21); todos dentro del rango
+  del modelo de propiedades, pero 14 usan η o ε > 0.95 (ver advertencias). Las η coinciden
   a 10⁻¹¹ pp.
 - **OFAT (148 genuinos, 107 KALINA):** rangos KALINA con lo demás en el ancla:
 
@@ -60,6 +61,7 @@ Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D comple
 | P_alta | 2821 – 4000 kPa | O2 al bajar |
 | P_baja | 700 – 1200 kPa | O2 al bajar |
 | x_b | 0.60 – 0.825 | O2 al subir |
+| ε_HRVG | 0.60 – 0.925 | O2 al subir (en 0.95, por 0.006 K) |
 | η_t, η_p, ε_reg | todo el rango probado | — |
 | ε_cond | solo 0.95 | O2 al bajar |
 

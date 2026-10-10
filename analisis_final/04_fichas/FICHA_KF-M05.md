@@ -72,7 +72,7 @@ KALINA más parecido al profesor.
 ### Conclusiones del caso:
 1. **Conservar la fuente del profesor (623 K) casi nunca da un KALINA confiable.** De 20 KALINA en
    los escenarios con esa fuente (S1, S4 y S5), solo 2 son confiables, ambos de S1, y requieren alejarse
-   mucho del resto del enunciado: P_baja ~1.4–2 MPa, x_b ~0.7 y ε_HRVG ~0.47. M7 (arranque A3)
+   mucho del resto del enunciado: P_baja de 1.36 y 1.97 MPa, x_b de 0.83 y 0.71 y ε_HRVG de ~0.5. M7 (arranque A3)
    confirma que con 623 K hay KALINA confiables solo con x_b alta (~0.85) y presiones altas.
 2. **Las presiones del profesor sí son conservables**, pero solo en una franja angosta (T_fuente
    ≈ 390–410 K con un condensador muy efectivo). Un muestreo de 120 puntos no la encuentra; por

@@ -14,7 +14,7 @@ from estilo import aplicar_estilo, recuadro_condiciones
 from a3_comun import (SEC_VAR, cargar, dispersion, contar_clases, titulo,
                       titulo_fig, recuadro_oat, guardar_fig, guardar_clases)
 from nombres import NOMBRE, ETIQUETA_CLASE
-from pies import armar_pie
+from pies import armar_pie, SIMBOLO
 
 aplicar_estilo()
 
@@ -44,7 +44,7 @@ def fig_m04_01():
         ks, p = ks_2samp(KAL[v].dropna(), RESTO[v].dropna())
         ax.text(0.04, 0.90, f"KS = {ks:.2f}, p = {p:.1e}", transform=ax.transAxes,
                 fontsize=6.5)
-        ax.set_title(v, fontsize=8)
+        ax.set_title(SIMBOLO.get(v, v), fontsize=8)
         if ax.get_subplotspec().is_last_row():
             pass
         ax.set_xlabel(NOMBRE[v], fontsize=6)
@@ -53,7 +53,7 @@ def fig_m04_01():
     axs.flat[0].legend([plt.Line2D([0], [0], color="#2E7D32"),
                         plt.Line2D([0], [0], color="0.55", ls="--")],
                        [f"KALINA (n = {len(KAL)})",
-                        f"resto genuino (n = {len(RESTO)})"], loc="upper left",
+                        f"resto genuino (n = {len(RESTO)})"], loc="lower right",  # arriba tapaba el KS
                        fontsize=7)
     titulo_fig(fig,
                f"Qué variables separan a los KALINA del resto (LHS de {len(GEN)} puntos)",
@@ -109,16 +109,16 @@ def fig_m04_03():
                pr["ic_hi"] - pr["prcc"]], fmt="none", ecolor="0.25", lw=0.7)
     ax.axvline(0, color="0.35", lw=0.8)
     ax.set_yticks(range(len(pr)))
-    ax.set_yticklabels(pr["variable"])
+    ax.set_yticklabels([SIMBOLO.get(v, v) for v in pr["variable"]])
     ax.set_xlabel("PRCC [–]")
     ax.set_xlim(-1, 1)
     n = int(pr["n"].iloc[0])
     titulo(ax, f"Influencia de cada variable sobre η (PRCC, {n} puntos)",
-           "Bloque B07 · KF-M04b (LHS, salida η)")
-    recuadro_oat(ax, ["KF-M04b"], 3)
+           "Bloque B07 · KF-M04 + KF-M04b (LHS, salida η)")   # n = 430: los 500 puntos
+    recuadro_oat(ax, ["KF-M04", "KF-M04b"], 3)
     pie = armar_pie("FIG-M04-03",
                     f"Influencia de cada variable sobre η (PRCC, {n} puntos)",
-                    ["KF-M04b"], "B07", "m4b_prcc.csv (fila de salida = η)", n=n,
+                    ["KF-M04", "KF-M04b"], "B07", "m4b_prcc.csv (fila de salida = η)", n=n,
                     fuente="resultados/2026-10-07_final_M4b/m4b_prcc.csv",
                     base=CAJA_BASE)
     guardar_fig(fig, "M04", "FIG-M04-03_prcc_eta", pie)

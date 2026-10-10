@@ -52,6 +52,8 @@ Comparación punto a punto de clase, η y margen de O2; bisección de P_baja par
   - exigir **2 K** cuesta **+25 a +46 kPa de P_baja** y **−0.3 a −0.5 pp de η**;
   - exigir **5 K**, +19 a +116 kPa y −0.3 a −1.2 pp.
   - Con las presiones del profesor (P03, P08), 2 K piden subir P_baja de 400 a ~425 kPa.
+  - Los óptimos A2, A3 y A5 de M7 ya tenían 2 K de margen: costo 0. El de A1 (P05) daría +443 kPa
+    y −3.7 pp, pero ese cálculo no es confiable (ver advertencias).
 - Tablas: TAB-M06-00 a -03. Figura FIG-M06-01 (paridad de η).
 
 ### Conclusiones del caso:

@@ -58,7 +58,7 @@ Malla completa; conteo de clases por celda; criterios que fallan a cada lado de 
 | 0.925 | 4 | 390–397.5 K |
 | 0.95 | 9 | 390–410 K |
 
-- Con un clima más frío (278.15 o 290.65 K) basta ε_cond = 0.85, con T_fuente de 390 a 407.5–410 K.
+- Con un clima más frío (278.15 o 290.65 K) basta ε_cond = 0.85, con T_fuente de 390 a 407.5 K.
 - La mejor η de la franja es **10.81 %** (T_fuente 410 K, ε_cond 0.95, clima de 300.03 K). En M6,
   el motor real lo confirma con la misma η.
 - Tablas: TAB-M05c-00/01/02. Figura FIG-M05c-01 (tres mapas, uno por clima).

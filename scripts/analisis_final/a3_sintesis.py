@@ -23,8 +23,7 @@ FUENTE = "todos_los_puntos.csv"
 
 # ---------------------------------------------------------------- FIG-G01
 def fig_g01():
-    df = PUNTOS[PUNTOS["id_caso"] != "KF-M08"].copy()
-    casos = [c for c in ORDEN_CASOS]
+    df, casos = PUNTOS[PUNTOS["id_caso"] != "KF-M08"].copy(), list(ORDEN_CASOS)
     n_por_clase = {c: [] for c in ORDEN_CLASE}
     omitidos = []
     for c in casos:
@@ -116,18 +115,19 @@ def fig_g02():
     ax.set_xticks(np.arange(ncols) + 0.5)
     ax.set_xticklabels([NOMBRE_CORTO[v] for v in VARS_CXV], fontsize=8)
     ax.set_yticks(np.arange(nrows) + 0.5)
-    ax.set_yticklabels(sub, fontsize=7)
+    ax.set_yticklabels(sub[::-1], fontsize=7)   # la matriz se dibuja invertida (codes[::-1])
     ax.set_xlim(0, ncols)
     ax.set_ylim(0, nrows)
-    ax.set_facecolor("white")
+    ax.set_facecolor("white"); fig._rect = (0, 0.03, 1, 0.95)   # figura alta: menos hueco arriba
     titulo_fig(fig, "Qué variables se movieron y cuáles quedaron fijas en cada barrido",
                "Síntesis: una fila por barrido, sin KF-M08; los rangos están en TAB-G02")
     ax.legend(handles=[Patch(color=COLOR_CELDA[CEL_BARRIDO], label="Barrido"),
                        Patch(color=COLOR_CELDA[CEL_PP],
                              label="Fijo: valor del profesor (PP / teqp)"),
                        Patch(color=COLOR_CELDA[CEL_FIJO],
-                             label="Fijo: valor distinto del profesor")],
-              loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=3,
+                             label="Fijo: valor distinto del profesor"),
+                       Patch(fc="white", ec="0.6", label="Sin dato en la fuente")],
+              loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=4,
               frameon=False, fontsize=8)
     pie = ("Figura FIG-G02. Qué variables se movieron y cuáles quedaron fijas en "
            "cada barrido.\nCaso(s): los barridos de la campaña (sin KF-M08) (figura de síntesis: "

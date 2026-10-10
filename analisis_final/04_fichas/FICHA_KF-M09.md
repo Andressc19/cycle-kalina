@@ -71,7 +71,7 @@ LHS por conjunto; elección del conjunto con más KALINA confiables en cada rond
    fuente** (de 623 K a ~390–410 K) y se usa un sumidero algo más frío (≤ ~293 K).
 2. **La fuente de 623 K es el único dato que no se puede conservar junto con los demás.** Es el
    bloqueo estructural del enunciado. Con 623 K solo aparecen KALINA confiables lejos del resto del
-   enunciado (x_b ~0.7–0.85, P_alta hasta 5000 kPa, P_baja ~1.4–2 MPa; ver M7-A3 y M5-S1). En la
+   enunciado (x_b 0.71–0.85, P_alta 3200–5000 kPa, P_baja 1.36–1.97 MPa; ver M7-A3 y M5-S1). En la
    escalera, ningún conjunto que incluya TF da un KALINA confiable.
 3. No se pueden conservar a la vez sus 2 presiones, su ε_cond = 0.80 y su clima de 300 K. Para eso
    hace falta ε_cond ≥ 0.875 (lo confirma M5c).

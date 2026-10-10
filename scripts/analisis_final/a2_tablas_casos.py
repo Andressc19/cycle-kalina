@@ -23,10 +23,10 @@ PUNTO_BASE = {
     "M05": "PP parcial según escenario S1 a S5",
     "M05c": "PP = punto del profesor con P_alta y P_baja fijas",
     "M06": "puntos clave del ciclo con teqp y con el motor real",
-    "M07": "mejores KALINA de cada arranque",
+    "M07": "cada arranque (A1–A5) parte de un punto distinto y conserva datos distintos del profesor",
     "M09": "PP parcial según el conjunto de datos conservado",
-    "M10": "Húsavík (reproducción de la Fase 3)",
-    "M10b": "Húsavík con x_b bajo",
+    "M10": "ancla de Húsavík (P_alta 3300 kPa, P_baja 690 kPa, T_fuente 394.15 K, T_sumidero 278.15 K); F3 conserva los datos de septiembre",
+    "M10b": "ancla de Húsavík con x_b de 0.30 a 0.70",
 }
 
 
@@ -129,7 +129,8 @@ RESULTADOS = [
     ("M04", "03", "prcc", "resultados/2026-10-07_final_M4b/m4b_prcc.csv",
      "Influencia de cada variable sobre η (PRCC)", "KF-M04 + KF-M04b", "todos los puntos de la caja M4"),
     ("M04", "04", "rangos_presion", "resultados/2026-10-07_final_M4b/m4b_rangos_presiones.csv",
-     "Rangos de presión de los KALINA", "KF-M04 + KF-M04b", "puntos KALINA confiables"),
+     "Rangos de presión de los KALINA", "KF-M04 + KF-M04b",
+     "todos los KALINA (121, incluidos los fuera de rango) contra los genuinos no KALINA (331)"),
     ("M04", "05", "ventana_palta", "resultados/2026-10-07_final_M4b/m4b_ventana_por_palta.csv",
      "Ventana KALINA por franjas de P_alta", "KF-M04 + KF-M04b", "puntos genuinos de la caja M4"),
     ("M04", "06", "ventana_tf", "resultados/2026-10-07_final_M4b/m4b_ventana_por_tfuente.csv",
@@ -163,13 +164,21 @@ RESULTADOS = [
 ]
 
 
+# Tablas de resultados que cubren solo algunos subcasos de su caso (el encabezado debe decir
+# exactamente esas condiciones, no las de todo el caso).
+SOLO = {("M06", "02"): ["KF-M06-VER"], ("M06", "03"): ["KF-M06-SUB"],
+        ("M09", "03"): ["KF-M09-REAL"], ("M10", "02"): ["KF-M10-F3"], ("M10", "03"): ["KF-M10-OFAT"]}
+
+
 def main():
     for mnn in MNN:
         tabla_condiciones(mnn)
         tabla_conteo(mnn)
     casos = {"M04": _sub("M04", "M04b")}
     for mnn, num, slug, ruta, titulo, caso, filtro in RESULTADOS:
-        sub = casos.get(mnn) or subcasos_de("KF-" + mnn)
+        sub = SOLO.get((mnn, num)) or casos.get(mnn) or subcasos_de("KF-" + mnn)
+        if (mnn, num) == ("M09", "02"):      # la escalera no incluye Húsavík ni el motor real
+            sub = [x for x in sub if x not in ("KF-M09-HUS", "KF-M09-REAL")]
         tabla_resultado(mnn, num, slug, ruta, titulo, caso, sub, filtro)
     volcar_traducciones()   # deja 02_tablas/traducciones_columnas.csv para revisión
     print("Tablas de casos y de resultados escritas.")

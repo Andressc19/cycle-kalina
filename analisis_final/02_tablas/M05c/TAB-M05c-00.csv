@@ -11,4 +11,4 @@ KF-M05c,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
 KF-M05c,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
 KF-M05c,"Efectividad del condensador, ε_cond [–]",Barrida,0.850 – 0.950,5.0,,–
 KF-M05c,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.1 – 300.0,3.0,,K
-KF-M05c,motor,Fija,teqp,,,–
+KF-M05c,motor de propiedades,Fija,teqp,,,–

@@ -43,7 +43,7 @@ def main():
         filas = reg[reg["tabla"].str.startswith(f"TAB-{mnn}-")].sort_values("tabla")
         for _, m in filas.iterrows():
             subs = [s for s in str(m["subcasos"]).split("; ") if s]
-            indice.append((hoja_tabla(wb, m, pies.condiciones_texto(subs)), m["casos"],
+            indice.append((hoja_tabla(wb, m, pies.condiciones_por_bloque(subs)), m["casos"],
                            m["bloques"], m["titulo"]))
         if mnn != "M04b":
             indice.append((hoja_figuras(wb, mnn, f"Figuras del caso KF-{mnn}"), f"KF-{mnn}", "—",

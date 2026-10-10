@@ -11,7 +11,7 @@ KF-M05-1,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0
 KF-M05-1,"Efectividad del regenerador, ε_reg [–]",Barrida,0.404 – 0.948,120.0,,–
 KF-M05-1,"Efectividad del condensador, ε_cond [–]",Barrida,0.401 – 0.946,120.0,,–
 KF-M05-1,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
-KF-M05-1,motor,Fija,teqp,,,–
+KF-M05-1,motor de propiedades,Fija,teqp,,,–
 KF-M05-2,"Temperatura de la fuente, T_fuente [K]",Barrida,381.6 – 621.8,120.0,,K
 KF-M05-2,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.3 – 303.5,120.0,,K
 KF-M05-2,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
@@ -24,7 +24,7 @@ KF-M05-2,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.402 – 0
 KF-M05-2,"Efectividad del regenerador, ε_reg [–]",Barrida,0.402 – 0.947,120.0,,–
 KF-M05-2,"Efectividad del condensador, ε_cond [–]",Barrida,0.402 – 0.947,120.0,,–
 KF-M05-2,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.3 – 303.5,120.0,,K
-KF-M05-2,motor,Fija,teqp,,,–
+KF-M05-2,motor de propiedades,Fija,teqp,,,–
 KF-M05-3,"Temperatura de la fuente, T_fuente [K]",Barrida,380.2 – 622.4,120.0,,K
 KF-M05-3,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
 KF-M05-3,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
@@ -37,7 +37,7 @@ KF-M05-3,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.400 – 0
 KF-M05-3,"Efectividad del regenerador, ε_reg [–]",Barrida,0.402 – 0.949,120.0,,–
 KF-M05-3,"Efectividad del condensador, ε_cond [–]",Barrida,0.404 – 0.947,120.0,,–
 KF-M05-3,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
-KF-M05-3,motor,Fija,teqp,,,–
+KF-M05-3,motor de propiedades,Fija,teqp,,,–
 KF-M05-4,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
 KF-M05-4,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
 KF-M05-4,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
@@ -50,7 +50,7 @@ KF-M05-4,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0
 KF-M05-4,"Efectividad del regenerador, ε_reg [–]",Barrida,0.401 – 0.947,120.0,,–
 KF-M05-4,"Efectividad del condensador, ε_cond [–]",Barrida,0.402 – 0.947,120.0,,–
 KF-M05-4,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
-KF-M05-4,motor,Fija,teqp,,,–
+KF-M05-4,motor de propiedades,Fija,teqp,,,–
 KF-M05-5,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
 KF-M05-5,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.3 – 303.4,120.0,,K
 KF-M05-5,"Presión de alta, P_alta [kPa]",Barrida,2023 – 4997,120.0,,kPa
@@ -63,4 +63,4 @@ KF-M05-5,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0
 KF-M05-5,"Efectividad del regenerador, ε_reg [–]",Barrida,0.403 – 0.947,120.0,,–
 KF-M05-5,"Efectividad del condensador, ε_cond [–]",Barrida,0.401 – 0.948,120.0,,–
 KF-M05-5,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.3 – 303.4,119.0,,K
-KF-M05-5,motor,Fija,teqp,,,–
+KF-M05-5,motor de propiedades,Fija,teqp,,,–

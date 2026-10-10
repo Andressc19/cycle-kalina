@@ -47,7 +47,7 @@ fuera de lo habitual en Kalina": es una etiqueta, no un filtro.
 
 | x_b | Qué pasa |
 |---|---|
-| 0.30 – 0.45 | **No hay ciclo**: no converge, o converge con trabajo negativo (O3) y sin dos fases en el separador (O5). Hay 16 N2 |
+| 0.30 – 0.45 | **No hay ciclo**: de 32 corridas, 16 no convergen y 16 son falsos convergidos (N2); ninguna es genuina |
 | 0.50 | KALINA desde P_baja = 200 kPa, pero con **η de solo 0.1–1.2 %**: KALINA formal, sin utilidad práctica |
 | 0.55 | **Primer KALINA útil**: P_baja mínima de 300 kPa, η = 9.6 % |
 | 0.60 / 0.65 / 0.70 | P_baja mínima de 400 / 500 / 500 kPa |
@@ -56,7 +56,8 @@ fuera de lo habitual en Kalina": es una etiqueta, no un filtro.
 - Tablas: TAB-M10b-00 a -02. Figura: comparte FIG-M10-01 (malla x_b × P_baja), en el mismo bloque.
 
 ### Conclusiones del caso:
-1. **Por debajo de x_b ≈ 0.475 el ciclo no existe**: la mezcla no se separa en dos fases y no hay trabajo neto.
+1. **Por debajo de x_b = 0.50 el modelo no encuentra ningún ciclo.** Las soluciones aparentes (N2) muestran
+   trabajo negativo (O3) y separador sin dos fases (O5), pero son espurias: sirven como indicio, no como prueba.
 2. **x_b = 0.50 (la del profesor) es el límite**: es formalmente KALINA, pero casi no produce trabajo
    en las condiciones de Húsavík.
 3. **El KALINA útil empieza en x_b ≈ 0.55**, y a menor x_b permite una P_baja más baja.

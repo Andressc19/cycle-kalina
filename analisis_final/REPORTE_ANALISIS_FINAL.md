@@ -17,7 +17,7 @@ datos fijos distintos? Y ¿cómo se presentan al profesor con tablas, figuras y 
    las 2 restantes eran diferencias de definición y quedaron corregidas.
 3. **Productos de presentación** (todo en español):
    - 30 figuras Matplotlib, cada una con su título-conclusión, su recuadro de condiciones y su pie completo;
-   - 63 tablas en CSV y Markdown;
+   - 62 tablas en CSV y Markdown;
    - un libro Excel nuevo con una hoja interactiva `Tablero`;
    - un tablero web interactivo;
    - los datos preparados para Power BI;
@@ -46,15 +46,15 @@ ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conse
 | Fichas por caso | `analisis_final/04_fichas/` | 16 fichas (17 casos) con las 12 secciones de la plantilla, más un recuadro "Antes de leer" |
 | Figuras | `analisis_final/03_figuras/` | 30 de 30 con PNG, SVG y pie; conteos de cada figura iguales a los de la validación; revisión visual |
 | Tablas | `analisis_final/02_tablas/` | 3 conteos al azar iguales a `conteo_por_subcaso`; ranking de M3 igual al validado |
-| Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (89 hojas) | Tablero recalculado en Excel con 6 bloques: cifras resumen correctas |
+| Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (88 hojas) | Tablero recalculado en Excel con 6 bloques: cifras resumen correctas |
 | Tablero web | `analisis_final/06_tablero/tablero_kalina.html` | Revisado en el navegador: sin errores, cifras resumen iguales a la verificación, gráficos visibles |
 | Power BI | `analisis_final/07_powerbi/` + `GUIA_POWERBI.md` | Descartado por el usuario (todo queda en Excel); los CSV se conservan |
 
 ## 4. Conclusiones (validadas)
 
 1. **El bloqueo del enunciado es la fuente a 623 K.** Con ella el punto del profesor no converge.
-   Solo hay KALINA confiables alejándose mucho del resto del enunciado: x_b de ~0.7 a 0.85, P_alta
-   hasta 5000 kPa y P_baja de ~1.4 a 2 MPa.
+   Solo hay KALINA confiables alejándose mucho del resto del enunciado: x_b de 0.71 a 0.85, P_alta
+   de 3200 a 5000 kPa y P_baja de 1.36 a 1.97 MPa.
 2. **Bajando la fuente a ~390–410 K se conserva casi todo el enunciado**:
    - 8 de los 10 datos de diseño, con un sumidero de 280–293 K (M9);
    - o las dos presiones del profesor, con ε_cond ≥ 0.875 en su clima de 300 K (M5c).
@@ -84,6 +84,23 @@ Volví a revisar todo contra los objetivos. Encontré y corregí:
 | Excel, tablas | Decimales sin redondear; nombres de columna inconsistentes; `criterio_bajo/alto` mal traducidos; hojas "G02_qué" | 5 cifras significativas; nombres unificados; `traducciones_columnas.csv` generado; hojas G con nombre claro |
 | Tablero web | No marcaba con * los valores del punto base que difieren del profesor | Corregido (en B06 marca solo T_fuente y P_baja) |
 | Código | Funciones muertas en `a3_comun.py`; 2 scripts de más de 200 líneas | Eliminadas; todos los scripts ≤ 200 líneas |
+
+## 4c. Revisión de calidad (2026-10-10, tercera pasada, hecha directamente por Claude)
+
+Revisión punto por punto, sin OpenCode: cada cifra de las 16 fichas se recalculó con consultas
+propias sobre `todos_los_puntos.csv`, y la tabla canónica se cotejó fila por fila con los 33 CSV de
+origen (sin diferencias). Encontré y corregí:
+
+| Producto | Defecto encontrado | Corrección |
+|---|---|---|
+| Figura G02 | **Las etiquetas de fila estaban invertidas**: la fila "KF-M01-P_alta" mostraba los datos de Húsavík | Etiquetas en el orden de la matriz; leyenda con "sin dato en la fuente"; menos espacio vacío |
+| Encabezados de tablas y hojas del Excel | En los casos con varios bloques (M02R, M02S, M05, M07, M09, M10, M10b) **juntaban las condiciones de todos los bloques**; en Excel solo cabían 2 líneas y se veía únicamente el primer bloque | Condiciones bloque por bloque (compactas en M09); el Excel muestra todas las líneas; M06 se presenta como puntos de control |
+| Tablas de resultados | M06-02/03, M09-03, M10-02/03 y M10b-02 heredaban los subcasos de todo el caso | Cada tabla declara solo sus subcasos; filtro de TAB-M04-04 corregido (usa los 121 KALINA, no solo los confiables) |
+| Pies y recuadros | En OAT contaban el valor base como un valor más (16 en vez de 15); símbolos crudos (`eta_t`, `eps_hrvg`) | Conteo desde `condiciones_oat.csv`; símbolos en español (η_t, ε_HRVG, piso de O2) en pies, tablas, títulos de panel y PRCC |
+| Datos | 125 KALINA de M6-SUB marcados sin W_net > 0 (la fuente no trae W_net), así que el tablero web no graficaba su η | W_net > 0 se deduce de η > 0 cuando falta W_net |
+| Tabla huérfana | TAB-M03-03 (volcado crudo de una corrida vieja de OpenCode) seguía en el registro y en el Excel | Retirada; quedan 62 tablas y 88 hojas |
+| Fichas | M02-N1 contaba P_alta entre las variables que convergen (sus 13 "convergidos" son N2); M10 omitía ε_HRVG (rompe en 0.95) y decía "todos confiables" sin matiz; M07 y M06 discrepaban en el costo de 2 K; M10b apoyaba "no hay ciclo" en soluciones N2; M03 conservaba avisos de "pendiente"; M04c, M05 y M05c tenían cifras aproximadas | Corregidas con cifras recalculadas |
+| Metodología | [SUPUESTO] ya resueltos seguían abiertos (unidad de m_O2, Chart.js, FILTRAR) | Cerrados con lo verificado |
 
 ## 5. Lo que no se sabe
 

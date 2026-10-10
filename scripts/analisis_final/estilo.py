@@ -45,7 +45,7 @@ def recuadro_condiciones(ax, texto):
 def guardar(fig, ruta_sin_ext, pie):
     """Guarda PNG + SVG y el pie de figura en <ruta>.pie.md (mismo texto para informe y Excel)."""
     if getattr(fig, "_multipanel", False):
-        fig.tight_layout(rect=(0, 0.07, 1, 0.89))   # sitio para título, leyenda y recuadro
+        fig.tight_layout(rect=getattr(fig, "_rect", (0, 0.07, 1, 0.89)))   # título, leyenda, recuadro
     else:
         fig.tight_layout()
     for ext in ("png", "svg"):

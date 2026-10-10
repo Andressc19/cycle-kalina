@@ -44,10 +44,12 @@ resultado. La tolerancia fue 10 kPa en presiones, 0.5 K en temperaturas y 0.005 
 ### Resultados obtenidos:
 - 132 corridas: **15 genuinas, 0 KALINA**, 13 CORREGIBLE, 2 INVIABLE, 96 sin converger y
   **21 N2**. Hay 32 fuera de rango.
-- Las variables que al menos hacen converger el ciclo son T_fuente, P_alta, x_b y ε_HRVG.
+- Solo tres variables dan puntos genuinos: T_fuente (7), ε_HRVG (7) y x_b (1: x_b = 0.30, INVIABLE).
+  P_alta parecía converger, pero sus 13 "convergidos" son todos falsos (N2).
 - Recontando solo los genuinos (nota del director):
   - **T_fuente 403–497 K:** CORREGIBLE; solo falla O2.
   - **T_fuente 529–560 K:** CORREGIBLE; fallan O1 y O2.
+  - **T_fuente 592 K:** INVIABLE (fallan O1, O2 y O5).
   - **ε_HRVG 0.75–0.817** (con la fuente de 623 K): falla O1, al filo, y O2, con un déficit de 18 a 20 K.
 - El punto más cercano es **T_fuente = 402.9 K**: solo falla O2, por 2.0 K, y tiene η = 9.86 %.
 - Tablas: TAB-M02-N1-00/01/02. Figura FIG-M02-01 (una tira por variable, coloreada por clase).

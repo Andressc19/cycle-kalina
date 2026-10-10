@@ -29,14 +29,11 @@ TRADUCCIONES = os.path.join(TABLAS, "traducciones_columnas.csv")
 
 MNN = ["M01", "M02-N1", "M02-N2", "M02R", "M02S", "M03", "M04", "M04b", "M04c",
        "M05", "M05c", "M06", "M07", "M09", "M10", "M10b"]
-
 PROFESOR = {"P_alta": 3000.0, "P_baja": 400.0, "x_b": 0.50, "T_fuente": 623.15,
             "T_sumidero": 300.032917, "m_b": 1.0, "eta_t": 0.85, "eta_p": 0.75,
             "eps_hrvg": 0.85, "eps_reg": 0.75, "eps_cond": 0.80}
-
 COLOR_CLASE = {"KALINA": "C6EFCE", "CORREGIBLE": "FFD9A0", "NO_CONVERGIO": "F8B4B4",
                "INVIABLE": "FFF2A8", "N2": "D9D9D9"}
-
 _trad_pend = {}
 
 
@@ -168,9 +165,12 @@ def escribir_tabla(meta, df, tipos):
     """Escribe CSV + Markdown de una tabla y anota su fila en el registro."""
     carpeta = os.path.join(TABLAS, meta["carpeta"])
     os.makedirs(carpeta, exist_ok=True)
+    # Celdas con nombres crudos (eps_hrvg…) → símbolo en español.
+    df = df.apply(lambda s: s.map(lambda v: pies.SIMBOLO.get(v, v) if isinstance(v, str) else v)
+                  if s.dtype == object or str(s.dtype).startswith("str") else s)
     df.to_csv(os.path.join(carpeta, meta["tabla"] + ".csv"), index=False, encoding="utf-8-sig")
     # Síntesis (carpeta G): sin encabezado de condiciones común; cada fila trae los suyos.
-    texto = "" if meta["carpeta"] == "G" else pies.condiciones_texto(meta["subcasos"])
+    texto = "" if meta["carpeta"] == "G" else pies.condiciones_por_bloque(meta["subcasos"])
     notas = (f"Filtro: {meta['filtro']}. n = {meta['n']}. "
              "† = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). "
              f"Fuente: {meta['fuente']}.")

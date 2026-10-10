@@ -11,4 +11,4 @@ KF-M02-N1,"Efectividad del generador de vapor, ε_HRVG [–]",Una a la vez,0.850
 KF-M02-N1,"Efectividad del regenerador, ε_reg [–]",Una a la vez,0.750,0.750 – 0.850,10.0,,–
 KF-M02-N1,"Efectividad del condensador, ε_cond [–]",Una a la vez,0.800,0.750 – 0.850,11.0,,–
 KF-M02-N1,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,,K
-KF-M02-N1,motor,Fija,,teqp,,,–
+KF-M02-N1,motor de propiedades,Fija,,teqp,,,–

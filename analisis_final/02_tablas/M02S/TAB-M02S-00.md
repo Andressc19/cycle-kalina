@@ -2,8 +2,18 @@
 
 **Caso(s):** KF-M02S · **Bloque(s):** B05-B1, B05-B2, B05-B3, B05-B4  
 **Punto base:** B1 a B4 = cuatro bases distintas (una por subcaso)  
-**Datos fijos: P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; eta_t = 0.85; eta_p = 0.75; eps_reg = 0.75; eps_cond = 0.8; motor = teqp.**  
-**Datos barridos: T_sumidero [278.15–300.03] K (5 valores); P_baja [150–1500] kPa (30 valores); T_amb_diseno [278.15–300.03] K (5 valores).**  
+**Bloque B05-B1 (KF-M02S-B1):**  
+**Datos fijos: T_fuente = 403 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp.**  
+**Datos barridos: T_sumidero [278.15–300.03] K (5 valores); P_baja [150–1500] kPa (28 valores); piso de O2 [278.15–300.03] K (5 valores).**  
+**Bloque B05-B2 (KF-M02S-B2):**  
+**Datos fijos: T_fuente = 420 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp.**  
+**Datos barridos: T_sumidero [278.15–300.03] K (5 valores); P_baja [150–1500] kPa (28 valores); piso de O2 [278.15–300.03] K (5 valores).**  
+**Bloque B05-B3 (KF-M02S-B3):**  
+**Datos fijos: T_fuente = 623.15 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.4; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp.**  
+**Datos barridos: T_sumidero [278.15–300.03] K (5 valores); P_baja [150–1500] kPa (30 valores); piso de O2 [278.15–300.03] K (5 valores).**  
+**Bloque B05-B4 (KF-M02S-B4):**  
+**Datos fijos: T_fuente = 623.15 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp.**  
+**Datos barridos: T_sumidero [278.15–300.03] K (5 valores); P_baja [150–1500] kPa (10 valores); piso de O2 [278.15–300.03] K (5 valores).**  
 
 | Subcaso | Variable | Estado | Valor o rango | n valores | ¿Igual al profesor? | Unidad |
 |---|---|---|---|---|---|---|
@@ -19,7 +29,7 @@
 | KF-M02S-B1 | Efectividad del regenerador, ε_reg [–] | Fija | 0.75 |  | sí | – |
 | KF-M02S-B1 | Efectividad del condensador, ε_cond [–] | Fija | 0.8 |  | sí | – |
 | KF-M02S-B1 | Piso de O2 (T de diseño de la bomba) [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
-| KF-M02S-B1 | motor | Fija | teqp |  |  | – |
+| KF-M02S-B1 | motor de propiedades | Fija | teqp |  |  | – |
 | KF-M02S-B2 | Temperatura de la fuente, T_fuente [K] | Fija | 420.0 |  | no | K |
 | KF-M02S-B2 | Temperatura del sumidero, T_sumidero [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
 | KF-M02S-B2 | Presión de alta, P_alta [kPa] | Fija | 3000.0 |  | sí | kPa |
@@ -32,7 +42,7 @@
 | KF-M02S-B2 | Efectividad del regenerador, ε_reg [–] | Fija | 0.75 |  | sí | – |
 | KF-M02S-B2 | Efectividad del condensador, ε_cond [–] | Fija | 0.8 |  | sí | – |
 | KF-M02S-B2 | Piso de O2 (T de diseño de la bomba) [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
-| KF-M02S-B2 | motor | Fija | teqp |  |  | – |
+| KF-M02S-B2 | motor de propiedades | Fija | teqp |  |  | – |
 | KF-M02S-B3 | Temperatura de la fuente, T_fuente [K] | Fija | 623.15 |  | sí | K |
 | KF-M02S-B3 | Temperatura del sumidero, T_sumidero [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
 | KF-M02S-B3 | Presión de alta, P_alta [kPa] | Fija | 3000.0 |  | sí | kPa |
@@ -45,7 +55,7 @@
 | KF-M02S-B3 | Efectividad del regenerador, ε_reg [–] | Fija | 0.75 |  | sí | – |
 | KF-M02S-B3 | Efectividad del condensador, ε_cond [–] | Fija | 0.8 |  | sí | – |
 | KF-M02S-B3 | Piso de O2 (T de diseño de la bomba) [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
-| KF-M02S-B3 | motor | Fija | teqp |  |  | – |
+| KF-M02S-B3 | motor de propiedades | Fija | teqp |  |  | – |
 | KF-M02S-B4 | Temperatura de la fuente, T_fuente [K] | Fija | 623.15 |  | sí | K |
 | KF-M02S-B4 | Temperatura del sumidero, T_sumidero [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
 | KF-M02S-B4 | Presión de alta, P_alta [kPa] | Fija | 3000.0 |  | sí | kPa |
@@ -58,6 +68,6 @@
 | KF-M02S-B4 | Efectividad del regenerador, ε_reg [–] | Fija | 0.75 |  | sí | – |
 | KF-M02S-B4 | Efectividad del condensador, ε_cond [–] | Fija | 0.8 |  | sí | – |
 | KF-M02S-B4 | Piso de O2 (T de diseño de la bomba) [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
-| KF-M02S-B4 | motor | Fija | teqp |  |  | – |
+| KF-M02S-B4 | motor de propiedades | Fija | teqp |  |  | – |
 
 **Notas:** Filtro: condiciones_por_subcaso (cada subcaso y variable). n = 52. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/condiciones_por_subcaso.csv.
