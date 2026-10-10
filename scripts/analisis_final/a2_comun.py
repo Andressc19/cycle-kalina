@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """A2 · Utilidades comunes: rutas, lecturas, formato en español y escritura de tablas.
 
-Cada tabla se guarda como CSV (encabezados en español, valores numéricos crudos) y
-como Markdown con las tres partes del §3A.5 (encabezado, cuerpo, notas).  Además se
-mantiene 02_tablas/registro_tablas.csv, del que el libro Excel saca los encabezados.
+Cada tabla va en CSV y en Markdown (§3A.5: encabezado, cuerpo, notas); el registro
+02_tablas/registro_tablas.csv alimenta los encabezados del libro Excel.
 """
 import os
 import sys
@@ -61,6 +60,7 @@ def bloques_de(subcasos):
     return list(dict.fromkeys(vistos))
 
 
+def nombre_es(col):
     """Nombre en español de una columna (NOMBRE tiene prioridad; si no, PROPIAS)."""
     if col in NOMBRE:
         return NOMBRE[col]
