@@ -1,0 +1,26 @@
+# TAB-G01 · Resumen de casos
+
+**Caso(s):** todos (síntesis) · **Bloque(s):** uno por fila  
+**Punto base:** el de cada fila (columna 'Punto base' o 'Datos fijos')  
+*Tabla de síntesis: cada fila es un caso con sus propios datos fijos.*
+
+| ID | Nombre | Familia | Bloque(s) | Punto base | Diseño | Corridas | Genuinas | KALINA | KALINA confiables | Falsos convergidos (N2) | Criterio que más bloquea |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| KF-M01 | Reproducción del caso del profesor | R | B01 | PP | una variable a la vez sobre PP | 42 | 0 | 0 | 0 | 0 | — |
+| KF-M02-N1 | Un solo cambio sobre el profesor | F | B02 | PP | malla 10 + bisección | 132 | 15 | 0 | 0 | 21 | O2 (15 de 15) |
+| KF-M02-N2 | Dos cambios sobre el profesor | F | B03-A, B03-B | PP | malla 2D + bisección | 180 | 165 | 59 | 48 | 12 | O2 (106 de 106) |
+| KF-M02R | M2 con η y ε en [0.40, 0.95] | F | B04-n1, B04-n2a, B04-n2b, B04-n3 | PP | mallas + bisección | 225 | 154 | 20 | 1 | 4 | O2 (134 de 134) |
+| KF-M02S | Sumidero frío con P_baja libre | F | B05-B1, B05-B2, B05-B3, B05-B4 | 4 bases | malla 2D + bisección | 320 | 269 | 153 | 119 | 0 | O2 (116 de 116) |
+| KF-M03 | Sensibilidad local alrededor de A* | L | B06 | A* | OAT 15 + A* ± 1 % | 171 | 148 | 86 | 86 | 6 | O2 (61 de 62) |
+| KF-M04 | Sensibilidad global, LHS 300 | G | B07 | caja | LHS | 300 | 266 | 76 | 57 | 7 | O2 (187 de 190) |
+| KF-M04b | Sensibilidad global, LHS 200 (unión 500) | G | B07 | caja | LHS | 200 | 186 | 45 | 26 | 6 | O2 (137 de 141) |
+| KF-M04c | Techo de P_baja (1500–2500 kPa) | G | B08 | caja | LHS | 150 | 120 | 75 | 45 | 6 | O2 (44 de 45) |
+| KF-M05 | Escenarios de conservación del profesor | C | B09-1, B09-2, B09-3, B09-4, B09-5 | PP parcial | LHS por escenario | 600 | 382 | 20 | 2 | 12 | O2 (362 de 362) |
+| KF-M05c | Franja KALINA con las presiones del profesor | C | B10 | PP con PA y PB | malla 11×5×3 | 165 | 149 | 104 | 104 | 15 | O2 (30 de 45) |
+| KF-M06 | Verificación con el motor real | V | B12 | puntos clave | puntos de control | 167 | 151 | 142 | 137 | 0 | O2 (9 de 9) |
+| KF-M07 | Máxima η dentro de KALINA | O | B11-A1, B11-A2, B11-A3, B11-A4, B11-A5 | 5 arranques | búsqueda por patrones | 560 | 549 | 419 | 331 | 1 | O2 (114 de 130) |
+| KF-M09 | Escalera de conservación del profesor | C | B13-* (20 conjuntos) | PP parcial | selección hacia adelante + LHS | 987 | 806 | 181 | 118 | 29 | O2 (613 de 625) |
+| KF-M10 | Húsavík revisitado | H | B14-F3, B14-OFAT, B14-MALLA | ancla de Húsavík | recorrida + OFAT + malla | 311 | 309 | 253 | 253 | 0 | O2 (56 de 56) |
+| KF-M10b | Húsavík con x_b bajo | H | B14-OFATb, B14-MALLA | ancla de Húsavík | OFAT + malla | 71 | 38 | 29 | 29 | 16 | O2 (9 de 9) |
+
+**Notas:** Filtro: todos los puntos (sin KF-M08). n = 16. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: todos_los_puntos.csv. Familias: R reproducibilidad, F factibilidad, L local, G global, C conservación, O optimización, V verificación, H Húsavík.

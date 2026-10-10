@@ -1,0 +1,53 @@
+﻿Subcaso,Variable,Estado,Valor o rango,n valores,¿Igual al profesor?,Unidad
+KF-M01-P_alta,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+KF-M01-P_alta,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+KF-M01-P_alta,"Presión de alta, P_alta [kPa]",Barrida,2000 – 4000,9.0,,kPa
+KF-M01-P_alta,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+KF-M01-P_alta,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+KF-M01-P_alta,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+KF-M01-P_alta,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+KF-M01-P_alta,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+KF-M01-P_alta,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+KF-M01-P_alta,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+KF-M01-P_alta,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+KF-M01-P_alta,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
+KF-M01-P_alta,motor,Fija,teqp,,,–
+KF-M01-base,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+KF-M01-base,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+KF-M01-base,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+KF-M01-base,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+KF-M01-base,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+KF-M01-base,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+KF-M01-base,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+KF-M01-base,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+KF-M01-base,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+KF-M01-base,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+KF-M01-base,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+KF-M01-base,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
+KF-M01-base,motor,Barrida, – ,2.0,,–
+KF-M01-x_b,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+KF-M01-x_b,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+KF-M01-x_b,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+KF-M01-x_b,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+KF-M01-x_b,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.400 – 0.700,7.0,,–
+KF-M01-x_b,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+KF-M01-x_b,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+KF-M01-x_b,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+KF-M01-x_b,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+KF-M01-x_b,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+KF-M01-x_b,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+KF-M01-x_b,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
+KF-M01-x_b,motor,Fija,teqp,,,–
+KF-M01-T_amb,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+KF-M01-T_amb,"Temperatura del sumidero, T_sumidero [K]",Barrida,297.9 – 303.6,23.0,,K
+KF-M01-T_amb,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+KF-M01-T_amb,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+KF-M01-T_amb,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+KF-M01-T_amb,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+KF-M01-T_amb,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+KF-M01-T_amb,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+KF-M01-T_amb,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+KF-M01-T_amb,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+KF-M01-T_amb,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+KF-M01-T_amb,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
+KF-M01-T_amb,motor,Fija,teqp,,,–

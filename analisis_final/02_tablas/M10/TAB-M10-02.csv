@@ -1,0 +1,17 @@
+﻿Familia,Origen,Variables movidas,Piso de O2 [K],N,KALINA (septiembre),KALINA (ahora),Confiables ahora,Coincide,|Δη| medio [pp],|Δη| máximo [pp]
+F3-A,sept,"P_alta, P_baja, x_b, eta_t, eps_reg, eps_cond",303.55,14,14.0,14,14,14.0,0.0,0.0
+F3-B,sept,"P_baja, eps_reg, eps_cond",283.15,27,27.0,27,27,27.0,5.20057248294321e-13,1.4041545703946667e-11
+F3-C,sept,P_baja x eps_reg,283.15,24,24.0,24,24,24.0,3.0548480411951573e-13,7.258083023486961e-12
+F3-D,sept,"una variable por archivo (P_baja, eps_cond, eps_reg, eta_t, x_b)",283.15,26,26.0,26,26,26.0,9.153468581392698e-13,2.062516823997385e-11
+F3-E,sept,"una variable por archivo (P_alta, P_baja, x_b)",303.55,6,6.0,6,6,6.0,4.324026486405656e-07,2.594405125455612e-06
+B1-T_fuente,nuevo,T_fuente,283.15,15,,7,7,,,
+B1-T_sumidero,nuevo,T_sumidero,283.15,15,,8,8,,,
+B1-P_alta,nuevo,P_alta,283.15,15,,12,12,,,
+B1-P_baja,nuevo,P_baja,283.15,15,,11,11,,,
+B1-x_b,nuevo,x_b,283.15,15,,9,9,,,
+B1-eta_t,nuevo,eta_t,283.15,15,,15,15,,,
+B1-eta_p,nuevo,eta_p,283.15,15,,15,15,,,
+B1-eps_hrvg,nuevo,eps_hrvg,283.15,15,,14,14,,,
+B1-eps_reg,nuevo,eps_reg,283.15,15,,15,15,,,
+B1-eps_cond,nuevo,eps_cond,283.15,15,,1,1,,,
+B2,nuevo,x_b x P_baja,283.15,64,,49,49,,,

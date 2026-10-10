@@ -1,0 +1,6 @@
+Figura FIG-M04-02. El 90 % de los KALINA tiene razón de presiones entre 1.7 y 5.3.
+Caso(s): KF-M04, KF-M04b (bloque B07). Punto base: Sin punto base: muestreo en la caja de rangos indicada en 'Datos barridos'
+Datos fijos: m_b = 1 kg/s; motor = teqp.
+Datos barridos: T_fuente [380.23–499.94] K (300 valores); T_sumidero [278.18–303.54] K (300 valores); P_alta [2005.4–4991.2] kPa (300 valores); P_baja [302.95–1498] kPa (300 valores); x_b [0.50012–0.84998] (300 valores); eta_t [0.75036–0.91969] (300 valores); eta_p [0.6504–0.89919] (300 valores); eps_hrvg [0.60004–0.94905] (300 valores); eps_reg [0.60097–0.94997] (300 valores); eps_cond [0.70014–0.94941] (300 valores); T_amb_diseno [278.18–303.54] K (300 valores).
+Filtro: B07 (KF-M04 + KF-M04b).
+n = 500. Fuente: todos_los_puntos.csv.

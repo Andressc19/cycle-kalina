@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ciclo Kalina KCS-11 — resultados de la campaña final de barridos</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
+<style>
+__CSS__
+</style>
+</head>
+<body>
+<header class="cab">
+  <h1>Ciclo Kalina KCS-11 — resultados de la campaña final de barridos</h1>
+  <p class="sub">Campaña KF-M01 … KF-M10b · datos de <code>todos_los_puntos.csv</code> · todo en español</p>
+</header>
+
+<nav class="pest" id="pestanas">
+  <button class="pest-btn activa" data-sec="resumen">Resumen de la campaña</button>
+  <button class="pest-btn" data-sec="explorador">Explorador por bloque</button>
+  <button class="pest-btn" data-sec="metodologia">Metodología y glosario</button>
+</nav>
+
+<main>
+  <!-- ===================== PESTAÑA 1 ===================== -->
+  <section id="resumen" class="sec activa">
+    <h2>Resumen de la campaña</h2>
+    <div id="kpi-resumen" class="kpifila"></div>
+
+    <div class="tarjeta">
+      <h3>Resultados por caso y clase</h3>
+      <p class="ayuda">Número de corridas en cada caso, apiladas por clase del ciclo (orden M01 → M10b).</p>
+      <div class="lienzo alto"><canvas id="graf-resumen"></canvas></div>
+    </div>
+
+    <div class="tarjeta">
+      <h3>Qué se fijó en cada barrido</h3>
+      <p class="ayuda">Cada fila es un subcaso; cada columna, una variable.
+        <span class="clave barrida">barrida</span>
+        <span class="clave oat">una a la vez</span>
+        <span class="clave igual">= profesor</span>
+        <span class="clave fijo">valor fijo distinto</span>
+        <span class="clave sin">sin dato</span></p>
+      <div id="matriz" class="scrolltabla"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PESTAÑA 2 ===================== -->
+  <section id="explorador" class="sec">
+    <h2>Explorador por bloque</h2>
+    <div class="rejilla2">
+      <div class="tarjeta">
+        <h3>Filtros</h3>
+        <div class="campos">
+          <label>Bloque
+            <select id="sel-bloque"></select>
+          </label>
+          <label>Subcaso
+            <select id="sel-subcaso"></select>
+          </label>
+          <label>Eje X
+            <select id="sel-x"></select>
+          </label>
+          <label>Eje Y
+            <select id="sel-y"></select>
+          </label>
+        </div>
+        <fieldset id="chk-clases" class="chkclases"><legend>Clase del ciclo</legend></fieldset>
+        <label class="chk" for="chk-conf"><input type="checkbox" id="chk-conf"> Solo KALINA confiables</label>
+        <label class="chk" for="chk-wnet"><input type="checkbox" id="chk-wnet"> Solo con W_net &gt; 0</label>
+      </div>
+
+      <div class="tarjeta" id="panel-cond">
+        <h3 id="titulo-cond">Condiciones de este bloque</h3>
+        <div id="aviso-cond"></div>
+        <p id="pp-cond" class="ppbase"></p>
+        <div id="tabla-cond" class="scrolltabla"></div>
+        <div id="lista-barridos"></div>
+      </div>
+    </div>
+
+    <div id="kpi-filtro" class="kpifila"></div>
+    <p id="kpi-nota" class="ayuda"></p>
+
+    <div class="rejilla2">
+      <div class="tarjeta">
+        <h3>Dispersión</h3>
+        <div class="lienzo alto"><canvas id="graf-disp"></canvas></div>
+        <p id="pie-disp" class="pie"></p>
+      </div>
+      <div class="tarjeta">
+        <h3>Criterios de bloqueo (genuinos no KALINA)</h3>
+        <p class="ayuda">Cuántos puntos del filtro incumplen cada criterio operativo.</p>
+        <div class="lienzo alto"><canvas id="graf-bloq"></canvas></div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <div class="cab-tabla">
+        <h3>Puntos del filtro</h3>
+        <button id="btn-csv" class="boton">Descargar CSV</button>
+      </div>
+      <div id="tabla-puntos" class="scrolltabla"></div>
+      <div id="paginacion" class="paginacion"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PESTAÑA 3 ===================== -->
+  <section id="metodologia" class="sec">
+    <h2>Metodología y glosario</h2>
+    <div class="tarjeta">
+      <h3>Glosario</h3>
+      <dl id="glosario" class="glosario"></dl>
+    </div>
+    <div class="tarjeta">
+      <h3>Casos de la campaña</h3>
+      <div id="tabla-casos" class="scrolltabla"></div>
+    </div>
+    <div class="tarjeta">
+      <p class="nota">Solo se comparan puntos de un mismo bloque: un bloque reúne puntos con las mismas
+        variables fijas en los mismos valores. Las diferencias de η menores que 0.7 puntos porcentuales no
+        son concluyentes (banda de incertidumbre del modelo de propiedades).</p>
+    </div>
+  </section>
+</main>
+
+<script>
+const DATOS = __DATOS__;
+</script>
+<script>
+__JS__
+</script>
+</body>
+</html>
