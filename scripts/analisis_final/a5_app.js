@@ -84,37 +84,6 @@ function kpisHTML(ps){
   return [["Corridas",dec(ps.length,0)],["Puntos genuinos",dec(g,0)],["KALINA",dec(k,0)],["KALINA confiables",dec(kc,0)],["η máx. KALINA",esNulo(emax)?"—":dec(emax,2)+" %"],["Criterio que más bloquea",crit]]
     .map((a)=>'<div class="kpi"><div class="v">'+a[1]+'</div><div class="t">'+a[0]+"</div></div>").join("");
 }
-/* --- gráficos --- */
-function pinta(id,cfg){const el=document.getElementById(id);if(el.__ch){el.__ch.data=cfg.data;el.__ch.options=cfg.options;el.__ch.update("none");return el.__ch;}el.__ch=new Chart(el,cfg);return el.__ch;}
-function cfgDisp(ps,xc,yc){
-  const ds=[];
-  for(const c of CLASES){
-    const sub=sel(ps,(p)=>p.clase_trazo===c); if(!sub.length) continue;
-    const data=[], bg=[], bd=[], bw=[];
-    for(const p of sub){
-      const x=coord(p,xc), y=coord(p,yc); if(x===null||y===null) continue;
-      data.push({x:x,y:y,id:p.id_punto,clase:c,eta:p.eta_pct});
-      const fr=p.fuera_rango===true; bg.push(fr?"rgba(0,0,0,0)":col(c)); bd.push(col(c)); bw.push(fr?1.5:0);
-    }
-    if(!data.length) continue;
-    ds.push({label:etq(c)+" (n = "+data.length+")",data:data,pointStyle:forma(c),pointRadius:5,pointHoverRadius:7,pointBackgroundColor:bg,pointBorderColor:bd,pointBorderWidth:bw});
-  }
-  return {type:"scatter",data:{datasets:ds},options:{responsive:true,maintainAspectRatio:false,animation:false,
-    scales:{x:{title:{display:true,text:nom(xc)}},y:{title:{display:true,text:nom(yc)}}},
-    plugins:{legend:{position:"bottom",labels:{boxWidth:12}},tooltip:{callbacks:{
-      title:(it)=>it[0].raw.id,
-      label:(it)=>{const r=it.raw;return [etq(r.clase),sinComa(xc)+": "+dec(r.x,2),sinComa(yc)+": "+dec(r.y,2),"η: "+(esNulo(r.eta)?"—":dec(r.eta,2)+" %")];}}}}}};
-}
-function cfgResumen(casos){
-  const ds=CLASES.map((c)=>({label:etq(c),backgroundColor:col(c),data:casos.map((id)=>sel(D.PUNTOS,(p)=>p.id_caso===id&&p.clase_trazo===c).length)}));
-  return {type:"bar",data:{labels:casos,datasets:ds},options:{indexAxis:"y",responsive:true,maintainAspectRatio:false,animation:false,
-    scales:{x:{stacked:true,title:{display:true,text:"Número de corridas"}},y:{stacked:true}},plugins:{legend:{position:"bottom",labels:{boxWidth:12}}}}};
-}
-function cfgBloqueos(ps){
-  const b=bloqueos(ps);
-  return {type:"bar",data:{labels:b.nombres,datasets:[{label:"Puntos que incumplen",data:b.c,backgroundColor:"#C62828"}]},
-    options:{responsive:true,maintainAspectRatio:false,animation:false,scales:{y:{beginAtZero:true,title:{display:true,text:"Número de puntos"}}},plugins:{legend:{display:false}}}};
-}
 /* --- pie y panel de condiciones --- */
 function barrido(var_,lo,hi,n,u){const us=u&&u!=="–"?" "+u:"";return esNulo(lo)?var_+" ("+n+" valores)":var_+" ["+sig(lo)+"–"+sig(hi)+"]"+us+" ("+n+" valores)";}
 function unidadDe(var_,u){return (var_==="motor"||u==="–"||esNulo(u))?"":u;}
@@ -162,9 +131,10 @@ function renderCond(){
     }
   }else filas=cb.fijos;
   let h='<table><thead><tr><th>Variable</th><th>Valor</th><th>Unidad</th></tr></thead><tbody>';
-  for(const f of filas){const dif=iniN(f.ig);h+="<tr"+(dif?' class="resalta"':"")+"><td>"+esc(sinComa(f.v))+"</td><td>"+esc(fmt(f.val))+(dif?" *":"")+"</td><td>"+esc(unidadDe(f.v,f.u)||"–")+"</td></tr>";}
+  for(const f of filas){const dif=iniN(f.ig);h+="<tr"+(dif?' class="resalta"':"")+"><td>"+esc(sinComa(f.v))+"</td><td>"+(dif?"<b>"+esc(fmt(f.val))+'</b><span class="ast" aria-hidden="true">*</span>':esc(fmt(f.val)))+"</td><td>"+esc(unidadDe(f.v,f.u)||"–")+"</td></tr>";}
   h+="</tbody></table><p class=\"ayuda\">* valor distinto del punto del profesor.</p>";
   $("#tabla-cond").innerHTML=filas.length?h:'<p class="ayuda">Sin variables fijas detectadas.</p>';
+  $("#pp-cond").textContent="Punto base: "+(cb.b.punto_base||"—");
   $("#lista-barridos").innerHTML=cb.barr.length?"<h3>Variables barridas</h3><ul>"+cb.barr.map((x)=>"<li>"+esc(sinComa(x.v))+": "+esc(sig(x.lo))+" – "+esc(sig(x.hi))+" "+esc(unidadDe(x.v,x.u))+" ("+x.n+" valores)</li>").join("")+"</ul>":"";
 }
 /* --- tabla de puntos y CSV --- */
@@ -220,11 +190,15 @@ function renderMatriz(){
   for(const v of VARS) h+="<th>"+esc(v)+"</th>";
   h+="</tr></thead><tbody>";
   for(const s of subs){
-    h+="<tr><td>"+esc(s)+"</td>";
+    const oat=sel(COND,(c)=>c.id_subcaso===s&&iniS(c.es_oat)).length>0;
+    h+="<tr><td>"+esc(s)+(oat?" (una variable a la vez)":"")+"</td>";
     for(const v of VARS){
       const r=uno(COND,(c)=>c.id_subcaso===s&&c.variable===v);
-      if(!r||r.estado==="sin_dato") h+='<td><span class="sin">—</span></td>';
-      else if(r.estado==="barrido") h+='<td><span class="barrida">barrida</span></td>';
+      if(!r||r.estado==="sin_dato"){
+        if(r&&v==="T_amb_diseno"&&/^KF-M0[123]/.test(r.id_caso||"")) h+='<td><span class="sin">300,03 K (por protocolo)</span></td>';
+        else h+='<td><span class="sin">—</span></td>';
+      }
+      else if(r.estado==="barrido") h+=oat?'<td><span class="oat">una a la vez</span></td>':'<td><span class="barrida">barrida</span></td>';
       else if(iniS(r.igual_al_profesor)) h+='<td><span class="igual">= profesor</span></td>';
       else h+='<td><span class="fijo">'+esc(fmt(r.valor_fijo))+(r.unidad&&r.unidad!=="–"?" "+esc(r.unidad):"")+"</span></td>";
     }
@@ -242,14 +216,17 @@ function renderCasos(){
 /* --- arranque --- */
 function renderTodo(){
   renderCond();
-  const ps=puntos();
+  const ps=puntos(), cb=condBloque();
   $("#kpi-filtro").innerHTML=kpisHTML(ps);
+  $("#kpi-nota").textContent=cb.oat
+    ? "Cifras de los puntos donde se mueve "+nom(est.x)+"; las demás variables están en el punto base."
+    : "";
   pinta("graf-disp",cfgDisp(ps,est.x,est.y)); pinta("graf-bloq",cfgBloqueos(ps));
   $("#pie-disp").textContent=pieTexto(ps);
   est.pag=0; renderTabla();
 }
 function init(){
-  $("#sel-bloque").innerHTML=BLOQUES.map((b)=>'<option value="'+esc(b.bloque_director)+'">'+esc(b.bloque_director)+"</option>").join("");
+  $("#sel-bloque").innerHTML=BLOQUES.map((b)=>'<option value="'+esc(b.bloque_director)+'">'+esc(b.bloque_director+" · "+(b.id_casos||"")+" · "+(b.descripcion||b.bloque_director))+"</option>").join("");
   $("#chk-clases").innerHTML='<legend>Clase del ciclo</legend>'+CLASES.map((c)=>'<label><input type="checkbox" class="cc" value="'+c+'" checked><span class="punto" style="background:'+col(c)+'"></span>'+esc(etq(c))+"</label>").join("");
   document.querySelectorAll(".cc").forEach((ch)=>ch.addEventListener("change",()=>{est.clases=new Set(sel([...document.querySelectorAll(".cc")],(x)=>x.checked).map((x)=>x.value));est.pag=0;renderTodo();}));
   $("#sel-bloque").addEventListener("change",(e)=>{est.bloque=e.target.value;cargarBloque();});
@@ -259,7 +236,7 @@ function init(){
   $("#chk-conf").addEventListener("change",(e)=>{est.conf=e.target.checked;est.pag=0;renderTodo();});
   $("#chk-wnet").addEventListener("change",(e)=>{est.wnet=e.target.checked;est.pag=0;renderTodo();});
   $("#btn-csv").addEventListener("click",csv);
-  document.querySelectorAll(".pest-btn").forEach((b)=>b.addEventListener("click",()=>{document.querySelectorAll(".pest-btn").forEach((o)=>o.classList.remove("activa"));document.querySelectorAll(".sec").forEach((o)=>o.classList.remove("activa"));b.classList.add("activa");$("#"+b.dataset.sec).classList.add("activa");}));
+  document.querySelectorAll(".pest-btn").forEach((b)=>b.addEventListener("click",()=>activarSec(b.dataset.sec)));
   renderResumen(); renderGlosario(); renderCasos();
   est.bloque=BLOQUES.length?BLOQUES[0].bloque_director:"";
   cargarBloque();

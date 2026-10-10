@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 """A5 · Verifica el tablero: tamaño, JSON embebido, KPIs de 3 bloques y anglicismos."""
-import json
-import os
-import re
-import sys
-
+import json, os, re, sys
 import pandas as pd
 
 SALIDA = "analisis_final/06_tablero/tablero_kalina.html"
 CANONICA = "analisis_final/01_datos/todos_los_puntos.csv"
+BLOQUES_CSV = "analisis_final/00_inventario/bloques.csv"
 
 
 def es_verdadero(v):
@@ -71,6 +68,42 @@ def main():
     print("[4] Palabras de interfaz en inglés encontradas en el HTML:")
     halladas = [w for w in ("Filter", "Download", "Show", "Page") if w in html]
     print("    " + (", ".join(halladas) if halladas else "ninguna"))
+
+    # 5. C1: llamada a resize() en manejador de cambio de pestaña.
+    print("[5] Verificación C1 — resize() en cambio de pestaña:")
+    i = html.find("function activarSec(")
+    if i >= 0 and "resize()" in html[i:i + 800]:
+        print("    OK: se encontró llamada a resize() en activarSec")
+    else:
+        print("    FALLA: no se encontró resize() en activarSec")
+    # Toda función usada por los manejadores tiene que estar definida en el HTML final
+    # (así se detecta un .js que el armado no incluyó).
+    for fn in ("pinta", "activarSec", "cfgDisp", "cfgResumen", "cfgBloqueos"):
+        ok = re.search(r"function\s+" + fn + r"\s*\(", html) is not None
+        print(f"    {'OK' if ok else 'FALLA'}: función {fn} definida en el HTML")
+
+    # 6. C2: 5 opciones del selector de bloque.
+    print("[6] Primeras 5 opciones del selector de bloque (value · texto):")
+    opts = re.findall(r'<option value="([^"]+)">([^<]+)</option>', html)
+    bloque_opts = [o for o in opts if o[0].startswith("B")]
+    for v, t in bloque_opts[:5]:
+        print(f"    {v} · {t}")
+
+    # 7. C2: DESCRIPCION_BLOQUE cubre todos los bloque_director.
+    print("[7] Verificación C2 — cobertura de DESCRIPCION_BLOQUE:")
+    blo = pd.read_csv(BLOQUES_CSV)
+    blo = blo[blo["bloque_director"] != "BX"]
+    bloques = blo["bloque_director"].unique().tolist()
+    # Cargar DESCRIPCION_BLOQUE desde a5_tablero.py (simplificado: extraer del JS embebido)
+    # Como el JS no tiene el dict, lo importamos del módulo
+    sys.path.insert(0, "scripts/analisis_final")
+    from a5_tablero import DESCRIPCION_BLOQUE
+    sin_desc = [b for b in bloques if not any(b.startswith(p.rstrip("-")) for p in DESCRIPCION_BLOQUE)]
+    if not sin_desc:
+        print(f"    OK: todos los {len(bloques)} bloques tienen descripción")
+    else:
+        print(f"    FALLA: {len(sin_desc)} bloques sin descripción: {sin_desc[:10]}")
+
     return 0
 
 

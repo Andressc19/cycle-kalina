@@ -49,7 +49,9 @@ h3{font-size:14px;margin:0 0 10px;color:var(--tinta)}
 .rejilla2{margin-bottom:16px}
 .lienzo{position:relative;height:320px}
 .lienzo.alto{height:420px}
+.lienzo canvas{width:100%;height:100%}
 .ayuda{color:var(--tinta2);font-size:12.5px;margin:0 0 10px}
+.ppbase{font-size:12.5px;color:var(--tinta);margin:0 0 10px;font-weight:600}
 
 /* KPIs */
 .kpifila{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
@@ -96,10 +98,12 @@ tbody tr:nth-child(even){background:#fafbfc}
 /* Celdas de la matriz */
 .clave{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11.5px;margin-left:6px}
 .clave.barrida,td .barrida{background:#dcf0dd;color:#1b5e20}
+.clave.oat,td .oat{background:#e3dff2;color:#4527a0}
 .clave.igual,td .igual{background:#e6ecf3;color:#33475b}
 .clave.fijo,td .fijo{background:#fdeccd;color:#7a4a00}
 .clave.sin,td .sin{background:#f1f3f5;color:#8a949e}
-td .barrida,td .igual,td .fijo,td .sin{display:inline-block;padding:1px 7px;border-radius:10px}
+td .barrida,td .oat,td .igual,td .fijo,td .sin{display:inline-block;padding:1px 7px;border-radius:10px}
+td .ast{font-weight:700;color:#b35c00;margin-left:2px}
 
 /* Chips de clase */
 .chip{display:inline-block;padding:1px 8px;border-radius:10px;color:#fff;font-size:11.5px;font-weight:600}

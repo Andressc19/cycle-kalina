@@ -37,6 +37,7 @@ __CSS__
       <h3>Qué se fijó en cada barrido</h3>
       <p class="ayuda">Cada fila es un subcaso; cada columna, una variable.
         <span class="clave barrida">barrida</span>
+        <span class="clave oat">una a la vez</span>
         <span class="clave igual">= profesor</span>
         <span class="clave fijo">valor fijo distinto</span>
         <span class="clave sin">sin dato</span></p>
@@ -65,19 +66,21 @@ __CSS__
           </label>
         </div>
         <fieldset id="chk-clases" class="chkclases"><legend>Clase del ciclo</legend></fieldset>
-        <label class="chk"><input type="checkbox" id="chk-conf"> Solo KALINA confiables</label>
-        <label class="chk"><input type="checkbox" id="chk-wnet"> Solo con W_net &gt; 0</label>
+        <label class="chk" for="chk-conf"><input type="checkbox" id="chk-conf"> Solo KALINA confiables</label>
+        <label class="chk" for="chk-wnet"><input type="checkbox" id="chk-wnet"> Solo con W_net &gt; 0</label>
       </div>
 
       <div class="tarjeta" id="panel-cond">
         <h3 id="titulo-cond">Condiciones de este bloque</h3>
         <div id="aviso-cond"></div>
+        <p id="pp-cond" class="ppbase"></p>
         <div id="tabla-cond" class="scrolltabla"></div>
         <div id="lista-barridos"></div>
       </div>
     </div>
 
     <div id="kpi-filtro" class="kpifila"></div>
+    <p id="kpi-nota" class="ayuda"></p>
 
     <div class="rejilla2">
       <div class="tarjeta">
