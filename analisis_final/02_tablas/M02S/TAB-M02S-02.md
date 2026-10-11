@@ -38,4 +38,4 @@
 | B4 | 293.1 | 0 | 0 | 0 |  |  |  |  |  |  |  |  |
 | B4 | 300.0 | 0 | 0 | 0 |  |  |  |  |  |  |  |  |
 
-**Notas:** Filtro: todos los puntos de la malla. n = 20. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-06_final_M2S/m2s_resumen.csv.
+**Notas:** Filtro: todos los puntos de la malla. n = 20 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-06_final_M2S/m2s_resumen.csv.

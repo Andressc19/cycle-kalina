@@ -6,7 +6,7 @@
 >   ε_reg = 0.75, ε_cond = 0.80.
 > - **Escenario:** grupo de datos del profesor que se deja fijo. Las demás variables se sortean (LHS).
 > - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades
->   (sin líquido por encima de 420 K).
+>   (sin líquido por encima de 420 K) y con todas sus η y ε en [0.40, 0.95].
 > - **O2:** cavitación.
 
 ### ID del caso:

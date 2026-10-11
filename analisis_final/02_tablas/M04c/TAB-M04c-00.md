@@ -21,4 +21,4 @@
 | KF-M04c | Piso de O2 (T de diseño de la bomba) [K] | Barrida | 278.3 – 303.4 | 135 |  | K |
 | KF-M04c | motor de propiedades | Fija | teqp |  |  | – |
 
-**Notas:** Filtro: condiciones_por_subcaso (cada subcaso y variable). n = 13. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/condiciones_por_subcaso.csv.
+**Notas:** Filtro: condiciones_por_subcaso (cada subcaso y variable). n = 13 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/condiciones_por_subcaso.csv.

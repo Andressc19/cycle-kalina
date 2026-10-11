@@ -77,7 +77,7 @@ def hoja_tabla(wb, meta, condiciones):
     fin = h + len(df)
     if len(df):
         ws.auto_filter.ref = f"A{h}:{get_column_letter(len(df.columns))}{fin}"
-    nota = (f"Notas: n = {meta['n']}. † = fuera del rango confiable (IAPWS G4-01); "
+    nota = (f"Notas: n = {meta['n']} filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); "
             f"‡ = falso convergido (N2). {meta['notas'] if isinstance(meta['notas'], str) else ''}")
     ws.cell(fin + 2, 1, nota).font = Font(italic=True)
     ws.freeze_panes = f"B{h + 1}"

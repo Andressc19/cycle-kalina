@@ -36,7 +36,7 @@ figura completos y todo en español) y el libro nuevo `datos/Excel_kalina_final_
 | Punto del profesor (PP) | P_alta 3000 kPa, P_baja 400 kPa, x_b 0.50, T_fuente 623.15 K, T_sumidero 300.032917 K, ε 0.85/0.75/0.80, η_t 0.85, η_p 0.75, m_b 1 kg/s | `comun.PROFESOR` |
 | Ancla A\* | PP con T_fuente = 403 K y P_baja = 563.64 kPa (KALINA, η 8.48 %) | — |
 | **Punto genuino** | clase ∈ {KALINA, CORREGIBLE, INVIABLE}. Una fila con `convergio=True` y clase NO_CONVERGIO es un fijo espurio **N2** y cuenta como NO convergido | `clasificacion`, `convergio` |
-| KALINA confiable | KALINA y `fuera_rango = False` (IAPWS G4-01 §6) | `fuera_rango` |
+| KALINA confiable | KALINA, `fuera_rango = False` (IAPWS G4-01 §6) y η/ε en [0.40, 0.95] (regla del proyecto; desde la revisión del 2026-10-10) | `fuera_rango`, η_t … ε_cond |
 | Punto omitido | `P_baja ≥ P_alta − 300` en M4c/M5: no se evaluó; se reporta, no se clasifica | `omitido` |
 | Criterios de bloqueo | O1 título a la salida de turbina · O2 cavitación (subenfriamiento en bomba) · O3 trabajo neto ≤ 0 · O5 separador · C1/C3/S6/N2 convergencia | `codigos_falla`, `viol_O*`, `m_O*` |
 | Piso de O2 | 300.032917 K en M1–M3; desde M2S = `T_sumidero` del punto | `T_amb_diseno` |

@@ -6,7 +6,8 @@
 >   ε_reg = 0.75, ε_cond = 0.80.
 > - **Arranque:** el punto de partida de una búsqueda, con los datos que esa búsqueda no puede mover.
 > - **D (índice de cercanía):** qué tan lejos está un punto de cumplir todos los criterios. D = 0 es KALINA.
-> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades.
+> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades y con
+>   todas sus η y ε en [0.40, 0.95].
 
 ### ID del caso:
 `KF-M07`, con 5 subcasos (arranques A1 a A5). Cada arranque es su propio bloque (**B11-A1 … B11-A5**).

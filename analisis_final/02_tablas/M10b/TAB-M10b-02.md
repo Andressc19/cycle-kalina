@@ -17,4 +17,4 @@
 | 0.650 | 500.0 | 12.17 | O2 |
 | 0.700 | 500.0 | 13.31 | O2 |
 
-**Notas:** Filtro: todos los puntos de KF-M10b-MALLA. n = 9. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: canónico (KF-M10b-MALLA). Una fila por valor de x_b; el criterio cuenta solo O1/O2/O3/O5.
+**Notas:** Filtro: todos los puntos de KF-M10b-MALLA. n = 9 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: canónico (KF-M10b-MALLA). Una fila por valor de x_b; el criterio cuenta solo O1/O2/O3/O5.

@@ -14,4 +14,4 @@
 | KF-M10b-OFAT | 17 | 0 | 8 | 8 | 8 | 0 | 0 | 5 | 4 | 0 |
 | KF-M10b-MALLA | 54 | 0 | 30 | 21 | 21 | 9 | 0 | 12 | 12 | 0 |
 
-**Notas:** Filtro: conteo_por_subcaso. n = 2. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/conteo_por_subcaso.csv.
+**Notas:** Filtro: conteo_por_subcaso. n = 2 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/conteo_por_subcaso.csv.

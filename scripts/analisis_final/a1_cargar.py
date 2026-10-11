@@ -74,7 +74,11 @@ def main():
     fuera = tabla["fuera_rango"].map(es_verdadero)
     tabla["genuino"] = clase.isin(CLASES_GENUINAS)
     tabla["es_N2"] = convergio & clase.eq("NO_CONVERGIO")
-    tabla["kalina_confiable"] = clase.eq("KALINA") & ~fuera
+    # Confiable = KALINA, dentro del rango del modelo y con η/ε en [0.40, 0.95] (regla del proyecto;
+    # excluye los 14 puntos F3 de Húsavík con η_t o ε_cond > 0.95 y los extremos de M8).
+    efs = tabla[["eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond"]].apply(pd.to_numeric, errors="coerce")
+    realista = ~((efs < 0.40 - 1e-9) | (efs > 0.95 + 1e-9)).any(axis=1)
+    tabla["kalina_confiable"] = clase.eq("KALINA") & ~fuera & realista
     tabla["omitido"] = tabla["omitido"].map(es_verdadero)
     wnet = pd.to_numeric(tabla["Wnet"], errors="coerce")
     eta = pd.to_numeric(tabla["eta"], errors="coerce")

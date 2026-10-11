@@ -6,7 +6,8 @@
 >   ε_reg = 0.75, ε_cond = 0.80. Con ellos el ciclo no converge.
 > - **A\* (punto ancla):** el punto que sale de este caso y se usa después. Es PP con
 >   **T_fuente = 403 K y P_baja = 563.64 kPa**. Es KALINA, con η = 8.48 %.
-> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades.
+> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades y con
+>   todas sus η y ε en [0.40, 0.95].
 > - **d (distancia al profesor):** suma de los cambios de cada variable, cada uno dividido por el
 >   ancho del rango de esa variable. d = 0 es el profesor exacto.
 > - **O2:** cavitación (el líquido debe llegar subenfriado a la bomba).

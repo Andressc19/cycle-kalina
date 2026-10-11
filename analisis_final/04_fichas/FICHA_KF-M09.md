@@ -7,7 +7,8 @@
 > - **Grupos de datos del profesor:** EF = las 5 eficiencias y efectividades (η_t, η_p, ε_HRVG,
 >   ε_reg, ε_cond); PA = P_alta; PB = P_baja; TF = T_fuente; TS = T_sumidero; XB = x_b.
 > - **Escalera:** se conserva un grupo, se elige el mejor, y se le suma otro grupo por ronda.
-> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades.
+> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades y con
+>   todas sus η y ε en [0.40, 0.95].
 
 ### ID del caso:
 `KF-M09`. Tiene un subcaso por (ronda, conjunto conservado), por ejemplo `KF-M09-R3-XB_PA_EF_PB`,

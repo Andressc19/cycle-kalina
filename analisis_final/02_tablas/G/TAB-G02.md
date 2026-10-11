@@ -65,4 +65,4 @@
 | KF-M10b-OFAT | fijo:394.15 | fijo:278.15 | fijo:3300 | fijo:690 | barrido:[0.3, 0.7] | =PP | fijo:0.9 | fijo:0.8 | =PP | =PP | fijo:0.95 | fijo:283.15 | fijo:teqp |
 | KF-M10b-MALLA | fijo:394.15 | fijo:278.15 | fijo:3300 | barrido:[200, 700] | barrido:[0.3, 0.7] | =PP | fijo:0.9 | fijo:0.8 | =PP | =PP | fijo:0.95 | fijo:283.15 | fijo:teqp |
 
-**Notas:** Filtro: todos los subcasos (sin KF-M08). n = 58. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: casos_x_variables.csv. =PP: igual al profesor; fijo:<valor>: fijo en otro valor; barrido:[a, b]: barrida.
+**Notas:** Filtro: todos los subcasos (sin KF-M08). n = 58 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: casos_x_variables.csv. =PP: igual al profesor; fijo:<valor>: fijo en otro valor; barrido:[a, b]: barrida.

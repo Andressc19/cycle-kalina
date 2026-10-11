@@ -1,28 +1,28 @@
 # Análisis de resultados de la campaña M1–M10b — terminado
 
-> **Metodología ejecutada completa: 4 741 puntos organizados en 51 bloques, 76 de 78 cifras validadas,
-> 30 figuras, 62 tablas, Excel interactivo (88 hojas) y tablero web.** Hay 2 decisiones pendientes:
-> publicar el tablero y fusionar a master.
+> **Metodología ejecutada completa y revisada tres veces: 4 741 puntos en 51 bloques, 76 de 78 cifras
+> validadas, 30 figuras, 62 tablas y el Excel interactivo (88 hojas), que es el tablero oficial.**
+> Hay 2 decisiones pendientes: fusionar a master y limpiar los worktrees.
 
 ### Estado
 
 | Ítem | Estado | Dato clave |
 |---|---|---|
-| Tabla única + condiciones por subcaso | ✅ | 4 741 puntos, 59 subcasos, 51 bloques |
-| Validación cruzada (A4) | ✅ | 76 de 78 ✔; 2 diferencias de definición corregidas |
-| Fichas por caso | ✅ | 16 fichas (17 casos), cada una con su recuadro "Antes de leer" |
+| Tabla única + condiciones por subcaso | ✅ | 4 741 puntos, 59 subcasos, 51 bloques; idéntica a los 33 CSV de origen |
+| Validación cruzada (A4) | ✅ | 76 de 78 ✔; las 2 diferencias son de definición y están corregidas |
+| Fichas por caso | ✅ | 16 fichas (17 casos), 12/12 secciones; cifras recalculadas desde los datos |
 | Figuras Matplotlib | ✅ | 30 de 30, cada una con título-conclusión, condiciones y pie |
-| `Excel_kalina_final_final_final.xlsx` | ✅ | 88 hojas; Tablero recalculado y verificado en Excel |
-| Tablero web | ✅ | Revisado en el navegador: cifras resumen correctas, sin errores |
+| `Excel_kalina_final_final_final.xlsx` | ✅ | 88 hojas; condiciones bloque por bloque; hoja Tablero interactiva (tablero oficial) |
+| Tablero web | ✅ | Extra; funciona en el navegador, necesita internet (Chart.js por CDN) |
 | Power BI | — | Descartado: todo queda en Excel (decisión del usuario) |
-| Ejecución vía OpenCode | ⚠️ | El proveedor se cayó; Claude terminó el código (autorizado) |
+| Ejecución vía OpenCode | ⚠️ | El proveedor se cayó; Claude terminó el código y hizo la tercera revisión (autorizado) |
 
 ### Decisiones requeridas
 
-1. ¿Se publica el tablero web como enlace privado para el profesor?
-   **Recomiendo:** sí, porque se abre sin instalar nada y no mezcla bloques.
-2. ¿Se fusiona `test/barrido_final` a master local?
+1. ¿Se fusiona `test/barrido_final` a master local?
    **Recomiendo:** sí, después de tu revisión; push o PR solo si lo pides.
+2. ¿Se borran los 5 worktrees temporales `af-*`?
+   **Recomiendo:** sí, porque ya están integrados.
 
 ### Riesgos
 
@@ -31,7 +31,7 @@
 
 ### Información extra
 
-- El modelo gratuito de OpenCode no soportó 3 agentes en paralelo; en adelante conviene lanzarlos de a uno.
+- "KALINA confiable" exige además η y ε en [0.40, 0.95]: los 14 puntos F3 de Húsavík con 0.98–0.99 ya no cuentan (M10: 239 confiables).
 
 ---
 
@@ -41,7 +41,7 @@
 
 *↳ Riesgo 1: "la conclusión sobre la fuente de 623 K"*
 
-**Qué:** con 623 K hay KALINA confiables, pero solo con x_b ≈ 0.7–0.85 y presiones altas
+**Qué:** con 623 K hay KALINA confiables, pero solo con x_b de 0.71 a 0.85 y presiones altas
 (M7-A3: 90 confiables; M5-S1: 2). Con la x_b o las presiones del profesor: 0 confiables.
 
 &nbsp;\
@@ -52,5 +52,6 @@
 
 ---
 
-*Fuente: tabla canónica y validación A4 (rama `test/barrido_final`, commit c7dffb2 en adelante). Tablero
-Excel recalculado con Excel 2024; tablero web revisado en el navegador integrado.*
+*Fuente: tabla canónica y validación A4 (rama `test/barrido_final`). Tercera revisión del 2026-10-10
+hecha directamente por Claude (detalle en `REPORTE_ANALISIS_FINAL.md` §4c). Tablero de Excel
+recalculado con Excel 2024; tablero web revisado en el navegador integrado.*

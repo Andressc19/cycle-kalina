@@ -5,7 +5,7 @@
 >   T_fuente = 623.15 K, T_sumidero = 300.03 K, η_t = 0.85, η_p = 0.75, ε_HRVG = 0.85,
 >   ε_reg = 0.75, ε_cond = 0.80. Con ellos el ciclo no converge.
 > - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades
->   (sin líquido por encima de 420 K).
+>   (sin líquido por encima de 420 K) y con todas sus η y ε en [0.40, 0.95].
 > - **O2:** cavitación (el líquido debe llegar subenfriado a la bomba).
 
 ### ID del caso:

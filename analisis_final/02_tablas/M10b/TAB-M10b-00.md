@@ -38,4 +38,4 @@
 | KF-M10b-MALLA | Piso de O2 (T de diseño de la bomba) [K] | Fija |  | 283.15 |  | no | K |
 | KF-M10b-MALLA | motor de propiedades | Fija |  | teqp |  |  | – |
 
-**Notas:** Filtro: condiciones_por_subcaso (cada subcaso y variable). n = 26. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/condiciones_por_subcaso.csv.
+**Notas:** Filtro: condiciones_por_subcaso (cada subcaso y variable). n = 26 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/condiciones_por_subcaso.csv.

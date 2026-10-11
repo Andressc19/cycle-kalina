@@ -14,4 +14,4 @@
 | 4000–4500 | 4000 | 4500 | 109 | 32 | 29.4 | 2419 |
 | 4500–5000 | 4500 | 5000 | 108 | 35 | 32.4 | 2482 |
 
-**Notas:** Filtro: todos los puntos del barrido de P_baja. n = 6. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-07_final_M4c/m4c_techo_por_palta.csv.
+**Notas:** Filtro: todos los puntos del barrido de P_baja. n = 6 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-07_final_M4c/m4c_techo_por_palta.csv.

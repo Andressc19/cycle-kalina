@@ -20,4 +20,4 @@
 | M4c | 2300–2400 | 2300 | 2400 | 10 | 7 | 70.0 | 2388 |
 | M4c | 2400–2500 | 2400 | 2500 | 12 | 9 | 75.0 | 2495 |
 
-**Notas:** Filtro: todos los puntos del barrido de P_baja. n = 12. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-07_final_M4c/m4c_techo.csv.
+**Notas:** Filtro: todos los puntos del barrido de P_baja. n = 12 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-07_final_M4c/m4c_techo.csv.

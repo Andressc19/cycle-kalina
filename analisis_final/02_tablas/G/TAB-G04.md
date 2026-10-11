@@ -18,4 +18,4 @@
 | T_fuente | 623.15 K | no (bloqueo estructural) | M1, M2, M9 (0 confiables con TF) |
 | m_b | 1 kg/s | sí (base de cálculo) | todas |
 
-**Notas:** Filtro: conclusiones validadas por A4. n = 11. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: fichas KF-M05c y KF-M09; validación A4.
+**Notas:** Filtro: conclusiones validadas por A4. n = 11 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: fichas KF-M05c y KF-M09; validación A4.

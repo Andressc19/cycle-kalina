@@ -39,4 +39,4 @@
 | n3 | T_fuente | 529 | ε_cond | 3 | 0 | 0 |  |  |  |  |  |  |  | O2(3) · O1(2) |
 | n3 | T_fuente | 560 | ε_cond | 3 | 0 | 0 |  |  |  |  |  |  |  | O1(3) · O2(3) |
 
-**Notas:** Filtro: todos los puntos de la malla. n = 21. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-06_final_M2R/m2r_resumen.csv.
+**Notas:** Filtro: todos los puntos de la malla. n = 21 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-06_final_M2R/m2r_resumen.csv.

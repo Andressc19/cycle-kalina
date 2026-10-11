@@ -101,6 +101,9 @@ origen (sin diferencias). Encontré y corregí:
 | Tabla huérfana | TAB-M03-03 (volcado crudo de una corrida vieja de OpenCode) seguía en el registro y en el Excel | Retirada; quedan 62 tablas y 88 hojas |
 | Fichas | M02-N1 contaba P_alta entre las variables que convergen (sus 13 "convergidos" son N2); M10 omitía ε_HRVG (rompe en 0.95) y decía "todos confiables" sin matiz; M07 y M06 discrepaban en el costo de 2 K; M10b apoyaba "no hay ciclo" en soluciones N2; M03 conservaba avisos de "pendiente"; M04c, M05 y M05c tenían cifras aproximadas | Corregidas con cifras recalculadas |
 | Metodología | [SUPUESTO] ya resueltos seguían abiertos (unidad de m_O2, Chart.js, FILTRAR) | Cerrados con lo verificado |
+| Definición de "KALINA confiable" | Contaba como confiables 14 puntos F3 de Húsavík con η_t o ε_cond de 0.98–0.99, contra la regla del proyecto (η y ε ≤ 0.95) | Confiable exige además η y ε en [0.40, 0.95]: M10 pasa de 253 a 239 confiables (F3: 83 de 97); el resto de los casos no cambia |
+| Notas de las tablas | "n = 3" sin decir de qué | "n = 3 filas en la tabla" |
+| BLUF del análisis | Recomendaba publicar el tablero web como principal | El tablero oficial es la hoja Tablero del Excel; verificado otra vez en Excel 2024 (bloques B07, B14-F3, B10 y B12: cifras correctas, 0 errores, gráficos con series) |
 
 ## 5. Lo que no se sabe
 
@@ -113,6 +116,6 @@ origen (sin diferencias). Encontré y corregí:
 ## 6. Qué sigue
 
 1. Que el usuario revise las fichas, las figuras, el Excel y el tablero, y diga qué corregir.
-2. Decidir si el tablero web se publica como enlace privado para el profesor.
+2. Borrar los worktrees temporales `af-*` (ya integrados). El tablero web queda como extra; el oficial es el Excel.
 3. Llevar `test/barrido_final` a master local; push o PR solo si el usuario lo pide.
 4. Opcional: un informe Word en APA 7 con las figuras y tablas. Power BI descartado: todo queda en Excel.

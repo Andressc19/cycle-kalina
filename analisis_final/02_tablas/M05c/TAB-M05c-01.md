@@ -9,4 +9,4 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | KF-M05c | 165 | 0 | 149 | 104 | 104 | 30 | 15 | 1 | 15 | 0 |
 
-**Notas:** Filtro: conteo_por_subcaso. n = 1. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/conteo_por_subcaso.csv.
+**Notas:** Filtro: conteo_por_subcaso. n = 1 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/conteo_por_subcaso.csv.

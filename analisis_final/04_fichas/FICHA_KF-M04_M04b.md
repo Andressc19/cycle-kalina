@@ -9,7 +9,8 @@
 > - **PRCC:** mide si subir una variable sube (+) o baja (−) la eficiencia η, descontando el efecto de las demás.
 > - **p5–p95:** el rango donde está el 90 % central de los KALINA.
 > - **Piso de O2 = T_sumidero:** la cavitación se evalúa con el clima de cada punto.
-> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades.
+> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades y con
+>   todas sus η y ε en [0.40, 0.95].
 
 ### ID del caso:
 `KF-M04` (300 puntos, semilla 20261006) y `KF-M04b` (200 puntos, semilla 20261007). Ambos forman
@@ -63,7 +64,7 @@ prueba de convergencia del ranking (300 contra 500 puntos, ρ = 0.93). Ver MATEM
 | ΔP = P_alta − P_baja | 968 – 3718 | 710 – 4117 | kPa |
 | r_P = P_alta / P_baja | 1.69 – 5.34 | 1.55 – 8.38 | – |
 
-- **Qué decide KALINA (KS):**
+- **Qué decide KALINA (KS, los 121 KALINA contra los 379 puntos restantes):**
   - P_baja (0.43) y ε_cond (0.43) son las que más deciden.
   - Les siguen r_P (0.35), T_fuente (0.29), T_sumidero (0.20) y x_b (0.19).
   - η_t, η_p, ε_HRVG y ε_reg casi no deciden la clase (KS < 0.13, p > 0.1).

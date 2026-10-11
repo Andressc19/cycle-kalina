@@ -23,4 +23,4 @@
 | KF-M10 | 56 | 0 | 0.0 | 56 | 100.0 | 0 | 0.0 | 0 | 0.0 |
 | KF-M10b | 9 | 0 | 0.0 | 9 | 100.0 | 0 | 0.0 | 0 | 0.0 |
 
-**Notas:** Filtro: genuinos que no son KALINA. n = 16. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: todos_los_puntos.csv. Un punto puede violar varios criterios: los % no suman 100. O1 título, O2 cavitación, O3 trabajo neto, O5 separador.
+**Notas:** Filtro: genuinos que no son KALINA. n = 16 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: todos_los_puntos.csv. Un punto puede violar varios criterios: los % no suman 100. O1 título, O2 cavitación, O3 trabajo neto, O5 separador.

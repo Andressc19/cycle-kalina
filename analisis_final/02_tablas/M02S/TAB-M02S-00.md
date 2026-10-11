@@ -70,4 +70,4 @@
 | KF-M02S-B4 | Piso de O2 (T de diseño de la bomba) [K] | Barrida | 278.1 – 300.0 | 5 |  | K |
 | KF-M02S-B4 | motor de propiedades | Fija | teqp |  |  | – |
 
-**Notas:** Filtro: condiciones_por_subcaso (cada subcaso y variable). n = 52. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/condiciones_por_subcaso.csv.
+**Notas:** Filtro: condiciones_por_subcaso (cada subcaso y variable). n = 52 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/condiciones_por_subcaso.csv.

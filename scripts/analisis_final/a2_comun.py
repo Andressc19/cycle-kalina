@@ -171,7 +171,7 @@ def escribir_tabla(meta, df, tipos):
     df.to_csv(os.path.join(carpeta, meta["tabla"] + ".csv"), index=False, encoding="utf-8-sig")
     # Síntesis (carpeta G): sin encabezado de condiciones común; cada fila trae los suyos.
     texto = "" if meta["carpeta"] == "G" else pies.condiciones_por_bloque(meta["subcasos"])
-    notas = (f"Filtro: {meta['filtro']}. n = {meta['n']}. "
+    notas = (f"Filtro: {meta['filtro']}. n = {meta['n']} filas en la tabla. "
              "† = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). "
              f"Fuente: {meta['fuente']}.")
     if meta.get("notas"):

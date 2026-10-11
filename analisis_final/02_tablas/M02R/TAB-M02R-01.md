@@ -22,4 +22,4 @@
 | KF-M02R-n2b | 64 | 0 | 62 | 19 | 0 | 43 | 0 | 2 | 0 | 62 |
 | KF-M02R-n3 | 21 | 0 | 20 | 1 | 1 | 18 | 1 | 1 | 0 | 14 |
 
-**Notas:** Filtro: conteo_por_subcaso. n = 4. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/conteo_por_subcaso.csv.
+**Notas:** Filtro: conteo_por_subcaso. n = 4 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: analisis_final/00_inventario/conteo_por_subcaso.csv.

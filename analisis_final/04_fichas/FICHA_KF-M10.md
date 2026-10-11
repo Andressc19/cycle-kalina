@@ -6,7 +6,8 @@
 >   T_sumidero = 278.15 K, η_t = 0.90, η_p = 0.80, ε_HRVG = 0.85, ε_reg = 0.75, ε_cond = 0.95,
 >   con el piso de O2 en 283.15 K.
 > - **Fase 3 (F3):** el estudio de Húsavík de septiembre, hecho con el código de entonces.
-> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades.
+> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades y con
+>   todas sus η y ε en [0.40, 0.95].
 
 ### ID del caso:
 `KF-M10`, con subcasos F3 (re-evaluación), OFAT y MALLA. Cada subcaso es su propio bloque:
@@ -49,8 +50,8 @@ F3 conservan sus datos de septiembre, con pisos de O2 de 283.15 o 303.55 K segú
 Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D completa.
 
 ### Resultados obtenidos:
-- **F3: 97 de 97 siguen siendo KALINA y ninguno cambia de clase** (A4, V21); todos dentro del rango
-  del modelo de propiedades, pero 14 usan η o ε > 0.95 (ver advertencias). Las η coinciden
+- **F3: 97 de 97 siguen siendo KALINA y ninguno cambia de clase** (A4, V21); **83 son KALINA confiables**;
+  los otros 14 usan η o ε > 0.95 y no cuentan como confiables (ver advertencias). Las η coinciden
   a 10⁻¹¹ pp.
 - **OFAT (148 genuinos, 107 KALINA):** rangos KALINA con lo demás en el ancla:
 

@@ -13,5 +13,5 @@ KF-M05c,Franja KALINA con las presiones del profesor,C,B10,PP con PA y PB,malla 
 KF-M06,Verificación con el motor real,V,B12,puntos clave,puntos de control,167,151,142,137,0,O2 (9 de 9)
 KF-M07,Máxima η dentro de KALINA,O,"B11-A1, B11-A2, B11-A3, B11-A4, B11-A5",5 arranques,búsqueda por patrones,560,549,419,331,1,O2 (114 de 130)
 KF-M09,Escalera de conservación del profesor,C,B13-* (20 conjuntos),PP parcial,selección hacia adelante + LHS,987,806,181,118,29,O2 (613 de 625)
-KF-M10,Húsavík revisitado,H,"B14-F3, B14-OFAT, B14-MALLA",ancla de Húsavík,recorrida + OFAT + malla,311,309,253,253,0,O2 (56 de 56)
+KF-M10,Húsavík revisitado,H,"B14-F3, B14-OFAT, B14-MALLA",ancla de Húsavík,recorrida + OFAT + malla,311,309,253,239,0,O2 (56 de 56)
 KF-M10b,Húsavík con x_b bajo,H,"B14-OFATb, B14-MALLA",ancla de Húsavík,OFAT + malla,71,38,29,29,16,O2 (9 de 9)

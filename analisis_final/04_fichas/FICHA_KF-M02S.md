@@ -7,7 +7,8 @@
 > - **A\* (punto ancla):** PP con T_fuente = 403 K y P_baja = 563.64 kPa (KALINA, η = 8.48 %).
 > - **Piso de O2:** temperatura con la que se evalúa la cavitación. **Desde este caso es igual a la
 >   T_sumidero de cada punto.** Antes era 300.03 K fija.
-> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades.
+> - **KALINA confiable:** KALINA dentro del rango validado del modelo de propiedades y con
+>   todas sus η y ε en [0.40, 0.95].
 
 ### ID del caso:
 `KF-M02S` · cuatro bloques, uno por base: **B05-B1, B05-B2, B05-B3 y B05-B4**. Tienen datos fijos

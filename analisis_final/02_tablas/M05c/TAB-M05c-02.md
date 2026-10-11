@@ -23,4 +23,4 @@
 | 300.0 | 0.925 | 4 | 390.0 | 397.5 | 2.47 | 7.85 |
 | 300.0 | 0.950 | 9 | 390.0 | 410.0 | 2.44 | 10.81 |
 
-**Notas:** Filtro: todos los puntos del barrido. n = 15. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-07_final_M5c/m5c_frontera.csv.
+**Notas:** Filtro: todos los puntos del barrido. n = 15 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). Fuente: resultados/2026-10-07_final_M5c/m5c_frontera.csv.

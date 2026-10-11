@@ -54,7 +54,7 @@ GLOSARIO = {
         "es una solución espuria y no cuenta como convergido."),
     "KALINA confiable": (
         "Punto KALINA dentro del rango validado del modelo de propiedades "
-        "(IAPWS G4-01)."),
+        "(IAPWS G4-01) y con todas sus η y ε en [0.40, 0.95]."),
     "Fuera de rango": (
         "Punto con estados fuera del rango validado del modelo de propiedades "
         "(por ejemplo, líquido por encima de 420 K); su η se toma con cautela."),
