@@ -1,7 +1,7 @@
 # Metodología de análisis, organización y reporte de resultados — campaña final M1–M10b
 
 **Fecha:** 2026-10-10 · **Rama:** `test/barrido_final` (worktree `.claude/worktrees/barrido-final`) ·
-**Estado:** EJECUTADA el 2026-10-10 (ver `analisis_final/REPORTE_ANALISIS_FINAL.md`). **Rev. 2 (2026-10-10):** se agregan las reglas de
+**Estado:** EJECUTADA y revisada tres veces el 2026-10-10 (ver `analisis_final/REPORTE_ANALISIS_FINAL.md`, §4b y §4c; último commit `8348659`). Tablero oficial: hoja `Tablero` del Excel; Power BI descartado. **Rev. 2 (2026-10-10):** se agregan las reglas de
 presentación del §3A (bloques de comparabilidad, condiciones fijas en cada figura y tabla, pies de
 figura completos y todo en español) y el libro nuevo `datos/Excel_kalina_final_final_final.xlsx`.
 **Alcance:** solo la campaña final (M1–M10b). Las fases F1/F2/F3 de septiembre
@@ -419,7 +419,7 @@ Hay tres formas de mostrar los **mismos datos** (la tabla canónica y `condicion
 | Formato | Para qué sirve | Interactividad | Lo construye | Estado |
 |---|---|---|---|---|
 | **Matplotlib** (PNG/SVG) | Informe escrito, presentación y tesis: figuras fijas con pie completo | ninguna | A3 | §4 |
-| **Tablero HTML** (`tablero_kalina.html`) | **El tablero principal para el profesor.** Se abre con doble clic en cualquier navegador, sin instalar nada, y se puede compartir como enlace privado | alta: filtros por bloque, caso y clase, ejes a elección, tooltips, tabla ordenable | A5 (nuevo) | §4B.2 |
+| **Tablero HTML** (`tablero_kalina.html`) | **Extra** (desde el 2026-10-10 el oficial es el de Excel). Se abre con doble clic en cualquier navegador y necesita internet para los gráficos (Chart.js por CDN) | alta: filtros por bloque, caso y clase, ejes a elección, tooltips, tabla ordenable | A5 (nuevo) | §4B.2 |
 | **Tablero en Excel** (hoja `Tablero` del libro nuevo) | Que el profesor explore desde Excel, que ya conoce | media: lista desplegable de bloque → KPIs y gráficos que se actualizan solos, más filtros de tabla | A2 | §4B.3 |
 | **Power BI** | **Descartado** (decisión del usuario, 2026-10-10) | — | — | §4B.4 |
 
@@ -471,7 +471,7 @@ Funciona sin macros y con funciones de Excel 2024 (las del Office instalado):
 - Celda **Bloque** con lista desplegable (validación de datos) y celda **Caso** dependiente de ella.
 - Tarjetas KPI hechas con `CONTAR.SI.CONJUNTO` / `MAX.SI.CONJUNTO` sobre la hoja `Datos` (la tabla
   canónica como Tabla de Excel con filtros).
-- Bloque de **condiciones** con `FILTRAR` sobre la hoja `Condiciones`: cambia al elegir otro bloque.
+- Bloque de **condiciones** con INDEX/MATCH sobre la hoja oculta `Aux_tablero`: cambia al elegir otro bloque.
 - Gráficos nativos de Excel que se actualizan solos: barras de clases del bloque, barras de criterios
   de bloqueo y una dispersión de las **2 variables principales del bloque** (definidas por bloque en
   `bloques.csv`), alimentada por rangos auxiliares de tamaño fijo rellenos con `#N/A`.

@@ -1,5 +1,7 @@
 # Metodología de análisis de resultados — campaña final M1–M10b
 
+*Documento histórico (antes de ejecutar). El estado vigente está en `BLUF_ANALISIS_FINAL.md` y `REPORTE_ANALISIS_FINAL.md`.*
+
 > **Metodología lista y ficha piloto (KF-M03) escrita: 17 casos, 23 figuras y 9 tablas definidas.** No se ha corrido código. Antes de lanzar el agente A1 (OpenCode) se necesitan 3 decisiones.
 
 ### Estado
