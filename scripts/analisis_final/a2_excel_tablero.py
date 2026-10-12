@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter as L
 from openpyxl.worksheet.datavalidation import DataValidation
 
 import pies
+from a2_excel_hojas import cuadricula
 from nombres import NOMBRE
 
 PRIORIDAD = ["P_alta", "P_baja", "T_fuente", "x_b", "eps_cond", "T_sumidero", "eps_hrvg",
@@ -119,6 +120,7 @@ def _hoja(wb, bloques, filas, variables, nb, ncol_p):
         ws.cell(8 + i, 1, NOMBRE.get(v, v))
         ws.cell(8 + i, 2, _idx(filas.index(f"cond_{v}") + 2, ult))
     fp = 9 + len(variables)
+    cuadricula(ws, 4, 4, 5, 3 + len(KPI)); cuadricula(ws, 8, 1, 7 + len(variables), 2)
     ws.cell(fp, 1, "Pie del bloque:").font = Font(bold=True)
     c = ws.cell(fp + 1, 1, _idx(filas.index("pie") + 2, ult))
     c.alignment = Alignment(wrap_text=True, vertical="top")

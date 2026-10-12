@@ -46,7 +46,7 @@ ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conse
 | Fichas por caso | `analisis_final/04_fichas/` | 16 fichas (17 casos) con las 12 secciones de la plantilla, más un recuadro "Antes de leer" |
 | Figuras | `analisis_final/03_figuras/` | 30 de 30 con PNG, SVG y pie; conteos de cada figura iguales a los de la validación; revisión visual |
 | Tablas | `analisis_final/02_tablas/` | 3 conteos al azar iguales a `conteo_por_subcaso`; ranking de M3 igual al validado |
-| Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (88 hojas) | Tablero recalculado en Excel con 6 bloques: cifras resumen correctas |
+| Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (84 hojas) | Tablero recalculado en Excel con 6 bloques: cifras resumen correctas |
 | Tablero web | `analisis_final/06_tablero/tablero_kalina.html` | Revisado en el navegador: sin errores, cifras resumen iguales a la verificación, gráficos visibles |
 | Power BI | `analisis_final/07_powerbi/` + `GUIA_POWERBI.md` | Descartado por el usuario (todo queda en Excel); los CSV se conservan |
 
@@ -104,6 +104,21 @@ origen (sin diferencias). Encontré y corregí:
 | Definición de "KALINA confiable" | Contaba como confiables 14 puntos F3 de Húsavík con η_t o ε_cond de 0.98–0.99, contra la regla del proyecto (η y ε ≤ 0.95) | Confiable exige además η y ε en [0.40, 0.95]: M10 pasa de 253 a 239 confiables (F3: 83 de 97); el resto de los casos no cambia |
 | Notas de las tablas | "n = 3" sin decir de qué | "n = 3 filas en la tabla" |
 | BLUF del análisis | Recomendaba publicar el tablero web como principal | El tablero oficial es la hoja Tablero del Excel; verificado otra vez en Excel 2024 (bloques B07, B14-F3, B10 y B12: cifras correctas, 0 errores, gráficos con series) |
+
+## 4d. Excel con gráficos nativos y cuadrícula (2026-10-11)
+
+A pedido del usuario, el libro ya no pega las imágenes de Matplotlib en cada caso:
+- **74 gráficos nativos de Excel** en 10 hojas `*_graficos`, que replican las 30 figuras con los mismos
+  datos, bloque, título y pie. Se verificaron abriendo el libro en Excel 2024 y exportando cada gráfico:
+  los 74 tienen series y el número de puntos coincide con los datos (por ejemplo, la malla de Húsavík
+  dibuja 118 puntos más los 12 de la línea de P_baja mínima).
+- Las 30 figuras de Matplotlib quedan **una sola vez**, al final, en `Figuras_matplotlib_ref`; para el
+  informe escrito siguen en `03_figuras/`.
+- **Todas las tablas llevan cuadrícula.**
+- Diferencias con Matplotlib: los paneles múltiples son gráficos pequeños en rejilla; las anotaciones
+  (p. ej. "P08 = A4") van en el pie; la matriz G02 queda como tabla (hoja `G02_que_se_movio`).
+- Código: `scripts/analisis_final/a2_graf_base.py`, `a2_graf_estilo.py`, `a2_graf_casos_a.py` y
+  `a2_graf_casos_b.py`; el verificador `a2_verificar.py` comprueba las hojas de gráficos.
 
 ## 5. Lo que no se sabe
 

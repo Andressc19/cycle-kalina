@@ -12,8 +12,9 @@ from openpyxl import Workbook
 
 import pies
 from a2_comun import EXCEL_VIEJO, INV, LIBRO, MNN, leer_canon, registro
-from a2_excel_hojas import (hoja_df, hoja_figuras, hoja_leeme, hoja_profesor, hoja_tabla,
-                            nombre_hoja)
+from a2_excel_hojas import (cuadricula, hoja_df, hoja_figuras, hoja_leeme, hoja_profesor,
+                            hoja_tabla)
+from a2_graf_casos_b import construir_graficos
 from a2_excel_tablero import construir
 
 COLS_DATOS = ["id_punto", "id_caso", "id_subcaso", "bloque_director", "tipo_punto", "clase_trazo",
@@ -38,16 +39,14 @@ def main():
     indice.append(("Punto_profesor", "—", "—", "Datos del profesor y punto ancla A*"))
     for _, m in reg[reg["carpeta"] == "G"].sort_values("tabla").iterrows():
         indice.append((hoja_tabla(wb, m, ""), "síntesis", "uno por fila", m["titulo"]))
-    indice.append((hoja_figuras(wb, "G", "Figuras de síntesis"), "síntesis", "—", "FIG-G01, FIG-G02"))
     for mnn in MNN:
         filas = reg[reg["tabla"].str.startswith(f"TAB-{mnn}-")].sort_values("tabla")
         for _, m in filas.iterrows():
             subs = [s for s in str(m["subcasos"]).split("; ") if s]
             indice.append((hoja_tabla(wb, m, pies.condiciones_por_bloque(subs)), m["casos"],
                            m["bloques"], m["titulo"]))
-        if mnn != "M04b":
-            indice.append((hoja_figuras(wb, mnn, f"Figuras del caso KF-{mnn}"), f"KF-{mnn}", "—",
-                           "figuras con su pie"))
+    for h, caso, que in construir_graficos(wb):          # gráficos nativos (2026-10-11)
+        indice.append((h, caso, "los de cada figura", que))
     ws = wb.create_sheet("X_M08_anecdotico")
     ws["A1"] = "ANECDÓTICO — fuera del rango realista"
     from openpyxl.styles import Font, PatternFill
@@ -56,6 +55,7 @@ def main():
     ws["A3"] = "KF-M08: η y ε fuera de [0.40, 0.95]. No es un resultado de diseño ni entra en conclusiones."
     for i, (k, v) in enumerate(m8.items(), 5):
         ws.cell(i, 1, k); ws.cell(i, 2, int(v))
+    cuadricula(ws, 5, 1, 4 + len(m8), 2)
     datos = d[d["id_caso"] != "KF-M08"][COLS_DATOS]
     hoja_df(wb, "Datos", datos)
     hoja_df(wb, "Condiciones", cond)
@@ -63,12 +63,17 @@ def main():
     bloques = [b for b in dict.fromkeys(datos["bloque_director"]) if b != "BX"]
     construir(wb, datos.assign(viol_O1=d["viol_O1"], viol_O2=d["viol_O2"], viol_O3=d["viol_O3"],
                                viol_O5=d["viol_O5"]), cond[cond["bloque_director"] != "BX"], bloques)
+    hoja_figuras(wb, "ref", "Las 30 figuras de Matplotlib (solo referencia; los gráficos del libro "
+                            "son nativos de Excel)")
+    indice.append(("Figuras_matplotlib_ref", "todos", "—", "las 30 figuras de Matplotlib, de referencia"))
+    wb.move_sheet("Aux_graficos", offset=len(wb.sheetnames))
     wi = wb.create_sheet("Indice", 2)
     wi.append(["Hoja", "Caso", "Bloque(s)", "Qué muestra"])
     for h, c, b, q in indice:
         wi.append([h, c, b, q])
         wi.cell(wi.max_row, 1).hyperlink = f"#'{h}'!A1"
         wi.cell(wi.max_row, 1).style = "Hyperlink"
+    cuadricula(wi, 1, 1, wi.max_row, 4)
     for col, w in zip("ABCD", (34, 22, 40, 70)):
         wi.column_dimensions[col].width = w
     os.makedirs(os.path.dirname(LIBRO), exist_ok=True)

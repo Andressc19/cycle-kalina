@@ -10,7 +10,7 @@ import os
 
 import pandas as pd
 from openpyxl.drawing.image import Image as XLImage
-from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
 from a2_columnas import tipo_por_unidad
@@ -20,13 +20,23 @@ from nombres import GLOSARIO
 FIG = os.path.join(RAIZ, "analisis_final", "03_figuras")
 NEGRITA, TITULO = Font(bold=True), Font(bold=True, size=13)
 GRIS = PatternFill("solid", fgColor="DDEBF7")
+_FINO = Side(style="thin", color="A6A6A6")
+BORDE = Border(left=_FINO, right=_FINO, top=_FINO, bottom=_FINO)
 CLASES_TXT = {"KALINA": "KALINA", "CORREGIBLE": "CORREGIBLE", "Corregible": "CORREGIBLE",
               "INVIABLE": "INVIABLE", "Inviable": "INVIABLE", "NO_CONVERGIO": "NO_CONVERGIO",
               "No convergió": "NO_CONVERGIO", "N2": "N2"}
 FIGURAS_DE = {"M02-N1": ["FIG-M02-01"], "M02-N2": ["FIG-M02-02"], "M02R": ["FIG-M02R"],
               "M02S": ["FIG-M02S"], "M03": ["FIG-M03"], "M04": ["FIG-M04-"], "M04c": ["FIG-M04c"],
               "M05": ["FIG-M05-S"], "M05c": ["FIG-M05c"], "M06": ["FIG-M06"], "M07": ["FIG-M07"],
-              "M09": ["FIG-M09"], "M10": ["FIG-M10-"], "M10b": ["FIG-M10-01"], "G": ["FIG-G"]}
+              "M09": ["FIG-M09"], "M10": ["FIG-M10-"], "M10b": ["FIG-M10-01"], "G": ["FIG-G"],
+              "ref": ["FIG-G", "FIG-M"]}
+
+
+def cuadricula(ws, r1, c1, r2, c2):
+    """Bordes finos en todas las celdas del rango (pedido del usuario, 2026-10-11)."""
+    for fila in ws.iter_rows(min_row=r1, max_row=r2, min_col=c1, max_col=c2):
+        for c in fila:
+            c.border = BORDE
 
 
 def nombre_hoja(txt):
@@ -77,6 +87,7 @@ def hoja_tabla(wb, meta, condiciones):
     fin = h + len(df)
     if len(df):
         ws.auto_filter.ref = f"A{h}:{get_column_letter(len(df.columns))}{fin}"
+    cuadricula(ws, h, 1, fin, max(len(df.columns), 1))
     nota = (f"Notas: n = {meta['n']} filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); "
             f"‡ = falso convergido (N2). {meta['notas'] if isinstance(meta['notas'], str) else ''}")
     ws.cell(fin + 2, 1, nota).font = Font(italic=True)
@@ -86,8 +97,10 @@ def hoja_tabla(wb, meta, condiciones):
 
 
 def hoja_figuras(wb, clave, titulo):
-    """Hoja <clave>_figuras con cada PNG (ancho ~16 cm) y su pie debajo."""
-    ws = wb.create_sheet(nombre_hoja(f"{clave}_figuras"))
+    """Hoja con cada PNG de Matplotlib (ancho ~16 cm) y su pie debajo. Desde el 2026-10-11 hay
+    una sola, al final del libro (clave "ref"): los gráficos del libro son nativos de Excel."""
+    ws = wb.create_sheet(nombre_hoja(f"{clave}_figuras") if clave != "ref"
+                         else "Figuras_matplotlib_ref")
     ws["A1"] = titulo; ws["A1"].font = TITULO
     pngs = []
     for pref in FIGURAS_DE.get(clave, []):
@@ -122,7 +135,11 @@ def hoja_leeme(wb):
              "barridos (bloque por bloque si hay varios), el filtro y la fuente; la tabla empieza después "
              "de una fila en blanco (con filtros); las notas van al final.",
              "Hoja Tablero: elija un bloque en la celda B2 y se actualizan las cifras, las condiciones y "
-             "los gráficos.", "", "Glosario:"]
+             "los gráficos.",
+             "Hojas *_graficos: gráficos nativos de Excel de cada caso (pase el cursor para ver los "
+             "valores); cada uno lleva arriba su ID y título y abajo su pie con los datos fijos.",
+             "Hoja Figuras_matplotlib_ref (al final): las 30 figuras de Matplotlib, solo como referencia.",
+             "", "Glosario:"]
     filas += [f"• {k}: {v}" for k, v in GLOSARIO.items()]
     filas += ["", "Colores de clase:"]
     for i, t in enumerate(filas, 1):
@@ -149,6 +166,7 @@ def hoja_profesor(wb):
         ws.append(list(d))
     for c in ws[1]:
         c.font = NEGRITA; c.fill = GRIS
+    cuadricula(ws, 1, 1, 1 + len(datos), 4)
     ws.append([]); ws.append(["A* = PP con solo dos cambios (T_fuente y P_baja). Es KALINA, η = 8.48 %. "
                               "PP no converge (M1)."])
     _anchos(ws, 4, 1, 12)
@@ -164,6 +182,7 @@ def hoja_df(wb, nombre, df, oculta=False):
         c.font = NEGRITA; c.fill = GRIS
     ws.auto_filter.ref = ws.dimensions
     ws.freeze_panes = "A2"
+    cuadricula(ws, 1, 1, ws.max_row, ws.max_column)
     if oculta:
         ws.sheet_state = "hidden"
     return ws

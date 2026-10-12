@@ -567,4 +567,5 @@ consistente con M4.*
 - Fichas por caso (plantilla de 12 secciones): `04_fichas/`
 - Tablas: `02_tablas/<caso>/TAB-*.md` (y `.csv`)
 - Figuras con su pie: `03_figuras/<caso>/FIG-*.png` y `*.pie.md`
-- Excel con tablero interactivo: `../datos/Excel_kalina_final_final_final.xlsx`
+- Excel con tablero interactivo y gráficos nativos de cada caso (hojas `*_graficos`):
+  `../datos/Excel_kalina_final_final_final.xlsx`

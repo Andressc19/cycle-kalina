@@ -558,13 +558,15 @@ unidades en los títulos, descripción al final).
 | 3 | `Punto_profesor` | Los 11 datos del profesor y el ancla A\* |
 | 4 | `G01_resumen_casos` … `G05_bloqueos` | Tablas de síntesis TAB-G01…G05 |
 | 5 | `Mnn_00_condiciones`, `Mnn_01_conteo`, `Mnn_02_<resultado>` … | Juego de tablas de cada caso, en el orden de los IDs. **Una hoja nunca junta dos bloques** |
-| 6 | `Mnn_figuras` | Las figuras PNG del caso, cada una con su pie completo debajo |
+| 6 | `G_graficos`, `M02_graficos` … `M10_graficos` | **Gráficos nativos de Excel** (decisión del usuario, 2026-10-11): 74 gráficos que replican las 30 figuras de Matplotlib con los mismos datos, bloque y título; ID y título arriba, pie con los datos fijos abajo. Sus datos están en la hoja oculta `Aux_graficos` |
 | 7 | `X_M08_anecdotico` | Con una franja de aviso "ANECDÓTICO — fuera del rango realista" |
-| 8 | `Datos`, `Condiciones`, `Bloques`, `Aux_tablero` | Al final: la tabla canónica y las condiciones (como Tablas de Excel con filtros) que alimentan el `Tablero`; `Aux_tablero` está oculta |
+| 8 | `Datos`, `Condiciones`, `Bloques`, `Aux_tablero`, `Aux_puntos` | La tabla canónica y las condiciones, con filtros, que alimentan el `Tablero`; las `Aux_*` están ocultas |
+| 9 | `Figuras_matplotlib_ref` | Al final: las 30 figuras de Matplotlib con su pie, **solo de referencia** (las del informe escrito siguen en `03_figuras/`) |
 
 Cada hoja `Mnn_*` empieza con el mismo bloque de encabezado: título; caso y bloque; punto base;
 datos fijos y barridos (bloque por bloque si la tabla abarca varios); filtro y fuente. La tabla
-empieza tras una fila en blanco y las notas van al final.
+empieza tras una fila en blanco y las notas van al final. **Todas las tablas llevan cuadrícula** (bordes finos;
+pedido del usuario, 2026-10-11), también `Datos`, `Indice`, `Punto_profesor` y los bloques del `Tablero`.
 Los nombres de hoja respetan el límite de 31 caracteres de Excel.
 
 ---

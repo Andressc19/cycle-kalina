@@ -49,6 +49,13 @@ def main():
     print(f"[5] Tablero: validación en B2 = {bool(dv)} ({dv[0].formula1 if dv else '—'}); "
           f"gráficos = {graf} → {'OK' if ok else 'FALLA'}")
     fallas += not ok
+    graf = {h: len(wb[h]._charts) for h in wb.sheetnames if h.endswith("_graficos") and h != "Aux_graficos"}
+    viejas = [h for h in wb.sheetnames if h.endswith("_figuras")]
+    ok = len(graf) == 10 and all(graf.values()) and not viejas and "Figuras_matplotlib_ref" in wb.sheetnames
+    print(f"[6] Gráficos nativos: {sum(graf.values())} en {len(graf)} hojas; hojas de imágenes por caso: "
+          f"{len(viejas)}; hoja de referencia: {'Figuras_matplotlib_ref' in wb.sheetnames} → "
+          f"{'OK' if ok else 'FALLA'}")
+    fallas += not ok
     print(f"\nResultado: {'TODO OK' if not fallas else str(fallas) + ' FALLA(S)'}")
     return 1 if fallas else 0
 
