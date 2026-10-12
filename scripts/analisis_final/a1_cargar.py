@@ -83,6 +83,9 @@ def main():
     tabla["omitido"] = tabla["omitido"].map(es_verdadero)
     con = tabla["conservados"].notna()                 # M9: TF, XB… -> nombres de variable
     tabla.loc[con, "conservados"] = tabla.loc[con, "conservados"].map(grupo_legible)
+    m9 = tabla["id_caso"].eq("KF-M09") & tabla["escenario"].notna()
+    tabla.loc[m9, "escenario"] = tabla.loc[m9, "escenario"].astype(str).map(
+        lambda e: ("C_" + grupo_legible(e[2:])) if e.startswith("C_") else grupo_legible(e))
     wnet = pd.to_numeric(tabla["Wnet"], errors="coerce")
     eta = pd.to_numeric(tabla["eta"], errors="coerce")
     # Sin W_net en la fuente (m6_subenfriamiento_evals) vale η > 0: η = W_net/Q_in con Q_in > 0.

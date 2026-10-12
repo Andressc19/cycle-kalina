@@ -6,6 +6,8 @@ No corrige nada: solo mide y reporta.
 """
 import pandas as pd
 
+from nombres import grupo_legible
+
 from a4_checks import (ESCALERA, T_ETA, T_P, T_RP, Kalina, cerca, fila, num,
                        p5p95)
 
@@ -67,7 +69,7 @@ def v18(df):
     subs = set(m["id_subcaso"])
     filas = []
     for _, r in pd.read_csv(ESCALERA).iterrows():
-        sub = "KF-M09-R{}-{}".format(int(r["ronda"]), str(r["conservados"]).replace("+", "_"))
+        sub = "KF-M09-R{}-{}".format(int(r["ronda"]), grupo_legible(r["conservados"]))
         esp = [int(r[c]) for c in ("n_eval", "n_genuinos", "n_kalina", "n_kalina_confiable")]
         if sub not in subs:
             filas.append(fila("V18", sub, "m9_escalera.csv", "n; genuinas; KALINA; confiables",
@@ -78,7 +80,7 @@ def v18(df):
         rec = [len(g), int(g["genuino"].sum()), int((g["clasificacion"] == "KALINA").sum()),
                int(g["kalina_confiable"].sum())]
         filas.append(fila("V18", sub,
-                          "ronda {}, conservados {}".format(int(r["ronda"]), r["conservados"]),
+                          "ronda {}, conservados {}".format(int(r["ronda"]), grupo_legible(r["conservados"])),
                           "n; genuinas; KALINA; confiables",
                           "; ".join(map(str, esp)), "; ".join(map(str, rec)), rec == esp))
     return filas
@@ -95,9 +97,9 @@ def v19(df):
 
 
 def v20(df):
-    con_tf = df[(df["id_caso"] == "KF-M09") & df["conservados"].astype(str).str.contains("TF")]
+    con_tf = df[(df["id_caso"] == "KF-M09") & df["conservados"].astype(str).str.contains("T_fuente")]
     c = int(con_tf["kalina_confiable"].sum())
-    return [fila("V20", "KF-M09", "conservados que incluyen TF", "KALINA confiables",
+    return [fila("V20", "KF-M09", "conservados que incluyen T_fuente", "KALINA confiables",
                  "0 en todas las rondas", f"{c}", c == 0,
                  nota="Subcasos: " + ", ".join(sorted(con_tf["id_subcaso"].unique())))]
 
