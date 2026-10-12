@@ -91,7 +91,7 @@ def hoja_tabla(wb, meta, condiciones):
     nota = (f"Notas: n = {meta['n']} filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); "
             f"‡ = falso convergido (N2). {meta['notas'] if isinstance(meta['notas'], str) else ''}")
     ws.cell(fin + 2, 1, nota).font = Font(italic=True)
-    ws.freeze_panes = f"B{h + 1}"
+    # sin paneles inmovilizados: el usuario prefiere el desplazamiento normal (2026-10-11)
     _anchos(ws, len(df.columns), h, fin)
     return ws.title
 
@@ -181,7 +181,6 @@ def hoja_df(wb, nombre, df, oculta=False):
     for c in ws[1]:
         c.font = NEGRITA; c.fill = GRIS
     ws.auto_filter.ref = ws.dimensions
-    ws.freeze_panes = "A2"
     cuadricula(ws, 1, 1, ws.max_row, ws.max_column)
     if oculta:
         ws.sheet_state = "hidden"
