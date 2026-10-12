@@ -1,6 +1,6 @@
 # Checks A4 — validación cruzada contra la tabla canónica
 
-Filas: 78 · ✔ 76 · ✘ 2 · NO EVALUABLE 0
+Filas: 78 · ✔ 58 · ✘ 2 · NO EVALUABLE 18
 
 | id_check | caso | filtro | cifra | esperado | recalculado | resultado | nota |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -40,26 +40,26 @@ Filas: 78 · ✔ 76 · ✘ 2 · NO EVALUABLE 0
 | V17 | KF-M07-A3 | KALINA | η máx | 0.1274 | 0.1274 | ✔ |  |
 | V17 | KF-M07-A4 | KALINA | η máx | 0.1560 | 0.1560 | ✔ |  |
 | V17 | KF-M07-A5 | KALINA | η máx | 0.1109 | 0.1109 | ✔ |  |
-| V18 | KF-M09-R0-TF | ronda 0, conservados TF | n; genuinas; KALINA; confiables | 100; 60; 7; 0 | 100; 60; 7; 0 | ✔ |  |
-| V18 | KF-M09-R0-EF | ronda 0, conservados EF | n; genuinas; KALINA; confiables | 100; 88; 13; 11 | 100; 88; 13; 11 | ✔ |  |
-| V18 | KF-M09-R0-PA | ronda 0, conservados PA | n; genuinas; KALINA; confiables | 100; 88; 19; 12 | 100; 88; 19; 12 | ✔ |  |
-| V18 | KF-M09-R0-PB | ronda 0, conservados PB | n; genuinas; KALINA; confiables | 100; 85; 1; 1 | 100; 85; 1; 1 | ✔ |  |
-| V18 | KF-M09-R0-TS | ronda 0, conservados TS | n; genuinas; KALINA; confiables | 100; 87; 17; 13 | 100; 87; 17; 13 | ✔ |  |
-| V18 | KF-M09-R0-XB | ronda 0, conservados XB | n; genuinas; KALINA; confiables | 100; 85; 29; 15 | 100; 85; 29; 15 | ✔ |  |
-| V18 | KF-M09-R1-XB_TF | ronda 1, conservados XB+TF | n; genuinas; KALINA; confiables | 30; 20; 2; 0 | 30; 20; 2; 0 | ✔ |  |
-| V18 | KF-M09-R1-XB_EF | ronda 1, conservados XB+EF | n; genuinas; KALINA; confiables | 30; 26; 11; 6 | 30; 26; 11; 6 | ✔ |  |
-| V18 | KF-M09-R1-XB_PA | ronda 1, conservados XB+PA | n; genuinas; KALINA; confiables | 30; 28; 11; 7 | 30; 28; 11; 7 | ✔ |  |
-| V18 | KF-M09-R1-XB_PB | ronda 1, conservados XB+PB | n; genuinas; KALINA; confiables | 30; 27; 4; 3 | 30; 27; 4; 3 | ✔ |  |
-| V18 | KF-M09-R1-XB_TS | ronda 1, conservados XB+TS | n; genuinas; KALINA; confiables | 30; 26; 9; 5 | 30; 26; 9; 5 | ✔ |  |
-| V18 | KF-M09-R2-XB_PA_TF | ronda 2, conservados XB+PA+TF | n; genuinas; KALINA; confiables | 30; 19; 3; 0 | 30; 19; 3; 0 | ✔ |  |
-| V18 | KF-M09-R2-XB_PA_EF | ronda 2, conservados XB+PA+EF | n; genuinas; KALINA; confiables | 30; 28; 13; 7 | 30; 28; 13; 7 | ✔ |  |
-| V18 | KF-M09-R2-XB_PA_PB | ronda 2, conservados XB+PA+PB | n; genuinas; KALINA; confiables | 30; 28; 2; 2 | 30; 28; 2; 2 | ✔ |  |
-| V18 | KF-M09-R2-XB_PA_TS | ronda 2, conservados XB+PA+TS | n; genuinas; KALINA; confiables | 30; 27; 8; 6 | 30; 27; 8; 6 | ✔ |  |
-| V18 | KF-M09-R3-XB_PA_EF_TF | ronda 3, conservados XB+PA+EF+TF | n; genuinas; KALINA; confiables | 30; 0; 0; 0 | 30; 0; 0; 0 | ✔ |  |
-| V18 | KF-M09-R3-XB_PA_EF_PB | ronda 3, conservados XB+PA+EF+PB | n; genuinas; KALINA; confiables | 30; 28; 5; 5 | 30; 28; 5; 5 | ✔ |  |
-| V18 | KF-M09-R3-XB_PA_EF_TS | ronda 3, conservados XB+PA+EF+TS | n; genuinas; KALINA; confiables | 30; 29; 6; 4 | 30; 29; 6; 4 | ✔ |  |
-| V19 | KF-M09-R3-XB_PA_EF_PB | KALINA | n; confiables; T redondeadas | 5; 5; T_fuente [391,409] K; T_sumidero [280,293] K | 5; 5; T_fuente [391,409]; T_sumidero [280,293] | ✔ |  |
-| V20 | KF-M09 | conservados que incluyen TF | KALINA confiables | 0 en todas las rondas | 0 | ✔ | Subcasos: KF-M09-R0-TF, KF-M09-R1-XB_TF, KF-M09-R2-XB_PA_TF, KF-M09-R3-XB_PA_EF_TF |
+| V18 | KF-M09-R0-TF | m9_escalera.csv | n; genuinas; KALINA; confiables | 100; 60; 7; 0 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R0-EF | m9_escalera.csv | n; genuinas; KALINA; confiables | 100; 88; 13; 11 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R0-PA | m9_escalera.csv | n; genuinas; KALINA; confiables | 100; 88; 19; 12 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R0-PB | m9_escalera.csv | n; genuinas; KALINA; confiables | 100; 85; 1; 1 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R0-TS | m9_escalera.csv | n; genuinas; KALINA; confiables | 100; 87; 17; 13 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R0-XB | m9_escalera.csv | n; genuinas; KALINA; confiables | 100; 85; 29; 15 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R1-XB_TF | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 20; 2; 0 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R1-XB_EF | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 26; 11; 6 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R1-XB_PA | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 28; 11; 7 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R1-XB_PB | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 27; 4; 3 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R1-XB_TS | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 26; 9; 5 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R2-XB_PA_TF | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 19; 3; 0 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R2-XB_PA_EF | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 28; 13; 7 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R2-XB_PA_PB | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 28; 2; 2 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R2-XB_PA_TS | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 27; 8; 6 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R3-XB_PA_EF_TF | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 0; 0; 0 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R3-XB_PA_EF_PB | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 28; 5; 5 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V18 | KF-M09-R3-XB_PA_EF_TS | m9_escalera.csv | n; genuinas; KALINA; confiables | 30; 29; 6; 4 | (subcaso ausente) | NO EVALUABLE | subcaso no encontrado en la tabla canónica |
+| V19 | KF-M09-R3-x_b+P_alta+eficiencias+P_baja | KALINA | n; confiables; T redondeadas | 5; 5; T_fuente [391,409] K; T_sumidero [280,293] K | 5; 5; T_fuente [391,409]; T_sumidero [280,293] | ✔ |  |
+| V20 | KF-M09 | conservados que incluyen TF | KALINA confiables | 0 en todas las rondas | 0 | ✔ | Subcasos: KF-M09-R0-T_fuente, KF-M09-R1-x_b+T_fuente, KF-M09-R2-x_b+P_alta+T_fuente, KF-M09-R3-x_b+P_alta+eficiencias+T_fuente |
 | V21 | KF-M10-F3 | todas las filas | filas; KALINA | 97; 97 | 97; 97 | ✔ |  |
 | V22 | KF-M10-MALLA + KF-M10b-MALLA | KALINA (malla) | P_baja mín KALINA por x_b vs REPORTE_M10b | ≤0.45 sin KALINA; 0.50→200; 0.55→300; 0.60→400; 0.65→500; 0.70→500 | coincide | ✔ |  |
 | V22 | KF-M10-MALLA + KF-M10b-MALLA | KALINA (malla) | P_baja mín KALINA por x_b vs REPORTE_M10 | 0.70→500; 0.73→600; 0.76→600; 0.79→700; 0.82→700; 0.85→800; 0.88→800; 0.91→800 | coincide | ✔ |  |
@@ -85,9 +85,9 @@ Filas: 78 · ✔ 76 · ✘ 2 · NO EVALUABLE 0
 
 ## Resumen
 
-- ✔ coinciden: 76
+- ✔ coinciden: 58
 - ✘ no coinciden: 2
-- NO EVALUABLE: 0
+- NO EVALUABLE: 18
 
 ### Lista de ✘
 
@@ -96,4 +96,21 @@ Filas: 78 · ✔ 76 · ✘ 2 · NO EVALUABLE 0
 
 ### Lista de NO EVALUABLE
 
-- ninguno
+- V18 · KF-M09-R0-TF: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R0-EF: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R0-PA: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R0-PB: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R0-TS: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R0-XB: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R1-XB_TF: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R1-XB_EF: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R1-XB_PA: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R1-XB_PB: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R1-XB_TS: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R2-XB_PA_TF: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R2-XB_PA_EF: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R2-XB_PA_PB: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R2-XB_PA_TS: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R3-XB_PA_EF_TF: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R3-XB_PA_EF_PB: subcaso no encontrado en la tabla canónica
+- V18 · KF-M09-R3-XB_PA_EF_TS: subcaso no encontrado en la tabla canónica

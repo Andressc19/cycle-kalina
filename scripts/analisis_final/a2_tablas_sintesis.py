@@ -101,7 +101,7 @@ def g02():
 def g03(d):
     grupos = [("KF-M04 + KF-M04b", ["B07"])] + \
              [(f"KF-M05 escenario S{k}", [f"B09-{k}"]) for k in "12345"] + \
-             [("KF-M05c", ["B10"]), ("KF-M09 conjunto final XB+PA+EF+PB", ["B13-XB_PA_EF_PB"]),
+             [("KF-M05c", ["B10"]), ("KF-M09 conjunto final x_b+P_alta+eficiencias+P_baja", ["B13-x_b+P_alta+eficiencias+P_baja"]),
               ("KF-M10 + KF-M10b malla", ["B14-MALLA"])]
     filas = []
     for nombre, bl in grupos:
@@ -129,7 +129,7 @@ def g03(d):
 
 
 def g04():
-    datos = [("P_alta", "3000 kPa", "sí", "M9 (XB+PA+EF+PB), M5c"),
+    datos = [("P_alta", "3000 kPa", "sí", "M9 (x_b+P_alta+eficiencias+P_baja), M5c"),
              ("P_baja", "400 kPa", "sí", "M9; con su clima de 300 K exige ε_cond ≥ 0.875 (M5c)"),
              ("x_b", "0.50", "sí", "M9 (η hasta 10.6 %); con el ancla de Húsavík queda al límite, η < 1.3 % (M10b)"),
              ("η_t", "0.85", "sí", "M9 (grupo EF)"), ("η_p", "0.75", "sí", "M9 (grupo EF)"),

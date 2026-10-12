@@ -1,5 +1,5 @@
 ﻿Dato,Valor del profesor,¿Se conserva con KALINA?,Respaldo
-P_alta,3000 kPa,sí,"M9 (XB+PA+EF+PB), M5c"
+P_alta,3000 kPa,sí,"M9 (x_b+P_alta+eficiencias+P_baja), M5c"
 P_baja,400 kPa,sí,M9; con su clima de 300 K exige ε_cond ≥ 0.875 (M5c)
 x_b,0.50,sí,"M9 (η hasta 10.6 %); con el ancla de Húsavík queda al límite, η < 1.3 % (M10b)"
 η_t,0.85,sí,M9 (grupo EF)

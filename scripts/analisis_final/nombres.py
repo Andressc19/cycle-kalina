@@ -27,6 +27,18 @@ NOMBRE = {
     "D": "Índice de cercanía D [–]",
 }
 
+# Grupos de datos del profesor conservados en M9: los códigos del CSV original (TF, XB…) se
+# muestran con el nombre de la variable, que es lo que lee la gente (pedido del usuario, 2026-10-12).
+GRUPO = {"TF": "T_fuente", "TS": "T_sumidero", "PA": "P_alta", "PB": "P_baja", "XB": "x_b",
+         "EF": "eficiencias"}
+
+
+def grupo_legible(codigo):
+    """'XB+PA+EF' o 'XB_PA_EF' -> 'x_b+P_alta+eficiencias'."""
+    import re
+    return "+".join(GRUPO.get(p, p) for p in re.split(r"[+_]", str(codigo).strip()))
+
+
 ETIQUETA_CLASE = {
     "KALINA": "KALINA",
     "CORREGIBLE": "Corregible",

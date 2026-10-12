@@ -11,7 +11,7 @@ from matplotlib.patches import Patch
 from estilo import (COLOR_CLASE, ORDEN_CLASE, ETIQUETA_CLASE, aplicar_estilo,
                     recuadro_condiciones)
 from a3_comun import cargar, guardar_fig, guardar_clases, titulo_fig, contar_clases
-from nombres import NOMBRE
+from nombres import NOMBRE, grupo_legible
 
 aplicar_estilo()
 
@@ -158,7 +158,7 @@ def fig_m09_01():
                 b2.set_linewidth(1.8)
         ax.text(x.mean(), max(fila["n_kalina_confiable"]) + 1.2, f"Ronda {r}",
                 fontsize=9, ha="center")
-        pos += list(x); etiq += list(fila["conservados"])
+        pos += list(x); etiq += [grupo_legible(c) for c in fila["conservados"]]
         if r != rondas[-1]:
             ax.axvline(x[-1] + 1, color="0.8", lw=0.8)
         x0 = x[-1] + 2

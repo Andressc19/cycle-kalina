@@ -85,11 +85,11 @@ def v18(df):
 
 
 def v19(df):
-    k = Kalina(df[df["id_subcaso"] == "KF-M09-R3-XB_PA_EF_PB"])
+    k = Kalina(df[df["id_subcaso"] == "KF-M09-R3-x_b+P_alta+eficiencias+P_baja"])
     n, c = len(k), int(k["kalina_confiable"].sum())
     tf, ts = num(k["T_fuente"]).round().astype(int), num(k["T_sumidero"]).round().astype(int)
     ok = n == 5 and c == 5 and tf.between(391, 409).all() and ts.between(280, 293).all()
-    return [fila("V19", "KF-M09-R3-XB_PA_EF_PB", "KALINA", "n; confiables; T redondeadas",
+    return [fila("V19", "KF-M09-R3-x_b+P_alta+eficiencias+P_baja", "KALINA", "n; confiables; T redondeadas",
                  "5; 5; T_fuente [391,409] K; T_sumidero [280,293] K",
                  f"{n}; {c}; T_fuente [{tf.min()},{tf.max()}]; T_sumidero [{ts.min()},{ts.max()}]", ok)]
 

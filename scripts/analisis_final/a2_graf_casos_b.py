@@ -13,7 +13,7 @@ from a2_graf_casos_a import P, S, _bloque_fig
 from a3_comun import SEC_VAR
 from a2_graf_base import pie_fig
 from a3_m05 import ejes
-from nombres import NOMBRE
+from nombres import NOMBRE, grupo_legible
 
 M4B = "resultados/2026-10-07_final_M4b/"
 ARR = {"A1": ("A1 · libre (desde el mejor de M4b)", "1565C0"),
@@ -131,7 +131,7 @@ def graf_m06_m07_m09(wb):
                                           "Eficiencia térmica del ciclo, η [%]",
                                           punteadas=(ser[-1][0],))], alto=9.5)
     m9 = pd.read_csv("resultados/2026-10-08_final_M9/m9_escalera.csv")
-    cats = [f"R{r} · {c}" for r, c in zip(m9["ronda"], m9["conservados"])]
+    cats = [f"R{r} · {grupo_legible(c)}" for r, c in zip(m9["ronda"], m9["conservados"])]
     tit, _ = pie_fig("FIG-M09-01")
     _bloque_fig(lz, "FIG-M09-01", [barras(lz, cats, m9["n_kalina_confiable"].tolist(), tit,
                                           "Conjunto conservado (R = ronda)", "KALINA confiables",

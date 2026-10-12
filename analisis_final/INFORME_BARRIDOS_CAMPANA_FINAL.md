@@ -275,14 +275,14 @@ con la conclusión, recuadro de condiciones y pie con datos fijos, barridos, fil
 
 | Ronda | Conjunto elegido | Datos conservados | KALINA (confiables) |
 |---|---|---|---|
-| 0 | XB | 1 | 29 (15) |
-| 1 | XB+PA | 2 | 11 (7) |
-| 2 | XB+PA+EF | 7 | 13 (7) |
-| 3 | **XB+PA+EF+PB** | **8 de 10** | **5 (5)** |
+| 0 | x_b | 1 | 29 (15) |
+| 1 | x_b + P_alta | 2 | 11 (7) |
+| 2 | x_b + P_alta + eficiencias | 7 | 13 (7) |
+| 3 | **x_b + P_alta + eficiencias + P_baja** | **8 de 10** | **5 (5)** |
 
 - Conjunto final: conserva P_alta, P_baja, x_b y las cinco η/ε; solo se mueven T_fuente
   (391–409 K) y T_sumidero (280–293 K). η hasta 10.6 %, subenfriamiento ≥ 2 K.
-- Ningún conjunto con T_fuente = 623 K da KALINA confiable (XB+PA+EF+TF: 30/30 NO_CONVERGIO).
+- Ningún conjunto con T_fuente = 623 K da KALINA confiable (x_b + P_alta + eficiencias + T_fuente: 30/30 NO_CONVERGIO).
 
 ![m9](03_figuras/M09/FIG-M09-01_escalera_conservacion.png)
 

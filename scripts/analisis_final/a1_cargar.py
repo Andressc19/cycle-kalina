@@ -8,6 +8,7 @@ import os
 
 import pandas as pd
 
+from nombres import grupo_legible
 from a1_fuentes import (CALCULADAS, CLASES_GENUINAS, COLUMNAS_TABLA,
                         ENTRADAS, FUENTES, PROPIAS, RAIZ, SALIDAS, columnas_de,
                         es_verdadero, ruta_origen, sanea)
@@ -24,7 +25,7 @@ def _plantilla(texto, fila, contexto):
         v = fila[col]
         if pd.isna(v):
             raise SystemExit(f"VALOR VACIO en columna '{col}' de {contexto}")
-        valores[col] = sanea(v)
+        valores[col] = grupo_legible(v) if col == "conservados" else sanea(v)
     return texto.format(**valores)
 
 
@@ -80,6 +81,8 @@ def main():
     realista = ~((efs < 0.40 - 1e-9) | (efs > 0.95 + 1e-9)).any(axis=1)
     tabla["kalina_confiable"] = clase.eq("KALINA") & ~fuera & realista
     tabla["omitido"] = tabla["omitido"].map(es_verdadero)
+    con = tabla["conservados"].notna()                 # M9: TF, XB… -> nombres de variable
+    tabla.loc[con, "conservados"] = tabla.loc[con, "conservados"].map(grupo_legible)
     wnet = pd.to_numeric(tabla["Wnet"], errors="coerce")
     eta = pd.to_numeric(tabla["eta"], errors="coerce")
     # Sin W_net en la fuente (m6_subenfriamiento_evals) vale η > 0: η = W_net/Q_in con Q_in > 0.

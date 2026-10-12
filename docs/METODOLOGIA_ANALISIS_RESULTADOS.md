@@ -52,28 +52,28 @@ figura completos y todo en español) y el libro nuevo `datos/Excel_kalina_final_
 
 ### 2.1 Inventario de casos
 
-Leyenda de variables: TF T_fuente · TS T_sumidero · PA P_alta · PB P_baja · XB x_b ·
-ηt, ηp · εH ε_HRVG · εR ε_reg · εC ε_cond. "Base" = punto desde el que se mueve.
+Las variables se nombran siempre con su símbolo completo (T_fuente, P_baja, ε_cond…), sin
+abreviaturas de dos letras. "Base" = punto desde el que se mueve.
 
 | ID caso | Fecha | Familia | Base | Variables barridas | Diseño | Corridas (aprox.) | CSV principal |
 |---|---|---|---|---|---|---|---|
-| KF-M01 | 10-06 | R | PP | PA, XB, TS (perfil horario) | 1D sobre PP | 42 | `m1_filas.csv` |
+| KF-M01 | 10-06 | R | PP | P_alta, x_b, T_sumidero (perfil horario) | 1D sobre PP | 42 | `m1_filas.csv` |
 | KF-M02-N1 | 10-06 | F | PP | las 10, una a la vez | malla 10 + bisección | 100 + bisec. | `m2n1_malla.csv` |
-| KF-M02-N2 | 10-06 | F | PP | εH o TF, cada uno × PB | malla 2D 12 + bisección | 144 + bisec. | `m2n2_kalina.csv` |
-| KF-M02R | 10-06 | F | PP | igual que M2 con η/ε en [0.40, 0.95]; + (TF, εC) | malla + bisección (3 partes) | ~300 | `m2r_kalina.csv` |
-| KF-M02S | 10-06 | F | B1–B4 | TS × PB (4 bases) | malla 2D + bisección | 200 + bisec. | `m2s_malla.csv` |
+| KF-M02-N2 | 10-06 | F | PP | ε_HRVG o T_fuente, cada uno × P_baja | malla 2D 12 + bisección | 144 + bisec. | `m2n2_kalina.csv` |
+| KF-M02R | 10-06 | F | PP | igual que M2 con η/ε en [0.40, 0.95]; + (T_fuente, ε_cond) | malla + bisección (3 partes) | ~300 | `m2r_kalina.csv` |
+| KF-M02S | 10-06 | F | B1–B4 | T_sumidero × P_baja (4 bases) | malla 2D + bisección | 200 + bisec. | `m2s_malla.csv` |
 | KF-M03 | 10-06 | L | A\* | las 10, una a la vez | OAT 15 + A\*±1 % | 171 | `m3_ofat.csv` |
 | KF-M04 | 10-06 | G | caja M4 | las 10 a la vez | LHS 300 (semilla 20261006) | 300 | `m4_lhs.csv` |
 | KF-M04b | 10-07 | G | caja M4 | las 10 a la vez | LHS 200 (semilla 20261007) → unión 500 | 200 | `m4b_lhs.csv` |
-| KF-M04c | 10-07 | G | caja M4, PB 1500–2500 | las 10 | LHS 150 (semilla 20261008) | 135 + 15 omit. | `m4c_lhs.csv` |
+| KF-M04c | 10-07 | G | caja M4, P_baja 1500–2500 | las 10 | LHS 150 (semilla 20261008) | 135 + 15 omit. | `m4c_lhs.csv` |
 | KF-M05 | 10-07 | C | PP parcial | libres según escenario S1–S5 | LHS 120 × 5 | 600 | `m5_lhs.csv` |
-| KF-M05c | 10-07 | C | PP con PA/PB fijas | TF × εC × TS | malla 11×5×3 | 165 | `m5c_malla.csv` |
+| KF-M05c | 10-07 | C | PP con P_alta/P_baja fijas | T_fuente × ε_cond × T_sumidero | malla 11×5×3 | 165 | `m5c_malla.csv` |
 | KF-M06 | 10-08 | V | puntos clave | — (motor real vs teqp; subenfriamiento) | verificación | ~10 + evals | `m6_*.csv` |
 | KF-M07 | 10-07 | O | mejores KALINA | según arranque A1–A5 | búsqueda por patrones | ver CSV | `m7_evaluaciones.csv` |
 | KF-M08 | 10-07 | X | A\* | η/ε fuera de [0.40, 0.95] | OAT | ver CSV | `m8_oat.csv` |
-| KF-M09 | 10-08/09 | C | PP parcial | grupos EF/PA/PB/TF/TS/XB conservados | escalera forward + LHS | ~850 | `m9_escalera.csv` |
-| KF-M10 | 10-09 | H | Húsavík (Fase 3) | 10 variables OFAT + malla XB × PB | recorrida + OFAT + malla 2D | ver CSV | `m10_*.csv` |
-| KF-M10b | 10-09 | H | Húsavík | XB 0.30–0.70 × PB | OFAT + malla 2D | ver CSV | `m10b_*.csv` |
+| KF-M09 | 10-08/09 | C | PP parcial | grupos eficiencias/P_alta/P_baja/T_fuente/T_sumidero/x_b conservados | escalera forward + LHS | ~850 | `m9_escalera.csv` |
+| KF-M10 | 10-09 | H | Húsavík (Fase 3) | 10 variables OFAT + malla x_b × P_baja | recorrida + OFAT + malla 2D | ver CSV | `m10_*.csv` |
+| KF-M10b | 10-09 | H | Húsavík | x_b 0.30–0.70 × P_baja | OFAT + malla 2D | ver CSV | `m10b_*.csv` |
 
 Familias: **R** reproducibilidad · **F** factibilidad / distancia al profesor · **L** sensibilidad local ·
 **G** sensibilidad global · **C** conservación de datos del profesor · **O** optimización de η ·
@@ -87,7 +87,7 @@ Los conteos "ver CSV" y los marcados "aprox." quedaron fijados por A1 leyendo lo
 Para cada caso el agente A1 genera la matriz `casos_x_variables.csv`:
 filas = casos/subcasos, columnas = 11 variables (+ piso O2, motor, rango η/ε),
 celda ∈ {`=PP` fijo en el valor del profesor, `fijo:<valor>` fijo en otro valor, `barrido:[a,b]`, `n/a`}.
-Así queda explícito, por ejemplo, que en M3 TF y PB están fijas en valores distintos del profesor
+Así queda explícito, por ejemplo, que en M3 T_fuente y P_baja están fijas en valores distintos del profesor
 aunque no se barran, y que el piso de O2 cambió de regla en M2S.
 
 ### 2.3 Tabla canónica única
@@ -123,7 +123,7 @@ Una conclusión por caso = **una frase de respuesta a la pregunta** + **la cifra
 | M6 | teqp coincide con el motor real (que necesita ~1500 s por punto); O2 no tiene margen propio y 2 K de subenfriamiento cuestan +25–46 kPa de P_baja y < 0.5 pp de η |
 | M7 | η máx. 15.6 % conservando las presiones y el clima del profesor (T_fuente 415 K, equipos a 0.95); 12.7 % conservando sus temperaturas (con x_b 0.85 y P_alta 5000 kPa) |
 | M8 | Anecdótico; no se usa en conclusiones |
-| M9 | Se conservan 8 de 10 datos de diseño (XB+PA+EF+PB) moviendo solo T_fuente (391–409 K) y T_sumidero (280–293 K): 5 de 5 KALINA confiables; ningún conjunto con TF da KALINA confiables |
+| M9 | Se conservan 8 de 10 datos de diseño (x_b + P_alta + eficiencias + P_baja) moviendo solo T_fuente (391–409 K) y T_sumidero (280–293 K): 5 de 5 KALINA confiables; ningún conjunto con T_fuente da KALINA confiables |
 | M10 | Húsavík: 97 de 97 KALINA de la Fase 3 reproducidos; P_baja mínima de 500 a 800 kPa al pasar x_b de 0.70 a 0.91; su P_baja real (690 kPa) coincide con la mínima KALINA |
 | M10b | Con x_b < 0.50 el modelo no encuentra ciclo (0 genuinos de 32); x_b = 0.50 es KALINA formal con η < 1.3 %; el KALINA útil empieza en x_b ≈ 0.55 (P_baja mín. 300 kPa) |
 
@@ -501,7 +501,7 @@ tablero en Power BI Desktop cuando lo instale. **No se hará:** el usuario decid
 | 4. Conservación | ¿Qué datos del profesor se pueden mantener? | escenarios LHS + escalera forward + malla dirigida | M5, M5c, M9 | conjunto máximo conservable y rangos | 120 pts/escenario es exploración |
 | 5. Optimización | ¿Cuánto η cabe en la región KALINA? | búsqueda por patrones desde varios arranques | M7 | η máx. por restricción | óptimos al filo de O1/O2 |
 | 6. Verificación | ¿teqp = motor real? ¿margen de O2? | contraste puntual | M6 | paridad, costo del subenfriamiento | motor real necesita ~1500 s |
-| 7. Caso real | ¿Se sostiene en Húsavík? | recorrida + OFAT + malla 2D | M10, M10b | reproducción 97/97, mapas XB×PB | un solo sitio |
+| 7. Caso real | ¿Se sostiene en Húsavík? | recorrida + OFAT + malla 2D | M10, M10b | reproducción 97/97, mapas x_b×P_baja | un solo sitio |
 
 Por qué no Morris/Sobol/FAST: no toleran puntos NO_CONVERGIO (ver `docs/ESTUDIO_METODOS_SENSIBILIDAD.md`).
 

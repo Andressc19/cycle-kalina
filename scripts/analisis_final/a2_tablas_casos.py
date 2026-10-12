@@ -6,6 +6,8 @@ import os
 
 import pandas as pd
 
+from nombres import grupo_legible
+
 from a2_comun import (RAIZ, RES, TABLAS, MNN, PROFESOR, bloques_de, leer, leer_canon,
                       leer_conteo, nombre_es, tipo_de, formatear, escribir_tabla,
                       subcasos_de, renombrar, volcar_traducciones)
@@ -106,7 +108,10 @@ def tabla_resultado(mnn, num, slug, ruta, titulo, casos, subcasos, filtro, notas
     if not os.path.exists(csv):
         print(f"  PENDIENTE: no existe {ruta}")
         return
-    df, tipos = renombrar(leer(csv), f"TAB-{mnn}-{num}")
+    crudo = leer(csv)
+    if "conservados" in crudo:                 # M9: TF, XB… -> nombres de variable
+        crudo["conservados"] = crudo["conservados"].map(grupo_legible)
+    df, tipos = renombrar(crudo, f"TAB-{mnn}-{num}")
     meta = _meta(mnn, num, slug, titulo, casos, subcasos, filtro, ruta, len(df), notas)
     escribir_tabla(meta, df, tipos)
 
