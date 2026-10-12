@@ -73,13 +73,28 @@ def g01(d, bloques):
                          "C conservación, O optimización, V verificación, H Húsavík."), df, tipos)
 
 
+def _celda_g02(v):
+    """Texto legible (y sin '=' inicial: Excel lo tomaba como fórmula y mostraba #¿NOMBRE?)."""
+    s = "" if pd.isna(v) else str(v)
+    if s == "=PP":
+        return "fijo: profesor"
+    if s.startswith("barrido:["):
+        return "barrido: " + s[len("barrido:["):].rstrip("]").replace(", ", " – ")
+    if s == "barrido:n=2":
+        return "barrido: 2 valores"
+    return s.replace("fijo:", "fijo: ").replace("barrido:", "barrido: ")
+
+
 def g02():
     m = leer(f"{INV}/casos_x_variables.csv")
     m = m[~m["id_subcaso"].str.startswith("KF-M08")]
+    for c in m.columns[1:]:
+        m[c] = m[c].map(_celda_g02)
     m = m.rename(columns={c: NOMBRE.get(c, c) for c in m.columns}).rename(columns={"id_subcaso": "Subcaso"})
     escribir_tabla(_meta("02", "Qué se movió en cada barrido", "todos los subcasos (sin KF-M08)",
                          "casos_x_variables.csv", len(m), list(m["Subcaso"]),
-                         "=PP: igual al profesor; fijo:<valor>: fijo en otro valor; barrido:[a, b]: barrida."),
+                         "fijo: profesor = igual al dato del profesor; fijo: <valor> = fijo en otro valor; "
+                         "barrido: a – b = barrida en ese rango; vacío = sin dato en la fuente."),
                  m, {c: "txt" for c in m.columns})
 
 

@@ -8,6 +8,7 @@ notas al final; colores por clase; todo en español.
 import glob
 import os
 
+import numpy as np
 import pandas as pd
 from openpyxl.drawing.image import Image as XLImage
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
@@ -75,12 +76,19 @@ def hoja_tabla(wb, meta, condiciones):
     for i, fila in enumerate(df.itertuples(index=False), h + 1):
         for j, (col, v) in enumerate(zip(df.columns, fila), 1):
             v = None if (isinstance(v, float) and pd.isna(v)) else v
+            if isinstance(v, (bool, np.bool_)):
+                v = "sí" if v else "no"              # con formato numérico salía "#########"
             if isinstance(v, float) and not float(v).is_integer():
                 v = float(f"{v:.5g}")              # 10.87115255 → 10.871
             cel = ws.cell(i, j, v)
+            if isinstance(v, str) and v[:1] in "=+-@" and v[:1]:
+                cel.data_type = "s"               # texto, no fórmula (evita #¿NOMBRE?)
             fmt = fmt_excel(tipo_por_unidad(col), v) if isinstance(v, (int, float)) else None
             if fmt:
                 cel.number_format = fmt
+            if isinstance(v, str) and v.startswith(("barrido: ", "fijo: ")):   # matriz G02
+                cel.fill = PatternFill("solid", fgColor="90CAF9" if v.startswith("barrido")
+                                       else "E0E0E0" if v == "fijo: profesor" else "FFB74D")
             clase = CLASES_TXT.get(str(v)) if isinstance(v, str) else None
             if clase:
                 cel.fill = PatternFill("solid", fgColor=COLOR_CLASE[clase])
