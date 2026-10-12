@@ -101,6 +101,10 @@ def main():
     trazo = trazo.where(~tabla["omitido"], "OMITIDO")
     tabla["clase_trazo"] = trazo.where(~tabla["es_N2"], "N2")
 
+    import codigos                                        # 1.1 … 6.2 y partes (2026-10-12)
+    tabla["estudio"] = tabla["id_caso"].map(codigos.estudio)
+    tabla["parte_estudio"] = tabla["id_subcaso"].map(lambda s: codigos.parte(s)[0])
+    tabla["parte_nombre"] = tabla["id_subcaso"].map(lambda s: codigos.parte(s)[1])
     tabla = tabla.reindex(columns=COLUMNAS_TABLA)
     tabla["fila_origen"] = tabla["fila_origen"].astype(int)
     os.makedirs(os.path.dirname(SALIDA), exist_ok=True)

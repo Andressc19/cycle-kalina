@@ -25,7 +25,7 @@ PUNTOS = cargar()
 FUENTE = "todos_los_puntos.csv"
 PP_BASE = ("PP = datos del enunciado del profesor (T_fuente 623.15 K, "
            "P_alta 3000 kPa, P_baja 400 kPa, x_b 0.50)")
-TIT = "M2R, parte {p}: {n} KALINA con η y ε en [0.40, 0.95]"
+TIT = "Parte {p}: {n} KALINA con η y ε en [0.40, 0.95]"
 
 
 def _pie(id_fig, parte, bloque, id_sub, n_kal, n_pts):
@@ -49,9 +49,9 @@ def fig_m02r_n1():
         ax.set_xlabel(NOMBRE[v], fontsize=7)
     leyenda_fig(fig, sub)
     recuadro_fig(fig, ["KF-M02R-n1"])
-    titulo_fig(fig, TIT.format(p="n1", n=n_kal), "Bloque B04-n1 · KF-M02R-n1")
+    titulo_fig(fig, TIT.format(p="2.3a", n=n_kal), "Bloque B04-n1 · KF-M02R-n1")
     n = contar_clases(sub)
-    pie = _pie("FIG-M02R-n1", "n1", "B04-n1", "KF-M02R-n1", n_kal, len(sub))
+    pie = _pie("FIG-M02R-n1", "2.3a", "B04-n1", "KF-M02R-n1", n_kal, len(sub))
     guardar_fig(fig, "M02R", "FIG-M02R-n1_oat_eta_eps", pie)
     guardar_clases("M02R", "FIG-M02R-n1_oat_eta_eps", n)
     print(f"FIG-M02R-n1: {len(sub)} pts, KALINA={n_kal}")
@@ -77,9 +77,9 @@ def _disp_r(bloque, id_sub, parte, nombre):
 
 
 def fig_m02_r():
-    _disp_r("B04-n2a", "KF-M02R-n2a", "n2a", "FIG-M02R-n2a_eps_hrvg_eps_cond")
-    _disp_r("B04-n2b", "KF-M02R-n2b", "n2b", "FIG-M02R-n2b_eps_hrvg_pbaja")
-    _disp_r("B04-n3", "KF-M02R-n3", "n3", "FIG-M02R-n3_tfuente_eps_cond")
+    _disp_r("B04-n2a", "KF-M02R-n2a", "2.3b", "FIG-M02R-n2a_eps_hrvg_eps_cond")
+    _disp_r("B04-n2b", "KF-M02R-n2b", "2.3c", "FIG-M02R-n2b_eps_hrvg_pbaja")
+    _disp_r("B04-n3", "KF-M02R-n3", "2.3d", "FIG-M02R-n3_tfuente_eps_cond")
 
 
 if __name__ == "__main__":

@@ -1,19 +1,19 @@
-# Informe de la campaña final de barridos M1–M10b — Ciclo Kalina KCS-11
+# Informe de la campaña final de barridos — Ciclo Kalina KCS-11
 
 *Borrador estructurado del 2026-10-10. Reúne las conclusiones, los datos, las tablas y las figuras del
 análisis de resultados. Todas las cifras salen de `01_datos/todos_los_puntos.csv` y fueron
-validadas (A4: 76 de 78; las 2 diferencias son de definición) y revisadas tres veces.*
+validadas (validación cruzada: 76 de 78; las 2 diferencias son de definición) y revisadas tres veces.*
 
 ---
 
-## 0. Resumen ejecutivo
+## Resumen ejecutivo
 
-*Cada punto remite a su conclusión con evidencia en la sección 5.*
+*Cada punto remite a su conclusión con su evidencia en «Conclusiones».*
 
-1. **Con los datos del profesor el ciclo no converge** (M1: 0 de 41). La fuente a 623 K es
+1. **Con los datos del profesor el ciclo no converge** (estudio 1.1: 0 de 41). La fuente a 623 K es
    incompatible con el resto del enunciado (**C10**).
-2. **Con la fuente a ~390–410 K se conservan 8 de los 10 datos de diseño** (M9), o las dos presiones
-   del profesor con ε_cond ≥ 0.875 (M5c) (**C11**).
+2. **Con la fuente a ~390–410 K se conservan 8 de los 10 datos de diseño** (estudio 4.3), o las dos presiones
+   del profesor con ε_cond ≥ 0.875 (estudio 4.2) (**C11**).
 3. **La factibilidad la deciden P_baja y ε_cond** (KS 0.43 cada una, IC 95 % solapados), seguidas de
    r_P (0.35); las eficiencias de las máquinas no deciden la clase (KS ≤ 0.12, p > 0.1). El mecanismo
    es el margen de cavitación O2 (**C1**).
@@ -26,11 +26,11 @@ validadas (A4: 76 de 78; las 2 diferencias son de definición) y revisadas tres 
 7. **Hay interacciones**: la P_baja mínima depende de P_alta (913 → 547 kPa), del clima (−12.5 a
    −25.7 kPa por K más frío) y de x_b (+144 kPa por cada 0.1) (**C3, C8, C9**).
 8. **El análisis es robusto**: rankings estables entre 300 y 500 puntos (ρ = 0.93 y 0.99), teqp
-   igual al motor real, y la Fase 1 y Húsavík reproducidas (**5.5**).
+   igual al motor real, y la Fase 1 y Húsavík reproducidas (robustez).
 
 ---
 
-## 1. Introducción y pregunta
+## Introducción y pregunta
 
 El enunciado del curso fija un ciclo Kalina KCS-11 con fuente de gases a 350 °C (623.15 K) y
 sumidero a 27 °C (300.03 K). La campaña final buscó responder:
@@ -40,9 +40,9 @@ sumidero a 27 °C (300.03 K). La campaña final buscó responder:
 - ¿En qué rangos de presión (P_alta, P_baja, ΔP, r_P) aparece KALINA?
 - ¿Qué datos del enunciado se pueden conservar?
 
-### 1.1 Punto del profesor (PP) y punto ancla (A\*)
+### Punto del profesor (PP) y punto ancla (A\*)
 
-| Dato | PP (enunciado) | A\* (ancla de M3) |
+| Dato | PP (enunciado) | A\* (ancla de estudio 3.1) |
 |---|---|---|
 | P_alta | 3000 kPa | 3000 kPa |
 | P_baja | 400 kPa | **563.64 kPa** |
@@ -55,9 +55,21 @@ sumidero a 27 °C (300.03 K). La campaña final buscó responder:
 
 ---
 
-## 2. Metodología
+## Metodología
 
-### 2.1 Definiciones
+> **Nomenclatura (2026-10-12).** Todo se numera como los capítulos de un informe: pregunta (1–6) → estudio (2.4) → parte (2.4a, cuando hay datos fijos distintos; reemplaza al antiguo "bloque"). Tablas y figuras siguen al estudio (Tabla 4.1-1, Figura 3.2-2); las de síntesis llevan S. Los números de sección de este documento llevan § para no confundirse con los estudios. Los códigos antiguos (M05, KF-M05-3, B09-3, TAB-M05-00) solo quedan como "código de origen".
+
+| Pregunta | Estudios (código de origen) |
+|---|---|
+| 1 · ¿Funciona el ciclo con los datos del profesor? | **1.1** Repetir el caso del profesor (M01) |
+| 2 · ¿Qué es lo mínimo que hay que cambiar para que funcione? | **2.1** Un solo cambio (M02-N1); **2.2** Dos cambios (M02-N2); **2.3** Dos cambios con η y ε en 0.40–0.95 (M02R); **2.4** Sumidero más frío (M02S) |
+| 3 · ¿Qué variables importan y cuánto? | **3.1** Sensibilidad local alrededor de A* (M03); **3.2** Sensibilidad global (500 puntos) (M04, M04b); **3.3** P_baja alta (1500–2500 kPa) (M04c) |
+| 4 · ¿Qué datos del profesor se pueden conservar? | **4.1** Escenarios de conservación (M05); **4.2** Mapa con las presiones del profesor (M05c); **4.3** Escalera de conservación (M09) |
+| 5 · ¿Cuánta eficiencia se puede lograr? | **5.1** Búsqueda de la η máxima (M07) |
+| 6 · ¿Son confiables los resultados? | **6.1** Verificación con el motor de referencia (M06); **6.2** Planta real de Húsavík (M10, M10b) |
+| A · Anexo: equipos fuera del rango realista (no entra en las conclusiones) | **A.1** Equipos fuera del rango realista (M08) |
+
+### Definiciones
 
 | Término | Significado |
 |---|---|
@@ -65,116 +77,124 @@ sumidero a 27 °C (300.03 K). La campaña final buscó responder:
 | N2 (falso convergido) | El solver dice que convergió pero el clasificador lo descarta; no cuenta |
 | KALINA confiable | KALINA dentro del rango del modelo de propiedades (IAPWS G4-01) y con η y ε en [0.40, 0.95] |
 | O1 / O2 / O3 / O5 | Título del vapor / cavitación / trabajo neto / separador bifásico |
-| Piso de O2 | Temperatura con la que se evalúa la cavitación: 300.03 K en M1–M3; = T_sumidero desde M2S |
+| Piso de O2 | Temperatura con la que se evalúa la cavitación: 300.03 K en estudio 1.1–estudio 3.1; = T_sumidero desde estudio 2.4 |
 | Banda de η | ±0.4–0.7 pp: diferencias menores no son concluyentes |
-| Bloque | Puntos con las mismas variables fijas en los mismos valores; solo se comparan dentro de un bloque |
+| Bloque | Puntos con las mismas variables fijas en los mismos valores; solo se comparan dentro de una parte |
 
-### 2.2 Familias de barridos y métodos
+### Familias de barridos y métodos
 
 | Familia | Casos | Método |
 |---|---|---|
-| R reproducibilidad | M1 | repetición punto a punto |
-| F factibilidad | M2-N1, M2-N2, M2R, M2S | mallas 1D/2D + bisección de fronteras |
-| L local | M3 | una variable a la vez (15 valores) + elasticidad ±1 % |
-| G global | M4, M4b, M4c | LHS; RSA/KS, PRCC, PAWN, CART, bootstrap |
-| C conservación | M5, M5c, M9 | LHS por escenario, malla dirigida, escalera de selección |
-| V verificación | M6 | teqp contra el motor real; costo del subenfriamiento |
-| O optimización | M7 | búsqueda por patrones (primero KALINA, después η) |
-| H caso real | M10, M10b | Húsavík: re-evaluación, OFAT, malla |
-| X anecdótico | M8 | fuera del rango realista; no entra en conclusiones |
+| R reproducibilidad | estudio 1.1 | repetición punto a punto |
+| F factibilidad | estudio 2.1, estudio 2.2, estudio 2.3, estudio 2.4 | mallas 1D/2D + bisección de fronteras |
+| L local | estudio 3.1 | una variable a la vez (15 valores) + elasticidad ±1 % |
+| G global | estudio 3.2, estudio 3.3 | LHS; RSA/KS, PRCC, PAWN, CART, bootstrap |
+| C conservación | estudio 4.1, estudio 4.2, estudio 4.3 | LHS por escenario, malla dirigida, escalera de selección |
+| V verificación | estudio 6.1 | teqp contra el motor real; costo del subenfriamiento |
+| O optimización | estudio 5.1 | búsqueda por patrones (primero KALINA, después η) |
+| H caso real | estudio 6.2 | Húsavík: re-evaluación, OFAT, malla |
+| X anecdótico | anexo A.1 | fuera del rango realista; no entra en conclusiones |
 
-### 2.3 Regla de presentación
+### Regla de presentación
 
-Ningún gráfico ni tabla de caso mezcla bloques con datos fijos distintos. Cada figura lleva título
+Ningún gráfico ni tabla de caso mezcla partes con datos fijos distintos. Cada figura lleva título
 con la conclusión, recuadro de condiciones y pie con datos fijos, barridos, filtro, n y fuente.
 
-### 2.4 Panorama de la campaña
+### Panorama de la campaña
 
-![FIG-G01](03_figuras/G/FIG-G01_resultado_por_barrido.png)
+![Figura S-1](03_figuras/S/Figura_S-1_resultado_por_barrido.png)
 
-*FIG-G01. Resultado de cada barrido por clase (4 581 puntos sin M8). Tabla: TAB-G01.*
+*Figura S-1. Resultado de cada barrido por clase (4 581 puntos sin anexo A.1). Tabla: Tabla S-1.*
 
-![FIG-G02](03_figuras/G/FIG-G02_matriz_variables_por_barrido.png)
+![Figura S-2](03_figuras/S/Figura_S-2_matriz_variables_por_barrido.png)
 
-*FIG-G02. Qué variables se movieron y cuáles quedaron fijas en cada barrido. Tabla: TAB-G02.*
+*Figura S-2. Qué variables se movieron y cuáles quedaron fijas en cada barrido. Tabla: Tabla S-2.*
 
 ---
 
-## 3. Resultados por barrido
+## Resultados por pregunta
 
-### 3.1 M1 — Reproducibilidad del caso del profesor
+Cada estudio lleva el número de su pregunta (2.4 = estudio 4 de la pregunta 2); las partes con datos fijos distintos llevan una letra (2.4a). Ver la hoja Nomenclatura del Excel.
+
+### Pregunta 1 · ¿Funciona el ciclo con los datos del profesor?
+
+#### Estudio 1.1 — Reproducibilidad del caso del profesor
 
 - **Qué:** los 41 puntos de la Fase 1 (base, P_alta 2000–4000 kPa, x_b 0.40–0.70, T_amb horaria).
 - **Resultado:** 42 corridas, **0 genuinas**; coincidencia de clase con la F1: 41 de 41.
 - **Conclusión:** el código actual reproduce al profesor: con sus datos el ciclo no converge; mover
   solo P_alta, x_b o el clima no cambia nada. El bloqueo está en el lado caliente.
-- **Tablas:** TAB-M01-00, -01, -02. Sin figura (nada que graficar).
+- **Tablas:** Tabla 1.1-1, -01, -02. Sin figura (nada que graficar).
 
-### 3.2 M2-N1 — Un solo cambio sobre el profesor
+### Pregunta 2 · ¿Qué es lo mínimo que hay que cambiar para que funcione?
+
+#### Estudio 2.1 — Un solo cambio sobre el profesor
 
 - **Qué:** 10 variables, de a una (10 valores + bisección); η/ε en [0.75, 0.85]. 132 corridas.
 - **Resultado:** 15 genuinas, **0 KALINA**, 21 N2. Solo T_fuente, ε_HRVG y x_b dan genuinos.
   El más cercano: T_fuente = 402.9 K, solo falla O2 por 2.0 K (η = 9.86 %).
 - **Conclusión:** con un cambio no hay KALINA; el que más acerca es bajar la fuente a ~400 K.
 
-![FIG-M02-01](03_figuras/M02/FIG-M02-01_oat_datos_profesor.png)
+![Figura 2.1-1](03_figuras/2.1/Figura_2.1-1_oat_datos_profesor.png)
 
-### 3.3 M2-N2 — Dos cambios (P_baja + una variable del lado caliente)
+#### Estudio 2.2 — Dos cambios (P_baja + una variable del lado caliente)
 
 - **Ruta A** (conserva la fuente, ε_HRVG × P_baja): 36 genuinas, **0 KALINA** (bloquea O2).
 - **Ruta B** (T_fuente × P_baja): **59 KALINA (48 confiables)** con T_fuente 390–434 K. Menor
   P_baja: 445.5 kPa a 390 K (η 2.45 %); mayor η: 9.15 % a 420 K / 736 kPa. Se elige **A\***.
 
-![FIG-M02-02a](03_figuras/M02/FIG-M02-02a_ruta_a_fuente_profesor.png)
-![FIG-M02-02b](03_figuras/M02/FIG-M02-02b_ruta_b_tfuente.png)
+![Figura 2.2-1](03_figuras/2.2/Figura_2.2-1_ruta_a_fuente_profesor.png)
+![Figura 2.2-2](03_figuras/2.2/Figura_2.2-2_ruta_b_tfuente.png)
 
-### 3.4 M2R — M2 con η y ε en [0.40, 0.95]
+#### Estudio 2.3 — Dos cambios con η y ε en [0.40, 0.95]
 
 | Parte | KALINA | Confiables | Lectura |
 |---|---|---|---|
-| n1 (una variable) | 0 | 0 | un cambio sigue sin alcanzar |
-| n2a (ε_HRVG × ε_cond, P_baja 400) | 0 | 0 | 48 corregibles, todos por O2 |
-| n2b (ε_HRVG × P_baja) | 19 filas (13 distintos) | 0 | ε_HRVG 0.40–0.50 con P_baja 1318–2000 kPa; todos fuera de rango |
-| n3 (T_fuente × ε_cond) | 1 | 1 | presiones del profesor + T_fuente 403 K + ε_cond 0.95: η 9.50 % |
+| 2.3a (una variable) | 0 | 0 | un cambio sigue sin alcanzar |
+| 2.3b (ε_HRVG × ε_cond, P_baja 400) | 0 | 0 | 48 corregibles, todos por O2 |
+| 2.3c (ε_HRVG × P_baja) | 19 filas (13 distintos) | 0 | ε_HRVG 0.40–0.50 con P_baja 1318–2000 kPa; todos fuera de rango |
+| 2.3d (T_fuente × ε_cond) | 1 | 1 | presiones del profesor + T_fuente 403 K + ε_cond 0.95: η 9.50 % |
 
 - **Conclusión:** con 623 K hay KALINA solo bajando mucho ε_HRVG y subiendo P_baja, y ninguno es
-  confiable. Con las presiones exactas del profesor sí hay un KALINA confiable (antecedente de M5c).
+  confiable. Con las presiones exactas del profesor sí hay un KALINA confiable (antecedente de estudio 4.2).
 
-![n1](03_figuras/M02R/FIG-M02R-n1_oat_eta_eps.png)
-![n2a](03_figuras/M02R/FIG-M02R-n2a_eps_hrvg_eps_cond_dispersión.png)
-![n2b](03_figuras/M02R/FIG-M02R-n2b_eps_hrvg_pbaja_dispersión.png)
-![n3](03_figuras/M02R/FIG-M02R-n3_tfuente_eps_cond_dispersión.png)
+![2.3a](03_figuras/2.3/Figura_2.3-1_oat_eta_eps.png)
+![2.3b](03_figuras/2.3/Figura_2.3-2_eps_hrvg_eps_cond_dispersión.png)
+![2.3c](03_figuras/2.3/Figura_2.3-3_eps_hrvg_pbaja_dispersión.png)
+![2.3d](03_figuras/2.3/Figura_2.3-4_tfuente_eps_cond_dispersión.png)
 
-### 3.5 M2S — Sumidero más frío con P_baja libre
+#### Estudio 2.4 — Sumidero más frío con P_baja libre
 
 | Base | KALINA (confiables) | 300.03 K: P_baja mín. / η máx. | 278.15 K: P_baja mín. / η máx. |
 |---|---|---|---|
-| B1 (T_fuente 403 K) | 59 (59) | 562.5 kPa / 8.49 % | 290.6 kPa / 10.41 % |
-| B2 (T_fuente 420 K) | 60 (60) | 740.6 kPa / 9.11 % | 393.8 kPa / 11.91 % |
-| B3 (ε_HRVG 0.40) | 34 (0) | 1312.5 kPa / 6.30 % | 750 kPa / 9.69 % |
-| B4 (profesor exacto) | 0 | — | — |
+| 2.4a (T_fuente 403 K) | 59 (59) | 562.5 kPa / 8.49 % | 290.6 kPa / 10.41 % |
+| 2.4b (T_fuente 420 K) | 60 (60) | 740.6 kPa / 9.11 % | 393.8 kPa / 11.91 % |
+| 2.4c (ε_HRVG 0.40) | 34 (0) | 1312.5 kPa / 6.30 % | 750 kPa / 9.69 % |
+| 2.4d (profesor exacto) | 0 | — | — |
 
 - **Conclusión:** un sumidero ~22 K más frío reduce a la mitad la P_baja necesaria y sube η 2–3 pp.
   El profesor exacto nunca es KALINA: el problema es la fuente, no el clima.
 
-![FIG-M02S-01](03_figuras/M02S/FIG-M02S-01_sumidero_pbaja_eta.png)
+![Figura 2.4-1](03_figuras/2.4/Figura_2.4-1_sumidero_pbaja_eta.png)
 
-### 3.6 M3 — Sensibilidad local alrededor de A\*
+### Pregunta 3 · ¿Qué variables importan y cuánto?
+
+#### Estudio 3.1 — Sensibilidad local alrededor de A\*
 
 - **Qué:** 10 variables × 15 valores + elasticidad ±1 % del rango. 171 corridas: 148 genuinas,
   86 KALINA.
-- **Ranking (TAB-M03-02):** mayor elasticidad T_fuente (E = 10.9), luego x_b (3.4); mayor Δη x_b
+- **Ranking (Tabla 3.1-3):** mayor elasticidad T_fuente (E = 10.9), luego x_b (3.4); mayor Δη x_b
   (10.8 pp) y P_baja (6.8 pp). Las palancas que suben η sin perder KALINA son ε_reg (hasta 10.96 %)
   y η_t (9.62 %).
 - **Conclusión:** A\* está al filo de O2: en 8 de 9 variables la frontera está a menos del 6 % del
   rango (P_alta: bajarla 64 kPa ya rompe O2).
 
-![tornado](03_figuras/M03/FIG-M03-01_tornado_delta_eta.png)
-![elasticidad](03_figuras/M03/FIG-M03-02_elasticidades.png)
-![oat](03_figuras/M03/FIG-M03-03_oat_alrededor_de_A.png)
-![margenes](03_figuras/M03/FIG-M03-04_margenes_frontera_O2.png)
+![tornado](03_figuras/3.1/Figura_3.1-1_tornado_delta_eta.png)
+![elasticidad](03_figuras/3.1/Figura_3.1-2_elasticidades.png)
+![oat](03_figuras/3.1/Figura_3.1-3_oat_alrededor_de_A.png)
+![margenes](03_figuras/3.1/Figura_3.1-4_margenes_frontera_O2.png)
 
-### 3.7 M4 + M4b — Sensibilidad global (LHS de 500 puntos)
+#### Estudio 3.2 — Sensibilidad global (LHS de 500 puntos)
 
 - **Caja:** T_fuente 380–500 K, T_sumidero 278–303.5 K, P_alta 2000–5000, P_baja 300–1500 kPa,
   x_b 0.50–0.85, η/ε en rangos realistas.
@@ -191,40 +211,42 @@ con la conclusión, recuadro de condiciones y pie con datos fijos, barridos, fil
 - **Qué mueve η (PRCC):** P_baja (−0.68), P_alta (+0.58), η_t (+0.38), T_fuente (+0.29).
 - **Conclusión:** subir P_baja ayuda a cumplir O2 pero baja η: los óptimos de η quedan al filo de O2.
 
-![cdf](03_figuras/M04/FIG-M04-01_cdf_por_variable.png)
-![presiones](03_figuras/M04/FIG-M04-02_plano_presiones.png)
-![prcc](03_figuras/M04/FIG-M04-03_prcc_eta.png)
-![dp_rp](03_figuras/M04/FIG-M04-04_hist_dP_rP.png)
+![cdf](03_figuras/3.2/Figura_3.2-1_cdf_por_variable.png)
+![presiones](03_figuras/3.2/Figura_3.2-2_plano_presiones.png)
+![prcc](03_figuras/3.2/Figura_3.2-3_prcc_eta.png)
+![dp_rp](03_figuras/3.2/Figura_3.2-4_hist_dP_rP.png)
 
-### 3.8 M4c — Techo de P_baja (1500–2500 kPa)
+#### Estudio 3.3 — Techo de P_baja (1500–2500 kPa)
 
 - 135 evaluados: 120 genuinos, 75 KALINA (45 confiables); 33–75 % de KALINA por franja.
 - **Conclusión:** no hay techo de clasificación hasta 2500 kPa; lo que limita una P_baja alta es
   r_P → 1 y la eficiencia (mediana 4.29 %), no la cavitación.
 
-![m4c](03_figuras/M04/FIG-M04c-01_kalina_por_franja_Pbaja.png)
+![m4c](03_figuras/3.3/Figura_3.3-1_kalina_por_franja_Pbaja.png)
 
-### 3.9 M5 — Escenarios de conservación (LHS de 120 por escenario)
+### Pregunta 4 · ¿Qué datos del profesor se pueden conservar?
+
+#### Estudio 4.1 — Escenarios de conservación (LHS de 120 por escenario)
 
 | Escenario | Conserva | KALINA | Confiables |
 |---|---|---|---|
-| S1 | T_fuente y T_sumidero | 4 | 2 |
-| S2 | P_alta y P_baja | 0 | 0 |
-| S3 | presiones + clima | 0 | 0 |
-| S4 | P_alta + temperaturas | 6 | 0 |
-| S5 | T_fuente + x_b | 10 | 0 |
+| 4.1a | T_fuente y T_sumidero | 4 | 2 |
+| 4.1b | P_alta y P_baja | 0 | 0 |
+| 4.1c | presiones + clima | 0 | 0 |
+| 4.1d | P_alta + temperaturas | 6 | 0 |
+| 4.1e | T_fuente + x_b | 10 | 0 |
 
 - **Conclusión:** conservar 623 K casi nunca da KALINA confiable (2 de 20, con P_baja 1.36–1.97 MPa
   y x_b 0.71–0.83). Las presiones del profesor sí son posibles, pero en una franja tan angosta que
-  el LHS no la encontró → M5c.
+  el LHS no la encontró → estudio 4.2.
 
-![S1](03_figuras/M05/FIG-M05-S1_escenario_1.png)
-![S2](03_figuras/M05/FIG-M05-S2_escenario_2.png)
-![S3](03_figuras/M05/FIG-M05-S3_escenario_3.png)
-![S4](03_figuras/M05/FIG-M05-S4_escenario_4.png)
-![S5](03_figuras/M05/FIG-M05-S5_escenario_5.png)
+![4.1a](03_figuras/4.1/Figura_4.1-1_escenario_1.png)
+![4.1b](03_figuras/4.1/Figura_4.1-2_escenario_2.png)
+![4.1c](03_figuras/4.1/Figura_4.1-3_escenario_3.png)
+![4.1d](03_figuras/4.1/Figura_4.1-4_escenario_4.png)
+![4.1e](03_figuras/4.1/Figura_4.1-5_escenario_5.png)
 
-### 3.10 M5c — La franja KALINA con las presiones del profesor
+#### Estudio 4.2 — La franja KALINA con las presiones del profesor
 
 - Malla T_fuente 385–410 K × ε_cond 0.85–0.95 × T_sumidero {278.15, 290.65, 300.03} K: 165 corridas,
   **104 KALINA, todos confiables**. Por debajo de 390 K, O3 (trabajo negativo).
@@ -241,37 +263,9 @@ con la conclusión, recuadro de condiciones y pie con datos fijos, barridos, fil
 - **Conclusión:** las dos presiones del profesor son compatibles con KALINA si la fuente está a
   390–410 K y ε_cond ≥ 0.875 (con clima más frío basta 0.85).
 
-![m5c](03_figuras/M05/FIG-M05c-01_franja_presiones_profesor.png)
+![m5c](03_figuras/4.2/Figura_4.2-1_franja_presiones_profesor.png)
 
-### 3.11 M6 — Verificación con el motor real y costo del margen de cavitación
-
-- teqp y el motor real coinciden en todos los puntos que el motor real resolvió (|Δη| < 0.003 pp).
-  Con 300 s, 10 de 12 se cortan por tiempo; con 1500 s (M9) se confirman A\*, A4 y Húsavík.
-- Piso de O2 en 303.55 K: 9 de 12 pasan a CORREGIBLE (déficit 0.5–3.2 K): los diseños están al filo.
-- Exigir 2 K de subenfriamiento: +25–46 kPa de P_baja y −0.3 a −0.5 pp de η.
-
-![m6](03_figuras/M06/FIG-M06-01_paridad_teqp_real.png)
-
-### 3.12 M7 — Máxima eficiencia dentro de KALINA
-
-| Arranque | Conserva | η máx. | Confiables |
-|---|---|---|---|
-| A1 | nada (desde M4b) | 14.98 % | 98 de 102 |
-| A2 | nada (desde M2S) | 15.48 % | 63 de 63 |
-| A3 | temperaturas del profesor | 12.74 % | 90 de 91 |
-| **A4** | **presiones y clima del profesor** | **15.60 %** | 80 de 80 |
-| A5 | fuente + x_b del profesor | 11.09 % | 0 de 83 |
-
-- **Conclusión:** η máx. 15.6 % con T_fuente 415 K y equipos a 0.95 (cota superior, no diseño).
-  A3 prueba que 623 K admite KALINA confiables solo con x_b ≈ 0.85 y presiones altas.
-
-![m7](03_figuras/M07/FIG-M07-01_busqueda_eta.png)
-
-### 3.13 M8 — Anecdótico (fuera del rango realista)
-
-η y ε de 0.20 a 0.99. Solo ilustrativo; no entra en conclusiones ni en tableros.
-
-### 3.14 M9 — Escalera de conservación de los datos del profesor
+#### Estudio 4.3 — Escalera de conservación de los datos del profesor
 
 | Ronda | Conjunto elegido | Datos conservados | KALINA (confiables) |
 |---|---|---|---|
@@ -284,9 +278,37 @@ con la conclusión, recuadro de condiciones y pie con datos fijos, barridos, fil
   (391–409 K) y T_sumidero (280–293 K). η hasta 10.6 %, subenfriamiento ≥ 2 K.
 - Ningún conjunto con T_fuente = 623 K da KALINA confiable (x_b + P_alta + eficiencias + T_fuente: 30/30 NO_CONVERGIO).
 
-![m9](03_figuras/M09/FIG-M09-01_escalera_conservacion.png)
+![m9](03_figuras/4.3/Figura_4.3-1_escalera_conservacion.png)
 
-### 3.15 M10 — Húsavík revisitado
+### Pregunta 5 · ¿Cuánta eficiencia se puede lograr?
+
+#### Estudio 5.1 — Máxima eficiencia dentro de KALINA
+
+| Arranque | Conserva | η máx. | Confiables |
+|---|---|---|---|
+| 5.1a | nada (desde estudio 3.2) | 14.98 % | 98 de 102 |
+| 5.1b | nada (desde estudio 2.4) | 15.48 % | 63 de 63 |
+| 5.1c | temperaturas del profesor | 12.74 % | 90 de 91 |
+| **5.1d** | **presiones y clima del profesor** | **15.60 %** | 80 de 80 |
+| 5.1e | fuente + x_b del profesor | 11.09 % | 0 de 83 |
+
+- **Conclusión:** η máx. 15.6 % con T_fuente 415 K y equipos a 0.95 (cota superior, no diseño).
+  5.1c prueba que 623 K admite KALINA confiables solo con x_b ≈ 0.85 y presiones altas.
+
+![m7](03_figuras/5.1/Figura_5.1-1_busqueda_eta.png)
+
+### Pregunta 6 · ¿Son confiables los resultados?
+
+#### Estudio 6.1 — Verificación con el motor real y costo del margen de cavitación
+
+- teqp y el motor real coinciden en todos los puntos que el motor real resolvió (|Δη| < 0.003 pp).
+  Con 300 s, 10 de 12 se cortan por tiempo; con 1500 s (estudio 4.3) se confirman A\*, 5.1d y Húsavík.
+- Piso de O2 en 303.55 K: 9 de 12 pasan a CORREGIBLE (déficit 0.5–3.2 K): los diseños están al filo.
+- Exigir 2 K de subenfriamiento: +25–46 kPa de P_baja y −0.3 a −0.5 pp de η.
+
+![m6](03_figuras/6.1/Figura_6.1-1_paridad_teqp_real.png)
+
+#### Estudio 6.2 — Húsavík revisitado
 
 - **F3:** los 97 KALINA de septiembre se reproducen sin cambio de clase (Δη < 10⁻¹¹ pp); 83 son
   confiables (14 usan η_t o ε_cond > 0.95).
@@ -295,10 +317,10 @@ con la conclusión, recuadro de condiciones y pie con datos fijos, barridos, fil
 - **MALLA:** la P_baja mínima KALINA sube de 500 kPa (x_b 0.70) a 800 kPa (x_b ≥ 0.85); su P_baja
   real (690 kPa) coincide con la mínima KALINA.
 
-![m10-01](03_figuras/M10/FIG-M10-01_malla_xb_pbaja.png)
-![m10-02](03_figuras/M10/FIG-M10-02_ofat_husavik.png)
+![m10-01](03_figuras/6.2/Figura_6.2-1_malla_xb_pbaja.png)
+![m10-02](03_figuras/6.2/Figura_6.2-2_ofat_husavik.png)
 
-### 3.16 M10b — Húsavík con poco amoníaco
+#### Parte 6.2d — Húsavík con poco amoníaco
 
 | x_b | Qué pasa |
 |---|---|
@@ -307,40 +329,48 @@ con la conclusión, recuadro de condiciones y pie con datos fijos, barridos, fil
 | 0.55 | primer KALINA útil: P_baja mín. 300 kPa, η 9.6 % |
 | 0.60 / 0.65 / 0.70 | P_baja mín. 400 / 500 / 500 kPa |
 
-- **Conclusión:** con el ancla de Húsavík, x_b = 0.50 es el límite; con otras condiciones (M5c, M9)
+- **Conclusión:** con el ancla de Húsavík, x_b = 0.50 es el límite; con otras condiciones (estudio 4.2, estudio 4.3)
   x_b = 0.50 sí da η de 8–11 %.
 
 ---
 
-## 4. Síntesis
+### Anexo · Equipos fuera del rango realista (no entra en las conclusiones)
 
-### 4.1 Datos del profesor que se pueden conservar (TAB-G04)
+#### Estudio A.1 — Anecdótico (fuera del rango realista)
 
-| Dato | ¿Se conserva con KALINA? | Respaldo |
-|---|---|---|
-| P_alta 3000 kPa | sí | M9, M5c |
-| P_baja 400 kPa | sí; con su clima exige ε_cond ≥ 0.875 | M9, M5c |
-| x_b 0.50 | sí (con Húsavík queda al límite) | M9, M10b |
-| η_t, η_p, ε_HRVG, ε_reg | sí | M9 |
-| ε_cond 0.80 | sí, si el sitio es más frío (≤ ~293 K) | M9, M5c |
-| T_sumidero 300.03 K | con condiciones | M9, M5c |
-| **T_fuente 623.15 K** | **no (bloqueo estructural)** | M1, M2, M9 |
-
-### 4.2 Criterios que bloquean (TAB-G05)
-
-O2 aparece en el 88–100 % de los genuinos no KALINA de todos los casos salvo M5c (67 %); O3 pesa en M5
-(39 %), M5c (33 %) y M9 (24 %), por fuentes frías o x_b baja.
-
-### 4.3 Rangos KALINA comparados (TAB-G03)
-
-Ver TAB-G03: p5, mediana y p95 de P_alta, P_baja, ΔP, r_P, T_fuente y x_b de los KALINA
-confiables por bloque (M4/M4b, M5 S1–S5, M5c, M9 final, Húsavík malla).
+η y ε de 0.20 a 0.99. Solo ilustrativo; no entra en conclusiones ni en tableros.
 
 ---
 
-## 5. Conclusiones (con la evidencia de los datos)
+## Síntesis
 
-### 5.1 Cómo se sostiene cada conclusión
+### Datos del profesor que se pueden conservar (Tabla S-4)
+
+| Dato | ¿Se conserva con KALINA? | Respaldo |
+|---|---|---|
+| P_alta 3000 kPa | sí | estudio 4.3, estudio 4.2 |
+| P_baja 400 kPa | sí; con su clima exige ε_cond ≥ 0.875 | estudio 4.3, estudio 4.2 |
+| x_b 0.50 | sí (con Húsavík queda al límite) | estudio 4.3, estudio 6.2 |
+| η_t, η_p, ε_HRVG, ε_reg | sí | estudio 4.3 |
+| ε_cond 0.80 | sí, si el sitio es más frío (≤ ~293 K) | estudio 4.3, estudio 4.2 |
+| T_sumidero 300.03 K | con condiciones | estudio 4.3, estudio 4.2 |
+| **T_fuente 623.15 K** | **no (bloqueo estructural)** | estudio 1.1, estudios 2.1 y 2.2, estudio 4.3 |
+
+### Criterios que bloquean (Tabla S-5)
+
+O2 aparece en el 88–100 % de los genuinos no KALINA de todos los casos salvo estudio 4.2 (67 %); O3 pesa en estudio 4.1
+(39 %), estudio 4.2 (33 %) y estudio 4.3 (24 %), por fuentes frías o x_b baja.
+
+### Rangos KALINA comparados (Tabla S-3)
+
+Ver Tabla S-3: p5, mediana y p95 de P_alta, P_baja, ΔP, r_P, T_fuente y x_b de los KALINA
+confiables por parte (3.2, 4.1a–4.1e, 4.2, el conjunto final de 4.3 y la malla de Húsavík 6.2c).
+
+---
+
+## Conclusiones (con la evidencia de los datos)
+
+### Cómo se sostiene cada conclusión
 
 Cada conclusión trae: la **afirmación**, la **evidencia** (estadístico, n, intervalo o p), el
 **comportamiento de los datos** (dirección, monotonía, linealidad, umbral, interacción) y el **grado
@@ -358,7 +388,7 @@ regresiones propias sobre `todos_los_puntos.csv`.
 
 ---
 
-### 5.2 Factibilidad: qué decide que el ciclo sea KALINA
+### Factibilidad: qué decide que el ciclo sea KALINA
 
 **C1. La factibilidad la deciden el lado frío (P_baja, ε_cond) y la razón de presiones; el lado
 caliente y la x_b pesan menos, y las eficiencias de las máquinas casi nada.** *Fuerte.*
@@ -374,7 +404,7 @@ caliente y la x_b pesan menos, y las eficiencias de las máquinas casi nada.** *
 | P_alta, ΔP | 0.13 – 0.14 | — | 0.05 – 0.08 | no significativa |
 | η_t, η_p, ε_HRVG, ε_reg | 0.07 – 0.12 | — | 0.12 – 0.67 | no decide |
 
-*n = 121 KALINA contra 379 no KALINA (M4 + M4b, LHS de 500 puntos).*
+*n = 121 KALINA contra 379 no KALINA (estudio 3.2, LHS de 500 puntos).*
 
 - **Comportamiento:** los IC de P_baja y ε_cond se solapan casi por completo, así que **no se puede
   decir cuál de las dos pesa más**; las dos están claramente por encima de T_fuente.
@@ -384,17 +414,17 @@ caliente y la x_b pesan menos, y las eficiencias de las máquinas casi nada.** *
   burbuja; un condensador más efectivo enfría más el líquido; una fuente más caliente, un sumidero
   más caliente o más amoníaco empujan el líquido hacia la saturación.
 - **Consistencia:** O2 es el criterio que bloquea en el 88–100 % de los genuinos no KALINA de todos
-  los casos salvo M5c (67 %; TAB-G05), y las variables de m_O2 son las que mueven las fronteras en
-  M2S (T_sumidero), M5c (ε_cond, T_fuente) y M10 (x_b, P_baja).
+  los casos salvo estudio 4.2 (67 %; Tabla S-5), y las variables de m_O2 son las que mueven las fronteras en
+  estudio 2.4 (T_sumidero), estudio 4.2 (ε_cond, T_fuente) y estudio 6.2 (x_b, P_baja).
 
 **C2. La frontera de KALINA es un umbral, no una transición suave, y los diseños quedan pegados a
 ella.** *Fuerte.*
 
-- En M3, el ancla A\* está a menos del **6 % del rango** de la frontera de O2 en **8 de 9** variables;
+- En estudio 3.1, el ancla A\* está a menos del **6 % del rango** de la frontera de O2 en **8 de 9** variables;
   en P_alta, a 0.7 % (bajarla 64 kPa rompe O2).
 - Con el piso de O2 en 303.55 K, **9 de 12** puntos clave pasan de KALINA a CORREGIBLE, con déficits
-  de 0.5–3.2 K (M6).
-- Los óptimos de M7 terminan en el borde de O2 o de O1.
+  de 0.5–3.2 K (estudio 6.1).
+- Los óptimos de estudio 5.1 terminan en el borde de O2 o de O1.
 - **Consecuencia:** el criterio O2 del modelo no tiene margen propio. Un diseño "KALINA" sin margen
   de subenfriamiento es frágil frente a pequeñas variaciones del clima.
 
@@ -421,11 +451,11 @@ ella.** *Fuerte.*
   apenas por encima del **75.8 %** que daría decir "nunca es KALINA". Sus cortes principales
   (ε_cond ≈ 0.89, P_baja ≈ 770–1025 kPa, T_fuente ≈ 416 K) son orientativos, no una regla de diseño.
 - **Lectura:** la factibilidad depende de una combinación (el signo de m_O2), no de cortes paralelos
-  a los ejes. Por eso las mallas dirigidas (M5c, M9) encontraron franjas que el muestreo al azar no vio.
+  a los ejes. Por eso las mallas dirigidas (estudio 4.2, estudio 4.3) encontraron franjas que el muestreo al azar no vio.
 
 ---
 
-### 5.3 Desempeño: qué mueve la eficiencia η
+### Desempeño: qué mueve la eficiencia η
 
 **C5. Lo que decide la factibilidad no es lo que mueve η.** *Fuerte.*
 
@@ -440,7 +470,7 @@ ella.** *Fuerte.*
 | ε_cond | +0.08 (p = 0.09) | −0.01 – 0.18 | **sí (0.43)** |
 | T_sumidero, η_p, ε_HRVG | ≈ 0 (p > 0.39) | — | — |
 
-*n = 430 puntos genuinos con W_net > 0 (M4 + M4b).*
+*n = 430 puntos genuinos con W_net > 0 (estudio 3.2).*
 
 - **ε_cond** decide la clase pero no mueve η; **P_alta, η_t y ε_reg** mueven η pero no deciden la
   clase. Solo **P_baja** está en los dos, y con efectos opuestos (C6).
@@ -450,16 +480,16 @@ ella.** *Fuerte.*
 **C6. P_baja tiene un efecto antagónico: subirla asegura KALINA pero baja η, de forma casi lineal.**
 *Fuerte.*
 
-- En M2S (base B1, clima 300 K, 9 puntos KALINA): η baja **0.55 pp por cada 100 kPa** de P_baja
+- En estudio 2.4 (base 2.4a, clima 300 K, 9 puntos KALINA): η baja **0.55 pp por cada 100 kPa** de P_baja
   (R² = 0.98).
-- En M6, cada kelvin de subenfriamiento exigido cuesta **13.9 kPa** de P_baja (mediana; 3.8–23.3) y
+- En estudio 6.1, cada kelvin de subenfriamiento exigido cuesta **13.9 kPa** de P_baja (mediana; 3.8–23.3) y
   **0.16 pp** de η (mediana; 0.07–0.24), en 10 pares punto-margen.
 - Por eso los óptimos de η quedan pegados a la frontera de O2 (C2).
 
 **C7. Cerca de A\*, η responde de forma monótona y casi lineal a las eficiencias, pero de forma no
 monótona a T_fuente y x_b.** *Fuerte para las eficiencias; moderada para el resto.*
 
-| Variable (M3, malla, genuinos con W_net > 0) | n | ρ de Spearman | Pendiente | R² |
+| Variable (estudio 3.1, malla, genuinos con W_net > 0) | n | ρ de Spearman | Pendiente | R² |
 |---|---|---|---|---|
 | η_t | 15 | +1.00 | +0.115 pp por 0.01 | 1.00 |
 | ε_reg | 15 | +1.00 | +0.089 pp por 0.01 | 0.98 |
@@ -471,7 +501,7 @@ monótona a T_fuente y x_b.** *Fuerte para las eficiencias; moderada para el res
 | x_b | 8 | −0.43 | — (no monótona) | 0.30 |
 
 - **T_fuente y x_b** cambian de régimen dentro del rango: no convergencia, KALINA y CORREGIBLE se
-  alternan (FIG-M03-03). Para ellas, la elasticidad local (E = 10.9 y 3.4) **solo vale pegado a A\***
+  alternan (Figura 3.1-3). Para ellas, la elasticidad local (E = 10.9 y 3.4) **solo vale pegado a A\***
   y no debe extrapolarse.
 - **Local vs. global:** ε_HRVG sube η con fuerza en A\* (+0.115 pp por 0.01), pero su PRCC global es
   ≈ 0. Es un efecto que depende del punto, no una tendencia de toda la caja.
@@ -479,47 +509,47 @@ monótona a T_fuente y x_b.** *Fuerte para las eficiencias; moderada para el res
 **C8. Un sumidero más frío ayuda sobre todo porque permite bajar P_baja, no por un efecto directo
 sobre η.** *Fuerte.*
 
-| Base (M2S) | P_baja mínima KALINA | η en esa P_baja |
+| Base (estudio 2.4) | P_baja mínima KALINA | η en esa P_baja |
 |---|---|---|
-| B1 (T_fuente 403 K) | −12.5 kPa por K más frío (R² = 0.99) | +0.088 pp por K (R² = 1.00) |
-| B2 (T_fuente 420 K) | −15.9 kPa/K (R² = 1.00) | +0.128 pp/K (R² = 1.00) |
-| B3 (ε_HRVG 0.40) | −25.7 kPa/K (R² = 1.00) | +0.155 pp/K (R² = 1.00) |
+| 2.4a (T_fuente 403 K) | −12.5 kPa por K más frío (R² = 0.99) | +0.088 pp por K (R² = 1.00) |
+| 2.4b (T_fuente 420 K) | −15.9 kPa/K (R² = 1.00) | +0.128 pp/K (R² = 1.00) |
+| 2.4c (ε_HRVG 0.40) | −25.7 kPa/K (R² = 1.00) | +0.155 pp/K (R² = 1.00) |
 
-- Con P_baja fija (M3), el efecto directo de T_sumidero sobre η es pequeño (0.85 pp en todo el rango,
+- Con P_baja fija (estudio 3.1), el efecto directo de T_sumidero sobre η es pequeño (0.85 pp en todo el rango,
   **dentro de la banda** de incertidumbre). El beneficio llega por la vía indirecta: un clima frío
   relaja O2, permite una P_baja menor, y la P_baja menor sube η (C6).
 - Las relaciones son lineales en 278–300 K, con pendientes que crecen cuanto más exigida está la
-  base (B3 > B2 > B1).
+  base (2.4c > 2.4b > 2.4a).
 
 **C9. Más amoníaco (x_b) exige más P_baja para evitar la cavitación.** *Fuerte en Húsavík;
-consistente con M4.*
+consistente con estudio 3.2.*
 
-- Malla de Húsavík (B14-MALLA, x_b 0.55–0.91): la P_baja mínima KALINA sube **~144 kPa por cada 0.1
+- Malla de Húsavík (parte 6.2c, x_b 0.55–0.91): la P_baja mínima KALINA sube **~144 kPa por cada 0.1
   de x_b** (R² = 0.97).
 - Coincide con el PRCC global de x_b sobre m_O2 (−0.47).
 - Por debajo de x_b = 0.50 no hay ningún punto genuino (32 de 32 sin ciclo); con x_b = 0.50, η < 1.3 %
   en Húsavík. Ese límite inferior **depende del punto base**: con la fuente a ~400 K y las presiones
-  del profesor, x_b = 0.50 da η de 8–11 % (M5c, M9).
+  del profesor, x_b = 0.50 da η de 8–11 % (estudio 4.2, estudio 4.3).
 
 ---
 
-### 5.4 Conclusiones sobre el enunciado del profesor
+### Conclusiones sobre el enunciado del profesor
 
 **C10. La fuente a 623 K es incompatible con el resto del enunciado.** *Fuerte.*
 
-- Con todos los datos del profesor: 0 de 41 converge (M1). Con un cambio: 0 KALINA (M2-N1).
+- Con todos los datos del profesor: 0 de 41 converge (estudio 1.1). Con un cambio: 0 KALINA (estudio 2.1).
 - Conservando la fuente, solo hay KALINA confiables lejos del enunciado: x_b 0.71–0.85, P_alta
-  3200–5000 kPa y P_baja 1.36–1.97 MPa (92 puntos, M7-A3 y M5-S1). Con la x_b o las presiones del
-  profesor: 0 confiables en todos los barridos (M2S-B3, M5-S4/S5, M7-A5 y los 4 conjuntos de M9 con
+  3200–5000 kPa y P_baja 1.36–1.97 MPa (92 puntos, estudio 5.1c y estudio 4.1a). Con la x_b o las presiones del
+  profesor: 0 confiables en todos los barridos (estudio 2.4c, estudios 4.1d y 4.1e, estudio 5.1e y los 4 conjuntos de estudio 4.3 con
   T_fuente).
 - **Mecanismo:** T_fuente es la tercera variable que más baja el margen de cavitación (PRCC −0.68), y
   a 623 K ese efecto no se compensa con las presiones y la composición del enunciado.
 
 **C11. Con la fuente a ~390–410 K se conservan 8 de los 10 datos de diseño.** *Fuerte.*
 
-- La escalera de M9 conserva las 2 presiones, x_b y las 5 η/ε, moviendo solo T_fuente (391–409 K) y
+- La escalera de estudio 4.3 conserva las 2 presiones, x_b y las 5 η/ε, moviendo solo T_fuente (391–409 K) y
   T_sumidero (280–293 K): 5 de 5 KALINA confiables, con subenfriamiento real ≥ 2 K.
-- La malla dirigida de M5c lo confirma con otra combinación: las 2 presiones del profesor dan 104 de
+- La malla dirigida de estudio 4.2 lo confirma con otra combinación: las 2 presiones del profesor dan 104 de
   165 KALINA (todos confiables) con T_fuente 390–410 K. La T_fuente máxima KALINA sube con ε_cond:
   390 → 410 K al pasar de 0.875 a 0.95 en el clima de 300 K.
 - η crece **0.39 pp por K** de T_fuente dentro de esa franja (R² = 0.90): de 390 a 410 K se ganan
@@ -527,7 +557,7 @@ consistente con M4.*
 
 ---
 
-### 5.5 Robustez del análisis
+### Robustez del análisis
 
 | Prueba | Resultado | Lectura |
 |---|---|---|
@@ -536,26 +566,26 @@ consistente con M4.*
 | PAWN sobre η (T_máx) | P_baja 0.44, P_alta 0.42, η_t 0.30, T_fuente 0.27 | mismo grupo líder que el PRCC, sin suponer monotonía |
 | Motor de propiedades | teqp = motor real en 5 de 5 puntos (Δη < 0.003 pp) | las conclusiones no dependen del motor |
 | Reproducibilidad | 41/41 (F1) y 97/97 (Húsavík F3) | el código actual reproduce lo anterior |
-| Banda de η | ±0.4–0.7 pp | no se concluye nada de diferencias menores (p. ej. T_sumidero con P_baja fija, ε_cond y η_p en M3) |
+| Banda de η | ±0.4–0.7 pp | no se concluye nada de diferencias menores (p. ej. T_sumidero con P_baja fija, ε_cond y η_p en estudio 3.1) |
 
-### 5.6 Lo que los datos no permiten afirmar
+### Lo que los datos no permiten afirmar
 
 - **El orden entre P_baja y ε_cond** como decisores de KALINA: sus IC se solapan (C1).
 - **Una regla de corte simple** para la factibilidad: el CART apenas supera la tasa base (C4).
-- **Tendencias globales a partir de M3:** T_fuente y x_b no son monótonas alrededor de A\* (C7).
-- **El borde superior** de la franja de M5c (T_fuente > 410 K no se exploró).
-- **Lo que ocurre fuera de las cajas** de M4 (P_baja > 1500 kPa solo en M4c, con otra muestra).
+- **Tendencias globales a partir de estudio 3.1:** T_fuente y x_b no son monótonas alrededor de A\* (C7).
+- **El borde superior** de la franja de estudio 4.2 (T_fuente > 410 K no se exploró).
+- **Lo que ocurre fuera de las cajas** de estudio 3.2 (P_baja > 1500 kPa solo en estudio 3.3, con otra muestra).
 
-## 6. Limitaciones
+## Limitaciones
 
-- Los LHS por escenario (M5, M9) son exploraciones; las franjas angostas solo se mapean con mallas
-  dirigidas (M5c).
-- En M5c no se exploró T_fuente > 410 K.
+- Los LHS por escenario (estudio 4.1, estudio 4.3) son exploraciones; las franjas angostas solo se mapean con mallas
+  dirigidas (estudio 4.2).
+- En estudio 4.2 no se exploró T_fuente > 410 K.
 - El motor real solo confirmó 5 puntos; los demás se cortaron por tiempo.
 - Diferencias de η menores que 0.7 pp no son concluyentes.
 - El margen de O2 del modelo es 0 K: los diseños están al filo de la cavitación.
 
-## 7. Recomendaciones
+## Recomendaciones
 
 - Para el diseño: fuente ~400–410 K, presiones del profesor o P_baja en 683–1461 kPa, y un margen
   de subenfriamiento de ~2 K (+25–50 kPa de P_baja).
@@ -564,8 +594,8 @@ consistente con M4.*
 
 ## Anexo — Dónde están los datos
 
-- Fichas por caso (plantilla de 12 secciones): `04_fichas/`
-- Tablas: `02_tablas/<caso>/TAB-*.md` (y `.csv`)
-- Figuras con su pie: `03_figuras/<caso>/FIG-*.png` y `*.pie.md`
-- Excel con tablero interactivo y gráficos nativos de cada caso (hojas `*_graficos`):
+- Fichas por estudio (plantilla de 12 secciones): `04_fichas/Ficha_<estudio>_….md`
+- Tablas: `02_tablas/<estudio>/Tabla_<estudio>-<n>.md` (y `.csv`); síntesis en `02_tablas/S/`
+- Figuras con su pie: `03_figuras/<estudio>/Figura_<estudio>-<n>_….png` y `.pie.md`
+- Excel con tablero interactivo, hoja Nomenclatura y gráficos nativos por pregunta (hojas «N Gráficos»):
   `../datos/Excel_kalina_final_final_final.xlsx`

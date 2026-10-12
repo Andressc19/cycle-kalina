@@ -1,0 +1,19 @@
+# Tabla 3.2-5 · Rangos de presión de los KALINA
+
+**Estudio 3.2** · Sensibilidad global (500 puntos)  
+**Punto base:** caja estudio 3.2 = las 10 variables barridas dentro de su caja (ver Tabla 3.2-1)  
+**Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp.**  
+**Datos barridos: T_fuente [380.23–499.94] K (300 valores); T_sumidero [278.18–303.54] K (300 valores); P_alta [2005.4–4991.2] kPa (300 valores); P_baja [302.95–1498] kPa (300 valores); x_b [0.50012–0.84998] (300 valores); η_t [0.75036–0.91969] (300 valores); η_p [0.6504–0.89919] (300 valores); ε_HRVG [0.60004–0.94905] (300 valores); ε_reg [0.60097–0.94997] (300 valores); ε_cond [0.70014–0.94941] (300 valores); piso de O2 [278.18–303.54] K (300 valores).**  
+
+| Variable | Grupo | N | Mínimo | Percentil 5 | Mediana | Percentil 95 | Máximo | KS | Valor p |
+|---|---|---|---|---|---|---|---|---|---|
+| P_alta | KALINA | 121 | 2005.4 | 2155.69 | 3571.41 | 4841.78 | 4960.89 | 0.149 | 0.035 |
+| P_alta | no_KALINA_genuino | 331 | 2009.95 | 2135.22 | 3365.24 | 4819 | 4991.23 | 0.149 | 0.035 |
+| P_baja | KALINA | 121 | 546.972 | 683.165 | 1182.62 | 1460.71 | 1493.2 | 0.437 | 0.000 |
+| P_baja | no_KALINA_genuino | 331 | 302.949 | 349.325 | 767.043 | 1416.74 | 1498 | 0.437 | 0.000 |
+| dP | KALINA | 121 | 710.238 | 968.027 | 2463.67 | 3717.63 | 4117.11 | 0.100 | 0.311 |
+| dP | no_KALINA_genuino | 331 | 654.761 | 1142.67 | 2575.19 | 4089.5 | 4589.51 | 0.100 | 0.311 |
+| rP | KALINA | 121 | 1.54838 | 1.68614 | 3.11053 | 5.33942 | 8.37616 | 0.347 | 0.000 |
+| rP | no_KALINA_genuino | 331 | 1.48315 | 1.95756 | 4.31034 | 10.0803 | 14.433 | 0.347 | 0.000 |
+
+**Notas:** Filtro: todos los KALINA (121, incluidos los fuera de rango) contra los genuinos no KALINA (331). n = 8 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: resultados/2026-10-07_final_M4b/m4b_rangos_presiones.csv.

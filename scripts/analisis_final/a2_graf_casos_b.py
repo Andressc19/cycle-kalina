@@ -16,15 +16,15 @@ from a3_m05 import ejes
 from nombres import NOMBRE, grupo_legible
 
 M4B = "resultados/2026-10-07_final_M4b/"
-ARR = {"A1": ("A1 · libre (desde el mejor de M4b)", "1565C0"),
-       "A2": ("A2 · libre (desde el mejor de M2S)", "EF8A17"),
-       "A3": ("A3 · conserva sus temperaturas", "2E7D32"),
-       "A4": ("A4 · conserva sus presiones y su clima", "C62828"),
-       "A5": ("A5 · conserva su fuente y su x_b (fuera de rango)", "7E57C2")}
+ARR = {"A1": ("5.1a · libre (desde el mejor de 3.2)", "1565C0"),
+       "A2": ("5.1b · libre (desde el mejor de 2.4)", "EF8A17"),
+       "A3": ("5.1c · conserva sus temperaturas", "2E7D32"),
+       "A4": ("5.1d · conserva sus presiones y su clima", "C62828"),
+       "A5": ("5.1e · conserva su fuente y su x_b (fuera de rango)", "7E57C2")}
 
 
 def graf_m04(wb):
-    lz = Lienzo(wb, "M04_graficos", "KF-M04 + KF-M04b · sensibilidad global (bloque B07, 500 puntos)")
+    lz = Lienzo(wb, "3")
     b07 = P[P["bloque_director"] == "B07"]
     gen = b07[b07["genuino"]]
     kal, resto = gen[gen["clasificacion"] == "KALINA"], gen[gen["clasificacion"] != "KALINA"]
@@ -68,7 +68,7 @@ def graf_m04(wb):
 
 
 def graf_m04c(wb):
-    lz = Lienzo(wb, "M04c_graficos", "KF-M04c · techo de P_baja (bloque B08)")
+    lz = Lienzo(wb, "3")
     sub = P[(P["bloque_director"] == "B08") & ~P["omitido"]]
     bordes = np.arange(1500, 2600, 100)
     k = np.digitize(sub["P_baja"], bordes) - 1
@@ -84,7 +84,7 @@ def graf_m04c(wb):
 
 
 def graf_m05(wb):
-    lz = Lienzo(wb, "M05_graficos", "KF-M05 y KF-M05c · conservación de datos del profesor")
+    lz = Lienzo(wb, "4")
     for k in "12345":
         sub = P[P["id_subcaso"] == f"KF-M05-{k}"]
         x, y = ejes(f"KF-M05-{k}")
@@ -100,15 +100,14 @@ def graf_m05(wb):
 
 
 def graf_m06_m07_m09(wb):
-    lz = Lienzo(wb, "M06_M07_M09_graficos", "KF-M06 (motor real), KF-M07 (máxima η) y KF-M09 "
-                                            "(escalera de conservación)")
-    a = pd.read_csv("resultados/2026-10-08_final_M6/m6_comparacion.csv").assign(f="M6 (300 s)")
-    b = pd.read_csv("resultados/2026-10-08_final_M9/m9_motor_real.csv").assign(f="M9 (1500 s)")
+    lz = Lienzo(wb, "6")                                   # 6.1: motor de referencia
+    a = pd.read_csv("resultados/2026-10-08_final_M6/m6_comparacion.csv").assign(f="6.1a · motor real con 300 s")
+    b = pd.read_csv("resultados/2026-10-08_final_M9/m9_motor_real.csv").assign(f="6.1d · motor real con 1500 s")
     par = pd.concat([a, b]).dropna(subset=["eta_teqp", "eta_real"])
     xs = [0, 17]
     ser = [("1:1", xs, xs, "424242"), ("+0.7 pp", xs, [v + 0.7 for v in xs], "A5D6A7"),
            ("−0.7 pp", xs, [v - 0.7 for v in xs], "A5D6A7")]
-    for f, col in (("M6 (300 s)", "1565C0"), ("M9 (1500 s)", "2E7D32")):
+    for f, col in (("6.1a · motor real con 300 s", "1565C0"), ("6.1d · motor real con 1500 s", "2E7D32")):
         g = par[par["f"] == f]
         ser.append((f"{f} (n = {len(g)})", (100 * g["eta_teqp"]).tolist(),
                     (100 * g["eta_real"]).tolist(), col))
@@ -122,6 +121,7 @@ def graf_m06_m07_m09(wb):
     for eje in (g6.x_axis, g6.y_axis):          # mismo rango que la figura de Matplotlib
         eje.scaling.min, eje.scaling.max, eje.majorUnit = 0, 17, 2
     _bloque_fig(lz, "FIG-M06-01", [g6], alto=10)
+    lz = Lienzo(wb, "5")                                   # 5.1: búsqueda de la η máxima
     t = pd.read_csv("resultados/2026-10-07_final_M7/m7_trayectorias.csv")
     t = t[t["aceptado"].astype(str).str.lower().isin(["true", "1"])]
     ser = [(f"{ARR[k][0]}: {100 * g['eta'].max():.1f} %", g.sort_values("iteracion")["iteracion"].tolist(),
@@ -130,6 +130,7 @@ def graf_m06_m07_m09(wb):
     _bloque_fig(lz, "FIG-M07-01", [lineas(lz, ser, tit, "Iteración de la búsqueda",
                                           "Eficiencia térmica del ciclo, η [%]",
                                           punteadas=(ser[-1][0],))], alto=9.5)
+    lz = Lienzo(wb, "4")                                   # 4.3: escalera de conservación
     m9 = pd.read_csv("resultados/2026-10-08_final_M9/m9_escalera.csv")
     cats = [f"R{r} · {grupo_legible(c)}" for r, c in zip(m9["ronda"], m9["conservados"])]
     tit, _ = pie_fig("FIG-M09-01")
@@ -142,7 +143,7 @@ def graf_m06_m07_m09(wb):
 
 
 def graf_m10(wb):
-    lz = Lienzo(wb, "M10_graficos", "KF-M10 y KF-M10b · Húsavík (bloques B14)")
+    lz = Lienzo(wb, "6")
     sub = P[P["bloque_director"] == "B14-MALLA"]
     tit, _ = pie_fig("FIG-M10-01")
     g = disp_clases(lz, sub, "x_b", "P_baja", tit)
@@ -171,12 +172,10 @@ def graf_m10(wb):
 
 
 def construir_graficos(wb):
-    """Crea todas las hojas de gráficos y devuelve [(hoja, caso, qué muestra)]."""
+    """Crea las hojas de gráficos (una por pregunta) y devuelve [(hoja, estudio(s), qué muestra)]."""
     from a2_graf_casos_a import graf_g, graf_m02, graf_m02r, graf_m02s, graf_m03
-    hojas = [(graf_g, "síntesis", "FIG-G01"), (graf_m02, "KF-M02-N1, KF-M02-N2", "FIG-M02-01, -02a, -02b"),
-             (graf_m02r, "KF-M02R", "FIG-M02R-n1 … n3"), (graf_m02s, "KF-M02S", "FIG-M02S-01"),
-             (graf_m03, "KF-M03", "FIG-M03-01 … -04"), (graf_m04, "KF-M04 + KF-M04b", "FIG-M04-01 … -04"),
-             (graf_m04c, "KF-M04c", "FIG-M04c-01"), (graf_m05, "KF-M05, KF-M05c", "FIG-M05-S1 … S5, FIG-M05c-01"),
-             (graf_m06_m07_m09, "KF-M06, KF-M07, KF-M09", "FIG-M06-01, FIG-M07-01, FIG-M09-01"),
-             (graf_m10, "KF-M10, KF-M10b", "FIG-M10-01, -02 y M10b-OFAT")]
-    return [(f(wb), caso, f"Gráficos nativos de Excel: {que}") for f, caso, que in hojas]
+    for f in (graf_g, graf_m02, graf_m02r, graf_m02s, graf_m03, graf_m04, graf_m04c, graf_m05,
+              graf_m06_m07_m09, graf_m10):
+        f(wb)
+    que = {"S": "síntesis", "2": "2.1–2.4", "3": "3.1–3.3", "4": "4.1–4.3", "5": "5.1", "6": "6.1–6.2"}
+    return [(f"{k} Gráficos", v, "gráficos nativos de Excel de cada figura") for k, v in que.items()]

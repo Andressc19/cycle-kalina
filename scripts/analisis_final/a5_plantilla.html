@@ -17,7 +17,7 @@ __CSS__
 
 <nav class="pest" id="pestanas">
   <button class="pest-btn activa" data-sec="resumen">Resumen de la campaña</button>
-  <button class="pest-btn" data-sec="explorador">Explorador por bloque</button>
+  <button class="pest-btn" data-sec="explorador">Explorador por estudio</button>
   <button class="pest-btn" data-sec="metodologia">Metodología y glosario</button>
 </nav>
 
@@ -35,7 +35,7 @@ __CSS__
 
     <div class="tarjeta">
       <h3>Qué se fijó en cada barrido</h3>
-      <p class="ayuda">Cada fila es un subcaso; cada columna, una variable.
+      <p class="ayuda">Cada fila es una parte de un estudio; cada columna, una variable.
         <span class="clave barrida">barrida</span>
         <span class="clave oat">una a la vez</span>
         <span class="clave igual">= profesor</span>
@@ -47,15 +47,15 @@ __CSS__
 
   <!-- ===================== PESTAÑA 2 ===================== -->
   <section id="explorador" class="sec">
-    <h2>Explorador por bloque</h2>
+    <h2>Explorador por estudio</h2>
     <div class="rejilla2">
       <div class="tarjeta">
         <h3>Filtros</h3>
         <div class="campos">
-          <label>Bloque
+          <label>Estudio / parte
             <select id="sel-bloque"></select>
           </label>
-          <label>Subcaso
+          <label>Parte
             <select id="sel-subcaso"></select>
           </label>
           <label>Eje X
@@ -71,7 +71,7 @@ __CSS__
       </div>
 
       <div class="tarjeta" id="panel-cond">
-        <h3 id="titulo-cond">Condiciones de este bloque</h3>
+        <h3 id="titulo-cond">Condiciones (datos fijos y barridos)</h3>
         <div id="aviso-cond"></div>
         <p id="pp-cond" class="ppbase"></p>
         <div id="tabla-cond" class="scrolltabla"></div>
@@ -117,8 +117,8 @@ __CSS__
       <div id="tabla-casos" class="scrolltabla"></div>
     </div>
     <div class="tarjeta">
-      <p class="nota">Solo se comparan puntos de un mismo bloque: un bloque reúne puntos con las mismas
-        variables fijas en los mismos valores. Las diferencias de η menores que 0.7 puntos porcentuales no
+      <p class="nota">Numeración: pregunta (1–6) → estudio (2.4) → parte (2.4a). Solo se comparan puntos de
+        la misma parte: una parte reúne puntos con las mismas variables fijas en los mismos valores. Las diferencias de η menores que 0.7 puntos porcentuales no
         son concluyentes (banda de incertidumbre del modelo de propiedades).</p>
     </div>
   </section>

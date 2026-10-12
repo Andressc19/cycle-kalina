@@ -1,0 +1,6 @@
+﻿Parte,Corridas,Omitidos,Genuinos,KALINA,KALINA confiables,Corregibles,Inviables,No convergidos,Falsos convergidos,Fuera de rango
+4.1a · conserva sus temperaturas,120,1,59,4,2,40,15,58,2,53
+4.1b · conserva sus presiones,120,0,95,0,0,57,38,23,2,66
+4.1c · conserva sus presiones y su clima,120,0,84,0,0,29,55,30,6,64
+4.1d · conserva su P_alta y sus temperaturas,120,0,62,6,0,38,18,56,2,57
+4.1e · conserva su fuente y su x_b,120,1,82,10,0,55,17,37,0,82

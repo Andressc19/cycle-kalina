@@ -1,0 +1,29 @@
+# Tabla 5.1-3 · Óptimos de η por arranque
+
+**Estudio 5.1** · Búsqueda de la η máxima · **Partes:** 5.1a, 5.1b, 5.1c, 5.1d, 5.1e  
+**Punto base:** cada arranque (A1–A5) parte de un punto distinto y conserva datos distintos del profesor  
+**Parte 5.1a (libre, desde el mejor de 3.2):**  
+**Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp.**  
+**Datos barridos: T_fuente [424.1–448.1] K (3 valores); T_sumidero [278.15–281.64] K (3 valores); P_alta [3181.8–4681.8] kPa (6 valores); P_baja [588.34–1028.3] kPa (3 valores); x_b [0.59975–0.70475] (4 valores); η_t [0.86348–0.95] (4 valores); η_p [0.69108–0.80108] (3 valores); ε_HRVG [0.62273–0.73273] (3 valores); ε_reg [0.88653–0.95] (3 valores); ε_cond [0.78683–0.89683] (3 valores); piso de O2 [278.15–281.64] K (3 valores).**  
+**Parte 5.1b (libre, desde el mejor de 2.4):**  
+**Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp.**  
+**Datos barridos: T_fuente [408–432] K (3 valores); T_sumidero [278.15–280.69] K (2 valores); P_alta [2700–3300] kPa (3 valores); P_baja [300–613.75] kPa (3 valores); x_b [0.5–0.535] (2 valores); η_t [0.795–0.95] (5 valores); η_p [0.695–0.805] (3 valores); ε_HRVG [0.795–0.905] (3 valores); ε_reg [0.695–0.95] (6 valores); ε_cond [0.745–0.855] (3 valores); piso de O2 [278.15–280.69] K (2 valores).**  
+**Parte 5.1c (conserva sus temperaturas):**  
+**Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp.**  
+**Datos barridos: P_alta [3606–5000] kPa (7 valores); P_baja [1139.6–1579.6] kPa (3 valores); x_b [0.79448–0.85] (3 valores); η_t [0.78106–0.95] (5 valores); η_p [0.78253–0.89253] (3 valores); ε_HRVG [0.44137–0.55137] (3 valores); ε_reg [0.86168–0.95] (3 valores); ε_cond [0.89079–0.95] (3 valores).**  
+**Parte 5.1d (conserva sus presiones y su clima):**  
+**Datos fijos: T_sumidero = 300.03 K; P_alta = 3000 kPa; P_baja = 400 kPa; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp.**  
+**Datos barridos: T_fuente [391–427] K (4 valores); x_b [0.5–0.535] (2 valores); η_t [0.795–0.95] (5 valores); η_p [0.695–0.86] (4 valores); ε_HRVG [0.795–0.95] (4 valores); ε_reg [0.695–0.95] (7 valores); ε_cond [0.895–0.95] (2 valores).**  
+**Parte 5.1e (conserva su fuente y su x_b):**  
+**Datos fijos: T_fuente = 623.15 K; x_b = 0.5; m_b = 1 kg/s; motor de propiedades = teqp.**  
+**Datos barridos: T_sumidero [300.04–303.55] K (3 valores); P_alta [4508.3–5000] kPa (3 valores); P_baja [802.27–1462.3] kPa (4 valores); η_t [0.86749–0.95] (3 valores); η_p [0.52107–0.63107] (3 valores); ε_HRVG [0.4–0.5173] (4 valores); ε_reg [0.4–0.68511] (7 valores); ε_cond [0.82342–0.93342] (3 valores); piso de O2 [300.04–303.55] K (3 valores).**  
+
+| Arranque | Clase del ciclo | Índice de cercanía D [–] | Eficiencia térmica del ciclo, η [%] | Trabajo neto, W_net [kW] (m_b = 1 kg/s) | Temperatura de la fuente, T_fuente [K] | Temperatura del sumidero, T_sumidero [K] | Presión de alta, P_alta [kPa] | Presión de baja, P_baja [kPa] | Fracción de amoníaco de la mezcla base, x_b [–] | Eficiencia isentrópica de la turbina, η_t [–] | Eficiencia isentrópica de la bomba, η_p [–] | Efectividad del generador de vapor, ε_HRVG [–] | Efectividad del regenerador, ε_reg [–] | Efectividad del condensador, ε_cond [–] | Margen O1 [–] | Margen O2 [K] | Margen O5 [–] | Fuera de rango | B verificado | Iteraciones | Evaluaciones |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A1 | KALINA | 0.000 | 14.98 | 111.121 | 436.1 | 279.1 | 4382 | 808.3 | 0.705 | 0.950 | 0.746 | 0.678 | 0.942 | 0.842 | 0.018 | 0.4 | 0.478 | no | sí | 6 | 117 |
+| A2 | KALINA | 0.000 | 15.48 | 74.2243 | 420.0 | 278.1 | 3000 | 393.8 | 0.500 | 0.950 | 0.750 | 0.850 | 0.950 | 0.800 | 0.005 | 3.8 | 0.253 | no | sí | 6 | 105 |
+| A3 | KALINA | 0.000 | 12.74 | 129.387 | 623.1 | 300.0 | 5000 | 1360 | 0.850 | 0.946 | 0.838 | 0.496 | 0.917 | 0.946 | 0.031 | 3.8 | 0.264 | no | sí | 7 | 112 |
+| A4 | KALINA | 0.000 | 15.60 | 71.3775 | 415.0 | 300.0 | 3000 | 400.0 | 0.500 | 0.950 | 0.805 | 0.950 | 0.950 | 0.950 | 0.006 | 0.1 | 0.246 | no | sí | 10 | 113 |
+| A5 | KALINA | 0.000 | 11.09 | 120.01 | 623.1 | 302.6 | 4808 | 1022 | 0.500 | 0.922 | 0.576 | 0.462 | 0.685 | 0.878 | 0.001 | 5.7 | 0.488 | sí | sí | 7 | 113 |
+
+**Notas:** Filtro: mejores KALINA de cada arranque. n = 5 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: resultados/2026-10-07_final_M7/m7_optimos.csv.

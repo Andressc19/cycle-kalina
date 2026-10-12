@@ -1,0 +1,40 @@
+﻿Parte,Variable,Estado,Valor o rango,n valores,¿Igual al profesor?,Unidad
+6.1a · teqp frente al motor real,"Temperatura de la fuente, T_fuente [K]",Barrida,390.0 – 623.1,8.0,,K
+6.1a · teqp frente al motor real,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.1 – 302.6,5.0,,K
+6.1a · teqp frente al motor real,"Presión de alta, P_alta [kPa]",Barrida,3000 – 5000,6.0,,kPa
+6.1a · teqp frente al motor real,"Presión de baja, P_baja [kPa]",Barrida,393.8 – 2495,9.0,,kPa
+6.1a · teqp frente al motor real,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.500 – 0.850,5.0,,–
+6.1a · teqp frente al motor real,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+6.1a · teqp frente al motor real,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.781 – 0.950,6.0,,–
+6.1a · teqp frente al motor real,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.576 – 0.872,6.0,,–
+6.1a · teqp frente al motor real,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.400 – 0.950,7.0,,–
+6.1a · teqp frente al motor real,"Efectividad del regenerador, ε_reg [–]",Barrida,0.685 – 0.950,6.0,,–
+6.1a · teqp frente al motor real,"Efectividad del condensador, ε_cond [–]",Barrida,0.800 – 0.950,7.0,,–
+6.1a · teqp frente al motor real,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.1 – 302.6,5.0,,K
+6.1a · teqp frente al motor real,motor de propiedades,Barrida, – ,2.0,,–
+6.1b · piso de cavitación a 30.4 °C,"Temperatura de la fuente, T_fuente [K]",Barrida,390.0 – 623.1,8.0,,K
+6.1b · piso de cavitación a 30.4 °C,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.1 – 302.6,5.0,,K
+6.1b · piso de cavitación a 30.4 °C,"Presión de alta, P_alta [kPa]",Barrida,3000 – 5000,6.0,,kPa
+6.1b · piso de cavitación a 30.4 °C,"Presión de baja, P_baja [kPa]",Barrida,393.8 – 2495,9.0,,kPa
+6.1b · piso de cavitación a 30.4 °C,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.500 – 0.850,5.0,,–
+6.1b · piso de cavitación a 30.4 °C,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+6.1b · piso de cavitación a 30.4 °C,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.781 – 0.950,6.0,,–
+6.1b · piso de cavitación a 30.4 °C,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.576 – 0.872,6.0,,–
+6.1b · piso de cavitación a 30.4 °C,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.400 – 0.950,7.0,,–
+6.1b · piso de cavitación a 30.4 °C,"Efectividad del regenerador, ε_reg [–]",Barrida,0.685 – 0.950,6.0,,–
+6.1b · piso de cavitación a 30.4 °C,"Efectividad del condensador, ε_cond [–]",Barrida,0.800 – 0.950,7.0,,–
+6.1b · piso de cavitación a 30.4 °C,Piso de O2 (T de diseño de la bomba) [K],Fija,303.55,,no,K
+6.1b · piso de cavitación a 30.4 °C,motor de propiedades,Fija,teqp,,,–
+6.1c · costo de exigir subenfriamiento,"Temperatura de la fuente, T_fuente [K]",Sin dato,,,,K
+6.1c · costo de exigir subenfriamiento,"Temperatura del sumidero, T_sumidero [K]",Sin dato,,,,K
+6.1c · costo de exigir subenfriamiento,"Presión de alta, P_alta [kPa]",Sin dato,,,,kPa
+6.1c · costo de exigir subenfriamiento,"Presión de baja, P_baja [kPa]",Barrida,393.8 – 2500,72.0,,kPa
+6.1c · costo de exigir subenfriamiento,"Fracción de amoníaco de la mezcla base, x_b [–]",Sin dato,,,,–
+6.1c · costo de exigir subenfriamiento,"Flujo másico base, m_b [kg/s]",Sin dato,,,,kg/s
+6.1c · costo de exigir subenfriamiento,"Eficiencia isentrópica de la turbina, η_t [–]",Sin dato,,,,–
+6.1c · costo de exigir subenfriamiento,"Eficiencia isentrópica de la bomba, η_p [–]",Sin dato,,,,–
+6.1c · costo de exigir subenfriamiento,"Efectividad del generador de vapor, ε_HRVG [–]",Sin dato,,,,–
+6.1c · costo de exigir subenfriamiento,"Efectividad del regenerador, ε_reg [–]",Sin dato,,,,–
+6.1c · costo de exigir subenfriamiento,"Efectividad del condensador, ε_cond [–]",Sin dato,,,,–
+6.1c · costo de exigir subenfriamiento,Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
+6.1c · costo de exigir subenfriamiento,motor de propiedades,Sin dato,,,,–

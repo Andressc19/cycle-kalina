@@ -14,6 +14,8 @@ from openpyxl.utils import get_column_letter as L
 
 from a2_comun import RAIZ
 from a2_graf_estilo import acabado, escala as _escala
+from codigos import PREGUNTA, figura
+from codigos_texto import traducir
 from nombres import ETIQUETA_CLASE, NOMBRE
 
 FIG = os.path.join(RAIZ, "analisis_final", "03_figuras")
@@ -29,7 +31,7 @@ CM_FILA, CM_COL = 0.53, 1.7          # alto de fila y ancho de columna por defec
 
 def pie_fig(prefijo):
     """(título, líneas del pie) de la figura de Matplotlib equivalente."""
-    f = sorted(glob.glob(os.path.join(FIG, "*", prefijo + "*.pie.md")))
+    f = sorted(glob.glob(os.path.join(FIG, "*", f"Figura_{figura(prefijo)}_*.pie.md")))
     if not f:
         return prefijo, []
     lineas = open(f[0], encoding="utf-8").read().splitlines()
@@ -40,13 +42,19 @@ def pie_fig(prefijo):
 class Lienzo:
     """Hoja de gráficos de un caso + bloque de datos en Aux_graficos."""
 
-    def __init__(self, wb, nombre, titulo):
+    def __init__(self, wb, pregunta):
+        """Una hoja por pregunta ("2 Gráficos"); si ya existe, se sigue escribiendo debajo."""
         self.aux = wb["Aux_graficos"] if "Aux_graficos" in wb.sheetnames else self._aux(wb)
+        nombre = f"{pregunta} Gráficos"
+        if nombre in wb.sheetnames:
+            self.ws = wb[nombre]; self.fila = self.ws._fila
+            return
         self.ws = wb.create_sheet(nombre)
-        self.ws["A1"] = titulo; self.ws["A1"].font = Font(bold=True, size=14)
+        tit = "Síntesis de toda la campaña" if pregunta == "S" else f"Pregunta {pregunta} · {PREGUNTA[pregunta]}"
+        self.ws["A1"] = tit; self.ws["A1"].font = Font(bold=True, size=14)
         self.ws["A2"] = ("Gráficos nativos de Excel: pase el cursor sobre un punto para ver su valor. "
                          "Los datos de cada gráfico están en la hoja oculta Aux_graficos.")
-        self.fila = 4
+        self.fila = self.ws._fila = 4
 
     @staticmethod
     def _aux(wb):
@@ -68,7 +76,7 @@ class Lienzo:
     # ------------------------------------------------------------- colocación
     def bloque(self, subtitulo, graficos, por_fila=1, ancho=17.0, alto=8.5, pie=()):
         """Coloca una fila (o rejilla) de gráficos con su subtítulo arriba y el pie abajo."""
-        self.ws.cell(self.fila, 1, subtitulo).font = Font(bold=True, size=11)
+        self.ws.cell(self.fila, 1, traducir(subtitulo)).font = Font(bold=True, size=11)
         self.fila += 1
         cols_graf = math.ceil(ancho / CM_COL) + 1
         filas_graf = math.ceil(alto / CM_FILA) + 1
@@ -85,9 +93,10 @@ class Lienzo:
             self.ws.add_chart(g, f"{L(c)}{r}")
         self.fila += math.ceil(len(graficos) / por_fila) * filas_graf
         for linea in pie:
-            self.ws.cell(self.fila, 1, linea).font = Font(size=9, italic=True)
+            self.ws.cell(self.fila, 1, traducir(linea)).font = Font(size=9, italic=True)
             self.fila += 1
         self.fila += 2
+        self.ws._fila = self.fila
 
 
 def disp_clases(lz, sub, x, y, titulo, xt=None, yt=None, tira=False, n_max=None):

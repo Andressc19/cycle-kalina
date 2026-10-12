@@ -1,0 +1,261 @@
+﻿Parte,Variable,Estado,Valor o rango,n valores,¿Igual al profesor?,Unidad
+4.3 T_fuente · ronda 0,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+4.3 T_fuente · ronda 0,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.3 – 303.4,100.0,,K
+4.3 T_fuente · ronda 0,"Presión de alta, P_alta [kPa]",Barrida,2029 – 4975,100.0,,kPa
+4.3 T_fuente · ronda 0,"Presión de baja, P_baja [kPa]",Barrida,310.8 – 1987,100.0,,kPa
+4.3 T_fuente · ronda 0,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.503 – 0.850,100.0,,–
+4.3 T_fuente · ronda 0,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 T_fuente · ronda 0,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.402 – 0.949,100.0,,–
+4.3 T_fuente · ronda 0,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.400 – 0.950,100.0,,–
+4.3 T_fuente · ronda 0,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.403 – 0.945,100.0,,–
+4.3 T_fuente · ronda 0,"Efectividad del regenerador, ε_reg [–]",Barrida,0.401 – 0.948,100.0,,–
+4.3 T_fuente · ronda 0,"Efectividad del condensador, ε_cond [–]",Barrida,0.401 – 0.949,100.0,,–
+4.3 T_fuente · ronda 0,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.3 – 303.4,100.0,,K
+4.3 T_fuente · ronda 0,motor de propiedades,Fija,teqp,,,–
+4.3 eficiencias · ronda 0,"Temperatura de la fuente, T_fuente [K]",Barrida,380.4 – 519.6,100.0,,K
+4.3 eficiencias · ronda 0,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.2 – 303.5,100.0,,K
+4.3 eficiencias · ronda 0,"Presión de alta, P_alta [kPa]",Barrida,2000 – 5000,100.0,,kPa
+4.3 eficiencias · ronda 0,"Presión de baja, P_baja [kPa]",Barrida,310.7 – 1987,100.0,,kPa
+4.3 eficiencias · ronda 0,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.502 – 0.848,100.0,,–
+4.3 eficiencias · ronda 0,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 eficiencias · ronda 0,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+4.3 eficiencias · ronda 0,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+4.3 eficiencias · ronda 0,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+4.3 eficiencias · ronda 0,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+4.3 eficiencias · ronda 0,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+4.3 eficiencias · ronda 0,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.2 – 303.5,99.0,,K
+4.3 eficiencias · ronda 0,motor de propiedades,Fija,teqp,,,–
+4.3 P_alta · ronda 0,"Temperatura de la fuente, T_fuente [K]",Barrida,380.8 – 519.2,100.0,,K
+4.3 P_alta · ronda 0,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.2 – 303.4,100.0,,K
+4.3 P_alta · ronda 0,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 P_alta · ronda 0,"Presión de baja, P_baja [kPa]",Barrida,302.7 – 1996,100.0,,kPa
+4.3 P_alta · ronda 0,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.500 – 0.847,100.0,,–
+4.3 P_alta · ronda 0,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 P_alta · ronda 0,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.400 – 0.946,100.0,,–
+4.3 P_alta · ronda 0,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.401 – 0.945,100.0,,–
+4.3 P_alta · ronda 0,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0.949,100.0,,–
+4.3 P_alta · ronda 0,"Efectividad del regenerador, ε_reg [–]",Barrida,0.400 – 0.948,100.0,,–
+4.3 P_alta · ronda 0,"Efectividad del condensador, ε_cond [–]",Barrida,0.402 – 0.945,100.0,,–
+4.3 P_alta · ronda 0,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.2 – 303.4,100.0,,K
+4.3 P_alta · ronda 0,motor de propiedades,Fija,teqp,,,–
+4.3 P_baja · ronda 0,"Temperatura de la fuente, T_fuente [K]",Barrida,380.2 – 519.3,100.0,,K
+4.3 P_baja · ronda 0,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.2 – 303.4,100.0,,K
+4.3 P_baja · ronda 0,"Presión de alta, P_alta [kPa]",Barrida,2022 – 4978,100.0,,kPa
+4.3 P_baja · ronda 0,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+4.3 P_baja · ronda 0,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.502 – 0.847,100.0,,–
+4.3 P_baja · ronda 0,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 P_baja · ronda 0,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.405 – 0.947,100.0,,–
+4.3 P_baja · ronda 0,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.405 – 0.950,100.0,,–
+4.3 P_baja · ronda 0,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.401 – 0.948,100.0,,–
+4.3 P_baja · ronda 0,"Efectividad del regenerador, ε_reg [–]",Barrida,0.401 – 0.946,100.0,,–
+4.3 P_baja · ronda 0,"Efectividad del condensador, ε_cond [–]",Barrida,0.402 – 0.945,100.0,,–
+4.3 P_baja · ronda 0,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.2 – 303.4,100.0,,K
+4.3 P_baja · ronda 0,motor de propiedades,Fija,teqp,,,–
+4.3 T_sumidero · ronda 0,"Temperatura de la fuente, T_fuente [K]",Barrida,380.2 – 519.1,100.0,,K
+4.3 T_sumidero · ronda 0,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+4.3 T_sumidero · ronda 0,"Presión de alta, P_alta [kPa]",Barrida,2007 – 4983,100.0,,kPa
+4.3 T_sumidero · ronda 0,"Presión de baja, P_baja [kPa]",Barrida,306.3 – 1991,100.0,,kPa
+4.3 T_sumidero · ronda 0,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.503 – 0.847,100.0,,–
+4.3 T_sumidero · ronda 0,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 T_sumidero · ronda 0,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.405 – 0.945,100.0,,–
+4.3 T_sumidero · ronda 0,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.400 – 0.945,100.0,,–
+4.3 T_sumidero · ronda 0,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0.948,100.0,,–
+4.3 T_sumidero · ronda 0,"Efectividad del regenerador, ε_reg [–]",Barrida,0.403 – 0.948,100.0,,–
+4.3 T_sumidero · ronda 0,"Efectividad del condensador, ε_cond [–]",Barrida,0.400 – 0.946,100.0,,–
+4.3 T_sumidero · ronda 0,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
+4.3 T_sumidero · ronda 0,motor de propiedades,Fija,teqp,,,–
+4.3 x_b · ronda 0,"Temperatura de la fuente, T_fuente [K]",Barrida,381.0 – 519.6,100.0,,K
+4.3 x_b · ronda 0,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.2 – 303.4,100.0,,K
+4.3 x_b · ronda 0,"Presión de alta, P_alta [kPa]",Barrida,2022 – 4977,100.0,,kPa
+4.3 x_b · ronda 0,"Presión de baja, P_baja [kPa]",Barrida,316.8 – 1999,100.0,,kPa
+4.3 x_b · ronda 0,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b · ronda 0,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b · ronda 0,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.402 – 0.950,100.0,,–
+4.3 x_b · ronda 0,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.402 – 0.946,100.0,,–
+4.3 x_b · ronda 0,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.402 – 0.950,100.0,,–
+4.3 x_b · ronda 0,"Efectividad del regenerador, ε_reg [–]",Barrida,0.402 – 0.945,100.0,,–
+4.3 x_b · ronda 0,"Efectividad del condensador, ε_cond [–]",Barrida,0.404 – 0.948,100.0,,–
+4.3 x_b · ronda 0,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.2 – 303.4,99.0,,K
+4.3 x_b · ronda 0,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+T_fuente · ronda 1,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+4.3 x_b+T_fuente · ronda 1,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.8 – 302.9,30.0,,K
+4.3 x_b+T_fuente · ronda 1,"Presión de alta, P_alta [kPa]",Barrida,2053 – 4944,30.0,,kPa
+4.3 x_b+T_fuente · ronda 1,"Presión de baja, P_baja [kPa]",Barrida,340.4 – 1957,30.0,,kPa
+4.3 x_b+T_fuente · ronda 1,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+T_fuente · ronda 1,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+T_fuente · ronda 1,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.405 – 0.947,30.0,,–
+4.3 x_b+T_fuente · ronda 1,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.410 – 0.940,30.0,,–
+4.3 x_b+T_fuente · ronda 1,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.414 – 0.935,30.0,,–
+4.3 x_b+T_fuente · ronda 1,"Efectividad del regenerador, ε_reg [–]",Barrida,0.401 – 0.939,30.0,,–
+4.3 x_b+T_fuente · ronda 1,"Efectividad del condensador, ε_cond [–]",Barrida,0.406 – 0.944,30.0,,–
+4.3 x_b+T_fuente · ronda 1,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.8 – 302.9,29.0,,K
+4.3 x_b+T_fuente · ronda 1,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+eficiencias · ronda 1,"Temperatura de la fuente, T_fuente [K]",Barrida,384.0 – 517.0,30.0,,K
+4.3 x_b+eficiencias · ronda 1,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.5 – 303.5,30.0,,K
+4.3 x_b+eficiencias · ronda 1,"Presión de alta, P_alta [kPa]",Barrida,2058 – 4961,30.0,,kPa
+4.3 x_b+eficiencias · ronda 1,"Presión de baja, P_baja [kPa]",Barrida,330.1 – 1944,30.0,,kPa
+4.3 x_b+eficiencias · ronda 1,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+eficiencias · ronda 1,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+eficiencias · ronda 1,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+4.3 x_b+eficiencias · ronda 1,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+4.3 x_b+eficiencias · ronda 1,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+4.3 x_b+eficiencias · ronda 1,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+4.3 x_b+eficiencias · ronda 1,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+4.3 x_b+eficiencias · ronda 1,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.5 – 303.5,30.0,,K
+4.3 x_b+eficiencias · ronda 1,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta · ronda 1,"Temperatura de la fuente, T_fuente [K]",Barrida,382.6 – 518.1,30.0,,K
+4.3 x_b+P_alta · ronda 1,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.4 – 302.7,30.0,,K
+4.3 x_b+P_alta · ronda 1,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta · ronda 1,"Presión de baja, P_baja [kPa]",Barrida,342.1 – 1990,30.0,,kPa
+4.3 x_b+P_alta · ronda 1,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta · ronda 1,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta · ronda 1,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.411 – 0.936,30.0,,–
+4.3 x_b+P_alta · ronda 1,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.416 – 0.947,30.0,,–
+4.3 x_b+P_alta · ronda 1,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.403 – 0.946,30.0,,–
+4.3 x_b+P_alta · ronda 1,"Efectividad del regenerador, ε_reg [–]",Barrida,0.416 – 0.934,30.0,,–
+4.3 x_b+P_alta · ronda 1,"Efectividad del condensador, ε_cond [–]",Barrida,0.414 – 0.946,30.0,,–
+4.3 x_b+P_alta · ronda 1,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.4 – 302.7,30.0,,K
+4.3 x_b+P_alta · ronda 1,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_baja · ronda 1,"Temperatura de la fuente, T_fuente [K]",Barrida,384.0 – 516.5,30.0,,K
+4.3 x_b+P_baja · ronda 1,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.7 – 303.4,30.0,,K
+4.3 x_b+P_baja · ronda 1,"Presión de alta, P_alta [kPa]",Barrida,2075 – 4987,30.0,,kPa
+4.3 x_b+P_baja · ronda 1,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+4.3 x_b+P_baja · ronda 1,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_baja · ronda 1,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_baja · ronda 1,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.403 – 0.948,30.0,,–
+4.3 x_b+P_baja · ronda 1,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.418 – 0.948,30.0,,–
+4.3 x_b+P_baja · ronda 1,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0.943,30.0,,–
+4.3 x_b+P_baja · ronda 1,"Efectividad del regenerador, ε_reg [–]",Barrida,0.404 – 0.941,30.0,,–
+4.3 x_b+P_baja · ronda 1,"Efectividad del condensador, ε_cond [–]",Barrida,0.417 – 0.943,30.0,,–
+4.3 x_b+P_baja · ronda 1,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.7 – 303.4,30.0,,K
+4.3 x_b+P_baja · ronda 1,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+T_sumidero · ronda 1,"Temperatura de la fuente, T_fuente [K]",Barrida,383.8 – 519.8,30.0,,K
+4.3 x_b+T_sumidero · ronda 1,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+4.3 x_b+T_sumidero · ronda 1,"Presión de alta, P_alta [kPa]",Barrida,2083 – 4924,30.0,,kPa
+4.3 x_b+T_sumidero · ronda 1,"Presión de baja, P_baja [kPa]",Barrida,312.4 – 1973,30.0,,kPa
+4.3 x_b+T_sumidero · ronda 1,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+T_sumidero · ronda 1,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+T_sumidero · ronda 1,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.402 – 0.933,30.0,,–
+4.3 x_b+T_sumidero · ronda 1,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.414 – 0.941,30.0,,–
+4.3 x_b+T_sumidero · ronda 1,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.417 – 0.950,30.0,,–
+4.3 x_b+T_sumidero · ronda 1,"Efectividad del regenerador, ε_reg [–]",Barrida,0.412 – 0.932,30.0,,–
+4.3 x_b+T_sumidero · ronda 1,"Efectividad del condensador, ε_cond [–]",Barrida,0.415 – 0.936,30.0,,–
+4.3 x_b+T_sumidero · ronda 1,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
+4.3 x_b+T_sumidero · ronda 1,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta+T_fuente · ronda 2,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+4.3 x_b+P_alta+T_fuente · ronda 2,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.6 – 303.1,30.0,,K
+4.3 x_b+P_alta+T_fuente · ronda 2,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta+T_fuente · ronda 2,"Presión de baja, P_baja [kPa]",Barrida,311.2 – 1975,30.0,,kPa
+4.3 x_b+P_alta+T_fuente · ronda 2,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta+T_fuente · ronda 2,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta+T_fuente · ronda 2,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.405 – 0.943,30.0,,–
+4.3 x_b+P_alta+T_fuente · ronda 2,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.408 – 0.939,30.0,,–
+4.3 x_b+P_alta+T_fuente · ronda 2,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.410 – 0.934,30.0,,–
+4.3 x_b+P_alta+T_fuente · ronda 2,"Efectividad del regenerador, ε_reg [–]",Barrida,0.410 – 0.946,30.0,,–
+4.3 x_b+P_alta+T_fuente · ronda 2,"Efectividad del condensador, ε_cond [–]",Barrida,0.410 – 0.946,30.0,,–
+4.3 x_b+P_alta+T_fuente · ronda 2,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.6 – 303.1,30.0,,K
+4.3 x_b+P_alta+T_fuente · ronda 2,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta+eficiencias · ronda 2,"Temperatura de la fuente, T_fuente [K]",Barrida,381.7 – 516.7,30.0,,K
+4.3 x_b+P_alta+eficiencias · ronda 2,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.4 – 303.2,30.0,,K
+4.3 x_b+P_alta+eficiencias · ronda 2,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta+eficiencias · ronda 2,"Presión de baja, P_baja [kPa]",Barrida,306.7 – 1963,30.0,,kPa
+4.3 x_b+P_alta+eficiencias · ronda 2,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta+eficiencias · ronda 2,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta+eficiencias · ronda 2,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias · ronda 2,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias · ronda 2,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias · ronda 2,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias · ronda 2,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+4.3 x_b+P_alta+eficiencias · ronda 2,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.4 – 303.2,30.0,,K
+4.3 x_b+P_alta+eficiencias · ronda 2,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta+P_baja · ronda 2,"Temperatura de la fuente, T_fuente [K]",Barrida,380.1 – 515.8,30.0,,K
+4.3 x_b+P_alta+P_baja · ronda 2,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.2 – 303.2,30.0,,K
+4.3 x_b+P_alta+P_baja · ronda 2,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta+P_baja · ronda 2,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+4.3 x_b+P_alta+P_baja · ronda 2,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta+P_baja · ronda 2,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta+P_baja · ronda 2,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.408 – 0.950,30.0,,–
+4.3 x_b+P_alta+P_baja · ronda 2,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.411 – 0.942,30.0,,–
+4.3 x_b+P_alta+P_baja · ronda 2,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.411 – 0.937,30.0,,–
+4.3 x_b+P_alta+P_baja · ronda 2,"Efectividad del regenerador, ε_reg [–]",Barrida,0.411 – 0.940,30.0,,–
+4.3 x_b+P_alta+P_baja · ronda 2,"Efectividad del condensador, ε_cond [–]",Barrida,0.413 – 0.948,30.0,,–
+4.3 x_b+P_alta+P_baja · ronda 2,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.2 – 303.2,30.0,,K
+4.3 x_b+P_alta+P_baja · ronda 2,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Temperatura de la fuente, T_fuente [K]",Barrida,383.9 – 517.8,30.0,,K
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Presión de baja, P_baja [kPa]",Barrida,338.1 – 1945,30.0,,kPa
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.408 – 0.935,30.0,,–
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.416 – 0.942,30.0,,–
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.409 – 0.948,30.0,,–
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Efectividad del regenerador, ε_reg [–]",Barrida,0.408 – 0.937,30.0,,–
+4.3 x_b+P_alta+T_sumidero · ronda 2,"Efectividad del condensador, ε_cond [–]",Barrida,0.416 – 0.938,30.0,,–
+4.3 x_b+P_alta+T_sumidero · ronda 2,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
+4.3 x_b+P_alta+T_sumidero · ronda 2,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.7 – 303.4,30.0,,K
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Presión de baja, P_baja [kPa]",Barrida,317.0 – 1948,30.0,,kPa
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.7 – 303.4,30.0,,K
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Temperatura de la fuente, T_fuente [K]",Barrida,384.2 – 519.8,30.0,,K
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.2 – 303.4,30.0,,K
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.2 – 303.4,30.0,,K
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,motor de propiedades,Fija,teqp,,,–
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Temperatura de la fuente, T_fuente [K]",Barrida,381.6 – 516.0,30.0,,K
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Presión de baja, P_baja [kPa]",Barrida,333.6 – 1956,30.0,,kPa
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,motor de propiedades,Fija,teqp,,,–
+6.2e · P_baja mínima con su piso de diseño,"Temperatura de la fuente, T_fuente [K]",Fija,394.15,,no,K
+6.2e · P_baja mínima con su piso de diseño,"Temperatura del sumidero, T_sumidero [K]",Fija,278.15,,no,K
+6.2e · P_baja mínima con su piso de diseño,"Presión de alta, P_alta [kPa]",Fija,3300.0,,no,kPa
+6.2e · P_baja mínima con su piso de diseño,"Presión de baja, P_baja [kPa]",Barrida,500.0 – 1000,12.0,,kPa
+6.2e · P_baja mínima con su piso de diseño,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.82,,no,–
+6.2e · P_baja mínima con su piso de diseño,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+6.2e · P_baja mínima con su piso de diseño,"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.9,,no,–
+6.2e · P_baja mínima con su piso de diseño,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.8,,no,–
+6.2e · P_baja mínima con su piso de diseño,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+6.2e · P_baja mínima con su piso de diseño,"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+6.2e · P_baja mínima con su piso de diseño,"Efectividad del condensador, ε_cond [–]",Fija,0.95,,no,–
+6.2e · P_baja mínima con su piso de diseño,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.1 – 283.1,2.0,,K
+6.2e · P_baja mínima con su piso de diseño,motor de propiedades,Fija,teqp,,,–
+6.1d · motor real con 1500 s,"Temperatura de la fuente, T_fuente [K]",Barrida,394.1 – 415.0,3.0,,K
+6.1d · motor real con 1500 s,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.1 – 300.0,2.0,,K
+6.1d · motor real con 1500 s,"Presión de alta, P_alta [kPa]",Barrida,3000 – 3300,2.0,,kPa
+6.1d · motor real con 1500 s,"Presión de baja, P_baja [kPa]",Barrida,400.0 – 690.0,3.0,,kPa
+6.1d · motor real con 1500 s,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.500 – 0.820,2.0,,–
+6.1d · motor real con 1500 s,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+6.1d · motor real con 1500 s,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.850 – 0.950,3.0,,–
+6.1d · motor real con 1500 s,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.750 – 0.805,3.0,,–
+6.1d · motor real con 1500 s,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.850 – 0.950,2.0,,–
+6.1d · motor real con 1500 s,"Efectividad del regenerador, ε_reg [–]",Barrida,0.750 – 0.950,2.0,,–
+6.1d · motor real con 1500 s,"Efectividad del condensador, ε_cond [–]",Barrida,0.800 – 0.950,2.0,,–
+6.1d · motor real con 1500 s,Piso de O2 (T de diseño de la bomba) [K],Barrida,283.1 – 300.0,2.0,,K
+6.1d · motor real con 1500 s,motor de propiedades,Fija,real,,,–

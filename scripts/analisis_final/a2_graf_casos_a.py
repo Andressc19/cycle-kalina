@@ -9,37 +9,37 @@ from openpyxl.styles import Font
 
 from a2_graf_base import (COLOR, ORDEN, Lienzo, barras, disp_clases, lineas, pie_fig)
 from a3_comun import SEC_VAR, cargar
+from codigos import figura
 from nombres import ETIQUETA_CLASE, NOMBRE
 from pies import SIMBOLO
 
 P = cargar()
 S = lambda v: SIMBOLO.get(v, v)                       # noqa: E731
 RES3 = "resultados/2026-10-06_final_M3/"
-CASOS_G01 = ["KF-M01", "KF-M02-N1", "KF-M02-N2", "KF-M02R", "KF-M02S", "KF-M03", "KF-M04",
-             "KF-M04b", "KF-M04c", "KF-M05", "KF-M05c", "KF-M06", "KF-M07", "KF-M09", "KF-M10",
-             "KF-M10b"]
+CASOS_G01 = ["1.1", "2.1", "2.2", "2.3", "2.4", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3", "5.1",
+             "6.1", "6.2"]                                 # estudios (nomenclatura 2026-10-12)
 
 
 def _bloque_fig(lz, prefijo, graficos, por_fila=1, ancho=17.0, alto=8.5):
     tit, pie = pie_fig(prefijo)
-    lz.bloque(f"{prefijo} · {tit}", graficos, por_fila, ancho, alto, pie)
+    lz.bloque(f"Figura {figura(prefijo)} · {tit}", graficos, por_fila, ancho, alto, pie)
 
 
 def graf_g(wb):
-    lz = Lienzo(wb, "G_graficos", "Síntesis de la campaña (todos los casos menos M08)")
+    lz = Lienzo(wb, "S")
     d = P[P["id_caso"] != "KF-M08"]
     series = []
     for c in ORDEN:
-        vals = [int((d[d["id_caso"] == k]["clase_trazo"] == c).sum()) for k in CASOS_G01]
+        vals = [int((d[d["estudio"].astype(str) == k]["clase_trazo"] == c).sum()) for k in CASOS_G01]
         series.append((f"{ETIQUETA_CLASE[c]} (n = {sum(vals)})", vals, COLOR[c]))
     tit, _ = pie_fig("FIG-G01")
-    b = barras(lz, [k[3:] for k in CASOS_G01], None, tit, "Caso", "Número de puntos",
+    b = barras(lz, CASOS_G01, None, tit, "Estudio", "Número de puntos",
                horizontal=True, series=series)
     b.grouping, b.overlap = "stacked", 100
     b.x_axis.scaling.orientation = "maxMin"; b._lbl_alto = True   # M01 arriba, números abajo
     _bloque_fig(lz, "FIG-G01", [b], alto=11)
-    lz.ws.cell(lz.fila, 1, "FIG-G02 (qué se movió en cada barrido) está como tabla con colores en "
-                          "la hoja G02_que_se_movio.").font = Font(italic=True, size=9)
+    lz.ws.cell(lz.fila, 1, "La Figura S-2 (qué se movió en cada barrido) está como tabla con colores "
+                          "en la hoja «S-2 Qué se movió en cada barrido».").font = Font(italic=True, size=9)
     return lz.ws.title
 
 
@@ -52,7 +52,7 @@ def _tiras(lz, sub, col_valor, col_var, titulo_panel):
 
 
 def graf_m02(wb):
-    lz = Lienzo(wb, "M02_graficos", "KF-M02-N1 y KF-M02-N2 · distancia al punto del profesor")
+    lz = Lienzo(wb, "2")
     b02 = P[P["bloque_director"] == "B02"]
     _bloque_fig(lz, "FIG-M02-01", _tiras(lz, b02, "valor", "variable", S),
                 por_fila=3, ancho=10.5, alto=7)
@@ -66,7 +66,7 @@ def graf_m02(wb):
 
 
 def graf_m02r(wb):
-    lz = Lienzo(wb, "M02R_graficos", "KF-M02R · M2 con η y ε en [0.40, 0.95] (un bloque por parte)")
+    lz = Lienzo(wb, "2")
     n1 = P[P["bloque_director"] == "B04-n1"]
     _bloque_fig(lz, "FIG-M02R-n1", _tiras(lz, n1, "val1", "var1", S), por_fila=3, ancho=10.5, alto=7)
     for parte, pref in (("n2a", "FIG-M02R-n2a"), ("n2b", "FIG-M02R-n2b"), ("n3", "FIG-M02R-n3")):
@@ -79,11 +79,11 @@ def graf_m02r(wb):
 
 
 def graf_m02s(wb):
-    lz = Lienzo(wb, "M02S_graficos", "KF-M02S · sumidero más frío con P_baja libre (B1–B3)")
+    lz = Lienzo(wb, "2")
     ts = [278.15, 283.15, 288.15, 293.15, 300.032917]
-    bases = [("B05-B1", "B1 · T_fuente = 403 K (A*)", "2E7D32"),
-             ("B05-B2", "B2 · T_fuente = 420 K", "1565C0"),
-             ("B05-B3", "B3 · ε_HRVG = 0.40 (fuente del profesor)", "EF8A17")]
+    bases = [("B05-B1", "2.4a · T_fuente = 403 K (A*)", "2E7D32"),
+             ("B05-B2", "2.4b · T_fuente = 420 K", "1565C0"),
+             ("B05-B3", "2.4c · ε_HRVG = 0.40 (fuente del profesor)", "EF8A17")]
     s1, s2 = [], []
     for bl, etq, col in bases:
         k = P[(P["bloque_director"] == bl) & (P["clasificacion"] == "KALINA")]
@@ -99,7 +99,7 @@ def graf_m02s(wb):
 
 
 def graf_m03(wb):
-    lz = Lienzo(wb, "M03_graficos", "KF-M03 · sensibilidad local alrededor de A* (bloque B06)")
+    lz = Lienzo(wb, "3")
     malla = P[(P["bloque_director"] == "B06") & (P["tipo_punto"] == "malla")]
     ok = malla[malla["genuino"] & malla["wnet_pos"]]
     dl = sorted(((v, ok[ok["variable"] == v]["eta_pct"].max() - ok[ok["variable"] == v]["eta_pct"].min())

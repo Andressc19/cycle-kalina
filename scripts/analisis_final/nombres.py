@@ -44,7 +44,7 @@ ETIQUETA_CLASE = {
     "CORREGIBLE": "Corregible",
     "INVIABLE": "Inviable",
     "NO_CONVERGIO": "No convergió",
-    "N2": "Falso convergido (N2)",
+    "N2": "Falso convergido",
     "OMITIDO": "Omitido (no evaluado)",
 }
 
@@ -61,7 +61,7 @@ GLOSARIO = {
     "Punto genuino": (
         "Punto cuya clase es KALINA, CORREGIBLE o INVIABLE: el modelo lo resolvió "
         "de verdad."),
-    "N2 (falso convergido)": (
+    "Falso convergido": (
         "El solver dice que convergió, pero el clasificador lo marca NO_CONVERGIO: "
         "es una solución espuria y no cuenta como convergido."),
     "KALINA confiable": (
@@ -80,7 +80,7 @@ GLOSARIO = {
     "Banda de η": (
         "Incertidumbre del modelo de propiedades: ±0.4–0.7 puntos porcentuales; "
         "diferencias menores no son concluyentes."),
-    "Bloque": (
-        "Conjunto de puntos con las mismas variables fijas y los mismos valores; "
-        "solo se comparan puntos de un mismo bloque."),
+    "Estudio y parte": (
+        "Un estudio (p. ej. 2.4) es un barrido que responde una pregunta; si tiene partes con datos "
+        "fijos distintos, cada una lleva una letra (2.4a). Solo se comparan puntos de la misma parte."),
 }

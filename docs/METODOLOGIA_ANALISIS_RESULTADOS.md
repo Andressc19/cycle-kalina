@@ -13,6 +13,18 @@ figura completos y todo en español) y el libro nuevo `datos/Excel_kalina_final_
 > Este documento NO corre barridos nuevos. Todo lo que aquí se calcula sale de los CSV que ya existen.
 > Las suposiciones van marcadas como **[SUPUESTO]**.
 
+> **⚠ Nomenclatura vigente (2026-10-12).** Este documento es el **diseño original** del análisis y usa los códigos con los que se trabajó (M05, KF-M05-3, bloque B09-3, TAB-M05-00, FIG-M04-02). Para el lector final todo se renombró como los capítulos de un informe: **pregunta → estudio → parte** (ver §7 y la hoja *Nomenclatura* del Excel). Equivalencias:
+
+| Pregunta | Estudios (código de origen) |
+|---|---|
+| 1 · ¿Funciona el ciclo con los datos del profesor? | **1.1** Repetir el caso del profesor (M01) |
+| 2 · ¿Qué es lo mínimo que hay que cambiar para que funcione? | **2.1** Un solo cambio (M02-N1); **2.2** Dos cambios (M02-N2); **2.3** Dos cambios con η y ε en 0.40–0.95 (M02R); **2.4** Sumidero más frío (M02S) |
+| 3 · ¿Qué variables importan y cuánto? | **3.1** Sensibilidad local alrededor de A* (M03); **3.2** Sensibilidad global (500 puntos) (M04, M04b); **3.3** P_baja alta (1500–2500 kPa) (M04c) |
+| 4 · ¿Qué datos del profesor se pueden conservar? | **4.1** Escenarios de conservación (M05); **4.2** Mapa con las presiones del profesor (M05c); **4.3** Escalera de conservación (M09) |
+| 5 · ¿Cuánta eficiencia se puede lograr? | **5.1** Búsqueda de la η máxima (M07) |
+| 6 · ¿Son confiables los resultados? | **6.1** Verificación con el motor de referencia (M06); **6.2** Planta real de Húsavík (M10, M10b) |
+| A · Anexo: equipos fuera del rango realista (no entra en las conclusiones) | **A.1** Equipos fuera del rango realista (M08) |
+
 ---
 
 ## 0. Reglas de la casa que este análisis respeta
@@ -573,19 +585,28 @@ Los nombres de hoja respetan el límite de 31 caracteres de Excel.
 
 ## 7. Organización de casos: clasificación, IDs y nomenclatura (tarea 6)
 
+**Vigente desde el 2026-10-12** (el usuario encontró confusos los códigos `KF-Mnn`, bloques, `TAB-…`):
+
 | Nivel | Patrón | Ejemplo |
 |---|---|---|
-| Campaña | `KF` (Kalina Final) | KF |
-| Caso | `KF-M<nn>[<sufijo>]` (nn con 2 dígitos) | `KF-M04b`, `KF-M02R` |
-| Subcaso | `<caso>-<etiqueta>` (nivel, ruta, base, escenario, arranque, ronda) | `KF-M02-N2-B`, `KF-M05-S4`, `KF-M02S-B3`, `KF-M07-A4`, `KF-M09-R3` |
-| Punto | `<subcaso>-<nnnn>` (orden de la fila en el CSV de origen) | `KF-M03-0042` |
-| Tabla | `TAB-<G|Mnn>-<nn>` | `TAB-M03-01` |
-| Figura | `FIG-<G|Mnn>-<nn>_<descriptor>` | `FIG-M04-02_plano_presiones.png` |
-| Ficha | `FICHA_<ID caso>.md` | `FICHA_KF-M03.md` |
+| Pregunta | 1 a 6 (+ anexo A) | 4 = ¿Qué datos del profesor se pueden conservar? |
+| Estudio | `<pregunta>.<n>` | 4.1 Escenarios de conservación |
+| Parte | `<estudio><letra>`, solo si hay datos fijos distintos; reemplaza al "bloque" | 4.1c conserva sus presiones y su clima |
+| Tabla | `Tabla <estudio>-<n>` (1 = condiciones, 2 = conteo, 3… = resultados); síntesis `Tabla S-<n>` | Tabla 4.1-1 |
+| Figura | `Figura <estudio>-<n>`; síntesis `Figura S-<n>` | Figura 3.2-2 |
+| Ficha | `Ficha_<estudio>_<nombre>.md` | `Ficha_4.1_escenarios_conservacion.md` |
+| Punto | solo en la hoja Datos: columnas Estudio y Parte + el código de origen | 4.1c |
 
-Clasificación de cada caso en dos ejes: **familia** (R/F/L/G/C/O/V/H/X, §2.1) y **diseño**
+Regla: **solo se comparan puntos de la misma parte**. Se juntaron dos pares de casos que siempre se
+analizaron juntos: 3.2 = M04 + M04b y 6.2 = M10 + M10b. El diccionario único es
+`scripts/analisis_final/codigos.py` (y `codigos_texto.py` traduce textos); todos los productos leen de ahí.
+
+Códigos antiguos (siguen en los CSV de `resultados/`, en los commits y en la columna "código de origen"):
+caso `KF-M<nn>[<sufijo>]`, subcaso `KF-M05-S4`, bloque `B09-3`, tabla `TAB-M05-00`, figura `FIG-M04-02`,
+ficha `FICHA_KF-M05.md`.
+
+Clasificación de cada estudio en dos ejes: **familia** (R/F/L/G/C/O/V/H/X, §2.1) y **diseño**
 (malla+bisección · OAT · LHS · malla 2D · escalera · búsqueda por patrones · verificación).
-Los IDs `Mnn` son los mismos que ya usan los CSV, reportes, hojas del Excel y commits: no se renumera nada.
 
 ---
 

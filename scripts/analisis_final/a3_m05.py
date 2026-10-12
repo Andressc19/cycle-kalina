@@ -57,7 +57,7 @@ def fig_m05(k):
     dispersion(ax, sub, x, y, s=22)
     ax.set_xlabel(NOMBRE[x]); ax.set_ylabel(NOMBRE[y])
     ax.legend(loc="upper left", bbox_to_anchor=(1.01, 1.0), fontsize=8, frameon=False)  # fuera: no tapa datos
-    t1 = (f"Escenario S{k} (conserva {ESCENARIO[k]}): {n_kal} KALINA de {len(ev)} "
+    t1 = (f"Parte 4.1{'abcde'[int(k) - 1]} (conserva {ESCENARIO[k]}): {n_kal} KALINA de {len(ev)} "
           f"evaluados, {n_conf} confiables")
     titulo(ax, t1, f"Bloque {bloque} · {id_sub}")
     recuadro_oat(ax, [id_sub], 3)

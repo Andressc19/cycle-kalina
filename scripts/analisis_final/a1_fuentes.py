@@ -31,7 +31,8 @@ PROPIAS = ["grupo", "ruta", "var1", "val1", "var2", "val2", "parte", "base",
 CALCULADAS = ["genuino", "es_N2", "kalina_confiable", "omitido", "wnet_pos",
               "eta_pct", "dP", "rP", "dT_fs", "clase_trazo"]
 
-COL_ID = ["id_punto", "id_caso", "id_subcaso", "bloque_director", "tipo_punto",
+COL_ID = ["id_punto", "estudio", "parte_estudio", "parte_nombre",   # nomenclatura nueva (codigos.py)
+          "id_caso", "id_subcaso", "bloque_director", "tipo_punto",
           "origen_csv", "fila_origen"]
 
 COLUMNAS_TABLA = COL_ID + ENTRADAS + SALIDAS + PROPIAS + CALCULADAS

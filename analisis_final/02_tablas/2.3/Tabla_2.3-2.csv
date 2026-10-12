@@ -1,0 +1,5 @@
+﻿Parte,Corridas,Omitidos,Genuinos,KALINA,KALINA confiables,Corregibles,Inviables,No convergidos,Falsos convergidos,Fuera de rango
+2.3a · un cambio,80,0,24,0,0,24,0,52,4,28
+2.3b · ε_HRVG × ε_cond,60,0,48,0,0,48,0,12,0,48
+2.3c · ε_HRVG × P_baja,64,0,62,19,0,43,0,2,0,62
+2.3d · T_fuente × ε_cond,21,0,20,1,1,18,1,1,0,14

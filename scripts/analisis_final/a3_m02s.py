@@ -15,15 +15,16 @@ import matplotlib.pyplot as plt
 from estilo import aplicar_estilo, recuadro_condiciones
 from a3_comun import cargar, titulo_fig, guardar_fig
 from nombres import NOMBRE
+from pies import SIMBOLO
 
 aplicar_estilo()
 
 PUNTOS = cargar()
 FUENTE = "todos_los_puntos.csv"
-BASES = [("B05-B1", "KF-M02S-B1", "#2E7D32", "o", "B1 · T_fuente = 403 K (A*)"),
-         ("B05-B2", "KF-M02S-B2", "#1565C0", "^", "B2 · T_fuente = 420 K"),
+BASES = [("B05-B1", "KF-M02S-B1", "#2E7D32", "o", "2.4a · T_fuente = 403 K (A*)"),
+         ("B05-B2", "KF-M02S-B2", "#1565C0", "^", "2.4b · T_fuente = 420 K"),
          ("B05-B3", "KF-M02S-B3", "#EF8A17", "s",
-          "B3 · ε_HRVG = 0.40 (fuente del profesor)")]
+          "2.4c · ε_HRVG = 0.40 (fuente del profesor)")]
 
 
 def _texto_base(bloque, id_sub):
@@ -32,8 +33,8 @@ def _texto_base(bloque, id_sub):
     c = cc[cc["id_subcaso"] == id_sub]
     fijos = c[c["estado"] == "fijo"]
     if "motor" in set(fijos["variable"]):
-        barr = "; ".join(sorted(c[c["estado"] == "barrido"]["variable"].unique()))
-        f = "; ".join(f"{v} = {vf}"
+        barr = "; ".join(SIMBOLO.get(x, x) for x in sorted(c[c["estado"] == "barrido"]["variable"].unique()))
+        f = "; ".join(f"{SIMBOLO.get(v, v)} = {vf}"
                       for v, vf in fijos[["variable", "valor_fijo"]].values)
         return f"Datos fijos: {f}. Datos barridos: {barr}."
     return ""
@@ -62,18 +63,18 @@ def fig_m02s_01():
         ax.set_xticklabels([f"{t:.2f}" for t in ts], fontsize=7)
     ax1.legend(loc="upper left", fontsize=8)
     ax2.legend(loc="lower left", fontsize=8)   # abajo a la derecha tapaba la línea B3
-    recuadro_condiciones(ax2, "Síntesis: cada base es su propio bloque\n"
-                              "B4 (datos del profesor): 0 KALINA — no se dibuja")
+    recuadro_condiciones(ax2, "Síntesis: cada parte tiene sus propios datos fijos\n"
+                              "2.4d (datos del profesor): 0 KALINA — no se dibuja")
     titulo_fig(fig, "Un sumidero más frío baja la P_baja mínima de KALINA y sube η",
-               "Bloque B05 · KF-M02S (síntesis de bases B1–B3)")
+               "Estudio 2.4 · síntesis de las partes 2.4a–2.4c")
     lineas = []
     for bloque, id_sub, color, m, label in BASES:
         tag, rest = label.split(" · ", 1)
-        lineas.append(f"Base {tag} ({rest}): {_texto_base(bloque, id_sub)}")
+        lineas.append(f"Parte {tag} ({rest}): {_texto_base(bloque, id_sub)}")
     pie = ("Figura FIG-M02S-01. Un sumidero más frío baja la P_baja mínima de "
            "KALINA y sube η.\n"
-           "Caso(s): KF-M02S (bloque B05; figura de síntesis: cada base es su "
-           "propio bloque y cada línea es una base).\n"
+           "Estudio 2.4 (figura de síntesis: cada base es una parte con sus "
+           "propios datos fijos y cada línea es una parte).\n"
            + "\n".join(lineas)
            + "\nBase B4 (datos del profesor, T_fuente 623.15 K): 0 KALINA; no se "
              "dibuja (queda nombrada en el pie).\n"

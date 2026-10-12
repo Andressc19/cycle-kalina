@@ -32,7 +32,7 @@ def clase_trazo(row):
 
 
 ETIQUETA_CLASE = {"KALINA": "KALINA", "CORREGIBLE": "Corregible", "INVIABLE": "Inviable",
-                  "NO_CONVERGIO": "No convergió", "N2": "Falso convergido (N2)"}
+                  "NO_CONVERGIO": "No convergió", "N2": "Falso convergido"}
 
 
 def recuadro_condiciones(ax, texto):

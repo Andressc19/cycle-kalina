@@ -1,0 +1,27 @@
+# Tabla 2.2-3 · Resumen de la malla de dos cambios
+
+**Estudio 2.2** · Dos cambios · **Partes:** 2.2a, 2.2b  
+**Punto base:** PP = punto del profesor salvo el par movido  
+**Parte 2.2a (conservar la fuente (ε_HRVG × P_baja)):**  
+**Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp.**  
+**Datos barridos: P_baja [400–2000] kPa (12 valores); ε_HRVG [0.75–0.81] (3 valores).**  
+**Parte 2.2b (bajar la fuente (T_fuente × P_baja)):**  
+**Datos fijos: T_sumidero = 300.03 K; P_alta = 3000 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp.**  
+**Datos barridos: T_fuente [380–560] K (9 valores); P_baja [400–2000] kPa (32 valores).**  
+
+| Ruta | Variable 1 | Valor 1 | Genuinos | KALINA | Falsos convergidos | P_baja mínima KALINA [kPa] | η mínima KALINA [%] | Fuera de rango en la mínima KALINA | P_baja mínima con O2 [kPa] | D mínimo | P_baja del mejor D [kPa] | Criterios bloqueantes frecuentes |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| A | ε_HRVG | 0.75 | 12 | 0 | 0 |  |  |  |  | 5.773 | 2000 | O2(12) · O1(1) |
+| A | ε_HRVG | 0.78 | 12 | 0 | 0 |  |  |  |  | 6.686 | 2000 | O2(12) · O1(1) |
+| A | ε_HRVG | 0.81 | 12 | 0 | 0 |  |  |  |  | 7.609 | 2000 | O2(12) · O1(1) |
+| B | T_fuente | 380 | 0 | 0 | 12 |  |  |  |  | 7.172 | 2000 |  |
+| B | T_fuente | 390 | 20 | 17 | 0 | 445.5 | 2.45 | no | 445.5 | 0.000 | 445.5 | O2(3) |
+| B | T_fuente | 403 | 20 | 16 | 0 | 563.6 | 8.48 | no | 563.6 | 0.000 | 563.6 | O2(4) |
+| B | T_fuente | 420 | 20 | 15 | 0 | 736.4 | 9.15 | no | 736.4 | 0.000 | 736.4 | O2(5) |
+| B | T_fuente | 434 | 21 | 11 | 0 | 945.5 | 8.23 | sí | 945.5 | 0.000 | 945.5 | O2(10) |
+| B | T_fuente | 466 | 12 | 0 | 0 |  |  |  |  | 1.172 | 2000 | O2(12) |
+| B | T_fuente | 497 | 12 | 0 | 0 |  |  |  |  | 5.068 | 2000 | O2(12) |
+| B | T_fuente | 529 | 12 | 0 | 0 |  |  |  |  | 6.051 | 2000 | O2(12) · O1(1) |
+| B | T_fuente | 560 | 12 | 0 | 0 |  |  |  |  | 6.975 | 2000 | O2(12) · O1(1) |
+
+**Notas:** Filtro: todos los puntos de la malla. n = 12 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: resultados/2026-10-06_final_M2/m2n2_resumen.csv.

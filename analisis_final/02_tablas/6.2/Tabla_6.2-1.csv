@@ -1,0 +1,66 @@
+﻿Parte,Variable,Estado,Valor en el punto base,Valor o rango,n valores,¿Igual al profesor?,Unidad
+6.2a · Fase 3 de septiembre,"Temperatura de la fuente, T_fuente [K]",Fija,,394.15,,no,K
+6.2a · Fase 3 de septiembre,"Temperatura del sumidero, T_sumidero [K]",Fija,,278.15,,no,K
+6.2a · Fase 3 de septiembre,"Presión de alta, P_alta [kPa]",Barrida,,3300 – 3500,3.0,,kPa
+6.2a · Fase 3 de septiembre,"Presión de baja, P_baja [kPa]",Barrida,,670.0 – 1500,40.0,,kPa
+6.2a · Fase 3 de septiembre,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,,0.780 – 0.833,6.0,,–
+6.2a · Fase 3 de septiembre,"Flujo másico base, m_b [kg/s]",Fija,,1.0,,sí,kg/s
+6.2a · Fase 3 de septiembre,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,,0.850 – 0.980,8.0,,–
+6.2a · Fase 3 de septiembre,"Eficiencia isentrópica de la bomba, η_p [–]",Fija,,0.8,,no,–
+6.2a · Fase 3 de septiembre,"Efectividad del generador de vapor, ε_HRVG [–]",Fija,,0.85,,sí,–
+6.2a · Fase 3 de septiembre,"Efectividad del regenerador, ε_reg [–]",Barrida,,0.750 – 0.950,12.0,,–
+6.2a · Fase 3 de septiembre,"Efectividad del condensador, ε_cond [–]",Barrida,,0.950 – 0.990,5.0,,–
+6.2a · Fase 3 de septiembre,Piso de O2 (T de diseño de la bomba) [K],Barrida,,283.1 – 303.6,2.0,,K
+6.2a · Fase 3 de septiembre,motor de propiedades,Fija,,teqp,,,–
+6.2b · una variable a la vez,"Temperatura de la fuente, T_fuente [K]",Una a la vez,394.1,380.0 – 430.0,16.0,,K
+6.2b · una variable a la vez,"Temperatura del sumidero, T_sumidero [K]",Una a la vez,278.1,273.1 – 293.1,16.0,,K
+6.2b · una variable a la vez,"Presión de alta, P_alta [kPa]",Una a la vez,3300,2500 – 4000,16.0,,kPa
+6.2b · una variable a la vez,"Presión de baja, P_baja [kPa]",Una a la vez,690.0,500.0 – 1200,16.0,,kPa
+6.2b · una variable a la vez,"Fracción de amoníaco de la mezcla base, x_b [–]",Una a la vez,0.820,0.600 – 0.950,16.0,,–
+6.2b · una variable a la vez,"Flujo másico base, m_b [kg/s]",Fija,1,1.0,,sí,kg/s
+6.2b · una variable a la vez,"Eficiencia isentrópica de la turbina, η_t [–]",Una a la vez,0.900,0.750 – 0.950,16.0,,–
+6.2b · una variable a la vez,"Eficiencia isentrópica de la bomba, η_p [–]",Una a la vez,0.800,0.600 – 0.900,16.0,,–
+6.2b · una variable a la vez,"Efectividad del generador de vapor, ε_HRVG [–]",Una a la vez,0.850,0.600 – 0.950,15.0,,–
+6.2b · una variable a la vez,"Efectividad del regenerador, ε_reg [–]",Una a la vez,0.750,0.400 – 0.950,16.0,,–
+6.2b · una variable a la vez,"Efectividad del condensador, ε_cond [–]",Una a la vez,0.950,0.700 – 0.950,15.0,,–
+6.2b · una variable a la vez,Piso de O2 (T de diseño de la bomba) [K],Fija,283.1,283.15,,no,K
+6.2b · una variable a la vez,motor de propiedades,Fija,,teqp,,,–
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Temperatura de la fuente, T_fuente [K]",Fija,,394.15,,no,K
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Temperatura del sumidero, T_sumidero [K]",Fija,,278.15,,no,K
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Presión de alta, P_alta [kPa]",Fija,,3300.0,,no,kPa
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Presión de baja, P_baja [kPa]",Barrida,,500.0 – 1200,8.0,,kPa
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,,0.700 – 0.910,8.0,,–
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Flujo másico base, m_b [kg/s]",Fija,,1.0,,sí,kg/s
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Eficiencia isentrópica de la turbina, η_t [–]",Fija,,0.9,,no,–
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Eficiencia isentrópica de la bomba, η_p [–]",Fija,,0.8,,no,–
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Efectividad del generador de vapor, ε_HRVG [–]",Fija,,0.85,,sí,–
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Efectividad del regenerador, ε_reg [–]",Fija,,0.75,,sí,–
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),"Efectividad del condensador, ε_cond [–]",Fija,,0.95,,no,–
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),Piso de O2 (T de diseño de la bomba) [K],Fija,,283.15,,no,K
+6.2c · malla x_b × P_baja (x_b 0.70–0.91),motor de propiedades,Fija,,teqp,,,–
+6.2d · x_b bajo (0.30–0.70),"Temperatura de la fuente, T_fuente [K]",Fija,394.1,394.15,,no,K
+6.2d · x_b bajo (0.30–0.70),"Temperatura del sumidero, T_sumidero [K]",Fija,278.1,278.15,,no,K
+6.2d · x_b bajo (0.30–0.70),"Presión de alta, P_alta [kPa]",Fija,3300,3300.0,,no,kPa
+6.2d · x_b bajo (0.30–0.70),"Presión de baja, P_baja [kPa]",Fija,690.0,690.0,,no,kPa
+6.2d · x_b bajo (0.30–0.70),"Fracción de amoníaco de la mezcla base, x_b [–]",Una a la vez,0.300,0.300 – 0.700,17.0,,–
+6.2d · x_b bajo (0.30–0.70),"Flujo másico base, m_b [kg/s]",Fija,1,1.0,,sí,kg/s
+6.2d · x_b bajo (0.30–0.70),"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.900,0.9,,no,–
+6.2d · x_b bajo (0.30–0.70),"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.800,0.8,,no,–
+6.2d · x_b bajo (0.30–0.70),"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.850,0.85,,sí,–
+6.2d · x_b bajo (0.30–0.70),"Efectividad del regenerador, ε_reg [–]",Fija,0.750,0.75,,sí,–
+6.2d · x_b bajo (0.30–0.70),"Efectividad del condensador, ε_cond [–]",Fija,0.950,0.95,,no,–
+6.2d · x_b bajo (0.30–0.70),Piso de O2 (T de diseño de la bomba) [K],Fija,283.1,283.15,,no,K
+6.2d · x_b bajo (0.30–0.70),motor de propiedades,Fija,,teqp,,,–
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Temperatura de la fuente, T_fuente [K]",Fija,,394.15,,no,K
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Temperatura del sumidero, T_sumidero [K]",Fija,,278.15,,no,K
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Presión de alta, P_alta [kPa]",Fija,,3300.0,,no,kPa
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Presión de baja, P_baja [kPa]",Barrida,,200.0 – 700.0,6.0,,kPa
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,,0.300 – 0.700,9.0,,–
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Flujo másico base, m_b [kg/s]",Fija,,1.0,,sí,kg/s
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Eficiencia isentrópica de la turbina, η_t [–]",Fija,,0.9,,no,–
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Eficiencia isentrópica de la bomba, η_p [–]",Fija,,0.8,,no,–
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Efectividad del generador de vapor, ε_HRVG [–]",Fija,,0.85,,sí,–
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Efectividad del regenerador, ε_reg [–]",Fija,,0.75,,sí,–
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),"Efectividad del condensador, ε_cond [–]",Fija,,0.95,,no,–
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),Piso de O2 (T de diseño de la bomba) [K],Fija,,283.15,,no,K
+6.2c · malla x_b × P_baja (x_b 0.30–0.70),motor de propiedades,Fija,,teqp,,,–

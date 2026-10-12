@@ -17,16 +17,16 @@ aplicar_estilo()
 M6 = "resultados/2026-10-08_final_M6/m6_comparacion.csv"
 M9 = "resultados/2026-10-08_final_M9/m9_motor_real.csv"
 M7 = "resultados/2026-10-07_final_M7/m7_trayectorias.csv"
-ARRANQUE = {"A1": "A1 · libre (desde el mejor de M4b)",
-            "A2": "A2 · libre (desde el mejor de M2S)",
-            "A3": "A3 · conserva sus temperaturas",
-            "A4": "A4 · conserva sus presiones y su clima",
-            "A5": "A5 · conserva su fuente y su x_b (fuera de rango)"}
+ARRANQUE = {"A1": "5.1a · libre (desde el mejor de 3.2)",
+            "A2": "5.1b · libre (desde el mejor de 2.4)",
+            "A3": "5.1c · conserva sus temperaturas",
+            "A4": "5.1d · conserva sus presiones y su clima",
+            "A5": "5.1e · conserva su fuente y su x_b (fuera de rango)"}
 
 
 def fig_m06():
-    a = pd.read_csv(M6).assign(fuente="M6 (motor real con 300 s)")
-    b = pd.read_csv(M9).assign(fuente="M9 (motor real con 1500 s)")
+    a = pd.read_csv(M6).assign(fuente="6.1a · motor real con 300 s")
+    b = pd.read_csv(M9).assign(fuente="6.1d · motor real con 1500 s")
     d = pd.concat([a, b], ignore_index=True)
     par = d.dropna(subset=["eta_teqp", "eta_real"])
     sin = d[d["eta_real"].isna()]
@@ -36,15 +36,15 @@ def fig_m06():
     ax.plot(xs, xs, color="0.3", lw=0.8, label="1:1")
     ax.fill_between(xs, xs - 0.7, xs + 0.7, color="#2E7D32", alpha=0.12,
                     label="banda ±0.7 pp")
-    for f, m, c in (("M6 (motor real con 300 s)", "o", "#1565C0"),
-                    ("M9 (motor real con 1500 s)", "s", "#2E7D32")):
+    for f, m, c in (("6.1a · motor real con 300 s", "o", "#1565C0"),
+                    ("6.1d · motor real con 1500 s", "s", "#2E7D32")):
         g = par[par["fuente"] == f]
         ax.scatter(100 * g["eta_teqp"], 100 * g["eta_real"], marker=m, s=60, color=c,
                    label=f"{f} (n = {len(g)})", zorder=3)
     # un rótulo por posición: P08 (M6) y A4 (M9) son el mismo punto y se superponían
     rot = par.assign(k=(100 * par["eta_teqp"]).round(2)).groupby("k")
     for k, g in rot:
-        ax.annotate(" = ".join(str(i) for i in g["id"]), (k, 100 * g["eta_real"].iloc[0]),
+        ax.annotate(" = ".join({"A4": "óptimo 5.1d", "HUS": "Húsavík"}.get(str(i), str(i)) for i in g["id"]), (k, 100 * g["eta_real"].iloc[0]),
                     fontsize=7, xytext=(6, -12), textcoords="offset points")
     ax.set_xlim(lo, hi); ax.set_ylim(lo, hi)
     ax.set_xlabel("η con teqp [%]"); ax.set_ylabel("η con el motor real [%]")
@@ -54,8 +54,8 @@ def fig_m06():
     recuadro_condiciones(ax, "Cada punto conserva sus datos de origen\n"
                              f"Sin η real (cortados por tiempo, 300 s): {len(sin)}")
     pie = ("Figura FIG-M06-01. " + t1 + ".\n"
-           "Caso(s): KF-M06-VER y KF-M09-REAL (bloque B12; puntos de control, cada uno con "
-           "sus propios datos, no comparables entre sí).\n"
+           "Estudio 6.1 · partes 6.1a y 6.1d (puntos de control, cada uno con sus propios datos, "
+           "no comparables entre sí).\n"
            "Puntos: " + "; ".join(f"{r['id']} = {r['origen']}" for _, r in par.iterrows()) + ".\n"
            "Sin η real (motor real cortado por el límite de 300 s, no por la física): "
            + ", ".join(str(i) for i in sin["id"]) + ".\n"
@@ -82,10 +82,10 @@ def fig_m07():
           "(equipos a 0.95)")
     titulo(ax, t1, "Bloques B11-A1 … B11-A5 · KF-M07 (una línea por arranque)")
     recuadro_condiciones(ax, "Cada arranque conserva datos distintos del profesor\n"
-                             "A5 (línea discontinua): todos sus KALINA fuera de rango")
+                             "5.1e (línea discontinua): todos sus KALINA fuera de rango")
     pie = ("Figura FIG-M07-01. " + t1 + ".\n"
-           "Caso(s): KF-M07-A1 … A5 (bloques B11-A1 … B11-A5; figura de síntesis: cada línea "
-           "es un arranque con sus propios datos conservados).\n"
+           "Estudio 5.1 · partes 5.1a … 5.1e (figura de síntesis: cada línea es un arranque con "
+           "sus propios datos conservados).\n"
            + "\n".join(f"{v}." for v in ARRANQUE.values()) + "\n"
            "Filtro: pasos aceptados de cada búsqueda (cada uno es KALINA genuino, D = 0).\n"
            f"n = {len(t)} pasos aceptados. Fuente: m7_trayectorias.csv.")

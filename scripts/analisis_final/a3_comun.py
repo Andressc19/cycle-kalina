@@ -11,6 +11,8 @@ import pandas as pd
 
 from estilo import (COLOR_CLASE, ORDEN_CLASE, MARCADOR_CLASE, recuadro_condiciones)
 from nombres import ETIQUETA_CLASE, NOMBRE
+from codigos import nombre_figura
+from codigos_texto import traducir
 
 PUNTOS = "analisis_final/01_datos/todos_los_puntos.csv"
 
@@ -107,6 +109,7 @@ def titulo(ax, linea1, linea2, f1=9, f2=8):
     'Bloque <b> · <caso(s)>'. Ambas ancladas a la izquierda, sobre el panel.
     """
     ax.set_title(linea1, fontsize=f1, loc="left")
+    linea2 = traducir(linea2)               # nomenclatura nueva: "Estudio 3.2 · parte …"
     if linea2:
         ax.text(0.0, 1.13, linea2, transform=ax.transAxes, fontsize=f2,
                 va="bottom", ha="left")
@@ -115,7 +118,7 @@ def titulo(ax, linea1, linea2, f1=9, f2=8):
 def titulo_fig(fig, linea1, linea2, f1=10, f2=8):
     """Título de dos líneas para figuras multipanel (en la figura, no en cada eje)."""
     fig.text(0.5, 0.995, linea1, ha="center", va="top", fontsize=f1)
-    fig.text(0.5, 0.962, linea2, ha="center", va="top", fontsize=f2)
+    fig.text(0.5, 0.962, traducir(linea2), ha="center", va="top", fontsize=f2)
     fig._multipanel = True   # estilo.guardar deja sitio arriba (título/leyenda) y abajo (recuadro)
 
 
@@ -171,6 +174,7 @@ def leyenda_fig(fig, sub):
 def guardar_clases(carpeta, nombre, n):
     """Conteos por clase de puntos dibujados, para el verificador (a3_verificar)."""
     import json
+    carpeta, nombre = nombre_figura(nombre)
     os.makedirs(f"analisis_final/03_figuras/{carpeta}", exist_ok=True)
     with open(f"analisis_final/03_figuras/{carpeta}/{nombre}_clases.json",
               "w", encoding="utf-8") as f:
@@ -178,7 +182,9 @@ def guardar_clases(carpeta, nombre, n):
 
 
 def guardar_fig(fig, carpeta, nombre, pie):
-    """Guarda PNG+SVG+pie.md en 03_figuras/<carpeta>/<nombre>."""
+    """Guarda PNG+SVG+pie.md en 03_figuras/<estudio>/Figura_<n>_<nombre> (nomenclatura nueva)."""
+    carpeta, nombre = nombre_figura(nombre)
+    pie = traducir(pie)
     os.makedirs(f"analisis_final/03_figuras/{carpeta}", exist_ok=True)
     from estilo import guardar
     guardar(fig, f"analisis_final/03_figuras/{carpeta}/{nombre}", pie)

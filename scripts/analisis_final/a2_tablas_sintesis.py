@@ -7,6 +7,8 @@ Nombres, familias y diseños: tabla §2.1 de docs/METODOLOGIA_ANALISIS_RESULTADO
 import numpy as np
 import pandas as pd
 
+import codigos
+
 import pies
 from a2_comun import (INV, leer, leer_canon, escribir_tabla, guardar_registro, renombrar)
 from nombres import NOMBRE
@@ -49,25 +51,36 @@ def _dominante(g):
 
 
 def _bloques(g):
-    b = list(dict.fromkeys(g["bloque_director"]))
-    return ", ".join(b) if len(b) <= 5 else f"{b[0].split('-')[0]}-* ({len(b)} conjuntos)"
+    """Partes del estudio; si son muchas (4.3: un conjunto por ronda), solo cuántas."""
+    b = sorted(dict.fromkeys(g["parte_estudio"].astype(str)))
+    return ", ".join(b) if len(b) <= 5 else f"{len(b)} partes (ver tabla de condiciones)"
+
+
+def _por_estudio():
+    """[(estudio, [casos de origen])] en el orden de CASOS (sin repetir 3.2 ni 6.2)."""
+    out = {}
+    for idc in CASOS:
+        out.setdefault(codigos.estudio(idc), []).append(idc)
+    return list(out.items())
 
 
 def g01(d, bloques):
     filas = []
-    for idc, (nom, fam, dis, base) in CASOS.items():
-        g = d[d["id_caso"] == idc]
-        filas.append({"ID": idc, "Nombre": nom, "Familia": fam,
-                      "Bloque(s)": _bloques(g),
+    for est, casos_e in _por_estudio():                # una fila por estudio (3.2 = M04 + M04b)
+        g = d[d["id_caso"].isin(casos_e)]
+        _, fam, dis, base = CASOS[casos_e[0]]
+        nom = codigos.ESTUDIO[casos_e[0]][1]
+        filas.append({"ID": est, "Nombre": nom, "Familia": fam,
+                      "Partes": _bloques(g),
                       "Punto base": base, "Diseño": dis, "Corridas": len(g),
                       "Genuinas": int(g["genuino"].astype(bool).sum()),
                       "KALINA": int((g["clasificacion"] == "KALINA").sum()),
                       "KALINA confiables": int(g["kalina_confiable"].astype(bool).sum()),
-                      "Falsos convergidos (N2)": int(g["es_N2"].astype(bool).sum()),
+                      "Falsos convergidos": int(g["es_N2"].astype(bool).sum()),
                       "Criterio que más bloquea": _dominante(g)})
     df = pd.DataFrame(filas)
     tipos = {c: ("int" if df[c].dtype != object else "txt") for c in df.columns}
-    escribir_tabla(_meta("01", "Resumen de casos", "todos los puntos (sin KF-M08)",
+    escribir_tabla(_meta("01", "Resumen por estudio", "todos los puntos (sin el anexo A.1)",
                          "todos_los_puntos.csv", len(df), list(d["id_subcaso"].unique()),
                          "Familias: R reproducibilidad, F factibilidad, L local, G global, "
                          "C conservación, O optimización, V verificación, H Húsavík."), df, tipos)
@@ -91,7 +104,7 @@ def g02():
     for c in m.columns[1:]:
         m[c] = m[c].map(_celda_g02)
     m = m.rename(columns={c: NOMBRE.get(c, c) for c in m.columns}).rename(columns={"id_subcaso": "Subcaso"})
-    escribir_tabla(_meta("02", "Qué se movió en cada barrido", "todos los subcasos (sin KF-M08)",
+    escribir_tabla(_meta("02", "Qué se movió en cada barrido", "todas las partes (sin el anexo A.1)",
                          "casos_x_variables.csv", len(m), list(m["Subcaso"]),
                          "fijo: profesor = igual al dato del profesor; fijo: <valor> = fijo en otro valor; "
                          "barrido: a – b = barrida en ese rango; vacío = sin dato en la fuente."),
@@ -140,16 +153,16 @@ def g04():
              ("m_b", "1 kg/s", "sí (base de cálculo)", "todas")]
     df = pd.DataFrame(datos, columns=["Dato", "Valor del profesor", "¿Se conserva con KALINA?", "Respaldo"])
     escribir_tabla(_meta("04", "Datos del profesor conservables", "conclusiones validadas por A4",
-                         "fichas KF-M05c y KF-M09; validación A4", len(df), []), df,
+                         "fichas 4.2 y 4.3; validación cruzada", len(df), []), df,
                    {c: "txt" for c in df.columns})
 
 
 def g05(d):
     filas = []
-    for idc in CASOS:
-        g = d[d["id_caso"] == idc]
+    for est, casos_e in _por_estudio():
+        g = d[d["id_caso"].isin(casos_e)]
         nok = g[g["genuino"].astype(bool) & (g["clasificacion"] != "KALINA")]
-        fila = {"ID": idc, "Genuinos no KALINA": len(nok)}
+        fila = {"ID": est, "Genuinos no KALINA": len(nok)}
         for c in CRIT:
             k = int((pd.to_numeric(nok[f"viol_{c}"], errors="coerce") > 0).sum())
             fila[f"{c} (n)"] = k
@@ -157,7 +170,7 @@ def g05(d):
         filas.append(fila)
     df = pd.DataFrame(filas)
     tipos = {c: ("pct1" if "[%]" in c else "int") for c in df.columns} | {"ID": "txt"}
-    escribir_tabla(_meta("05", "Criterios de bloqueo por caso", "genuinos que no son KALINA",
+    escribir_tabla(_meta("05", "Criterios que bloquean, por estudio", "genuinos que no son KALINA",
                          "todos_los_puntos.csv", len(df), [],
                          "Un punto puede violar varios criterios: los % no suman 100. O1 título, "
                          "O2 cavitación, O3 trabajo neto, O5 separador."), df, tipos)

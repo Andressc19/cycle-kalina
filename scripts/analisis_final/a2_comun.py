@@ -162,29 +162,9 @@ def _md_tabla(df, tipos):
 
 
 def escribir_tabla(meta, df, tipos):
-    """Escribe CSV + Markdown de una tabla y anota su fila en el registro."""
-    carpeta = os.path.join(TABLAS, meta["carpeta"])
-    os.makedirs(carpeta, exist_ok=True)
-    # Celdas con nombres crudos (eps_hrvg…) → símbolo en español.
-    df = df.apply(lambda s: s.map(lambda v: pies.SIMBOLO.get(v, v) if isinstance(v, str) else v)
-                  if s.dtype == object or str(s.dtype).startswith("str") else s)
-    df.to_csv(os.path.join(carpeta, meta["tabla"] + ".csv"), index=False, encoding="utf-8-sig")
-    # Síntesis (carpeta G): sin encabezado de condiciones común; cada fila trae los suyos.
-    texto = "" if meta["carpeta"] == "G" else pies.condiciones_por_bloque(meta["subcasos"])
-    notas = (f"Filtro: {meta['filtro']}. n = {meta['n']} filas en la tabla. "
-             "† = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido (N2). "
-             f"Fuente: {meta['fuente']}.")
-    if meta.get("notas"):
-        notas += " " + meta["notas"]
-    md = [f"# {meta['tabla']} · {meta['titulo']}", "",
-          f"**Caso(s):** {meta['casos']} · **Bloque(s):** {meta['bloques']}  ",
-          f"**Punto base:** {meta['punto_base']}  ",
-          ("**" + texto.replace("\n", "**  \n**") + "**  ") if texto else
-          "*Tabla de síntesis: cada fila es un caso con sus propios datos fijos.*", "",
-          _md_tabla(df, tipos), "", f"**Notas:** {notas}"]
-    with open(os.path.join(carpeta, meta["tabla"] + ".md"), "w", encoding="utf-8") as f:
-        f.write("\n".join(md) + "\n")
-    guardar_registro([dict(meta, subcasos="; ".join(meta["subcasos"]))])
+    """Escribe CSV + Markdown con la nomenclatura nueva (ver a2_presentar.escribir)."""
+    from a2_presentar import escribir
+    escribir(meta, df, tipos)
 
 
 def guardar_registro(filas):

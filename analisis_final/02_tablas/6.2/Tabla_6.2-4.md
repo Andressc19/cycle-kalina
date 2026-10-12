@@ -1,0 +1,21 @@
+# Tabla 6.2-4 · Rangos KALINA por variable (Húsavík OFAT)
+
+**Estudio 6.2** · Planta real de Húsavík · **Partes:** 6.2b  
+**Punto base:** ancla de Húsavík (P_alta 3300 kPa, P_baja 690 kPa, T_fuente 394.15 K, T_sumidero 278.15 K); la parte 6.2a conserva los datos de septiembre  
+**Punto base (las demás variables quedan fijas en): T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; P_baja = 690 kPa; x_b = 0.82; m_b = 1 kg/s; η_t = 0.9; η_p = 0.8; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.95; piso de O2 = 283.15 K; motor de propiedades = teqp. Cada panel o tramo mueve solo su variable.**  
+**Datos barridos (uno a la vez): T_fuente [380–430] K (15 valores); T_sumidero [273.15–293.15] K (15 valores); P_alta [2500–4000] kPa (15 valores); P_baja [500–1200] kPa (15 valores); x_b [0.6–0.95] (15 valores); η_t [0.75–0.95] (15 valores); η_p [0.6–0.9] (15 valores); ε_HRVG [0.6–0.95] (15 valores); ε_reg [0.4–0.95] (15 valores); ε_cond [0.7–0.95] (15 valores).**  
+
+| Variable | Mínimo KALINA | Máximo KALINA | Criterio que rompe al bajar la variable | Criterio que rompe al subir la variable | η mínima [%] | η máxima [%] | KALINA |
+|---|---|---|---|---|---|---|---|
+| T_fuente | 380 | 401.429 |  | CORREGIBLE (O2) | 12.21 | 12.96 | 7 |
+| T_sumidero | 273.15 | 283.15 |  | CORREGIBLE (O2) | 12.51 | 12.96 | 8 |
+| P_alta | 2821.43 | 4000 | CORREGIBLE (O2) |  | 11.84 | 13.60 | 12 |
+| P_baja | 700 | 1200 | CORREGIBLE (O2) |  | 8.49 | 12.58 | 11 |
+| x_b | 0.6 | 0.825 |  | CORREGIBLE (O2) | 8.82 | 12.78 | 9 |
+| η_t | 0.75 | 0.95 |  |  | 10.53 | 13.46 | 15 |
+| η_p | 0.6 | 0.9 |  |  | 12.58 | 12.78 | 15 |
+| ε_HRVG | 0.6 | 0.925 |  | CORREGIBLE (O2) | 11.63 | 12.99 | 14 |
+| ε_reg | 0.4 | 0.95 |  |  | 11.94 | 13.22 | 15 |
+| ε_cond | 0.95 | 0.95 | CORREGIBLE (O2) |  | 12.73 | 12.73 | 1 |
+
+**Notas:** Filtro: todos los puntos por variable. n = 10 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: resultados/2026-10-09_final_M10_husavik/m10_ofat_rangos.csv.

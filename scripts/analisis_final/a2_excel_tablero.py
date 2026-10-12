@@ -11,6 +11,7 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter as L
 from openpyxl.worksheet.datavalidation import DataValidation
 
+import codigos
 import pies
 from a2_excel_hojas import cuadricula
 from nombres import NOMBRE
@@ -22,7 +23,7 @@ SERIES = [("K", "KALINA", ["KALINA"], "2E7D32", "circle"),
           ("I", "Inviable", ["INVIABLE"], "C9A227", "square"),
           ("N", "No convergió o N2", ["NO_CONVERGIO", "N2"], "C62828", "x")]
 CLASES = [("KALINA", "KALINA"), ("Corregible", "CORREGIBLE"), ("Inviable", "INVIABLE"),
-          ("No convergió", "NO_CONVERGIO"), ("Falso convergido (N2)", "N2")]
+          ("No convergió", "NO_CONVERGIO"), ("Falso convergido", "N2")]
 CRIT = [("O1 título", "viol_O1"), ("O2 cavitación", "viol_O2"), ("O3 trabajo neto", "viol_O3"),
         ("O5 separador", "viol_O5")]
 MAXP, F_ini = 900, 5          # puntos por serie y fila inicial de los datos del gráfico
@@ -76,9 +77,9 @@ def construir(wb, d, cond, bloques):
                round(float(kal["eta_pct"].max()), 2) if len(kal) else None,
                (max(crit, key=crit.get).replace("viol_", "") if any(crit.values()) else "—"),
                NOMBRE.get(x, x), NOMBRE.get(y, y), pies.condiciones_texto(subs).replace("\n", "  ·  "),
-               ", ".join(subs)] + [int((g["clase_trazo"] == k).sum()) for _, k in CLASES] \
+               " / ".join(dict.fromkeys(codigos.etiqueta(x) for x in subs))] + [int((g["clase_trazo"] == k).sum()) for _, k in CLASES] \
             + [crit[k] for _, k in CRIT] + [_cond_texto(cb, v) for v in variables]
-        aux.cell(1, j, b)
+        aux.cell(1, j, codigos.etiqueta_bloque(b))          # la lista de B2 muestra la parte nueva (3.2, 4.1c…)
         for i, v in enumerate(val, 2):
             aux.cell(i, j, v)
         for s, (cod, _, clases, _, _) in enumerate(SERIES):
@@ -87,11 +88,12 @@ def construir(wb, d, cond, bloques):
                 sg = sg[sg["variable"] == x]
             sg = sg.head(MAXP)
             cx = 1 + (j - 2) * 8 + 2 * s
-            aup.cell(1, cx, f"{b}|x{cod}"); aup.cell(1, cx + 1, f"{b}|y{cod}")
+            bn = codigos.etiqueta_bloque(b)
+            aup.cell(1, cx, f"{bn}|x{cod}"); aup.cell(1, cx + 1, f"{bn}|y{cod}")
             for r, (vx, vy) in enumerate(zip(sg[x], sg[y]), 2):
                 aup.cell(r, cx, float(vx)); aup.cell(r, cx + 1, float(vy))
     aux.sheet_state = aup.sheet_state = "hidden"
-    _hoja(wb, bloques, filas, variables, len(bloques), aup.max_column)
+    _hoja(wb, [codigos.etiqueta_bloque(b) for b in bloques], filas, variables, len(bloques), aup.max_column)
 
 
 def _idx(fila, ultima):
@@ -102,9 +104,10 @@ def _idx(fila, ultima):
 def _hoja(wb, bloques, filas, variables, nb, ncol_p):
     ws = wb.create_sheet("Tablero", 1)
     ult = nb + 1
-    ws["A1"] = "Tablero de resultados — elija un bloque en B2"; ws["A1"].font = Font(bold=True, size=14)
-    ws["A2"] = "Bloque:"; ws["A2"].font = Font(bold=True)
-    ws["B2"] = bloques[0]; ws["B2"].fill = PatternFill("solid", fgColor="FFF2CC")
+    ws["A1"] = "Tablero de resultados — elija un estudio o una parte en B2"; ws["A1"].font = Font(bold=True, size=14)
+    ws["A2"] = "Estudio / parte:"; ws["A2"].font = Font(bold=True)
+    ws["B2"] = next((b for b in bloques if b.startswith("3.2 ")), bloques[0])   # abre en 3.2 (con KALINA)
+    ws["B2"].fill = PatternFill("solid", fgColor="FFF2CC")
     ws["B2"].font = Font(bold=True, size=12)
     dv = DataValidation(type="list", formula1=f"=Aux_tablero!$B$1:${L(ult)}$1", allow_blank=False)
     ws.add_data_validation(dv); dv.add("B2")
@@ -115,13 +118,13 @@ def _hoja(wb, bloques, filas, variables, nb, ncol_p):
         ws.column_dimensions[L(j)].width = 16
     ws["K4"], ws["K5"] = "Eje X:", "Eje Y:"
     ws["L4"], ws["L5"] = _idx(filas.index("eje_x") + 2, ult), _idx(filas.index("eje_y") + 2, ult)
-    ws["A7"] = "Condiciones de este bloque"; ws["A7"].font = Font(bold=True)
+    ws["A7"] = "Condiciones (datos fijos y barridos)"; ws["A7"].font = Font(bold=True)
     for i, v in enumerate(variables):
         ws.cell(8 + i, 1, NOMBRE.get(v, v))
         ws.cell(8 + i, 2, _idx(filas.index(f"cond_{v}") + 2, ult))
     fp = 9 + len(variables)
     cuadricula(ws, 4, 4, 5, 3 + len(KPI)); cuadricula(ws, 8, 1, 7 + len(variables), 2)
-    ws.cell(fp, 1, "Pie del bloque:").font = Font(bold=True)
+    ws.cell(fp, 1, "Pie:").font = Font(bold=True)
     c = ws.cell(fp + 1, 1, _idx(filas.index("pie") + 2, ult))
     c.alignment = Alignment(wrap_text=True, vertical="top")
     ws.merge_cells(start_row=fp + 1, start_column=1, end_row=fp + 6, end_column=2)   # pie completo
@@ -162,9 +165,13 @@ def _graficos(ws):
     b2.legend = None; b2.height, b2.width = 7, 13
     b2.series[0].graphicalProperties.solidFill = "C62828"
     ws.add_chart(b2, "D24")
-    sc = ScatterChart(); sc.title = "Dispersión del bloque (ejes en L4:L5)"
+    sc = ScatterChart(); sc.title = "Dispersión (ejes indicados en L4 y L5)"
     sc.style = 13; sc.height, sc.width = 14, 18
-    sc.x_axis.title, sc.y_axis.title = "Eje X (ver L4)", "Eje Y (ver L5)"
+    from openpyxl.chart.data_source import StrRef     # títulos de eje enlazados a L4 y L5
+    from openpyxl.chart.text import Text
+    from openpyxl.chart.title import Title
+    sc.x_axis.title = Title(tx=Text(strRef=StrRef("'Tablero'!$L$4")), overlay=False)
+    sc.y_axis.title = Title(tx=Text(strRef=StrRef("'Tablero'!$L$5")), overlay=False)
     for s, (cod, etq, _, color, simb) in enumerate(SERIES):
         xs = Reference(ws, min_col=29 + 2 * s, min_row=F_ini, max_row=F_ini + MAXP - 1)
         ys = Reference(ws, min_col=30 + 2 * s, min_row=F_ini, max_row=F_ini + MAXP - 1)

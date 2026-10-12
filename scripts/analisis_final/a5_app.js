@@ -21,7 +21,7 @@ function uno(a,f){for(let i=0;i<a.length;i++)if(f(a[i]))return a[i];return null;
 const BLOQUES=D.BLOQUES||[], COND=D.CONDICIONES||[];
 const est={bloque:"",subcaso:"",clases:new Set(CLASES),conf:false,wnet:false,x:"",y:"",pag:0,orden:{c:null,dir:1}};
 const subsDe=(b)=>String(b.id_subcasos).split(";").map((s)=>s.trim()).filter(Boolean);
-const ordCaso=(a,b)=>{const A=a.match(/M(\d+)(.*)$/),B=b.match(/M(\d+)(.*)$/);return parseInt(A[1],10)-parseInt(B[1],10)||A[2].localeCompare(B[2]);};
+const ordCaso=(a,b)=>String(a).localeCompare(String(b),"es",{numeric:true});   /* estudios 1.1 … 6.2 */
 /* --- condiciones del bloque --- */
 function condBloque(){
   const b=uno(BLOQUES,(x)=>x.bloque_director===est.bloque), subs=subsDe(b);
@@ -52,7 +52,7 @@ function medir(id,ops,val){const s=$(id);s.innerHTML=ops.map((o)=>'<option value
 function hayGenuinos(bl){return D.PUNTOS.some((p)=>p.bloque_director===bl&&p.genuino);}
 function cargarBloque(){
   const b=uno(BLOQUES,(x)=>x.bloque_director===est.bloque), subs=subsDe(b);
-  $("#sel-subcaso").innerHTML='<option value="">Todos los del bloque</option>'+subs.map((s)=>'<option value="'+esc(s)+'">'+esc(s)+"</option>").join("");
+  $("#sel-subcaso").innerHTML='<option value="">Todas las partes</option>'+subs.map((s)=>'<option value="'+esc(s)+'">'+esc(s)+"</option>").join("");
   est.subcaso="";
   const cb=condBloque(), ops=opcionesEje(cb), plot=sel(cb.barr.map((x)=>x.v),(v)=>PLOT.indexOf(v)>=0);
   est.x=plot[0]||"eta_pct";
@@ -109,19 +109,19 @@ function pieTexto(ps){
       }
     }
   }
-  const filtros=["bloque "+est.bloque,est.subcaso||"todos los subcasos del bloque","clases: "+[...est.clases].join(", ")];
+  const filtros=["estudio/parte "+est.bloque,est.subcaso||"todas las partes","clases: "+[...est.clases].join(", ")];
   if(est.conf) filtros.push("solo KALINA confiables");
   if(est.wnet) filtros.push("solo W_net > 0");
   const lineas=cb.oat
     ? ["Punto base (las demás variables quedan fijas en): "+(fijos.length?fijos.join("; "):"ninguno")+". Cada panel o tramo mueve solo su variable.",
        "Datos barridos (uno a la vez): "+(barr.length?barr.join("; "):"ninguno")+"."]
     : ["Datos fijos: "+(fijos.length?fijos.join("; "):"ninguno")+".","Datos barridos: "+(barr.length?barr.join("; "):"ninguno")+"."];
-  return ["Caso(s): "+cb.subs.join(", ")+" (bloque "+est.bloque+")."].concat(lineas)
+  return ["Estudio/parte "+est.bloque+" · "+cb.subs.join(" / ")+"."].concat(lineas)
     .concat(["Filtro: "+filtros.join("; ")+".","n = "+ps.length+". Fuente: todos_los_puntos.csv."]).join("\n");
 }
 function renderCond(){
   const cb=condBloque();
-  $("#titulo-cond").textContent=cb.oat?"Punto base: las demás variables quedan fijas en estos valores mientras se mueve una":"Condiciones de este bloque";
+  $("#titulo-cond").textContent=cb.oat?"Punto base: las demás variables quedan fijas en estos valores mientras se mueve una":"Condiciones (datos fijos y barridos)";
   $("#aviso-cond").innerHTML=(iniN(cb.b.consistente)&&!esNulo(cb.b.diferencias))?'<p class="aviso"><b>Bloque con condiciones distintas:</b> '+esc(cb.b.diferencias)+"</p>":"";
   let filas;
   if(cb.oat){
@@ -183,13 +183,13 @@ function csv(){
 function renderResumen(){
   const ps=D.PUNTOS, g=sel(ps,(p)=>p.genuino).length, kc=sel(ps,(p)=>p.kalina_confiable).length;
   const casos=[...new Set(ps.map((p)=>p.id_caso))].sort(ordCaso);
-  $("#kpi-resumen").innerHTML=[["Corridas totales",dec(ps.length,0)],["Puntos genuinos",dec(ps.length?100*g/ps.length:0,1)+" %"],["KALINA confiables",dec(kc,0)],["Casos",dec(casos.length,0)]]
+  $("#kpi-resumen").innerHTML=[["Corridas totales",dec(ps.length,0)],["Puntos genuinos",dec(ps.length?100*g/ps.length:0,1)+" %"],["KALINA confiables",dec(kc,0)],["Estudios",dec(casos.length,0)]]
     .map((a)=>'<div class="kpi"><div class="v">'+a[1]+'</div><div class="t">'+a[0]+"</div></div>").join("");
   pinta("graf-resumen",cfgResumen(casos)); renderMatriz();
 }
 function renderMatriz(){
   const subs=[...new Set(COND.map((c)=>c.id_subcaso))];
-  let h="<table><thead><tr><th>Subcaso</th>";
+  let h="<table><thead><tr><th>Estudio · parte</th>";
   for(const v of VARS) h+="<th>"+esc(v)+"</th>";
   h+="</tr></thead><tbody>";
   for(const s of subs){
@@ -198,7 +198,7 @@ function renderMatriz(){
     for(const v of VARS){
       const r=uno(COND,(c)=>c.id_subcaso===s&&c.variable===v);
       if(!r||r.estado==="sin_dato"){
-        if(r&&v==="T_amb_diseno"&&/^KF-M0[123]/.test(r.id_caso||"")) h+='<td><span class="sin">300,03 K (por protocolo)</span></td>';
+        if(r&&v==="T_amb_diseno"&&/^(1\.1|2\.[1-3]|3\.1)$/.test(r.id_caso||"")) h+='<td><span class="sin">300,03 K (por protocolo)</span></td>';
         else h+='<td><span class="sin">—</span></td>';
       }
       else if(r.estado==="barrido") h+=oat?'<td><span class="oat">una a la vez</span></td>':'<td><span class="barrida">barrida</span></td>';
@@ -211,7 +211,7 @@ function renderMatriz(){
 }
 function renderGlosario(){const g=D.GLOSARIO||{};$("#glosario").innerHTML=Object.keys(g).map((k)=>"<dt>"+esc(k)+"</dt><dd>"+esc(g[k])+"</dd>").join("");}
 function renderCasos(){
-  const cols=[["id_caso","Caso"],["n_puntos","Corridas"],["genuinos","Genuinas"],["kalina","KALINA"],["kalina_confiables","KALINA confiables"],["corregible","Corregibles"],["invariable","Inviables"],["no_convergio","No convergió"],["n2","N2"],["omitidos","Omitidos"],["fuera_rango","Fuera de rango"]];
+  const cols=[["id_caso","Estudio"],["n_puntos","Corridas"],["genuinos","Genuinas"],["kalina","KALINA"],["kalina_confiables","KALINA confiables"],["corregible","Corregibles"],["invariable","Inviables"],["no_convergio","No convergió"],["n2","Falsos convergidos"],["omitidos","Omitidos"],["fuera_rango","Fuera de rango"]];
   let h="<table><thead><tr>"+cols.map((c)=>"<th>"+esc(c[1])+"</th>").join("")+"</tr></thead><tbody>";
   for(const r of D.CASOS) h+="<tr>"+cols.map((c)=>"<td>"+(c[0]==="id_caso"?esc(r[c[0]]):dec(r[c[0]],0))+"</td>").join("")+"</tr>";
   $("#tabla-casos").innerHTML=h+"</tbody></table>";
@@ -229,7 +229,7 @@ function renderTodo(){
   est.pag=0; renderTabla();
 }
 function init(){
-  $("#sel-bloque").innerHTML=BLOQUES.map((b)=>'<option value="'+esc(b.bloque_director)+'">'+esc(b.bloque_director+" · "+(b.id_casos||"")+" · "+(b.descripcion||b.bloque_director))+"</option>").join("");
+  $("#sel-bloque").innerHTML=BLOQUES.map((b)=>'<option value="'+esc(b.bloque_director)+'">'+esc(b.bloque_director+" · "+(b.descripcion||""))+"</option>").join("");
   $("#chk-clases").innerHTML='<legend>Clase del ciclo</legend>'+CLASES.map((c)=>'<label><input type="checkbox" class="cc" value="'+c+'" checked><span class="punto" style="background:'+col(c)+'"></span>'+esc(etq(c))+"</label>").join("");
   document.querySelectorAll(".cc").forEach((ch)=>ch.addEventListener("change",()=>{est.clases=new Set(sel([...document.querySelectorAll(".cc")],(x)=>x.checked).map((x)=>x.value));est.pag=0;renderTodo();}));
   $("#sel-bloque").addEventListener("change",(e)=>{est.bloque=e.target.value;cargarBloque();});
@@ -241,7 +241,8 @@ function init(){
   $("#btn-csv").addEventListener("click",csv);
   document.querySelectorAll(".pest-btn").forEach((b)=>b.addEventListener("click",()=>activarSec(b.dataset.sec)));
   renderResumen(); renderGlosario(); renderCasos();
-  est.bloque=BLOQUES.length?BLOQUES[0].bloque_director:"";
+  est.bloque=BLOQUES.some((b)=>b.bloque_director==="3.2")?"3.2":(BLOQUES.length?BLOQUES[0].bloque_director:"");
+  $("#sel-bloque").value=est.bloque;
   cargarBloque();
 }
 document.addEventListener("DOMContentLoaded",init);

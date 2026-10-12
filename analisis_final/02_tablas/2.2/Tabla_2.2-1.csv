@@ -1,0 +1,27 @@
+﻿Parte,Variable,Estado,Valor o rango,n valores,¿Igual al profesor?,Unidad
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Presión de baja, P_baja [kPa]",Barrida,400.0 – 2000,12.0,,kPa
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.750 – 0.810,3.0,,–
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+2.2a · conservar la fuente (ε_HRVG × P_baja),"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+2.2a · conservar la fuente (ε_HRVG × P_baja),Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
+2.2a · conservar la fuente (ε_HRVG × P_baja),motor de propiedades,Fija,teqp,,,–
+2.2b · bajar la fuente (T_fuente × P_baja),"Temperatura de la fuente, T_fuente [K]",Barrida,380.0 – 560.0,9.0,,K
+2.2b · bajar la fuente (T_fuente × P_baja),"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+2.2b · bajar la fuente (T_fuente × P_baja),"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+2.2b · bajar la fuente (T_fuente × P_baja),"Presión de baja, P_baja [kPa]",Barrida,400.0 – 2000,32.0,,kPa
+2.2b · bajar la fuente (T_fuente × P_baja),"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+2.2b · bajar la fuente (T_fuente × P_baja),"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+2.2b · bajar la fuente (T_fuente × P_baja),"Eficiencia isentrópica de la turbina, η_t [–]",Fija,0.85,,sí,–
+2.2b · bajar la fuente (T_fuente × P_baja),"Eficiencia isentrópica de la bomba, η_p [–]",Fija,0.75,,sí,–
+2.2b · bajar la fuente (T_fuente × P_baja),"Efectividad del generador de vapor, ε_HRVG [–]",Fija,0.85,,sí,–
+2.2b · bajar la fuente (T_fuente × P_baja),"Efectividad del regenerador, ε_reg [–]",Fija,0.75,,sí,–
+2.2b · bajar la fuente (T_fuente × P_baja),"Efectividad del condensador, ε_cond [–]",Fija,0.8,,sí,–
+2.2b · bajar la fuente (T_fuente × P_baja),Piso de O2 (T de diseño de la bomba) [K],Sin dato,,,,K
+2.2b · bajar la fuente (T_fuente × P_baja),motor de propiedades,Fija,teqp,,,–

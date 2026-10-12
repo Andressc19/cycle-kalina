@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """A5 · Construye el tablero HTML interactivo `tablero_kalina.html`."""
 import json, os, pandas as pd
+
+import codigos
 from nombres import ETIQUETA_CLASE, GLOSARIO, NOMBRE
 
 CANONICA = "analisis_final/01_datos/todos_los_puntos.csv"
@@ -103,6 +105,26 @@ def buscar_prefijo(codigo, tabla, defecto=None):
         partes.pop()
     return defecto
 
+def _nomenclatura(puntos, condiciones, bloques):
+    """Estudio (3.2), parte (4.1c) y etiquetas en palabras en lugar de KF-M…, B… (2026-10-12)."""
+    for r in puntos:                                   # 4.1c-0042 en lugar de KF-M05-3-0042
+        sub = str(r.get("id_subcaso"))
+        r["id_punto"] = f"{codigos.parte(sub)[0]}-{str(r.get('id_punto'))[-4:]}"
+    for r in puntos + condiciones:
+        r["id_caso"] = codigos.estudio(r.get("id_caso"))
+        r["id_subcaso"] = codigos.etiqueta(r.get("id_subcaso"))
+        if "bloque_director" in r:
+            r["bloque_director"] = codigos.bloque(r["bloque_director"])
+    for b in bloques:
+        b["descripcion"] = codigos.etiqueta_bloque(b["bloque_director"]).split(" · ", 1)[1]
+        b["bloque_director"] = codigos.bloque(b["bloque_director"])
+        b["id_subcasos"] = "; ".join(codigos.etiqueta(s.strip()) for s in str(b["id_subcasos"]).split(";"))
+        b["id_casos"] = " + ".join(dict.fromkeys(codigos.estudio(c) for c in str(b["id_casos"]).split(" + ")))
+    orden = lambda b: [float(x) if x.replace(".", "").isdigit() else 0 for x in   # noqa: E731
+                       b["bloque_director"].split(" ")[0].rstrip("abcde").split(".")]
+    bloques.sort(key=orden)
+
+
 def main():
     canonica = pd.read_csv(CANONICA)
     canonica = canonica[canonica["id_caso"] != "KF-M08"]
@@ -126,7 +148,11 @@ def main():
 
     cas = pd.read_csv(CASOS)
     cas = cas[cas["id_caso"] != "KF-M08"]
+    cas = cas.assign(id_caso=cas["id_caso"].map(codigos.estudio)).groupby("id_caso", sort=False,
+                                                                          as_index=False).sum()
+    cas = cas.sort_values("id_caso", key=lambda c: c.map(lambda x: [int(t) for t in x.split(".")]))
     casos = registros(cas, list(cas.columns), valor_simple)
+    _nomenclatura(puntos, condiciones, bloques)       # códigos nuevos en todo lo que se muestra
 
     datos = {"PUNTOS": puntos, "CONDICIONES": condiciones, "BLOQUES": bloques,
              "CASOS": casos, "NOMBRE": NOMBRE, "ETIQUETA_CLASE": ETIQUETA_CLASE,

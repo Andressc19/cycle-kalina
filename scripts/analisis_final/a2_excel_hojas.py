@@ -16,6 +16,7 @@ from openpyxl.utils import get_column_letter
 
 from a2_columnas import tipo_por_unidad
 from a2_comun import COLOR_CLASE, RAIZ, TABLAS, fmt_excel
+from codigos_texto import traducir
 from nombres import GLOSARIO
 
 FIG = os.path.join(RAIZ, "analisis_final", "03_figuras")
@@ -30,7 +31,7 @@ FIGURAS_DE = {"M02-N1": ["FIG-M02-01"], "M02-N2": ["FIG-M02-02"], "M02R": ["FIG-
               "M02S": ["FIG-M02S"], "M03": ["FIG-M03"], "M04": ["FIG-M04-"], "M04c": ["FIG-M04c"],
               "M05": ["FIG-M05-S"], "M05c": ["FIG-M05c"], "M06": ["FIG-M06"], "M07": ["FIG-M07"],
               "M09": ["FIG-M09"], "M10": ["FIG-M10-"], "M10b": ["FIG-M10-01"], "G": ["FIG-G"],
-              "ref": ["FIG-G", "FIG-M"]}
+              "ref": ["Figura_"]}
 
 
 def cuadricula(ws, r1, c1, r2, c2):
@@ -55,18 +56,18 @@ def _anchos(ws, n_col, fila_ini, fila_fin):
 
 def hoja_tabla(wb, meta, condiciones):
     """Una tabla TAB-* con encabezado (todas las líneas de condiciones), cuerpo y notas."""
-    carpeta = os.path.join(TABLAS, meta["carpeta"])
-    df = pd.read_csv(os.path.join(carpeta, meta["tabla"] + ".csv"))
+    carpeta = os.path.join(TABLAS, str(meta["carpeta_nueva"]))       # nomenclatura nueva
+    df = pd.read_csv(os.path.join(carpeta, meta["archivo"] + ".csv"))
     ws = wb.create_sheet(nombre_hoja(meta["hoja"]))
-    ws["A1"] = f"{meta['tabla']} · {meta['titulo']}"; ws["A1"].font = TITULO
-    ws["A2"] = f"Caso(s): {meta['casos']} · Bloque(s): {meta['bloques']}"
-    ws["A3"] = f"Punto base: {meta['punto_base']}"
-    lineas = condiciones.splitlines() if condiciones else         ["Tabla de síntesis: cada fila es un caso con sus propios datos fijos."]
+    ws["A1"] = f"Tabla {meta['id_nuevo']} · {meta['titulo_nuevo']}"; ws["A1"].font = TITULO
+    ws["A2"] = meta["cabecera"]
+    ws["A3"] = f"Punto base: {meta['punto_base_nuevo']}" if meta["carpeta_nueva"] != "S" else ""
+    lineas = condiciones.splitlines() if condiciones and meta["carpeta_nueva"] != "S" else         ["Síntesis: cada fila es un estudio o una parte con sus propios datos fijos."]
     # Todas las líneas: con varios bloques, cortar a 2 mostraba solo el primero.
     for k, linea in enumerate(lineas):
-        ws.cell(4 + k, 1, linea).font = NEGRITA if linea.startswith("Bloque ") else Font()
+        ws.cell(4 + k, 1, linea).font = NEGRITA if linea.startswith("Parte ") else Font()
     r_filtro = 4 + len(lineas)
-    ws.cell(r_filtro, 1, f"Filtro: {meta['filtro']} · Fuente: {meta['fuente']}")
+    ws.cell(r_filtro, 1, f"Fuente: {traducir(meta['fuente'])}")
     for r in range(1, r_filtro + 1):
         ws.cell(r, 1).alignment = Alignment(wrap_text=False)
     h = r_filtro + 2                                  # fila de encabezados de la tabla
@@ -96,8 +97,7 @@ def hoja_tabla(wb, meta, condiciones):
     if len(df):
         ws.auto_filter.ref = f"A{h}:{get_column_letter(len(df.columns))}{fin}"
     cuadricula(ws, h, 1, fin, max(len(df.columns), 1))
-    nota = (f"Notas: n = {meta['n']} filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); "
-            f"‡ = falso convergido (N2). {meta['notas'] if isinstance(meta['notas'], str) else ''}")
+    nota = "Notas: " + str(meta["notas_nuevas"])
     ws.cell(fin + 2, 1, nota).font = Font(italic=True)
     # sin paneles inmovilizados: el usuario prefiere el desplazamiento normal (2026-10-11)
     _anchos(ws, len(df.columns), h, fin)
@@ -136,15 +136,15 @@ def hoja_figuras(wb, clave, titulo):
 def hoja_leeme(wb):
     ws = wb.active; ws.title = "LEEME"
     filas = ["Ciclo Kalina KCS-11 — resultados de la campaña final de barridos (M1–M10b)", "",
-             "Para qué es este libro: presentar las tablas y figuras del análisis, organizadas por bloque.",
-             "Un bloque reúne puntos con las MISMAS variables fijas en los MISMOS valores: solo se comparan "
-             "puntos de un mismo bloque.",
+             "Para qué es este libro: presentar las tablas y gráficos del análisis, ordenados por pregunta.",
+             "Cómo se numera: pregunta (1–6) → estudio (2.4) → parte (2.4a). Ver la hoja Nomenclatura. "
+             "Solo se comparan puntos de la misma parte.",
              "Cómo leer cada hoja: las primeras filas dicen qué caso es, el punto base, los datos fijos y "
-             "barridos (bloque por bloque si hay varios), el filtro y la fuente; la tabla empieza después "
+             "barridos (parte por parte si hay varias), el filtro y la fuente; la tabla empieza después "
              "de una fila en blanco (con filtros); las notas van al final.",
-             "Hoja Tablero: elija un bloque en la celda B2 y se actualizan las cifras, las condiciones y "
+             "Hoja Tablero: elija un estudio o una parte en la celda B2 y se actualizan las cifras, las condiciones y "
              "los gráficos.",
-             "Hojas *_graficos: gráficos nativos de Excel de cada caso (pase el cursor para ver los "
+             "Hojas 'N Gráficos': gráficos nativos de Excel de cada pregunta (pase el cursor para ver los "
              "valores); cada uno lleva arriba su ID y título y abajo su pie con los datos fijos.",
              "Hoja Figuras_matplotlib_ref (al final): las 30 figuras de Matplotlib, solo como referencia.",
              "", "Glosario:"]
@@ -158,7 +158,7 @@ def hoja_leeme(wb):
                        ("CORREGIBLE", "CORREGIBLE: falla un criterio operativo (casi siempre O2)"),
                        ("INVIABLE", "INVIABLE: falla un criterio estructural (O3, O5…)"),
                        ("NO_CONVERGIO", "NO_CONVERGIO: el modelo no encontró un ciclo"),
-                       ("N2", "N2: falso convergido (no cuenta)")):
+                       ("N2", "Falso convergido: el solver dijo que convergió, pero no es un ciclo real (no cuenta)")):
         c = ws.cell(r, 1, txt); c.fill = PatternFill("solid", fgColor=COLOR_CLASE[clase]); r += 1
     ws.column_dimensions["A"].width = 130
 

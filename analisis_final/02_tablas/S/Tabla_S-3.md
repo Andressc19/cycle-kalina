@@ -1,0 +1,44 @@
+# Tabla S-3 · Rangos KALINA comparados
+
+**Síntesis de toda la campaña:** cada fila es un estudio o una parte con sus propios datos fijos.  
+
+
+
+| Estudio | Parte | Datos fijos | Variable | n KALINA confiables | p5 | Mediana | p95 |
+|---|---|---|---|---|---|---|---|
+| estudio 3.2 | 3.2 | Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp. | Presión de alta, P_alta [kPa] | 83 | 2161.46 | 3558.44 | 4906.74 |
+| estudio 3.2 | 3.2 | Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp. | Presión de baja, P_baja [kPa] | 83 | 681.278 | 1152.82 | 1464.45 |
+| estudio 3.2 | 3.2 | Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp. | Diferencia de presiones, ΔP [kPa] | 83 | 972.657 | 2528.97 | 3761.48 |
+| estudio 3.2 | 3.2 | Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp. | Razón de presiones, r_P [–] | 83 | 1.71152 | 3.21079 | 6.19664 |
+| estudio 3.2 | 3.2 | Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp. | Temperatura de la fuente, T_fuente [K] | 83 | 382.467 | 409.355 | 455.278 |
+| estudio 3.2 | 3.2 | Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp. | Fracción de amoníaco de la mezcla base, x_b [–] | 83 | 0.514581 | 0.660168 | 0.807906 |
+| estudio 4.1 escenario S1 | 4.1a | Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | Presión de alta, P_alta [kPa] | 2 | 3242.44 | 3556.73 | 3871.03 |
+| estudio 4.1 escenario S1 | 4.1a | Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | Presión de baja, P_baja [kPa] | 2 | 1389.86 | 1662.59 | 1935.32 |
+| estudio 4.1 escenario S1 | 4.1a | Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | Diferencia de presiones, ΔP [kPa] | 2 | 1307.12 | 1894.15 | 2481.17 |
+| estudio 4.1 escenario S1 | 4.1a | Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | Razón de presiones, r_P [–] | 2 | 1.69387 | 2.25238 | 2.8109 |
+| estudio 4.1 escenario S1 | 4.1a | Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | Temperatura de la fuente, T_fuente [K] | 2 | 623.15 | 623.15 | 623.15 |
+| estudio 4.1 escenario S1 | 4.1a | Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | Fracción de amoníaco de la mezcla base, x_b [–] | 2 | 0.719222 | 0.771449 | 0.823675 |
+| estudio 4.1 escenario S2 | 4.1b | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; m_b = 1 kg/s; motor de propiedades = teqp. | — (sin KALINA confiables) | 0 |  |  |  |
+| estudio 4.1 escenario S3 | 4.1c | Datos fijos: T_sumidero = 300.03 K; P_alta = 3000 kPa; P_baja = 400 kPa; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | — (sin KALINA confiables) | 0 |  |  |  |
+| estudio 4.1 escenario S4 | 4.1d | Datos fijos: T_fuente = 623.15 K; T_sumidero = 300.03 K; P_alta = 3000 kPa; m_b = 1 kg/s; piso de O2 = 300.03 K; motor de propiedades = teqp. | — (sin KALINA confiables) | 0 |  |  |  |
+| estudio 4.1 escenario S5 | 4.1e | Datos fijos: T_fuente = 623.15 K; x_b = 0.5; m_b = 1 kg/s; motor de propiedades = teqp. | — (sin KALINA confiables) | 0 |  |  |  |
+| 4.2 | 4.2 | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; motor de propiedades = teqp. | Presión de alta, P_alta [kPa] | 104 | 3000 | 3000 | 3000 |
+| 4.2 | 4.2 | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; motor de propiedades = teqp. | Presión de baja, P_baja [kPa] | 104 | 400 | 400 | 400 |
+| 4.2 | 4.2 | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; motor de propiedades = teqp. | Diferencia de presiones, ΔP [kPa] | 104 | 2600 | 2600 | 2600 |
+| 4.2 | 4.2 | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; motor de propiedades = teqp. | Razón de presiones, r_P [–] | 104 | 7.5 | 7.5 | 7.5 |
+| 4.2 | 4.2 | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; motor de propiedades = teqp. | Temperatura de la fuente, T_fuente [K] | 104 | 390 | 400 | 410 |
+| 4.2 | 4.2 | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; motor de propiedades = teqp. | Fracción de amoníaco de la mezcla base, x_b [–] | 104 | 0.5 | 0.5 | 0.5 |
+| estudio 4.3 conjunto final x_b+P_alta+eficiencias+P_baja | 4.3 x_b+P_alta+eficiencias+P_baja | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp. | Presión de alta, P_alta [kPa] | 5 | 3000 | 3000 | 3000 |
+| estudio 4.3 conjunto final x_b+P_alta+eficiencias+P_baja | 4.3 x_b+P_alta+eficiencias+P_baja | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp. | Presión de baja, P_baja [kPa] | 5 | 400 | 400 | 400 |
+| estudio 4.3 conjunto final x_b+P_alta+eficiencias+P_baja | 4.3 x_b+P_alta+eficiencias+P_baja | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp. | Diferencia de presiones, ΔP [kPa] | 5 | 2600 | 2600 | 2600 |
+| estudio 4.3 conjunto final x_b+P_alta+eficiencias+P_baja | 4.3 x_b+P_alta+eficiencias+P_baja | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp. | Razón de presiones, r_P [–] | 5 | 7.5 | 7.5 | 7.5 |
+| estudio 4.3 conjunto final x_b+P_alta+eficiencias+P_baja | 4.3 x_b+P_alta+eficiencias+P_baja | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp. | Temperatura de la fuente, T_fuente [K] | 5 | 392.166 | 399.367 | 408.78 |
+| estudio 4.3 conjunto final x_b+P_alta+eficiencias+P_baja | 4.3 x_b+P_alta+eficiencias+P_baja | Datos fijos: P_alta = 3000 kPa; P_baja = 400 kPa; x_b = 0.5; m_b = 1 kg/s; η_t = 0.85; η_p = 0.75; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.8; motor de propiedades = teqp. | Fracción de amoníaco de la mezcla base, x_b [–] | 5 | 0.5 | 0.5 | 0.5 |
+| estudio 6.2 malla | 6.2c | Datos fijos: T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; m_b = 1 kg/s; η_t = 0.9; η_p = 0.8; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.95; piso de O2 = 283.15 K; motor de propiedades = teqp. | Presión de alta, P_alta [kPa] | 70 | 3300 | 3300 | 3300 |
+| estudio 6.2 malla | 6.2c | Datos fijos: T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; m_b = 1 kg/s; η_t = 0.9; η_p = 0.8; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.95; piso de O2 = 283.15 K; motor de propiedades = teqp. | Presión de baja, P_baja [kPa] | 70 | 400 | 800 | 1200 |
+| estudio 6.2 malla | 6.2c | Datos fijos: T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; m_b = 1 kg/s; η_t = 0.9; η_p = 0.8; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.95; piso de O2 = 283.15 K; motor de propiedades = teqp. | Diferencia de presiones, ΔP [kPa] | 70 | 2100 | 2500 | 2900 |
+| estudio 6.2 malla | 6.2c | Datos fijos: T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; m_b = 1 kg/s; η_t = 0.9; η_p = 0.8; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.95; piso de O2 = 283.15 K; motor de propiedades = teqp. | Razón de presiones, r_P [–] | 70 | 2.75 | 4.125 | 8.25 |
+| estudio 6.2 malla | 6.2c | Datos fijos: T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; m_b = 1 kg/s; η_t = 0.9; η_p = 0.8; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.95; piso de O2 = 283.15 K; motor de propiedades = teqp. | Temperatura de la fuente, T_fuente [K] | 70 | 394.15 | 394.15 | 394.15 |
+| estudio 6.2 malla | 6.2c | Datos fijos: T_fuente = 394.15 K; T_sumidero = 278.15 K; P_alta = 3300 kPa; m_b = 1 kg/s; η_t = 0.9; η_p = 0.8; ε_HRVG = 0.85; ε_reg = 0.75; ε_cond = 0.95; piso de O2 = 283.15 K; motor de propiedades = teqp. | Fracción de amoníaco de la mezcla base, x_b [–] | 70 | 0.5 | 0.73 | 0.91 |
+
+**Notas:** Filtro: solo KALINA confiables. n = 34 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: todos_los_puntos.csv. Cada caso tiene datos fijos distintos: comparar rangos entre filas, no puntos. Percentiles con numpy (método lineal).

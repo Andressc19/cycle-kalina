@@ -16,9 +16,8 @@ from nombres import NOMBRE, grupo_legible
 aplicar_estilo()
 
 PUNTOS = cargar()
-ORDEN_CASOS = ["KF-M01", "KF-M02-N1", "KF-M02-N2", "KF-M02R", "KF-M02S", "KF-M03",
-               "KF-M04", "KF-M04b", "KF-M04c", "KF-M05", "KF-M05c", "KF-M06",
-               "KF-M07", "KF-M09", "KF-M10", "KF-M10b"]
+ORDEN_CASOS = ["1.1", "2.1", "2.2", "2.3", "2.4", "3.1", "3.2", "3.3", "4.1", "4.2", "4.3",
+               "5.1", "6.1", "6.2"]   # estudios (nomenclatura 2026-10-12)
 FUENTE = "todos_los_puntos.csv"
 
 # ---------------------------------------------------------------- FIG-G01
@@ -27,7 +26,7 @@ def fig_g01():
     n_por_clase = {c: [] for c in ORDEN_CLASE}
     omitidos = []
     for c in casos:
-        sub = df[df["id_caso"] == c]
+        sub = df[df["estudio"].astype(str) == c]
         nc = contar_clases(sub)
         for k in ORDEN_CLASE:
             n_por_clase[k].append(nc.get(k, 0))
@@ -42,15 +41,14 @@ def fig_g01():
                 color=COLOR_CLASE[k], label=f"{ETIQUETA_CLASE[k]} (n = {v.sum()})")
         izq += v
     ax.set_yticks(range(len(casos)))
-    ax.set_yticklabels([c[3:] if c.startswith("KF-") else c for c in casos])
+    ax.set_yticklabels(casos); ax.set_ylabel("Estudio")
     ax.invert_yaxis()
     ax.set_xlabel("n de puntos")
     titulo_fig(fig, "Resultado de cada barrido: puntos por clase",
                "Síntesis: un caso por barra, M01 – M10b (sin KF-M08)")
     ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=8, frameon=False)
     pie = ("Figura FIG-G01. Resultado de cada barrido: puntos por clase.\n"
-           "Caso(s): todos los casos M01–M10b (figura de síntesis: una barra por "
-           "caso, rotulada con su id_caso), sin KF-M08.\n"
+           "Estudios 1.1 a 6.2 (figura de síntesis: una barra por estudio), sin el anexo A.1.\n"
            "Datos fijos: no aplica (figura de síntesis).\n"
            f"Filtro: todos los puntos menos los de KF-M08.\n"
            f"n = {total}. Fuente: {FUENTE}.")
@@ -130,8 +128,8 @@ def fig_g02():
               loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=4,
               frameon=False, fontsize=8)
     pie = ("Figura FIG-G02. Qué variables se movieron y cuáles quedaron fijas en "
-           "cada barrido.\nCaso(s): los barridos de la campaña (sin KF-M08) (figura de síntesis: "
-           "una fila por id_subcaso).\n"
+           "cada barrido.\nTodos los estudios, sin el anexo A.1 (figura de síntesis: una fila por "
+           "parte).\n"
            "Datos fijos: celda gris (PP/teqp), naranja (valor fijo distinto del "
            "profesor) o vacía (no aplica).\n"
            "Datos barridos: celdas azules (rango en TAB-G02); antes: celdas con el rango [mín, máx] o 'n = 2'.\n"
@@ -179,7 +177,7 @@ def fig_m09_01():
                              "conserva el subconjunto de su etiqueta")
     pie = ("Figura FIG-M09-01. Se conservan 8 de los 10 datos de diseño del "
            "profesor y sigue habiendo KALINA.\n"
-           "Caso(s): KF-M09 (escalera de conservación; figura de síntesis: una "
+           "Estudio 4.3 (escalera de conservación; figura de síntesis: una "
            "barra por conjunto conservado). Punto base: PP = datos del enunciado "
            "del profesor (T_fuente 623.15 K, P_alta 3000 kPa, P_baja 400 kPa, "
            "x_b 0.50).\n"

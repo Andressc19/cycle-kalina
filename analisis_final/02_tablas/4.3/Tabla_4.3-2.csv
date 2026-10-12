@@ -1,0 +1,21 @@
+﻿Parte,Corridas,Omitidos,Genuinos,KALINA,KALINA confiables,Corregibles,Inviables,No convergidos,Falsos convergidos,Fuera de rango
+4.3 T_fuente · ronda 0,100,0,60,7,0,44,9,38,2,53
+4.3 eficiencias · ronda 0,100,1,88,13,11,72,3,7,4,55
+4.3 P_alta · ronda 0,100,0,88,19,12,51,18,11,1,39
+4.3 P_baja · ronda 0,100,0,85,1,1,44,40,14,1,45
+4.3 T_sumidero · ronda 0,100,1,87,17,13,39,31,12,0,43
+4.3 x_b · ronda 0,100,1,85,29,15,37,19,9,5,58
+4.3 x_b+T_fuente · ronda 1,30,1,20,2,0,15,3,9,0,20
+4.3 x_b+eficiencias · ronda 1,30,0,26,11,6,15,0,1,3,20
+4.3 x_b+P_alta · ronda 1,30,0,28,11,7,15,2,1,1,19
+4.3 x_b+P_baja · ronda 1,30,0,27,4,3,20,3,1,2,19
+4.3 x_b+T_sumidero · ronda 1,30,0,26,9,5,12,5,2,2,18
+4.3 x_b+P_alta+T_fuente · ronda 2,30,0,19,3,0,13,3,11,0,19
+4.3 x_b+P_alta+eficiencias · ronda 2,30,0,28,13,7,14,1,1,1,20
+4.3 x_b+P_alta+P_baja · ronda 2,30,0,28,2,2,20,6,0,2,19
+4.3 x_b+P_alta+T_sumidero · ronda 2,30,0,27,8,6,15,4,0,3,16
+4.3 x_b+P_alta+eficiencias+T_fuente · ronda 3,30,0,0,0,0,0,0,30,0,0
+4.3 x_b+P_alta+eficiencias+P_baja · ronda 3,30,0,28,5,5,22,1,1,1,19
+4.3 x_b+P_alta+eficiencias+T_sumidero · ronda 3,30,0,29,6,4,21,2,0,1,20
+6.2e · P_baja mínima con su piso de diseño,24,0,24,18,18,6,0,0,0,0
+6.1d · motor real con 1500 s,3,0,3,3,3,0,0,0,0,0

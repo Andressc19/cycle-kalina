@@ -1,4 +1,26 @@
 ﻿tabla,columna_original,nombre_propuesto,unidad
+TAB-M04b-01,corregible,Corregibles,–
+TAB-M04b-01,fuera_rango,Fuera de rango,–
+TAB-M04b-01,genuinos,Genuinos,–
+TAB-M04b-01,id_subcaso,Subcaso,–
+TAB-M04b-01,invariable,Inviables,–
+TAB-M04b-01,kalina,KALINA,–
+TAB-M04b-01,kalina_confiables,KALINA confiables,–
+TAB-M04b-01,n2,Falsos convergidos (N2),–
+TAB-M04b-01,n_puntos,Corridas,–
+TAB-M04b-01,no_convergio,No convergidos,–
+TAB-M04b-01,omitidos,Omitidos,–
+TAB-M10b-01,corregible,Corregibles,–
+TAB-M10b-01,fuera_rango,Fuera de rango,–
+TAB-M10b-01,genuinos,Genuinos,–
+TAB-M10b-01,id_subcaso,Subcaso,–
+TAB-M10b-01,invariable,Inviables,–
+TAB-M10b-01,kalina,KALINA,–
+TAB-M10b-01,kalina_confiables,KALINA confiables,–
+TAB-M10b-01,n2,Falsos convergidos (N2),–
+TAB-M10b-01,n_puntos,Corridas,–
+TAB-M10b-01,no_convergio,No convergidos,–
+TAB-M10b-01,omitidos,Omitidos,–
 TAB-M01-01,corregible,Corregibles,–
 TAB-M01-01,fuera_rango,Fuera de rango,–
 TAB-M01-01,genuinos,Genuinos,–
@@ -6,7 +28,7 @@ TAB-M01-01,id_subcaso,Subcaso,–
 TAB-M01-01,invariable,Inviables,–
 TAB-M01-01,kalina,KALINA,–
 TAB-M01-01,kalina_confiables,KALINA confiables,–
-TAB-M01-01,n2,Falsos convergidos (N2),–
+TAB-M01-01,n2,Falsos convergidos,–
 TAB-M01-01,n_puntos,Corridas,–
 TAB-M01-01,no_convergio,No convergidos,–
 TAB-M01-01,omitidos,Omitidos,–
@@ -27,7 +49,7 @@ TAB-M02-N1-01,id_subcaso,Subcaso,–
 TAB-M02-N1-01,invariable,Inviables,–
 TAB-M02-N1-01,kalina,KALINA,–
 TAB-M02-N1-01,kalina_confiables,KALINA confiables,–
-TAB-M02-N1-01,n2,Falsos convergidos (N2),–
+TAB-M02-N1-01,n2,Falsos convergidos,–
 TAB-M02-N1-01,n_puntos,Corridas,–
 TAB-M02-N1-01,no_convergio,No convergidos,–
 TAB-M02-N1-01,omitidos,Omitidos,–
@@ -51,7 +73,7 @@ TAB-M02-N2-01,id_subcaso,Subcaso,–
 TAB-M02-N2-01,invariable,Inviables,–
 TAB-M02-N2-01,kalina,KALINA,–
 TAB-M02-N2-01,kalina_confiables,KALINA confiables,–
-TAB-M02-N2-01,n2,Falsos convergidos (N2),–
+TAB-M02-N2-01,n2,Falsos convergidos,–
 TAB-M02-N2-01,n_puntos,Corridas,–
 TAB-M02-N2-01,no_convergio,No convergidos,–
 TAB-M02-N2-01,omitidos,Omitidos,–
@@ -62,7 +84,7 @@ TAB-M02-N2-02,criterios_bloqueantes_frecuentes,Criterios bloqueantes frecuentes,
 TAB-M02-N2-02,eta_min_kalina,η mínima KALINA [%],%
 TAB-M02-N2-02,fuera_rango_min_kalina,Fuera de rango en la mínima KALINA,–
 TAB-M02-N2-02,mejor_D,D mínimo,–
-TAB-M02-N2-02,n_espurios_N2,Falsos convergidos (N2),–
+TAB-M02-N2-02,n_espurios_N2,Falsos convergidos,–
 TAB-M02-N2-02,n_genuinos,Genuinos,–
 TAB-M02-N2-02,n_kalina,KALINA,–
 TAB-M02-N2-02,ruta,Ruta,–
@@ -75,7 +97,7 @@ TAB-M02R-01,id_subcaso,Subcaso,–
 TAB-M02R-01,invariable,Inviables,–
 TAB-M02R-01,kalina,KALINA,–
 TAB-M02R-01,kalina_confiables,KALINA confiables,–
-TAB-M02R-01,n2,Falsos convergidos (N2),–
+TAB-M02R-01,n2,Falsos convergidos,–
 TAB-M02R-01,n_puntos,Corridas,–
 TAB-M02R-01,no_convergio,No convergidos,–
 TAB-M02R-01,omitidos,Omitidos,–
@@ -87,7 +109,7 @@ TAB-M02R-02,menor_d,d menor,–
 TAB-M02R-02,menor_d_eta,η en el d menor [%],%
 TAB-M02R-02,menor_d_val1,Valor 1 del d menor,–
 TAB-M02R-02,menor_d_val2,Valor 2 del d menor,–
-TAB-M02R-02,n_N2,Falsos convergidos (N2),–
+TAB-M02R-02,n_N2,Falsos convergidos,–
 TAB-M02R-02,n_genuinos,Genuinos,–
 TAB-M02R-02,n_kalina,KALINA,–
 TAB-M02R-02,parte,Parte,–
@@ -101,7 +123,7 @@ TAB-M02S-01,id_subcaso,Subcaso,–
 TAB-M02S-01,invariable,Inviables,–
 TAB-M02S-01,kalina,KALINA,–
 TAB-M02S-01,kalina_confiables,KALINA confiables,–
-TAB-M02S-01,n2,Falsos convergidos (N2),–
+TAB-M02S-01,n2,Falsos convergidos,–
 TAB-M02S-01,n_puntos,Corridas,–
 TAB-M02S-01,no_convergio,No convergidos,–
 TAB-M02S-01,omitidos,Omitidos,–
@@ -114,7 +136,7 @@ TAB-M02S-02,codigos_bloqueo,Códigos de bloqueo,–
 TAB-M02S-02,eta_max_kalina,η máxima KALINA [%],%
 TAB-M02S-02,eta_min_kalina,η mínima KALINA [%],%
 TAB-M02S-02,fuera_rango_min_kalina,Fuera de rango en la mínima KALINA,–
-TAB-M02S-02,n_N2,Falsos convergidos (N2),–
+TAB-M02S-02,n_N2,Falsos convergidos,–
 TAB-M02S-02,n_genuinos,Genuinos,–
 TAB-M02S-02,n_kalina,KALINA,–
 TAB-M03-01,corregible,Corregibles,–
@@ -124,7 +146,7 @@ TAB-M03-01,id_subcaso,Subcaso,–
 TAB-M03-01,invariable,Inviables,–
 TAB-M03-01,kalina,KALINA,–
 TAB-M03-01,kalina_confiables,KALINA confiables,–
-TAB-M03-01,n2,Falsos convergidos (N2),–
+TAB-M03-01,n2,Falsos convergidos,–
 TAB-M03-01,n_puntos,Corridas,–
 TAB-M03-01,no_convergio,No convergidos,–
 TAB-M03-01,omitidos,Omitidos,–
@@ -135,7 +157,7 @@ TAB-M04-01,id_subcaso,Subcaso,–
 TAB-M04-01,invariable,Inviables,–
 TAB-M04-01,kalina,KALINA,–
 TAB-M04-01,kalina_confiables,KALINA confiables,–
-TAB-M04-01,n2,Falsos convergidos (N2),–
+TAB-M04-01,n2,Falsos convergidos,–
 TAB-M04-01,n_puntos,Corridas,–
 TAB-M04-01,no_convergio,No convergidos,–
 TAB-M04-01,omitidos,Omitidos,–
@@ -207,17 +229,6 @@ TAB-M04-07,pct_kalina,KALINA [%],%
 TAB-M04-07,rP_max,r_P máxima [–],–
 TAB-M04-07,rP_min,r_P mínima [–],–
 TAB-M04-07,variable,Variable,–
-TAB-M04b-01,corregible,Corregibles,–
-TAB-M04b-01,fuera_rango,Fuera de rango,–
-TAB-M04b-01,genuinos,Genuinos,–
-TAB-M04b-01,id_subcaso,Subcaso,–
-TAB-M04b-01,invariable,Inviables,–
-TAB-M04b-01,kalina,KALINA,–
-TAB-M04b-01,kalina_confiables,KALINA confiables,–
-TAB-M04b-01,n2,Falsos convergidos (N2),–
-TAB-M04b-01,n_puntos,Corridas,–
-TAB-M04b-01,no_convergio,No convergidos,–
-TAB-M04b-01,omitidos,Omitidos,–
 TAB-M04c-01,corregible,Corregibles,–
 TAB-M04c-01,fuera_rango,Fuera de rango,–
 TAB-M04c-01,genuinos,Genuinos,–
@@ -225,7 +236,7 @@ TAB-M04c-01,id_subcaso,Subcaso,–
 TAB-M04c-01,invariable,Inviables,–
 TAB-M04c-01,kalina,KALINA,–
 TAB-M04c-01,kalina_confiables,KALINA confiables,–
-TAB-M04c-01,n2,Falsos convergidos (N2),–
+TAB-M04c-01,n2,Falsos convergidos,–
 TAB-M04c-01,n_puntos,Corridas,–
 TAB-M04c-01,no_convergio,No convergidos,–
 TAB-M04c-01,omitidos,Omitidos,–
@@ -251,12 +262,12 @@ TAB-M05-01,id_subcaso,Subcaso,–
 TAB-M05-01,invariable,Inviables,–
 TAB-M05-01,kalina,KALINA,–
 TAB-M05-01,kalina_confiables,KALINA confiables,–
-TAB-M05-01,n2,Falsos convergidos (N2),–
+TAB-M05-01,n2,Falsos convergidos,–
 TAB-M05-01,n_puntos,Corridas,–
 TAB-M05-01,no_convergio,No convergidos,–
 TAB-M05-01,omitidos,Omitidos,–
 TAB-M05-02,KALINA,KALINA,–
-TAB-M05-02,N2,Falsos convergidos (N2),–
+TAB-M05-02,N2,Falsos convergidos,–
 TAB-M05-02,bloqueante,Criterio bloqueante,–
 TAB-M05-02,bloqueante_n,Veces que bloquea,–
 TAB-M05-02,cercano_d,d del más cercano,–
@@ -292,7 +303,7 @@ TAB-M05c-01,id_subcaso,Subcaso,–
 TAB-M05c-01,invariable,Inviables,–
 TAB-M05c-01,kalina,KALINA,–
 TAB-M05c-01,kalina_confiables,KALINA confiables,–
-TAB-M05c-01,n2,Falsos convergidos (N2),–
+TAB-M05c-01,n2,Falsos convergidos,–
 TAB-M05c-01,n_puntos,Corridas,–
 TAB-M05c-01,no_convergio,No convergidos,–
 TAB-M05c-01,omitidos,Omitidos,–
@@ -308,7 +319,7 @@ TAB-M06-01,id_subcaso,Subcaso,–
 TAB-M06-01,invariable,Inviables,–
 TAB-M06-01,kalina,KALINA,–
 TAB-M06-01,kalina_confiables,KALINA confiables,–
-TAB-M06-01,n2,Falsos convergidos (N2),–
+TAB-M06-01,n2,Falsos convergidos,–
 TAB-M06-01,n_puntos,Corridas,–
 TAB-M06-01,no_convergio,No convergidos,–
 TAB-M06-01,omitidos,Omitidos,–
@@ -348,7 +359,7 @@ TAB-M07-01,id_subcaso,Subcaso,–
 TAB-M07-01,invariable,Inviables,–
 TAB-M07-01,kalina,KALINA,–
 TAB-M07-01,kalina_confiables,KALINA confiables,–
-TAB-M07-01,n2,Falsos convergidos (N2),–
+TAB-M07-01,n2,Falsos convergidos,–
 TAB-M07-01,n_puntos,Corridas,–
 TAB-M07-01,no_convergio,No convergidos,–
 TAB-M07-01,omitidos,Omitidos,–
@@ -368,7 +379,7 @@ TAB-M09-01,id_subcaso,Subcaso,–
 TAB-M09-01,invariable,Inviables,–
 TAB-M09-01,kalina,KALINA,–
 TAB-M09-01,kalina_confiables,KALINA confiables,–
-TAB-M09-01,n2,Falsos convergidos (N2),–
+TAB-M09-01,n2,Falsos convergidos,–
 TAB-M09-01,n_puntos,Corridas,–
 TAB-M09-01,no_convergio,No convergidos,–
 TAB-M09-01,omitidos,Omitidos,–
@@ -402,7 +413,7 @@ TAB-M10-01,id_subcaso,Subcaso,–
 TAB-M10-01,invariable,Inviables,–
 TAB-M10-01,kalina,KALINA,–
 TAB-M10-01,kalina_confiables,KALINA confiables,–
-TAB-M10-01,n2,Falsos convergidos (N2),–
+TAB-M10-01,n2,Falsos convergidos,–
 TAB-M10-01,n_puntos,Corridas,–
 TAB-M10-01,no_convergio,No convergidos,–
 TAB-M10-01,omitidos,Omitidos,–
@@ -425,14 +436,3 @@ TAB-M10-03,max_kalina,Máximo KALINA,–
 TAB-M10-03,min_kalina,Mínimo KALINA,–
 TAB-M10-03,n_kalina,KALINA,–
 TAB-M10-03,variable,Variable,–
-TAB-M10b-01,corregible,Corregibles,–
-TAB-M10b-01,fuera_rango,Fuera de rango,–
-TAB-M10b-01,genuinos,Genuinos,–
-TAB-M10b-01,id_subcaso,Subcaso,–
-TAB-M10b-01,invariable,Inviables,–
-TAB-M10b-01,kalina,KALINA,–
-TAB-M10b-01,kalina_confiables,KALINA confiables,–
-TAB-M10b-01,n2,Falsos convergidos (N2),–
-TAB-M10b-01,n_puntos,Corridas,–
-TAB-M10b-01,no_convergio,No convergidos,–
-TAB-M10b-01,omitidos,Omitidos,–

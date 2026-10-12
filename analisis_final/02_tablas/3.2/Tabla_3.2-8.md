@@ -1,0 +1,15 @@
+# Tabla 3.2-8 · Ventana KALINA por franjas de T_sumidero
+
+**Estudio 3.2** · Sensibilidad global (500 puntos)  
+**Punto base:** caja estudio 3.2 = las 10 variables barridas dentro de su caja (ver Tabla 3.2-1)  
+**Datos fijos: m_b = 1 kg/s; motor de propiedades = teqp.**  
+**Datos barridos: T_fuente [380.23–499.94] K (300 valores); T_sumidero [278.18–303.54] K (300 valores); P_alta [2005.4–4991.2] kPa (300 valores); P_baja [302.95–1498] kPa (300 valores); x_b [0.50012–0.84998] (300 valores); η_t [0.75036–0.91969] (300 valores); η_p [0.6504–0.89919] (300 valores); ε_HRVG [0.60004–0.94905] (300 valores); ε_reg [0.60097–0.94997] (300 valores); ε_cond [0.70014–0.94941] (300 valores); piso de O2 [278.18–303.54] K (300 valores).**  
+
+| Variable | Franja | Límite inferior | Límite superior | N | KALINA | KALINA [%] | P_baja mínima [kPa] | P_baja máxima [kPa] | ΔP mínima [kPa] | ΔP máxima [kPa] | r_P mínima [–] | r_P máxima [–] |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| T_sumidero | 1 | 278.15 | 284.5 | 125 | 47 | 37.6 | 558.2 | 1493 | 766.3 | 4117 | 1.555 | 8.376 |
+| T_sumidero | 2 | 284.5 | 290.85 | 125 | 27 | 21.6 | 547.0 | 1467 | 904.7 | 3786 | 1.682 | 6.485 |
+| T_sumidero | 3 | 290.85 | 297.2 | 125 | 28 | 22.4 | 607.3 | 1490 | 710.2 | 3718 | 1.548 | 5.324 |
+| T_sumidero | 4 | 297.2 | 303.55 | 125 | 19 | 15.2 | 634.3 | 1471 | 903.0 | 3770 | 1.686 | 6.935 |
+
+**Notas:** Filtro: puntos genuinos de la caja estudio 3.2. n = 4 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: resultados/2026-10-07_final_M4b/m4b_ventana_por_tsumidero.csv.

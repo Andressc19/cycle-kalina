@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-"""A1 · Pies de figura (TASK_CONTEXT af-A1 sección 5; af-A1b correcciones 1 y 4).
-
-condiciones_texto() y armar_pie() leen 00_inventario/condiciones_por_subcaso.csv
-(y, para los barridos de a una variable, condiciones_oat.csv) para que ningún pie
-pueda contradecir los datos.
-"""
+"""A1 · Pies de figura: condiciones_texto() y armar_pie() leen condiciones_por_subcaso.csv
+(y condiciones_oat.csv) para que ningún pie pueda contradecir los datos."""
 import pandas as pd
 
+import codigos
 from a1_fuentes import ENTRADAS, UNIDAD, sig6
 
 CONDICIONES = "analisis_final/00_inventario/condiciones_por_subcaso.csv"
@@ -16,8 +13,7 @@ SIMBOLO = {"eta_t": "η_t", "eta_p": "η_p", "eps_hrvg": "ε_HRVG", "eps_reg": "
            "eps_cond": "ε_cond", "T_amb_diseno": "piso de O2", "motor": "motor de propiedades"}
 
 
-def _s(var):
-    return SIMBOLO.get(var, var)
+def _s(var): return SIMBOLO.get(var, var)                                       # noqa: E704
 
 
 def _fmt4(valor):
@@ -171,19 +167,23 @@ def condiciones_por_bloque(id_subcasos, ruta=CONDICIONES):
         subs = list(dict.fromkeys(c.loc[c["bloque_director"] == g, "id_subcaso"]))
         texto = condiciones_texto(subs, ruta=ruta)
         if compacto:
-            partes.append(f"Bloque {g}: " + texto.splitlines()[0])
+            partes.append(f"Parte {codigos.bloque(g)}: " + texto.splitlines()[0])
         else:
-            partes.append(f"Bloque {g} ({', '.join(subs)}):\n" + texto)
+            nombres = "; ".join(dict.fromkeys(codigos.parte(x)[1] for x in subs))
+            partes.append(f"Parte {codigos.bloque(g)} ({nombres}):\n" + texto)
     if compacto:
-        partes.append("Datos barridos en cada bloque: las variables que no están fijas, dentro de "
-                      "la caja del caso (rangos exactos en la tabla de condiciones del caso).")
+        partes.append("Datos barridos en cada parte: las variables que no están fijas, dentro de "
+                      "la caja del estudio (rangos exactos en su tabla de condiciones).")
     return "\n".join(partes)
 
 
 def armar_pie(id_fig, titulo, id_subcasos, bloque, filtro, n, fuente,
               marcas="", base="", ruta=CONDICIONES):
     """Pie de figura con el formato del TASK_CONTEXT af-A1 sección 5."""
-    linea_casos = f"Caso(s): {', '.join(id_subcasos)} (bloque {bloque})."
+    ps = list(dict.fromkeys(codigos.parte(x)[0] for x in id_subcasos))
+    est = codigos.estudio(next((k for k in codigos.ESTUDIO if id_subcasos[0].startswith(k + "-")
+                                or id_subcasos[0] == k), id_subcasos[0]))
+    linea_casos = f"Estudio {est}" + (f" · parte(s) {', '.join(ps)}." if ps != [est] else ".")
     if base:
         linea_casos += f" Punto base: {base}"
     linea_filtro = f"Filtro: {filtro}."
@@ -194,6 +194,6 @@ def armar_pie(id_fig, titulo, id_subcasos, bloque, filtro, n, fuente,
     else:
         ultima = f"n = {n}. Fuente: {fuente}."
     return "\n".join([
-        f"Figura {id_fig}. {titulo}.", linea_casos,
+        f"Figura {codigos.figura(id_fig)}. {titulo}.", linea_casos,
         condiciones_texto(id_subcasos, ruta=ruta), linea_filtro, ultima,
     ])

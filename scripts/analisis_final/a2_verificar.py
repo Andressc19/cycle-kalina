@@ -21,15 +21,14 @@ def main():
     random.seed(1)
     for m in random.sample(hojas01, 5):
         ws = wb[m["hoja"][:31]]
-        h = next(r for r in range(1, 80) if ws.cell(r, 1).value == "Subcaso")   # encabezado variable
+        # nomenclatura nueva: columna "Parte" con etiquetas; se compara la suma del estudio
+        h = next(r for r in range(1, 80) if ws.cell(r, 1).value == "Parte")
         cab = [c.value for c in ws[h]]
-        ok = True
-        for fila in ws.iter_rows(min_row=h + 1, values_only=True):
-            if not fila[0] or str(fila[0]).startswith("Notas"):
-                continue
-            ref = conteo.loc[fila[0]]
-            ok &= int(fila[cab.index("Corridas")]) == int(ref["n_puntos"]) and \
-                int(fila[cab.index("KALINA")]) == int(ref["kalina"])
+        filas = [f for f in ws.iter_rows(min_row=h + 1, values_only=True)
+                 if f[0] and not str(f[0]).startswith("Notas")]
+        ref = conteo.loc[str(m["subcasos"]).split("; ")]
+        ok = sum(int(f[cab.index("Corridas")]) for f in filas) == int(ref["n_puntos"].sum()) and \
+            sum(int(f[cab.index("KALINA")]) for f in filas) == int(ref["kalina"].sum())
         print(f"[2] {m['hoja']}: conteos = conteo_por_subcaso → {'OK' if ok else 'FALLA'}")
         fallas += not ok
     for _, m in reg.iterrows():
@@ -49,9 +48,9 @@ def main():
     print(f"[5] Tablero: validación en B2 = {bool(dv)} ({dv[0].formula1 if dv else '—'}); "
           f"gráficos = {graf} → {'OK' if ok else 'FALLA'}")
     fallas += not ok
-    graf = {h: len(wb[h]._charts) for h in wb.sheetnames if h.endswith("_graficos") and h != "Aux_graficos"}
-    viejas = [h for h in wb.sheetnames if h.endswith("_figuras")]
-    ok = len(graf) == 10 and all(graf.values()) and not viejas and "Figuras_matplotlib_ref" in wb.sheetnames
+    graf = {h: len(wb[h]._charts) for h in wb.sheetnames if h.endswith(" Gráficos")}
+    viejas = [h for h in wb.sheetnames if h.endswith(("_figuras", "_graficos")) and h != "Aux_graficos"]
+    ok = len(graf) == 6 and all(graf.values()) and not viejas and "Figuras_matplotlib_ref" in wb.sheetnames
     print(f"[6] Gráficos nativos: {sum(graf.values())} en {len(graf)} hojas; hojas de imágenes por caso: "
           f"{len(viejas)}; hoja de referencia: {'Figuras_matplotlib_ref' in wb.sheetnames} → "
           f"{'OK' if ok else 'FALLA'}")

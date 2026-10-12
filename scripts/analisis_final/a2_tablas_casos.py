@@ -17,17 +17,16 @@ PUNTO_BASE = {
     "M02-N1": "PP = punto del profesor; se mueve una variable a la vez",
     "M02-N2": "PP = punto del profesor salvo el par movido",
     "M02R": "PP = punto del profesor con η/ε dentro de [0.40, 0.95]",
-    "M02S": "B1 a B4 = cuatro bases distintas (una por subcaso)",
+    "M02S": "2.4a a 2.4d = cuatro bases distintas (una por parte)",
     "M03": "A* = punto del profesor con T_fuente = 403 K y P_baja = 563.64 kPa",
     "M04": "caja M4 = las 10 variables barridas dentro de su caja (ver TAB-M04-00)",
-    "M04b": "caja M4 = las 10 variables barridas dentro de su caja (ver TAB-M04-00)",
     "M04c": "caja M4 con P_baja dentro de 1500 a 2500 kPa",
     "M05": "PP parcial según escenario S1 a S5",
     "M05c": "PP = punto del profesor con P_alta y P_baja fijas",
     "M06": "puntos clave del ciclo con teqp y con el motor real",
     "M07": "cada arranque (A1–A5) parte de un punto distinto y conserva datos distintos del profesor",
     "M09": "PP parcial según el conjunto de datos conservado",
-    "M10": "ancla de Húsavík (P_alta 3300 kPa, P_baja 690 kPa, T_fuente 394.15 K, T_sumidero 278.15 K); F3 conserva los datos de septiembre",
+    "M10": "ancla de Húsavík (P_alta 3300 kPa, P_baja 690 kPa, T_fuente 394.15 K, T_sumidero 278.15 K); la parte 6.2a conserva los datos de septiembre",
     "M10b": "ancla de Húsavík con x_b de 0.30 a 0.70",
 }
 
@@ -51,11 +50,19 @@ def _meta(mnn, num, slug, titulo, casos, subcasos, filtro, fuente, n, notas=""):
             "n": n, "notas": notas}
 
 
+# Estudios que juntan dos casos de origen (3.2 = M04 + M04b; 6.2 = M10 + M10b; 2026-10-12).
+JUNTOS = {"M04": ["KF-M04", "KF-M04b"], "M10": ["KF-M10", "KF-M10b"]}
+
+
+def _casos(mnn): return JUNTOS.get(mnn, ["KF-" + mnn])                          # noqa: E704
+def _subs(mnn): return [s for c in _casos(mnn) for s in subcasos_de(c)]       # noqa: E704
+
+
 def tabla_condiciones(mnn):
     """TAB-<Mnn>-00: variable por variable, estado y valor o rango."""
     c = leer(os.path.join(RAIZ, "analisis_final", "00_inventario",
                           "condiciones_por_subcaso.csv"))
-    c = c[c["id_caso"] == "KF-" + mnn]
+    c = c[c["id_caso"].isin(_casos(mnn))]
     filas = []
     for _, r in c.iterrows():
         tipo = tipo_de(r["variable"])
@@ -81,8 +88,8 @@ def tabla_condiciones(mnn):
     tipos = {"Subcaso": "txt", "Variable": "txt", "Estado": "txt", "Valor o rango": "txt",
              "Valor en el punto base": "txt",
              "n valores": "int", "¿Igual al profesor?": "txt", "Unidad": "txt"}
-    meta = _meta(mnn, "00", "condiciones", f"Condiciones del caso {mnn}", "KF-" + mnn,
-                 subcasos_de("KF-" + mnn), "condiciones_por_subcaso (cada subcaso y variable)",
+    meta = _meta(mnn, "00", "condiciones", "Condiciones: qué quedó fijo y qué se barrió", "KF-" + mnn,
+                 _subs(mnn), "cada parte y cada variable",
                  "analisis_final/00_inventario/condiciones_por_subcaso.csv", len(df))
     escribir_tabla(meta, df, tipos)
 
@@ -90,14 +97,14 @@ def tabla_condiciones(mnn):
 def tabla_conteo(mnn):
     """TAB-<Mnn>-01: conteo de corridas por subcaso."""
     c = leer_conteo()
-    c = c[c["id_caso"] == "KF-" + mnn].copy()
-    c = c.set_index("id_subcaso").loc[subcasos_de("KF-" + mnn)].reset_index()
+    c = c[c["id_caso"].isin(_casos(mnn))].copy()
+    c = c.set_index("id_subcaso").loc[_subs(mnn)].reset_index()
     cols = ["id_subcaso", "n_puntos", "omitidos", "genuinos", "kalina",
             "kalina_confiables", "corregible", "invariable", "no_convergio",
             "n2", "fuera_rango"]
     df, tipos = renombrar(c[cols], f"TAB-{mnn}-01")
-    meta = _meta(mnn, "01", "conteo", f"Corridas por subcaso del caso {mnn}", "KF-" + mnn,
-                 subcasos_de("KF-" + mnn), "conteo_por_subcaso",
+    meta = _meta(mnn, "01", "conteo", "Corridas por parte y por clase", "KF-" + mnn,
+                 _subs(mnn), "conteo por parte",
                  "analisis_final/00_inventario/conteo_por_subcaso.csv", len(df))
     escribir_tabla(meta, df, tipos)
 
@@ -176,7 +183,7 @@ SOLO = {("M06", "02"): ["KF-M06-VER"], ("M06", "03"): ["KF-M06-SUB"],
 
 
 def main():
-    for mnn in MNN:
+    for mnn in [m for m in MNN if m not in ("M04b", "M10b")]:
         tabla_condiciones(mnn)
         tabla_conteo(mnn)
     casos = {"M04": _sub("M04", "M04b")}

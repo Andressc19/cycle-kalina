@@ -1,0 +1,6 @@
+﻿Parte,Corridas,Omitidos,Genuinos,KALINA,KALINA confiables,Corregibles,Inviables,No convergidos,Falsos convergidos,Fuera de rango
+"5.1a · libre, desde el mejor de 3.2",117,0,117,102,98,15,0,0,0,6
+"5.1b · libre, desde el mejor de 2.4",105,0,104,63,63,41,0,1,0,6
+5.1c · conserva sus temperaturas,112,0,105,91,90,14,0,7,0,1
+5.1d · conserva sus presiones y su clima,113,0,113,80,80,33,0,0,0,7
+5.1e · conserva su fuente y su x_b,113,0,110,83,0,27,0,2,1,111

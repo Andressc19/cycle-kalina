@@ -1,0 +1,66 @@
+﻿Parte,Variable,Estado,Valor o rango,n valores,¿Igual al profesor?,Unidad
+4.1a · conserva sus temperaturas,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+4.1a · conserva sus temperaturas,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+4.1a · conserva sus temperaturas,"Presión de alta, P_alta [kPa]",Barrida,2000 – 4987,120.0,,kPa
+4.1a · conserva sus temperaturas,"Presión de baja, P_baja [kPa]",Barrida,202.1 – 1990,120.0,,kPa
+4.1a · conserva sus temperaturas,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.501 – 0.849,120.0,,–
+4.1a · conserva sus temperaturas,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.1a · conserva sus temperaturas,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.401 – 0.947,120.0,,–
+4.1a · conserva sus temperaturas,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.404 – 0.949,120.0,,–
+4.1a · conserva sus temperaturas,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0.949,120.0,,–
+4.1a · conserva sus temperaturas,"Efectividad del regenerador, ε_reg [–]",Barrida,0.404 – 0.948,120.0,,–
+4.1a · conserva sus temperaturas,"Efectividad del condensador, ε_cond [–]",Barrida,0.401 – 0.946,120.0,,–
+4.1a · conserva sus temperaturas,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
+4.1a · conserva sus temperaturas,motor de propiedades,Fija,teqp,,,–
+4.1b · conserva sus presiones,"Temperatura de la fuente, T_fuente [K]",Barrida,381.6 – 621.8,120.0,,K
+4.1b · conserva sus presiones,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.3 – 303.5,120.0,,K
+4.1b · conserva sus presiones,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.1b · conserva sus presiones,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+4.1b · conserva sus presiones,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.501 – 0.847,120.0,,–
+4.1b · conserva sus presiones,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.1b · conserva sus presiones,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.403 – 0.949,120.0,,–
+4.1b · conserva sus presiones,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.401 – 0.947,120.0,,–
+4.1b · conserva sus presiones,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.402 – 0.948,120.0,,–
+4.1b · conserva sus presiones,"Efectividad del regenerador, ε_reg [–]",Barrida,0.402 – 0.947,120.0,,–
+4.1b · conserva sus presiones,"Efectividad del condensador, ε_cond [–]",Barrida,0.402 – 0.947,120.0,,–
+4.1b · conserva sus presiones,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.3 – 303.5,120.0,,K
+4.1b · conserva sus presiones,motor de propiedades,Fija,teqp,,,–
+4.1c · conserva sus presiones y su clima,"Temperatura de la fuente, T_fuente [K]",Barrida,380.2 – 622.4,120.0,,K
+4.1c · conserva sus presiones y su clima,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+4.1c · conserva sus presiones y su clima,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.1c · conserva sus presiones y su clima,"Presión de baja, P_baja [kPa]",Fija,400.0,,sí,kPa
+4.1c · conserva sus presiones y su clima,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.500 – 0.849,120.0,,–
+4.1c · conserva sus presiones y su clima,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.1c · conserva sus presiones y su clima,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.400 – 0.948,120.0,,–
+4.1c · conserva sus presiones y su clima,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.404 – 0.945,120.0,,–
+4.1c · conserva sus presiones y su clima,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.400 – 0.949,120.0,,–
+4.1c · conserva sus presiones y su clima,"Efectividad del regenerador, ε_reg [–]",Barrida,0.402 – 0.949,120.0,,–
+4.1c · conserva sus presiones y su clima,"Efectividad del condensador, ε_cond [–]",Barrida,0.404 – 0.947,120.0,,–
+4.1c · conserva sus presiones y su clima,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
+4.1c · conserva sus presiones y su clima,motor de propiedades,Fija,teqp,,,–
+4.1d · conserva su P_alta y sus temperaturas,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+4.1d · conserva su P_alta y sus temperaturas,"Temperatura del sumidero, T_sumidero [K]",Fija,300.032917,,sí,K
+4.1d · conserva su P_alta y sus temperaturas,"Presión de alta, P_alta [kPa]",Fija,3000.0,,sí,kPa
+4.1d · conserva su P_alta y sus temperaturas,"Presión de baja, P_baja [kPa]",Barrida,211.4 – 1986,120.0,,kPa
+4.1d · conserva su P_alta y sus temperaturas,"Fracción de amoníaco de la mezcla base, x_b [–]",Barrida,0.502 – 0.848,120.0,,–
+4.1d · conserva su P_alta y sus temperaturas,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.1d · conserva su P_alta y sus temperaturas,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.403 – 0.946,120.0,,–
+4.1d · conserva su P_alta y sus temperaturas,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.400 – 0.947,120.0,,–
+4.1d · conserva su P_alta y sus temperaturas,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0.950,120.0,,–
+4.1d · conserva su P_alta y sus temperaturas,"Efectividad del regenerador, ε_reg [–]",Barrida,0.401 – 0.947,120.0,,–
+4.1d · conserva su P_alta y sus temperaturas,"Efectividad del condensador, ε_cond [–]",Barrida,0.402 – 0.947,120.0,,–
+4.1d · conserva su P_alta y sus temperaturas,Piso de O2 (T de diseño de la bomba) [K],Fija,300.032917,,sí,K
+4.1d · conserva su P_alta y sus temperaturas,motor de propiedades,Fija,teqp,,,–
+4.1e · conserva su fuente y su x_b,"Temperatura de la fuente, T_fuente [K]",Fija,623.15,,sí,K
+4.1e · conserva su fuente y su x_b,"Temperatura del sumidero, T_sumidero [K]",Barrida,278.3 – 303.4,120.0,,K
+4.1e · conserva su fuente y su x_b,"Presión de alta, P_alta [kPa]",Barrida,2023 – 4997,120.0,,kPa
+4.1e · conserva su fuente y su x_b,"Presión de baja, P_baja [kPa]",Barrida,206.1 – 1999,120.0,,kPa
+4.1e · conserva su fuente y su x_b,"Fracción de amoníaco de la mezcla base, x_b [–]",Fija,0.5,,sí,–
+4.1e · conserva su fuente y su x_b,"Flujo másico base, m_b [kg/s]",Fija,1.0,,sí,kg/s
+4.1e · conserva su fuente y su x_b,"Eficiencia isentrópica de la turbina, η_t [–]",Barrida,0.403 – 0.950,120.0,,–
+4.1e · conserva su fuente y su x_b,"Eficiencia isentrópica de la bomba, η_p [–]",Barrida,0.403 – 0.948,120.0,,–
+4.1e · conserva su fuente y su x_b,"Efectividad del generador de vapor, ε_HRVG [–]",Barrida,0.404 – 0.949,120.0,,–
+4.1e · conserva su fuente y su x_b,"Efectividad del regenerador, ε_reg [–]",Barrida,0.403 – 0.947,120.0,,–
+4.1e · conserva su fuente y su x_b,"Efectividad del condensador, ε_cond [–]",Barrida,0.401 – 0.948,120.0,,–
+4.1e · conserva su fuente y su x_b,Piso de O2 (T de diseño de la bomba) [K],Barrida,278.3 – 303.4,119.0,,K
+4.1e · conserva su fuente y su x_b,motor de propiedades,Fija,teqp,,,–
