@@ -1,7 +1,7 @@
-# Ciclo Kalina KCS-11: modelado, verificación y validación
+# Ciclo Kalina KCS-11: modelado, verificación y contraste con modelos publicados
 
 ## Ciclo Kalina KCS-11
-- Modelado termodinámico, verificación y validación
+- Modelado termodinámico, verificación y contraste con modelos publicados
 - [pendiente — nombre del curso / asignatura]
 - [pendiente — autor(es)]
 - [pendiente — fecha]
@@ -11,7 +11,7 @@
 ## Agenda
 - Qué es el Ciclo Kalina y por qué importa
 - Cómo se modeló matemáticamente
-- Cómo se verificó (17 criterios) y se validó (Elsayed et al., 2013)
+- Cómo se verificó (17 criterios) y se contrastó con un modelo publicado (Elsayed et al., 2013; sin validación experimental disponible)
 - Demo del material interactivo
 - Estado actual y próximos pasos
 
@@ -69,7 +69,7 @@
 - Patrón adapter: interfaz única `PropertyBackend` (8 métodos) para propiedades termodinámicas
 - Dos motores intercambiables:
   - `AmmoniaWaterAdapter` — riguroso, IAPWS G4-01, ~312 s/punto
-  - `TeqpAdapter` — rápido (~20×), validado contra el primero con error <0.5 % en h, s
+  - `TeqpAdapter` — rápido (~20×), verificado contra el primero con error <0.5 % en h, s
 - Barrido cartesiano sobre 11 variables de entrada (cada una Fijo o Barrido), no un optimizador de gradiente
 - El dominio tiene discontinuidades (separador, cavitación) que un optimizador podría saltarse
 
@@ -84,15 +84,15 @@
 > Notas: El material interactivo (sección 08) tiene un ejemplo numérico completo que muestra este residuo de convergencia paso a paso.
 > Visual sugerido: diagrama de los dos lazos anidados (Atlas interactivo, sección 08).
 
-## Validación externa: Elsayed et al. (2013)
+## Contraste con modelo publicado: Elsayed et al. (2013)
 - Caso replicado: P_alta=1500 kPa, x_b=0.55, T_fuente=373 K, T_sumidero=283 K, η_t=η_p=0.80
 - η del paper: 11.38 %
 - η de este proyecto: 11.05 % (AmmoniaWaterAdapter) / 11.055 % (TeqpAdapter)
 - Diferencia ≈ 0.33 puntos porcentuales (~2.9 % relativo), dentro del umbral de 5 % del test de regresión
 - Causas identificadas: ecuación de estado distinta (Tillner-Roth/Friend vs. Ibrahim/Klein), traducción pinch→efectividad de un solo paso, P_baja asumida
-- Validación extendida: 23 puntos comparables, Δη medio −0.06 pp
+- Contraste extendido: 23 puntos comparables, Δη medio −0.06 pp con signo (|Δη| medio 0.27 pp, máx. 1.16 pp)
 
-> Notas: Esta es la pieza central de evidencia: se comparó no solo un punto, sino 23 puntos de tendencia, y la diferencia observada tiene una causa identificada, no es un ajuste sin justificar.
+> Notas: Esta es la pieza central de evidencia disponible, aunque es un contraste con un modelo publicado del mismo grupo que Embaye, no con mediciones: se comparó no solo un punto, sino 23 puntos de tendencia, y la diferencia observada tiene una causa identificada, no es un ajuste sin justificar.
 
 ## Qué muestran los barridos paramétricos
 - Más de una decena de barridos documentados en `resultados/BITACORA_BARRIDOS.md`
@@ -114,7 +114,7 @@
 
 ## Estado actual del proyecto
 - Logrado: dos motores de propiedades cruzados (<0.5 % error), dos correcciones IAPWS G4-01 verificadas contra las Tablas 7-8
-- Logrado: validación externa Elsayed (punto único + 23 puntos de tendencia)
+- Logrado: contraste con Elsayed (modelo publicado, no mediciones; punto único + 23 puntos de tendencia)
 - Logrado: interfaz con pestañas de nivel superior sobre el mismo backend intercambiable
 - Pendiente: confirmar 3–5 puntos KALINA adicionales con el motor riguroso
 - Pendiente: documentar formalmente la elección de cierre por efectividad y la justificación del piso de O2 en el informe final
@@ -124,11 +124,11 @@
 
 ## Conclusiones
 - El modelo reproduce la física esperada (glide, compresor térmico, segunda ley) bajo 17 criterios de verificación
-- La validación externa confirma orden de magnitud y tendencia frente a literatura publicada
+- El contraste con un modelo publicado (no con mediciones) es coherente en orden de magnitud y tendencia
 - Los supuestos de mayor impacto (cierre por efectividad, piso de O2) están identificados y cuantificados, no escondidos
 - El material interactivo deja trazabilidad completa para revisión y defensa
 
-> Notas: En resumen: se construyó, se verificó internamente y se validó externamente un modelo del ciclo Kalina KCS-11, documentando tanto lo que funciona como sus límites conocidos.
+> Notas: En resumen: se construyó, se verificó internamente un modelo del ciclo Kalina KCS-11 y se contrastó con un modelo publicado (sin validación experimental disponible), documentando tanto lo que funciona como sus límites conocidos.
 
 ## Gracias
 - Acceso al material interactivo: Atlas del Ciclo Kalina

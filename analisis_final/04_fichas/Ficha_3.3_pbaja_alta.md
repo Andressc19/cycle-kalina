@@ -37,7 +37,7 @@ No hay punto base. Respecto a estudio 3.2 solo cambia el rango de P_baja.
 LHS, conteo por franjas de 100 kPa de P_baja y de 500 kPa de P_alta, y conteo de los criterios que fallan.
 
 ### Resultados obtenidos:
-- **135 evaluados: 120 genuinos, 75 KALINA (45 confiables)** (validación V14).
+- **135 evaluados: 120 genuinos, 75 KALINA (45 confiables)** (verificación V14).
 - **Hay KALINA en todas las franjas, de 1500 a 2500 kPa**, con un 33–75 % de KALINA por franja (sobre los puntos evaluados).
   El KALINA de mayor P_baja tiene 2494.5 kPa.
 - Dentro de esta zona, los no KALINA fallan por O2 (44 de 45).
@@ -61,4 +61,4 @@ Para el diseño, una P_baja alta no tiene interés práctico: la eficiencia cae.
 dentro de la ventana de estudio 3.2 y mencionar estudio 3.3 solo para decir que el límite superior es de
 eficiencia, no de factibilidad.
 
-**Fuentes:** `resultados/2026-10-07_final_M4c/REPORTE_M4c.md` (incluida la nota del director), `m4c_lhs.csv`, `m4c_techo.csv`, `m4c_techo_por_palta.csv`; validación V14.
+**Fuentes:** `resultados/2026-10-07_final_M4c/REPORTE_M4c.md` (incluida la nota del director), `m4c_lhs.csv`, `m4c_techo.csv`, `m4c_techo_por_palta.csv`; verificación V14.

@@ -46,7 +46,7 @@ genuinos se cuentan como en estudios 2.1 y 2.2 (los N2 no cuentan).
 
 ### Resultados obtenidos:
 - **14 puntos KALINA distintos.** La tabla completa tiene 20 filas KALINA porque la malla y la
-  bisección repiten puntos (validación V06).
+  bisección repiten puntos (verificación V06).
 
 | Parte | KALINA (filas) | KALINA confiables | Lectura |
 |---|---|---|---|
@@ -75,4 +75,4 @@ genuinos se cuentan como en estudios 2.1 y 2.2 (los N2 no cuentan).
 - El punto de la parte 2.3d (presiones del profesor, T_fuente 403 K, ε_cond 0.95) es el antecedente
   de estudio 4.2, que mapea esa franja en detalle.
 
-**Fuentes:** `resultados/2026-10-06_final_M2R/REPORTE_M2R.md`, `m2r_*_malla.csv`, `m2r_*_biseccion.csv`, `m2r_kalina.csv`; validación V06.
+**Fuentes:** `resultados/2026-10-06_final_M2R/REPORTE_M2R.md`, `m2r_*_malla.csv`, `m2r_*_biseccion.csv`, `m2r_kalina.csv`; verificación V06.

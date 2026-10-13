@@ -25,7 +25,7 @@ datos fijos distintos? Y ¿cómo se presentan al profesor con tablas, figuras y 
    Una parte reúne los puntos que comparten las mismas variables fijas en los mismos valores. Las
    condiciones (qué quedó fijo y en qué valor, y qué se barrió) se **detectaron desde los datos**, no
    se escribieron a mano.
-2. **Validación cruzada:** se recalcularon desde esa tabla 78 cifras de los reportes. Coinciden 76;
+2. **Verificación cruzada de cifras:** se recalcularon desde esa tabla 78 cifras de los reportes. Coinciden 76;
    las 2 restantes eran diferencias de definición y quedaron corregidas.
 3. **Productos de presentación** (todo en español):
    - 30 figuras Matplotlib, cada una con su título-conclusión, su recuadro de condiciones y su pie completo;
@@ -54,15 +54,15 @@ ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conse
 | Producto | Ruta | Cómo se verificó |
 |---|---|---|
 | Tabla canónica y condiciones | `analisis_final/01_datos/`, `00_inventario/` | 4 741 filas = suma de las filas de los CSV de origen; 0 identificadores vacíos o repetidos |
-| Validación cruzada | `analisis_final/05_validacion/checks_A4.md` | 76 de 78 coinciden; 2 diferencias de definición explicadas |
+| Verificación cruzada de cifras | `analisis_final/05_validacion/checks_A4.md` | 76 de 78 coinciden; 2 diferencias de definición explicadas |
 | Fichas por caso | `analisis_final/04_fichas/` | 16 fichas (17 casos) con las 12 secciones de la plantilla, más un recuadro "Antes de leer" |
-| Figuras | `analisis_final/03_figuras/` | 30 de 30 con PNG, SVG y pie; conteos de cada figura iguales a los de la validación; revisión visual |
-| Tablas | `analisis_final/02_tablas/` | 3 conteos al azar iguales a `conteo_por_subcaso`; ranking de estudio 3.1 igual al validado |
-| Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (84 hojas) | Tablero recalculado en Excel con 6 partes: cifras resumen correctas |
+| Figuras | `analisis_final/03_figuras/` | 30 de 30 con PNG, SVG y pie; conteos de cada figura iguales a los de la verificación cruzada; revisión visual |
+| Tablas | `analisis_final/02_tablas/` | 3 conteos al azar iguales a `conteo_por_subcaso`; ranking de estudio 3.1 igual al verificado |
+| Libro Excel | `datos/Excel_kalina_final_final_final.xlsx` (95 hojas) | Tablero recalculado en Excel con 6 partes: cifras resumen correctas |
 | Tablero web | `analisis_final/06_tablero/tablero_kalina.html` | Revisado en el navegador: sin errores, cifras resumen iguales a la verificación, gráficos visibles |
 | Power BI | `analisis_final/07_powerbi/` + `GUIA_POWERBI.md` | Descartado por el usuario (todo queda en Excel); los CSV se conservan |
 
-## §4. Conclusiones (validadas)
+## §4. Conclusiones (cifras verificadas)
 
 1. **El bloqueo del enunciado es la fuente a 623 K.** Con ella el punto del profesor no converge.
    Solo hay KALINA confiables alejándose mucho del resto del enunciado: x_b de 0.71 a 0.85, P_alta
@@ -76,11 +76,12 @@ ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conse
 4. **Ventana de presiones**: el 90 % de los KALINA tiene P_baja de 683 a 1461 kPa y r_P de 1.7 a 5.3
    (estudio 3.2). Un clima frío baja la P_baja necesaria (estudio 2.4); más amoníaco la sube (estudio 6.2).
 5. **Eficiencia (secundaria)**: ~8–11 % con equipos de eficiencia media, y hasta 15.6 % con equipos
-   a 0.95 conservando las presiones del profesor (estudio 5.1).
-6. **El modelo está validado**:
-   - reproduce el resultado del profesor (estudio 1.1) y los 97 KALINA de Húsavík (estudio 6.2);
-   - coincide con el motor real en los 5 puntos que el motor real alcanzó a resolver (estudio 6.1 / estudio 4.3);
-   - pasa la validación cruzada de A4.
+   a 0.95 conservando las presiones del profesor (estudio 5.1). Ese 15.6 % es el mejor aceptado de una
+   búsqueda convergida (5.1d); 5.1a y 5.1b se detuvieron todavía subiendo y sus 15.0 y 15.5 % son cotas inferiores.
+6. **El modelo está verificado y contrastado con modelos publicados; sin validación experimental disponible**:
+   - reproduce el resultado del profesor (estudio 1.1), es decir, **reproduce el fallo** (todo NO_CONVERGIO), lo que no prueba que el modelo sea correcto; y reproduce los 97 KALINA de Húsavík (estudio 6.2), lo que contrasta qué rangos convergen, no una potencia medida;
+   - coincide con el motor real en **5 puntos (4 diseños distintos): una muestra mínima**, los únicos que el motor real alcanzó a resolver (estudio 6.1 / estudio 4.3);
+   - pasa la **verificación cruzada de cifras** de A4 (consistencia interna de las cifras, no validación física).
 
 ## §4b. Revisión de calidad (2026-10-10, segunda pasada)
 

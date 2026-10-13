@@ -72,4 +72,4 @@ resultado. La tolerancia fue 10 kPa en presiones, 0.5 K en temperaturas y 0.005 
 ### Recomendaciones:
 Pasar al nivel 2 con los pares (T_fuente, P_baja) y (ε_HRVG, P_baja). Ver estudio 2.2.
 
-**Fuentes:** `resultados/2026-10-06_final_M2/REPORTE_M2_N1.md` (§6 y §9, nota del director), `m2n1_malla.csv`, `m2n1_biseccion.csv`, `m2n1_resumen.csv`; validación V02.
+**Fuentes:** `resultados/2026-10-06_final_M2/REPORTE_M2_N1.md` (§6 y §9, nota del director), `m2n1_malla.csv`, `m2n1_biseccion.csv`, `m2n1_resumen.csv`; verificación V02.

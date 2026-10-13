@@ -49,7 +49,7 @@ Total: **987 corridas**. El piso de O2 es la T_sumidero de cada punto.
 LHS por conjunto; elección del conjunto con más KALINA confiables en cada ronda; verificación de
 3 puntos con el motor real (1500 s).
 
-### Resultados obtenidos (todos validados, V18–V20):
+### Resultados obtenidos (todos verificados, V18–V20):
 
 | Ronda | Conjunto elegido | Datos del profesor conservados | KALINA (confiables) |
 |---|---|---|---|
@@ -87,4 +87,4 @@ LHS por conjunto; elección del conjunto con más KALINA confiables en cada rond
 Usar este caso como la respuesta central del informe a "¿qué se puede conservar del enunciado?".
 Presentarlo junto con estudio 4.2 (presiones del profesor + ε_cond ≥ 0.875).
 
-**Fuentes:** `resultados/2026-10-08_final_M9/REPORTE_M9.md` (incluidas las notas del director), `m9_paso1.csv`, `m9_paso2.csv`, `m9_escalera.csv`, `m9_motor_real.csv`; validación V18–V20.
+**Fuentes:** `resultados/2026-10-08_final_M9/REPORTE_M9.md` (incluidas las notas del director), `m9_paso1.csv`, `m9_paso2.csv`, `m9_escalera.csv`, `m9_motor_real.csv`; verificación V18–V20.

@@ -45,7 +45,7 @@ P_baja = 400 kPa, x_b = 0.50, η_t = 0.85, η_p = 0.75, ε_HRVG = 0.85 y ε_reg 
 Malla completa; conteo de clases por celda; criterios que fallan a cada lado de la franja.
 
 ### Resultados obtenidos:
-- **165 corridas: 149 genuinas y 104 KALINA, todos confiables** (validación V16). Hay 15 N2.
+- **165 corridas: 149 genuinas y 104 KALINA, todos confiables** (verificación V16). Hay 15 N2.
 - **Con T_fuente entre 390 y 410 K hay KALINA** en casi todas las celdas. Por debajo de 390 K, el
   ciclo produce trabajo negativo (O3, 15 de 15).
 - **Con el clima del profesor (300.03 K)**, KALINA exige un condensador más efectivo:
@@ -81,4 +81,4 @@ Es el mejor argumento para el informe: **con las presiones del profesor, el cicl
 fuente está a ~400 K**. Conviene, en una fase futura, extender T_fuente hasta ~430 K para cerrar el
 borde superior.
 
-**Fuentes:** `resultados/2026-10-07_final_M5c/REPORTE_M5c.md`, `m5c_malla.csv`, `m5c_frontera.csv`; estudio 6.1 (P03); validación V16.
+**Fuentes:** `resultados/2026-10-07_final_M5c/REPORTE_M5c.md`, `m5c_malla.csv`, `m5c_frontera.csv`; estudio 6.1 (P03); verificación V16.

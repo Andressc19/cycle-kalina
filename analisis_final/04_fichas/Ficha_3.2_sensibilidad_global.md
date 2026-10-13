@@ -53,8 +53,8 @@ LHS; RSA con KS, valor p e intervalo bootstrap (1000 remuestreos); PRCC sobre η
 prueba de convergencia del ranking (300 contra 500 puntos, ρ = 0.93). Ver MATEMATICA §6.
 
 ### Resultados obtenidos:
-- **500 corridas: 452 genuinas, 121 KALINA (83 confiables) y 222 fuera de rango** (validación V12).
-- **Ventana de presiones de los KALINA (p5–p95)** (validación V13):
+- **500 corridas: 452 genuinas, 121 KALINA (83 confiables) y 222 fuera de rango** (verificación V12).
+- **Ventana de presiones de los KALINA (p5–p95)** (verificación V13):
 
 | Magnitud | p5 – p95 | mín – máx | Unidad |
 |---|---|---|---|
@@ -98,4 +98,4 @@ prueba de convergencia del ranking (300 contra 500 puntos, ρ = 0.93). Ver MATEM
   máximo, no como un límite duro.
 - Agregar los rangos calculados solo con KALINA confiables, para el informe (lo hace el script de tablas en Tabla S-3).
 
-**Fuentes:** `resultados/2026-10-06_final_M4/REPORTE_M4.md` (§14, nota del director), `resultados/2026-10-07_final_M4b/REPORTE_M4b.md`, `m4b_rsa.csv`, `m4b_prcc.csv`, `m4b_rangos_presiones.csv`, `m4b_ventana_por_*.csv`; validación V12, V13.
+**Fuentes:** `resultados/2026-10-06_final_M4/REPORTE_M4.md` (§14, nota del director), `resultados/2026-10-07_final_M4b/REPORTE_M4b.md`, `m4b_rsa.csv`, `m4b_prcc.csv`, `m4b_rangos_presiones.csv`, `m4b_ventana_por_*.csv`; verificación V12, V13.

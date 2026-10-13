@@ -1,4 +1,4 @@
-# Presentación: Ciclo Kalina KCS-11 — Modelado, verificación y validación
+# Presentación: Ciclo Kalina KCS-11 — Modelado, verificación y contraste con modelos publicados
 
 > **Supuestos tomados por no estar especificados en la petición** (ajústalos si no aplican):
 > - **Público objetivo:** `[pendiente — no se indicó]`. Se redactó asumiendo un jurado/profesor evaluador de un curso de termodinámica aplicada (Entregable 1), con conocimiento técnico pero sin contexto previo de este proyecto específico. Si el público real es distinto (clientes, estudiantes de un curso introductorio, etc.), el tono de las diapositivas 4-11 debería suavizarse.
@@ -11,7 +11,7 @@
 
 ## Diapositiva 1: Portada
 - **Contenido breve:**
-  - Ciclo Kalina KCS-11: modelado termodinámico, verificación y validación
+  - Ciclo Kalina KCS-11: modelado termodinámico, verificación y contraste con modelos publicados
   - `[pendiente — nombre del curso / asignatura]`
   - `[pendiente — nombre(s) del/los autor(es)]`
   - `[pendiente — fecha de exposición]`
@@ -22,7 +22,7 @@
 - **Contenido breve:**
   - Qué es el Ciclo Kalina y por qué importa
   - Cómo se modeló matemáticamente
-  - Cómo se verificó (17 criterios) y se validó (Elsayed et al. 2013)
+  - Cómo se verificó (17 criterios) y se contrastó con un modelo publicado (Elsayed et al. 2013; sin validación experimental disponible)
   - Demo del material interactivo
   - Estado actual y próximos pasos
 - **Elementos visuales sugeridos:** lista simple con iconografía (termómetro, engranaje, check, pantalla, bandera de meta) — sin imágenes complejas, esta diapositiva es solo de orientación.
@@ -74,7 +74,7 @@
 ## Diapositiva 8: Arquitectura del código
 - **Contenido breve:**
   - Patrón adapter: interfaz única `PropertyBackend` (8 métodos) para propiedades termodinámicas
-  - Dos motores intercambiables: `AmmoniaWaterAdapter` (riguroso, IAPWS G4-01) y `TeqpAdapter` (rápido, validado contra el primero con error <0.5 %)
+  - Dos motores intercambiables: `AmmoniaWaterAdapter` (riguroso, IAPWS G4-01) y `TeqpAdapter` (rápido, verificado contra el primero con error <0.5 %)
   - Barrido cartesiano sobre 11 variables de entrada (Fijo o Barrido), no un optimizador
 - **Elementos visuales sugeridos:** diagrama simple de caja: "Solver del ciclo → interfaz PropertyBackend → [AmmoniaWaterAdapter | TeqpAdapter]" para mostrar el desacople.
 - **Notas del expositor:** "El adapter permite que el ciclo se resuelva igual sin importar qué motor de propiedades está detrás. Eso permitió cruzar dos implementaciones independientes como verificación cruzada."
@@ -87,14 +87,14 @@
 - **Elementos visuales sugeridos:** el diagrama de flujo de los dos lazos anidados (Atlas, sección 08) — capturar directamente, es la explicación visual más clara ya construida para este punto.
 - **Notas del expositor:** "Esto no se resuelve en un solo paso hacia adelante: hay que iterar. El material interactivo tiene un ejemplo numérico completo que muestra justo este residuo de convergencia paso a paso."
 
-## Diapositiva 10: Validación externa — Elsayed et al. (2013)
+## Diapositiva 10: Contraste con modelo publicado — Elsayed et al. (2013)
 - **Contenido breve:**
   - Caso KCS-11 replicado: `P_alta=1500 kPa`, `x_b=0.55`, `T_fuente=373 K`, `T_sumidero=283 K`
   - η paper = 11.38 % · η este proyecto = 11.05–11.055 % (ambos motores)
   - Diferencia ≈0.33 pp, atribuida a: EOS distinta, traducción pinch→efectividad de un solo paso, `P_baja` asumida
-  - Validación extendida: 23 puntos comparables, Δη medio −0.06 pp
+  - Contraste extendido: 23 puntos comparables, Δη medio −0.06 pp con signo (|Δη| medio 0.27 pp, máx. 1.16 pp)
 - **Elementos visuales sugeridos:** tabla o gráfico de barras de 3 valores (paper, `AmmoniaWaterAdapter`, `TeqpAdapter`) con el δ marcado; puede ser una tabla simple, no necesita ser complejo.
-- **Notas del expositor:** "Esta es la pieza central de evidencia: no solo se comparó un punto, se comparó contra 23 puntos de tendencia, y la diferencia observada tiene una explicación causal identificada, no es un ajuste sin justificar."
+- **Notas del expositor:** "Esta es la pieza central de evidencia disponible, aunque es un contraste con un modelo publicado del mismo grupo que Embaye, no con mediciones: no solo se comparó un punto, se comparó contra 23 puntos de tendencia, y la diferencia observada tiene una explicación causal identificada, no es un ajuste sin justificar."
 
 ## Diapositiva 11: Qué muestran los barridos paramétricos
 - **Contenido breve:**
@@ -115,7 +115,7 @@
 
 ## Diapositiva 13: Estado actual del proyecto
 - **Contenido breve:**
-  - Logrado: dos motores cruzados (<0.5 % error), correcciones IAPWS G4-01 verificadas, validación Elsayed (punto + 23 puntos), UI con pestañas de nivel superior
+  - Logrado: dos motores cruzados (<0.5 % error), correcciones IAPWS G4-01 verificadas, contraste con Elsayed (punto + 23 puntos; modelo publicado, no mediciones), UI con pestañas de nivel superior
   - Pendiente: confirmar 3-5 puntos KALINA adicionales con el motor riguroso
   - Pendiente: documentar formalmente la elección de cierre por efectividad y el piso de O2 en el informe final
   - `N4` (dominio de validez del modelo de propiedades) queda explícitamente sin resolver
@@ -125,11 +125,11 @@
 ## Diapositiva 14: Conclusiones
 - **Contenido breve:**
   - El modelo reproduce la física esperada (glide, compresor térmico, segunda ley) con verificación de 17 criterios
-  - La validación externa confirma el orden de magnitud y la tendencia frente a literatura publicada
+  - El contraste con un modelo publicado (no con mediciones) es coherente en orden de magnitud y tendencia
   - Los supuestos con más impacto (cierre por efectividad, piso de O2) están identificados y cuantificados, no escondidos
   - El material interactivo deja trazabilidad completa para revisión
 - **Elementos visuales sugeridos:** una sola imagen de síntesis, por ejemplo el esquema de los 10 estados reutilizado de la diapositiva 4, para cerrar visualmente donde se abrió.
-- **Notas del expositor:** "En resumen: se construyó, se verificó internamente y se validó externamente un modelo del ciclo Kalina KCS-11, documentando explícitamente tanto lo que funciona como sus límites conocidos."
+- **Notas del expositor:** "En resumen: se construyó, se verificó internamente un modelo del ciclo Kalina KCS-11 y se contrastó con un modelo publicado (sin validación experimental disponible), documentando explícitamente tanto lo que funciona como sus límites conocidos."
 
 ## Diapositiva 15: Cierre y preguntas
 - **Contenido breve:**
@@ -150,7 +150,7 @@
 - [ ] Jerarquía visual consistente: mismo tamaño/peso de título en todas las diapositivas, mismo estilo de bullet
 - [ ] Paleta de color consistente en las 15 diapositivas (se sugiere reutilizar la paleta teal/ámbar del Atlas interactivo para dar continuidad visual entre ambos materiales)
 - [ ] Las capturas del Atlas interactivo (diapositivas 3, 4, 9, 12) se toman a buena resolución, sin recortar texto
-- [ ] Números y datos citados (validación, barridos) coinciden exactamente con los del material interactivo y `VALIDACION_ELSAYED2013.md` — no redondear de más ni parafrasear cifras
+- [ ] Números y datos citados (contraste, barridos) coinciden exactamente con los del material interactivo y `VALIDACION_ELSAYED2013.md` — no redondear de más ni parafrasear cifras
 - [ ] Revisar que ningún `[pendiente]` quede sin resolver antes de la exposición final
 - [ ] Ensayar la demo en vivo del Atlas (diapositiva 12) antes de la presentación real, con conexión/equipo de respaldo si el acceso depende de un enlace
 

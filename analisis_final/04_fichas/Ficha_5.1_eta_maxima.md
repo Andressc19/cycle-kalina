@@ -53,7 +53,7 @@ Búsqueda por patrones con objetivo lexicográfico: primero llegar a D = 0 y des
 Pasos de ±10 % del rango que se dividen a la mitad cuando no hay mejora; corte en un paso < 1 % o
 en 120 evaluaciones por arranque (MATEMATICA §7.2).
 
-### Resultados obtenidos (η validadas, V17):
+### Resultados obtenidos (η verificadas, V17):
 
 | Arranque | η máx. | Dónde termina | ¿KALINA confiables en la búsqueda? |
 |---|---|---|---|
@@ -66,7 +66,7 @@ en 120 evaluaciones por arranque (MATEMATICA §7.2).
 Tablas: 5.1-1, 5.1-2, 5.1-3. Figuras: 5.1-1.
 
 ### Conclusiones del caso:
-1. **La η más alta encontrada es 15.6 %, conservando las presiones y el clima del profesor** (validación cruzada),
+1. **La η más alta encontrada es 15.6 %, conservando las presiones y el clima del profesor** (verificación cruzada),
    con T_fuente = 415 K y los equipos en su mejor eficiencia (0.95). El motor real la confirma.
 2. Conservando las temperaturas del profesor (5.1c) se llega a 12.7 %, **con KALINA confiables**, a
    costa de alejarse del resto del enunciado: P_alta = 5000 kPa, P_baja ~1360 kPa y x_b = 0.85.
@@ -87,4 +87,4 @@ Tablas: 5.1-1, 5.1-2, 5.1-3. Figuras: 5.1-1.
 - Reportar η como una cota superior ("hasta ~15 % con equipos de alta eficiencia"), no como valor de diseño.
 - Para el diseño, preferir η con eficiencias medias (~8–11 %, estudios 3.1 y 4.2).
 
-**Fuentes:** `resultados/2026-10-07_final_M7/REPORTE_M7.md`, `m7_evaluaciones.csv`, `m7_optimos.csv`, `m7_trayectorias.csv`; `conteo_por_subcaso.csv`; estudios 6.1 y 4.3 (motor real); validación V17.
+**Fuentes:** `resultados/2026-10-07_final_M7/REPORTE_M7.md`, `m7_evaluaciones.csv`, `m7_optimos.csv`, `m7_trayectorias.csv`; `conteo_por_subcaso.csv`; estudios 6.1 y 4.3 (motor real); verificación V17.
