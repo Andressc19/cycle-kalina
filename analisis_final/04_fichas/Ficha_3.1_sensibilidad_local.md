@@ -127,6 +127,24 @@ usa el Δη con W_net > 0).
    es x_b baja, que falla por trabajo neto (O3), y T_fuente baja, que no converge. Eso confirma la
    regla del proyecto de cerrar O2 con P_baja.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 3.1-1.** Δη ≥ 5 pp en 6 variables (x_b ≈10.8, P_baja ≈6.8, ε_HRVG ≈6.7, η_t ≈6.3, P_alta ≈5.1,
+  ε_reg ≈5.0) y < 1.5 pp en 3 (η_p, T_sumidero, ε_cond). Δη depende del rango barrido: x_b es el más ancho.
+- **Figura 3.1-2.** La elasticidad de T_fuente (≈ +10.9) triplica la siguiente (x_b ≈ +3.4). Es una pendiente
+  local pegada al borde de O2 (T_fuente solo tiene KALINA en ≈400–405 K). Signos negativos: P_alta, P_baja, ε_cond.
+- **Figura 3.1-3.** η_t, ε_HRVG y ε_reg suben η de forma casi lineal hasta 0.95 sin perder KALINA. Con P_baja
+  baja la η sube (≈10.3 % a 340 kPa), pero esa zona es Corregible (O2 falla): es la tensión central.
+  Calentar la fuente a 440–580 K da η ≈11–11.6 % **sin ser KALINA**. Con P_baja fija, un sumidero más frío
+  baja η un poco (7.8 vs 8.6 %): el beneficio del estudio 2.4 viene de poder bajar P_baja.
+- **P_alta:** η tiene un máximo en ≈2300 kPa (≈9.2 %) y A* queda del lado descendente, por eso la elasticidad
+  local es negativa (≈ −1.2); en el estudio 3.2 (global) el PRCC de P_alta es **positivo** (+0.58). Son
+  preguntas distintas: no resumir como «P_alta sube/baja η» sin condición.
+- **Figura 3.1-4.** A menos de 6 % del rango de O2 en 8 variables (P_alta ≈0.7 %, ε_reg ≈5.7 %); solo η_t
+  tiene holgura real (≈34 %).
+
 ### Advertencias, supuestos y limitaciones:
 - **OAT no ve interacciones**: si dos variables se compensan, aquí no aparece. Para eso está estudio 3.2.
 - **Banda de η ±0.4–0.7 pp**: las diferencias de Δη entre T_sumidero (0.85), ε_cond (0.82) y η_p (1.38)

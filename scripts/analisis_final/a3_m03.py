@@ -32,6 +32,10 @@ ANCLA = PUNTOS[(PUNTOS["bloque_director"] == "B06")
                & (PUNTOS["tipo_punto"] == "ancla")]["eta_pct"].iloc[0]
 MALLA = PUNTOS[(PUNTOS["bloque_director"] == "B06")
                & (PUNTOS["tipo_punto"] == "malla")].copy()
+# FIG-M03-03 dibuja además los vecinos de A* (±1 % del rango): así la figura cuenta lo mismo que
+# la tabla de cada barrido del libro Excel (pedido del usuario, 2026-10-12).
+MALLA_VEC = PUNTOS[(PUNTOS["bloque_director"] == "B06")
+                   & PUNTOS["tipo_punto"].isin(["malla", "vecino"])].copy()
 
 
 def _etiqueta_var(v):
@@ -98,7 +102,7 @@ def fig_m03_02():
 def fig_m03_03():
     fig, axs = plt.subplots(2, 5, figsize=(13, 7.2), sharey=True)
     for ax, v in zip(axs.flat, SEC_VAR):
-        sv = MALLA[MALLA["variable"] == v]
+        sv = MALLA_VEC[MALLA_VEC["variable"] == v]
         disp = sv[sv["genuino"] & sv["wnet_pos"]]
         val_ancla = M3.loc[v, "valor_ancla"]
         dispersion(ax, disp, "valor", "eta_pct", s=12)
@@ -112,18 +116,19 @@ def fig_m03_03():
         ax.set_xlabel(NOMBRE[v], fontsize=6)
         if ax.get_subplotspec().is_first_col():
             ax.set_ylabel("η [%]")
-    leyenda_fig(fig, MALLA)
+    leyenda_fig(fig, MALLA_VEC)
     recuadro_fig(fig, ["KF-M03"])
     titulo_fig(fig, "Eficiencia según cada variable, una a la vez, alrededor de A*",
-               "Bloque B06 · KF-M03 (malla; línea punteada: valor en A*)")
+               "Bloque B06 · KF-M03 (malla y vecinos de A*; línea punteada: valor en A*)")
     pie = armar_pie("FIG-M03-03",
                     "Eficiencia según cada variable, una a la vez, alrededor de A*",
-                    ["KF-M03"], "B06", "B06 (KF-M03), malla", n=len(MALLA),
+                    ["KF-M03"], "B06",
+                    "B06 (KF-M03), malla y vecinos de A* (±1 % del rango)", n=len(MALLA_VEC),
                     fuente="todos_los_puntos.csv", base=AST_BASE)
     guardar_fig(fig, "M03", "FIG-M03-03_oat_alrededor_de_A", pie)
     guardar_clases("M03", "FIG-M03-03_oat_alrededor_de_A",
-                   contar_clases(MALLA))
-    print("FIG-M03-03: 10 paneles de la malla (η de genuinos con W_net > 0)")
+                   contar_clases(MALLA_VEC))
+    print("FIG-M03-03: 10 paneles de la malla y los vecinos (η de genuinos con W_net > 0)")
 
 
 # ---------------------------------------------------------------- FIG-M03-04

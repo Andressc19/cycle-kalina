@@ -77,6 +77,15 @@ LHS por conjunto; elección del conjunto con más KALINA confiables en cada rond
 3. No se pueden conservar a la vez sus 2 presiones, su ε_cond = 0.80 y su clima de 300 K. Para eso
    hace falta ε_cond ≥ 0.875 (lo confirma estudio 4.2).
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 4.3-1.** Conservar más datos reduce los KALINA confiables (15 → 7 → 7 → 5 por ronda) pero no los
+  elimina. **Todo conjunto que incluye T_fuente da 0.** Después de T_fuente, P_baja es el dato más caro de
+  conservar (1 KALINA en la ronda 0).
+- Son conteos absolutos de 5–15 puntos y sin denominador en la figura.
+
 ### Advertencias, supuestos y limitaciones:
 - 30 puntos por conjunto en las rondas 1 a 3 es una exploración; la búsqueda dirigida solo se hizo en la última ronda.
 - El ranking elige por número de KALINA confiables, no por número de datos conservados. Por eso

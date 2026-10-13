@@ -146,7 +146,13 @@ def hoja_leeme(wb):
              "los gráficos.",
              "Hojas 'N Gráficos': gráficos nativos de Excel de cada pregunta (pase el cursor para ver los "
              "valores); cada uno lleva arriba su ID y título y abajo su pie con los datos fijos.",
-             "Hoja Figuras_matplotlib_ref (al final): las 30 figuras de Matplotlib, solo como referencia.",
+             "Hojas 'N Datos de gráficos': los números con los que Excel dibuja cada gráfico, un bloque por figura "
+             "(si cambia un número, el gráfico cambia).",
+             "Cada gráfico, además, tiene una copia junto a la tabla de la que salen sus datos: a la derecha de su "
+             "parte o variable en la hoja 'N.M-R Resultados por barrido', o debajo de su tabla resumen "
+             "(3.1-3, 3.2-4, 4.3-3, 6.1-3, S-1). Los de 'N Gráficos' siguen donde estaban.",
+             "Hojas 'N.M-R Resultados por barrido': por estudio, la tabla de cada barrido con el valor de la "
+             "variable barrida, la clase, η, W_net, ΔP, r_P y si está fuera de rango (los mismos puntos del tablero HTML).",
              "", "Glosario:"]
     filas += [f"• {k}: {v}" for k, v in GLOSARIO.items()]
     filas += ["", "Colores de clase:"]

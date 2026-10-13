@@ -67,6 +67,15 @@ Tablas: 2.4-1, 2.4-2, 2.4-3. Figuras: 2.4-1.
 2. **El profesor exacto (2.4d) nunca es KALINA**, ni siquiera con clima frío: el problema es la fuente, no el clima.
 3. La ruta que conserva la fuente de 623 K (2.4c) da KALINA, pero **ninguno es confiable**.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 2.4-1.** Las tres rutas son rectas casi paralelas. Del sumidero de 300 K al de 278 K la P_baja
+  mínima baja **43–48 %** (563 → 292, 740 → 395 y 1310 → 750 kPa) y la η máxima sube de 1.9 a 3.8 pp
+  (más con la fuente más caliente, 420 K). Equivale a ≈ −12 kPa y ≈ +0.09 pp por cada K.
+- La ruta 2.4c (fuente de 623 K) es toda fuera de rango; la figura original no la distinguía de las otras.
+
 ### Advertencias, supuestos y limitaciones:
 - El cambio de regla del piso de O2 (= T_sumidero) hace que estos resultados no se comparen punto a
   punto con estudio 1.1–estudio 3.1 (piso fijo de 300.03 K).

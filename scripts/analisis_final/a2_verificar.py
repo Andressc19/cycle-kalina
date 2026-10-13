@@ -49,11 +49,22 @@ def main():
           f"gráficos = {graf} → {'OK' if ok else 'FALLA'}")
     fallas += not ok
     graf = {h: len(wb[h]._charts) for h in wb.sheetnames if h.endswith(" Gráficos")}
-    viejas = [h for h in wb.sheetnames if h.endswith(("_figuras", "_graficos")) and h != "Aux_graficos"]
-    ok = len(graf) == 6 and all(graf.values()) and not viejas and "Figuras_matplotlib_ref" in wb.sheetnames
-    print(f"[6] Gráficos nativos: {sum(graf.values())} en {len(graf)} hojas; hojas de imágenes por caso: "
-          f"{len(viejas)}; hoja de referencia: {'Figuras_matplotlib_ref' in wb.sheetnames} → "
-          f"{'OK' if ok else 'FALLA'}")
+    viejas = [h for h in wb.sheetnames if h.endswith(("_figuras", "_graficos")) or h == "Figuras_matplotlib_ref"]
+    datos_g = [h for h in wb.sheetnames if h.endswith(" Datos de gráficos")]
+    ocultas = [h for h in datos_g if wb[h].sheet_state != "visible"]
+    res = [h for h in wb.sheetnames if "-R Resultados por barrido" in h]
+    ok = (len(graf) == 6 and all(graf.values()) and not viejas and len(datos_g) == 6 and not ocultas
+          and len(res) == 14 and "Aux_graficos" not in wb.sheetnames)
+    print(f"[6] Gráficos nativos: {sum(graf.values())} en {len(graf)} hojas; hojas de datos de gráficos "
+          f"visibles: {len(datos_g) - len(ocultas)}/{len(datos_g)}; hojas de resultados por barrido: "
+          f"{len(res)}; hojas con imágenes de Matplotlib: {len(viejas)} → {'OK' if ok else 'FALLA'}")
+    fallas += not ok
+    con_copia = {h: len(wb[h]._charts) for h in wb.sheetnames
+                 if wb[h]._charts and h != "Tablero" and not h.endswith(" Gráficos")}
+    # 74 figuras + 1: la 6.1-1 va junto a sus dos tablas de origen (6.1-3 y 4.3-4)
+    ok = sum(con_copia.values()) == sum(graf.values()) + 1 and len(con_copia) == 17
+    print(f"[7] Copias junto a su tabla: {sum(con_copia.values())} gráficos en {len(con_copia)} hojas "
+          f"(originales: {sum(graf.values())}) → {'OK' if ok else 'FALLA'}")
     fallas += not ok
     print(f"\nResultado: {'TODO OK' if not fallas else str(fallas) + ' FALLA(S)'}")
     return 1 if fallas else 0

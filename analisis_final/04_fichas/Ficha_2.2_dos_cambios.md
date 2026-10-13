@@ -66,6 +66,16 @@ Malla 2D, más bisección sobre P_baja allí donde cambia "ser KALINA" o el sign
 3. Cuanto más fría la fuente, menor P_baja necesita KALINA (445 kPa a 390 K), pero menor es η.
    Entre esos extremos se eligió A\*.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 2.2-1 (ruta A).** Los 36 puntos son Corregible sin importar P_baja (400–2000 kPa): con la fuente
+  de 623 K, **subir P_baja no cambia la clase**.
+- **Figura 2.2-2 (ruta B).** La región KALINA es una **cuña**: la P_baja mínima sube de ≈450 kPa (390 K) a ≈600
+  (403 K), ≈740 (420 K) y ≈950 (434 K), es decir, ≈ +500 kPa en 44 K. A 380 K todo es Falso convergido.
+- Desde ≈434 K los marcadores son huecos: la zona caliente sale del rango del motor antes de llegar a 623 K.
+
 ### Advertencias, supuestos y limitaciones:
 - La malla de P_baja tiene un paso de 145 kPa: una zona KALINA más angosta podría no verse.
 - Los puntos medios de la bisección que caen en zonas espurias (N2) se toman como "no cumple".

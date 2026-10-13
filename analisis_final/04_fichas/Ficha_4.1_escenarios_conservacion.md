@@ -80,6 +80,18 @@ KALINA más parecido al profesor.
 3. La pregunta "¿qué se conserva?" se responde mejor con búsquedas dirigidas (estudio 4.2, estudio 4.3) que con
    muestreo al azar.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 4.1-1 (4.1a, 623 K).** Los 2 confiables están en P_baja ≈1360 y ≈1965 kPa: con 623 K el KALINA solo
+  vive en P_baja ≥ ≈1360 kPa (el profesor usa 400).
+- **Figuras 4.1-2 y 4.1-3.** 0 KALINA. La zona fría (< ≈450 K) es casi toda Inviable y la caliente (> ≈540 K)
+  casi toda No convergió. Los vecinos de la franja (390–413 K, ε_cond ≥ 0.89) son Corregible/Inviable porque
+  x_b, η y T_sumidero también eran aleatorios: la proyección 2D no muestra la franja delgada del estudio 4.2.
+- **Figuras 4.1-4 y 4.1-5.** Los KALINA son todos huecos. Con 623 K y P_alta 3000, solo hay KALINA con
+  x_b ≤ ≈0.67 y P_baja ≥ ≈950 kPa (4.1d); en 4.1e, 9 de 10 tienen P_baja > ≈1170 kPa.
+
 ### Advertencias, supuestos y limitaciones:
 - 120 puntos por escenario es una exploración, no un mapa.
 - El reporte original declaraba 4.1b y 4.1c "no factibles". El director lo corrigió: es un efecto del
