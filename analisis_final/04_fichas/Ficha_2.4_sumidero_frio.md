@@ -56,7 +56,7 @@ Malla de P_baja por base y clima, más bisección donde cambia "ser KALINA" o el
 | 2.4c (ε_HRVG 0.40) | 34 (**0**) | 1312.5 kPa / 6.30 % | 750 kPa / 9.69 % |
 | 2.4d (profesor) | 0 | — | — |
 
-123 KALINA únicos en total. Todas estas cifras fueron validadas por validación V07 y V08. La η máxima de
+123 KALINA únicos en total. Todas estas cifras fueron verificadas en V07 y V08. La η máxima de
 cada clima ocurre justo en la P_baja mínima: η baja al subir P_baja.
 
 Tablas: 2.4-1, 2.4-2, 2.4-3. Figuras: 2.4-1.
@@ -86,4 +86,4 @@ _Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el 
 Al recomendar presiones, decir siempre el clima de diseño: la P_baja mínima depende fuertemente de
 él. Para el diseño, preferir 2.4a y 2.4b (fuente ~400–420 K), que son confiables.
 
-**Fuentes:** `resultados/2026-10-06_final_M2S/REPORTE_M2S.md`, `m2s_malla.csv`, `m2s_biseccion.csv`, `m2s_resumen.csv`; validación V07, V08.
+**Fuentes:** `resultados/2026-10-06_final_M2S/REPORTE_M2S.md`, `m2s_malla.csv`, `m2s_biseccion.csv`, `m2s_resumen.csv`; verificación V07, V08.

@@ -118,7 +118,7 @@ Las columnas que un CSV no trae quedan vacías (nunca rellenadas con supuestos).
 Una conclusión por caso = **una frase de respuesta a la pregunta** + **la cifra que la sostiene** +
 **el criterio que bloquea** + **la confianza** (n genuinos, n KALINA confiables, banda de η).
 
-### 3.2 Conclusiones por barrido (validadas por A4 el 2026-10-10: 76 de 78 cifras coinciden; las 2 diferencias son de definición y están corregidas aquí)
+### 3.2 Conclusiones por barrido (verificadas por A4 el 2026-10-10: 76 de 78 cifras coinciden; las 2 diferencias son de definición y están corregidas aquí)
 
 | Caso | Conclusión en una línea |
 |---|---|
@@ -139,7 +139,7 @@ Una conclusión por caso = **una frase de respuesta a la pregunta** + **la cifra
 | M10 | Húsavík: 97 de 97 KALINA de la Fase 3 reproducidos; P_baja mínima de 500 a 800 kPa al pasar x_b de 0.70 a 0.91; su P_baja real (690 kPa) coincide con la mínima KALINA |
 | M10b | Con x_b < 0.50 el modelo no encuentra ciclo (0 genuinos de 32); x_b = 0.50 es KALINA formal con η < 1.3 %; el KALINA útil empieza en x_b ≈ 0.55 (P_baja mín. 300 kPa) |
 
-### 3.3 Conclusiones generales (validadas)
+### 3.3 Conclusiones generales (cifras verificadas)
 1. **El bloqueo estructural del enunciado es la fuente a 623 K.** Con ella el punto del profesor no
    converge. Solo aparecen KALINA confiables alejándose mucho del resto del enunciado (x_b 0.71–0.85,
    P_alta 3200–5000 kPa, P_baja 1.36–1.97 MPa; M7-A3 y M5-S1). Combinada con la x_b o las presiones
@@ -152,8 +152,8 @@ Una conclusión por caso = **una frase de respuesta a la pregunta** + **la cifra
    (M4/M4b). La P_baja mínima baja con un clima frío (M2S) y sube con más amoníaco (M10).
 5. **η es secundaria:** ~8–11 % en diseños con eficiencias medias (A\*, M5c, M9) y hasta 15.6 % con
    equipos a 0.95 (M7). Las diferencias menores que 0.7 pp no son concluyentes.
-6. **El modelo queda validado** por la reproducción de M1 y Húsavík (M10), la coincidencia con el
-   motor real (M6/M9) y la validación cruzada de A4.
+6. **El modelo queda verificado y contrastado con modelos publicados; sin validación experimental disponible.** Reproduce M1 (reproduce el fallo del profesor, no prueba corrección) y los KALINA de Húsavík (M10, contraste de rangos, sin potencia medida); coincide con el
+   motor real (M6/M9) en una muestra mínima de 5 puntos; y pasa la verificación cruzada de cifras de A4 (consistencia interna).
 
 ---
 
@@ -410,7 +410,7 @@ pa = np.linspace(df["P_alta"].min(), df["P_alta"].max(), 50)
 for rp in (1.69, 5.34):                          # p5 y p95 de r_P en los KALINA (REPORTE_M4b §13)
     ax.plot(pa, pa / rp, "k--", lw=0.8)
 ax.set_title("KALINA aparece solo con razón de presiones entre 1.7 y 5.3\n"
-             "Bloque B07 · M4 + M4b", fontsize=9)   # el título dice la conclusión (validada por A4)
+             "Bloque B07 · M4 + M4b", fontsize=9)   # el título dice la conclusión (verificada por A4)
 ax.set_xlabel(NOMBRE["P_alta"]); ax.set_ylabel(NOMBRE["P_baja"])
 ax.legend(loc="upper left", fontsize=8)
 recuadro_condiciones(ax, "Bloque B07 · M4 + M4b (LHS de 500 puntos)\n"
@@ -726,7 +726,7 @@ Nombres: minúsculas con guion bajo en scripts y CSV; IDs en mayúsculas con gui
 |---|---|---|---|
 | 0 | Esta metodología + ficha piloto M3 + BLUF + nota Obsidian | Claude | hecho |
 | 1 | TASK_CONTEXT A1 (tabla canónica, condiciones, bloques, esquema estrella) → corrida → auditoría con `data:explore-data` | Claude / OpenCode | **pedir antes de lanzar** |
-| 2 | A3 (figuras) y A4 (validación) en paralelo, cada uno en su worktree → auditoría | Claude / OpenCode | pedir antes de lanzar |
+| 2 | A3 (figuras) y A4 (verificación cruzada) en paralelo, cada uno en su worktree → auditoría | Claude / OpenCode | pedir antes de lanzar |
 | 3 | Corregir §3 y los títulos-conclusión con lo que diga A4 | Claude | — |
 | 4 | A2 (tablas + libro Excel con hoja `Tablero`) y A5 (tablero HTML) en paralelo → revisión en el navegador y en Excel | Claude / OpenCode | pedir antes de lanzar |
 | 5 | 16 fichas restantes (orden: C → G → F → L → H → O → V → R → X) | Claude | — |

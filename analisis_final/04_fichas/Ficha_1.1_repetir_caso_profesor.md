@@ -45,7 +45,7 @@ Repetición punto a punto y comparación de la clase antes/después (MATEMATICA 
 procesos y 300 s por punto.
 
 ### Resultados obtenidos:
-- **42 corridas, 0 genuinas: las 42 son NO_CONVERGIO** (validado, V01).
+- **42 corridas, 0 genuinas: las 42 son NO_CONVERGIO** (verificado, V01).
 - Coincidencia de clase con la F1: **41 de 41 (100 %)**. El punto base se corrió dos veces (teqp y real).
 - Tiempo: 603 s en total; mediana de 76 s por punto.
 - Tablas: 1.1-1, 1.1-2, 1.1-3. Sin figura.
@@ -68,4 +68,4 @@ procesos y 300 s por punto.
 Usar estudio 1.1 como garantía de reproducibilidad en el informe y pasar directo a estudios 2.1 y 2.2. Para entender por qué
 el punto del profesor no funciona, ver la ficha de estudios 2.1 y 2.2.
 
-**Fuentes:** `resultados/2026-10-06_final_M1/REPORTE_M1.md`, `m1_filas.csv`, `m1_comparacion.csv`; validación validación V01.
+**Fuentes:** `resultados/2026-10-06_final_M1/REPORTE_M1.md`, `m1_filas.csv`, `m1_comparacion.csv`; verificación V01.

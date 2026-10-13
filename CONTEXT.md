@@ -135,9 +135,9 @@ empíricamente el 2026-09-17 (ver `TASK_CONTEXT.md` de la tarea `scaffold-y-adap
 
 - **Mezcla NH3-H2O: `iapws.ammonia.H2ONH3`** (ya viene con `iapws==1.5.5`, no es una librería
   nueva). Es la ecuación de estado de referencia Tillner-Roth & Friend (1998) / IAPWS G4-01.
-  **Reutilizar, no reinventar**, el motor ya validado del proyecto hermano (vault "Ciclo
+  **Reutilizar, no reinventar**, el motor ya verificado del proyecto hermano (vault "Ciclo
   Kalina"): `codigo/src/nh3h2o.py` (capa de propiedades sobre `iapws.ammonia`, con dos
-  correcciones documentadas y validadas contra las Tablas 6-8 de la guía IAPWS G4-01) +
+  correcciones documentadas y verificadas contra las Tablas 6-8 de la guía IAPWS G4-01) +
   `codigo/src/kalina.py` líneas 26-203 (`Tsat_puros`, `flash_TP`, `_mono`, `estado`,
   `estado_de` — la capa de flash T,P,w -> h,s,fase,título y su inversión h/s -> T). Rutas
   absolutas de referencia:

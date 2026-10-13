@@ -1,7 +1,7 @@
 # Ficha 3.1 — Sensibilidad local alrededor de A\* (ficha piloto)
 
 > Ficha piloto del formato. Las cifras vienen de `resultados/2026-10-06_final_M3/REPORTE_M3.md`
-> (incluida la nota del director del 2026-10-06) y están **validadas contra `m3_ofat.csv`** (validación cruzada y la
+> (incluida la nota del director del 2026-10-06) y están **verificadas contra `m3_ofat.csv`** (verificación cruzada de cifras y la
 > revisión del 2026-10-10).
 
 > **Antes de leer: qué son el punto del profesor y el punto ancla A\***

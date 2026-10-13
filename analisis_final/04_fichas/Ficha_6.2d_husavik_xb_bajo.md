@@ -44,7 +44,7 @@ rango de x_b, que baja hasta 0.30.
 Una variable a la vez y malla 2D completa. Los x_b menores que 0.55 se etiquetan como "x_b bajo,
 fuera de lo habitual en Kalina": es una etiqueta, no un filtro.
 
-### Resultados obtenidos (validación V22):
+### Resultados obtenidos (verificación V22):
 
 | x_b | Qué pasa |
 |---|---|
@@ -74,11 +74,11 @@ _Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el 
 ### Advertencias, supuestos y limitaciones:
 - La conclusión sobre x_b = 0.50 vale con el ancla de Húsavík (T_fuente 394 K y P_alta 3300 kPa).
   Con otras condiciones (por ejemplo, estudio 4.2), x_b = 0.50 sí da η de ~8–11 %.
-- El reporte original decía "primer KALINA en 0.55". La validación cruzada precisó que el primero formal
+- El reporte original decía "primer KALINA en 0.55". La verificación cruzada precisó que el primero formal
   es 0.50 y el primero útil es 0.55.
 
 ### Recomendaciones:
 Al discutir la composición del profesor (x_b = 0.50), aclarar que funciona, pero cerca del límite
 inferior de la tecnología. Los diseños robustos usan x_b ≥ 0.55.
 
-**Fuentes:** `resultados/2026-10-09_final_M10b_xb_bajo/REPORTE_M10b.md`, `m10b_ofat_xb.csv`, `m10b_malla_xb_pbaja.csv`; validación V22.
+**Fuentes:** `resultados/2026-10-09_final_M10b_xb_bajo/REPORTE_M10b.md`, `m10b_ofat_xb.csv`, `m10b_malla_xb_pbaja.csv`; verificación V22.

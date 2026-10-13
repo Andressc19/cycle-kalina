@@ -1,7 +1,7 @@
 # Análisis de resultados de la campaña final — terminado
 
 > **Metodología ejecutada completa y revisada tres veces: 4 741 puntos en 51 partes, 76 de 78 cifras
-> validadas, 30 figuras, 62 tablas y el Excel interactivo (84 hojas, con 74 gráficos nativos), que es el tablero oficial.**
+> verificadas, 30 figuras, 62 tablas y el Excel interactivo (84 hojas, con 74 gráficos nativos), que es el tablero oficial.**
 > Hay 2 decisiones pendientes: fusionar a master y limpiar los worktrees.
 
 ### Estado
@@ -9,7 +9,7 @@
 | Ítem | Estado | Dato clave |
 |---|---|---|
 | Tabla única + condiciones por parte | ✅ | 4 741 puntos, 59 partes, 51 partes; idéntica a los 33 CSV de origen |
-| Validación cruzada (A4) | ✅ | 76 de 78 ✔; las 2 diferencias son de definición y están corregidas |
+| Verificación cruzada de cifras (A4) | ✅ | 76 de 78 ✔; las 2 diferencias son de definición y están corregidas |
 | Fichas por caso | ✅ | 16 fichas (17 casos), 12/12 secciones; cifras recalculadas desde los datos |
 | Figuras Matplotlib | ✅ | 30 de 30, cada una con título-conclusión, condiciones y pie |
 | `Excel_kalina_final_final_final.xlsx` | ✅ | 84 hojas; 74 gráficos nativos de Excel; tablas con cuadrícula; hoja Tablero interactiva (tablero oficial) |
@@ -52,6 +52,6 @@
 
 ---
 
-*Fuente: tabla canónica y validación A4 (rama `test/barrido_final`). Tercera revisión del 2026-10-10
+*Fuente: tabla canónica y verificación cruzada A4 (rama `test/barrido_final`). Tercera revisión del 2026-10-10
 hecha directamente por Claude (detalle en `REPORTE_ANALISIS_FINAL.md` §4c). Tablero de Excel
 recalculado con Excel 2024; tablero web revisado en el navegador integrado.*

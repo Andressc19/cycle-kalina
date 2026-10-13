@@ -2,7 +2,7 @@
 
 *Borrador estructurado del 2026-10-10. Reúne las conclusiones, los datos, las tablas y las figuras del
 análisis de resultados. Todas las cifras salen de `01_datos/todos_los_puntos.csv` y fueron
-validadas (validación cruzada: 76 de 78; las 2 diferencias son de definición) y revisadas tres veces.*
+verificadas (verificación cruzada de cifras: 76 de 78; las 2 diferencias son de definición) y revisadas tres veces.*
 
 ---
 
@@ -590,7 +590,7 @@ consistente con estudio 3.2.*
 - Para el diseño: fuente ~400–410 K, presiones del profesor o P_baja en 683–1461 kPa, y un margen
   de subenfriamiento de ~2 K (+25–50 kPa de P_baja).
 - Reportar η como "8–11 % con eficiencias medias; hasta ~15 % con equipos de alta eficiencia".
-- Citar Húsavík como validación del modelo con una planta real.
+- Citar Húsavík como contraste con una planta real (no es validación experimental: no hay potencia medida).
 
 ## Anexo — Dónde están los datos
 

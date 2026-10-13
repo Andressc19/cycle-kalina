@@ -10,7 +10,7 @@
 |---|---|---|
 | Protocolo de análisis | ✅ | `docs/METODOLOGIA_ANALISIS_RESULTADOS.md` |
 | Inventario de casos e IDs | ✅ | 17 casos `KF-Mnn`, 9 familias |
-| Ficha piloto estudio 3.1 | ⚠️ | cifras tomadas del REPORTE; falta la validación de A4 |
+| Ficha piloto estudio 3.1 | ⚠️ | cifras tomadas del REPORTE; falta la verificación cruzada de A4 |
 | Catálogo de figuras y tablas | ✅ | 23 FIG y 9 TAB, con código base |
 | Agentes A1–A4 (OpenCode) | ❌ | TASK_CONTEXT sin escribir; requieren autorización |
 

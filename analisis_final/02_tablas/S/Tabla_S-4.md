@@ -18,4 +18,4 @@
 | T_fuente | 623.15 K | no (bloqueo estructural) | estudio 1.1, estudios 2.1 y 2.2, estudio 4.3 (0 confiables con TF) |
 | m_b | 1 kg/s | sí (base de cálculo) | todas |
 
-**Notas:** Filtro: conclusiones validadas por A4. n = 11 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: fichas 4.2 y 4.3; validación cruzada.
+**Notas:** Filtro: conclusiones con cifras verificadas por A4. n = 11 filas en la tabla. † = fuera del rango confiable (IAPWS G4-01); ‡ = falso convergido. Fuente: fichas 4.2 y 4.3; verificación cruzada de cifras.

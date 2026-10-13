@@ -28,7 +28,7 @@ Familia **H** · 2026-10-09 · commit `77b1ae8` · código de origen: M10, M10b.
 - **6.2c:** x_b de 0.70 a 0.91 (8 valores) × P_baja de 500 a 1200 kPa (8 valores).
 
 ### ¿Por qué se barrió?
-Para validar la campaña con un caso real: si el modelo actual reproduce una planta que existe, sus
+Para contrastar la campaña con un caso real: si el modelo actual reproduce una planta que existe, sus
 conclusiones sobre el caso del profesor ganan credibilidad.
 
 ### Datos o variables barridas:
@@ -51,7 +51,7 @@ con el piso de O2 en 283.15 K. Lo que no se barre en 6.2b y 6.2c queda en esos v
 Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D completa.
 
 ### Resultados obtenidos:
-- **6.2a: 97 de 97 siguen siendo KALINA y ninguno cambia de clase** (validación V21); **83 son KALINA confiables**;
+- **6.2a: 97 de 97 siguen siendo KALINA y ninguno cambia de clase** (verificación V21); **83 son KALINA confiables**;
   los otros 14 usan η o ε > 0.95 y no cuentan como confiables (ver advertencias). Las η coinciden
   a 10⁻¹¹ pp.
 - **6.2b (148 genuinos, 107 KALINA):** rangos KALINA con lo demás en el ancla:
@@ -74,7 +74,7 @@ Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D comple
 
 ### Conclusiones del caso:
 1. **El modelo actual reproduce exactamente los KALINA de Húsavík** y coincide con su presión real
-   de condensación. Es una validación fuerte.
+   de condensación. Es un contraste favorable con una planta real, no una validación experimental.
 2. Húsavík está, como los diseños del profesor modificado, **al filo de la cavitación (O2)**: casi
    todas las variables rompen por O2.
 3. Una mezcla más rica en amoníaco (x_b alta) pide más P_baja para evitar la cavitación.
@@ -100,10 +100,10 @@ _Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el 
 - **Algunos puntos 6.2a de septiembre usan η_t hasta 0.98 y ε_cond hasta 0.99**, por encima del
   tope realista del proyecto (0.95): son **14 de los 97** (11 de la familia F3-A y 3 de F3-D). Se
   reproducen tal cual porque son los de la Fase 3, pero no deben citarse como diseño. Los otros
-  **83 KALINA tienen todas sus η y ε ≤ 0.95**, así que la validación con Húsavík no depende de ellos.
+  **83 KALINA tienen todas sus η y ε ≤ 0.95**, así que el contraste con Húsavík no depende de ellos.
 
 ### Recomendaciones:
-Citar Húsavík en el informe como validación del modelo, y su P_baja (690 kPa) como referencia real
+Citar Húsavík en el informe como contraste con una planta real (sin validación experimental), y su P_baja (690 kPa) como referencia real
 dentro de la ventana de presiones de estudio 3.2.
 
-**Fuentes:** `resultados/2026-10-09_final_M10_husavik/REPORTE_M10.md`, `m10_recorrida_fase3.csv`, `m10_ofat.csv`, `m10_malla_xb_pbaja.csv`, `m10_ofat_rangos.csv`; estudio 4.3 (Húsavík con el motor real); validación V21, V22.
+**Fuentes:** `resultados/2026-10-09_final_M10_husavik/REPORTE_M10.md`, `m10_recorrida_fase3.csv`, `m10_ofat.csv`, `m10_malla_xb_pbaja.csv`, `m10_ofat_rangos.csv`; estudio 4.3 (Húsavík con el motor real); verificación V21, V22.

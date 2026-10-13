@@ -55,7 +55,7 @@ El usuario priorizó saber cuánto del enunciado se puede conservar, por encima 
 Un LHS por escenario (semilla 20261007 + k) y rangos p5–p95 dentro de KALINA. Se buscó también el
 KALINA más parecido al profesor.
 
-### Resultados obtenidos (validación V15):
+### Resultados obtenidos (verificación V15):
 
 | Escenario | KALINA | KALINA confiables | Lectura |
 |---|---|---|---|
@@ -102,4 +102,4 @@ _Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el 
 - No presentar 4.1d y 4.1e como opciones de diseño: no hay KALINA confiables.
 - Usar estudio 4.2 y estudio 4.3 para las conclusiones sobre conservación.
 
-**Fuentes:** `resultados/2026-10-07_final_M5/REPORTE_M5.md` (§6 y §7b, nota del director), `m5_lhs.csv`, `m5_resumen.csv`, `m5_rangos.csv`; `conteo_por_subcaso.csv`; validación V15.
+**Fuentes:** `resultados/2026-10-07_final_M5/REPORTE_M5.md` (§6 y §7b, nota del director), `m5_lhs.csv`, `m5_resumen.csv`, `m5_rangos.csv`; `conteo_por_subcaso.csv`; verificación V15.

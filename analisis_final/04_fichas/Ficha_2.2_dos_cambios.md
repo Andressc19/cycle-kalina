@@ -51,7 +51,7 @@ Malla 2D, más bisección sobre P_baja allí donde cambia "ser KALINA" o el sign
 
 ### Resultados obtenidos:
 - **Ruta A: 36 genuinas, 0 KALINA.** Con la fuente de 623 K, ningún ε_HRVG del rango alcanza; bloquea O2.
-- **Ruta B: 59 KALINA, 48 de ellos confiables** (validado, V04 y V05).
+- **Ruta B: 59 KALINA, 48 de ellos confiables** (verificado, V04 y V05).
   - Hay KALINA solo con **T_fuente ∈ {390, 403, 420, 434} K**. Con 380 K no converge; con 466 K o
     más no hay KALINA.
   - La menor P_baja KALINA es **445.5 kPa con T_fuente = 390 K** (η = 2.45 %).
@@ -88,4 +88,4 @@ _Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el 
 - Abrir el rango de eficiencias a [0.40, 0.95] para ver si la ruta A (fuente del profesor) se vuelve
   posible. Eso es estudio 2.3.
 
-**Fuentes:** `resultados/2026-10-06_final_M2/REPORTE_M2_N2.md`, `m2n2_malla.csv`, `m2n2_biseccion.csv`, `m2n2_resumen.csv`; validación V03–V05; estudio 4.3 (motor real).
+**Fuentes:** `resultados/2026-10-06_final_M2/REPORTE_M2_N2.md`, `m2n2_malla.csv`, `m2n2_biseccion.csv`, `m2n2_resumen.csv`; verificación V03–V05; estudio 4.3 (motor real).

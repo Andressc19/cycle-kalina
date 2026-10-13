@@ -65,7 +65,7 @@ requirements.txt
 ```
 
 Convenciones: Python 3.13.x, archivos `.py` ≤ 200 líneas (excepción: el motor
-portado `_nh3h2o_engine.py` es copia literal de un código ya validado), unidades
+portado `_nh3h2o_engine.py` es copia literal de un código ya verificado), unidades
 canónicas de la interfaz de propiedades: P [kPa], T [K], h [kJ/kg],
 s [kJ/kg·K], x = fracción másica de NH3 [-]. El resto del código solo consume
 `PropertyBackend`, nunca los backends concretos.
@@ -86,7 +86,7 @@ La mezcla NH3-H2O se resuelve con el **motor portado** del proyecto hermano
 (`src/properties/_nh3h2o_engine.py` + `_kalina_flash.py`), que envuelve
 `iapws.ammonia.H2ONH3` (ecuación de estado de referencia IAPWS G4-01,
 Tillner-Roth & Friend, 1998) con dos correcciones documentadas, y que ya fue
-validado contra las Tablas 6-8 de la guía IAPWS G4-01. El solver del ciclo solo
+verificado contra las Tablas 6-8 de la guía IAPWS G4-01. El solver del ciclo solo
 consume la interfaz `PropertyBackend` vía `AmmoniaWaterAdapter`.
 
 `PyfluidsAdapter` (pyfluids/CoolProp) se conserva SOLO como referencia: CoolProp
