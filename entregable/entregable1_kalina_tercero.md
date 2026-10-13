@@ -498,7 +498,7 @@ Antes de interpretar los resultados conviene precisar qué respaldo tiene el mod
 
 | Comprobación | Referencia | Resultado | Alcance |
 |---|---|---|---|
-| Propiedades | IAPWS G4-01 (IAPWS, 2001) | 44 de 44 valores evaluables dentro de tolerancia; error relativo máximo < 4×10⁻³ % | Verifica el motor de propiedades, no el ciclo |
+| Propiedades | IAPWS G4-01 (IAPWS, 2001) | 44 de 44 valores evaluables dentro de tolerancia (1 punto en la vecindad del lugar crítico no converge); error relativo máximo < 4×10⁻³ % | Verifica el motor de propiedades, no el ciclo |
 | Dos motores | `iapws` frente a `teqp` | 6 de 6 puntos; \|Δη\| < 0.002 pp; temperaturas de estado < 0.03 K | Dos implementaciones de la misma ecuación de estado |
 | Ciclo, mismo cierre | DWSIM con Peng-Robinson | 6 ciclos: Δη de +0.02 a +0.37 pp; caso Elsayed con efectividades: +0.59 pp | Respalda la estructura del modelo, no sus propiedades |
 | Estados, segunda fuente | Nemati et al. (2017) | Temperaturas de estado dentro de 2.5 K; un punto a 5000 kPa | Compara estados, no η |
@@ -507,7 +507,7 @@ Antes de interpretar los resultados conviene precisar qué respaldo tiene el mod
 
 *Nota.* Elaboración propia a partir de los reportes de verificación del proyecto (`prompts/VALIDACION_ELSAYED2013.md`, `resultados/2026-10-03_validacion_dwsim`, `resultados/2026-10-03_benchmark_nemati`, `resultados/2026-10-03_incertidumbre_eta`, `docs/PLANTEAMIENTO_MATEMATICO.md`). Δη: diferencia de eficiencia térmica entre la fuente externa y el modelo, o entre motores, en puntos porcentuales (pp).
 
-**Propiedades y motores.** El motor de propiedades reproduce las tablas oficiales de la guía IAPWS G4-01 (IAPWS, 2001), basada en la formulación de Tillner-Roth y Friend (1998): los 44 valores evaluables quedan dentro de la tolerancia, con errores relativos máximos inferiores a 4×10⁻³ % (criterio C6, sección 7). La segunda implementación, construida sobre `teqp`, coincide con el motor principal en la eficiencia a menos de 0.002 pp en los seis puntos comparados. Esta coincidencia descarta un error propio del código de cada implementación, pero no dice nada sobre la ecuación de estado compartida.
+**Propiedades y motores.** El motor de propiedades reproduce las tablas oficiales de la guía IAPWS G4-01 (IAPWS, 2001), basada en la formulación de Tillner-Roth y Friend (1998): los 44 valores evaluables quedan dentro de la tolerancia (un punto en la vecindad del lugar crítico no converge y queda sin evaluar), con errores relativos máximos inferiores a 4×10⁻³ % (criterio C6, sección 7). La segunda implementación, construida sobre `teqp`, coincide con el motor principal en la eficiencia a menos de 0.002 pp en los seis puntos comparados. Esta coincidencia descarta un error propio del código de cada implementación, pero no dice nada sobre la ecuación de estado compartida.
 
 **Contraste con DWSIM.** DWSIM, un simulador de procesos independiente, se empleó con las mismas ecuaciones de cierre por efectividad, de modo que la única diferencia restante es el modelo de propiedades (Peng-Robinson en DWSIM, Tillner-Roth y Friend en este trabajo). En seis ciclos a 3000 kPa de presión alta, con sumidero a 283 K y eficiencias isentrópicas de 0.80, DWSIM da una eficiencia mayor entre +0.02 y +0.37 pp, conserva el orden de los seis ciclos y los balances internos cuadran en ambos. La diferencia disminuye al aumentar la fracción de amoníaco. En el caso de Elsayed con efectividades, la diferencia es de +0.59 pp, que se reparte casi por mitades entre las propiedades y la forma del cierre (el cierre por pinch de 4 K en DWSIM da 12.20 %, frente a 11.64 % con efectividad y 11.05 % en este trabajo). DWSIM con Peng-Robinson no resolvió los ciclos de 4000 a 5000 kPa, de modo que esa zona queda sin esta comprobación.
 
@@ -640,7 +640,7 @@ La malla dirigida del estudio 4.2 la encuentra (Figura 5): con P_alta = 3000 kPa
 
 ![Franja KALINA con las presiones del profesor.](fig05_franja_presiones_profesor.png){width=90%}
 
-*Figura 5. Con las presiones del profesor hay KALINA desde T_fuente ≈ 390 K; con su clima (300 K) hace falta ε_cond ≥ 0.875. Elaboración propia a partir de `analisis_final/03_figuras/4.2/Figura_4.2-1`.*
+*Figura 5. Con las presiones del profesor hay KALINA desde T_fuente ≈ 390 K; con su clima (300 K) hace falta ε_cond de 0.875 (a 390 K) a 0.95 (a 410 K). Elaboración propia a partir de `analisis_final/03_figuras/4.2/Figura_4.2-1`.*
 
 La escalera del estudio 4.3 selecciona hacia adelante los datos que pueden conservarse (Tabla 15). El conjunto final conserva P_alta, P_baja, x_b y las cinco eficiencias y efectividades, es decir, 8 de los 10 datos; solo se mueven T_fuente (391 a 409 K) y T_sumidero (280 a 293 K), con 5 KALINA confiables y η hasta 10.6 %. Todos los conjuntos que conservan T_fuente = 623.15 K dan 0 KALINA confiables.
 
@@ -674,7 +674,7 @@ Con equipos de eficiencia media la eficiencia térmica ronda 8 a 11 % (A\*: 8.48
 
 *Figura 6. La búsqueda llega a η = 15.6 % dentro de la región KALINA con equipos a 0.95. Elaboración propia a partir de `analisis_final/03_figuras/5.1/Figura_5.1-1`.*
 
-**Interpretación y límite.** Los óptimos quedan pegados a la frontera de O2: durante la búsqueda se rechazaron evaluaciones con η cercana a 17 % porque violaban la restricción. El valor de 15.6 % es una cota superior alcanzable con equipos de 0.95, no un diseño; conservar a la vez la fuente y la x_b del profesor (A5) no produjo ningún KALINA confiable.
+**Interpretación y límite.** Los óptimos quedan pegados a la frontera de O2: durante la búsqueda se rechazaron evaluaciones con η cercana a 17 % porque violaban la restricción. El valor de 15.6 % es el mayor η encontrado con equipos de 0.95, no un máximo demostrado ni un diseño; conservar a la vez la fuente y la x_b del profesor (A5) no produjo ningún KALINA confiable.
 
 ## 10.6 Pregunta 6: ¿son confiables los resultados?
 
@@ -754,7 +754,7 @@ El estudio 3.2 (500 puntos) separa dos preguntas que el análisis local mezcla: 
 | η_t | 0.085 | +0.38 | 0.29 a 0.46 |
 | ε_HRVG | 0.074 | ≈ 0 (p > 0.39) | — |
 
-*Nota.* Fuente: Tabla 3.2-3 (KS, 121 KALINA frente a 379 no KALINA) y PRCC de `m4b_prcc.csv` (n = 430 genuinos con W_net > 0), recogidos en `analisis_final/INFORME_BARRIDOS_CAMPANA_FINAL.md`. —: no se calculó PRCC para r_P, que es una combinación de P_alta y P_baja.
+*Nota.* Los KS de esta tabla se calculan contra los 379 puntos no KALINA (incluye no convergidos) y los de la Tabla 14 contra los 331 genuinos no KALINA; por eso difieren (por ejemplo, P_baja 0.427 frente a 0.437). Fuente: Tabla 3.2-3 (KS, 121 KALINA frente a 379 no KALINA) y PRCC de `m4b_prcc.csv` (n = 430 genuinos con W_net > 0), recogidos en `analisis_final/INFORME_BARRIDOS_CAMPANA_FINAL.md`. —: no se calculó PRCC para r_P, que es una combinación de P_alta y P_baja.
 
 ![Influencia de cada variable sobre η (PRCC).](fig09_prcc_eta.png){width=90%}
 
@@ -772,7 +772,7 @@ La presión alta tiene una elasticidad local de −1.2 en A\* (Tabla 18) y un PR
 
 **La frontera se desplaza de forma ordenada.** La P_baja mínima KALINA baja 12.5, 15.9 y 25.7 kPa por cada kelvin de sumidero más frío en las tres bases del estudio 2.4 (R² ≥ 0.99), y η en esa P_baja mínima sube 0.088, 0.128 y 0.155 pp por kelvin. En Húsavík sube unos 144 kPa por cada 0.1 de x_b. Con P_baja fija, el efecto directo de T_sumidero sobre η es pequeño (0.85 pp en todo el rango, comparable a la banda); el beneficio de un clima frío llega por vía indirecta, porque relaja O2, permite una P_baja menor y esa P_baja menor sube η (−0.55 pp por cada 100 kPa en la base 2.4a, R² = 0.98).
 
-**r_P discrimina y ΔP no.** El KS de r_P (0.35) es el de una variable que decide, y el de ΔP (0.14) no lo es; casi no hay KALINA con r_P por encima de 6 aproximadamente (Figura 4). La interacción entre P_alta y P_baja explica que P_alta sola no discrimine: la ventana de diseño debe darse en r_P junto con P_baja, no en P_alta.
+**r_P discrimina y ΔP no.** El KS de r_P (0.35, Tabla 14) es el de una variable que decide, y el de ΔP (0.10) no lo es; casi no hay KALINA con r_P por encima de 6 aproximadamente (Figura 4). La interacción entre P_alta y P_baja explica que P_alta sola no discrimine: la ventana de diseño debe darse en r_P junto con P_baja, no en P_alta.
 
 **O2 es la restricción dominante.** La cavitación bloquea entre 88 y 100 % de los puntos genuinos que no son KALINA en todos los estudios, salvo en el estudio 4.2 (66.7 %), donde O3 pesa 33.3 % por fuentes frías. El mecanismo es el margen de cavitación: su PRCC (n = 452) es de +0.76 con P_baja, +0.73 con ε_cond, −0.68 con T_fuente, −0.54 con T_sumidero y −0.47 con x_b, y las eficiencias de turbina y bomba no lo mueven (|PRCC| < 0.05). Subir P_baja eleva la temperatura de burbuja; un condensador más efectivo enfría más el líquido; una fuente más caliente, un sumidero más caliente o más amoníaco empujan el líquido hacia la saturación. Estas explicaciones son interpretación coherente con los signos, no una prueba de causalidad.
 
@@ -784,17 +784,17 @@ El objetivo de la campaña fue determinar el rango en que el ciclo es KALINA con
 
 1. **El caso del profesor no converge, y un solo cambio no basta.** *Resultado:* 0 de 42 corridas convergen con los datos del profesor y 0 KALINA en 132 corridas con un cambio (Tablas 12 y 13). *Interpretación:* el bloqueo está en el lado caliente. *Límite:* reproducir el fallo no prueba que el modelo sea correcto.
 
-2. **Con la fuente a 390–410 K se conservan 8 de los 10 datos de diseño.** *Resultado:* 5 KALINA confiables con P_alta, P_baja, x_b y las cinco eficiencias del profesor, con T_fuente de 391 a 409 K y T_sumidero de 280 a 293 K (Tabla 15); alternativamente, las dos presiones del profesor dan 104 KALINA confiables con T_fuente de 390 a 410 K y ε_cond ≥ 0.875 en su clima (Figura 5). *Interpretación:* la fuente de 623 K es incompatible con el resto del enunciado (0 confiables en los cuatro conjuntos que la conservan). *Límite:* T_fuente > 410 K no se exploró en el estudio 4.2.
+2. **Con la fuente a 390–410 K se conservan 8 de los 10 datos de diseño.** *Resultado:* 5 KALINA confiables con P_alta, P_baja, x_b y las cinco eficiencias del profesor, con T_fuente de 391 a 409 K y T_sumidero de 280 a 293 K (Tabla 15); alternativamente, las dos presiones del profesor dan 104 KALINA confiables con T_fuente de 390 a 410 K, y en su clima la ε_cond exigida crece con T_fuente: 0.875 solo a 390 K y 0.95 para llegar a 410 K (Figura 5). *Interpretación:* la fuente de 623 K es incompatible con el resto del enunciado (0 confiables en los cuatro conjuntos que la conservan). *Límite:* T_fuente > 410 K no se exploró en el estudio 4.2.
 
 3. **La cavitación (O2) es el criterio que manda.** *Resultado:* bloquea entre 88 y 100 % de los genuinos no KALINA, salvo en el estudio 4.2 (66.7 %). *Interpretación:* el margen de cavitación depende sobre todo de P_baja, ε_cond, T_fuente y T_sumidero (sección 11.4). *Límite:* el margen del modelo es de 0 K; con el piso en 303.55 K, 9 de 12 puntos clave pasan a CORREGIBLE (Tabla 17).
 
-4. **La ventana de presiones se da en r_P.** *Resultado:* el 90 % de los KALINA tiene P_baja de 683 a 1461 kPa y r_P de 1.7 a 5.3 (Tabla 14, Figura 4). *Interpretación:* discrimina r_P (KS = 0.35) y no ΔP (0.14). *Límite:* el techo de P_baja es el borde de la caja muestreada; hay KALINA hasta 2500 kPa (estudio 3.3).
+4. **La ventana de presiones se da en r_P.** *Resultado:* el 90 % de los KALINA tiene P_baja de 683 a 1461 kPa y r_P de 1.7 a 5.3 (Tabla 14, Figura 4). *Interpretación:* discrimina r_P (KS = 0.35) y no ΔP (KS = 0.10), ambos de la Tabla 14. *Límite:* el techo de P_baja es el borde de la caja muestreada; hay KALINA hasta 2500 kPa (estudio 3.3).
 
 5. **Lo que decide la clase no es lo que mueve η.** *Resultado:* ε_cond decide la clase (KS = 0.43) con PRCC de +0.08 sobre η; P_alta, η_t y ε_reg mueven η (PRCC +0.58, +0.38 y +0.27) sin decidir la clase; P_baja está en ambos con efecto opuesto (−0.68) (Tabla 19). *Interpretación:* primero se fijan ε_cond y P_baja para ser KALINA y después se sube η. *Límite:* los intervalos de P_baja y ε_cond se solapan, por lo que no puede afirmarse cuál pesa más.
 
 6. **Un clima más frío ayuda sobre todo por permitir una P_baja menor.** *Resultado:* 22 K menos de sumidero reducen la P_baja mínima 43 a 48 % y elevan η máxima 1.9 a 3.4 pp (Figura 3). *Interpretación:* la ganancia llega por vía indirecta (O2). *Límite:* el efecto directo con P_baja fija (0.85 pp) es comparable a la banda de ±0.4 a ±0.7 pp.
 
-7. **La eficiencia es secundaria y acotada.** *Resultado:* 8 a 11 % con equipos de eficiencia media y hasta 15.60 % con equipos a 0.95 conservando las presiones del profesor (Tabla 16). *Interpretación:* los óptimos quedan pegados a la restricción de O2. *Límite:* 15.60 % es una cota alcanzable con equipos de 0.95, no un diseño, y diferencias menores que ±0.7 pp no son concluyentes.
+7. **La eficiencia es secundaria y acotada.** *Resultado:* 8 a 11 % con equipos de eficiencia media y hasta 15.60 % con equipos a 0.95 conservando las presiones del profesor (Tabla 16). *Interpretación:* los óptimos quedan pegados a la restricción de O2. *Límite:* 15.60 % es el mayor η encontrado con equipos de 0.95, no un máximo demostrado ni un diseño, y diferencias menores que ±0.7 pp no son concluyentes.
 
 8. **El modelo está verificado y contrastado con modelos publicados; no tiene validación experimental.** *Resultado:* concuerda con IAPWS G4-01, entre dos motores (< 0.002 pp), con DWSIM (+0.02 a +0.37 pp en seis ciclos), con Nemati et al. (2017) en estados (dentro de 2.5 K) y con Elsayed et al. (2013) en η (|Δη| medio de 0.28 pp, máximo de 1.16 pp); reproduce los 97 KALINA de Húsavík (Tabla 10). *Interpretación:* respalda la estructura y los rangos de convergencia del modelo. *Límite:* una sola fuente de η, ninguna medición de planta y apenas 5 corridas del motor real.
 
@@ -803,7 +803,7 @@ La Tabla 20 resume, con su respaldo, qué datos del profesor pueden conservarse.
 | Dato | Valor del profesor | ¿Se conserva con KALINA? | Respaldo |
 |---|---|---|---|
 | P_alta | 3000 kPa | Sí | Estudios 4.3 y 4.2 |
-| P_baja | 400 kPa | Sí; con su clima de 300 K exige ε_cond ≥ 0.875 | Estudios 4.3 y 4.2 |
+| P_baja | 400 kPa | Sí; con su clima de 300 K exige ε_cond de 0.875 (a 390 K) a 0.95 (a 410 K) | Estudios 4.3 y 4.2 |
 | x_b | 0.50 | Sí (con el ancla de Húsavík queda al límite, η < 1.3 %) | Estudios 4.3 y 6.2 |
 | η_t, η_p, ε_HRVG, ε_reg | 0.85, 0.75, 0.85, 0.75 | Sí | Estudio 4.3 |
 | ε_cond | 0.80 | Sí, si el sitio es más frío (≤ ~293 K) | Estudios 4.3 y 4.2 |
