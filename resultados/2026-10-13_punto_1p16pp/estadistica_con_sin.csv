@@ -1,0 +1,8 @@
+criterio,n,delta_medio_pp,absdelta_medio_pp,absdelta_max_pp,mediana_absrel_pct,excluidos,nota
+todos,23,-0.0615,0.2749,1.1587,2.365,,
+sin_punto_2300,22,-0.117,0.2347,0.5151,2.266,Fig7_KCS11_0p55|2300|0.55|373.0,
+sin_punto_2300_por_decision,22,-0.117,0.2347,0.5151,2.266,Fig7_KCS11_0p55|2300|0.55|373.0,"exclusion por decision del usuario, causa abierta, NO por criterio objetivo"
+Wnet>=20kW,21,-0.1471,0.2214,0.4218,2.167,Fig7_KCS11_0p55|2300|0.55|373.0 ; Fig3_15bar|1500.0|0.45|373.0,
+Wnet>=25kW,20,-0.1732,0.2136,0.4218,2.049,Fig7_KCS11_0p55|2200|0.55|373.0 ; Fig7_KCS11_0p55|2300|0.55|373.0 ; Fig3_15bar|1500.0|0.45|373.0,
+eps_hrvg>=0.80,19,-0.1968,0.2105,0.4218,1.931,Fig7_KCS11_0p55|2200|0.55|373.0 ; Fig7_KCS11_0p55|2300|0.55|373.0 ; Fig7_KCS11_0p66|3000|0.66|373.0 ; Fig3_15bar|1500.0|0.45|373.0,
+eps_hrvg>=0.85,18,-0.2015,0.2159,0.4218,2.049,Fig7_KCS11_0p55|2000|0.55|373.0 ; Fig7_KCS11_0p55|2200|0.55|373.0 ; Fig7_KCS11_0p55|2300|0.55|373.0 ; Fig7_KCS11_0p66|3000|0.66|373.0 ; Fig3_15bar|1500.0|0.45|373.0,
