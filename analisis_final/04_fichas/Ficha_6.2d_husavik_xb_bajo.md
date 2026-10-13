@@ -63,6 +63,14 @@ fuera de lo habitual en Kalina": es una etiqueta, no un filtro.
    en las condiciones de Húsavík.
 3. **El KALINA útil empieza en x_b ≈ 0.55**, y a menor x_b permite una P_baja más baja.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 6.2-1 (zona x_b ≤ 0.475).** Los puntos con x_b 0.30 y 0.35 son «No convergió» y los de 0.40 y 0.45
+  «Falso convergido»; la malla los marca como «sin ciclo». En x_b = 0.50 aparece KALINA incluso a 200 kPa.
+  El borde es un corte, no una pendiente.
+
 ### Advertencias, supuestos y limitaciones:
 - La conclusión sobre x_b = 0.50 vale con el ancla de Húsavík (T_fuente 394 K y P_alta 3300 kPa).
   Con otras condiciones (por ejemplo, estudio 4.2), x_b = 0.50 sí da η de ~8–11 %.

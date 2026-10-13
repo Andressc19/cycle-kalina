@@ -85,7 +85,7 @@ def fig_m05c():
         ax.set_xlabel(NOMBRE["T_fuente"])
 
     axs[0].set_ylabel(NOMBRE["eps_cond"])
-    leyenda_fig(fig, sub)
+    leyenda_fig(fig, sub, marcadores={"KALINA": "s"})   # el gráfico dibuja KALINA como cuadrado
     kal = sub[sub["clasificacion"] == "KALINA"]
     t1 = (f"Con las presiones del profesor hay KALINA desde T_fuente ≈ "
           f"{kal['T_fuente'].min():.0f} K; con su clima (300 K) hace falta ε_cond ≥ 0.875")

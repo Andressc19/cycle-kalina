@@ -47,6 +47,14 @@ def fig_m02s_01():
     for bloque, id_sub, color, m, label in BASES:
         sub = PUNTOS[PUNTOS["bloque_director"] == bloque]
         sub = sub[sub["clasificacion"] == "KALINA"]
+        n_base = len(sub)
+        n_fuera = int(sub["fuera_rango"].sum())
+        if n_base and n_fuera == n_base:
+            # 2026-10-12: la leyenda de 2.4c rozaba la línea naranja; se parte en dos líneas
+            sep = "\n" if bloque == "B05-B3" else " "
+            label = label + sep + "· fuera de rango"
+        elif n_fuera:
+            label = label + f" · {n_fuera} de {n_base} fuera de rango"
         pmin, emax = [], []
         for t in ts:
             g = sub[np.isclose(sub["T_sumidero"], t)]
@@ -79,7 +87,9 @@ def fig_m02s_01():
            + "\nBase B4 (datos del profesor, T_fuente 623.15 K): 0 KALINA; no se "
              "dibuja (queda nombrada en el pie).\n"
            "Filtro: mínimos de P_baja y máximos de η de los KALINA por "
-           "(base, T_sumidero).\n"
+           "(base, T_sumidero). Marcas: Las líneas marcadas “fuera de rango” "
+           "se apoyan en KALINA fuera del rango validado del modelo de "
+           "propiedades.\n"
            f"n = 15 puntos por panel (3 bases × 5 T_sumidero). Fuente: {FUENTE}.")
     guardar_fig(fig, "M02S", "FIG-M02S-01_sumidero_pbaja_eta", pie)
     print(f"FIG-M02S-01: {len(n_lin)} bases graficadas (B1, B2, B3)")

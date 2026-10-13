@@ -64,6 +64,15 @@ Comparación punto a punto de clase, η y margen de O2; bisección de P_baja par
 3. **Dar un margen de 2 K es barato**: ~25–46 kPa más de P_baja y menos de 0.5 pp de η. No cambia
    ningún rango KALINA de forma material.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 6.1-1.** Los puntos caen sobre la recta 1:1 dentro de ±0.7 pp. Son 5 corridas sobre
+  **4 diseños distintos** (el óptimo A4 de 5.1d, P08 en M6 y A4 en M9, se corrió con 300 s y con 1500 s;
+  mismo `eta_teqp` = 0.155997). Los 10 puntos que el motor real no
+  alcanzó a resolver no aparecen: la comparación cubre solo los casos que terminó.
+
 ### Advertencias, supuestos y limitaciones:
 - El motor real necesita ~1500 s por punto; con 300 s se corta.
 - El costo de P05 (óptimo 5.1a) no es confiable: hay un hueco NO_CONVERGIO y la bisección saltó.

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
-"""A3 · Utilidades compartidas de las figuras de la campaña final.
-
-Carga la tabla canónica, grafica por clase (forma+color, huecos para fuera de
-rango), dibuja tiras y paneles, y empaqueta el pie y la salida estándar.
+"""A3 · Utilidades compartidas de las figuras de la campaña final: tabla canónica,
+dispersión por clase (huecos = fuera de rango), tiras, paneles, pie y salida.
 """
 import os
 
@@ -17,17 +15,15 @@ from codigos_texto import traducir
 PUNTOS = "analisis_final/01_datos/todos_los_puntos.csv"
 
 # Orden de presentación de las variables (suites OAT y CDF).
-SEC_VAR = ["T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b",
-           "eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond"]
+SEC_VAR = ["T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b", "eta_t", "eta_p",
+           "eps_hrvg", "eps_reg", "eps_cond"]
 
 
 def _bool(x):
     """Interpreta un flag de la tabla canónica como booleano."""
     if x is None or (isinstance(x, float) and np.isnan(x)):
         return False
-    if isinstance(x, (bool, np.bool_)):
-        return bool(x)
-    if isinstance(x, (int, float, np.integer, np.floating)):
+    if isinstance(x, (bool, np.bool_, int, float, np.integer, np.floating)):
         return bool(x)
     return str(x).strip().lower() in ("true", "1", "sí", "si", "verdadero")
 
@@ -43,18 +39,15 @@ def cargar():
 
 def contar_clases(sub):
     """Cuenta por clase de trazo, incluido OMITIDO."""
-    n = {}
-    for c in ORDEN_CLASE:
-        n[c] = int((sub["clase_trazo"] == c).sum())
+    n = {c: int((sub["clase_trazo"] == c).sum()) for c in ORDEN_CLASE}
     if "omitido" in sub.columns:
         n["OMITIDO"] = int(sub["omitido"].sum())
     return n
 
 
 def dispersion(ax, sub, x, y, s=14, zorder=3, alfa=0.9):
-    """Puntos de una dispersión, una serie por clase.
-
-    OMITIDO nunca se dibuja; los fuera de rango van huecos. KALINA encima.
+    """Puntos de una dispersión, una serie por clase: OMITIDO no se dibuja y los fuera
+    de rango van huecos con su entrada "<clase>, fuera de rango (n = k)". KALINA encima.
     """
     sub = sub[~sub["omitido"]]
     for c in ORDEN_CLASE[::-1]:
@@ -62,21 +55,27 @@ def dispersion(ax, sub, x, y, s=14, zorder=3, alfa=0.9):
         if s2.empty:
             continue
         hueco = s2["fuera_rango"]
-        ax.scatter(s2.loc[~hueco, x], s2.loc[~hueco, y], s=s, alpha=alfa,
-                   color=COLOR_CLASE[c], marker=MARCADOR_CLASE[c],
-                   label=f"{ETIQUETA_CLASE[c]} (n = {len(s2)})", zorder=zorder)
+        n_h, n_r = int(hueco.sum()), int((~hueco).sum())
         if MARCADOR_CLASE[c] == "x":     # la ✕ no tiene relleno: hueco no aplica
-            ax.scatter(s2.loc[hueco, x], s2.loc[hueco, y], s=s, alpha=alfa,
-                       color=COLOR_CLASE[c], marker="x", zorder=zorder)
-        else:
+            ax.scatter(s2[x], s2[y], s=s, alpha=alfa, color=COLOR_CLASE[c],
+                       marker="x", label=f"{ETIQUETA_CLASE[c]} (n = {len(s2)})",
+                       zorder=zorder)
+            continue
+        if n_r:
+            ax.scatter(s2.loc[~hueco, x], s2.loc[~hueco, y], s=s, alpha=alfa,
+                       color=COLOR_CLASE[c], marker=MARCADOR_CLASE[c],
+                       label=f"{ETIQUETA_CLASE[c]} (n = {n_r})", zorder=zorder)
+        if n_h:
             ax.scatter(s2.loc[hueco, x], s2.loc[hueco, y], s=s, alpha=alfa,
                        facecolors="none", edgecolors=COLOR_CLASE[c],
-                       marker=MARCADOR_CLASE[c], zorder=zorder)
+                       marker=MARCADOR_CLASE[c],
+                       label=f"{ETIQUETA_CLASE[c]}, fuera de rango (n = {n_h})",
+                       zorder=zorder)
 
 
 def tira(ax, sub, x, y=0.0, s=16, etiquetas=True):
-    """Tira de clases (FIG-M02-01 y M02R-n1): x = valor de la variable movida; cada clase
-    en su propia fila (KALINA arriba). Antes se repartían en una diagonal que parecía tendencia."""
+    """Tira de clases (FIG-M02-01 y M02R-n1): x = variable movida; una fila por clase, KALINA
+    arriba (antes se repartían en diagonal, que parecía tendencia)."""
     sub = sub[~sub["omitido"]]
     filas = {c: i for i, c in enumerate(ORDEN_CLASE[::-1])}      # N2 = 0 … KALINA = 4
     for c in ORDEN_CLASE[::-1]:
@@ -105,9 +104,7 @@ def sin_eta_sobre_eje(ax, sub, x, ymin, s=16):
 
 
 def titulo(ax, linea1, linea2, f1=9, f2=8):
-    """Título de dos líneas (regla 3): 1.ª conclusión; 2.ª, más pequeña,
-    'Bloque <b> · <caso(s)>'. Ambas ancladas a la izquierda, sobre el panel.
-    """
+    """Título de dos líneas (regla 3): 1.ª conclusión; 2.ª, 'Estudio 3.2 · parte …'."""
     ax.set_title(linea1, fontsize=f1, loc="left")
     linea2 = traducir(linea2)               # nomenclatura nueva: "Estudio 3.2 · parte …"
     if linea2:
@@ -123,9 +120,8 @@ def titulo_fig(fig, linea1, linea2, f1=10, f2=8):
 
 
 def texto_condiciones_corto(ax, texto, n_lineas=3, ancho=70):
-    """Recuadro de condiciones (regla 4): el texto se parte en líneas de ≤ `ancho`
-    caracteres y se recorta a `n_lineas` + 1 (el texto completo va en el pie).
-    Sin el corte, una línea larga ensancha la figura al guardar con bbox 'tight'."""
+    """Recuadro de condiciones: el texto se parte en líneas de ≤ `ancho` y se recorta a
+    `n_lineas` + 1 (sin el corte, una línea larga ensancha la figura con bbox 'tight')."""
     import textwrap
     lineas = []
     for l in texto.splitlines():
@@ -145,8 +141,7 @@ def recuadro_oat(ax, id_subcasos, n_lineas=3):
 
 
 def recuadro_fig(fig, id_subcasos, n_lineas=2, ancho=190):
-    """Recuadro de condiciones para figuras de varios paneles: va centrado al pie de la
-    figura (no dentro de un panel, para no deformar la rejilla)."""
+    """Recuadro de condiciones para figuras de varios paneles: centrado al pie de la figura."""
     import textwrap
     from pies import condiciones_texto
     lineas = []
@@ -161,12 +156,27 @@ def recuadro_fig(fig, id_subcasos, n_lineas=2, ancho=190):
     fig._multipanel = True
 
 
-def leyenda_fig(fig, sub):
-    """Leyenda única de la figura con el n TOTAL por clase (no el de un panel)."""
+def leyenda_fig(fig, sub, marcadores=None):
+    """Leyenda única de la figura con el n total por clase (no el de un panel).
+
+    Cada clase con puntos fuera de rango lleva dos entradas (rellena + hueca
+    "<clase>, fuera de rango (n = k)"); si no hay huecos, una sola con el total.
+    `marcadores` reemplaza el marcador de la clase solo en la leyenda.
+    """
     import matplotlib.pyplot as plt
-    n = contar_clases(sub)
-    h = [plt.Line2D([0], [0], marker=MARCADOR_CLASE[c], ls="", color=COLOR_CLASE[c],
-                    label=f"{ETIQUETA_CLASE[c]} (n = {n[c]})") for c in ORDEN_CLASE if n.get(c)]
+    marcadores, n, h = marcadores or {}, contar_clases(sub), []
+    for c in ORDEN_CLASE:
+        if not n.get(c):
+            continue
+        m = marcadores.get(c, MARCADOR_CLASE[c])
+        k = 0 if MARCADOR_CLASE[c] == "x" else int(     # la ✕ no tiene relleno
+            sub.loc[sub["clase_trazo"] == c, "fuera_rango"].sum())
+        h.append(plt.Line2D([0], [0], marker=m, ls="", color=COLOR_CLASE[c],
+                            label=f"{ETIQUETA_CLASE[c]} (n = {n[c] - k})"))
+        if k:
+            h.append(plt.Line2D([0], [0], marker=m, ls="", color=COLOR_CLASE[c],
+                                markerfacecolor="none", markeredgecolor=COLOR_CLASE[c],
+                                label=f"{ETIQUETA_CLASE[c]}, fuera de rango (n = {k})"))
     fig.legend(handles=h, loc="upper center", bbox_to_anchor=(0.5, 0.94), ncol=len(h),
                fontsize=8, frameon=False)
 

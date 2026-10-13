@@ -570,10 +570,10 @@ unidades en los títulos, descripción al final).
 | 3 | `Punto_profesor` | Los 11 datos del profesor y el ancla A\* |
 | 4 | `G01_resumen_casos` … `G05_bloqueos` | Tablas de síntesis TAB-G01…G05 |
 | 5 | `Mnn_00_condiciones`, `Mnn_01_conteo`, `Mnn_02_<resultado>` … | Juego de tablas de cada caso, en el orden de los IDs. **Una hoja nunca junta dos bloques** |
-| 6 | `G_graficos`, `M02_graficos` … `M10_graficos` | **Gráficos nativos de Excel** (decisión del usuario, 2026-10-11): 74 gráficos que replican las 30 figuras de Matplotlib con los mismos datos, bloque y título; ID y título arriba, pie con los datos fijos abajo. Sus datos están en la hoja oculta `Aux_graficos` |
+| 6 | `G_graficos`, `M02_graficos` … `M10_graficos` | **Gráficos nativos de Excel** (decisión del usuario, 2026-10-11): 74 gráficos que replican las 30 figuras de Matplotlib con los mismos datos, bloque y título; ID y título arriba, pie con los datos fijos abajo. Sus datos están **visibles** en las hojas `N Datos de gráficos` (una por pregunta; un bloque por figura, con vínculo desde el subtítulo) desde el 2026-10-12; cada gráfico además tiene una copia junto a la tabla de la que salen sus datos (`a2_excel_copias.py`) |
 | 7 | `X_M08_anecdotico` | Con una franja de aviso "ANECDÓTICO — fuera del rango realista" |
 | 8 | `Datos`, `Condiciones`, `Bloques`, `Aux_tablero`, `Aux_puntos` | La tabla canónica y las condiciones, con filtros, que alimentan el `Tablero`; las `Aux_*` están ocultas |
-| 9 | `Figuras_matplotlib_ref` | Al final: las 30 figuras de Matplotlib con su pie, **solo de referencia** (las del informe escrito siguen en `03_figuras/`) |
+| 9 | `N.M-R Resultados por barrido` | Una por estudio (1.1–6.2): la tabla de cada barrido (valor de la variable barrida, clase, η, W_net, ΔP, r_P, fuera de rango), como en el tablero HTML. Reemplaza a `Figuras_matplotlib_ref`, que se quitó el 2026-10-12 (las figuras del informe escrito siguen en `03_figuras/`) |
 
 Cada hoja `Mnn_*` empieza con el mismo bloque de encabezado: título; caso y bloque; punto base;
 datos fijos y barridos (bloque por bloque si la tabla abarca varios); filtro y fuente. La tabla

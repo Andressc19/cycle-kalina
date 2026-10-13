@@ -12,8 +12,9 @@ from openpyxl import Workbook
 
 import pies
 from a2_comun import EXCEL_VIEJO, INV, LIBRO, MNN, leer_canon, registro
-from a2_excel_hojas import (cuadricula, hoja_df, hoja_figuras, hoja_leeme, hoja_profesor,
-                            hoja_tabla)
+from a2_excel_hojas import cuadricula, hoja_df, hoja_leeme, hoja_profesor, hoja_tabla
+from a2_excel_copias import colocar_copias
+from a2_excel_resultados import hojas_resultados
 from a2_graf_casos_b import construir_graficos
 from a2_excel_nomenclatura import hoja_nomenclatura
 import codigos
@@ -60,6 +61,12 @@ def main():
                        m["titulo_nuevo"]))
     for h, est, que in hojas_graf:
         indice.append((h, est, "—", que))
+        indice.append((h.replace("Gráficos", "Datos de gráficos"), est, "—",
+                       "números de cada gráfico (los que dibuja Excel)"))
+    for h, est, partes, que in hojas_resultados(wb, d[d["id_caso"] != "KF-M08"], cond):
+        indice.append((h, est, partes, que))
+    puestos = colocar_copias(wb)
+    print(f"Copias de gráficos junto a su tabla: {sum(puestos.values())} en {len(puestos)} hojas")
     _ordenar(wb)
     ws = wb.create_sheet("A.1 Anexo fuera de rango")
     ws["A1"] = "ANEXO A.1 — equipos fuera del rango realista (no entra en las conclusiones)"
@@ -83,10 +90,6 @@ def main():
     bloques = [b for b in dict.fromkeys(datos["bloque_director"]) if b != "BX"]
     construir(wb, datos.assign(viol_O1=d["viol_O1"], viol_O2=d["viol_O2"], viol_O3=d["viol_O3"],
                                viol_O5=d["viol_O5"]), cond[cond["bloque_director"] != "BX"], bloques)
-    hoja_figuras(wb, "ref", "Las 30 figuras de Matplotlib (solo referencia; los gráficos del libro "
-                            "son nativos de Excel)")
-    indice.append(("Figuras_matplotlib_ref", "todos", "—", "las 30 figuras de Matplotlib, de referencia"))
-    wb.move_sheet("Aux_graficos", offset=len(wb.sheetnames))
     hoja_nomenclatura(wb, 1)
     wi = wb.create_sheet("Indice", 3)
     wi.append(["Hoja", "Estudio", "Parte(s)", "Qué muestra"])
@@ -105,7 +108,7 @@ def main():
 
 
 def _ordenar(wb):
-    """Tablas de cada pregunta seguidas de su hoja de gráficos (S, 1, 2 … 6)."""
+    """Tablas de cada pregunta, luego su hoja de gráficos y la de sus datos (S, 1, 2 … 6)."""
     fijas = [ws for ws in wb._sheets if ws.title in ("LEEME", "Punto_profesor")]
     resto = [ws for ws in wb._sheets if ws not in fijas]
 
@@ -113,7 +116,7 @@ def _ordenar(wb):
         t = ws.title
         p = t.split(" ")[0].split(".")[0].split("-")[0]
         orden = {"S": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6}.get(p, 9)
-        return (orden, 1 if "Gráficos" in t else 0, t)
+        return (orden, 2 if "Datos de gráficos" in t else 1 if "Gráficos" in t else 0, t)
     wb._sheets = fijas + sorted(resto, key=clave)
 
 

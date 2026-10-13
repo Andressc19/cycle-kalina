@@ -50,6 +50,16 @@ LHS, conteo por franjas de 100 kPa de P_baja y de 500 kPa de P_alta, y conteo de
    con P_baja alta, r_P se acerca a 1, el ciclo produce poco trabajo y η cae.
 3. Con estudio 3.2, **la P_baja de los KALINA va de ~550 a ~2500 kPa** en toda la caja explorada.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 3.3-1.** Las franjas van de 33 a 75 % sin tendencia (33, 53, 50, 67, 69, 62, 50, 36, 70, 75):
+  el zigzag, con ≈15 puntos por franja, es ruido de muestreo. **No hay techo ni descenso** hasta 2500 kPa, pero
+  tampoco se puede afirmar que suba.
+- Ojo: 30 de los 75 KALINA de este caso son fuera de rango; la figura original no los separaba (la versión
+  corregida los apila con rayado).
+
 ### Advertencias, supuestos y limitaciones:
 - 150 puntos en 10 dimensiones: el techo está acotado por los puntos muestreados; no es una frontera calculada.
 - El KALINA de mayor P_baja (2494.5 kPa) es el único sin verificación B (por 0.02 kJ/kg sobre el umbral).

@@ -70,6 +70,17 @@ Malla completa; conteo de clases por celda; criterios que fallan a cada lado de 
    o más** (0.95 da toda la franja).
 3. Con un sitio más frío, incluso ε_cond = 0.85 alcanza.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 4.2-1.** La región KALINA es una **cuña**: a 300 K de sumidero, con ε_cond 0.95 hay KALINA de 390 a
+  410 K; con 0.925, de 390 a ≈397; con 0.90, solo 390–392.5; con 0.875, solo 390 K; con 0.85, ninguno.
+  «ε_cond ≥ 0.875» es cierto solo en el borde izquierdo (390 K); cubrir toda la franja a 300 K exige 0.95
+  (el tope permitido).
+- Por debajo de 390 K no hay KALINA a ningún clima (385 K: Falso convergido; 387.5 K: Inviable).
+  Con sumidero frío (278/290 K) hay KALINA de 390 a ≈407 K con ε_cond ≥ 0.85.
+
 ### Advertencias, supuestos y limitaciones:
 - Resolución: 2.5 K en T_fuente y 0.025 en ε_cond.
 - No se exploró T_fuente > 410 K: el borde superior de la franja no está medido.

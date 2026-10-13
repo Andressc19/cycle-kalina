@@ -86,6 +86,20 @@ prueba de convergencia del ranking (300 contra 500 puntos, ρ = 0.93). Ver MATEM
 4. **Lo que favorece KALINA y lo que favorece η van en sentidos opuestos en P_baja**: subirla ayuda
    a cumplir O2, pero baja η. Por eso los óptimos de η quedan al filo de O2 (ver estudio 5.1).
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 3.2-1.** Las curvas KALINA se separan del resto en P_baja (KS 0.44), ε_cond (0.43) y T_fuente
+  (0.30); casi nada en η_t, η_p, ε_HRVG y ε_reg (KS ≤ 0.11, p > 0.2). Qué clase sale lo deciden P_baja,
+  ε_cond y una fuente más fría. Los «sin resultado» se concentran en T_fuente < 410 K y P_alta > 4300 kPa.
+- **Figura 3.2-2.** Los KALINA caen entre las rectas r_P ≈1.7 y ≈5.3 a cualquier P_alta; ninguno bajo ≈550 kPa.
+  Se apilan contra el techo de P_baja (≈1460 kPa), que coincide con el borde del muestreo (1498 kPa): **no es
+  una frontera física** (el estudio 3.3 llega a 2500 kPa).
+- **Figura 3.2-3.** En η mandan P_baja (−0.68) y P_alta (+0.58). ε_HRVG ≈ 0 aquí aunque en 3.1-3 mueve
+  ≈6.7 pp: el LHS la barre solo en 0.60–0.95 (zona plana).
+- **Figura 3.2-4.** r_P discrimina y ΔP no: KALINA cubre ΔP ≈700–3800 kPa sin pico y casi no hay sobre r_P ≈6.
+
 ### Advertencias, supuestos y limitaciones:
 - La unión de dos LHS no es un LHS estricto de 500; cada mitad sí lo es.
 - 222 de 500 puntos están fuera de rango: sus η se toman con cautela. Los rangos de presión se

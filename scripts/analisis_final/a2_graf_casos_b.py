@@ -10,6 +10,7 @@ import pandas as pd
 
 from a2_graf_base import Lienzo, barras, disp_clases, lineas
 from a2_graf_casos_a import P, S, _bloque_fig
+from codigos import figura
 from a3_comun import SEC_VAR
 from a2_graf_base import pie_fig
 from a3_m05 import ejes
@@ -28,16 +29,24 @@ def graf_m04(wb):
     b07 = P[P["bloque_director"] == "B07"]
     gen = b07[b07["genuino"]]
     kal, resto = gen[gen["clasificacion"] == "KALINA"], gen[gen["clasificacion"] != "KALINA"]
+    nogen = b07[~b07["genuino"] & ~b07["omitido"]]     # los de la tabla que no tienen resultado
     gr = []
     for v in SEC_VAR:                                          # FIG-M04-01: CDF por variable
         xk, xr = np.sort(kal[v].dropna()), np.sort(resto[v].dropna())
+        xn = np.sort(nogen[v].dropna())
+        nom_r, nom_n = f"resto genuino (n = {len(xr)})", f"sin resultado (n = {len(xn)})"
         gr.append(lineas(lz, [(f"KALINA (n = {len(xk)})", xk, np.arange(1, len(xk) + 1) / len(xk),
                                "2E7D32"),
-                              (f"resto genuino (n = {len(xr)})", xr,
-                               np.arange(1, len(xr) + 1) / len(xr), "9E9E9E")],
-                         S(v), NOMBRE[v], "F(x)", punteadas=(f"resto genuino (n = {len(xr)})",),
-                         marcador=False))
-    _bloque_fig(lz, "FIG-M04-01", gr, por_fila=3, ancho=10.5, alto=7)
+                              (nom_r, xr, np.arange(1, len(xr) + 1) / len(xr), "9E9E9E"),
+                              (nom_n, xn, np.arange(1, len(xn) + 1) / len(xn), "C62828")],
+                         S(v), NOMBRE[v], "F(x)", punteadas=(nom_r, nom_n), marcador=False))
+    tit, pie = pie_fig("FIG-M04-01")                           # 2026-10-12: se agregan los no genuinos
+    nt = len(kal) + len(resto) + len(nogen)
+    tit = tit.replace("LHS de 452 puntos", f"LHS de {nt} puntos")
+    pie = [l.replace("(LHS de 452 puntos)", f"(LHS de {nt} puntos)")
+            .replace("n = 452.", f"n = {nt} ({len(kal) + len(resto)} genuinos y {len(nogen)} sin resultado: "
+                                 "no convergió o falso convergido).") for l in pie]
+    lz.bloque(f"Figura {figura('FIG-M04-01')} · {tit}", gr, 3, 10.5, 7, pie, fig=figura("FIG-M04-01"))
     rp5, rp95 = np.percentile(kal["rP"], [5, 95])
     tit, _ = pie_fig("FIG-M04-02")
     g = disp_clases(lz, b07, "P_alta", "P_baja", tit)
@@ -58,28 +67,36 @@ def graf_m04(wb):
     for col in ("dP", "rP"):                                   # FIG-M04-04: histogramas
         bordes = np.histogram_bin_edges(gen[col], bins=20)
         hk, _ = np.histogram(kal[col], bordes); hr, _ = np.histogram(resto[col], bordes)
+        hn, _ = np.histogram(nogen[col].dropna(), bordes)
         cats = [f"{a:.0f}–{b:.0f}" if col == "dP" else f"{a:.1f}–{b:.1f}"
                 for a, b in zip(bordes[:-1], bordes[1:])]
         gr.append(barras(lz, cats, None, NOMBRE[col], NOMBRE[col], "Número de puntos",
                          series=[(f"KALINA (n = {len(kal)})", hk.tolist(), "2E7D32"),
-                                 (f"resto (n = {len(resto)})", hr.tolist(), "BDBDBD")]))
-    _bloque_fig(lz, "FIG-M04-04", gr, por_fila=2, ancho=15, alto=8)
+                                 (f"resto (n = {len(resto)})", hr.tolist(), "BDBDBD"),
+                                 (f"sin resultado (n = {len(nogen)})", hn.tolist(), "C62828")]))
+    tit, pie = pie_fig("FIG-M04-04")
+    pie = [l.replace("n = 452.", f"n = {nt} ({len(kal) + len(resto)} genuinos y {len(nogen)} sin resultado).")
+           for l in pie]
+    lz.bloque(f"Figura {figura('FIG-M04-04')} · {tit}", gr, 2, 15, 8, pie, fig=figura("FIG-M04-04"))
     return lz.ws.title
 
 
 def graf_m04c(wb):
     lz = Lienzo(wb, "3")
     sub = P[(P["bloque_director"] == "B08") & ~P["omitido"]]
-    bordes = np.arange(1500, 2600, 100)
-    k = np.digitize(sub["P_baja"], bordes) - 1
-    cats, pct = [], []
-    for i, lo in enumerate(bordes[:-1]):
-        g = sub[k == i]
-        if len(g):
-            cats.append(f"{lo:.0f}–{lo + 100:.0f}"); pct.append(100 * (g["clasificacion"] == "KALINA").mean())
+    kal = sub["clasificacion"] == "KALINA"
+    n1, n2 = int((kal & ~sub["fuera_rango"]).sum()), int((kal & sub["fuera_rango"]).sum())
+    fr = sub.assign(k=np.digitize(sub["P_baja"], np.arange(1500, 2600, 100)) - 1).groupby("k")
+    cats = [f"{1500 + 100 * i:.0f}–{1600 + 100 * i:.0f}" for i, _ in fr]
+    pct = [100 * (x["clasificacion"] == "KALINA").mean() for _, x in fr]
+    conf = [100 * ((x["clasificacion"] == "KALINA") & ~x["fuera_rango"]).sum() / len(x) for _, x in fr]
     tit, _ = pie_fig("FIG-M04c-01")
-    _bloque_fig(lz, "FIG-M04c-01", [barras(lz, cats, pct, tit, "Franja de P_baja [kPa]",
-                                           "% de puntos KALINA")])
+    b = barras(lz, cats, None, tit, "Franja de P_baja [kPa]", "% de puntos KALINA",
+               series=[(f"KALINA dentro del rango (n = {n1})", conf, "2E7D32"),
+                       (f"KALINA fuera de rango (n = {n2})",
+                        [p - c for p, c in zip(pct, conf)], "A5D6A7")])
+    b.grouping, b.overlap = "stacked", 100
+    _bloque_fig(lz, "FIG-M04c-01", [b])
     return lz.ws.title
 
 
@@ -109,8 +126,7 @@ def graf_m06_m07_m09(wb):
            ("−0.7 pp", xs, [v - 0.7 for v in xs], "A5D6A7")]
     for f, col in (("6.1a · motor real con 300 s", "1565C0"), ("6.1d · motor real con 1500 s", "2E7D32")):
         g = par[par["f"] == f]
-        ser.append((f"{f} (n = {len(g)})", (100 * g["eta_teqp"]).tolist(),
-                    (100 * g["eta_real"]).tolist(), col))
+        ser.append((f"{f} (n = {len(g)})", (100 * g["eta_teqp"]).tolist(), (100 * g["eta_real"]).tolist(), col))
     tit, _ = pie_fig("FIG-M06-01")
     g6 = lineas(lz, ser, tit, "η con teqp [%]", "η con el motor real [%]",
                 punteadas=("+0.7 pp", "−0.7 pp"))
@@ -124,20 +140,32 @@ def graf_m06_m07_m09(wb):
     lz = Lienzo(wb, "5")                                   # 5.1: búsqueda de la η máxima
     t = pd.read_csv("resultados/2026-10-07_final_M7/m7_trayectorias.csv")
     t = t[t["aceptado"].astype(str).str.lower().isin(["true", "1"])]
-    ser = [(f"{ARR[k][0]}: {100 * g['eta'].max():.1f} %", g.sort_values("iteracion")["iteracion"].tolist(),
-            (100 * g.sort_values("iteracion")["eta"]).tolist(), ARR[k][1]) for k, g in t.groupby("arranque")]
-    tit, _ = pie_fig("FIG-M07-01")
-    _bloque_fig(lz, "FIG-M07-01", [lineas(lz, ser, tit, "Iteración de la búsqueda",
-                                          "Eficiencia térmica del ciclo, η [%]",
-                                          punteadas=(ser[-1][0],))], alto=9.5)
+    gs = {k: g.sort_values("iteracion") for k, g in t.groupby("arranque")}
+    paso = {k: (f" · último paso {100 * (g['eta'].iloc[-1] - g['eta'].iloc[-2]):+.2f} pp"
+                if len(g) > 1 else " · sin pasos previos") for k, g in gs.items()}
+    ser = [(f"{ARR[k][0]}: {100 * g['eta'].max():.1f} %{paso[k]}", g["iteracion"].tolist(),
+            (100 * g["eta"]).tolist(), ARR[k][1]) for k, g in gs.items()]
+    tit, pie = pie_fig("FIG-M07-01")
+    g7 = lineas(lz, ser, tit, "Iteración de la búsqueda", "Eficiencia térmica del ciclo, η [%]",
+                punteadas=(ser[-1][0],))
+    ev = pd.read_csv("resultados/2026-10-07_final_M7/m7_evaluaciones.csv")   # 2026-10-12: las 560
+    ev = ev[~ev["aceptado"].astype(str).str.lower().isin(["true", "1"]) & ev["eta"].notna()]
+    nom = f"evaluados y no aceptados (n = {len(ev)})"
+    gris = lineas(lz, [(nom, ev["iteracion"].tolist(), (100 * ev["eta"]).tolist(), "BDBDBD")], "", "", "")
+    s = gris.series[0]; s.graphicalProperties.line = LineProperties(noFill=True); s.marker.size = 4
+    g7.series.insert(0, s)                                   # debajo de las trayectorias
+    for i, s_ in enumerate(g7.series):
+        s_.idx = s_.order = i
+    pie = [l.replace("n = 41 pasos aceptados.", f"n = {41 + len(ev)} evaluaciones (41 pasos aceptados y "
+                                                f"{len(ev)} no aceptados; las 10 evaluaciones sin η no se dibujan).") for l in pie]
+    lz.bloque(f"Figura {figura('FIG-M07-01')} · {tit}", [g7], 1, 17.0, 9.5, pie, fig=figura("FIG-M07-01"))
     lz = Lienzo(wb, "4")                                   # 4.3: escalera de conservación
     m9 = pd.read_csv("resultados/2026-10-08_final_M9/m9_escalera.csv")
     cats = [f"R{r} · {grupo_legible(c)}" for r, c in zip(m9["ronda"], m9["conservados"])]
     tit, _ = pie_fig("FIG-M09-01")
     _bloque_fig(lz, "FIG-M09-01", [barras(lz, cats, m9["n_kalina_confiable"].tolist(), tit,
                                           "Conjunto conservado (R = ronda)", "KALINA confiables",
-                                          colores=["1B5E20" if e else "81C784" for e in m9["elegido"]])],
-                alto=9.5)
+                                          colores=["1B5E20" if e else "81C784" for e in m9["elegido"]])], alto=9.5)
     lz.ws.cell(lz.fila - 2, 1, "Verde oscuro: conjunto elegido en cada ronda.")
     return lz.ws.title
 
@@ -149,16 +177,14 @@ def graf_m10(wb):
     g = disp_clases(lz, sub, "x_b", "P_baja", tit)
     k = sub[sub["clasificacion"] == "KALINA"]
     pmin = k.groupby(k["x_b"].round(3))["P_baja"].min()
-    g.series.append(lineas(lz, [("P_baja mínima KALINA", pmin.index.tolist(), pmin.tolist(), "000000")],
-                           "", "", "", punteadas=("P_baja mínima KALINA",), marcador=False).series[0])
+    g.series.append(lineas(lz, [("P_baja mínima KALINA", pmin.index.tolist(), pmin.tolist(), "000000")], "", "", "", punteadas=("P_baja mínima KALINA",), marcador=False).series[0])
     _bloque_fig(lz, "FIG-M10-01", [g], alto=10)
     of = P[P["bloque_director"] == "B14-OFAT"]
     gr = []
     for v in SEC_VAR:
         sv = of[of["variable"] == v].copy()
         sv.loc[~(sv["genuino"] & sv["wnet_pos"]), "eta_pct"] = 0.0
-        if len(sv):
-            gr.append(disp_clases(lz, sv, v, "eta_pct", S(v), yt="η [%] (0 = sin η)"))
+        if len(sv): gr.append(disp_clases(lz, sv, v, "eta_pct", S(v), yt="η [%] (0 = sin η)"))
     _bloque_fig(lz, "FIG-M10-02", gr, por_fila=3, ancho=10.5, alto=7)
     ob = P[P["bloque_director"] == "B14-OFATb"].copy()
     ob.loc[~(ob["genuino"] & ob["wnet_pos"]), "eta_pct"] = 0.0
@@ -167,15 +193,15 @@ def graf_m10(wb):
                            yt="η [%] (0 = sin η)")],
               pie=["Caso: KF-M10b-OFAT (bloque B14-OFATb). Datos fijos: ancla de Húsavík con "
                    "P_baja = 690 kPa. Datos barridos: x_b 0.30–0.70 (17 valores). Por debajo de "
-                   "x_b = 0.50 no hay ningún punto genuino. Fuente: todos_los_puntos.csv."])
+                   "x_b = 0.50 no hay ningún punto genuino. Fuente: todos_los_puntos.csv."],
+              fig="6.2d")
     return lz.ws.title
 
 
 def construir_graficos(wb):
     """Crea las hojas de gráficos (una por pregunta) y devuelve [(hoja, estudio(s), qué muestra)]."""
     from a2_graf_casos_a import graf_g, graf_m02, graf_m02r, graf_m02s, graf_m03
-    for f in (graf_g, graf_m02, graf_m02r, graf_m02s, graf_m03, graf_m04, graf_m04c, graf_m05,
-              graf_m06_m07_m09, graf_m10):
+    for f in (graf_g, graf_m02, graf_m02r, graf_m02s, graf_m03, graf_m04, graf_m04c, graf_m05, graf_m06_m07_m09, graf_m10):
         f(wb)
     que = {"S": "síntesis", "2": "2.1–2.4", "3": "3.1–3.3", "4": "4.1–4.3", "5": "5.1", "6": "6.1–6.2"}
     return [(f"{k} Gráficos", v, "gráficos nativos de Excel de cada figura") for k, v in que.items()]

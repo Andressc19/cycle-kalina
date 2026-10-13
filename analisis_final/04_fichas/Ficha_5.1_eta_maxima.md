@@ -77,6 +77,17 @@ Tablas: 5.1-1, 5.1-2, 5.1-3. Figuras: 5.1-1.
 4. Los óptimos terminan en los bordes de la caja (eficiencias en 0.95) y al filo de la cavitación:
    la η máxima depende de suponer equipos muy eficientes.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 5.1-1.** 5.1d (presiones y clima del profesor) se aplana en 15.6 % (+0.05 pp en el último paso):
+  está convergida. 5.1a y 5.1b terminan en 15.0 y 15.5 % **todavía subiendo** (≈ +0.4–0.5 pp por paso): sus
+  cifras son **cotas inferiores**, no óptimos.
+- Hay evaluaciones no aceptadas con η hasta ≈17 %: el óptimo aceptado queda pegado a la restricción
+  (KALINA/O2), no al máximo de η visto.
+- Cada dato del profesor que se conserva cuesta η: 15.6 → 12.7 → 11.1 %.
+
 ### Advertencias, supuestos y limitaciones:
 - Es una búsqueda local: puede haber óptimos mejores no visitados.
 - Los óptimos de 5.1a y 5.1d están al filo de O2: con un margen de 2 K, η baja ~0.5 pp en 5.1d (estudio 6.1). Los de

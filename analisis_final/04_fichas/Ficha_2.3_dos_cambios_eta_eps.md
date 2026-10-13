@@ -65,6 +65,20 @@ genuinos se cuentan como en estudios 2.1 y 2.2 (los N2 no cuentan).
    baja a 403 K y el condensador es muy efectivo (ε_cond = 0.95). Este punto es confiable.
 3. El bloqueo de fondo es siempre el mismo: el lado caliente y la cavitación (O2).
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 2.3-1.** Con 623 K, mover η_t, η_p, ε_reg o ε_cond en todo su rango no desbloquea nada; solo ε_HRVG
+  (0.40–0.82) da Corregibles.
+- **Figura 2.3-2.** Los «No convergió» forman un bloque en ε_HRVG 0.7–0.8 con ε_cond bajo. Dos rojos aislados
+  en plena zona Corregible (ε_cond 0.80/ε_HRVG 0.50 y ε_cond 0.95/ε_HRVG 0.80) parecen fallas numéricas del
+  solver (hipótesis; no probado).
+- **Figura 2.3-3.** Los 19 KALINA son los 19 fuera de rango: con ε_HRVG 0.40 la frontera está en ≈1320 kPa y con
+  0.50 en ≈1740, ≈ +400 kPa por cada +0.10 de ε_HRVG. La leyenda original no lo decía.
+- **Figura 2.3-4.** El único KALINA confiable es **un punto** (403 K, ε_cond 0.95) en una malla de 3 valores
+  de ε_cond: es una existencia, no una región (la región la da el estudio 4.2).
+
 ### Advertencias, supuestos y limitaciones:
 - 13 de los 14 KALINA distintos están fuera de rango: sus η (3.1 a 6.3 %) se toman con cautela.
 - 4 puntos N2 se descartaron.

@@ -79,6 +79,20 @@ Re-evaluación punto a punto; una variable a la vez (15 puntos); malla 2D comple
    todas las variables rompen por O2.
 3. Una mezcla más rica en amoníaco (x_b alta) pide más P_baja para evitar la cavitación.
 
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 6.2-1.** La P_baja mínima de KALINA sube en escalones con x_b: 200 kPa (0.50), 300 (0.55), 400 (0.60),
+  500 (0.65–0.70), 600 (0.73–0.76), 700 (0.79–0.82) y 800 (0.85–0.91), es decir, ≈ +150 kPa por cada +0.10 de x_b
+  (resolución de la malla: 100 kPa). Para x_b ≥ 0.73 la malla empieza en 500 kPa y no mide más abajo.
+- **Figura 6.2-2.** La clase cambia de forma abrupta (KALINA → Corregible) en T_fuente (≈405 K), P_alta
+  (≈2800 kPa), P_baja (≈650–700 kPa), x_b (≈0.85) y ε_cond (solo 0.95 es KALINA: es el **tope** permitido, sin
+  holgura). El corte en T_sumidero = 283.15 K coincide con el piso de O2 de la corrida: es una condición
+  impuesta, no un hallazgo. η_t es la palanca más fuerte (10.5 → 13.5 %).
+- Hay dos «No convergió» aislados dentro de curvas lisas (x_b ≈0.625 y ε_cond ≈0.755): se leen como fallas
+  numéricas (hipótesis).
+
 ### Advertencias, supuestos y limitaciones:
 - 6.2b de 15 puntos: las fronteras quedan entre dos muestras; no se bisecaron.
 - Solo se re-evaluaron los KALINA de septiembre, no los CORREGIBLE ni los no convergidos.

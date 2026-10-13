@@ -26,6 +26,15 @@ B07 = PUNTOS[PUNTOS["bloque_director"] == "B07"].copy()
 GEN = B07[B07["genuino"]]
 KAL = GEN[GEN["clasificacion"] == "KALINA"]
 RESTO = GEN[GEN["clasificacion"] != "KALINA"]
+# Puntos de la muestra sin resultado (no convergió o falso convergido): están en la tabla del
+# libro Excel, así que las figuras M04-01 y M04-04 también los muestran (2026-10-12).
+NOGEN = B07[~B07["genuino"] & ~B07["omitido"]]
+N_TOT = len(GEN) + len(NOGEN)
+# Nota de muestreo (revisión 2026-10-12): el tope de P_baja lo fija la caja, no la física.
+NOTA_PBAJA = (f"P_baja se muestreó entre {B07['P_baja'].min():.0f} y "
+              f"{B07['P_baja'].max():.0f} kPa: el borde superior de P_baja de los KALINA "
+              "es el borde de la caja de muestreo, no una frontera física (el estudio "
+              "3.3 explora hasta 2500 kPa).")
 
 
 def _ecdf(x):
@@ -39,8 +48,10 @@ def fig_m04_01():
     for ax, v in zip(axs.flat, SEC_VAR):
         xk, yk = _ecdf(KAL[v].dropna())
         xr, yr = _ecdf(RESTO[v].dropna())
+        xn, yn = _ecdf(NOGEN[v].dropna())
         ax.plot(xk, yk, color="#2E7D32", lw=1.6)
         ax.plot(xr, yr, color="0.55", ls="--", lw=1.2)
+        ax.plot(xn, yn, color="#C62828", ls=":", lw=1.3)
         ks, p = ks_2samp(KAL[v].dropna(), RESTO[v].dropna())
         ax.text(0.04, 0.90, f"KS = {ks:.2f}, p = {p:.1e}", transform=ax.transAxes,
                 fontsize=6.5)
@@ -51,23 +62,26 @@ def fig_m04_01():
         if ax.get_subplotspec().is_first_col():
             ax.set_ylabel("F(x)")
     axs.flat[0].legend([plt.Line2D([0], [0], color="#2E7D32"),
-                        plt.Line2D([0], [0], color="0.55", ls="--")],
+                        plt.Line2D([0], [0], color="0.55", ls="--"),
+                        plt.Line2D([0], [0], color="#C62828", ls=":")],
                        [f"KALINA (n = {len(KAL)})",
-                        f"resto genuino (n = {len(RESTO)})"], loc="lower right",  # arriba tapaba el KS
+                        f"resto genuino (n = {len(RESTO)})",
+                        f"sin resultado (n = {len(NOGEN)})"], loc="lower right",  # arriba tapaba el KS
                        fontsize=7)
     titulo_fig(fig,
-               f"Qué variables separan a los KALINA del resto (LHS de {len(GEN)} puntos)",
-               "Bloque B07 · KF-M04 + KF-M04b (puntos genuinos)")
+               f"Qué variables separan a los KALINA del resto (LHS de {N_TOT} puntos)",
+               "Bloque B07 · KF-M04 + KF-M04b (genuinos y sin resultado)")
     pie = armar_pie("FIG-M04-01",
                     f"Qué variables separan a los KALINA del resto (LHS de "
-                    f"{len(GEN)} puntos)",
+                    f"{N_TOT} puntos)",
                     ["KF-M04", "KF-M04b"], "B07",
-                    "B07 (KF-M04 + KF-M04b), puntos genuinos", n=len(GEN),
-                    fuente="todos_los_puntos.csv", base=CAJA_BASE)
+                    f"B07 (KF-M04 + KF-M04b): {len(GEN)} genuinos y {len(NOGEN)} sin resultado "
+                    "(no convergió o falso convergido)", n=N_TOT,
+                    fuente="todos_los_puntos.csv", base=CAJA_BASE, marcas=NOTA_PBAJA)
     guardar_fig(fig, "M04", "FIG-M04-01_cdf_por_variable", pie)
     guardar_clases("M04", "FIG-M04-01_cdf_por_variable",
-                   {"KALINA": len(KAL), "resto": len(RESTO)})
-    print(f"FIG-M04-01: {len(GEN)} genuinos ({len(KAL)} KALINA)")
+                   {"KALINA": len(KAL), "resto": len(RESTO), "sin resultado": len(NOGEN)})
+    print(f"FIG-M04-01: {len(GEN)} genuinos ({len(KAL)} KALINA) y {len(NOGEN)} sin resultado")
 
 
 # ---------------------------------------------------------------- FIG-M04-02
@@ -90,7 +104,8 @@ def fig_m04_02():
                     f"El 90 % de los KALINA tiene razón de presiones entre {rp5:.1f} "
                     f"y {rp95:.1f}",
                     ["KF-M04", "KF-M04b"], "B07", "B07 (KF-M04 + KF-M04b)",
-                    n=len(B07), fuente="todos_los_puntos.csv", base=CAJA_BASE)
+                    n=len(B07), fuente="todos_los_puntos.csv", base=CAJA_BASE,
+                    marcas=NOTA_PBAJA)
     guardar_fig(fig, "M04", "FIG-M04-02_plano_presiones", pie)
     guardar_clases("M04", "FIG-M04-02_plano_presiones", contar_clases(B07))
     print(f"FIG-M04-02: r_P p5–p95 = {rp5:.2f}–{rp95:.2f}")
@@ -131,14 +146,18 @@ def fig_m04_04():
     c, d = np.percentile(KAL["rP"], [5, 95])
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.2))
     for ax, col, xlab in ((ax1, "dP", NOMBRE["dP"]), (ax2, "rP", NOMBRE["rP"])):
-        ax.hist(RESTO[col], bins=25, color="0.6", alpha=0.45,
+        bins = np.histogram_bin_edges(np.concatenate([RESTO[col].dropna(), KAL[col].dropna(),
+                                                      NOGEN[col].dropna()]), bins=25)
+        ax.hist(NOGEN[col].dropna(), bins=bins, color="#C62828", alpha=0.35,
+                label=f"sin resultado (n = {len(NOGEN)})")
+        ax.hist(RESTO[col], bins=bins, color="0.6", alpha=0.45,
                 label=f"resto (n = {len(RESTO)})")
-        ax.hist(KAL[col], bins=25, color="#2E7D32", alpha=0.45,
+        ax.hist(KAL[col], bins=bins, color="#2E7D32", alpha=0.45,
                 label=f"KALINA (n = {len(KAL)})")
         ax.set_xlabel(xlab)
     ax1.legend(loc="upper right", fontsize=8)
     ax2.legend(loc="upper right", fontsize=8)
-    recuadro_condiciones(ax2, "Puntos genuinos de B07\nKALINA vs resto")
+    recuadro_condiciones(ax2, "Puntos de B07: genuinos y sin resultado\nKALINA vs resto")
     titulo_fig(fig,
                f"El 90 % de los KALINA tiene ΔP {a:.0f}–{b:.0f} kPa y r_P "
                f"{c:.1f}–{d:.1f}",
@@ -146,8 +165,9 @@ def fig_m04_04():
     pie = armar_pie("FIG-M04-04",
                     f"El 90 % de los KALINA tiene ΔP {a:.0f}–{b:.0f} kPa y r_P "
                     f"{c:.1f}–{d:.1f}",
-                    ["KF-M04", "KF-M04b"], "B07", "B07, puntos genuinos",
-                    n=len(GEN), fuente="todos_los_puntos.csv", base=CAJA_BASE)
+                    ["KF-M04", "KF-M04b"], "B07",
+                    f"B07: {len(GEN)} genuinos y {len(NOGEN)} sin resultado", n=N_TOT,
+                    fuente="todos_los_puntos.csv", base=CAJA_BASE)
     guardar_fig(fig, "M04", "FIG-M04-04_hist_dP_rP", pie)
     print(f"FIG-M04-04: ΔP p5–p95 = {a:.0f}–{b:.0f} kPa; r_P p5–p95 = {c:.2f}–{d:.2f}")
 

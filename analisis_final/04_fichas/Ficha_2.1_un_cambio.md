@@ -57,9 +57,19 @@ resultado. La tolerancia fue 10 kPa en presiones, 0.5 K en temperaturas y 0.005 
 ### Conclusiones del caso:
 1. **Con un solo cambio no hay KALINA.**
 2. El cambio que más acerca es **bajar T_fuente a ~400 K**. Con eso el ciclo converge y solo le
-   falta cumplir la cavitación (O2) por unos 2 K.
+   falta cumplir la cavitación (O2) por unos 2 K. Bajar ε_HRVG a ≤ 0.82 también hace converger
+   el ciclo (CORREGIBLE), pero queda más lejos de O2 (déficit de 18 a 20 K).
 3. El bloqueo dominante es O2. Como O2 se cierra subiendo P_baja (regla del proyecto), el
    siguiente paso natural es cambiar dos variables: T_fuente (o ε_HRVG) junto con P_baja.
+
+### Lo que muestran las figuras:
+
+_Lectura directa de las figuras (valores con «≈» leídos de la gráfica; el marcador hueco es «fuera de rango»). Detalle: `analisis_final/CONCLUSIONES_DESDE_FIGURAS.md`._
+
+- **Figura 2.1-1.** Solo dos de los 10 paneles tienen puntos fuera de «No convergió»: **T_fuente**
+  (Corregible entre ≈400 y 560 K; Inviable en ≈590 K) y **ε_HRVG** (Corregible de 0.75 a 0.82; desde 0.83 no
+  converge). Los otros 8 paneles son una línea roja plana.
+- Hay **dos palancas** que hacen converger el ciclo, no una; la frontera de ε_HRVG es un escalón (0.82 → 0.83).
 
 ### Advertencias, supuestos y limitaciones:
 - El reporte original decía que bloqueaba "C3". Eso venía de contar los 21 N2 como convergidos;

@@ -22,7 +22,8 @@ CASOS_G01 = ["1.1", "2.1", "2.2", "2.3", "2.4", "3.1", "3.2", "3.3", "4.1", "4.2
 
 def _bloque_fig(lz, prefijo, graficos, por_fila=1, ancho=17.0, alto=8.5):
     tit, pie = pie_fig(prefijo)
-    lz.bloque(f"Figura {figura(prefijo)} · {tit}", graficos, por_fila, ancho, alto, pie)
+    lz.bloque(f"Figura {figura(prefijo)} · {tit}", graficos, por_fila, ancho, alto, pie,
+              fig=figura(prefijo))
 
 
 def graf_g(wb):
@@ -87,6 +88,11 @@ def graf_m02s(wb):
     s1, s2 = [], []
     for bl, etq, col in bases:
         k = P[(P["bloque_director"] == bl) & (P["clasificacion"] == "KALINA")]
+        n_base, n_fuera = len(k), int(k["fuera_rango"].sum())   # mismo criterio que a3_m02s.py
+        if n_base and n_fuera == n_base:
+            etq = etq + " · fuera de rango"
+        elif n_fuera:
+            etq = etq + f" · {n_fuera} de {n_base} fuera de rango"
         pm = [k[(k["T_sumidero"] - t).abs() < 1e-3]["P_baja"].min() for t in ts]
         em = [k[(k["T_sumidero"] - t).abs() < 1e-3]["eta_pct"].max() for t in ts]
         s1.append((etq, ts, pm, col)); s2.append((etq, ts, em, col))
@@ -114,13 +120,19 @@ def graf_m03(wb):
                                           "Elasticidad de η, E [–]", horizontal=True,
                                           colores=["2E7D32" if x > 0 else "C62828" for x in e])])
     gr = []
+    # Los paneles dibujan la malla y los vecinos de A* (±1 % del rango), pedido del usuario 2026-10-12
+    pts = P[(P["bloque_director"] == "B06") & P["tipo_punto"].isin(["malla", "vecino"])]
     for v in SEC_VAR:                         # sin η (no genuino o W_net ≤ 0): ✕ en η = −0.6
-        sv = malla[malla["variable"] == v].copy()
+        sv = pts[pts["variable"] == v].copy()
         sv.loc[~(sv["genuino"] & sv["wnet_pos"]), "eta_pct"] = -0.6
         if len(sv):
             gr.append(disp_clases(lz, sv, "valor", "eta_pct", S(v), xt=NOMBRE[v],
                                   yt="η [%] (−0.6 = sin η)"))
-    _bloque_fig(lz, "FIG-M03-03", gr, por_fila=3, ancho=10.5, alto=7)
+    tit, pie = pie_fig("FIG-M03-03")
+    pie = [l.replace("Filtro: estudio 3.1, malla.", "Filtro: estudio 3.1, malla y vecinos de A* (±1 % del rango).")
+            .replace("n = 150.", f"n = {len(pts)} ({int((pts['tipo_punto'] == 'malla').sum())} de malla y "
+                                  f"{int((pts['tipo_punto'] == 'vecino').sum())} vecinos de A*).") for l in pie]
+    lz.bloque(f"Figura {figura('FIG-M03-03')} · {tit}", gr, 3, 10.5, 7, pie, fig=figura("FIG-M03-03"))
     cr = pd.read_csv(RES3 + "m3_cruces.csv")
     cr = cr[cr["tipo"] == "margen"]
     dist = sorted(((r["variable"], abs(r["v_cruce"] - m3.loc[r["variable"], "valor_ancla"])

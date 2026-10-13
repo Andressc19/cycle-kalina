@@ -17,6 +17,7 @@ aplicar_estilo()
 M6 = "resultados/2026-10-08_final_M6/m6_comparacion.csv"
 M9 = "resultados/2026-10-08_final_M9/m9_motor_real.csv"
 M7 = "resultados/2026-10-07_final_M7/m7_trayectorias.csv"
+M7_EV = "resultados/2026-10-07_final_M7/m7_evaluaciones.csv"
 ARRANQUE = {"A1": "5.1a · libre (desde el mejor de 3.2)",
             "A2": "5.1b · libre (desde el mejor de 2.4)",
             "A3": "5.1c · conserva sus temperaturas",
@@ -30,6 +31,20 @@ def fig_m06():
     d = pd.concat([a, b], ignore_index=True)
     par = d.dropna(subset=["eta_teqp", "eta_real"])
     sin = d[d["eta_real"].isna()]
+    # C6 (2026-10-12): diseño = eta_teqp redondeado a 6 decimales (columna común de ambos CSV);
+    # P08 (M6) y A4 (M9) son el mismo diseño (el óptimo A4 de 5.1d) a dos presupuestos de tiempo.
+    dis = d.dropna(subset=["eta_real"])
+    clave_dis = dis["eta_teqp"].round(6)
+    k_dis = len(dis)
+    u_dis = int(clave_dis.nunique())
+    nota_dis = ""
+    if u_dis < k_dis:
+        nota_dis = (f"Hay {k_dis} corridas con η real sobre {u_dis} diseños distintos: un mismo "
+                    "diseño (el óptimo A4 de 5.1d) se corrió con los dos presupuestos de "
+                    "tiempo (300 s y 1500 s).\n")
+    print(f"FIG-M06-01: corridas con η real = {k_dis}, diseños distintos = {u_dis}")
+    print("FIG-M06-01: eta_teqp agrupado = "
+          + ", ".join(f"{v:.6f}×{c}" for v, c in clave_dis.value_counts().sort_index().items()))
     fig, ax = plt.subplots(figsize=(6.6, 5.6))
     lo, hi = 0, 17
     xs = np.linspace(lo, hi, 2)
@@ -59,7 +74,8 @@ def fig_m06():
            "Puntos: " + "; ".join(f"{r['id']} = {r['origen']}" for _, r in par.iterrows()) + ".\n"
            "Sin η real (motor real cortado por el límite de 300 s, no por la física): "
            + ", ".join(str(i) for i in sin["id"]) + ".\n"
-           "Filtro: pares con η de ambos motores. Marcas: recta 1:1 y banda ±0.7 pp "
+           + nota_dis
+           + "Filtro: pares con η de ambos motores. Marcas: recta 1:1 y banda ±0.7 pp "
            "(incertidumbre del modelo de propiedades).\n"
            f"n = {len(par)}. Fuente: m6_comparacion.csv y m9_motor_real.csv.")
     guardar_fig(fig, "M06", "FIG-M06-01_paridad_teqp_real", pie)
@@ -69,12 +85,20 @@ def fig_m06():
 def fig_m07():
     t = pd.read_csv(M7)
     t = t[t["aceptado"].astype(str).str.lower().isin(["true", "1"])] if "aceptado" in t else t
+    ev = pd.read_csv(M7_EV)                    # todas las evaluaciones (2026-10-12)
+    ev = ev[~ev["aceptado"].astype(str).str.lower().isin(["true", "1"]) & ev["eta"].notna()]
     fig, ax = plt.subplots(figsize=(8.5, 5.0))
+    ax.scatter(ev["iteracion"], 100 * ev["eta"], s=14, color="0.75", alpha=0.8, zorder=1,
+               label=f"evaluados y no aceptados (n = {len(ev)})")
     estilos = {"A1": "-", "A2": "-", "A3": "-", "A4": "-", "A5": "--"}
     for a, g in t.groupby("arranque"):
         g = g.sort_values("iteracion")
+        if len(g) > 1:                       # cuánto seguía subiendo al detenerse (C5, 2026-10-12)
+            paso = f" · último paso {100 * (g['eta'].iloc[-1] - g['eta'].iloc[-2]):+.2f} pp"
+        else:
+            paso = " · sin pasos previos"
         ax.plot(g["iteracion"], 100 * g["eta"], estilos.get(a, "-"), marker="o", ms=4,
-                label=f"{ARRANQUE.get(a, a)}: {100 * g['eta'].max():.1f} %")
+                label=f"{ARRANQUE.get(a, a)}: {100 * g['eta'].max():.1f} %{paso}")
     ax.set_xlabel("Iteración de la búsqueda"); ax.set_ylabel("Eficiencia térmica del ciclo, η [%]")
     ax.legend(loc="lower right", fontsize=8)
     emax = 100 * t["eta"].max()
@@ -87,8 +111,13 @@ def fig_m07():
            "Estudio 5.1 · partes 5.1a … 5.1e (figura de síntesis: cada línea es un arranque con "
            "sus propios datos conservados).\n"
            + "\n".join(f"{v}." for v in ARRANQUE.values()) + "\n"
-           "Filtro: pasos aceptados de cada búsqueda (cada uno es KALINA genuino, D = 0).\n"
-           f"n = {len(t)} pasos aceptados. Fuente: m7_trayectorias.csv.")
+           "El último paso muestra cuánto seguía subiendo cada búsqueda al detenerse; la η "
+           "máxima de una búsqueda con último paso grande es una cota inferior, no un óptimo "
+           "confirmado.\n"
+           "Filtro: líneas = pasos aceptados de cada búsqueda (cada uno es KALINA genuino, D = 0); "
+           "puntos grises = evaluaciones que no se aceptaron.\n"
+           f"n = {len(t) + len(ev)} evaluaciones ({len(t)} pasos aceptados y {len(ev)} no aceptados; "
+           "las evaluaciones sin η no se dibujan). Fuente: m7_trayectorias.csv y m7_evaluaciones.csv.")
     guardar_fig(fig, "M07", "FIG-M07-01_busqueda_eta", pie)
     print(f"FIG-M07-01: η máx = {emax:.2f} %")
 

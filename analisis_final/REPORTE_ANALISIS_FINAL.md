@@ -75,6 +75,8 @@ ningún archivo protegido se tocara: el `Excel_final_kalina.xlsx` original conse
    P_baja (estudio 6.1).
 4. **Ventana de presiones**: el 90 % de los KALINA tiene P_baja de 683 a 1461 kPa y r_P de 1.7 a 5.3
    (estudio 3.2). Un clima frío baja la P_baja necesaria (estudio 2.4); más amoníaco la sube (estudio 6.2).
+   El borde superior (1461 kPa) es el de la caja muestreada (303–1498 kPa), no una frontera física: el
+   estudio 3.3 encuentra KALINA hasta 2500 kPa. El que discrimina es r_P, no ΔP (figura 3.2-4).
 5. **Eficiencia (secundaria)**: ~8–11 % con equipos de eficiencia media, y hasta 15.6 % con equipos
    a 0.95 conservando las presiones del profesor (estudio 5.1). Ese 15.6 % es el mejor aceptado de una
    búsqueda convergida (5.1d); 5.1a y 5.1b se detuvieron todavía subiendo y sus 15.0 y 15.5 % son cotas inferiores.
@@ -125,13 +127,69 @@ A pedido del usuario, el libro ya no pega las imágenes de Matplotlib en cada ca
   datos, parte, título y pie. Se verificaron abriendo el libro en Excel 2024 y exportando cada gráfico:
   los 74 tienen series y el número de puntos coincide con los datos (por ejemplo, la malla de Húsavík
   dibuja 118 puntos más los 12 de la línea de P_baja mínima).
-- Las 30 figuras de Matplotlib quedan **una sola vez**, al final, en `Figuras_matplotlib_ref`; para el
-  informe escrito siguen en `03_figuras/`.
+- Desde el 2026-10-12 el libro **no lleva imágenes de Matplotlib** (se quitó `Figuras_matplotlib_ref`; para el
+  informe escrito siguen en `03_figuras/`). Los números de cada gráfico están **visibles** en las hojas
+  `N Datos de gráficos` (un bloque por figura) y la tabla de cada barrido, en `N.M-R Resultados por barrido`
+  (los mismos puntos y columnas del tablero HTML; el falso convergido no muestra η ni W_net).
+- Cada gráfico tiene además una **copia junto a la tabla de la que salen sus datos** (a la derecha de su parte o
+  variable en `N.M-R`, o debajo de su tabla resumen en 3.1-3, 3.2-4, 4.3-3, 6.1-3 y S-1); los de `N Gráficos`
+  no se movieron.
 - **Todas las tablas llevan cuadrícula.**
 - Diferencias con Matplotlib: los paneles múltiples son gráficos pequeños en rejilla; las anotaciones
   (p. ej. "P08 = A4") van en el pie; la matriz G02 queda como tabla (hoja `G02_que_se_movio`).
 - Código: `scripts/analisis_final/a2_graf_base.py`, `a2_graf_estilo.py`, `a2_graf_casos_a.py` y
   `a2_graf_casos_b.py`; el verificador `a2_verificar.py` comprueba las hojas de gráficos.
+
+## §4e. Conclusiones leídas de las figuras (2026-10-12)
+
+Se revisaron las 30 figuras una por una; el detalle por figura está en
+`analisis_final/CONCLUSIONES_DESDE_FIGURAS.md` y un resumen por estudio en el bloque «Lo que muestran las
+figuras» de cada ficha. Lo que se ve y las tablas no destacan:
+
+1. **La frontera KALINA es nítida, no gradual**: se pasa de KALINA a CORREGIBLE en un solo paso de la malla
+   (figuras 2.1-1, 2.2-2, 3.1-3, 4.2-1, 6.2-1, 6.2-2). Un punto KALINA no avisa que está a un paso del borde;
+   A* está a menos del 6 % del rango de O2 en 8 de 9 variables (figura 3.1-4).
+2. **La frontera se mueve de forma ordenada con tres variables**: la P_baja mínima sube ≈ +500 kPa en 44 K de
+   T_fuente (2.2-2), baja 43–48 % con un sumidero 22 K más frío (2.4-1) y sube ≈ +150 kPa por cada +0.10 de x_b
+   en Húsavík (6.2-1).
+3. **Compromiso central**: bajar P_baja sube η, pero esa zona es CORREGIBLE (O2 falla; figuras 3.1-3 y 6.2-2).
+   Por eso los óptimos de 5.1-1 quedan pegados a la restricción (hay evaluaciones rechazadas con η ≈ 17 %).
+4. **El bloqueo del profesor se ve de cuatro formas**: solo T_fuente y ε_HRVG hacen converger (2.1-1); subir
+   P_baja con 623 K no cambia la clase (2.2-1); las otras eficiencias no ayudan (2.3-1); todo conjunto que
+   conserva T_fuente da 0 KALINA (4.3-1).
+5. **La franja de las presiones del profesor es una cuña** (4.2-1): «ε_cond ≥ 0.875» vale solo en el borde de
+   390 K; cubrir hasta 410 K a 300 K de sumidero exige 0.95, el tope permitido. Los muestreos aleatorios de
+   4.1 no la encuentran porque la proyección 2D oculta las otras variables.
+6. **Con 623 K los KALINA son de otra familia** (4.1-1, 4.1-4, 4.1-5): P_baja ≳ 1000 kPa y x_b baja, casi todos
+   fuera de rango.
+7. **r_P discrimina y ΔP no** (3.2-4): casi no hay KALINA sobre r_P ≈ 6.
+8. **η_t, ε_HRVG y ε_reg suben η de forma casi lineal** hasta 0.95 sin sacar al ciclo de KALINA (3.1-3, 6.2-2).
+9. **P_alta tiene signo distinto en local y en global** (−1.2 en 3.1-2, +0.58 en 3.2-3): en A* queda del lado
+   descendente de un máximo en ≈2300 kPa; no resumir como «P_alta sube η» sin condición.
+
+### Correcciones a las figuras derivadas de esa revisión
+
+| Figura | Problema | Corrección |
+|---|---|---|
+| 2.3-3, 2.4-1, 3.3-1 y toda dispersión con huecos | La leyenda no decía «fuera de rango»: se tomaban por válidos 19/19 KALINA de 2.3c, la ruta 2.4c y 30 de 75 KALINA de 3.3 | Entrada propia «fuera de rango (n = …)» en la leyenda; 2.4-1 con sufijo en la línea; 3.3-1 con barras apiladas (sólido/rayado) |
+| 4.2-1 | KALINA dibujado como cuadrado y leyenda con círculo | Leyenda con el mismo marcador |
+| 5.1-1 | 5.1a y 5.1b se detenían todavía subiendo | Cada línea indica su «último paso» y el pie aclara que es una cota inferior |
+| 6.1-1 | 5 corridas parecían 5 diseños | Nota en el pie con el número de diseños distintos (si la identidad es determinable) |
+| 3.2-1, 3.2-2 | El techo de P_baja de los KALINA es el borde del muestreo | Nota en el pie con el rango muestreado |
+| 2.4-1 | La leyenda larga de 2.4c rozaba la línea | Rótulo partido en dos líneas |
+
+**Cierre (2026-10-12).** Las correcciones las ejecutó OpenCode en dos tareas
+(`prompts/TASK_CONTEXT_af_leyendas_figuras.md` y `…_2.md`; logs `opencode_run_088` y `089`) y las auditó
+Claude revisando cada figura regenerada:
+
+- `a3_verificar.py`: 30 de 30 figuras completas; `a2_verificar.py`: «TODO OK»; el libro se reconstruyó (95 hojas) y
+  `Excel_final_kalina.xlsx` conserva su huella. Los `*_clases.json` no cambiaron por estas tareas (solo los de
+  3.1-3 y 3.2-1, que ya venían modificados).
+- 6.1-1: son **5 corridas sobre 4 diseños** (P08 y A4 son el mismo óptimo A4 de 5.1d, con `eta_teqp` = 0.155997).
+- 2.3-3 además mostró que las 43 CORREGIBLE de 2.3c también son fuera de rango (la leyenda ahora lo dice).
+- Los gráficos nativos del Excel de 3.3-1, 2.4-1 y 5.1-1 recibieron los mismos nombres de serie. En 3.3-1 del
+  Excel la serie fuera de rango se distingue por **color** (verde claro), no por rayado.
+- Sin cambio: la figura de síntesis S-2 conserva los códigos KF-Mxx de sus filas (decisión pendiente).
 
 ## §5. Lo que no se sabe
 
@@ -140,6 +198,12 @@ A pedido del usuario, el libro ya no pega las imágenes de Matplotlib en cada ca
 - En estudio 4.2 no se exploró T_fuente > 410 K: el borde superior de la franja no está medido.
 - El motor real solo confirmó 5 puntos; los otros se cortaron por tiempo, no por la física.
 - Las diferencias de η menores que 0.7 pp no son concluyentes.
+- **El flujo másico m_b nunca se movió** (figura S-2): ninguna conclusión cubre su efecto.
+- **Causas físicas**: las figuras muestran qué pasa, no por qué (por ejemplo, por qué η cae al calentar la fuente
+  con P_baja fija, o por qué una ε_cond más alta baja un poco η).
+- Los «No convergió» aislados dentro de zonas lisas (2.3-2, 6.2-2) parecen fallas numéricas del solver; sin
+  reintento no está probado.
+- En 6.2-1 la malla no mide P_baja < 500 kPa para x_b ≥ 0.73.
 
 ## §6. Qué sigue
 
