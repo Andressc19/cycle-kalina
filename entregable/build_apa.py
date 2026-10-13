@@ -20,7 +20,7 @@ FUENTE = "Times New Roman"
 TAMANO = Pt(12)
 
 TITULO = "Análisis de sensibilidad del ciclo Kalina KCS11"
-SUBTITULO = "Entregable 1 — Introducción, descripción del ciclo y formulación"
+SUBTITULO = "Entregable 1 — Formulación, verificación, resultados y conclusiones"
 AUTORES = ["Jose Duran", "Julian Gómez Mora", "Javier Villamizar",
            "Andrés Laguado", "Felipe Diaz"]
 AFILIACION = ("Departamento de Ingeniería Mecánica, "
@@ -234,6 +234,17 @@ TITULOS_TABLAS = [
     "Subsistemas del ciclo Kalina KCS-11 según nivel de presión",
     "Tabla de corrientes del ciclo",
     "Especificación de los estados del ciclo",
+    "Comprobaciones de verificación y contraste del modelo",
+    "Resumen de la campaña de barridos por estudio",
+    "Resultado del caso del profesor por parte",
+    "Cambios mínimos para obtener KALINA (estudios 2.1 a 2.4)",
+    "Rangos de presión de los puntos KALINA (estudio 3.2)",
+    "Escalera de conservación de datos del profesor (estudio 4.3)",
+    "Óptimos de eficiencia por arranque (estudio 5.1)",
+    "Paridad entre el motor de propiedades rápido y el motor real",
+    "Sensibilidad local alrededor del punto ancla A*",
+    "Variables que deciden la clase KALINA y variables que mueven η",
+    "Datos del profesor conservables con KALINA",
 ]
 
 
