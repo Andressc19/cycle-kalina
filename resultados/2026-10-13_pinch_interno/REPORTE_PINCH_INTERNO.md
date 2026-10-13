@@ -42,7 +42,7 @@ El motor cierra los intercambiadores con una efectividad ε, lo que asegura el b
 | 0.90–0.95 | 60 | 0 | 10 | 4.45 |
 | > 0.95 (Elsayed calibrados) | 2 | 0 | 0 | 5.65 |
 
-El pinch baja con ε_reg, como se espera, pero **no llega a cruzarse hasta ε_reg = 0.95** (y 0.961 en Elsayed). Con ε_reg ≥ 0.90 el 17 % de los puntos queda estrecho (< 5 K). El ε_HRVG no ordena el pinch del regenerador (mínimo 4.45 K en 0.60–0.80 y 4.71 K en 0.80–0.90).
+El pinch baja con ε_reg, como se espera, pero **no llega a cruzarse hasta ε_reg = 0.95** (y 0.961 en Elsayed). Con ε_reg ≥ 0.90 el 17 % de los puntos queda estrecho (< 5 K); los 11 estrechos tienen ε_reg ≥ 0.943. El ε_HRVG no ordena el pinch del regenerador (mínimo 4.45 K en 0.60–0.80 y 4.71 K en 0.80–0.90).
 
 | Equipo | Resultado |
 |---|---|
@@ -82,7 +82,7 @@ El mínimo cae siempre en el extremo frío (pos_f = 1) y el fluido frío sale su
 > Tras resolver cada punto se discretizó el regenerador en 100 tramos en contracorriente y se calculó ΔT(f) = T_c(f) − T_f(f). El punto se considera con cruce si ΔT ≤ 0 en algún tramo, y estrecho si el mínimo es < 5 K. En el HRVG y el condensador, contra reservorios isotermos, se reporta el acercamiento mínimo. Este chequeo es un post-proceso: no forma parte del clasificador.
 
 **§13.2 — "Cierre por efectividad sin verificación del perfil interno".**
-> Verificado en 131 puntos (100 del proyecto, 27 del benchmark de Elsayed y 4 con el motor real). Resultado: sin cruce interno bajo el cierre por efectividad; pinch mínimo del regenerador 4.45 K (4.79 K en los puntos del proyecto), con 11 puntos estrechos (< 5 K), todos con ε_reg ≥ 0.90. En estos puntos el fluido frío sale del regenerador subenfriado, por lo que el mínimo cae en el extremo frío. Queda sin verificar: fuente y sumidero de capacidad finita (H8) y puntos con ε_reg < 0.60.
+> Verificado en 131 puntos (100 del proyecto, 27 del benchmark de Elsayed y 4 con el motor real). Resultado: sin cruce interno bajo el cierre por efectividad; pinch mínimo del regenerador 4.45 K (4.79 K en los puntos del proyecto), con 11 puntos estrechos (< 5 K), todos con ε_reg ≥ 0.94. En estos puntos el fluido frío sale del regenerador subenfriado, por lo que el mínimo cae en el extremo frío. Queda sin verificar: fuente y sumidero de capacidad finita (H8) y puntos con ε_reg < 0.60.
 
 **Conclusiones afectadas:** ninguna cambia. Donde se hable de "KALINA confiable" puede añadirse una frase: "sin cruce interno en los 131 puntos verificados". No se afirma realizabilidad física.
 
