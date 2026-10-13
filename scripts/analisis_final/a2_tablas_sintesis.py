@@ -152,8 +152,8 @@ def g04():
              ("T_fuente", "623.15 K", "no (bloqueo estructural)", "M1, M2, M9 (0 confiables con TF)"),
              ("m_b", "1 kg/s", "sí (base de cálculo)", "todas")]
     df = pd.DataFrame(datos, columns=["Dato", "Valor del profesor", "¿Se conserva con KALINA?", "Respaldo"])
-    escribir_tabla(_meta("04", "Datos del profesor conservables", "conclusiones validadas por A4",
-                         "fichas 4.2 y 4.3; validación cruzada", len(df), []), df,
+    escribir_tabla(_meta("04", "Datos del profesor conservables", "conclusiones con cifras verificadas por A4",
+                         "fichas 4.2 y 4.3; verificación cruzada de cifras", len(df), []), df,
                    {c: "txt" for c in df.columns})
 
 
