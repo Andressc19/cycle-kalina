@@ -1,0 +1,480 @@
+Fase A sensibilidad 1 | 273 puntos {'C1': 137, 'C2': 136} | 5 workers -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_faseA
+[1/273] C1-T_fuente-0001 NO_CONVERGIO 0.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[2/273] C1-T_fuente-0004 KALINA 32.0s
+[3/273] C1-T_fuente-0005 KALINA 33.8s
+[4/273] C1-T_fuente-0003 KALINA 34.0s
+[5/273] C1-base-0000 KALINA 38.8s
+[6/273] C1-T_fuente-0006 KALINA 33.2s
+[7/273] C1-T_fuente-0009 KALINA 39.3s
+[8/273] C1-T_fuente-0008 KALINA 49.3s
+[9/273] C1-T_fuente-0007 KALINA 51.3s
+[10/273] C1-T_fuente-0010 KALINA 36.8s
+[11/273] C1-T_fuente-0011 KALINA 37.0s
+[12/273] C1-T_fuente-0012 KALINA 38.1s
+[13/273] C1-T_fuente-0013 KALINA 39.3s
+[14/273] C1-T_fuente-0014 KALINA 37.8s
+[15/273] C1-T_fuente-0015 KALINA 39.6s
+[16/273] C1-T_fuente-0016 KALINA 39.1s
+fuera de rango confiable: T2=422.306 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=422.306 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=422.306 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=422.306 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[17/273] C1-T_fuente-0017 KALINA 43.0s
+fuera de rango confiable: T2=423.117 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=423.117 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=423.117 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=423.117 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[18/273] C1-T_fuente-0018 CORREGIBLE 46.6s
+fuera de rango confiable: T2=424.669 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=424.669 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=424.669 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=424.669 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[19/273] C1-T_fuente-0019 CORREGIBLE 44.8s
+fuera de rango confiable: T2=426.143 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=426.143 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=426.143 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=426.143 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[20/273] C1-T_fuente-0020 CORREGIBLE 63.4s
+fuera de rango confiable: T2=427.549 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=427.549 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=427.549 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=427.549 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[21/273] C1-T_fuente-0021 CORREGIBLE 78.9s
+fuera de rango confiable: T2=428.896 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.896 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.896 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.896 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[22/273] C1-T_fuente-0022 CORREGIBLE 84.2s
+fuera de rango confiable: T2=430.192 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.192 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.192 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.192 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[23/273] C1-T_fuente-0023 CORREGIBLE 103.7s
+[24/273] C1-T_fuente-0002 NO_CONVERGIO 303.4s
+fuera de rango confiable: T2=431.441 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=431.441 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=431.441 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=431.441 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[25/273] C1-T_fuente-0024 CORREGIBLE 121.8s
+fuera de rango confiable: T2=433.816 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=433.816 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=433.816 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=433.816 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=432.648 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=432.648 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=432.648 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=432.648 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[26/273] C1-T_fuente-0026 CORREGIBLE 107.9s
+[27/273] C1-T_fuente-0025 CORREGIBLE 134.3s
+fuera de rango confiable: T2=436.051 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.051 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.051 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.051 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[28/273] C1-T_fuente-0028 CORREGIBLE 87.3s
+fuera de rango confiable: T2=434.95 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=434.95 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=434.95 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=434.95 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[29/273] C1-T_fuente-0027 CORREGIBLE 89.7s
+[30/273] C1-T_sumidero-0032 KALINA 37.7s
+[31/273] C1-T_sumidero-0033 KALINA 38.3s
+fuera de rango confiable: T5=438.598 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.598 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[32/273] C1-T_fuente-0029 NO_CONVERGIO 89.5s
+[33/273] C1-T_sumidero-0034 CORREGIBLE 36.3s
+[34/273] C1-T_sumidero-0035 CORREGIBLE 35.9s
+fuera de rango confiable: T5=450.708 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=450.708 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[35/273] C1-T_fuente-0031 NO_CONVERGIO 89.3s
+[36/273] C1-T_sumidero-0036 CORREGIBLE 36.8s
+fuera de rango confiable: T5=444.763 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=444.763 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[37/273] C1-T_fuente-0030 NO_CONVERGIO 102.4s
+[38/273] C1-T_sumidero-0037 CORREGIBLE 35.5s
+[39/273] C1-T_sumidero-0038 CORREGIBLE 41.1s
+[40/273] C1-T_sumidero-0040 CORREGIBLE 38.1s
+[41/273] C1-T_sumidero-0039 CORREGIBLE 42.2s
+[42/273] C1-T_sumidero-0041 CORREGIBLE 40.7s
+[43/273] C1-P_alta-0042 KALINA 40.2s
+[44/273] C1-P_alta-0043 KALINA 39.4s
+[45/273] C1-P_alta-0044 KALINA 38.6s
+[46/273] C1-P_alta-0045 KALINA 40.8s
+[47/273] C1-P_alta-0046 KALINA 39.6s
+[48/273] C1-P_alta-0047 KALINA 38.2s
+[49/273] C1-P_alta-0050 KALINA 33.1s
+[50/273] C1-P_alta-0051 KALINA 32.5s
+[51/273] C1-P_alta-0049 KALINA 48.0s
+[52/273] C1-P_alta-0048 KALINA 52.5s
+[53/273] C1-P_alta-0052 KALINA 34.0s
+[54/273] C1-P_alta-0054 KALINA 33.4s
+[55/273] C1-P_alta-0053 KALINA 41.4s
+[56/273] C1-P_baja-0055 CORREGIBLE 47.0s
+[57/273] C1-P_baja-0056 CORREGIBLE 46.2s
+[58/273] C1-P_baja-0057 CORREGIBLE 39.2s
+[59/273] C1-P_baja-0058 KALINA 41.1s
+[60/273] C1-P_baja-0060 KALINA 31.6s
+[61/273] C1-P_baja-0061 KALINA 37.4s
+[62/273] C1-P_baja-0059 KALINA 57.8s
+[63/273] C1-P_baja-0062 KALINA 34.9s
+[64/273] C1-P_baja-0063 KALINA 33.4s
+[65/273] C1-P_baja-0064 KALINA 33.3s
+[66/273] C1-P_baja-0065 KALINA 33.5s
+[67/273] C1-P_baja-0066 KALINA 33.2s
+[68/273] C1-P_baja-0067 KALINA 34.2s
+[69/273] C1-x_b-0068 NO_CONVERGIO 34.2s
+[70/273] C1-x_b-0069 NO_CONVERGIO 34.0s
+[71/273] C1-x_b-0072 INVIABLE 34.3s
+[72/273] C1-x_b-0071 NO_CONVERGIO 46.8s
+[73/273] C1-x_b-0073 KALINA 35.3s
+[74/273] C1-x_b-0074 KALINA 29.3s
+[75/273] C1-x_b-0070 NO_CONVERGIO 57.2s
+[76/273] C1-x_b-0075 KALINA 27.0s
+[77/273] C1-x_b-0076 KALINA 27.7s
+[78/273] C1-x_b-0077 KALINA 31.0s
+[79/273] C1-x_b-0079 KALINA 38.1s
+[80/273] C1-x_b-0078 KALINA 48.4s
+[81/273] C1-x_b-0080 KALINA 42.8s
+[82/273] C1-eta_t-0082 KALINA 38.4s
+[83/273] C1-eta_t-0083 KALINA 37.4s
+[84/273] C1-eta_t-0084 KALINA 37.4s
+[85/273] C1-eta_t-0085 KALINA 39.2s
+[86/273] C1-x_b-0081 CORREGIBLE 78.3s
+[87/273] C1-eta_t-0086 KALINA 39.7s
+[88/273] C1-eta_t-0087 KALINA 39.1s
+[89/273] C1-eta_t-0088 KALINA 38.8s
+[90/273] C1-eta_t-0089 KALINA 41.5s
+[91/273] C1-eta_t-0090 KALINA 38.1s
+[92/273] C1-eta_t-0091 KALINA 38.7s
+[93/273] C1-eta_t-0092 KALINA 41.3s
+[94/273] C1-eta_p-0093 KALINA 36.2s
+[95/273] C1-eta_p-0094 KALINA 37.2s
+[96/273] C1-eta_p-0095 KALINA 36.8s
+[97/273] C1-eta_p-0096 KALINA 38.2s
+[98/273] C1-eta_p-0097 KALINA 37.6s
+[99/273] C1-eta_p-0098 KALINA 36.7s
+[100/273] C1-eta_p-0099 KALINA 37.6s
+[101/273] C1-eta_p-0100 KALINA 37.2s
+[102/273] C1-eta_p-0101 KALINA 38.1s
+[103/273] C1-eta_p-0102 KALINA 37.2s
+[104/273] C1-eta_p-0103 KALINA 36.4s
+[105/273] C1-eps_hrvg-0105 KALINA 59.3s
+[106/273] C1-eps_hrvg-0104 KALINA 62.7s
+[107/273] C1-eps_hrvg-0108 KALINA 38.3s
+[108/273] C1-eps_hrvg-0107 KALINA 41.2s
+[109/273] C1-eps_hrvg-0106 KALINA 67.0s
+[110/273] C1-eps_hrvg-0111 KALINA 33.1s
+[111/273] C1-eps_hrvg-0110 KALINA 34.8s
+[112/273] C1-eps_hrvg-0109 KALINA 37.3s
+[113/273] C1-eps_hrvg-0112 KALINA 49.0s
+[114/273] C1-eps_hrvg-0113 KALINA 39.0s
+[115/273] C1-eps_hrvg-0114 KALINA 37.5s
+[116/273] C1-eps_reg-0116 KALINA 39.2s
+[117/273] C1-eps_reg-0115 KALINA 46.2s
+[118/273] C1-eps_reg-0117 KALINA 40.3s
+[119/273] C1-eps_reg-0118 KALINA 37.0s
+[120/273] C1-eps_reg-0119 KALINA 37.1s
+[121/273] C1-eps_reg-0120 KALINA 37.7s
+[122/273] C1-eps_reg-0121 KALINA 37.5s
+[123/273] C1-eps_reg-0122 KALINA 39.2s
+[124/273] C1-eps_reg-0123 KALINA 47.0s
+[125/273] C1-eps_reg-0124 KALINA 45.4s
+[126/273] C1-eps_reg-0125 KALINA 49.4s
+[127/273] C1-eps_cond-0126 CORREGIBLE 52.5s
+[128/273] C1-eps_cond-0127 CORREGIBLE 46.6s
+[129/273] C1-eps_cond-0128 CORREGIBLE 47.5s
+[130/273] C1-eps_cond-0129 CORREGIBLE 47.4s
+[131/273] C1-eps_cond-0130 CORREGIBLE 49.4s
+[132/273] C1-eps_cond-0131 CORREGIBLE 63.0s
+[133/273] C1-eps_cond-0134 CORREGIBLE 38.4s
+[134/273] C1-eps_cond-0132 CORREGIBLE 65.2s
+[135/273] C1-eps_cond-0135 CORREGIBLE 42.2s
+[136/273] C1-eps_cond-0133 CORREGIBLE 69.5s
+[137/273] C1-eps_cond-0136 CORREGIBLE 35.6s
+[138/273] C2-base-0000 KALINA 45.1s
+[139/273] C2-T_fuente-0003 NO_CONVERGIO 41.4s
+[140/273] C2-T_fuente-0004 NO_CONVERGIO 67.2s
+[141/273] C2-T_fuente-0005 NO_CONVERGIO 63.0s
+[142/273] C2-T_fuente-0006 NO_CONVERGIO 54.7s
+[143/273] C2-T_fuente-0007 INVIABLE 49.7s
+[144/273] C2-T_fuente-0008 KALINA 46.9s
+[145/273] C2-T_fuente-0002 NO_CONVERGIO 144.1s
+[146/273] C2-T_fuente-0001 NO_CONVERGIO 157.6s
+[147/273] C2-T_fuente-0009 KALINA 47.9s
+[148/273] C2-T_fuente-0010 KALINA 46.0s
+[149/273] C2-T_fuente-0011 KALINA 39.3s
+[150/273] C2-T_fuente-0012 KALINA 43.4s
+[151/273] C2-T_fuente-0013 KALINA 44.5s
+[152/273] C2-T_fuente-0014 KALINA 42.6s
+fuera de rango confiable: T2=420.984 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=420.984 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=420.984 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=420.984 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=425.584 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=425.584 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=425.584 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=425.584 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[153/273] C2-T_fuente-0015 KALINA 46.6s
+[154/273] C2-T_fuente-0016 KALINA 45.1s
+fuera de rango confiable: T2=430.298 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.298 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.298 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.298 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[155/273] C2-T_fuente-0017 KALINA 50.0s
+fuera de rango confiable: T2=445.159 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.159 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.159 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.159 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=435.131 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.131 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.131 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.131 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[156/273] C2-T_fuente-0019 KALINA 48.7s
+[157/273] C2-T_fuente-0018 KALINA 49.5s
+fuera de rango confiable: T2=465.231 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=465.231 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=465.231 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=465.231 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[158/273] C2-T_fuente-0021 CORREGIBLE 42.1s
+fuera de rango confiable: T2=455.67 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.67 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.67 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.67 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[159/273] C2-T_fuente-0020 KALINA 48.8s
+fuera de rango confiable: T2=465.82 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=465.82 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=465.82 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=465.82 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[160/273] C2-T_fuente-0022 CORREGIBLE 48.7s
+fuera de rango confiable: T2=466.374 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=466.374 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=466.374 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=466.374 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[161/273] C2-T_fuente-0023 CORREGIBLE 59.1s
+fuera de rango confiable: T2=466.901 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=466.901 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=466.901 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=466.901 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[162/273] C2-T_fuente-0024 CORREGIBLE 64.4s
+fuera de rango confiable: T2=467.405 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=467.405 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=467.405 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=467.405 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[163/273] C2-T_fuente-0025 CORREGIBLE 52.9s
+fuera de rango confiable: T2=467.889 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=467.889 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=467.889 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=467.889 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[164/273] C2-T_fuente-0026 CORREGIBLE 52.3s
+fuera de rango confiable: T2=468.356 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=468.356 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=468.356 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=468.356 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[165/273] C2-T_fuente-0027 CORREGIBLE 51.4s
+fuera de rango confiable: T2=468.808 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=468.808 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=468.808 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=468.808 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[166/273] C2-T_fuente-0028 CORREGIBLE 53.3s
+fuera de rango confiable: T2=469.246 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=469.246 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=469.246 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=469.246 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[167/273] C2-T_fuente-0029 CORREGIBLE 64.9s
+fuera de rango confiable: T2=470.088 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=470.088 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=470.088 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=470.088 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[168/273] C2-T_fuente-0031 CORREGIBLE 58.3s
+[169/273] C2-T_sumidero-0032 KALINA 52.6s
+fuera de rango confiable: T2=469.673 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=469.673 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=469.673 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=469.673 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[170/273] C2-T_fuente-0030 CORREGIBLE 79.4s
+[171/273] C2-T_sumidero-0033 KALINA 51.6s
+[172/273] C2-T_sumidero-0034 KALINA 55.0s
+[173/273] C2-T_sumidero-0035 KALINA 51.8s
+[174/273] C2-T_sumidero-0036 KALINA 51.8s
+[175/273] C2-T_sumidero-0037 KALINA 48.4s
+[176/273] C2-T_sumidero-0038 KALINA 47.1s
+[177/273] C2-T_sumidero-0039 KALINA 45.3s
+[178/273] C2-T_sumidero-0040 KALINA 44.4s
+[179/273] C2-T_sumidero-0041 KALINA 43.8s
+[180/273] C2-T_sumidero-0042 KALINA 41.4s
+[181/273] C2-P_alta-0043 KALINA 49.8s
+[182/273] C2-P_alta-0044 KALINA 52.8s
+[183/273] C2-P_alta-0045 KALINA 43.8s
+[184/273] C2-P_alta-0047 KALINA 40.3s
+[185/273] C2-P_alta-0046 KALINA 45.5s
+[186/273] C2-P_alta-0048 KALINA 44.2s
+[187/273] C2-P_alta-0049 KALINA 44.6s
+[188/273] C2-P_alta-0051 NO_CONVERGIO 46.2s
+[189/273] C2-P_alta-0050 NO_CONVERGIO 52.5s
+[190/273] C2-P_alta-0052 NO_CONVERGIO 55.1s
+[191/273] C2-P_alta-0053 NO_CONVERGIO 60.7s
+[192/273] C2-P_baja-0055 CORREGIBLE 37.0s
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:68: RuntimeWarning: invalid value encountered in log
+  return [np.log(a * L['phiA']) - np.log(b * V['phiA']),
+[193/273] C2-P_baja-0056 KALINA 45.8s
+[194/273] C2-P_baja-0057 KALINA 45.0s
+[195/273] C2-P_alta-0054 NO_CONVERGIO 74.0s
+[196/273] C2-P_baja-0058 KALINA 47.4s
+[197/273] C2-P_baja-0059 KALINA 47.7s
+[198/273] C2-P_baja-0060 KALINA 48.3s
+[199/273] C2-P_baja-0061 KALINA 56.8s
+[200/273] C2-P_baja-0062 KALINA 47.0s
+[201/273] C2-P_baja-0063 KALINA 45.6s
+[202/273] C2-P_baja-0065 KALINA 37.4s
+[203/273] C2-P_baja-0066 KALINA 38.5s
+[204/273] C2-P_baja-0067 KALINA 38.8s
+[205/273] C2-P_baja-0064 KALINA 73.6s
+[206/273] C2-x_b-0072 KALINA 37.9s
+[207/273] C2-x_b-0069 NO_CONVERGIO 63.8s
+[208/273] C2-x_b-0068 NO_CONVERGIO 73.1s
+[209/273] C2-x_b-0071 KALINA 48.2s
+[210/273] C2-x_b-0070 NO_CONVERGIO 49.6s
+[211/273] C2-x_b-0073 CORREGIBLE 34.2s
+[212/273] C2-x_b-0074 CORREGIBLE 35.1s
+[213/273] C2-x_b-0075 CORREGIBLE 36.5s
+[214/273] C2-x_b-0076 CORREGIBLE 33.4s
+[215/273] C2-x_b-0077 CORREGIBLE 39.1s
+[216/273] C2-x_b-0080 INVIABLE 40.8s
+[217/273] C2-eta_t-0081 KALINA 45.4s
+[218/273] C2-x_b-0078 INVIABLE 52.6s
+[219/273] C2-eta_t-0082 KALINA 45.1s
+[220/273] C2-x_b-0079 INVIABLE 54.8s
+[221/273] C2-eta_t-0083 KALINA 45.9s
+[222/273] C2-eta_t-0084 KALINA 46.9s
+[223/273] C2-eta_t-0085 KALINA 44.8s
+[224/273] C2-eta_t-0086 KALINA 44.6s
+[225/273] C2-eta_t-0087 KALINA 46.3s
+[226/273] C2-eta_t-0088 KALINA 43.8s
+[227/273] C2-eta_t-0090 KALINA 42.9s
+[228/273] C2-eta_t-0091 KALINA 43.5s
+[229/273] C2-eta_p-0092 KALINA 42.5s
+[230/273] C2-eta_t-0089 KALINA 50.2s
+[231/273] C2-eta_p-0093 KALINA 45.5s
+[232/273] C2-eta_p-0094 KALINA 45.1s
+[233/273] C2-eta_p-0095 KALINA 44.6s
+[234/273] C2-eta_p-0096 KALINA 44.7s
+[235/273] C2-eta_p-0097 KALINA 45.7s
+[236/273] C2-eta_p-0098 KALINA 44.6s
+[237/273] C2-eta_p-0099 KALINA 43.8s
+[238/273] C2-eta_p-0100 KALINA 44.7s
+[239/273] C2-eta_p-0101 KALINA 44.2s
+[240/273] C2-eta_p-0102 KALINA 44.5s
+[241/273] C2-eps_hrvg-0105 KALINA 47.3s
+[242/273] C2-eps_hrvg-0107 KALINA 45.7s
+[243/273] C2-eps_hrvg-0104 KALINA 53.2s
+[244/273] C2-eps_hrvg-0106 KALINA 50.1s
+[245/273] C2-eps_hrvg-0103 KALINA 62.2s
+[246/273] C2-eps_hrvg-0108 KALINA 44.1s
+[247/273] C2-eps_hrvg-0109 KALINA 43.8s
+[248/273] C2-eps_hrvg-0112 KALINA 42.7s
+[249/273] C2-eps_hrvg-0111 KALINA 46.3s
+[250/273] C2-eps_hrvg-0110 KALINA 49.1s
+[251/273] C2-eps_hrvg-0113 KALINA 36.5s
+[252/273] C2-eps_reg-0114 KALINA 34.5s
+[253/273] C2-eps_reg-0115 KALINA 38.1s
+[254/273] C2-eps_reg-0116 KALINA 38.9s
+[255/273] C2-eps_reg-0117 KALINA 38.1s
+[256/273] C2-eps_reg-0118 KALINA 46.5s
+[257/273] C2-eps_reg-0120 KALINA 42.7s
+[258/273] C2-eps_reg-0122 KALINA 45.0s
+[259/273] C2-eps_reg-0119 KALINA 55.7s
+[260/273] C2-eps_reg-0121 KALINA 50.2s
+[261/273] C2-eps_reg-0123 KALINA 42.6s
+[262/273] C2-eps_reg-0124 KALINA 46.7s
+[263/273] C2-eps_cond-0129 CORREGIBLE 82.0s
+[264/273] C2-eps_cond-0126 CORREGIBLE 123.2s
+[265/273] C2-eps_cond-0127 CORREGIBLE 123.6s
+[266/273] C2-eps_cond-0128 CORREGIBLE 99.3s
+[267/273] C2-eps_cond-0125 CORREGIBLE 145.3s
+[268/273] C2-eps_cond-0132 CORREGIBLE 59.3s
+[269/273] C2-eps_cond-0130 CORREGIBLE 67.0s
+[270/273] C2-eps_cond-0133 KALINA 56.2s
+[271/273] C2-eps_cond-0131 CORREGIBLE 65.9s
+[272/273] C2-eps_cond-0134 KALINA 45.8s
+[273/273] C2-eps_cond-0135 KALINA 34.8s
+fin: 273 puntos en 2743 s -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_faseA
