@@ -1,0 +1,17 @@
+Fase 0 sensibilidad 1 | 11 puntos | 5 workers -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_fase0
+[1/11] M10 CORREGIBLE 43.7s
+[2/11] H0_noextra CORREGIBLE 43.8s
+[3/11] H0 CORREGIBLE 44.3s
+[4/11] M5 CORREGIBLE 44.8s
+[5/11] M15 CORREGIBLE 45.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[6/11] M20 CORREGIBLE 43.1s
+[7/11] P600 CORREGIBLE 46.0s
+[8/11] E95 KALINA 48.1s
+[9/11] E80 CORREGIBLE 48.6s
+[10/11] E85 CORREGIBLE 51.1s
+[11/11] P800 CORREGIBLE 35.8s
+fin: 11 puntos en 126 s -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_fase0

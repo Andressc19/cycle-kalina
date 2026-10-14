@@ -28,7 +28,7 @@ from src.properties.adapter import PropertyRangeError  # noqa: E402
 from src.sensitivity import VARIABLES_BARRIBLES  # noqa: E402
 
 __all__ = ["PROFESOR", "T_AMB_DISENO", "TAU", "PRESUPUESTO_S", "VARS", "COLS",
-           "margenes", "indice_D", "evaluar_punto"]
+           "COLS_EXTRA", "margenes", "indice_D", "evaluar_punto"]
 
 # -- Configuración congelada (METODOLOGIA_BARRIDOS_FINAL.md §1 y §0) ---------
 PROFESOR = dict(T_fuente=623.15, T_sumidero=300.032917, P_alta=3000.0,
@@ -49,6 +49,22 @@ COLS = (["tag", "motor", "pid", "T_amb_diseno", "convergio", "clasificacion",
         + list(sensitivity.COLUMNAS_B) + list(COLUMNAS_RANGO)
         + ["bracket_lo", "bracket_hi", "repliegues_lo", "repliegues_hi", "nF",
            "t_s", "error_inesperado"])
+
+COLS_EXTRA = (["Qi", "Qout", "Wt", "Wp", "Qreg", "m_v", "m_l", "dh_turb"]
+              + [f"T_e{i}" for i in range(1, 11)]
+              + [f"h_e{i}" for i in range(1, 11)])
+
+
+def _extra(res: dict) -> dict:
+    """Energías [kW] y estados del ciclo (m_v/m_l [kg/s], dh_turb [kJ/kg],
+    T_e*/h_e*). Solo se rellena cuando `evaluar_punto` corre con `extra=True`."""
+    e = res["estados"]
+    d = {k: res.get(k) for k in ("Qi", "Qout", "Wt", "Wp", "Qreg")}
+    d["m_v"], d["m_l"] = e["e3"].m, e["e5"].m
+    d["dh_turb"] = e["e3"].h - e["e4"].h
+    for i in range(1, 11):
+        d[f"T_e{i}"], d[f"h_e{i}"] = e[f"e{i}"].T, e[f"e{i}"].h
+    return d
 
 
 def _intenta(m: dict, clave: str, fn) -> None:
@@ -116,7 +132,7 @@ def indice_D(m: dict) -> tuple:
 
 
 def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None,
-                  t_amb_diseno=None) -> dict:
+                  t_amb_diseno=None, extra: bool = False) -> dict:
     """Resuelve, clasifica y mide UN punto; devuelve su fila. Nunca lanza.
 
     `motor="teqp"` usa `TeqpVerificado` (protección A) más un `AmmoniaWaterAdapter`
@@ -140,7 +156,7 @@ def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None,
     antes = (getattr(backend, "n_recurrencias", None),
              getattr(backend, "n_fallos", None))
 
-    fila = dict.fromkeys(COLS)
+    fila = dict.fromkeys(COLS if not extra else COLS + list(COLS_EXTRA))
     fila.update(tag=tag, motor=motor, pid=os.getpid(), T_amb_diseno=piso,
                 **combo)
     t0 = time.perf_counter()
@@ -177,5 +193,7 @@ def evaluar_punto(combo: dict, *, motor: str = "teqp", tag=None,
         fila.update(bracket_lo=br.get("lo"), bracket_hi=br.get("hi"),
                     repliegues_lo=br.get("repliegues_lo"),
                     repliegues_hi=br.get("repliegues_hi"), nF=br.get("nF"))
+        if extra:
+            fila.update(_extra(res))
     fila["t_s"] = time.perf_counter() - t0
     return fila
