@@ -1,0 +1,164 @@
+Ronda 1 [N4] | 0 saltados | 98 a evaluar | 5 procesos | tope 600s -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_ronda1\ronda1_filas.csv
+[1/98] N4-C1-0004 KALINA 78.2s
+[2/98] N4-C1-0001 KALINA 81.8s
+[3/98] N4-C1-0002 KALINA 83.8s
+[4/98] N4-C1-0005 KALINA 84.1s
+[5/98] N4-C1-0003 KALINA 86.8s
+[6/98] N4-C1-0007 CORREGIBLE 80.0s
+[7/98] N4-C1-0008 KALINA 79.1s
+[8/98] N4-C1-0010 KALINA 82.9s
+[9/98] N4-C1-0009 KALINA 106.1s
+[10/98] N4-C1-0006 CORREGIBLE 113.6s
+[11/98] N4-C1-0012 KALINA 73.5s
+[12/98] N4-C1-0011 KALINA 78.8s
+[13/98] N4-C1-0013 CORREGIBLE 81.0s
+[14/98] N4-C1-0014 CORREGIBLE 72.1s
+[15/98] N4-C1-0015 KALINA 79.9s
+[16/98] N4-C1-0016 KALINA 89.6s
+[17/98] N4-C1-0019 KALINA 73.7s
+[18/98] N4-C1-0017 KALINA 99.0s
+[19/98] N4-C1-0018 KALINA 88.6s
+[20/98] N4-C1-0020 CORREGIBLE 72.0s
+[21/98] N4-C1-0023 KALINA 48.6s
+[22/98] N4-C1-0024 KALINA 61.7s
+[23/98] N4-C1-0021 CORREGIBLE 77.7s
+[24/98] N4-C1-0022 KALINA 70.1s
+[25/98] N4-C1-0025 KALINA 73.1s
+[26/98] N4-C1-0026 KALINA 72.0s
+[27/98] N4-C1-0030 KALINA 57.7s
+[28/98] N4-C1-0028 CORREGIBLE 76.5s
+[29/98] N4-C1-0029 KALINA 75.1s
+[30/98] N4-C1-0027 CORREGIBLE 91.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:68: RuntimeWarning: invalid value encountered in log
+  return [np.log(a * L['phiA']) - np.log(b * V['phiA']),
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[31/98] N4-C1-0031 KALINA 71.2s
+[32/98] N4-C1-0032 KALINA 57.8s
+[33/98] N4-C1-0034 CORREGIBLE 51.9s
+[34/98] N4-C1-0033 KALINA 59.5s
+[35/98] N4-C1-0035 CORREGIBLE 64.1s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[36/98] N4-C1-0039 KALINA 51.5s
+[37/98] N4-C1-0038 KALINA 56.8s
+[38/98] N4-C1-0037 KALINA 61.2s
+[39/98] N4-C1-0036 NO_CONVERGIO 66.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[40/98] N4-C1-0040 KALINA 58.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[41/98] N4-C1-0041 CORREGIBLE 61.1s
+[42/98] N4-C1-0044 KALINA 59.6s
+[43/98] N4-C1-0043 NO_CONVERGIO 72.2s
+[44/98] N4-C1-0042 CORREGIBLE 76.8s
+[45/98] N4-C1-0045 KALINA 66.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[46/98] N4-C1-0046 KALINA 58.0s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[47/98] N4-C1-0047 KALINA 57.1s
+[48/98] N4-C1-0048 KALINA 62.5s
+[49/98] N4-C1-0049 CORREGIBLE 76.2s
+[50/98] N4-C2-0001 KALINA 114.7s
+[51/98] N4-C2-0004 CORREGIBLE 65.4s
+[52/98] N4-C2-0002 KALINA 104.1s
+[53/98] N4-C2-0003 CORREGIBLE 100.7s
+[54/98] N4-C2-0005 CORREGIBLE 79.4s
+[55/98] N4-C2-0006 INVIABLE 85.9s
+[56/98] N4-C2-0007 NO_CONVERGIO 96.9s
+[57/98] N4-C2-0010 CORREGIBLE 92.7s
+[58/98] N4-C2-0009 KALINA 104.4s
+[59/98] N4-C2-0008 KALINA 114.5s
+[60/98] N4-C2-0011 CORREGIBLE 57.8s
+[61/98] N4-C2-0012 CORREGIBLE 63.1s
+[62/98] N4-C2-0013 INVIABLE 77.3s
+[63/98] N4-C2-0014 NO_CONVERGIO 81.0s
+[64/98] N4-C2-0015 KALINA 82.1s
+[65/98] N4-C2-0016 KALINA 73.7s
+[66/98] N4-C2-0017 CORREGIBLE 64.8s
+[67/98] N4-C2-0018 CORREGIBLE 57.0s
+[68/98] N4-C2-0019 CORREGIBLE 57.8s
+[69/98] N4-C2-0021 NO_CONVERGIO 83.2s
+[70/98] N4-C2-0020 INVIABLE 89.5s
+[71/98] N4-C2-0022 KALINA 90.8s
+[72/98] N4-C2-0023 KALINA 76.4s
+[73/98] N4-C2-0024 CORREGIBLE 70.2s
+[74/98] N4-C2-0025 CORREGIBLE 54.6s
+[75/98] N4-C2-0026 CORREGIBLE 53.0s
+[76/98] N4-C2-0028 NO_CONVERGIO 82.7s
+[77/98] N4-C2-0031 CORREGIBLE 65.2s
+[78/98] N4-C2-0029 KALINA 89.6s
+[79/98] N4-C2-0030 KALINA 75.8s
+[80/98] N4-C2-0027 NO_CONVERGIO 120.9s
+[81/98] N4-C2-0032 CORREGIBLE 49.9s
+[82/98] N4-C2-0033 CORREGIBLE 50.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:68: RuntimeWarning: invalid value encountered in log
+  return [np.log(a * L['phiA']) - np.log(b * V['phiA']),
+[83/98] N4-C2-0036 KALINA 79.2s
+[84/98] N4-C2-0035 NO_CONVERGIO 82.4s
+[85/98] N4-C2-0034 INVIABLE 93.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[86/98] N4-C2-0037 KALINA 65.0s
+[87/98] N4-C2-0038 CORREGIBLE 58.3s
+[88/98] N4-C2-0039 CORREGIBLE 51.6s
+[89/98] N4-C2-0040 CORREGIBLE 55.0s
+[90/98] N4-C2-0041 INVIABLE 70.2s
+[91/98] N4-C2-0042 NO_CONVERGIO 64.0s
+[92/98] N4-C2-0043 NO_CONVERGIO 71.0s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[93/98] N4-C2-0045 CORREGIBLE 47.3s
+[94/98] N4-C2-0044 KALINA 62.0s
+[95/98] N4-C2-0046 CORREGIBLE 48.8s
+[96/98] N4-C2-0047 CORREGIBLE 50.8s
+[97/98] N4-C2-0049 INVIABLE 46.7s
+[98/98] N4-C2-0048 INVIABLE 64.0s
+fin [N4]: 98 puntos nuevos en 1578 s; 0 agotaron 600s -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_ronda1\ronda1_filas.csv

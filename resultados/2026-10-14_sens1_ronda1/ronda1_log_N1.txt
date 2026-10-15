@@ -1,0 +1,2025 @@
+Ronda 1 [N1] | 0 saltados | 343 a evaluar | 5 procesos | tope 600s -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_ronda1\ronda1_filas.csv
+[1/343] N1-T070-02 NO_CONVERGIO 0.3s
+[2/343] N1-T070-01 NO_CONVERGIO 0.6s
+[3/343] N1-T070-03 NO_CONVERGIO 0.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[4/343] N1-T070-06 NO_CONVERGIO 0.4s
+[5/343] N1-T070-07 NO_CONVERGIO 0.3s
+[6/343] N1-T070-08 NO_CONVERGIO 0.4s
+[7/343] N1-T070-10 NO_CONVERGIO 0.3s
+[8/343] N1-T070-11 NO_CONVERGIO 0.4s
+[9/343] N1-T070-13 NO_CONVERGIO 0.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[10/343] N1-T070-04 NO_CONVERGIO 41.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[11/343] N1-T070-09 KALINA 64.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[12/343] N1-T070-15 KALINA 58.7s
+[13/343] N1-T070-17 NO_CONVERGIO 0.4s
+[14/343] N1-T070-18 NO_CONVERGIO 0.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[15/343] N1-T070-12 NO_CONVERGIO 208.8s
+[16/343] N1-T070-20 NO_CONVERGIO 0.4s
+[17/343] N1-T070-14 NO_CONVERGIO 210.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[18/343] N1-T070-22 NO_CONVERGIO 38.0s
+[19/343] N1-T070-21 NO_CONVERGIO 44.3s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[20/343] N1-T070-24 NO_CONVERGIO 0.4s
+[21/343] N1-T070-19 NO_CONVERGIO 169.6s
+[22/343] N1-T070-16 NO_CONVERGIO 211.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[23/343] N1-T070-05 NO_CONVERGIO 306.5s
+[24/343] N1-T070-23 NO_CONVERGIO 49.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[25/343] N1-T090-03 KALINA 70.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[26/343] N1-T090-01 NO_CONVERGIO 152.1s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[27/343] N1-T090-04 NO_CONVERGIO 130.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[28/343] N1-T090-05 NO_CONVERGIO 94.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[29/343] N1-T070-25 NO_CONVERGIO 205.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[30/343] N1-T090-09 KALINA 36.6s
+[31/343] N1-T090-06 NO_CONVERGIO 110.1s
+[32/343] N1-T090-08 KALINA 77.7s
+[33/343] N1-T090-02 NO_CONVERGIO 268.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[34/343] N1-T090-10 KALINA 56.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[35/343] N1-T090-12 KALINA 49.0s
+[36/343] N1-T090-15 KALINA 52.7s
+[37/343] N1-T090-16 NO_CONVERGIO 12.6s
+[38/343] N1-T090-07 NO_CONVERGIO 230.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[39/343] N1-T090-18 NO_CONVERGIO 44.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[40/343] N1-T090-17 NO_CONVERGIO 69.1s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[41/343] N1-T090-11 NO_CONVERGIO 302.3s
+[42/343] N1-T090-13 NO_CONVERGIO 308.3s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[43/343] N1-T090-14 NO_CONVERGIO 314.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[44/343] N1-T090-21 KALINA 53.5s
+[45/343] N1-T090-20 NO_CONVERGIO 160.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[46/343] N1-T090-25 NO_CONVERGIO 21.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[47/343] N1-T090-24 KALINA 67.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[48/343] N1-T090-22 NO_CONVERGIO 149.7s
+[49/343] N1-T110-01 NO_CONVERGIO 40.8s
+[50/343] N1-T090-19 NO_CONVERGIO 323.4s
+[51/343] N1-T090-23 INVIABLE 189.7s
+[52/343] N1-T110-02 CORREGIBLE 52.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[53/343] N1-T110-04 CORREGIBLE 53.4s
+[54/343] N1-T110-03 NO_CONVERGIO 90.2s
+[55/343] N1-T110-05 KALINA 41.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[56/343] N1-T110-06 KALINA 53.1s
+[57/343] N1-T090-27 CORREGIBLE 225.0s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[58/343] N1-T110-07 NO_CONVERGIO 69.7s
+[59/343] N1-T110-08 INVIABLE 63.9s
+[60/343] N1-T090-26 NO_CONVERGIO 288.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[61/343] N1-T110-09 NO_CONVERGIO 52.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[62/343] N1-T110-11 KALINA 41.1s
+[63/343] N1-T110-12 KALINA 40.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[64/343] N1-T110-10 NO_CONVERGIO 83.9s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[65/343] N1-T110-14 NO_CONVERGIO 45.5s
+[66/343] N1-T110-16 KALINA 36.6s
+[67/343] N1-T110-13 NO_CONVERGIO 85.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[68/343] N1-T110-17 KALINA 46.1s
+[69/343] N1-T110-18 KALINA 36.0s
+[70/343] N1-T110-20 NO_CONVERGIO 45.8s
+[71/343] N1-T110-15 NO_CONVERGIO 100.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:68: RuntimeWarning: invalid value encountered in log
+  return [np.log(a * L['phiA']) - np.log(b * V['phiA']),
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[72/343] N1-T110-21 KALINA 36.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[73/343] N1-T110-22 NO_CONVERGIO 32.4s
+[74/343] N1-T110-23 NO_CONVERGIO 14.8s
+[75/343] N1-T110-19 KALINA 78.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[76/343] N1-T110-24 KALINA 46.8s
+[77/343] N1-T110-25 KALINA 42.1s
+[78/343] N1-T130-01 KALINA 37.4s
+[79/343] N1-T110-26 KALINA 48.2s
+[80/343] N1-T130-02 CORREGIBLE 48.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[81/343] N1-T130-04 CORREGIBLE 36.1s
+[82/343] N1-T130-03 KALINA 40.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[83/343] N1-T130-07 CORREGIBLE 44.3s
+[84/343] N1-T130-06 KALINA 53.6s
+[85/343] N1-T130-05 NO_CONVERGIO 62.4s
+[86/343] N1-T130-09 NO_CONVERGIO 36.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[87/343] N1-T130-08 KALINA 51.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[88/343] N1-T130-10 KALINA 36.0s
+[89/343] N1-T130-12 NO_CONVERGIO 38.4s
+[90/343] N1-T130-11 KALINA 43.1s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[91/343] N1-T130-16 NO_CONVERGIO 10.7s
+[92/343] N1-T130-13 KALINA 45.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[93/343] N1-T130-15 KALINA 32.8s
+[94/343] N1-T130-14 NO_CONVERGIO 52.4s
+[95/343] N1-T130-18 CORREGIBLE 39.2s
+[96/343] N1-T130-17 NO_CONVERGIO 67.3s
+[97/343] N1-T130-20 NO_CONVERGIO 39.3s
+[98/343] N1-T130-21 CORREGIBLE 41.1s
+[99/343] N1-T130-23 NO_CONVERGIO 15.9s
+[100/343] N1-T130-19 NO_CONVERGIO 71.5s
+[101/343] N1-T130-22 KALINA 41.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[102/343] N1-T130-24 KALINA 40.0s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[103/343] N1-T150-02 KALINA 29.8s
+[104/343] N1-T130-25 NO_CONVERGIO 40.3s
+[105/343] N1-T150-01 KALINA 40.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[106/343] N1-T150-03 KALINA 48.3s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[107/343] N1-T150-04 KALINA 42.9s
+[108/343] N1-T150-05 KALINA 37.3s
+fuera de rango confiable: T2=421.45 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=421.45 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=421.45 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=421.45 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[109/343] N1-T150-06 INVIABLE 39.7s
+[110/343] N1-T150-07 CORREGIBLE 38.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[111/343] N1-T150-09 KALINA 33.8s
+[112/343] N1-T150-08 NO_CONVERGIO 45.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=420.411 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=420.411 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=420.411 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=420.411 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[113/343] N1-T150-11 KALINA 39.7s
+[114/343] N1-T150-10 KALINA 45.7s
+[115/343] N1-T150-12 NO_CONVERGIO 63.3s
+[116/343] N1-T150-13 CORREGIBLE 41.1s
+[117/343] N1-T150-14 CORREGIBLE 58.3s
+[118/343] N1-T150-15 CORREGIBLE 48.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[119/343] N1-T150-17 KALINA 36.1s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=421.088 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=421.088 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=421.088 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=421.088 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[120/343] N1-T150-16 KALINA 74.9s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[121/343] N1-T150-19 KALINA 34.2s
+[122/343] N1-T150-20 KALINA 36.7s
+[123/343] N1-T150-18 CORREGIBLE 60.7s
+[124/343] N1-T150-21 NO_CONVERGIO 38.9s
+[125/343] N1-T150-23 KALINA 44.5s
+[126/343] N1-T150-24 CORREGIBLE 38.1s
+fuera de rango confiable: T2=434.979 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=434.979 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=434.979 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=434.979 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[127/343] N1-T150-22 INVIABLE 66.8s
+[128/343] N1-T170-01 KALINA 54.3s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=436.945 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.945 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.945 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.945 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[129/343] N1-T170-02 KALINA 57.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T1=433.026 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T1=433.026 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=441.739 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=441.739 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=441.739 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.739 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T6=435.185 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T6=435.185 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T10=432.978 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T10=432.978 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[130/343] N1-T170-03 INVIABLE 49.0s
+fuera de rango confiable: T2=432.171 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=432.171 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=432.171 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=432.171 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=437.53 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.53 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.53 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.53 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[131/343] N1-T170-06 KALINA 36.6s
+[132/343] N1-T170-04 KALINA 55.0s
+fuera de rango confiable: T2=436.841 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.841 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.841 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.841 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[133/343] N1-T170-05 KALINA 70.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[134/343] N1-T170-09 KALINA 45.5s
+fuera de rango confiable: T2=435.254 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.254 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.254 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.254 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[135/343] N1-T170-08 KALINA 60.3s
+[136/343] N1-T170-10 CORREGIBLE 55.9s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:68: RuntimeWarning: invalid value encountered in log
+  return [np.log(a * L['phiA']) - np.log(b * V['phiA']),
+fuera de rango confiable: T2=438.554 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=438.554 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=438.554 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.554 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[137/343] N1-T170-11 KALINA 41.5s
+[138/343] N1-T170-07 CORREGIBLE 95.4s
+fuera de rango confiable: T2=436.58 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=436.58 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=436.58 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=436.58 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[139/343] N1-T170-12 KALINA 40.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=429.891 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=429.891 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=429.891 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=429.891 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[140/343] N1-T170-14 KALINA 43.5s
+fuera de rango confiable: T2=437.06 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.06 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.06 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.06 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[141/343] N1-T170-13 KALINA 49.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=428.258 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.258 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.258 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.258 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[142/343] N1-T170-15 KALINA 47.3s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=433.237 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=433.237 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=433.237 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=433.237 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[143/343] N1-T170-19 KALINA 32.5s
+fuera de rango confiable: T2=435.002 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.002 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.002 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.002 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[144/343] N1-T170-17 CORREGIBLE 54.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=429.086 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=429.086 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=429.086 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=429.086 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[145/343] N1-T170-18 KALINA 45.7s
+[146/343] N1-T170-16 KALINA 79.9s
+fuera de rango confiable: T2=433.918 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=433.918 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=433.918 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=433.918 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[147/343] N1-T170-21 KALINA 35.2s
+fuera de rango confiable: T2=435.642 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.642 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.642 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.642 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[148/343] N1-T170-22 CORREGIBLE 36.4s
+fuera de rango confiable: T2=432.822 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=432.822 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=432.822 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=432.822 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[149/343] N1-T170-24 KALINA 32.3s
+fuera de rango confiable: T2=438.394 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=438.394 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=438.394 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.394 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[150/343] N1-T170-23 CORREGIBLE 60.2s
+[151/343] N1-T170-20 CORREGIBLE 93.8s
+fuera de rango confiable: T2=430.808 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.808 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.808 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.808 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[152/343] N1-T170-25 KALINA 39.2s
+fuera de rango confiable: T2=435.499 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=435.499 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=435.499 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=435.499 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=432.368 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=432.368 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=432.368 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=432.368 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[153/343] N1-T170-26 KALINA 47.4s
+[154/343] N1-T170-27 CORREGIBLE 40.2s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=428.77 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.77 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.77 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.77 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[155/343] N1-T170-28 KALINA 39.0s
+fuera de rango confiable: T2=452.694 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=452.694 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=452.694 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=452.694 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[156/343] N1-T190-01 KALINA 42.7s
+fuera de rango confiable: T2=456.636 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=456.636 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=456.636 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=456.636 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=456.084 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=456.084 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=456.084 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=456.084 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[157/343] N1-T190-02 CORREGIBLE 56.5s
+[158/343] N1-T190-04 KALINA 44.0s
+fuera de rango confiable: T2=456.248 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=456.248 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=456.248 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=456.248 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=455.448 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.448 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=433.288 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=433.288 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.448 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.448 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=431.257 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=431.257 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[159/343] N1-T190-03 KALINA 73.3s
+[160/343] N1-T190-05 KALINA 53.4s
+fuera de rango confiable: T2=440.127 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.127 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=422.66 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=422.66 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.127 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.127 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=420.395 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=420.395 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[161/343] N1-T190-06 KALINA 57.0s
+[162/343] N1-T190-09 NO_CONVERGIO 17.7s
+fuera de rango confiable: T2=453.039 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=453.039 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=427.851 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=427.851 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=453.039 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=453.039 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=426.463 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=426.463 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[163/343] N1-T190-07 KALINA 52.3s
+fuera de rango confiable: T2=425.295 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=425.295 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=425.295 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=425.295 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[164/343] N1-T190-08 CORREGIBLE 75.6s
+fuera de rango confiable: T2=455.023 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.023 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.023 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.023 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[165/343] N1-T190-10 KALINA 51.4s
+fuera de rango confiable: T2=457.25 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=457.25 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=457.25 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=457.25 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[166/343] N1-T190-11 KALINA 44.7s
+fuera de rango confiable: T2=446.445 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=446.445 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=426.954 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=426.954 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=446.445 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=446.445 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=425.454 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=425.454 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[167/343] N1-T190-12 KALINA 61.4s
+[168/343] N1-T190-14 NO_CONVERGIO 46.8s
+fuera de rango confiable: T1=420.984 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T1=420.984 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=444.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=444.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=444.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=444.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T6=426.95 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T6=426.95 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T10=420.961 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T10=420.961 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=428.911 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.911 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.911 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.911 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[169/343] N1-T190-16 INVIABLE 66.2s
+[170/343] N1-T190-15 KALINA 71.7s
+fuera de rango confiable: T2=448.861 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=448.861 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=448.861 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=448.861 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[171/343] N1-T190-17 CORREGIBLE 47.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=460.426 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=460.426 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=460.426 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=460.426 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[172/343] N1-T190-18 KALINA 43.4s
+[173/343] N1-T190-13 CORREGIBLE 122.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=437.992 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=437.992 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=437.992 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=437.992 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[174/343] N1-T190-20 KALINA 42.3s
+fuera de rango confiable: T2=443.827 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=443.827 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=443.827 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=443.827 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[175/343] N1-T190-22 CORREGIBLE 46.8s
+fuera de rango confiable: T2=456.654 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=456.654 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=431.747 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=431.747 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=456.654 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=456.654 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[176/343] N1-T190-23 KALINA 53.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=451.592 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=451.592 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=451.592 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.592 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[177/343] N1-T190-24 KALINA 41.5s
+[178/343] N1-T190-21 KALINA 102.9s
+fuera de rango confiable: T2=456.162 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=456.162 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=456.162 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=456.162 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[179/343] N1-T190-25 CORREGIBLE 45.5s
+fuera de rango confiable: T2=474.78 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=474.78 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=474.78 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=474.78 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[180/343] N1-T210-01 KALINA 36.5s
+[181/343] N1-T190-19 CORREGIBLE 136.2s
+fuera de rango confiable: T2=442.913 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=442.913 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=442.913 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=442.913 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[182/343] N1-T190-26 KALINA 66.0s
+fuera de rango confiable: T2=476.943 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=476.943 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=435.244 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=435.244 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=476.943 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=476.943 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=432.745 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=432.745 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[183/343] N1-T210-03 NO_CONVERGIO 61.3s
+[184/343] N1-T210-05 KALINA 40.9s
+fuera de rango confiable: T2=448.201 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=448.201 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=448.201 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=448.201 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[185/343] N1-T210-02 KALINA 74.0s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=473.487 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=473.487 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=473.487 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=473.487 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[186/343] N1-T210-06 CORREGIBLE 44.7s
+fuera de rango confiable: T2=451.402 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=451.402 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=422.795 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=422.795 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=451.402 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.402 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=420.961 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=420.961 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[187/343] N1-T210-04 KALINA 67.5s
+[188/343] N1-T210-10 NO_CONVERGIO 20.5s
+fuera de rango confiable: T2=475.219 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=475.219 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=475.219 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=475.219 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[189/343] N1-T210-09 KALINA 45.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=423.471 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=423.471 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=423.471 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=423.471 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[190/343] N1-T210-08 KALINA 76.3s
+[191/343] N1-T210-11 NO_CONVERGIO 75.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=427.35 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=427.35 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=427.35 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=427.35 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[192/343] N1-T210-07 CORREGIBLE 101.0s
+fuera de rango confiable: T2=440.82 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.82 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.82 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.82 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[193/343] N1-T210-12 KALINA 71.1s
+[194/343] N1-T210-14 NO_CONVERGIO 58.3s
+fuera de rango confiable: T2=464.262 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=464.262 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=464.262 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=464.262 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[195/343] N1-T210-16 CORREGIBLE 44.2s
+fuera de rango confiable: T2=429.989 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=429.989 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=429.989 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=429.989 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[196/343] N1-T210-13 KALINA 104.2s
+[197/343] N1-T210-18 NO_CONVERGIO 31.0s
+fuera de rango confiable: T2=443.966 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=443.966 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=443.966 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=443.966 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[198/343] N1-T210-15 KALINA 77.9s
+fuera de rango confiable: T2=449.198 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.198 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.198 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.198 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[199/343] N1-T210-17 KALINA 71.9s
+fuera de rango confiable: T2=477.785 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=477.785 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=431.985 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=431.985 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=477.785 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=477.785 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=420.557 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=420.557 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[200/343] N1-T210-19 KALINA 39.9s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=477.144 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=477.144 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=438.24 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=438.24 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=477.144 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=477.144 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=428.494 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=428.494 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[201/343] N1-T210-22 KALINA 44.6s
+fuera de rango confiable: T2=476.114 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=476.114 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=425.419 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=425.419 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=476.114 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=476.114 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=420.952 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=420.952 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[202/343] N1-T210-23 NO_CONVERGIO 54.7s
+[203/343] N1-T210-24 KALINA 49.8s
+fuera de rango confiable: T2=447.66 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=447.66 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=447.66 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=447.66 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+[204/343] N1-T210-21 CORREGIBLE 79.4s
+[205/343] N1-T210-20 KALINA 116.6s
+fuera de rango confiable: T2=467.022 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=467.022 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=467.022 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=467.022 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[206/343] N1-T210-25 KALINA 54.6s
+fuera de rango confiable: T2=470.813 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=470.813 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=431.4 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=431.4 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=470.813 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=470.813 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=430.366 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=430.366 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[207/343] N1-T210-27 KALINA 55.6s
+[208/343] N1-T210-28 NO_CONVERGIO 71.0s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=463.85 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=463.85 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=429.267 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=429.267 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=463.85 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=463.85 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=427.854 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=427.854 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[209/343] N1-T230-01 KALINA 75.2s
+fuera de rango confiable: T2=491.542 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=491.542 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=455.371 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=455.371 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=491.542 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=491.542 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=454.231 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=454.231 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[210/343] N1-T230-03 KALINA 60.9s
+fuera de rango confiable: T2=455.617 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.617 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=429.32 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=429.32 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.617 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.617 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=427.66 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=427.66 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[211/343] N1-T230-02 KALINA 84.5s
+[212/343] N1-T230-05 NO_CONVERGIO 22.8s
+fuera de rango confiable: T2=486.695 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=486.695 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=437.408 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=437.408 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=486.695 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=486.695 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=435.714 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=435.714 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=450.211 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=450.211 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=450.211 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=450.211 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[213/343] N1-T230-06 KALINA 52.5s
+[214/343] N1-T230-04 KALINA 90.2s
+fuera de rango confiable: T2=449.454 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.454 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.454 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.454 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[215/343] N1-T230-07 KALINA 56.9s
+[216/343] N1-T210-26 NO_CONVERGIO 190.2s
+fuera de rango confiable: T2=447.8 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=447.8 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=447.8 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=447.8 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[217/343] N1-T230-08 KALINA 64.5s
+[218/343] N1-T230-12 NO_CONVERGIO 24.1s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=427.939 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=427.939 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=427.939 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=427.939 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[219/343] N1-T230-10 CORREGIBLE 50.9s
+[220/343] N1-T230-09 NO_CONVERGIO 53.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=465.58 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=465.58 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=441.251 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=441.251 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=465.58 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=465.58 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=439.919 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=439.919 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[221/343] N1-T230-11 KALINA 66.7s
+fuera de rango confiable: T2=454.502 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=454.502 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=454.502 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=454.502 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[222/343] N1-T230-13 KALINA 70.7s
+[223/343] N1-T230-15 NO_CONVERGIO 63.5s
+fuera de rango confiable: T2=457.738 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=457.738 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=457.738 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=457.738 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[224/343] N1-T230-16 CORREGIBLE 67.4s
+fuera de rango confiable: T2=441.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=441.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=441.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[225/343] N1-T230-14 CORREGIBLE 110.8s
+[226/343] N1-T230-20 NO_CONVERGIO 30.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=434.858 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=434.858 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=434.858 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=434.858 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[227/343] N1-T230-17 KALINA 103.3s
+fuera de rango confiable: T2=478.209 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=478.209 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=455.854 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=455.854 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=478.209 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=478.209 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=454.667 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=454.667 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[228/343] N1-T230-21 KALINA 66.9s
+fuera de rango confiable: T2=445.358 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=445.358 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=445.358 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.358 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[229/343] N1-T230-18 KALINA 120.6s
+fuera de rango confiable: T2=465.904 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=465.904 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=465.904 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=465.904 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[230/343] N1-T230-22 KALINA 80.1s
+fuera de rango confiable: T2=427.724 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=427.724 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=427.724 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=427.724 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[231/343] N1-T230-19 KALINA 132.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=446.954 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=446.954 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=446.954 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=446.954 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[232/343] N1-T230-23 KALINA 96.9s
+[233/343] N1-T230-24 NO_CONVERGIO 79.9s
+fuera de rango confiable: T2=447.585 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=447.585 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=429.241 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=429.241 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=447.585 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=447.585 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=428.707 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=428.707 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[234/343] N1-T230-26 KALINA 65.5s
+[235/343] N1-T230-25 NO_CONVERGIO 119.8s
+fuera de rango confiable: T2=444.199 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=444.199 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=444.199 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=444.199 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[236/343] N1-T230-27 CORREGIBLE 98.6s
+fuera de rango confiable: T2=438.434 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=438.434 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=438.434 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.434 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[237/343] N1-T250-01 CORREGIBLE 75.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[238/343] N1-T250-04 NO_CONVERGIO 25.3s
+fuera de rango confiable: T2=454.127 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=454.127 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=422.423 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=422.423 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=454.127 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=454.127 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=421.587 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=421.587 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[239/343] N1-T250-03 KALINA 70.7s
+[240/343] N1-T250-05 NO_CONVERGIO 27.9s
+[241/343] N1-T250-06 NO_CONVERGIO 35.4s
+[242/343] N1-T250-02 CORREGIBLE 91.6s
+fuera de rango confiable: T2=470.86 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=470.86 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=447.599 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=447.599 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=470.86 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=470.86 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=446.7 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=446.7 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[243/343] N1-T250-08 KALINA 46.9s
+fuera de rango confiable: T2=500.152 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=500.152 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=455.333 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=455.333 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=500.152 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=500.152 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=453.601 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=453.601 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[244/343] N1-T250-11 KALINA 59.3s
+fuera de rango confiable: T5=459.979 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=459.979 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[245/343] N1-T250-07 NO_CONVERGIO 88.9s
+fuera de rango confiable: T2=462.571 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=462.571 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=428.582 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=428.582 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=462.571 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=462.571 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=427.388 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=427.388 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[246/343] N1-T250-12 KALINA 75.4s
+fuera de rango confiable: T2=458.088 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=458.088 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=458.088 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=458.088 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[247/343] N1-T250-09 CORREGIBLE 130.5s
+[248/343] N1-T250-13 NO_CONVERGIO 60.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=430.803 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=430.803 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=430.803 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=430.803 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[249/343] N1-T250-10 CORREGIBLE 137.4s
+[250/343] N1-T250-15 NO_CONVERGIO 26.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=440.661 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.661 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.661 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.661 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[251/343] N1-T250-14 KALINA 89.5s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=474.111 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=474.111 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=433.353 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=433.353 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=474.111 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=474.111 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=432.092 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=432.092 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[252/343] N1-T250-16 KALINA 56.8s
+fuera de rango confiable: T2=470.337 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=470.337 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=470.337 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=470.337 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[253/343] N1-T250-18 CORREGIBLE 53.9s
+fuera de rango confiable: T2=493.49 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=493.49 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=493.49 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=493.49 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[254/343] N1-T250-19 NO_CONVERGIO 49.1s
+[255/343] N1-T250-17 CORREGIBLE 69.8s
+fuera de rango confiable: T2=497.128 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=497.128 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=452.595 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=452.595 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=497.128 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=497.128 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=451.257 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=451.257 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[256/343] N1-T250-20 KALINA 76.4s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=476.95 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=476.95 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=430.627 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=430.627 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=476.95 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=476.95 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=428.883 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=428.883 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[257/343] N1-T250-24 KALINA 84.1s
+[258/343] N1-T250-23 NO_CONVERGIO 89.6s
+fuera de rango confiable: T2=494.333 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=494.333 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=494.333 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=494.333 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[259/343] N1-T250-25 CORREGIBLE 57.3s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=474.228 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=474.228 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=474.228 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=474.228 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[260/343] N1-T250-22 KALINA 108.7s
+fuera de rango confiable: T2=449.283 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.283 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.283 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.283 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[261/343] N1-T250-21 KALINA 129.9s
+fuera de rango confiable: T2=490.597 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=490.597 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=490.597 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=490.597 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[262/343] N1-T270-01 CORREGIBLE 68.4s
+fuera de rango confiable: T2=459.982 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=459.982 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=459.982 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=459.982 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=450.793 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=450.793 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=450.793 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=450.793 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[263/343] N1-T270-03 KALINA 62.7s
+[264/343] N1-T270-02 CORREGIBLE 73.1s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=422.694 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=422.694 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=422.694 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=422.694 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[265/343] N1-T250-26 CORREGIBLE 109.3s
+fuera de rango confiable: T2=448.11 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=448.11 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=420.135 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=420.135 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=448.11 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=448.11 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[266/343] N1-T270-04 KALINA 95.2s
+[267/343] N1-T270-08 NO_CONVERGIO 28.9s
+fuera de rango confiable: T2=495.652 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=495.652 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=495.652 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=495.652 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[268/343] N1-T270-07 CORREGIBLE 62.7s
+[269/343] N1-T270-09 NO_CONVERGIO 28.1s
+fuera de rango confiable: T5=438.916 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=438.916 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[270/343] N1-T270-05 NO_CONVERGIO 99.9s
+[271/343] N1-T270-06 CORREGIBLE 106.4s
+fuera de rango confiable: T2=484.913 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=484.913 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=445.127 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=445.127 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=484.913 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=484.913 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=444.245 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=444.245 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[272/343] N1-T270-10 KALINA 51.7s
+[273/343] N1-T270-12 NO_CONVERGIO 50.3s
+fuera de rango confiable: T2=474.037 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=474.037 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=439.566 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=439.566 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=474.037 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=474.037 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=439.038 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=439.038 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[274/343] N1-T270-11 KALINA 62.4s
+[275/343] N1-T270-16 NO_CONVERGIO 42.9s
+fuera de rango confiable: T5=420.022 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=420.022 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[276/343] N1-T270-13 NO_CONVERGIO 80.6s
+[277/343] N1-T270-15 NO_CONVERGIO 58.6s
+fuera de rango confiable: T2=480.795 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=480.795 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=480.795 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=480.795 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[278/343] N1-T270-14 CORREGIBLE 76.7s
+fuera de rango confiable: T2=440.066 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=440.066 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=440.066 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=440.066 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[279/343] N1-T270-17 KALINA 83.3s
+fuera de rango confiable: T2=474.77 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=474.77 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=474.77 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=474.77 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[280/343] N1-T270-19 CORREGIBLE 60.5s
+fuera de rango confiable: T2=455.048 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.048 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.048 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.048 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[281/343] N1-T270-20 KALINA 75.2s
+fuera de rango confiable: T2=428.774 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=428.774 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=428.774 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=428.774 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[282/343] N1-T270-18 KALINA 94.9s
+fuera de rango confiable: T2=479.863 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=479.863 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=479.863 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=479.863 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[283/343] N1-T270-22 CORREGIBLE 80.9s
+fuera de rango confiable: T2=455.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=455.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=455.528 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=455.528 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[284/343] N1-T270-21 KALINA 115.7s
+fuera de rango confiable: T2=497.459 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=497.459 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=444.97 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=444.97 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=497.459 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=497.459 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=444.13 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=444.13 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[285/343] N1-T270-24 KALINA 59.9s
+fuera de rango confiable: T5=425.938 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=425.938 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[286/343] N1-T270-23 NO_CONVERGIO 84.3s
+fuera de rango confiable: T2=469.592 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=469.592 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=435.863 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=435.863 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=469.592 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=469.592 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=435.222 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=435.222 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[287/343] N1-T270-25 KALINA 57.0s
+[288/343] N1-T290-01 NO_CONVERGIO 31.7s
+fuera de rango confiable: T2=496.844 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=496.844 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=451.865 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=451.865 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=496.844 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=496.844 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=450.771 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=450.771 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[289/343] N1-T270-26 KALINA 49.7s
+fuera de rango confiable: T2=467.743 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=467.743 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=436.953 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=436.953 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=467.743 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=467.743 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=436.185 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=436.185 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[290/343] N1-T270-27 KALINA 64.7s
+fuera de rango confiable: T2=460.315 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=460.315 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=426.16 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=426.16 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=460.315 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=460.315 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=425.821 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=425.821 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+[291/343] N1-T290-02 KALINA 57.5s
+fuera de rango confiable: T2=481.873 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=481.873 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=424.87 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=424.87 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=481.873 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=481.873 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=424.361 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=424.361 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[292/343] N1-T290-03 KALINA 62.7s
+[293/343] N1-T290-06 NO_CONVERGIO 20.9s
+[294/343] N1-T290-04 NO_CONVERGIO 46.7s
+fuera de rango confiable: T2=452.1 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=452.1 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=452.1 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=452.1 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[295/343] N1-T290-05 CORREGIBLE 60.4s
+[296/343] N1-T290-10 NO_CONVERGIO 46.9s
+fuera de rango confiable: T2=449.627 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=449.627 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=430.133 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=430.133 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=449.627 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.627 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=429.898 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=429.898 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[297/343] N1-T290-07 KALINA 76.1s
+fuera de rango confiable: T5=451.419 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.419 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[298/343] N1-T290-08 NO_CONVERGIO 100.1s
+fuera de rango confiable: T5=454.709 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=454.709 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[299/343] N1-T290-09 NO_CONVERGIO 102.8s
+fuera de rango confiable: T5=449.249 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=449.249 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=420.108 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=420.108 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[300/343] N1-T290-11 NO_CONVERGIO 87.4s
+fuera de rango confiable: T2=461.897 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=461.897 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=441.34 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=441.34 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=461.897 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=461.897 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=440.773 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=440.773 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[301/343] N1-T290-12 KALINA 65.8s
+fuera de rango confiable: T2=489.831 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=489.831 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=460.229 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=460.229 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=489.831 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=489.831 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=459.678 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=459.678 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[302/343] N1-T290-14 KALINA 54.0s
+[303/343] N1-T290-17 NO_CONVERGIO 38.0s
+[304/343] N1-T290-15 NO_CONVERGIO 56.6s
+fuera de rango confiable: T5=441.241 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=441.241 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[305/343] N1-T290-13 NO_CONVERGIO 101.0s
+fuera de rango confiable: T5=429.626 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=429.626 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[306/343] N1-T290-16 NO_CONVERGIO 82.6s
+fuera de rango confiable: T2=498.606 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=498.606 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=433.99 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=433.99 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=498.606 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=498.606 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=433.257 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=433.257 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[307/343] N1-T290-18 KALINA 64.9s
+fuera de rango confiable: T2=434.599 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=434.599 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=434.599 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=434.599 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[308/343] N1-T290-21 KALINA 82.1s
+fuera de rango confiable: T2=457.062 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=457.062 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=457.062 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=457.062 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[309/343] N1-T290-20 KALINA 89.5s
+fuera de rango confiable: T2=458.623 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=458.623 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=458.623 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=458.623 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[310/343] N1-T290-19 CORREGIBLE 108.7s
+fuera de rango confiable: T2=499.651 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=499.651 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=460.295 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=460.295 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=499.651 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=499.651 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=459.413 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=459.413 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[311/343] N1-T290-23 KALINA 52.0s
+fuera de rango confiable: T2=460.819 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=460.819 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=460.819 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=460.819 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[312/343] N1-T290-22 KALINA 90.1s
+fuera de rango confiable: T2=498.394 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=498.394 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=449.218 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=449.218 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=498.394 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=498.394 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=448.509 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=448.509 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=444.816 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=444.816 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[313/343] N1-T290-24 KALINA 64.1s
+[314/343] N1-T290-25 NO_CONVERGIO 60.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=502.99 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=502.99 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=425.231 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=425.231 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=502.99 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=502.99 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=424.732 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=424.732 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=456.736 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=456.736 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=422.614 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=422.614 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=456.736 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=456.736 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=422.243 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=422.243 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[315/343] N1-T300-01 CORREGIBLE 57.9s
+[316/343] N1-T290-26 KALINA 73.6s
+fuera de rango confiable: T2=486.224 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=486.224 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=426.425 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=426.425 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=486.224 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=486.224 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=425.716 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=425.716 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[317/343] N1-T290-27 KALINA 74.1s
+fuera de rango confiable: T2=488.83 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=488.83 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=441.864 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=441.864 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=488.83 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=488.83 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=441.036 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=441.036 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[318/343] N1-T300-03 KALINA 58.8s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_kalina_flash.py:69: RuntimeWarning: divide by zero encountered in log
+  np.log((1 - a) * L['phiW']) - np.log((1 - b) * V['phiW'])]
+fuera de rango confiable: T2=459.181 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=459.181 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=420.795 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=420.795 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=459.181 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=459.181 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=420.579 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=420.579 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[319/343] N1-T300-02 KALINA 82.1s
+fuera de rango confiable: T2=467.435 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=467.435 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=467.435 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=467.435 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[320/343] N1-T300-05 KALINA 58.8s
+fuera de rango confiable: T2=467.611 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=467.611 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=450.103 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=450.103 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=467.611 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=467.611 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=449.608 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=449.608 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T2=473.303 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=473.303 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=459.048 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=459.048 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=473.303 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=473.303 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=458.751 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=458.751 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[321/343] N1-T300-04 KALINA 76.9s
+[322/343] N1-T300-06 KALINA 72.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+[323/343] N1-T300-10 NO_CONVERGIO 35.9s
+fuera de rango confiable: T2=454.979 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=454.979 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=454.979 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=454.979 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[324/343] N1-T300-07 KALINA 91.9s
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\properties\_teqp_flash.py:51: RuntimeWarning: overflow encountered in scalar multiply
+  Pn = P * S if kind == "bub" else P / S
+fuera de rango confiable: T2=460.504 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=460.504 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=432.168 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=432.168 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=460.504 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=460.504 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=431.882 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=431.882 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[325/343] N1-T300-12 NO_CONVERGIO 44.2s
+[326/343] N1-T300-09 KALINA 103.7s
+fuera de rango confiable: T5=451.441 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=451.441 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[327/343] N1-T300-08 NO_CONVERGIO 112.1s
+fuera de rango confiable: T2=474.215 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=474.215 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=474.215 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=474.215 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[328/343] N1-T300-11 CORREGIBLE 97.8s
+[329/343] N1-T300-17 NO_CONVERGIO 25.7s
+[330/343] N1-T300-16 NO_CONVERGIO 42.6s
+fuera de rango confiable: T2=468.203 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=468.203 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=468.203 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=468.203 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[331/343] N1-T300-13 CORREGIBLE 87.7s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=485.04 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=485.04 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=437.608 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=437.608 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=485.04 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=485.04 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=437.066 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=437.066 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[332/343] N1-T300-15 KALINA 67.0s
+[333/343] N1-T300-19 NO_CONVERGIO 28.4s
+fuera de rango confiable: T5=454.944 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=454.944 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[334/343] N1-T300-14 NO_CONVERGIO 82.1s
+[335/343] N1-T300-18 NO_CONVERGIO 46.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+[336/343] N1-T300-20 NO_CONVERGIO 42.6s
+D:\Desktop\ciclo_kalina_tercero\.venv\Lib\site-packages\iapws\ammonia.py:290: RuntimeWarning: overflow encountered in exp
+  prop["fugNH3"] = Z*exp(fir+delta*fird+(1-x)*F)
+fuera de rango confiable: T2=483.305 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=483.305 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=434.64 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=434.64 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=483.305 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=483.305 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=433.96 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=433.96 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[337/343] N1-T300-22 KALINA 62.8s
+fuera de rango confiable: T2=457.459 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=457.459 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=440.041 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=440.041 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=457.459 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=457.459 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=439.8 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=439.8 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[338/343] N1-T300-21 KALINA 77.8s
+fuera de rango confiable: T2=454.661 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=454.661 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T4=432.759 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T4=432.759 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=454.661 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=454.661 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T8=432.494 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T8=432.494 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[339/343] N1-T300-23 KALINA 71.2s
+fuera de rango confiable: T2=466.38 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=466.38 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=466.38 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=466.38 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[340/343] N1-T300-24 CORREGIBLE 69.9s
+fuera de rango confiable: T2=460.031 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=460.031 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=460.031 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=460.031 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[341/343] N1-T300-25 CORREGIBLE 87.9s
+fuera de rango confiable: T2=488.951 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T2=488.951 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+fuera de rango confiable: T5=488.951 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=488.951 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[342/343] N1-T300-26 CORREGIBLE 47.8s
+fuera de rango confiable: T5=445.501 K > 420 K (respaldo_experimental) [motor: teqp]
+D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\src\_rango_barrido.py:27: RangoMotorWarning: fuera de rango confiable: T5=445.501 K > 420 K (respaldo_experimental) [motor: teqp]
+  viol = evaluar_rango(motor, resultado, backend=backend, modo=modo)
+[343/343] N1-T300-27 NO_CONVERGIO 66.6s
+fin [N1]: 343 puntos nuevos en 4983 s; 0 agotaron 600s -> D:\Desktop\ciclo_kalina_tercero\.claude\worktrees\sens-1\resultados\2026-10-14_sens1_ronda1\ronda1_filas.csv
