@@ -1,7 +1,7 @@
 """Sensibilidad 1, Ronda 3 - corredor reanudable (un proceso por punto).
 
-Corre los puntos de `ronda3_puntos.py` (barridos N9 y N10; N8 se anade mas
-adelante) con el mismo patron de `ronda2_corrida.py`: un
+Corre los puntos de `ronda3_puntos.py` (barridos N9, N10 y N8) con el mismo
+patron de `ronda2_corrida.py`: un
 `multiprocessing.Process` (contexto spawn) por punto, 5 simultaneos y tope
 DURO de 600 s (si vence: `terminate()` + fila `NO_CONVERGIO` con
 `mensaje="tiempo_agotado_600s"`). Escritura incremental en modo `a` con

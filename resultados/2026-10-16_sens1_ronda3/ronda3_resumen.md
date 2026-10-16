@@ -15,10 +15,14 @@
 | N10 | C3 | 35 | 24 | 24 | 0 | 11 | 0 | 0 | 7.09 | 10.91 | 14.53 | 7.09 | 10.91 | 14.53 |
 | N10 | C4 | 35 | 9 | 9 | 0 | 10 | 1 | 15 | 7.63 | 10.26 | 12.20 | 7.63 | 10.26 | 12.20 |
 | N10 | TOTAL | 105 | 47 | 47 | 0 | 28 | 1 | 29 | 7.09 | 10.90 | 14.53 | 7.09 | 10.90 | 14.53 |
+| N8 | C3 | 234 | 121 | 93 | 28 | 49 | 10 | 54 | 0.22 | 4.86 | 12.11 | 0.22 | 4.52 | 10.19 |
+| N8 | C4 | 231 | 137 | 137 | 0 | 28 | 9 | 57 | 0.20 | 4.76 | 11.18 | 0.20 | 4.76 | 11.18 |
+| N8 | TOTAL | 465 | 258 | 230 | 28 | 77 | 19 | 111 | 0.20 | 4.78 | 12.11 | 0.20 | 4.64 | 11.18 |
 
 ### Planeados vs evaluados
 
 - **N10**: planeados 105 (ronda3_diseno.csv) vs evaluados 105 (ronda3_filas.csv).
+- **N8**: planeados 465 (ronda3_diseno.csv) vs evaluados 465 (ronda3_filas.csv).
 - **N9**: planeados 194 (ronda3_diseno.csv) vs evaluados 194 (ronda3_filas.csv).
 
 ## 2. N9 - pares del regenerador y la turbina en C3 y C4
@@ -224,13 +228,160 @@ eta [%]:
 - **C4**: eta max por P_alta [kPa -> %]: 4000 -> 12.20, 5000 -> 11.75, 6000 -> ?, 7000 -> ?, 8000 -> ?. Veredicto: la eta maxima desciende con P_alta (eta max en 4000 kPa); mejor punto N10-C4-0003 (12.20 %).
 - En el veredicto, `eta max en X kPa` dice en que P_alta esta el maximo de ese centro; `sigue subiendo` significa que el maximo cae en el borde superior de la caja (8000 kPa).
 
-## 4. N8
+## 4. N8 - muestreo LHS de 9 variables (C3 y C4)
 
-- N8: todavia no se definio ni se corro; el corredor ya acepta el argumento N8 y el reporte se limita a los barridos con filas.
+Por centro: 250 candidatas LHS (semilla 20261017) redondeadas; las con P_alta < 1.3*P_baja se descartaron sin re-muestrear (ver ronda3_descartes.csv) y los duplicados tras redondear se quitaron una sola vez. eta_p = 0.80 y m_b = 1.0 fijos.
+
+### C3 (234 puntos)
+
+Clases: 121 KALINA (total), 49 CORREGIBLE, 10 INVIABLE y 54 NO_CONVERGIO.
+
+Ventanas p10-p90 de las 9 variables entre los KALINA (total); el redondeo (0.5 K, 10 kPa, 0.01 y 0.05) marca la resolucion de estas cifras:
+
+| variable | p10 | mediana | p90 | n |
+|---|---|---|---|---|
+| T_fuente | 377 | 413.5 | 449.5 | 121 |
+| T_sumidero | 279.5 | 286.5 | 293 | 121 |
+| P_alta | 2030 | 3420 | 4640 | 121 |
+| P_baja | 740 | 1250 | 1660 | 121 |
+| x_b | 0.48 | 0.66 | 0.85 | 121 |
+| eta_t | 0.55 | 0.75 | 0.9 | 121 |
+| eps_hrvg | 0.55 | 0.7 | 0.9 | 121 |
+| eps_reg | 0.55 | 0.75 | 0.9 | 121 |
+| eps_cond | 0.85 | 0.9 | 0.95 | 121 |
+
+KS de cada variable: KALINA (total) frente al resto de puntos genuinos (CORREGIBLE + INVIABLE). D va de 0 (mismo muestreo) a 1; p-valor bajo (< 0.05) se lee como distribucion distinta (con valores redondeados, indicativo):
+
+| variable | D | p-valor | n KALINA | n resto |
+|---|---|---|---|---|
+| T_fuente | 0.216 | 0.0406 | 121 | 59 |
+| T_sumidero | 0.261 | 0.00704 | 121 | 59 |
+| P_alta | 0.176 | 0.15 | 121 | 59 |
+| P_baja | 0.477 | 9.19e-09 | 121 | 59 |
+| x_b | 0.376 | 1.53e-05 | 121 | 59 |
+| eta_t | 0.19 | 0.0987 | 121 | 59 |
+| eps_hrvg | 0.206 | 0.057 | 121 | 59 |
+| eps_reg | 0.0854 | 0.904 | 121 | 59 |
+| eps_cond | 0.23 | 0.0245 | 121 | 59 |
+
+PRCC con eta entre los KALINA (total): rangos con promedio en empates y residuos de minimos cuadrados con intercepta (solo numpy). +1 sube eta, -1 la baja, ~0 no aporta linealmente:
+
+| variable | PRCC |
+|---|---|
+| T_fuente | 0.555 |
+| T_sumidero | -0.0314 |
+| P_alta | 0.521 |
+| P_baja | -0.721 |
+| x_b | 0.701 |
+| eta_t | 0.629 |
+| eps_hrvg | 0.286 |
+| eps_reg | 0.362 |
+| eps_cond | -0.0692 |
+
+Lectura: la mayor influencia positiva lineal es **x_b** (PRCC 0.701) y la mayor negativa **P_baja** (PRCC -0.721).
+
+Top 10 de eta entre los KALINA (total):
+
+| puesto | id | eta [%] | Wnet [kW] | T_fuente [K] | P_alta [kPa] | P_baja [kPa] | x_b | eta_t |
+|---|---|---|---|---|---|---|---|---|
+| 1 | N8-C3-0091 | 12.11 | 159.13 | 445 | 4710 | 1050 | 0.73 | 0.9 |
+| 2 | N8-C3-0083 | 10.19 | 96.28 | 425 | 3510 | 930 | 0.69 | 0.85 |
+| 3 | N8-C3-0014 | 10.17 | 160.56 | 460.5 | 4020 | 920 | 0.67 | 0.8 |
+| 4 | N8-C3-0034 | 10.16 | 84.035 | 391 | 3490 | 1180 | 0.85 | 0.95 |
+| 5 | N8-C3-0216 | 9.86 | 114.39 | 421.5 | 3970 | 1540 | 0.88 | 0.95 |
+| 6 | N8-C3-0046 | 9.74 | 65.915 | 461 | 3470 | 630 | 0.42 | 0.85 |
+| 7 | N8-C3-0219 | 9.63 | 93.34 | 440.5 | 3730 | 700 | 0.66 | 0.7 |
+| 8 | N8-C3-0162 | 9.55 | 98.664 | 438.5 | 4130 | 840 | 0.84 | 0.65 |
+| 9 | N8-C3-0093 | 9.42 | 90.577 | 440 | 4910 | 1560 | 0.92 | 0.85 |
+| 10 | N8-C3-0020 | 9.40 | 49.254 | 402.5 | 4700 | 890 | 0.74 | 0.85 |
+
+Rangos de equipos entre los KALINA (total): dh_turb en kJ/kg, Wnet en kW con m_b = 1.0 kg/s (kW por kg/s), Qreg/Qi y r_P = P_alta/P_baja sin unidades:
+
+| variable | unidad | min | p10 | mediana | p90 | max | n |
+|---|---|---|---|---|---|---|---|
+| dh_turb | kJ/kg | 23.0732 | 55.8058 | 108.445 | 166.512 | 249.44 | 121 |
+| Wnet | kW por kg/s | 0.421371 | 8.00864 | 32.737 | 90.5774 | 160.562 | 121 |
+| Qreg_Qi | (adim) | 0.0214162 | 0.0716836 | 0.28474 | 0.934042 | 2.35546 | 121 |
+| r_P | (adim) | 1.32353 | 1.61157 | 2.74825 | 4.91667 | 6.78947 | 121 |
+
+### C4 (231 puntos)
+
+Clases: 137 KALINA (total), 28 CORREGIBLE, 9 INVIABLE y 57 NO_CONVERGIO.
+
+Ventanas p10-p90 de las 9 variables entre los KALINA (total); el redondeo (0.5 K, 10 kPa, 0.01 y 0.05) marca la resolucion de estas cifras:
+
+| variable | p10 | mediana | p90 | n |
+|---|---|---|---|---|
+| T_fuente | 367.8 | 396 | 417.7 | 137 |
+| T_sumidero | 279 | 284 | 289 | 137 |
+| P_alta | 2036 | 3240 | 4564 | 137 |
+| P_baja | 862 | 1280 | 1654 | 137 |
+| x_b | 0.606 | 0.75 | 0.88 | 137 |
+| eta_t | 0.55 | 0.75 | 0.9 | 137 |
+| eps_hrvg | 0.55 | 0.75 | 0.9 | 137 |
+| eps_reg | 0.55 | 0.75 | 0.9 | 137 |
+| eps_cond | 0.85 | 0.9 | 0.95 | 137 |
+
+KS de cada variable: KALINA (total) frente al resto de puntos genuinos (CORREGIBLE + INVIABLE). D va de 0 (mismo muestreo) a 1; p-valor bajo (< 0.05) se lee como distribucion distinta (con valores redondeados, indicativo):
+
+| variable | D | p-valor | n KALINA | n resto |
+|---|---|---|---|---|
+| T_fuente | 0.142 | 0.541 | 137 | 37 |
+| T_sumidero | 0.271 | 0.0218 | 137 | 37 |
+| P_alta | 0.0953 | 0.926 | 137 | 37 |
+| P_baja | 0.411 | 6.12e-05 | 137 | 37 |
+| x_b | 0.291 | 0.0111 | 137 | 37 |
+| eta_t | 0.109 | 0.835 | 137 | 37 |
+| eps_hrvg | 0.14 | 0.558 | 137 | 37 |
+| eps_reg | 0.0525 | 1 | 137 | 37 |
+| eps_cond | 0.238 | 0.0605 | 137 | 37 |
+
+PRCC con eta entre los KALINA (total): rangos con promedio en empates y residuos de minimos cuadrados con intercepta (solo numpy). +1 sube eta, -1 la baja, ~0 no aporta linealmente:
+
+| variable | PRCC |
+|---|---|
+| T_fuente | 0.524 |
+| T_sumidero | 0.0497 |
+| P_alta | 0.602 |
+| P_baja | -0.681 |
+| x_b | 0.607 |
+| eta_t | 0.579 |
+| eps_hrvg | 0.286 |
+| eps_reg | 0.329 |
+| eps_cond | -0.0912 |
+
+Lectura: la mayor influencia positiva lineal es **x_b** (PRCC 0.607) y la mayor negativa **P_baja** (PRCC -0.681).
+
+Top 10 de eta entre los KALINA (total):
+
+| puesto | id | eta [%] | Wnet [kW] | T_fuente [K] | P_alta [kPa] | P_baja [kPa] | x_b | eta_t |
+|---|---|---|---|---|---|---|---|---|
+| 1 | N8-C4-0090 | 11.18 | 108.37 | 410.5 | 4710 | 1160 | 0.79 | 0.9 |
+| 2 | N8-C4-0192 | 10.29 | 122.65 | 408.5 | 4280 | 1550 | 0.91 | 0.95 |
+| 3 | N8-C4-0087 | 10.02 | 93.747 | 419.5 | 4810 | 1120 | 0.82 | 0.7 |
+| 4 | N8-C4-0013 | 9.51 | 100.29 | 421.5 | 4020 | 1050 | 0.75 | 0.8 |
+| 5 | N8-C4-0033 | 9.22 | 65.913 | 372.5 | 3490 | 1270 | 0.88 | 0.95 |
+| 6 | N8-C4-0082 | 9.20 | 69.717 | 396.5 | 3510 | 1070 | 0.76 | 0.85 |
+| 7 | N8-C4-0215 | 9.04 | 86.03 | 394 | 3970 | 1580 | 0.9 | 0.95 |
+| 8 | N8-C4-0045 | 8.62 | 40.688 | 422 | 3470 | 810 | 0.56 | 0.85 |
+| 9 | N8-C4-0092 | 8.49 | 68.259 | 407 | 4910 | 1600 | 0.93 | 0.85 |
+| 10 | N8-C4-0176 | 8.37 | 89.538 | 412.5 | 3430 | 930 | 0.8 | 0.7 |
+
+Rangos de equipos entre los KALINA (total): dh_turb en kJ/kg, Wnet en kW con m_b = 1.0 kg/s (kW por kg/s), Qreg/Qi y r_P = P_alta/P_baja sin unidades:
+
+| variable | unidad | min | p10 | mediana | p90 | max | n |
+|---|---|---|---|---|---|---|---|
+| dh_turb | kJ/kg | 27.7638 | 47.6316 | 94.2665 | 142.5 | 195.753 | 137 |
+| Wnet | kW por kg/s | 0.236263 | 7.88016 | 27.1829 | 67.081 | 122.653 | 137 |
+| Qreg_Qi | (adim) | 0.0047194 | 0.0838083 | 0.240975 | 0.931287 | 2.74943 | 137 |
+| r_P | (adim) | 1.36257 | 1.55436 | 2.55828 | 4.13435 | 5.50602 | 137 |
 
 ### Puntos con tiempo agotado: tope duro de 600 s y presupuesto de 300 s
 
 - N10 / C1 (300s): 10 punto(s)
 - N10 / C4 (300s): 4 punto(s)
+- N8 / C3 (300s): 2 punto(s)
+- N8 / C3 (600s): 1 punto(s)
+- N8 / C4 (300s): 5 punto(s)
 - N9 / C4 (300s): 3 punto(s)
 

@@ -1,10 +1,10 @@
-"""Sensibilidad 1, Ronda 3 - reporte del paso 3 (N9 y N10 con filas).
+"""Sensibilidad 1, Ronda 3 - reporte del paso 3 (N9, N10 y N8 con filas).
 
 Escribe en `resultados/2026-10-16_sens1_ronda3/`: `ronda3_resumen_barridos.csv`
 (por barrido y centro), `ronda3_N9_matrices.md` y `ronda3_resumen.md` (todo en
-lenguaje llano, con las mallas 5x7 de N10 y su tendencia en P_alta). N8 no se
-reporta hasta que se defina y se corra. Todos los numeros salen de
-`ronda3_filas.csv` o de `ronda3_diseno.csv`.
+lenguaje llano, con las mallas 5x7 de N10, su tendencia en P_alta y la seccion
+N8 de `ronda3_reporte3.py`). Todos los numeros salen de `ronda3_filas.csv` o
+de `ronda3_diseno.csv`.
 """
 from __future__ import annotations
 
@@ -16,6 +16,7 @@ from ronda3_puntos import P_ALTA_N10, P_BAJA_N10, PARES
 from ronda3_reporte2 import (BARRIDOS, _k, agotados_por, centros_de, es_kalina,
                              fmt, leer_filas, n9_par_resumen, n9_tabla,
                              n10_idx, n10_tabla, num, planificados, resumen_por)
+from ronda3_reporte3 import n8_bloque
 
 _DIR = Path(__file__).resolve().parent
 OUT = _DIR.parents[1] / "resultados" / "2026-10-16_sens1_ronda3"
@@ -182,9 +183,7 @@ def main():
         "- En el veredicto, `eta max en X kPa` dice en que P_alta esta el "
         "maximo de ese centro; `sigue subiendo` significa que el maximo cae en "
         "el borde superior de la caja (8000 kPa).", "",
-        "## 4. N8", "",
-        "- N8: todavia no se definio ni se corro; el corredor ya acepta el "
-        "argumento N8 y el reporte se limita a los barridos con filas.", "",
+        *n8_bloque(filas),
         "### Puntos con tiempo agotado: tope duro de 600 s y presupuesto de 300 s", "",
         *(to or ["- Ninguno."]), "",
     ]
