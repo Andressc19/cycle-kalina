@@ -1,15 +1,16 @@
 """Sensibilidad 1, Ronda 3 - corredor reanudable (un proceso por punto).
 
-Corre los puntos de `ronda3_puntos.py` (barrido N9; N10 y N8 se anaden mas
+Corre los puntos de `ronda3_puntos.py` (barridos N9 y N10; N8 se anade mas
 adelante) con el mismo patron de `ronda2_corrida.py`: un
 `multiprocessing.Process` (contexto spawn) por punto, 5 simultaneos y tope
 DURO de 600 s (si vence: `terminate()` + fila `NO_CONVERGIO` con
 `mensaje="tiempo_agotado_600s"`). Escritura incremental en modo `a` con
 `flush` por fila y encabezado fijo (se crea si falta). Acepta `N9`, `N10`,
 `N8` o `all` como argumento; SALTA los `id_punto` ya escritos en
-`ronda3_filas.csv`, asi que relanzar el mismo comando reanuda la corrida.
-Usa `comun.evaluar_punto(..., extra=True)` con `t_amb_diseno` = T_sumidero del
-punto. Se ejecuta como script, no como modulo.
+`ronda3_filas.csv`, asi que relanzar el mismo comando reanuda la corrida (el
+barrido entero, no solo el punto). Usa `comun.evaluar_punto(..., extra=True)`
+con `t_amb_diseno` = T_sumidero del punto. Se ejecuta como script, no como
+modulo.
 """
 from __future__ import annotations
 

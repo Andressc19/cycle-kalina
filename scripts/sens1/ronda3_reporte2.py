@@ -1,10 +1,9 @@
 """Sensibilidad 1, Ronda 3 - capa de DATOS del reporte (`ronda3_filas.csv`).
 
-**KALINA (total)**: fila con clasificacion KALINA. **Dentro del rango
-experimental**: KALINA sin la marca `fuera_rango` y con eta_*/eps_* en
-[0.40, 0.95]. **Fuera del rango experimental (liquido > 420 K)**: KALINA con
-la marca `fuera_rango`. N9: mallas 7x7 por centro y par; la celda central de
-cada malla es el punto base (`par="base"`), que dedup dejo una sola vez.
+KALINA (total) = clasificacion KALINA; dentro = KALINA sin `fuera_rango` y con
+eta/eps en [0.40, 0.95]; fuera = KALINA con `fuera_rango` (liquido > 420 K).
+N9: mallas 7x7 por centro y par (la celda central es el punto base). N10:
+malla 5x7 por centro (P_alta x P_baja), sin punto base.
 """
 from __future__ import annotations
 
@@ -13,7 +12,7 @@ from collections import Counter
 
 import numpy as np
 
-from ronda3_puntos import CENTROS, PARES, valores
+from ronda3_puntos import CENTROS, P_ALTA_N10, P_BAJA_N10, PARES, valores
 
 BARRIDOS = ("N9", "N10", "N8")
 ETAS_EPS = ("eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond")
@@ -54,20 +53,17 @@ def fuera_rango(f):
 
 def dentro(f):
     """Dentro del rango experimental: KALINA, sin fuera_rango, eta/eps 0.40-0.95."""
-    if not es_kalina(f) or fuera_rango(f):
-        return False
-    return all(num(f.get(k)) is not None and 0.40 - 1e-9 <= num(f.get(k))
-               <= 0.95 + 1e-9 for k in ETAS_EPS)
+    xs = [num(f.get(k)) for k in ETAS_EPS]
+    return es_kalina(f) and not fuera_rango(f) and all(
+        x is not None and 0.40 - 1e-9 <= x <= 0.95 + 1e-9 for x in xs)
 
 
 def percentiles(vals):
     """min, p10, mediana, p90, max (y n); None si no hay datos."""
     if not vals:
-        return dict(n=0, minimo=None, p10=None, mediana=None, p90=None,
-                    maximo=None)
+        return dict(n=0, **{k: None for k in STATS})
     q = np.percentile(np.asarray(vals, float), [0, 10, 50, 90, 100])
-    return dict(n=len(vals), minimo=float(q[0]), p10=float(q[1]),
-                mediana=float(q[2]), p90=float(q[3]), maximo=float(q[4]))
+    return dict(n=len(vals), **dict(zip(STATS, map(float, q))))
 
 
 def centros_de(filas, barrido):
@@ -91,8 +87,7 @@ def resumen_por(filas, barrido, centro):
                n_dentro=len(den),
                n_fuera=sum(1 for f in rs if es_kalina(f) and fuera_rango(f)))
     for pre, g in (("kal", kal), ("dentro", den)):
-        q = percentiles([v for v in (num(f.get("eta")) for f in g)
-                         if v is not None])
+        q = percentiles([v for v in (num(f.get("eta")) for f in g) if v is not None])
         for k, s in (("min", "minimo"), ("med", "mediana"), ("max", "maximo")):
             row[f"eta_{k}_{pre}_pct"] = None if q[s] is None else 100 * q[s]
     return row
@@ -101,17 +96,12 @@ def resumen_por(filas, barrido, centro):
 def celda(f):
     if f is None:
         return "?"
-    c = clase(f)
-    letra = LETRA.get(c, "?")
-    if c != "NO_CONVERGIO" and fuera_rango(f):
-        return letra.lower()
-    return letra
+    letra = LETRA.get(clase(f), "?")
+    return letra.lower() if clase(f) != "NO_CONVERGIO" and fuera_rango(f) else letra
 
 
 def _eta(f):
-    if f is None:
-        return "?"
-    e = num(f.get("eta"))
+    e = None if f is None else num(f.get("eta"))
     return "?" if e is None else f"{100 * e:.2f}"
 
 
@@ -161,12 +151,11 @@ def n9_par_resumen(filas):
                 for vb in valores(b, centro):
                     f = idx.get((centro, par, _k(va), _k(vb)))
                     n_cel += 1
-                    if f is None or not es_kalina(f):
-                        continue
-                    n_kal += 1
-                    e = num(f.get("eta")) or -1
-                    if mejor is None or e > (num(mejor[0].get("eta")) or -1):
-                        mejor = (f, va, vb)
+                    if f is not None and es_kalina(f):
+                        n_kal += 1
+                        e = num(f.get("eta")) or -1
+                        if mejor is None or e > (num(mejor[0].get("eta")) or -1):
+                            mejor = (f, va, vb)
             e = None if mejor is None else num(mejor[0].get("eta"))
             out.append(dict(centro=centro, par=par, var1=a, var2=b,
                             n_celdas=n_cel, n_kalina=n_kal,
@@ -177,20 +166,34 @@ def n9_par_resumen(filas):
     return out
 
 
+def n10_idx(filas):
+    """(centro, P_alta, P_baja) -> fila de N10 (columnas del combo)."""
+    return {(f.get("centro"), _k(num(f.get("P_alta"))),
+             _k(num(f.get("P_baja")))): f for f in filas
+            if f.get("barrido") == "N10"}
+
+
+def n10_tabla(filas, centro, modo):
+    """(cabecera, filas) de la malla 5x7 de N10; modo='clase' | 'eta'."""
+    idx, pb = n10_idx(filas), P_BAJA_N10[centro]
+    cab = ["P_alta \\ P_baja"] + [fmt(x) for x in pb]
+    lineas = [[fmt(a)] + [
+        (celda(idx.get((centro, _k(a), _k(b)))) if modo == "clase"
+         else _eta(idx.get((centro, _k(a), _k(b))))) for b in pb]
+        for a in P_ALTA_N10]
+    return cab, lineas
+
+
 def agotados_por(filas):
-    """Lineas `- {barrido} / {centro}: n punto(s)` con tiempo agotado."""
-    por = {}
-    for f in filas:
-        if str(f.get("mensaje") or "").startswith("tiempo_agotado"):
-            k = (f.get("barrido"), f.get("centro"))
-            por[k] = por.get(k, 0) + 1
-    return [f"- {b} / {c}: {n} punto(s)" for (b, c), n in sorted(por.items())]
+    """Lineas de puntos sin tiempo: tope duro 600 s y presupuesto 300 s."""
+    c = Counter((f.get("barrido"), f.get("centro"),
+                 "600s" if str(f.get("mensaje") or "").startswith("tiempo_agotado")
+                 else "300s") for f in filas if "agotado" in str(f.get("mensaje") or ""))
+    return [f"- {b} / {ce} ({k}): {n} punto(s)" for (b, ce, k), n in sorted(c.items())]
 
 
 def planificados(path):
     """{barrido: n} del `ronda3_diseno.csv` (vacio si no existe)."""
-    try:
-        filas = leer_filas(path)
-    except FileNotFoundError:
+    if not path.exists():
         return {}
-    return dict(Counter(r.get("barrido") for r in filas))
+    return dict(Counter(r.get("barrido") for r in leer_filas(path)))
