@@ -140,7 +140,7 @@ def grafico_sobre_tabla(ws, fila_enc, n_filas, cols_series, *, titulo, x, y, cat
                "cat": (cat_col, fila_enc + 1, cat_col, ultima), "series": series,
                "apiladas": apiladas, "horizontal": False,
                "x_vals": [ws.cell(r, cat_col).value for r in range(fila_enc + 1, ultima + 1)]})
-    fila_nota = max(ultima + 1, fila_enc + FILAS_GRAF)
+    fila_nota = max(ultima + 2, fila_enc + FILAS_GRAF)
     if nota_txt:
         from x2_formato import nota
         nota(ws, fila_nota, nota_txt)
@@ -178,7 +178,7 @@ def bloque(ws, fila, *, titulo, encabezados, filas, x, y, nota_txt,
                "cat": (1, fila + 1, 1, fila + len(filas)), "series": series,
                "apiladas": apiladas, "horizontal": horizontal,
                "x_vals": x_vals if x_vals is not None else [f[0] for f in filas]})
-    fila_nota = max(ultima + 1, fila + FILAS_GRAF)
+    fila_nota = max(ultima + 2, fila + FILAS_GRAF)
     nota(ws, fila_nota, nota_txt)
     return fila_nota + 2
 

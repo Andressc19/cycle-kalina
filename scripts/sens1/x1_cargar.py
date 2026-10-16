@@ -17,6 +17,20 @@ SALIDA = os.path.join(RAIZ, "datos", "Kalina_anal_sensible_1.xlsx")
 CENTRO_TXT = {"C1": "C1 Husavik", "C2": "C2 ancla A*", "C3": "C3 caliente 150 C",
               "C4": "C4 frio 110 C", "NA": "sin centro (muestreo)"}
 
+# Etiqueta de la fila de un estudio cuyos puntos no declaran centro (muestreo o malla).
+SIN_CENTRO = "Sin centro (muestreo o malla)"
+
+
+def etiqueta_centro(c):
+    """Texto del centro; la cadena vacia pasa a la etiqueta de muestreo/malla."""
+    return c if c else SIN_CENTRO
+
+
+def bases_por_centro(df):
+    """Diccionario {centro: fila base}; el base de un centro es punto de todos sus barridos."""
+    base = df[(df["variable"] == "base") | (df["par"] == "base")]
+    return {c: r for c, r in base.groupby("centro").first().iterrows()}
+
 # Valores de los 4 centros (los mismos que fijaron las tareas de barrido; eta_t/eta_p y las
 # efectividades son iguales en C1/C3/C4, y C2 cambia eta_p). Se usan solo para rellenar el
 # `valor` de la fila "base" de un barrido univariado (el CSV la deja vacia).
@@ -53,7 +67,8 @@ EFIC = ["eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond"]
 # Variables comunes a todos los conjuntos (se copian tal cual del CSV).
 COMUNES = ["T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b", "eta_t", "eta_p",
            "eps_hrvg", "eps_reg", "eps_cond", "m_b", "T_amb_diseno", "eta", "Wnet", "Qi",
-           "Qout", "Wt", "Wp", "Qreg", "dh_turb", "m_O1", "m_O2", "m_O3", "m_O5", "t_s"]
+           "Qout", "Wt", "Wp", "Qreg", "dh_turb", "m_v", "m_l", "m_O1", "m_O2", "m_O3",
+           "m_O5", "t_s"]
 
 
 def _ruta(*partes):
@@ -97,6 +112,15 @@ ESTUDIOS = [
     {"n": 11, "nombre": "Centros nuevos, pares", "hoja": "E11 Centros nuevos pares",
      "datos": "E11 Datos Centros pares", "grupo": "C3 y C4", "barrido": "N7B", "centro": "",
      "archivo": _ruta("2026-10-15_sens1_N7", "n7_filas.csv")},
+    {"n": 14, "nombre": "LHS de 9 variables en centros caliente y frio", "hoja": "E14 LHS C3 y C4",
+     "datos": "E14 Datos LHS C3 C4", "grupo": "C3 y C4", "barrido": "N8", "centro": "",
+     "archivo": _ruta("2026-10-16_sens1_ronda3", "ronda3_filas.csv")},
+    {"n": 15, "nombre": "Pares del regenerador y la turbina (C3, C4)", "hoja": "E15 Pares regenerador",
+     "datos": "E15 Datos Pares", "grupo": "C3 y C4", "barrido": "N9", "centro": "",
+     "archivo": _ruta("2026-10-16_sens1_ronda3", "ronda3_filas.csv")},
+    {"n": 16, "nombre": "P_alta de 4000 a 8000 kPa (C1, C3, C4)", "hoja": "E16 P_alta alta",
+     "datos": "E16 Datos P_alta", "grupo": "C1, C3 y C4", "barrido": "N10", "centro": "",
+     "archivo": _ruta("2026-10-16_sens1_ronda3", "ronda3_filas.csv")},
 ]
 
 # Columnas de estado del motor que van a la hoja de datos completa, en su orden final.
@@ -166,7 +190,7 @@ def valor_de(fila, variable):
 
 
 def cargar_todo():
-    """Los 12 estudios en un solo DataFrame derivado (3157 filas)."""
+    """Todos los estudios (0 a 11, 14 a 16) en un solo DataFrame derivado."""
     partes = [cargar_estudio(e) for e in ESTUDIOS]
     d = derivar(pd.concat(partes, ignore_index=True))
     return d

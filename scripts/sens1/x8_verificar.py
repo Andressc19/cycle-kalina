@@ -9,6 +9,13 @@ from openpyxl import load_workbook
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from x1_cargar import cargar_todo, ESTUDIOS, SALIDA
 from x8b_graficos import control4, control5, x8b_textos
+from x8c_controles import control8, control9, control10
+from x8d_controles import control11, control12, control13
+from x8e_controles import control14, control15, control16
+from x8f_controles import control17, control18, control19
+from x8g_controles import control20, control21
+from x8h_controles import control22, control23, control24, control25
+from x8i_controles import control26, control27
 
 ERRORES = []
 
@@ -84,13 +91,13 @@ control4(wb, ok, fail, [e["hoja"] for e in ESTUDIOS])
 control5(wb, ok, fail)
 
 
-# 6 - tabla por banda de T_fuente (estudios 1 a 11, sin el estudio 0)
+# 6 - tabla por banda de T_fuente (estudios 1 a 16, sin el estudio 0)
 BANDAS = [(60, 120), (120, 130), (130, 140), (140, 150), (150, 160), (160, 170),
           (170, 180), (180, 200), (200, 250), (250, 300)]
 k = df[(df["estudio"] >= 1) & df["kalina"]]
 tfc = k["T_fuente"] - 273.15
 n_tot = f_tot = 0
-print("Tabla por banda de T_fuente (estudios 1-11):")
+print("Tabla por banda de T_fuente (estudios 1-16):")
 for a, b in BANDAS:
     s = k[(tfc > a) & (tfc <= b)]
     n = int(s.shape[0])
@@ -99,10 +106,10 @@ for a, b in BANDAS:
     f_tot += f
     pct = round(100.0 * f / n, 1) if n else 0.0
     print("   %3d-%3d  KALINA %4d  fuera %4d  %5.1f %%" % (a, b, n, f, pct))
-if n_tot == 1753 and f_tot == 275:
+if n_tot == 2242 and f_tot == 314:
     ok(f"6. bandas T_fuente: {f_tot} de {n_tot} KALINA fuera del rango experimental")
 else:
-    fail(f"6. bandas T_fuente: total {n_tot} (esperado 1753), fuera {f_tot} (esperado 275)")
+    fail(f"6. bandas T_fuente: total {n_tot} (esperado 2242), fuera {f_tot} (esperado 314)")
 
 
 # 7 - ninguna celda del libro (ni titulo/etiqueta de grafico) con terminos prohibidos
@@ -128,6 +135,38 @@ if not malas:
     ok("7. ninguna celda ni titulo de grafico con terminos prohibidos (confiable/fuera de rango/sin respaldo/no citable/indicio/extrapol)")
 else:
     fail(f"7. {len(malas)} celdas/titulos con terminos prohibidos: {malas[:10]}")
+
+
+# 8 a 13 - tablas corregidas, sintesis completada y hojas nuevas
+control8(wb, df, ok, fail)
+control9(wb, df, ok, fail)
+control10(wb, df, ok, fail)
+control11(wb, ok, fail)
+control12(wb, ok, fail)
+control13(wb, ok, fail)
+
+
+# 14 a 19 - Ronda 3 (estudios 14 a 16), cierre de D5/D6 y recuento final de graficos
+control14(wb, df, ok, fail)
+control15(wb, ok, fail)
+control16(wb, df, ok, fail)
+control17(wb, ok, fail)
+control18(wb, ok, fail)
+control19(wb, ok, fail)
+
+
+# 20 a 25 - piso del condensador con x_b, rotulos de matrices y puntos atipicos
+control20(wb, df, ok, fail)
+control21(wb, ok, fail)
+control22(wb, ok, fail)
+control23(wb, ok, fail)
+control24(wb, ok, fail)
+control25(wb, ok, fail)
+
+
+# 26 y 27 - KALINA por par de E2/E11 por pertenencia a la malla y sus graficos
+control26(wb, ok, fail)
+control27(wb, ok, fail)
 
 
 if ERRORES:

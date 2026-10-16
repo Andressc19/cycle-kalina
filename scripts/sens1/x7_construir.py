@@ -11,6 +11,9 @@ from x3_hojas_datos import hoja_datos
 from x4_resumenes import hoja_resumen
 from x5_graficos import dibujar_todos
 from x6_sintesis import hoja_sintesis
+from x9_regenerador import hoja_e12
+from x10_preseleccion import hoja_e13
+from x10c_atipicos import seccion_atipicos
 
 # Evitamos escribir hojas por defecto
 wb = Workbook()
@@ -60,8 +63,9 @@ def _seccion_rango(ws, fila, df):
                          filas, anchos=[22, 10, 30, 10])
     ultima += 1
     ws.cell(ultima, 1,
-            f"Global: {f_tot} de {n_tot} KALINA (estudios 1 a 11, sin el estudio 0) "
+            f"Global: {f_tot} de {n_tot} KALINA (estudios 1 a 16, sin el estudio 0) "
             "fuera del rango experimental.")
+    return ultima + 2
 
 
 def construir():
@@ -69,7 +73,10 @@ def construir():
     # 1. LEEME
     ws = wb.create_sheet("LEEME")
     ws.cell(1, 1, "Sensibilidad 1: Kalina_anal_sensible_1.xlsx")
-    ws.cell(2, 1, "Un solo libro con los 12 estudios. Todos los datos salen de los CSV de resultados/.")
+    ws.cell(2, 1, "Un solo libro con los 15 estudios. Todos los datos salen de los CSV de resultados/.")
+    ws.cell(3, 1, "Ronda 3: agrega los estudios 14 (muestreo LHS de 9 variables), 15 (pares del "
+                  "regenerador y la turbina) y 16 (P_alta de 4000 a 8000 kPa) en las hojas E14, "
+                  "E15 y E16, mas el analisis de la Ronda 3 en la sintesis y en la preseleccion.")
     # Guía de hojas
     ws.cell(4, 1, "Guia de hojas")
     fila = 5
@@ -77,14 +84,20 @@ def construir():
     for e in ESTUDIOS:
         ws.cell(fila, 1, e["hoja"]); fila += 1
         ws.cell(fila, 1, e["datos"]); fila += 1
-    # Seccion de terminologia y tabla por banda de T_fuente
-    _seccion_rango(ws, fila + 1, df)
+    ws.cell(fila, 1, "E12 Regenerador y turbina"); fila += 1
+    ws.cell(fila, 1, "E13 Preseleccion de equipos"); fila += 1
+    # Seccion de terminologia, tabla por banda de T_fuente y puntos atipicos
+    fila = _seccion_rango(ws, fila + 1, df)
+    seccion_atipicos(ws, fila + 1, df)
     # 2. Conclusion consolidada (con sintesis)
     hoja_sintesis(wb, df)
     # 3. Por cada estudio: resumen y datos
     for e in ESTUDIOS:
         hoja_resumen(wb, e, df)
         hoja_datos(wb, e, df)
+    # 4. Hojas nuevas de regenerador/turbina y preseleccion
+    hoja_e12(wb, df)
+    hoja_e13(wb, df)
     # Dibujar graficos registrados
     dibujar_todos(wb)
     # Asegurar que LEEME sea la primera

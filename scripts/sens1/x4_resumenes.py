@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
-"""Sensibilidad 1 - x4: tablas para las hojas de resumen por estudio."""
+"""Sensibilidad 1 - x4: tablas para las hojas de resumen por estudio.
+
+Cada hoja de resumen cuenta SOLO los puntos de su estudio (no el total del libro) y el punto
+base de un centro se cuenta dentro del barrido de cada variable (es un punto de todos sus
+barridos), sin mostrarlo como fila aparte.
+"""
 
 import math
 
-import pandas as pd
-
-from x1_cargar import CENTROS, VAR_TXT, VARIABLES_ORDEN
+from x1_cargar import (CENTROS, VAR_TXT, VARIABLES_ORDEN, bases_por_centro,
+                       etiqueta_centro)
 from x2_formato import tabla
 from x5b_graficos_a import dibujar_estudio
 
@@ -34,6 +38,16 @@ def condicion_texto(est, df_e):
         return "Barrido N7A (una variable) en C3 y C4."
     if est["barrido"] == "N7B":
         return "Barrido N7B (pares) en C3 y C4."
+    if est["barrido"] == "N8":
+        return ("Barrido N8 (muestreo LHS de 9 variables, semilla 20261017) en C3 y C4; 250 "
+                "candidatas por centro redondeadas (0.5 K / 10 kPa / 0.01 / 0.05), eta_p 0.80 y "
+                "m_b 1.0 kg/s fijos.")
+    if est["barrido"] == "N9":
+        return ("Barrido N9 (pares B5 eps_reg × eta_t y B6 eps_HRVG × T_fuente) en C3 y C4; "
+                "malla 7 × 7 por par y centro con el punto base.")
+    if est["barrido"] == "N10":
+        return ("Barrido N10 (P_alta de 4000 a 8000 kPa × P_baja) en C1, C3 y C4; malla 5 × 7 "
+                "por centro.")
     if est["n"] == 1:
         return "Barrido univariado (una variable): C1 y C2; se vario una variable a la vez en el rango 0.40–0.95 para eficiencias/efectividades."
     if est["n"] == 2:
@@ -43,75 +57,77 @@ def condicion_texto(est, df_e):
     return "Condiciones segun barrido del estudio."
 
 
-def resumen_e1(ws, est, df_e):
-    f = 1
-    from x2_formato import titulo, condiciones, nota
-    from conclusiones import apendice_a
-    f = titulo(ws, f, est["hoja"])
-    f = condiciones(ws, f, [condicion_texto(est, df_e), "Todos los valores salen de los CSV; no hay cifras copiadas de resumenes .md."])
-    # Tabla de conteos por centro y clase
-    g = df_e.groupby(["centro", "clasificacion"]).size().unstack(fill_value=0)
-    g = g.reindex(columns=["KALINA", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE"], fill_value=0)
-    g["KALINA_conf"] = df_e[df_e["confiable"]].groupby("centro").size()
-    g["KALINA_fuera"] = df_e[df_e["fuera_motor"]].groupby("centro").size()
-    g = g.fillna(0).astype(int)
-    g["Total"] = g.sum(axis=1)
+def filas_ventanas(df):
+    """[Variable, Unidad, Centro, min, medio, max, n KALINA] del barrido de cada variable + base.
+
+    Cada variable usa solo los puntos de su propio barrido (mas el punto base del centro, que
+    es un punto de todos los barridos). `df` debe contener ya los estudios y centros deseados.
+    """
+    bases = bases_por_centro(df)
     filas = []
-    for c, row in g.iterrows():
-        filas.append([c, row["KALINA"], row["KALINA_conf"], row["KALINA_fuera"], row["CORREGIBLE"], row["NO_CONVERGIO"], row["INVIABLE"], row["Total"]])
-    tabla(ws, f, ["Centro", "KALINA (total)", "de ellos dentro del rango experimental", "de ellos fuera del rango experimental", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE", "Total"], filas, anchos=[20, 12, 22, 22, 14, 14, 12, 10], clases=None, clave_fila=None)
-    f += 2 + len(filas)
-    # Tabla por variable (valores KALINA dentro del rango experimental)
-    encabezados = ["Variable", "Unidad", "Centro", "Valor minimo", "Valor medio", "Valor maximo", "n KALINA dentro del rango experimental"]
-    filas_v = []
     for var in VARIABLES_ORDEN:
-        for cen in sorted(set(df_e["centro"])):
-            sub = df_e[(df_e["confiable"]) & (df_e["centro"] == cen)]
-            if sub.empty:
+        for cen in sorted(set(df["centro"])):
+            s = df[(df["centro"] == cen) & (df["variable"] == var) & df["kalina"]]
+            vv = [float(x) for x in s["valor"] if _es_num(x)]
+            base = bases.get(cen)
+            if base is not None and base["kalina"]:
+                bv = CENTROS.get(cen, {}).get(var)
+                if _es_num(bv):
+                    vv.append(float(bv))
+            if not vv:
                 continue
-            vv = sub.apply(lambda r: r.get("valor") if r.get("variable") == var else (r.get("val1") if r.get("var1") == var else (r.get("val2") if r.get("var2") == var else None)), axis=1)
-            vv = vv[vv.apply(_es_num)]
-            if vv.empty:
-                continue
-            filas_v.append([VAR_TXT.get(var, var), "", cen, round(vv.min(), 4), round(vv.mean(), 4), round(vv.max(), 4), int(len(vv))])
-    if filas_v:
-        tabla(ws, f, encabezados, filas_v, anchos=[16, 8, 20, 12, 12, 12, 20], clases=None, clave_fila=None)
-        f += 2 + len(filas_v)
-    # Graficos del estudio (tabla de datos + grafico nativo junto a ella)
-    f = dibujar_estudio(ws, est["n"], df_e, f)
-    # Conclusion
-    f = nota(ws, f, apendice_a(est["n"], df_e))
-    return f
+            filas.append([VAR_TXT.get(var, var), "", etiqueta_centro(cen), round(min(vv), 4),
+                          round(sum(vv) / len(vv), 4), round(max(vv), 4), len(vv)])
+    return filas
 
 
-def resumen_generico(ws, est, df_e):
-    f = 1
-    from x2_formato import titulo, condiciones, nota
-    from conclusiones import apendice_a
-    f = titulo(ws, f, est["hoja"])
-    f = condiciones(ws, f, [condicion_texto(est, df_e)])
-    # Conteos
+def _tabla_conteos(ws, f, df_e):
+    """Tabla de clases por centro del estudio; el Total es la suma de las 4 clases."""
     g = df_e.groupby(["centro", "clasificacion"]).size().unstack(fill_value=0)
     g = g.reindex(columns=["KALINA", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE"], fill_value=0)
     g["KALINA_conf"] = df_e[df_e["confiable"]].groupby("centro").size()
     g["KALINA_fuera"] = df_e[df_e["fuera_motor"]].groupby("centro").size()
     g = g.fillna(0).astype(int)
-    g["Total"] = g.sum(axis=1)
+    g["Total"] = g[["KALINA", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE"]].sum(axis=1)
     filas = []
     for c, row in g.iterrows():
-        filas.append([c, row["KALINA"], row["KALINA_conf"], row["KALINA_fuera"], row["CORREGIBLE"], row["NO_CONVERGIO"], row["INVIABLE"], row["Total"]])
-    tabla(ws, f, ["Centro", "KALINA (total)", "de ellos dentro del rango experimental", "de ellos fuera del rango experimental", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE", "Total"], filas, anchos=[20, 12, 22, 22, 14, 14, 12, 10], clases=None, clave_fila=None)
-    f += 2 + len(filas)
-    # Graficos del estudio (tabla de datos + grafico nativo junto a ella)
-    f = dibujar_estudio(ws, est["n"], df_e, f)
+        filas.append([etiqueta_centro(c), row["KALINA"], row["KALINA_conf"], row["KALINA_fuera"],
+                      row["CORREGIBLE"], row["NO_CONVERGIO"], row["INVIABLE"], row["Total"]])
+    tabla(ws, f, ["Centro", "KALINA (total)", "de ellos dentro del rango experimental",
+                  "de ellos fuera del rango experimental", "CORREGIBLE", "NO_CONVERGIO",
+                  "INVIABLE", "Total"], filas, anchos=[20, 12, 22, 22, 14, 14, 12, 10],
+          clases=None, clave_fila=None)
+    return f + 2 + len(filas)
+
+
+def resumen(ws, est, df):
+    f = 1
+    from x2_formato import titulo, condiciones, nota
+    from conclusiones import apendice_a
+    df_e = df[df["estudio"] == est["n"]]
+    f = titulo(ws, f, est["hoja"])
+    lineas = [condicion_texto(est, df_e)]
+    if est["n"] == 1:
+        lineas.append("Todos los valores salen de los CSV; no hay cifras copiadas de resumenes .md.")
+    f = condiciones(ws, f, lineas)
+    if est["n"] in (14, 15, 16):
+        from x4b_resumenes_c import secciones_extra
+        f = secciones_extra(ws, est["n"], df, f)
+    else:
+        f = _tabla_conteos(ws, f, df_e)
+        if est["n"] in (1, 10):
+            filas = filas_ventanas(df_e)
+            if filas:
+                tabla(ws, f, ["Variable", "Unidad", "Centro", "Valor minimo", "Valor medio",
+                              "Valor maximo", "n KALINA (total)"], filas,
+                      anchos=[16, 8, 20, 12, 12, 12, 14], clases=None, clave_fila=None)
+                f += 2 + len(filas)
+        f = dibujar_estudio(ws, est["n"], df, f)
     f = nota(ws, f, apendice_a(est["n"], df_e))
     return f
 
 
-def hoja_resumen(wb, est, df_e):
+def hoja_resumen(wb, est, df):
     ws = wb.create_sheet(est["hoja"])
-    if est["n"] == 1:
-        resumen_e1(ws, est, df_e)
-    else:
-        resumen_generico(ws, est, df_e)
+    resumen(ws, est, df)
     return ws.title

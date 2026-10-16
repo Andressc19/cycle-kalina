@@ -20,7 +20,7 @@ def hoja_sintesis(wb, df):
     from x2_formato import titulo, condiciones, nota
     from conclusiones import APENDICE_B
     f = titulo(ws, f, "Conclusion consolidada")
-    f = condiciones(ws, f, ["Sintesis de los 12 estudios (salen de los CSV)."])
+    f = condiciones(ws, f, ["Sintesis de los 15 estudios (salen de los CSV)."])
     # S1: conteo por estudio x clase
     f = titulo(ws, f, "S1. Conteo por estudio y por clase")
     enc1 = f
@@ -29,7 +29,7 @@ def hoja_sintesis(wb, df):
     conteo["KALINA_conf"] = df[df["confiable"]].groupby("estudio").size()
     conteo["KALINA_fuera"] = df[df["fuera_motor"]].groupby("estudio").size()
     conteo = conteo.fillna(0).astype(int)
-    conteo["Total"] = conteo.sum(axis=1)
+    conteo["Total"] = conteo[["KALINA", "CORREGIBLE", "NO_CONVERGIO", "INVIABLE"]].sum(axis=1)
     filas = []
     for n, row in conteo.sort_index().iterrows():
         filas.append([int(n), row["KALINA"], row["KALINA_conf"], row["KALINA_fuera"], row["CORREGIBLE"], row["NO_CONVERGIO"], row["INVIABLE"], row["Total"]])
@@ -38,10 +38,15 @@ def hoja_sintesis(wb, df):
                             titulo="S1. Puntos por estudio y por clase",
                             x="Estudio", y="Numero de puntos", apiladas=True,
                             colores=COLOR_CLASE,
-                            nota_txt=("Incluye: los 12 estudios (0 a 11). Cada barra apila las "
+                            nota_txt=("Incluye: los 15 estudios (0 a 11, 14 a 16). Cada barra apila las "
                                       "clases KALINA (total), CORREGIBLE, NO_CONVERGIO e INVIABLE; "
                                       "la suma es el total de puntos del estudio. Fuente: los CSV "
                                       "de resultados/."))
+    # S2, S3 y S4
+    from x6b_sintesis import seccion_s2, seccion_s3, seccion_s4
+    f = seccion_s2(ws, f, df)
+    f = seccion_s3(ws, f, df)
+    f = seccion_s4(ws, f, df)
     # S5: eta maxima por estudio (dentro del rango experimental y todos los KALINA)
     f = titulo(ws, f, "S5. Eta maxima dentro del rango experimental por estudio y punto que la logra")
     enc5 = f

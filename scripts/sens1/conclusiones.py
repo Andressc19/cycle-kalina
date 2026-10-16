@@ -26,7 +26,8 @@ APENDICE_A_ESTATICO = {
         "de los puntos son KALINA. Separan KALINA del resto: x_b, P_baja y eps_cond en C1; T_fuente, "
         "P_baja y T_sumidero en C2. Mueven eta (PRCC): eta_t (+0.74 y +0.71), P_baja (-0.61 y -0.69) y x_b "
         "(+0.58 y +0.69). eta maxima en el muestreo: 13.7 % (C1) y 12.4 % (C2)."),
-    5: ("Estudio 5, condensador x clima. Con eps_cond < 0.85 no hay KALINA en ningun clima probado. La "
+    5: ("Estudio 5, condensador x clima. En la configuración de Húsavík (x_b 0.82, P_alta 3300 kPa, "
+        "fuente 121 °C) no hay KALINA con eps_cond < 0.85 en ningún clima probado. La "
         "P_baja minima con eps_cond 0.95 es 700 kPa (10 °C), 1000 (20 °C) y 1250 (30 °C); con 0.90 sube a 1000 "
         "y 1250 (10 y 20 °C); con 0.85 solo hay KALINA a 10 °C con 1250 kPa. Cada -0.05 de eps_cond cuesta "
         "+250 a +300 kPa de P_baja."),
@@ -40,6 +41,23 @@ APENDICE_A_ESTATICO = {
          "hasta 22.5 °C y eps_cond 0.90–0.95. C4 (110 °C): P_baja >= 800 kPa, T_sumidero hasta 17.5 °C y solo "
          "eps_cond 0.95. Las eficiencias 0.40–0.95 no sacan a ninguno de KALINA (salvo eps_HRVG baja en C4, "
          "con eta de hasta 1.6 %)."),
+    14: ("Estudio 14. Muestreo LHS de 9 variables (semilla 20261017, redondeo 0.5 K / 10 kPa / 0.01 / 0.05) "
+         "en C3 y C4: 465 puntos (234 y 231) tras descartar 35 con P_alta < 1.3 × P_baja. KALINA (total): C3 "
+         "121 (93 dentro del rango experimental, 28 fuera) y C4 137 (todos dentro). η máxima entre los KALINA: "
+         "C3 12.1 % y C4 11.2 %. La η crece con x_b (PRCC +0.70 y +0.61) y decrece con P_baja (PRCC −0.72 y "
+         "−0.68); en C3 también con η_t (+0.63) y en C4 con P_alta (+0.60). La variable que más separa KALINA "
+         "del resto es P_baja (KS 0.48 y 0.41), seguida de x_b (0.38 y 0.29). Los NO_CONVERGIO (54 y 57) se "
+         "concentran en fuente de 60 a 115 °C con P_alta mayor de 2500 kPa: la fuente no alcanza para llevar "
+         "el fluido a esa presión."),
+    15: ("Estudio 15. Pares del regenerador y la turbina en C3 y C4 (mallas 7 × 7 con el base): ε_reg × η_t "
+         "mantiene KALINA en las 49 combinaciones de ambos centros (η máxima 10.9 % en C3 y 13.0 % en C4); "
+         "ε_HRVG × T_fuente da 49 de 49 en C3 (η máxima 9.5 %; 11 puntos fuera del rango experimental) y 39 "
+         "de 49 en C4 (η máxima 12.3 %). Con los estudios 2 y 11, el regenerador y la turbina no sacan al "
+         "ciclo de KALINA en 0.50–0.95 en ninguno de los cuatro centros."),
+    16: ("Estudio 16. P_alta de 4000 a 8000 kPa: la η máxima tiene un máximo interior. C1: 14.0 % a 5000 kPa "
+         "(converge hasta 6000; con 7000 y 8000 todos NO_CONVERGIO). C3: 14.5 % a 6000 kPa con P_baja 650 kPa "
+         "(converge hasta 8000, donde la η cae a 7.4 %). C4: 12.2 % a 4000 kPa (sin KALINA a 6000; con 7000 y "
+         "8000 todos NO_CONVERGIO). Los 47 KALINA del estudio están dentro del rango experimental."),
 }
 
 
@@ -109,15 +127,17 @@ def apendice_a(n, df_e=None):
 
 APENDICE_B = """1. Hay KALINA en todo el rango de fuente de 70 a 300 °C. Hasta ~150 °C todos están dentro del rango experimental de la ecuación; entre 150 y 170 °C una parte (≈31–76 %) queda fuera de él, y por encima de 170 °C casi todos (≈93–100 %). Los resultados fuera del rango experimental forman parte de las conclusiones.
 
-2. El condensador manda. Con eps_cond < 0.85 no hay KALINA; cada -0.05 cuesta +250 a +300 kPa de P_baja (y por tanto eficiencia), y un clima calido exige la efectividad maxima.
+2. El condensador manda, y su piso depende de la composición. La ε_cond mínima con KALINA sube con x_b: 0.65–0.70 con x_b 0.30–0.55, 0.75 con 0.55–0.65, 0.80 con 0.65–0.75 y 0.85 con x_b mayor de 0.75 (todos los estudios). En Húsavík (x_b 0.82) cada −0.05 de ε_cond cuesta +250 a +300 kPa de P_baja y un clima cálido exige la efectividad máxima.
 
 3. Las eficiencias de turbina, bomba, HRVG y regenerador no sacan al ciclo de KALINA en 0.40–0.95; solo mueven eta. La palanca principal de eta es eta_t, seguida de P_baja (a menor P_baja, mayor eta) y x_b.
 
-4. Presiones por clima y fuente: la P_baja minima sube ~100 kPa por cada +5 K de clima, y con la T_fuente. P_alta tiene mucho margen (desde 1000 kPa hay KALINA en C1; en C2 casi no influye).
+4. Presiones: la P_baja mínima sube ~100 kPa por cada +5 K de clima y con la T_fuente. P_alta tiene mucho margen (desde 1000 kPa hay KALINA en C1; en C2 casi no influye) y la η tiene un máximo interior: ~5000 kPa en Húsavík, ~6000 kPa con fuente de 150 °C y ~4000 kPa con fuente de 110 °C; por encima, el ciclo deja de converger.
 
-5. Eficiencia alcanzable: 13–14.4 % entre los KALINA dentro del rango experimental con fuente de ~150 °C, clima de 5–10 °C, P_baja 410–800 kPa y equipos de 0.85–0.95; con equipos de 0.70, ~9 %.
+5. Eficiencia alcanzable: la η máxima del conjunto es 14.5 % (C3 caliente 150 C, P_alta 6000 kPa, P_baja 650 kPa; estudio 16); con fuente de ~150 °C, clima de 5–10 °C y equipos de 0.85–0.95 se logran 13–14.5 %; con equipos de 0.70, ~9 %.
 
 6. Para preseleccion de equipos, los rangos por kg/s de caudal (Delta h de turbina, Wnet, Qreg/Qi, r_P, Qout) estan en la sintesis S4; el caudal solo escala las potencias.
 
 7. Limites: modelo teqp sin validacion experimental; los KALINA a fuente > 170 °C quedan fuera del rango experimental; los muestreos (estudios 3, 4 y 7) dan ventanas aproximadas, no fronteras exactas; m_b no se barrió porque solo escala las potencias.
+
+8. Lo que más mueve la η al variar todo a la vez son P_baja (decreciente) y x_b (creciente) (estudios 3 y 14).
 """

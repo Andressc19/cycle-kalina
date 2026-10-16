@@ -6,7 +6,7 @@ la tabla que se escribe a su izquierda; todos los numeros se calculan desde el D
 """
 from x1_cargar import CENTRO_TXT, PARS
 from x5_graficos import bloque
-from x5b_graficos_a import bloque_kv, contar, fuente
+from x5b_graficos_a import PARS_VARS, bloque_kv, contar, fuente, kalina_malla
 
 C3 = CENTRO_TXT["C3"]
 C4 = CENTRO_TXT["C4"]
@@ -151,26 +151,25 @@ def _e9(ws, d, f):
                             f"0.95; vacio donde no hay KALINA). Fuente: {fuente(9)}. n = {n_total}.")
 
 
-def _e10(ws, d, f):
+def _e10(ws, d, f, bases):
     n_total = len(d)
-    f = bloque_kv(ws, f, d[d["centro"] == C3], C3, 10, n_total)
-    return bloque_kv(ws, f, d[d["centro"] == C4], C4, 10, n_total)
+    f = bloque_kv(ws, f, d[d["centro"] == C3], C3, 10, n_total, bases)
+    return bloque_kv(ws, f, d[d["centro"] == C4], C4, 10, n_total, bases)
 
 
-def _e11(ws, d, f):
+def _e11(ws, d, f, bases):
     filas = []
     for p in ["B1", "B2", "B3", "B4"]:
-        s = d[d["par"] == p]
-        filas.append([PARS[p], contar(s[s["centro"] == C3], "kalina"),
-                      contar(s[s["centro"] == C4], "kalina")])
-    nota = (f"Incluye: los KALINA de los 4 pares de variables (malla por par y centro). "
-            f"Fuente: {fuente(11)}. n = {len(d)}.")
+        a, b = PARS_VARS[p]
+        filas.append([PARS[p], kalina_malla(d, C3, a, b), kalina_malla(d, C4, a, b)])
+    nota = (f"Incluye: los KALINA de los 4 pares de variables (malla por par y centro) y el "
+            f"punto base de cada centro. Fuente: {fuente(11)}. n = {len(d)}.")
     return bloque(ws, f, titulo="E11. KALINA por par de variables (C3 caliente 150 C y C4 frio 110 C)",
                   encabezados=["Par de variables", C3, C4], filas=filas,
                   x="Par de variables", y="Numero de puntos", nota_txt=nota)
 
 
-def dibujar_estudio_b(ws, n, df, f):
+def dibujar_estudio_b(ws, n, df, f, bases):
     """Escribe los bloques de grafico del estudio n (4 a 11)."""
     d = df[df["estudio"] == n]
     if n == 4:
@@ -186,7 +185,7 @@ def dibujar_estudio_b(ws, n, df, f):
     if n == 9:
         return _e9(ws, d, f)
     if n == 10:
-        return _e10(ws, d, f)
+        return _e10(ws, d, f, bases)
     if n == 11:
-        return _e11(ws, d, f)
+        return _e11(ws, d, f, bases)
     return f
