@@ -1,0 +1,84 @@
+seccion,centro,clave,subclave,n,mediana,p90,fraccion
+dominante,C1 Husavik,viol_O2,,323,,,0.9817629179331308
+dominante,C1 Husavik,viol_O1,,6,,,0.0182370820668693
+estadistico,C1 Husavik,D,,329,0.8452453756729597,5.791918705590556,
+estadistico,C1 Husavik,viol_O1,,329,0.0,0.0,
+estadistico,C1 Husavik,viol_O2,,329,0.7517605656789783,5.791918705590556,
+estadistico,C1 Husavik,viol_O3,,329,0.0,0.0,
+estadistico,C1 Husavik,viol_O5,,329,0.0,0.0,
+cruce,C1 Husavik,viol_O1,Q2,2,,,0.3333333333333333
+cruce,C1 Husavik,viol_O1,Q3,3,,,0.5
+cruce,C1 Husavik,viol_O1,Q4,1,,,0.16666666666666666
+cruce,C1 Husavik,viol_O2,Q1,83,,,0.25696594427244585
+cruce,C1 Husavik,viol_O2,Q2,80,,,0.2476780185758514
+cruce,C1 Husavik,viol_O2,Q3,79,,,0.24458204334365324
+cruce,C1 Husavik,viol_O2,Q4,81,,,0.25077399380804954
+dominante,C2 ancla A*,viol_O2,,169,,,0.9883040935672515
+dominante,C2 ancla A*,viol_O1,,2,,,0.011695906432748537
+estadistico,C2 ancla A*,D,,171,2.788699739185404,11.432956158797197,
+estadistico,C2 ancla A*,viol_O1,,171,0.0,0.0,
+estadistico,C2 ancla A*,viol_O2,,171,2.788699739185404,11.432956158797197,
+estadistico,C2 ancla A*,viol_O3,,171,0.0,0.0,
+estadistico,C2 ancla A*,viol_O5,,171,0.0,0.0,
+cruce,C2 ancla A*,viol_O1,Q1,2,,,1.0
+cruce,C2 ancla A*,viol_O2,Q1,41,,,0.24260355029585798
+cruce,C2 ancla A*,viol_O2,Q2,43,,,0.25443786982248523
+cruce,C2 ancla A*,viol_O2,Q3,42,,,0.2485207100591716
+cruce,C2 ancla A*,viol_O2,Q4,43,,,0.25443786982248523
+dominante,C3 caliente 150 C,viol_O2,,120,,,0.9375
+dominante,C3 caliente 150 C,viol_O1,,8,,,0.0625
+estadistico,C3 caliente 150 C,D,,128,0.8216481342242616,5.836421986100628,
+estadistico,C3 caliente 150 C,viol_O1,,128,0.0,0.0,
+estadistico,C3 caliente 150 C,viol_O2,,128,0.6540813151595728,5.836421986100628,
+estadistico,C3 caliente 150 C,viol_O3,,128,0.0,0.0,
+estadistico,C3 caliente 150 C,viol_O5,,128,0.0,0.0,
+cruce,C3 caliente 150 C,viol_O1,Q1,1,,,0.125
+cruce,C3 caliente 150 C,viol_O1,Q2,2,,,0.25
+cruce,C3 caliente 150 C,viol_O1,Q3,4,,,0.5
+cruce,C3 caliente 150 C,viol_O1,Q4,1,,,0.125
+cruce,C3 caliente 150 C,viol_O2,Q1,31,,,0.25833333333333336
+cruce,C3 caliente 150 C,viol_O2,Q2,30,,,0.25
+cruce,C3 caliente 150 C,viol_O2,Q3,28,,,0.23333333333333334
+cruce,C3 caliente 150 C,viol_O2,Q4,31,,,0.25833333333333336
+dominante,C4 frio 110 C,viol_O2,,97,,,0.9150943396226415
+dominante,C4 frio 110 C,viol_O1,,9,,,0.08490566037735849
+estadistico,C4 frio 110 C,D,,106,0.41662121310582734,3.044327451722353,
+estadistico,C4 frio 110 C,viol_O1,,106,0.0,0.0041566779815573,
+estadistico,C4 frio 110 C,viol_O2,,106,0.30108264090935677,1.9035702190579968,
+estadistico,C4 frio 110 C,viol_O3,,106,0.0,0.0,
+estadistico,C4 frio 110 C,viol_O5,,106,0.0,0.0,
+cruce,C4 frio 110 C,viol_O1,Q2,1,,,0.1111111111111111
+cruce,C4 frio 110 C,viol_O1,Q3,2,,,0.2222222222222222
+cruce,C4 frio 110 C,viol_O1,Q4,6,,,0.6666666666666666
+cruce,C4 frio 110 C,viol_O2,Q1,27,,,0.27835051546391754
+cruce,C4 frio 110 C,viol_O2,Q2,25,,,0.25773195876288657
+cruce,C4 frio 110 C,viol_O2,Q3,24,,,0.24742268041237114
+cruce,C4 frio 110 C,viol_O2,Q4,21,,,0.21649484536082475
+dominante,Sin centro (muestreo o malla),viol_O2,,225,,,0.9615384615384616
+dominante,Sin centro (muestreo o malla),viol_O1,,9,,,0.038461538461538464
+estadistico,Sin centro (muestreo o malla),D,,234,3.299831435153976,19.84996686449214,
+estadistico,Sin centro (muestreo o malla),viol_O1,,234,0.0,0.0025196860947694047,
+estadistico,Sin centro (muestreo o malla),viol_O2,,234,3.2493802923634973,19.848283859874794,
+estadistico,Sin centro (muestreo o malla),viol_O3,,234,0.0,0.0,
+estadistico,Sin centro (muestreo o malla),viol_O5,,234,0.0,0.0,
+cruce,Sin centro (muestreo o malla),viol_O1,Q1,4,,,0.4444444444444444
+cruce,Sin centro (muestreo o malla),viol_O1,Q2,5,,,0.5555555555555556
+cruce,Sin centro (muestreo o malla),viol_O2,Q1,55,,,0.24444444444444444
+cruce,Sin centro (muestreo o malla),viol_O2,Q2,53,,,0.23555555555555555
+cruce,Sin centro (muestreo o malla),viol_O2,Q3,58,,,0.2577777777777778
+cruce,Sin centro (muestreo o malla),viol_O2,Q4,59,,,0.26222222222222225
+dominante,todos,viol_O2,,934,,,0.9648760330578512
+dominante,todos,viol_O1,,34,,,0.03512396694214876
+estadistico,todos,D,,968,1.1662356302525438,10.144536466413252,
+estadistico,todos,viol_O1,,968,0.0,0.0,
+estadistico,todos,viol_O2,,968,1.0344466040076838,9.85369842595154,
+estadistico,todos,viol_O3,,968,0.0,0.0,
+estadistico,todos,viol_O5,,968,0.0,0.0,
+cruce,todos,viol_O1,Q1,5,,,0.14705882352941177
+cruce,todos,viol_O1,Q2,14,,,0.4117647058823529
+cruce,todos,viol_O1,Q3,13,,,0.38235294117647056
+cruce,todos,viol_O1,Q4,2,,,0.058823529411764705
+cruce,todos,viol_O2,Q1,237,,,0.25374732334047106
+cruce,todos,viol_O2,Q2,228,,,0.24411134903640258
+cruce,todos,viol_O2,Q3,229,,,0.24518201284796573
+cruce,todos,viol_O2,Q4,240,,,0.2569593147751606
