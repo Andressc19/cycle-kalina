@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Sens2 - s2_conclusion: hoja `Conclusion consolidada` (BLUF, 29 conclusiones por categoria,
+"""Sens2 - s2_conclusion: hoja `Conclusion consolidada` (BLUF, conclusiones por categoria,
 respuesta a las 4 preguntas del profesor y grafico de conclusiones por categoria y confianza)."""
 import os
 import sys
@@ -18,8 +18,8 @@ ENC_CONCL = ["id", "fase", "afirmacion", "evidencia", "implicacion", "confianza"
 PREGUNTAS = [
     ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises", "D1 a D6"),
     ("Partiendo de un KALINA, que pasa al mover una o dos variables?",
-     "F2 CORREGIBLE vs KALINA; F2 Distancia y rescate", "L2; F6"),
-    ("Como se comporta el regenerador?", "F4 Regenerador y condensador", "E4"),
+     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate", "D7; L6; L2; F6"),
+    ("Como se comporta el regenerador?", "F4 Regenerador vs T_fuente; F4 Regenerador y condensador", "E8; E4"),
     ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion",
      "E1, E2, E3, E5, E6, E7"),
 ]
@@ -89,7 +89,7 @@ def hoja_conclusion(wb, datos):
                             "Conclusion que la contesta"], PREGUNTAS, anchos=[52, 52, 20])
     f += 1
 
-    f = subtitulo(ws, f, "Las 29 conclusiones, por categoria")
+    f = subtitulo(ws, f, "Las %d conclusiones, por categoria" % len(datos["conclusiones"]))
     f = nota(ws, f, "7 columnas: id, fase, afirmacion, evidencia, implicacion, confianza y fuente, "
                     "tal como estan en p5_conclusiones.csv.")
     f += 1
@@ -113,7 +113,7 @@ def hoja_conclusion(wb, datos):
                         "categoria, repartidas por confianza.", alto=9.0)
     f = descripcion(ws, f, [
         "Cifras de cabecera calculadas de los CSV (no escritas a mano).",
-        "Las 29 conclusiones de p5_conclusiones.csv, en el orden DISENO REAL, EQUIPOS, MAXIMA "
-        "EFICIENCIA, FLUCTUACION y LIMITES KALINA.",
+        ("Las %d conclusiones de p5_conclusiones.csv, en el orden DISENO REAL, EQUIPOS, MAXIMA "
+         "EFICIENCIA, FLUCTUACION y LIMITES KALINA." % len(datos["conclusiones"])),
         "La tabla de preguntas enlaza cada pregunta del profesor con su hoja y su conclusion."])
     return ws

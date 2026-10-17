@@ -27,34 +27,39 @@ TEXTO_RANGO = (
 GUIA = [
     ("LEEME", "Que es el libro, de que campana viene, terminologia, los 4 centros, las preguntas "
               "del profesor y las limitaciones."),
-    ("Conclusion consolidada", "Cifras de cabecera, las 29 conclusiones por categoria, la respuesta "
+    ("Conclusion consolidada", "Cifras de cabecera, las conclusiones por categoria, la respuesta "
                                "a las 4 preguntas y su grafico."),
     ("F1 Existencia", "Rango con KALINA (total) por bloque, fronteras de los barridos y P(KALINA) "
                       "por nivel de las variables con 14 niveles o menos."),
     ("F1 Reglas y zonas grises", "Mejores cortes unicos, regresion logistica, reglas del arbol y "
                                  "conteo de zonas grises."),
+    ("F1 Margenes de operacion", "Cuanto se puede mover cada variable desde el centro KALINA de cada bloque: "
+                                 "una variable, dos (mallas de pares) y varias a la vez."),
     ("F2 CORREGIBLE vs KALINA", "Comparacion de eta, W_net/m_b, r_P, Q_reg/Q_i, dh y q4, violacion "
                                 "dominante por bloque y D por cuartil."),
     ("F2 Distancia y rescate", "Variable que rescata a un CORREGIBLE, distribucion de la distancia, "
                                "cambio de eta al rescatar y robustez del optimo."),
-    ("F3 Indices globales", "(Parte 2) Indices de sensibilidad global."),
-    ("F3 Interacciones", "(Parte 2) Interacciones entre variables."),
-    ("F3 Elasticidades", "(Parte 2) Elasticidades."),
-    ("F4 Turbina", "(Parte 2) Envolventes y dependencias de la turbina."),
-    ("F4 Regenerador y condensador", "(Parte 2) Envolventes y dependencias del regenerador y el "
-                                     "condensador."),
-    ("F4 Preseleccion", "(Parte 2) Datos para preseleccionar los equipos."),
+    ("F3 Indices globales", "Indices de sensibilidad global por bloque (PRCC, KS, PAWN, delta, HSIC) con piso de ruido."),
+    ("F3 Interacciones", "No aditividad de los pares de variables."),
+    ("F3 Elasticidades", "Elasticidades locales de eta en el punto base."),
+    ("F4 Turbina", "Envolventes, bandas de r_P y dependencias de la turbina."),
+    ("F4 Regenerador y condensador", "Envolventes y dependencias del regenerador, el condensador, "
+                                     "el HRVG y la bomba; restricciones activas."),
+    ("F4 Preseleccion", "Datos para preseleccionar los equipos."),
+    ("F4 Regenerador vs T_fuente", "Regenerador y ciclo frente a T_fuente de 70 a 300 C: Q_reg/Q_i, pinch, UA y eta."),
     ("D1 Datos puntos", "Todos los puntos analizados (p2_dataset_dedup.csv)."),
     ("D2 Datos fronteras", "Fronteras de los barridos de una variable (p1_fronteras.csv)."),
     ("D3 Datos zonas grises", "Zonas grises por bloque y violacion dominante (p1_zonas_grises.csv)."),
     ("D4 Datos distancia", "Distancia a la frontera de cada CORREGIBLE (p2_distancia.csv)."),
+    ("D5 Datos indices", "Indices de sensibilidad por bloque, respuesta, variable y metodo (p3_indices.csv)."),
+    ("D6 Datos equipos", "Turbina y regenerador por banda de r_P (p4_bandas.csv)."),
 ]
 
 PREGUNTAS = [
     ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises"),
     ("Partiendo de un KALINA, que pasa si muevo una o dos variables?",
      "F2 CORREGIBLE vs KALINA; F2 Distancia y rescate"),
-    ("Como se comporta el regenerador?", "F4 Regenerador y condensador"),
+    ("Como se comporta el regenerador?", "F4 Regenerador vs T_fuente; F4 Regenerador y condensador"),
     ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion"),
 ]
 

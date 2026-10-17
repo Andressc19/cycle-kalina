@@ -2,7 +2,7 @@
 
 > **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la η máxima es 14.53 % dentro del rango experimental (14.82 % fuera).** Los óptimos están pegados a la frontera de existencia.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (18 hojas, 41 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (20 hojas, 56 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -10,6 +10,8 @@ Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (18 hojas, 41 gráficos). To
 - 96.5 % de los CORREGIBLE falla por cavitación (O2) y sobreestiman η en +2.5 puntos.
 - Casi la mitad de los CORREGIBLE está a una sola variable de un KALINA; P_baja es la que más rescata.
 - Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).
+- Desde el centro KALINA de cada bloque, C1 y C4 no toleran bajar ε_cond (0.95); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) (D7, L6).
+- El regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C) a 0.013 (300 °C) y UA de 9.5 a 0.34 kW/K por kg/s (E8).
 - La condensación y la cavitación (P_baja, ε_cond, x_b) gobiernan la existencia; η_t, P_alta y T_fuente gobiernan η y potencia.
 
 ## 2. Método
@@ -58,6 +60,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: Elegir P_alta por eficiencia (M2) y no por existencia, comprobando el título de salida (E3).
 - Fuente: P1 p1_fronteras.csv
 
+**D7 [DISEÑO REAL, fase A, confianza Alta].** Desde el centro KALINA de cada bloque hay margen amplio en casi todas las variables, pero no en el condensador ni, en C2, en x_b.
+
+- Evidencia: Moviendo una variable cada vez (último nivel KALINA contiguo al centro): C1 baja P_baja hasta 600 kPa (centro 690), ε_cond sin margen (0.95; con 0.90 ya no hay KALINA), T_sumidero sube hasta 283.15 K (centro 278.15), x_b de 0.55 a 0.90, T_fuente de 363.15 a 438.15 K. C4: P_baja hasta 800 kPa, ε_cond sin margen, T_sumidero hasta 290.65 K. C3: P_baja hasta 600 kPa, ε_cond hasta 0.90, T_sumidero hasta 295.65 K. C2: P_baja hasta 400 kPa, ε_cond hasta 0.80, x_b solo de 0.45 a 0.55.
+- Implicación: Un diseño en C1 o C4 no tolera perder efectividad del condensador ni subir T_sumidero más de 5 a 8 K; en C2 x_b debe controlarse a ±0.05. La frontera real está entre el último nivel KALINA y el siguiente.
+- Fuente: Hoja F1 Margenes de operacion (barridos de una variable, estudios 1 y 10)
+
 ### 3.2 EQUIPOS (hoja F4 del libro)
 
 **E1 [EQUIPOS, fase B, confianza Alta].** La turbina debe cubrir relaciones de presión de 1.7 a 5.5 (P5–P95) y caídas de entalpía de 65 a 230 kJ/kg.
@@ -101,6 +109,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: W_p/W_t mediana 6.0 %; 10 % de mayor η: 2.7 a 7.8 %. P_alta de 1940 a 4500 kPa (P5–P95).
 - Implicación: Bomba de presión media; la cavitación (O2) manda sobre el consumo (D1).
 - Fuente: P4 p4_envolventes.csv
+
+**E8 [EQUIPOS, fase B, confianza Media].** El regenerador pierde peso al subir T_fuente: su carga y su conductancia caen mientras el pinch sube.
+
+- Evidencia: Estudio 4 (T_fuente de 70 a 300 °C, mediana de los KALINA por nivel): Q_reg/Q_i de 0.587 a 0.013, UA de 9.53 a 0.34 kW/K por kg/s y pinch de 13.6 a 40.0 K. En los barridos de una variable la carga ya es baja a 150 °C (Q_reg/Q_i 0.121 en C3 y 0.048 en C4) y η se aplana desde ≈150 °C (C3 entre 9.28 y 9.47 %, C4 entre 12.23 y 12.32 %). KALINA aparece entre 90 y 165 °C (C1), 120 y 190 °C (C2), 90 y 290 °C (C3) y 90 y 250 °C (C4).
+- Implicación: Con fuente de 150 °C o más el regenerador mueve menos del 12 % del calor de entrada y η ya no mejora: sugiere dimensionarlo pequeño o evaluar suprimirlo (no se simuló un ciclo sin regenerador). Entre 70 y 110 °C su carga es de 0.27 a 0.59 del calor de entrada.
+- Fuente: Hoja F4 Regenerador vs T_fuente (estudios 1, 4 y 10)
 
 ### 3.3 MÁXIMA EFICIENCIA (hoja F2 y F4 del libro)
 
@@ -203,6 +217,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: Solo se usó el motor teqp, sin validación experimental propia del ciclo; el lugar crítico de la mezcla no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalmente bajo) y no se descartan; el diseño mezcla barridos de una variable, mallas y LHS, por lo que las probabilidades por nivel dependen del diseño; los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas no cumplen, y la versión sobre el muestreo LHS (+3.1 puntos de η, IC [+2.46, +3.65]) es la más defendible.
 - Implicación: Validar con el motor real los 7 atípicos y los óptimos de M1 a M4 antes de citarlos como cifras de diseño.
 - Fuente: Excel 1 LEEME; P1 p1_existencia.md
+
+**L6 [LÍMITES KALINA, fase C, confianza Media].** Cuantas más variables se mueven a la vez desde el centro, menor es la fracción de puntos KALINA, y el condensador es el par que más la reduce.
+
+- Evidencia: Fracción de KALINA (C1, C2, C3, C4): moviendo 1 variable 67, 70, 84 y 71 %; 2 variables 66, 63, 71 y 57 %; 7 a 9 variables 47, 52, 51 y 59 %. En las mallas de pares la de ε_cond×T_sumidero deja KALINA solo el 6 % (C1), 67 % (C2), 16 % (C3) y 10 % (C4); la de ε_reg×η_t es 100 % KALINA en C1 y C2.
+- Implicación: Los diseños tienen pasos de tamaño distinto (una variable recorre todo su rango, el LHS recorre las nueve), así que la lectura es exploratoria. Mover el condensador junto con T_sumidero es el cambio de dos variables más peligroso.
+- Fuente: Hoja F1 Margenes de operacion (secciones 2 y 3)
 
 ## 4. CORREGIBLE frente a KALINA
 

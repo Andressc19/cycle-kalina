@@ -45,9 +45,9 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 - Control cruzado de la η máxima del BLUF contra la conclusión M1: incluido en `s2_verificar.py`.
 - No verificado: fuentes web de la Etapa 0 (10 marcadas ⚠) y cifras de otros autores citadas en las conclusiones E1 y E3.
 
-## Revisión de gráficos (41, abiertos y exportados desde Excel real)
+## Revisión de gráficos (56, abiertos y exportados desde Excel real)
 
-Todos tienen series numéricas, ejes rotulados con unidades, sin vacíos, solapes ni celdas tapadas. Las barras
+Los 41 de la primera versión y los 15 de las hojas añadidas después (márgenes de operación y regenerador frente a T_fuente) tienen series numéricas, ejes rotulados con unidades, sin vacíos, solapes ni celdas tapadas. Las barras
 parten de cero salvo las de elasticidad y coeficientes (con signo, con escala propia). Reservas que quedan:
 (1) los gráficos de P(KALINA) por banda usan el número de cuantil en el eje, no el valor de la variable (el valor
 está en la tabla); (2) la paleta verde/rojo no es óptima para daltonismo (se mantiene la del libro 1; las series

@@ -18,9 +18,9 @@ from s2_construir import SALIDA  # noqa: E402
 
 ERRORES = []
 ORDEN = ["LEEME", "Conclusion consolidada", "F1 Existencia", "F1 Reglas y zonas grises",
-         "F2 CORREGIBLE vs KALINA", "F2 Distancia y rescate", "F3 Indices globales",
+         "F1 Margenes de operacion", "F2 CORREGIBLE vs KALINA", "F2 Distancia y rescate", "F3 Indices globales",
          "F3 Interacciones", "F3 Elasticidades", "F4 Turbina", "F4 Regenerador y condensador",
-         "F4 Preseleccion", "D1 Datos puntos", "D2 Datos fronteras", "D3 Datos zonas grises",
+         "F4 Preseleccion", "F4 Regenerador vs T_fuente", "D1 Datos puntos", "D2 Datos fronteras", "D3 Datos zonas grises",
          "D4 Datos distancia", "D5 Datos indices", "D6 Datos equipos"]
 PROHIBIDOS = ["confiable", "no citable", "fuera de rango del motor", "sin respaldo", "indicio",
               "extrapol"]
@@ -76,7 +76,10 @@ for s in wb.sheetnames:
                        for cc in range(cc1, cc2 + 1)]
                 if any(v is None or v == "" for v in cat):
                     fail("3. %s [%s]: categorias de la serie %d con celdas vacias" % (s, tit, k))
-        if len(set(largos)) > 1:
+                if len(cat) != (r2 - r1 + 1) * (c2 - c1 + 1):
+                    fail("2. %s [%s]: serie %d con %d valores y %d valores de x" % (
+                        s, tit, k, (r2 - r1 + 1) * (c2 - c1 + 1), len(cat)))
+        if len(set(largos)) > 1 and type(ch).__name__ != "ScatterChart":
             fail("2. %s [%s]: series con distinto numero de puntos %s" % (s, tit, largos))
 if n_graf == 0:
     fail("2. el libro no tiene ningun grafico")
@@ -150,7 +153,7 @@ for et, val in esperado.items():
 if all(et in hallado and str(hallado[et]) == str(val) for et, val in esperado.items()):
     ok("7. las 5 cifras del BLUF coinciden con los CSV")
 
-# 8. las 29 conclusiones presentes y sin celdas vacias
+# 8. todas las conclusiones presentes y sin celdas vacias
 concl = conclusiones()
 ws = wb["Conclusion consolidada"]
 filas_id = {}
@@ -165,7 +168,7 @@ if faltan or vacias or len(filas_id) != len(concl):
     fail("8. conclusiones: faltan %s; con celdas vacias %s; halladas %d de %d" % (
         faltan, vacias, len(filas_id), len(concl)))
 else:
-    ok("8. las 29 conclusiones estan y sin celdas vacias")
+    ok("8. las %d conclusiones estan y sin celdas vacias" % len(concl))
 
 # 9. filas de D1 Datos puntos = n del CSV
 ws = wb["D1 Datos puntos"]
@@ -252,7 +255,8 @@ else:
 fallas14 = []
 for nom in ("LEEME", "F1 Existencia", "F1 Reglas y zonas grises", "F2 CORREGIBLE vs KALINA",
             "F2 Distancia y rescate", "F3 Indices globales", "F3 Interacciones", "F3 Elasticidades",
-            "F4 Turbina", "F4 Regenerador y condensador"):
+            "F4 Turbina", "F4 Regenerador y condensador", "F1 Margenes de operacion",
+            "F4 Regenerador vs T_fuente"):
     txt = " ".join(str(c.value) for row in wb[nom].iter_rows(max_row=40) for c in row if c.value is not None)
     if "Base" not in txt:
         fallas14.append(nom)

@@ -15,12 +15,13 @@ from s2_cargar import cargar_todo  # noqa: E402
 from s2_leeme import hoja_leeme  # noqa: E402
 from s2_conclusion import hoja_conclusion  # noqa: E402
 from s2_f1 import hoja_f1_existencia, hoja_f1_reglas  # noqa: E402
+from s2_f1c import hoja_f1_margenes  # noqa: E402
 from s2_f2 import hoja_f2_comparacion, hoja_f2_distancia  # noqa: E402
 from s2_datos import HOJAS_DATOS  # noqa: E402
 
 SALIDA = os.path.join(RAIZ, "datos", "Kalina_anal_sensible_2.xlsx")
 
-HOJAS = [hoja_conclusion, hoja_f1_existencia, hoja_f1_reglas, hoja_f2_comparacion,
+HOJAS = [hoja_conclusion, hoja_f1_existencia, hoja_f1_reglas, hoja_f1_margenes, hoja_f2_comparacion,
          hoja_f2_distancia]
 
 

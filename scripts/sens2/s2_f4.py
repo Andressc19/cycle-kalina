@@ -129,3 +129,8 @@ try:
     HOJAS_F4 = HOJAS_F4 + list(HOJAS_F4B)
 except ImportError:
     pass
+try:
+    from s2_f4c import HOJAS_F4C  # noqa: E402
+    HOJAS_F4 = HOJAS_F4 + list(HOJAS_F4C)
+except ImportError:
+    pass

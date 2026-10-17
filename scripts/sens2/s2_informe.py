@@ -54,7 +54,7 @@ def main():
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
          "alta; la η máxima es %.2f %% dentro del rango experimental (%.2f %% fuera).** Los óptimos "
          "están pegados a la frontera de existencia." % (n_in, n_out), "",
-         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (18 hojas, 41 gráficos). Todo número sale de los "
+         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (20 hojas, 56 gráficos). Todo número sale de los "
          "CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.", "",
          "## 1. Resumen ejecutivo", "",
          "- %d puntos sin duplicados (de 3 921); %.1f %% son KALINA (total)." % (
@@ -63,6 +63,10 @@ def main():
              100.0 * float(o2.iloc[0]["fraccion"])),
          "- Casi la mitad de los CORREGIBLE está a una sola variable de un KALINA; P_baja es la que más rescata.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
+         "- Desde el centro KALINA de cada bloque, C1 y C4 no toleran bajar ε_cond (0.95); P_baja puede bajar hasta "
+         "600 kPa (C1) y 800 kPa (C4) (D7, L6).",
+         "- El regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C) a 0.013 (300 °C) y UA de 9.5 a 0.34 "
+         "kW/K por kg/s (E8).",
          "- La condensación y la cavitación (P_baja, ε_cond, x_b) gobiernan la existencia; η_t, P_alta y "
          "T_fuente gobiernan η y potencia.", "",
          "## 2. Método", "",
