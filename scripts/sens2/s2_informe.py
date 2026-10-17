@@ -30,6 +30,12 @@ CAVEATS = [
     "Los índices de D en C4 (n = 28) son indicativos.",
     "LMTD y UA del regenerador se reconstruyen de los estados (contraflujo puro); el modelo usa efectividad.",
     "7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.",
+    "El criterio «distinguible del ruido» es laxo (algún método supera el máximo de 3 variables dummy); la conclusión "
+    "M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.",
+    "No se propagó incertidumbre (η_t, ε, modelo) ni se construyeron superficies de respuesta; la importancia por "
+    "permutación no se implementó.",
+    "La cavitación (O2) es un margen de subenfriamiento en la bomba, no un cálculo de NPSH; la «confianza» de cada "
+    "conclusión es robustez dentro del modelo teqp, no validación física.",
 ]
 PROXIMA = [
     "Refinar P_baja cerca de su piso (paso de 25 kPa en C1 y C3, 550 kPa; C2 350 kPa; C4 750 kPa): es la "
@@ -38,6 +44,8 @@ PROXIMA = [
     "Repetir las mallas B2 (P_baja x x_b) y B4 (ε_cond x T_sumidero) con más niveles en C3 y C4, donde la "
     "no aditividad de la existencia es alta.",
     "Validar con el motor real los 7 atípicos y los óptimos M1 a M4 antes de citarlos como cifras de diseño.",
+    "Propagar la incertidumbre de η_t, ε_reg, ε_cond y de la ecuación de estado a P(KALINA) y a η (muestreo alrededor "
+    "de cada centro) y construir superficies de respuesta (η frente a P_baja y x_b).",
     "Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal.",
 ]
 
@@ -53,7 +61,7 @@ def main():
     L = ["# Informe de Sensibilidad 2: análisis de los 3 921 puntos de Sensibilidad 1", "",
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
          "alta; la η máxima es %.2f %% dentro del rango experimental (%.2f %% fuera).** Los óptimos "
-         "están pegados a la frontera de existencia." % (n_in, n_out), "",
+         "tienden a quedar cerca del piso de P_baja." % (n_in, n_out), "",
          "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (20 hojas, 56 gráficos). Todo número sale de los "
          "CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.", "",
          "## 1. Resumen ejecutivo", "",

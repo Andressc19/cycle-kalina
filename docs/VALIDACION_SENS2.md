@@ -21,7 +21,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
   para no mezclar diseños.
 - **Índices.** Se calculan solo sobre el LHS de cada bloque, con 3 variables dummy como piso de ruido.
 
-## Problemas hallados y corregidos
+## Problemas hallados y corregidos (11)
 
 | N.º | Gravedad | Problema | Corrección |
 |---|---|---|---|
@@ -33,6 +33,20 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 | 6 | Media | En los gráficos de importancia, el piso de ruido (dummy) era indistinguible de una variable | Tres series: supera el ruido (verde), no lo supera (ámbar), dummy (gris) |
 | 7 | Baja | La elasticidad de T_fuente en C2 (13.2) aplastaba el resto del gráfico | Excluida del gráfico con nota; sigue en la tabla |
 | 8 | Media | Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que no se cumple (barridos y mallas) | Nota en F2, en la conclusión L5 y en el informe; la cifra defendible es la de LHS (+3.10 puntos de η, IC [+2.46, +3.65]) |
+
+| 9 | Alta | La conclusión M5 (óptimos pegados a la frontera, p ≈ 1e-21) depende del diseño: con el muestreo LHS solo la diferencia es significativa en C1 (0.62 frente a 0.75, p = 0.016); C2 p = 0.63, C3 p = 0.09, C4 p = 0.48 | Reescrita como tendencia dependiente del diseño, confianza Media; BLUF del informe suavizado |
+| 10 | Media | El criterio «distinguible del ruido» es laxo: de 175 variables marcadas, 38 lo son por un solo método y solo 72 por 4 o más | Declarado en F3, en L5 y en el informe; las variables citadas lo superan en 3 a 8 métodos |
+| 11 | Media | Faltaba definir «cavitación (O2)» y qué significa «confianza» | Definidos en LEEME: O2 es subenfriamiento en la bomba (no NPSH); confianza = robustez dentro del modelo |
+
+## Objeciones previsibles de un evaluador (y estado)
+
+1. **«Todo es el modelo.»** Cierto: solo teqp, sin validación experimental; se contrasta con modelos publicados y un simulador, no con experimentos. Declarado.
+2. **«Falta propagar incertidumbre y superficies de respuesta.»** Cierto: no se hicieron. Recomendado para la próxima campaña.
+3. **«La regla de ruido con 3 dummy es débil.»** Cierto: se declara y se usa solo con 3 a 8 métodos concordantes.
+4. **«¿Por qué el regenerador pierde peso al subir T_fuente?»** El libro lo describe (Q_reg/Q_i, UA y pinch) pero no explica el mecanismo; la explicación termodinámica queda pendiente.
+5. **«Los requisitos de equipos son envolventes, no especificaciones.»** Cierto: faltan flujo volumétrico de la turbina, altura de la bomba y geometría. Declarado.
+6. **«El pinch del regenerador sale de ε_reg = 0.75 prefijada, no del diseño óptimo.»** Cierto: UA y pinch son consecuencia de la efectividad impuesta.
+7. **«Los barridos no son comparables entre sí.»** Declarado; los índices globales usan solo el LHS.
 
 ## Comprobaciones de cálculo (independientes)
 

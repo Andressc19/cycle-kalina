@@ -1,6 +1,6 @@
 # Informe de Sensibilidad 2: análisis de los 3 921 puntos de Sensibilidad 1
 
-> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la η máxima es 14.53 % dentro del rango experimental (14.82 % fuera).** Los óptimos están pegados a la frontera de existencia.
+> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la η máxima es 14.53 % dentro del rango experimental (14.82 % fuera).** Los óptimos tienden a quedar cerca del piso de P_baja.
 
 Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (20 hojas, 56 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
 
@@ -142,11 +142,11 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: El bloque con x_b bajo (C2) rinde menos que los de x_b alto, con presiones menores.
 - Fuente: P2 p2_robustez.md
 
-**M5 [MÁXIMA EFICIENCIA, fase C, confianza Alta].** Los óptimos están pegados a la frontera de KALINA, no en zona segura.
+**M5 [MÁXIMA EFICIENCIA, fase C, confianza Media].** Los diseños de mayor η tienden a quedar cerca del piso de P_baja; la cercanía a la frontera es real pero depende del diseño de muestreo.
 
-- Evidencia: Distancia L1 normalizada al punto no-KALINA más cercano: mediana 0.138 en el 10 % de mayor η frente a 0.368 en el resto (KS 0.357, p ≈ 1e-21). De 205 puntos, 73 están a una sola variable de la frontera, casi siempre P_baja.
-- Implicación: Un óptimo real debe llevar margen en P_baja y en ε_cond; operar en el máximo es operar sobre el piso de cavitación.
-- Fuente: P2 p2_robustez.md
+- Evidencia: η baja al subir P_baja (PRCC −0.63 en C1) y P_baja tiene piso por cavitación (D1). Con todos los puntos, el 10 % de mayor η está a 0.14 de la frontera frente a 0.37 en el resto (KS 0.357), con 73 de 205 a una variable (casi siempre P_baja); pero esa diferencia mezcla mallas y barridos que ponen puntos junto a la frontera. Solo con el muestreo LHS la diferencia es significativa en C1 (0.62 frente a 0.75, p = 0.016) y no en C2 (0.79 frente a 0.83, p = 0.63), C3 (0.82 frente a 0.90, p = 0.09) ni C4 (0.83 frente a 0.82, p = 0.48).
+- Implicación: Un óptimo real debe llevar margen en P_baja y ε_cond. La afirmación general sobre todo el espacio queda como tendencia dependiente del diseño, no como resultado demostrado.
+- Fuente: P2 p2_robustez.md; revisión final (LHS solo, recalculado)
 
 ### 3.4 FLUCTUACIÓN (hoja F3 del libro)
 
@@ -164,7 +164,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 **F3 [FLUCTUACIÓN, fase B, confianza Alta].** Para que exista KALINA deciden x_b, P_baja y ε_cond (T_fuente en C4).
 
-- Evidencia: Rango medio en Y1: C1 x_b 1.0, P_baja 2.6, ε_cond 2.8; C2 ε_cond 1.6, P_baja 1.8, x_b 2.6; C3 P_baja 1.0; C4 T_fuente 1.0, P_baja 2.0. Signos: P_baja y ε_cond favorecen; x_b alto perjudica en C1 y C2.
+- Evidencia: Rango medio en Y1: C1 x_b 1.0, P_baja 2.6, ε_cond 2.8; C2 ε_cond 1.6, P_baja 1.8, x_b 2.6; C3 P_baja 1.0; C4 T_fuente 1.0, P_baja 2.0. Signos: P_baja y ε_cond favorecen; x_b alto perjudica en C1 y C2. Criterio de ruido: al menos un método supera el máximo de las 3 variables dummy (criterio laxo); las variables citadas lo superan en 3 a 8 métodos (en C4 P_baja solo en 3 de 8).
 - Implicación: Las tres variables del lado frío del ciclo (condensación y cavitación) gobiernan la existencia.
 - Fuente: P3 p3_ranking.md
 
@@ -214,7 +214,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 **L5 [LÍMITES KALINA, fase A, confianza Alta].** Quedan límites del análisis que ningún barrido cierra.
 
-- Evidencia: Solo se usó el motor teqp, sin validación experimental propia del ciclo; el lugar crítico de la mezcla no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalmente bajo) y no se descartan; el diseño mezcla barridos de una variable, mallas y LHS, por lo que las probabilidades por nivel dependen del diseño; los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas no cumplen, y la versión sobre el muestreo LHS (+3.1 puntos de η, IC [+2.46, +3.65]) es la más defendible.
+- Evidencia: Solo se usó el motor teqp, sin validación experimental propia del ciclo; el lugar crítico de la mezcla no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalmente bajo) y no se descartan; el diseño mezcla barridos de una variable, mallas y LHS, por lo que las probabilidades por nivel dependen del diseño; los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas no cumplen, y la versión sobre el muestreo LHS (+3.1 puntos de η, IC [+2.46, +3.65]) es la más defendible. Tampoco se propagó la incertidumbre de η_t, ε y del modelo a la probabilidad de KALINA ni se construyeron superficies de respuesta; la importancia por permutación no se implementó; la «confianza» de cada conclusión es la robustez dentro del modelo teqp, no una validación física.
 - Implicación: Validar con el motor real los 7 atípicos y los óptimos de M1 a M4 antes de citarlos como cifras de diseño.
 - Fuente: Excel 1 LEEME; P1 p1_existencia.md
 
@@ -234,7 +234,8 @@ Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % po
 2. Barrer T_fuente con paso de 2.5 K en los techos de cada bloque (440.65, 468.15, 568.15 y 528.15 K).
 3. Repetir las mallas B2 (P_baja x x_b) y B4 (ε_cond x T_sumidero) con más niveles en C3 y C4, donde la no aditividad de la existencia es alta.
 4. Validar con el motor real los 7 atípicos y los óptimos M1 a M4 antes de citarlos como cifras de diseño.
-5. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal.
+5. Propagar la incertidumbre de η_t, ε_reg, ε_cond y de la ecuación de estado a P(KALINA) y a η (muestreo alrededor de cada centro) y construir superficies de respuesta (η frente a P_baja y x_b).
+6. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal.
 
 ## 6. Limitaciones y supuestos
 
@@ -248,5 +249,8 @@ Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % po
 - Los índices de D en C4 (n = 28) son indicativos.
 - LMTD y UA del regenerador se reconstruyen de los estados (contraflujo puro); el modelo usa efectividad.
 - 7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.
+- El criterio «distinguible del ruido» es laxo (algún método supera el máximo de 3 variables dummy); la conclusión M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.
+- No se propagó incertidumbre (η_t, ε, modelo) ni se construyeron superficies de respuesta; la importancia por permutación no se implementó.
+- La cavitación (O2) es un margen de subenfriamiento en la bomba, no un cálculo de NPSH; la «confianza» de cada conclusión es robustez dentro del modelo teqp, no validación física.
 
 *Revisión con la lista de `validate-data` (plugin `data` de Anthropic): duplicados, denominadores, cifras recalculadas de forma independiente, sesgo de selección y gráficos revisados en Excel real. Estado: compartir con los caveats de la sección 6.*
