@@ -2,7 +2,7 @@
 
 > **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la η máxima es 14.53 % dentro del rango experimental (14.82 % fuera).** Los óptimos están pegados a la frontera de existencia.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (18 hojas, 40 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (18 hojas, 41 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -200,7 +200,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 **L5 [LÍMITES KALINA, fase A, confianza Alta].** Quedan límites del análisis que ningún barrido cierra.
 
-- Evidencia: Solo se usó el motor teqp, sin validación experimental propia del ciclo; el lugar crítico de la mezcla no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalmente bajo) y no se descartan; el diseño mezcla barridos de una variable, mallas y LHS, por lo que las probabilidades por nivel dependen del diseño.
+- Evidencia: Solo se usó el motor teqp, sin validación experimental propia del ciclo; el lugar crítico de la mezcla no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalmente bajo) y no se descartan; el diseño mezcla barridos de una variable, mallas y LHS, por lo que las probabilidades por nivel dependen del diseño; los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas no cumplen, y la versión sobre el muestreo LHS (+3.1 puntos de η, IC [+2.46, +3.65]) es la más defendible.
 - Implicación: Validar con el motor real los 7 atípicos y los óptimos de M1 a M4 antes de citarlos como cifras de diseño.
 - Fuente: Excel 1 LEEME; P1 p1_existencia.md
 
@@ -224,6 +224,7 @@ Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % po
 - η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases condicionan en haber convergido (sesgo de supervivencia a vigilar).
 - m_b no se barrió; las potencias son por kg/s de m_b (el estudio 0 usa m_b distinto de 1).
 - Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sobre una rampa.
+- Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mallas no cumplen; la versión sobre LHS (η +3.1 puntos, IC [+2.46, +3.65]) es la más defendible.
 - Los índices de D en C4 (n = 28) son indicativos.
 - LMTD y UA del regenerador se reconstruyen de los estados (contraflujo puro); el modelo usa efectividad.
 - 7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.

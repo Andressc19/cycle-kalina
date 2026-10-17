@@ -34,10 +34,12 @@ def _filas(rk, bloque, resp):
     dum = s[s["tipo"] == "dummy"].sort_values("rango_medio").head(1)
     filas = []
     for _, x in reales.iterrows():
+        imp = numero(TOPE - x["rango_medio"], 2)
+        d = bool(x["distinguible"])
         filas.append([x["variable"], numero(x["rango_medio"], 2), str(x["signo"]),
-                      "si" if bool(x["distinguible"]) else "no", numero(TOPE - x["rango_medio"], 2)])
+                      "si" if d else "no", imp if d else 0, 0 if d else imp, 0])
     for _, x in dum.iterrows():
-        filas.append(["mejor dummy (ruido)", numero(x["rango_medio"], 2), "-", "-",
+        filas.append(["mejor dummy (ruido)", numero(x["rango_medio"], 2), "-", "-", 0, 0,
                       numero(TOPE - x["rango_medio"], 2)])
     return filas
 
@@ -56,18 +58,20 @@ def hoja_f3_indices(wb, datos):
             filas = _filas(rk, bloque, resp)
             f = subtitulo(ws, f, "%s - %s" % (nombre, resp))
             enc, ult, _ = tabla(ws, f, ["Variable", "Rango medio", "Signo del efecto",
-                                        "Distinguible del ruido", "Importancia (%d - rango medio)" % TOPE],
-                                filas, anchos=[22, 12, 12, 14, 22])
+                                        "Distinguible del ruido", "Importancia: distinguible del ruido",
+                                        "Importancia: no distinguible del ruido", "Importancia: piso de ruido (dummy)"],
+                                filas, anchos=[22, 12, 12, 14, 18, 18, 18])
             reales = [x for x in filas if not x[0].startswith("mejor dummy")]
             dum = [x for x in filas if x[0].startswith("mejor dummy")]
             resumen.append([nombre, resp, sum(1 for x in reales if x[3] == "si"), len(reales),
                             reales[0][0], reales[0][1], dum[0][1] if dum else None])
             if resp != "Y4 D CORREGIBLE":
-                f = grafico_sobre_tabla(ws, enc, len(filas), [5], cat_col=1,
+                f = grafico_sobre_tabla(ws, enc, len(filas), [5, 6, 7], cat_col=1, apiladas=True,
+                                        colores=["2E7D32", "B9770E", "7F8C8D"],
                                         titulo="%s: importancia por variable (%s)" % (resp, nombre),
                                         x="Variable", y="Importancia (%d - rango medio)" % TOPE,
-                                        nota_txt="Fuente: p3_ranking.csv. Barra mas alta = mas importante; "
-                                                 "'mejor dummy' es el piso de ruido.")
+                                        nota_txt="Fuente: p3_ranking.csv. Barra mas alta = mas importante; verde = supera el piso "
+                                                 "de ruido, ambar = no lo supera, gris = mejor dummy. 0 = no aplica a esa serie.")
             else:
                 f = nota(ws, ult + 1, "Fuente: p3_ranking.csv (Y4: n pequeno en C4, indicativo).") + 1
     f = subtitulo(ws, f, "Coincidencias y discrepancias entre metodos")

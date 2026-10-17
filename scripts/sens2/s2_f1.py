@@ -75,10 +75,15 @@ def hoja_f1_existencia(wb, datos):
         filas.append([b, numero(pb.iloc[0]["valor_frontera"]) if len(pb) else None,
                       numero(inf.iloc[0]["valor_frontera"]) if len(inf) else None,
                       numero(sup.iloc[0]["valor_frontera"]) if len(sup) else None])
-    f = bloque(ws, f, titulo="Fronteras de P_baja y de T_fuente (inferior y superior) por bloque",
-               encabezados=["Bloque", "P_baja (kPa)", "T_fuente inferior (K)", "T_fuente superior (K)"],
-               filas=filas, x="Bloque", y="Valor de la frontera", nota_txt="Fuente: "
-               "p1_fronteras.csv. P_baja y T_fuente estan en kPa y K (unidades distintas).")
+    f = bloque(ws, f, titulo="Piso de P_baja con KALINA por bloque (barridos de una variable)",
+               encabezados=["Bloque", "P_baja (kPa)"], filas=[[r[0], r[1]] for r in filas],
+               x="Bloque", y="P_baja (kPa)", nota_txt="Fuente: p1_fronteras.csv. Primer nivel donde la "
+               "clase pasa a KALINA al subir P_baja.")
+    f = bloque(ws, f, titulo="Ventana de T_fuente con KALINA por bloque (barridos de una variable)",
+               encabezados=["Bloque", "T_fuente inferior (K)", "T_fuente superior (K)"],
+               filas=[[r[0], r[2], r[3]] for r in filas], x="Bloque", y="T_fuente (K)",
+               nota_txt="Fuente: p1_fronteras.csv. Se grafican por separado P_baja (kPa) y T_fuente (K) "
+               "para no mezclar unidades en un mismo eje.")
 
     f = subtitulo(ws, f, "4. P(KALINA) por nivel de las variables con 14 niveles o menos")
     f = condiciones(ws, f, [BASE_F1, "Que se barrio: el muestreo LHS de 9 variables (estudios 3 y 14).",
@@ -135,15 +140,16 @@ def hoja_f1_reglas(wb, datos):
     _, f, _ = tabla(ws, f, ["Bloque", "Variable", "Umbral", "Lado KALINA", "Ganancia (Gini)"],
                     filas, anchos=[20, 12, 11, 12, 13])
     f += 1
+    st_all = reg[(reg["seccion"] == "stump") & reg["centro"].isin(grupos)]
     filas = []
     for v in VARIABLES_ORDEN:
-        s = st[st["variable"] == v]
+        s = st_all[st_all["variable"] == v]
         filas.append([v] + [(numero(s[s["centro"] == g].sort_values("orden").iloc[0]["ganancia"], 6)
                              if len(s[s["centro"] == g]) else 0.0) for g in grupos])
     f = bloque(ws, f, titulo="Ganancia del mejor corte por variable y bloque",
                encabezados=["Variable"] + grupos, filas=filas, x="Variable", y="Ganancia (Gini)",
-               nota_txt="Fuente: p1_reglas.csv (seccion stump). 0 = esa variable no aparece entre "
-                        "los 5 mejores cortes del bloque.", ancho=20.0)
+               nota_txt="Fuente: p1_reglas.csv (seccion stump, todas las variables). 0 = la variable es "
+                        "constante en ese bloque (no hay corte posible).", ancho=20.0)
 
     f = subtitulo(ws, f, "2. Coeficientes de la regresion logistica (con signo)")
     f = condiciones(ws, f, [BASE_F1, "Que se barrio: puntos LHS.", "Que quedo fijo: nada (LHS).",

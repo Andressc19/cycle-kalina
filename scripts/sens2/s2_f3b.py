@@ -80,7 +80,7 @@ def hoja_f3_elasticidades(wb, datos):
             fila.append(numero(x["elasticidad"], 3) if ok else "sin KALINA vecino")
             vals.append(numero(x["elasticidad"], 3) if ok else None)
         filas.append(fila)
-        if all(t is not None for t in vals):
+        if all(t is not None for t in vals) and v != "T_fuente":
             completas.append([v] + vals)
     _, f, _ = tabla(ws, f, ["Variable"] + [CORTO[b] for b in BLQ], filas, anchos=[14, 18, 18, 18, 18])
     f += 1
@@ -90,7 +90,7 @@ def hoja_f3_elasticidades(wb, datos):
                          y="Elasticidad (-)")
     f = nota(ws, f - 2, "T_fuente en C2 da 13.2: el punto base esta sobre una rampa de la frontera "
                         "(un cambio de 5 K mueve eta 16 %). No es un valor de diseno. "
-                        "Excluidas del grafico: variables sin KALINA vecino en algun bloque.")
+                        "No se grafican T_fuente (escala: C2 = 13.2) ni las variables sin KALINA vecino en algun bloque; estan en la tabla.")
     f = subtitulo(ws, f + 1, "3. Detalle del calculo")
     det = [[CORTO[x["centro"]], x["variable"], numero(x["v0"], 4), numero(x["eta0"], 4),
             numero(x["nivel_menos"], 4), numero(x["nivel_mas"], 4), str(x["tipo"]),

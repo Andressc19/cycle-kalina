@@ -48,6 +48,15 @@ def hoja_f2_comparacion(wb, datos):
                             "P10 CORREGIBLE", "P90 CORREGIBLE", "mediana KALINA", "P10 KALINA",
                             "P90 KALINA", "diferencia", "IC 95% bajo", "IC 95% alto", "KS", "p"],
                     filas, anchos=[22, 10, 11, 9, 12, 11, 11, 11, 10, 10, 10, 10, 10, 9, 10])
+    cl = datos["comparacion"]
+    cl = cl[(cl["ambito"] == "LHS (estudios 3 y 14)") & (cl["ref"] == "KALINA (total)")
+            & (cl["centro"] == "todos")]
+    txt = "; ".join("%s: %+.2f, IC 95 %% [%+.2f, %+.2f]" % (VAR_TXT[r["variable"]], r["dif_mediana"],
+                                                         r["ic_lo"], r["ic_hi"])
+                    for _, r in cl.iterrows() if r["variable"] in ("eta_pct", "wnet_mb"))
+    f = nota(ws, f, "Los p-valores y los IC de esta tabla suponen puntos independientes; los barridos y mallas no lo "
+                    "son. Version mas defendible, solo muestreo LHS (diferencia de medianas CORREGIBLE - KALINA): "
+                    + txt + ". Fuente: p2_comparacion.csv (ambito LHS).")
     f += 1
 
     for var in ("eta_pct", "wnet_mb"):
