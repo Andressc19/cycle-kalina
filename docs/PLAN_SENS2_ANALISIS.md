@@ -8,9 +8,9 @@ Sin corridas nuevas del motor: todo se calcula desde los CSV (`scripts/sens1/x1_
 | Elemento de la guía | Decisión | Motivo |
 |---|---|---|
 | Morris, Sobol, FAST | **Eliminados** | Exigen diseño propio y salida en todos los puntos; ~31 s/punto y 1/3 sin solución (Etapa 0 §1) |
-| «confiable / no confiable» | **Reemplazado** por dentro/fuera del rango experimental (líquido > 420 K) | Decisión del usuario |
+| El término del prompt para los puntos fuera del rango experimental | **Reemplazado** por dentro/fuera del rango experimental (líquido > 420 K) | Decisión del usuario |
 | «no_kalina» | **Se desdobla**: CORREGIBLE, NO_CONVERGIO, INVIABLE | Son causas distintas |
-| Índices de sensibilidad | KS/RSA, PAWN, δ de Borgonovo, HSIC, PRCC/SRC, η², regresión logística, permutación; **parámetro dummy** y bootstrap | Calculables sobre datos existentes; el dummy da el piso de ruido |
+| Índices de sensibilidad | KS/RSA, PAWN, δ de Borgonovo, HSIC, PRCC/SRC, η², regresión logística (la importancia por permutación quedó sin implementar); **parámetro dummy** y bootstrap | Calculables sobre datos existentes; el dummy da el piso de ruido |
 | Fase C «distancia a Kalina» | **Se define con los datos**: D, violaciones O1–O5 y vecino KALINA más cercano (variable que cambia y cuánto) | Es la única forma de decir «qué mover» |
 | Bloques | Un análisis por centro (C1–C4) **y** consolidado, nunca mezclando datos fijos distintos | Regla del proyecto |
 | Elementos añadidos | Interacción (no aditividad) desde las mallas de pares; reglas de la región KALINA (stump/árbol en numpy); requisitos de equipos con percentiles | Responde (3) y (4) del profesor |
