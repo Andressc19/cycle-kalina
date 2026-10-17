@@ -11,6 +11,7 @@ from x2_formato import condiciones, descripcion, nota, subtitulo, tabla, titulo 
 from x5_graficos import bloque  # noqa: E402
 from s2_comun import centro_txt, numero, nivel_lo, barras_con_signo, prob_lhs  # noqa: E402
 
+BASE_F1 = "Base: 3921 puntos de Sensibilidad 1, con los duplicados exactos (n mayores que en F2 a F4)."
 BLOQUES = ["C1 Husavik", "C2 ancla A*", "C3 caliente 150 C", "C4 frio 110 C"]
 EXACTAS = ["eta_t", "eta_p", "eps_hrvg", "eps_reg", "eps_cond"]
 
@@ -23,7 +24,7 @@ def hoja_f1_existencia(wb, datos):
     f = titulo(ws, f, "F1 Existencia - donde hay KALINA (total)", ancho=10)
 
     f = subtitulo(ws, f, "1. Rango con KALINA (total) por bloque")
-    f = condiciones(ws, f, ["Que se barrio: los puntos calculados de Sensibilidad 1 (sin duplicados).",
+    f = condiciones(ws, f, [BASE_F1, "Que se barrio: los puntos calculados de Sensibilidad 1 (3921 puntos).",
                             "Que quedo fijo: el resto de entradas en el centro de cada bloque.",
                             "Fuente: p1_existencia_rangos.csv."])
     filas = []
@@ -51,7 +52,7 @@ def hoja_f1_existencia(wb, datos):
                "eps_cond entre los KALINA de cada bloque).")
 
     f = subtitulo(ws, f, "3. Fronteras de los barridos de una variable")
-    f = condiciones(ws, f, ["Que se barrio: una sola variable por bloque (barridos OFAT).",
+    f = condiciones(ws, f, [BASE_F1, "Que se barrio: una sola variable por bloque (barridos OFAT).",
                             "Que quedo fijo: las demas entradas en el centro del bloque.",
                             "Fuente: p1_fronteras.csv."])
     o = {"C1 Husavik": 0, "C2 ancla A*": 1, "C3 caliente 150 C": 2, "C4 frio 110 C": 3}
@@ -80,7 +81,7 @@ def hoja_f1_existencia(wb, datos):
                "p1_fronteras.csv. P_baja y T_fuente estan en kPa y K (unidades distintas).")
 
     f = subtitulo(ws, f, "4. P(KALINA) por nivel de las variables con 14 niveles o menos")
-    f = condiciones(ws, f, ["Que se barrio: el muestreo LHS de 9 variables (estudios 3 y 14).",
+    f = condiciones(ws, f, [BASE_F1, "Que se barrio: el muestreo LHS de 9 variables (estudios 3 y 14).",
                             "Que quedo fijo: nada; en el LHS se mueven 9 variables a la vez.",
                             "Fuente: p1_existencia_prob.csv (muestra = lhs)."])
     f = nota(ws, f, "Advertencia de diseno: la P(KALINA) por nivel depende del diseno. En un barrido "
@@ -123,7 +124,7 @@ def hoja_f1_reglas(wb, datos):
     grupos = BLOQUES + ["todos"]
 
     f = subtitulo(ws, f, "1. Mejores cortes unicos (stump) por bloque")
-    f = condiciones(ws, f, ["Que se barrio: solo los puntos LHS de 9 variables (estudios 3 y 14).",
+    f = condiciones(ws, f, [BASE_F1, "Que se barrio: solo los puntos LHS de 9 variables (estudios 3 y 14).",
                             "Que quedo fijo: nada (LHS).", "Fuente: p1_reglas.csv (seccion stump)."])
     st = reg[reg["seccion"] == "stump"]
     st = st[st["centro"].isin(grupos) & (st["orden"] <= 5)]
@@ -145,7 +146,7 @@ def hoja_f1_reglas(wb, datos):
                         "los 5 mejores cortes del bloque.", ancho=20.0)
 
     f = subtitulo(ws, f, "2. Coeficientes de la regresion logistica (con signo)")
-    f = condiciones(ws, f, ["Que se barrio: puntos LHS.", "Que quedo fijo: nada (LHS).",
+    f = condiciones(ws, f, [BASE_F1, "Que se barrio: puntos LHS.", "Que quedo fijo: nada (LHS).",
                             "Fuente: p1_reglas.csv (seccion logistica)."])
     lg = reg[reg["seccion"] == "logistica"]
     filas = [[x["centro"], x["termino"], numero(x["coef"]), int(x["signo"]), bool(x["convergio"])]
@@ -175,7 +176,7 @@ def hoja_f1_reglas(wb, datos):
     f += 1
 
     f = subtitulo(ws, f, "4. Conteo de zonas grises por bloque y violacion dominante")
-    f = condiciones(ws, f, ["Que se barrio: los CORREGIBLE con D en el cuantil 25 % mas bajo.",
+    f = condiciones(ws, f, [BASE_F1, "Que se barrio: los CORREGIBLE con D en el cuantil 25 % mas bajo.",
                             "Que quedo fijo: el cuartil de D que define la zona gris.",
                             "Fuente: p1_zonas_grises.csv."])
     z = datos["zonas_grises"]

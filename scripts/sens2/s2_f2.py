@@ -10,6 +10,7 @@ from x2_formato import condiciones, descripcion, nota, subtitulo, tabla, titulo 
 from x5_graficos import bloque  # noqa: E402
 from s2_comun import numero  # noqa: E402
 
+BASE_F2 = "Base: 3663 puntos sin duplicados exactos; eta y potencias solo donde el punto convergio."
 BLOQUES = ["C1 Husavik", "C2 ancla A*", "C3 caliente 150 C", "C4 frio 110 C",
            "Sin centro (muestreo o malla)", "todos"]
 VAR_TXT = {"eta_pct": "eta (%)", "wnet_mb": "W_net/m_b (kW/kg/s)", "rp": "r_P (-)",
@@ -33,7 +34,7 @@ def hoja_f2_comparacion(wb, datos):
     f = titulo(ws, f, "F2 CORREGIBLE vs KALINA (total)", ancho=10)
 
     f = subtitulo(ws, f, "1. Comparacion CORREGIBLE frente a KALINA (total)")
-    f = condiciones(ws, f, ["Que se compara: los 968 CORREGIBLE frente a los 2047 KALINA (total).",
+    f = condiciones(ws, f, [BASE_F2, "Que se compara: los 968 CORREGIBLE frente a los 2047 KALINA (total).",
                             "Que quedo fijo: el conjunto de puntos de Sensibilidad 1 sin duplicados.",
                             "Fuente: p2_comparacion.csv (ambito todos los puntos)."])
     o = {b: i for i, b in enumerate(BLOQUES)}
@@ -59,7 +60,7 @@ def hoja_f2_comparacion(wb, datos):
                    y=VAR_TXT[var], nota_txt="Fuente: p2_comparacion.csv (medianas por bloque).")
 
     f = subtitulo(ws, f, "2. Violacion dominante por bloque")
-    f = condiciones(ws, f, ["Que se barrio: los CORREGIBLE de cada bloque.",
+    f = condiciones(ws, f, [BASE_F2, "Que se barrio: los CORREGIBLE de cada bloque.",
                             "Fuente: p2_violaciones.csv (seccion dominante)."])
     v = datos["violaciones"]
     vd = v[v["seccion"] == "dominante"]
@@ -75,7 +76,7 @@ def hoja_f2_comparacion(wb, datos):
                         "cada CORREGIBLE).")
 
     f = subtitulo(ws, f, "3. D por cuartil")
-    f = condiciones(ws, f, ["Que se barrio: los CORREGIBLE ordenados por D en 4 cuartiles.",
+    f = condiciones(ws, f, [BASE_F2, "Que se barrio: los CORREGIBLE ordenados por D en 4 cuartiles.",
                             "Fuente: p2_violaciones.csv (seccion cruce)."])
     cr = v[(v["seccion"] == "cruce") & (v["clave"] == "viol_O2")]
     filas = []
@@ -101,7 +102,7 @@ def hoja_f2_distancia(wb, datos):
     f = titulo(ws, f, "F2 Distancia y rescate", ancho=10)
 
     f = subtitulo(ws, f, "1. Que variable rescata a un CORREGIBLE (rescate univariado)")
-    f = condiciones(ws, f, ["Que se barrio: corregir una sola variable de cada CORREGIBLE.",
+    f = condiciones(ws, f, [BASE_F2, "Que se barrio: corregir una sola variable de cada CORREGIBLE.",
                             "Fuente: p2_distancia_resumen.csv (seccion univariado, centro todos)."])
     u = d[(d["seccion"] == "univariado") & (d["centro"] == "todos")]
     filas = [[x["clave"], x["subclave"], int(x["n"]), numero(x["valor"])] for _, x in u.iterrows()]
@@ -116,7 +117,7 @@ def hoja_f2_distancia(wb, datos):
                         "quedan a una sola variable de un KALINA.")
 
     f = subtitulo(ws, f, "2. Distribucion de la distancia L1 y del numero de variables distintas")
-    f = condiciones(ws, f, ["Que se barrio: los CORREGIBLE de cada bloque.",
+    f = condiciones(ws, f, [BASE_F2, "Que se barrio: los CORREGIBLE de cada bloque.",
                             "Fuente: p2_distancia_resumen.csv (seccion distribucion)."])
     dd = d[d["seccion"] == "distribucion"]
     filas = []
@@ -134,7 +135,7 @@ def hoja_f2_distancia(wb, datos):
                y="Distancia L1 (normalizada)", nota_txt="Fuente: p2_distancia_resumen.csv.")
 
     f = subtitulo(ws, f, "3. Cambio de eta al rescatar")
-    f = condiciones(ws, f, ["Que se barrio: llevar cada CORREGIBLE a su KALINA vecino.",
+    f = condiciones(ws, f, [BASE_F2, "Que se barrio: llevar cada CORREGIBLE a su KALINA vecino.",
                             "Fuente: p2_distancia_resumen.csv (seccion eta)."])
     e = d[(d["seccion"] == "eta") & (d["clave"] == "eta_vecino_minus_cor")]
     filas = []
@@ -148,7 +149,7 @@ def hoja_f2_distancia(wb, datos):
     f += 1
 
     f = subtitulo(ws, f, "4. Robustez: el 10 % de mayor eta frente al resto")
-    f = condiciones(ws, f, ["Que se barrio: el 10 % de mayor eta de cada bloque frente al resto.",
+    f = condiciones(ws, f, [BASE_F2, "Que se barrio: el 10 % de mayor eta de cada bloque frente al resto.",
                             "Fuente: p2_robustez.csv (seccion comparacion)."])
     rb = datos["robustez"]
     cmp_ = rb[rb["seccion"] == "comparacion"]
@@ -173,7 +174,7 @@ def hoja_f2_distancia(wb, datos):
     f += 1
 
     f = subtitulo(ws, f, "5. Top-10 de eta por bloque")
-    f = condiciones(ws, f, ["Que se lista: los 10 puntos de mayor eta de cada bloque y del total.",
+    f = condiciones(ws, f, [BASE_F2, "Que se lista: los 10 puntos de mayor eta de cada bloque y del total.",
                             "Fuente: p2_robustez.csv (seccion top10_eta)."])
     t10 = rb[rb["seccion"] == "top10_eta"]
     filas = []

@@ -71,6 +71,38 @@ def distancia():
     return _csv(P2, "p2_distancia.csv")
 
 
+def ranking():
+    return _csv(P3, "p3_ranking.csv")
+
+
+def indices():
+    return _csv(P3, "p3_indices.csv")
+
+
+def interaccion():
+    return _csv(P3, "p3_interaccion.csv")
+
+
+def elasticidad():
+    return _csv(P3, "p3_elasticidad.csv")
+
+
+def envolventes():
+    return _csv(P4, "p4_envolventes.csv")
+
+
+def bandas():
+    return _csv(P4, "p4_bandas.csv")
+
+
+def dependencias():
+    return _csv(P4, "p4_dependencias.csv")
+
+
+def restricciones():
+    return _csv(P4, "p4_restricciones.csv")
+
+
 def cargar_todo():
     """Todos los CSV de esta parte en un diccionario con una clave por fuente."""
     return {
@@ -87,6 +119,14 @@ def cargar_todo():
         "robustez": robustez(),
         "dataset_dedup": dataset_dedup(),
         "distancia": distancia(),
+        "ranking": ranking(),
+        "indices": indices(),
+        "interaccion": interaccion(),
+        "elasticidad": elasticidad(),
+        "envolventes": envolventes(),
+        "bandas": bandas(),
+        "dependencias": dependencias(),
+        "restricciones": restricciones(),
     }
 
 

@@ -30,8 +30,9 @@ def bluf(datos):
     d = datos["dataset_dedup"]
     n = len(d)
     pct_kal = round(100.0 * int(d["kalina"].sum()) / n, 1)
-    eta_in = round(float(d.loc[~d["fuera_rango"].astype(bool), "eta_pct"].max()), 2)
-    eta_out = round(float(d.loc[d["fuera_rango"].astype(bool), "eta_pct"].max()), 2)
+    k = d[d["kalina"].astype(bool)]
+    eta_in = round(float(k.loc[~k["fuera_rango"].astype(bool), "eta_pct"].max()), 2)
+    eta_out = round(float(k.loc[k["fuera_rango"].astype(bool), "eta_pct"].max()), 2)
     v = datos["violaciones"]
     sel = v[(v["seccion"] == "dominante") & (v["centro"] == "todos") & (v["clave"] == "viol_O2")]
     pct_o2 = round(100.0 * float(sel.iloc[0]["fraccion"]), 1)
@@ -43,7 +44,7 @@ def bluf(datos):
          "p2_dataset_dedup.csv (de 3921 en la campana, p1_dataset.csv)"),
         ("% KALINA (total)", pct_kal, "p2_dataset_dedup.csv"),
         ("eta maxima dentro / fuera del rango experimental (%)",
-         "%s / %s" % (eta_in, eta_out), "p2_dataset_dedup.csv"),
+         "%s / %s" % (eta_in, eta_out), "p2_dataset_dedup.csv (solo KALINA (total))"),
         ("% de CORREGIBLE por cavitacion (viol_O2 dominante)", pct_o2,
          "p2_violaciones.csv (centro todos)"),
         ("variable que mas rescata", "%s (%s %%)" % (b["clave"], round(100.0 * float(b["valor"]), 1)),

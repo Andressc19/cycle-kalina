@@ -49,6 +49,19 @@ CAMPOS_D4 = [
     ("Valor en el vecino", "val_destino", "num"), ("Direccion", "direccion", "txt"),
     ("eta CORREGIBLE (%)", "eta_cor", "num"), ("eta vecino (%)", "eta_vecino", "num"),
 ]
+CAMPOS_D5 = [
+    ("Bloque", "bloque", "txt"), ("Respuesta", "respuesta", "txt"), ("Variable", "variable", "txt"),
+    ("Metodo", "metodo", "txt"), ("Valor del indice", "valor", "num"), ("IC 95 % bajo", "ic_lo", "num"),
+    ("IC 95 % alto", "ic_hi", "num"), ("n", "n", "int"), ("p", "p_valor", "num"), ("Motivo", "motivo", "txt"),
+]
+CAMPOS_D6 = [
+    ("Bloque", "centro", "txt"), ("Banda de r_P", "banda", "txt"), ("r_P minimo (-)", "rp_lo", "num"),
+    ("r_P maximo (-)", "rp_hi", "num"), ("n KALINA", "n", "int"), ("eta mediana (%)", "eta_p50", "num"),
+    ("eta P10 (%)", "eta_p10", "num"), ("eta P90 (%)", "eta_p90", "num"),
+    ("dh_turb mediana (kJ/kg)", "dh_p50", "num"), ("q4 mediana (-)", "q4_p50", "num"),
+    ("W_t mediana (kW por kg/s)", "wt_p50", "num"), ("Pinch regenerador mediana (K)", "pinch_p50", "num"),
+    ("UA regenerador mediana (kW/K por kg/s)", "ua_p50", "num"),
+]
 
 
 def _fmt(v, tipo):
@@ -130,4 +143,18 @@ def hoja_d4(wb, datos):
                                  "var_cambia y la direccion indican el cambio minimo que lo rescata."])
 
 
-HOJAS_DATOS = [hoja_d1, hoja_d2, hoja_d3, hoja_d4]
+def hoja_d5(wb, datos):
+    df = datos["indices"]
+    return _hoja(wb, "D5 Datos indices", "D5. Indices de sensibilidad por bloque, respuesta, variable y metodo",
+                 CAMPOS_D5, df, ["Fuente: p3_indices.csv.", "Una fila por indice; %d filas." % len(df),
+                                 "Incluye las variables dummy (piso de ruido) y el IC 95 % por bootstrap."])
+
+
+def hoja_d6(wb, datos):
+    df = datos["bandas"]
+    return _hoja(wb, "D6 Datos equipos", "D6. Requisitos de la turbina y el regenerador por banda de r_P",
+                 CAMPOS_D6, df, ["Fuente: p4_bandas.csv.", "Una fila por bloque y banda; %d filas." % len(df),
+                                 "KALINA (total); cantidades por kg/s de m_b."])
+
+
+HOJAS_DATOS = [hoja_d1, hoja_d2, hoja_d3, hoja_d4, hoja_d5, hoja_d6]

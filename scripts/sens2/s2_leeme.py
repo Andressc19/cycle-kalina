@@ -82,6 +82,8 @@ def hoja_leeme(wb, datos):
             "Sensibilidad 1 (libro 1).",
             "Se quitan los duplicados exactos (mismas 10 entradas y mismo centro): quedan 3 663 "
             "puntos, que son los que usa el analisis.",
+            "Base por hoja: F1 usa los 3 921 puntos (con duplicados); F2, F3 y F4 usan los 3 663 sin "
+            "duplicados; por eso los n difieren (p. ej. C1: 502 KALINA en F1 y 454 en F2).",
             "Todos los numeros salen de los CSV de resultados/ (P1 a P4 y p5_conclusiones.csv); "
             "ninguno se escribe a mano.",
             "Clases: KALINA, CORREGIBLE, NO_CONVERGIO e INVIABLE. Un KALINA puede estar dentro o "
