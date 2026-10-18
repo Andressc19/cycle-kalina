@@ -265,29 +265,46 @@ if fallas14:
 else:
     ok("14. la nota de base aparece en LEEME y en las hojas F1 a F4")
 
-# 15. propagacion de incertidumbre: P(KALINA) y eta de la hoja contra las filas crudas
+# 15. propagacion de incertidumbre: P(KALINA) de la hoja contra las filas crudas (todas las tandas)
 import pandas as pd  # noqa: E402,F811
 _d = pd.read_csv(os.path.join(RAIZ, "resultados", "2026-10-17_sens2_U1", "u1_filas.csv"))
-_k = _d[_d["clasificacion"] == "KALINA"]
 ws = wb["F5 Incertidumbre"]
+_lotes = {"A": ["U1A"], "B (doble)": ["U1B"], "A con eps_cond fija en 0.95": ["U1C"], "A, lote 2": ["U1A2"],
+          "A (lotes 1+2)": ["U1A", "U1A2"]}
 _hall = {}
 for row in ws.iter_rows(max_col=7, values_only=True):
-    if row[0] in ("U1A", "U1B") and row[1] in ("C1", "C2", "C3", "C4") and isinstance(row[2], int):
+    if row[0] in _lotes and row[1] in ("C1", "C2", "C3", "C4") and isinstance(row[2], int) and isinstance(row[3], int):
         _hall.setdefault((row[0], row[1]), (row[2], row[3], row[4]))
 _mal = []
 for (e, c), (n_, k_, p_) in _hall.items():
-    gg = _d[(_d["barrido"] == e) & (_d["centro"] == c)]
+    gg = _d[_d["barrido"].isin(_lotes[e]) & (_d["centro"] == c)]
     kk = int((gg["clasificacion"] == "KALINA").sum())
     if (n_, k_) != (len(gg), kk) or abs(p_ - round(kk / len(gg), 3)) > 1e-9:
         _mal.append((e, c, n_, k_, p_, len(gg), kk))
-if len(_hall) != 8 or _mal:
+if len(_hall) < 12 or _mal:
     fail("15. F5 Incertidumbre no coincide con u1_filas.csv: %s (celdas halladas %d)" % (_mal, len(_hall)))
 else:
-    ok("15. F5 Incertidumbre: 8 celdas de P(KALINA) coinciden con las %d filas de u1_filas.csv" % len(_d))
-if int(_d["convergio"].astype(str).str.lower().eq("false").sum()) > 0.05 * len(_d):
-    fail("15b. mas del 5 % de los puntos de U1 no convergio")
+    ok("15. F5 Incertidumbre: %d celdas de P(KALINA) coinciden con las %d filas de u1_filas.csv" % (len(_hall), len(_d)))
+_na = int(_d["convergio"].astype(str).str.lower().eq("false").sum())
+if _na > 0.05 * len(_d):
+    fail("15b. mas del 5 %% de los puntos de U1 no convergio (%d de %d)" % (_na, len(_d)))
 else:
-    ok("15b. puntos sin convergencia en U1: %d de %d" % (int(_d["convergio"].astype(str).str.lower().eq("false").sum()), len(_d)))
+    ok("15b. puntos sin convergencia en U1: %d de %d" % (_na, len(_d)))
+# 16. barrido fino de eps_cond: el nivel 0.95 de cada bloque (m_O2) contra las filas crudas
+_sc = _d[_d["barrido"] == "U1D"]
+_f = {}
+for row in ws.iter_rows(max_col=9, values_only=True):
+    if isinstance(row[0], float) and abs(row[0] - 0.95) < 1e-9 and row[2] is not None and not isinstance(row[2], str):
+        _f.setdefault("fino", row)
+if len(_sc) != 40 or "fino" not in _f:
+    fail("16. barrido fino de eps_cond: %d filas crudas y fila 0.95 %s" % (len(_sc), "hallada" if "fino" in _f else "no hallada"))
+else:
+    _esp = [round(float(_sc[(_sc["centro"] == c) & (_sc["eps_cond"].round(4) == 0.95)]["m_O2"].iloc[0]), 2) for c in ("C1", "C2", "C3", "C4")]
+    _got = [_f["fino"][2], _f["fino"][4], _f["fino"][6], _f["fino"][8]]
+    if _got != _esp:
+        fail("16. m_O2 en eps_cond 0.95: hoja %s frente a filas crudas %s" % (_got, _esp))
+    else:
+        ok("16. barrido fino de eps_cond: m_O2 en 0.95 coincide con las filas crudas %s" % _esp)
 _t = ws.cell(1, 1).value
 
 if ERRORES:

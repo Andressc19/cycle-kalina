@@ -64,7 +64,7 @@ def main():
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
          "alta; la η máxima es %.2f %% dentro del rango experimental (%.2f %% fuera).** Los óptimos "
          "tienden a quedar cerca del piso de P_baja." % (n_in, n_out), "",
-         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (22 hojas, 70 gráficos). Todo número sale de los "
+         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (22 hojas, 72 gráficos). Todo número sale de los "
          "CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.", "",
          "## 1. Resumen ejecutivo", "",
          "- %d puntos sin duplicados (de 3 921); %.1f %% son KALINA (total)." % (

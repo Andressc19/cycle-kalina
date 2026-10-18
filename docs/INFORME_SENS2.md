@@ -2,7 +2,7 @@
 
 > **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la η máxima es 14.53 % dentro del rango experimental (14.82 % fuera).** Los óptimos tienden a quedar cerca del piso de P_baja.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (22 hojas, 70 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (22 hojas, 72 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -64,15 +64,21 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 **D7 [DISEÑO REAL, fase A, confianza Alta].** Desde el centro KALINA de cada bloque hay margen amplio en casi todas las variables, pero no en el condensador ni, en C2, en x_b.
 
-- Evidencia: Moviendo una variable cada vez (último nivel KALINA contiguo al centro): C1 baja P_baja hasta 600 kPa (centro 690), ε_cond sin margen (0.95; con 0.90 ya no hay KALINA), T_sumidero sube hasta 283.15 K (centro 278.15), x_b de 0.55 a 0.90, T_fuente de 363.15 a 438.15 K. C4: P_baja hasta 800 kPa, ε_cond sin margen, T_sumidero hasta 290.65 K. C3: P_baja hasta 600 kPa, ε_cond hasta 0.90, T_sumidero hasta 295.65 K. C2: P_baja hasta 400 kPa, ε_cond hasta 0.80, x_b solo de 0.45 a 0.55.
+- Evidencia: Moviendo una variable cada vez (último nivel KALINA contiguo al centro): C1 baja P_baja hasta 600 kPa (centro 690), ε_cond sin margen (0.95; con 0.90 ya no hay KALINA), T_sumidero sube hasta 283.15 K (centro 278.15), x_b de 0.55 a 0.90, T_fuente de 363.15 a 438.15 K. C4: P_baja hasta 800 kPa, ε_cond sin margen, T_sumidero hasta 290.65 K. C3: P_baja hasta 600 kPa, ε_cond hasta 0.90, T_sumidero hasta 295.65 K. C2: P_baja hasta 400 kPa, ε_cond hasta 0.80, x_b solo de 0.45 a 0.55. El barrido fino de ε_cond sitúa la frontera en ≈ 0.92 (C1) y ≈ 0.906 (C4).
 - Implicación: Un diseño en C1 o C4 no tolera perder efectividad del condensador ni subir T_sumidero más de 5 a 8 K; en C2 x_b debe controlarse a ±0.05. La frontera real está entre el último nivel KALINA y el siguiente.
 - Fuente: Hoja F1 Margenes de operacion (barridos de una variable, estudios 1 y 10)
 
 **D8 [DISEÑO REAL, fase A, confianza Media].** El piso de P_baja sube con x_b: cuanto más rica la mezcla, más alta debe ser la presión baja.
 
 - Evidencia: Menor P_baja con KALINA en cada columna de x_b de las mallas P_baja×x_b: C1 de 500 kPa (x_b 0.55 a 0.75) a 600, 690 y 800 kPa (x_b 0.82, 0.90 y 0.95); C2 de 400 kPa (0.45 y 0.50) a 563.64, 700 y 900 kPa (0.55, 0.60 y 0.70); C3 de 500 kPa (0.55 a 0.68) a 650, 800 y 950 kPa (0.75, 0.88 y 0.95; sin KALINA en 0.82); C4 de 500 kPa (0.65 y 0.72) a 910 kPa (0.95).
-- Implicación: x_b y P_baja no se eligen por separado (coincide con la interacción de F5 de P3): subir x_b para ganar η obliga a subir P_baja y se paga parte de lo ganado. La malla tiene solo 7 niveles de P_baja: el piso real está entre dos niveles.
+- Implicación: x_b y P_baja no se eligen por separado (coincide con la interacción de F5 de P3): subir x_b para ganar η obliga a subir P_baja y se paga parte de lo ganado. La malla tiene solo 7 niveles de P_baja: el piso real está entre dos niveles. Mecanismo: a P_baja fija la temperatura de burbuja baja al subir x_b (C1 a 690 kPa: 330 K con x_b 0.45, 309 K con 0.60, 296 K con 0.75 y 290 K con 0.90), de modo que m_O2 = T_burbuja − T9 se reduce de 52 K a 0.9 K y hace falta más presión para recuperar el margen.
 - Fuente: Hoja F5 Superficies de respuesta (mallas P_baja×x_b, estudios 2 y 11)
+
+**U4 [DISEÑO REAL, fase C, confianza Alta].** La efectividad del condensador es la especificación crítica: debe garantizarse por encima de ≈ 0.92 en Húsavík y de ≈ 0.906 en el bloque frío.
+
+- Evidencia: Frontera del barrido fino de ε_cond: C1 entre 0.917 (sin convergencia) y 0.922 (KALINA con m_O2 0.3 K); C4 entre 0.900 (CORREGIBLE) y 0.906 (KALINA con m_O2 0.3 K); C2 y C3 KALINA en todo el barrido de 0.90 a 0.95. Margen de cavitación con ε_cond = 0.95: 5.5 K (C1), 11.8 K (C2), 14.9 K (C3) y 8.1 K (C4).
+- Implicación: Pedir al condensador una efectividad garantizada de al menos 0.93 (C1) o 0.91 (C4) con las demás variables en el centro; un diseño que admita ε_cond menor necesita más P_baja o un sumidero más frío (PRCC de T_sumidero negativo, de P_baja positivo).
+- Fuente: Hoja F5 Incertidumbre (barrido fino, u1_scan_eps_cond.csv)
 
 ### 3.2 EQUIPOS (hoja F4 del libro)
 
@@ -120,7 +126,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 **E8 [EQUIPOS, fase B, confianza Media].** El regenerador pierde peso al subir T_fuente: su carga y su conductancia caen mientras el pinch sube.
 
-- Evidencia: Estudio 4 (T_fuente de 70 a 300 °C, mediana de los KALINA por nivel): Q_reg/Q_i de 0.587 a 0.013, UA de 9.53 a 0.34 kW/K por kg/s y pinch de 13.6 a 40.0 K. En los barridos de una variable la carga ya es baja a 150 °C (Q_reg/Q_i 0.121 en C3 y 0.048 en C4) y η se aplana desde ≈150 °C (C3 entre 9.28 y 9.47 %, C4 entre 12.23 y 12.32 %). KALINA aparece entre 90 y 165 °C (C1), 120 y 190 °C (C2), 90 y 290 °C (C3) y 90 y 250 °C (C4).
+- Evidencia: Estudio 4 (T_fuente de 70 a 300 °C, mediana de los KALINA por nivel): Q_reg/Q_i de 0.587 a 0.013, UA de 9.53 a 0.34 kW/K por kg/s y pinch de 13.6 a 40.0 K. En los barridos de una variable la carga ya es baja a 150 °C (Q_reg/Q_i 0.121 en C3 y 0.048 en C4) y η se aplana desde ≈150 °C (C3 entre 9.28 y 9.47 %, C4 entre 12.23 y 12.32 %). KALINA aparece entre 90 y 165 °C (C1), 120 y 190 °C (C2), 90 y 290 °C (C3) y 90 y 250 °C (C4). Mecanismo (barrido de T_fuente en C3, KALINA): el lado caliente del regenerador es el líquido pobre del separador, y Q_reg = m_l·(h5 − h6) (0.809 × 281 = 227 kW por kg/s a 90 °C). Al subir T_fuente se vaporiza casi todo el fluido: m_l/m_b cae de 0.81 a 0.006 (0.65 a 0.008 en C4) y Q_reg de 227 a 3 kW por kg/s, aunque la caída de entalpía por kg de líquido sube de 281 a 503 kJ/kg.
 - Implicación: Con x_b alto (C1, C3, C4) el regenerador mueve 12 % o menos del calor de entrada desde 150 °C (máximos 0.074, 0.121 y 0.048) y η ya no mejora; con x_b bajo (C2) todavía mueve hasta 0.49 a 150 °C y 0.115 desde 190 °C. En el estudio 4 la mediana es 0.34 a 150 °C, 0.13 a 170 °C y no pasa de 0.04 desde 190 °C. Sugiere dimensionarlo pequeño o evaluar suprimirlo solo con fuentes calientes y x_b alto (no se simuló un ciclo sin regenerador). Entre 70 y 110 °C su carga mediana es de 0.27 a 0.59 del calor de entrada.
 - Fuente: Hoja F4 Regenerador vs T_fuente (estudios 1, 4 y 10)
 
@@ -244,21 +250,21 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: Los diseños tienen pasos de tamaño distinto (una variable recorre todo su rango, el LHS recorre las nueve), así que la lectura es exploratoria. Mover el condensador junto con T_sumidero es el cambio de dos variables más peligroso.
 - Fuente: Hoja F1 Margenes de operacion (secciones 2 y 3)
 
-**U1 [LÍMITES KALINA, fase C, confianza Media].** Con tolerancias nominales de operación y equipos, Húsavík (C1) deja de ser KALINA en la mitad de los casos; C2, C3 y C4 conservan la clase en 98, 100 y 85 %.
+**U1 [LÍMITES KALINA, fase C, confianza Media].** Al perturbar las 10 variables con tolerancias nominales, lo único que saca a un centro de KALINA es una efectividad del condensador por debajo de ≈ 0.92 (C1) o ≈ 0.906 (C4); el resto de tolerancias no lo hace.
 
-- Evidencia: Escenario A, 48 puntos del motor por bloque, LHS de las 10 variables (T_fuente ±5 K, T_sumidero ±3 K, P_alta y P_baja ±5 %, x_b ±0.02, η_t, η_p, ε_HRVG, ε_reg y ε_cond ±0.05): P(KALINA) 0.48 en C1 (IC 95 % [0.34, 0.62]), 0.98 en C2 [0.89, 1.00], 1.00 en C3 [0.93, 1.00] y 0.85 en C4 [0.73, 0.93]. De los 33 puntos que pierden la clase, 32 son CORREGIBLE por cavitación (O2) y 1 no converge. PRCC con P(KALINA): C1 ε_cond +0.81, x_b −0.46, T_sumidero −0.43; C4 ε_cond +0.63, x_b −0.39, P_baja +0.32.
-- Implicación: Con el condensador en su tope (ε_cond 0.95) cualquier degradación saca a Húsavík de KALINA; sugiere darle margen con P_baja mayor o un sumidero más frío. Las tolerancias son supuestos de escenario (uniformes; incertidumbre estándar ±a/√3), no mediciones.
+- Evidencia: Escenario A (96 puntos del motor por bloque en dos lotes independientes de 48, LHS de las 10 variables; T_fuente ±5 K, T_sumidero ±3 K, P_alta y P_baja ±5 %, x_b ±0.02, η_t, η_p, ε_HRVG, ε_reg y ε_cond ±0.05, esta última recortada a [0.90, 0.95] por el tope): P(KALINA) 0.47 en C1 [0.37, 0.57], 0.99 en C2 [0.94, 1.00], 1.00 en C3 [0.96, 1.00] y 0.85 en C4 [0.77, 0.91]; los dos lotes coinciden (diferencias de 0.00 a 0.02, |z| ≤ 1.0), así que P(KALINA) es estable con 48 puntos por celda. Escenario C (igual, pero con ε_cond fija en 0.95): P(KALINA) = 1.00 en los cuatro bloques (48 de 48, IC [0.93, 1.00]) y PRCC de ε_cond = 1.00. Barrido fino de ε_cond (10 niveles de 0.90 a 0.95, resto en el centro): C1 es KALINA desde ε_cond 0.922 (CORREGIBLE con m_O2 −0.1 K en 0.911), C4 desde 0.906 (m_O2 −0.0 K en 0.900), y C2 y C3 lo son en todo el barrido. m_O2 con ε_cond = 0.95: 5.5 K (C1), 11.8 K (C2), 14.9 K (C3) y 8.1 K (C4); cada −0.01 de ε_cond resta ≈ 1.1 K en C1 y ≈ 1.8 K en C4. De los 66 puntos que pierden la clase en A, 64 son CORREGIBLE por cavitación (O2) y 2 no convergen.
+- Implicación: Las pérdidas del escenario A no son dispersión general sino una sola variable: la tolerancia que se pueda garantizar en el condensador. Con ε_cond en 0.95 los cuatro centros toleran las demás perturbaciones; el margen de ε_cond antes de salir de KALINA es 0.028 en C1, 0.044 en C4 y ≥ 0.05 en C2 y C3. Las tolerancias son supuestos de escenario (uniformes; incertidumbre estándar ±a/√3), no mediciones.
 - Fuente: Hoja F5 Incertidumbre; resultados/2026-10-17_sens2_U1
 
 **U2 [LÍMITES KALINA, fase C, confianza Media].** Con el doble de tolerancia solo C2 y C3 conservan la clase en la mayoría de los casos; C1 y C4 caen a 17 y 42 %.
 
-- Evidencia: Escenario B (tolerancias ×2): P(KALINA) 0.17 en C1 [0.09, 0.30], 0.90 en C2 [0.78, 0.95], 0.65 en C3 [0.50, 0.77] y 0.42 en C4 [0.29, 0.56]. De 90 puntos que pierden la clase, 86 son CORREGIBLE por cavitación (O2). PRCC: C3 ε_cond +0.83 y T_sumidero −0.47; C4 ε_cond +0.79, T_sumidero −0.66 y x_b −0.47.
+- Evidencia: Escenario B (tolerancias ×2): P(KALINA) 0.17 en C1 [0.09, 0.30], 0.90 en C2 [0.78, 0.95], 0.65 en C3 [0.50, 0.77] y 0.42 en C4 [0.29, 0.56]. De 90 puntos que pierden la clase, 86 son CORREGIBLE por cavitación (O2). PRCC: C3 ε_cond +0.83 y T_sumidero −0.47; C4 ε_cond +0.79, T_sumidero −0.66 y x_b −0.47. En B ε_cond se muestrea en [0.85, 0.95], también de forma unilateral (media 0.90), de modo que la pérdida de clase vuelve a estar dominada por el condensador.
 - Implicación: La robustez ordena a los bloques distinto según la tolerancia (A: C3 > C2 > C4 > C1; B: C2 > C3 > C4 > C1). El condensador y el sumidero son las variables que deciden en C1, C3 y C4.
 - Fuente: Hoja F5 Incertidumbre; resultados/2026-10-17_sens2_U1
 
 **L7 [LÍMITES KALINA, fase A, confianza Media].** La clase KALINA exige m_O2 ≥ 0, es decir, cero margen de cavitación; exigir 3 K de margen reduce mucho la existencia, sobre todo en Húsavík y en el bloque frío.
 
-- Evidencia: El criterio O2 es m_O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tienen m_O2 < 1 K, 7.0 % < 3 K y 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C1). En la propagación de incertidumbre con tolerancias nominales, exigir m_O2 ≥ 3 K baja P(KALINA) de 0.48 a 0.12 en C1, de 0.85 a 0.58 en C4, de 1.00 a 0.94 en C3 y deja 0.98 en C2.
+- Evidencia: El criterio O2 es m_O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tienen m_O2 < 1 K, 7.0 % < 3 K y 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C1). En la propagación de incertidumbre con tolerancias nominales (96 puntos por bloque), exigir m_O2 ≥ 3 K baja P(KALINA) de 0.47 a 0.15 en C1, de 0.85 a 0.57 en C4, de 1.00 a 0.93 en C3 y de 0.99 a 0.99 en C2. Con ε_cond fija en 0.95 y exigiendo m_O2 ≥ 3 K, P(KALINA) es 0.79 en C1 y 1.00 en C2, C3 y C4: la pérdida de región por exigir margen se concentra en Húsavík.
 - Implicación: La región KALINA y los pisos de P_baja de D1 valen para margen cero; un diseño real con margen de NPSH tendría pisos más altos y menos región. El resultado de Húsavík (P = 0.48) depende de aceptar margen cero.
 - Fuente: Revisión final (recalculado desde x1_cargar: m_O2 de cada punto y u1_filas.csv)
 

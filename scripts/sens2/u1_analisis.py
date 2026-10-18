@@ -15,7 +15,9 @@ from scipy.stats import ks_2samp, rankdata
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(os.path.dirname(AQUI))
 sys.path.insert(0, AQUI)
-from u1_puntos import ESCENARIOS, TOL, VARIABLES  # noqa: E402
+from u1_puntos import AMPLIACION, ESCENARIOS, TOL, VARIABLES  # noqa: E402
+
+TODOS = list(ESCENARIOS) + list(AMPLIACION)
 
 OUT = os.path.join(RAIZ, "resultados", "2026-10-17_sens2_U1")
 BANDA_MODELO = 0.7
@@ -62,9 +64,13 @@ def main():
     d["dominante"] = viol.idxmax(axis=1).where(viol.max(axis=1) > 0, "sin")
     nom = nominales()
     filas, sens = [], []
-    for e in ESCENARIOS:
+    d = d.assign(e_ap=d["barrido"].where(d["barrido"] != "U1A2", "U1A2"))
+    for e in TODOS + ["U1Ap"]:
         for c in ("C1", "C2", "C3", "C4"):
-            g = d[(d["barrido"] == e) & (d["centro"] == c)]
+            if e == "U1Ap":
+                g = d[(d["barrido"].isin(["U1A", "U1A2"])) & (d["centro"] == c)]
+            else:
+                g = d[(d["barrido"] == e) & (d["centro"] == c)]
             if not len(g):
                 continue
             k = g[g["kal"]]
@@ -80,12 +86,17 @@ def main():
                 "eta_nominal": nom[c], "eta_p5": q[0], "eta_p50": q[1], "eta_p95": q[2],
                 "eta_p5_modelo": q[0] - BANDA_MODELO, "eta_p95_modelo": q[2] + BANDA_MODELO,
                 "p_eta_1pp": float(((k["eta_pct"] - nom[c]).abs() <= 1.0).mean()) if len(k) else np.nan,
-                "p_fuera_rango": float(k["fuera_rango"].astype(bool).mean()) if len(k) else np.nan})
+                "p_fuera_rango": float(k["fuera_rango"].astype(bool).mean()) if len(k) else np.nan,
+                "p_m1": float((g["kal"] & (g["m_O2"] >= 1.0)).mean()), "p_m3": float((g["kal"] & (g["m_O2"] >= 3.0)).mean()),
+                "p_m5": float((g["kal"] & (g["m_O2"] >= 5.0)).mean())})
             X = g[list(VARIABLES)].to_numpy(float)
             pr = prcc(X, g["kal"].astype(float).to_numpy())
             for j, v in enumerate(VARIABLES):
                 ks = ks_2samp(g[g["kal"]][v], g[~g["kal"]][v]).statistic if 0 < len(k) < len(g) else np.nan
                 sens.append({"escenario": e, "centro": c, "variable": v, "prcc_kalina": pr[j], "ks": ks})
+    esc = d[d["barrido"] == "U1D"]
+    if len(esc):
+        esc[["centro", "eps_cond", "clasificacion", "eta_pct", "m_O2"]].to_csv(os.path.join(OUT, "u1_scan_eps_cond.csv"), index=False)
     pd.DataFrame(filas).to_csv(os.path.join(OUT, "u1_resumen.csv"), index=False)
     pd.DataFrame(sens).to_csv(os.path.join(OUT, "u1_sensibilidad.csv"), index=False)
     r = pd.DataFrame(filas)
