@@ -36,7 +36,7 @@ CAVEATS = [
     "por escenario y bloque (IC de Wilson) y entradas independientes; no se estableció la estabilidad del muestreo "
     "(JCGM 101) y la banda del modelo de propiedades (±0.7 pp) se suma de forma determinista. La importancia por "
     "permutación no se implementó.",
-    "La cavitación (O2) es un margen de subenfriamiento en la bomba, no un cálculo de NPSH; la «confianza» de cada "
+    "La cavitación (O2) exige m_O2 = T_burbuja − T9 ≥ 0 (margen cero, no un cálculo de NPSH; ver L7); la «confianza» de cada "
     "conclusión es robustez dentro del modelo teqp, no validación física.",
 ]
 PROXIMA = [

@@ -121,7 +121,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 **E8 [EQUIPOS, fase B, confianza Media].** El regenerador pierde peso al subir T_fuente: su carga y su conductancia caen mientras el pinch sube.
 
 - Evidencia: Estudio 4 (T_fuente de 70 a 300 °C, mediana de los KALINA por nivel): Q_reg/Q_i de 0.587 a 0.013, UA de 9.53 a 0.34 kW/K por kg/s y pinch de 13.6 a 40.0 K. En los barridos de una variable la carga ya es baja a 150 °C (Q_reg/Q_i 0.121 en C3 y 0.048 en C4) y η se aplana desde ≈150 °C (C3 entre 9.28 y 9.47 %, C4 entre 12.23 y 12.32 %). KALINA aparece entre 90 y 165 °C (C1), 120 y 190 °C (C2), 90 y 290 °C (C3) y 90 y 250 °C (C4).
-- Implicación: Con fuente de 150 °C o más el regenerador mueve menos del 12 % del calor de entrada y η ya no mejora: sugiere dimensionarlo pequeño o evaluar suprimirlo (no se simuló un ciclo sin regenerador). Entre 70 y 110 °C su carga es de 0.27 a 0.59 del calor de entrada.
+- Implicación: Con x_b alto (C1, C3, C4) el regenerador mueve 12 % o menos del calor de entrada desde 150 °C (máximos 0.074, 0.121 y 0.048) y η ya no mejora; con x_b bajo (C2) todavía mueve hasta 0.49 a 150 °C y 0.115 desde 190 °C. En el estudio 4 la mediana es 0.34 a 150 °C, 0.13 a 170 °C y no pasa de 0.04 desde 190 °C. Sugiere dimensionarlo pequeño o evaluar suprimirlo solo con fuentes calientes y x_b alto (no se simuló un ciclo sin regenerador). Entre 70 y 110 °C su carga mediana es de 0.27 a 0.59 del calor de entrada.
 - Fuente: Hoja F4 Regenerador vs T_fuente (estudios 1, 4 y 10)
 
 ### 3.3 MÁXIMA EFICIENCIA (hoja F2 y F4 del libro)
@@ -256,6 +256,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: La robustez ordena a los bloques distinto según la tolerancia (A: C3 > C2 > C4 > C1; B: C2 > C3 > C4 > C1). El condensador y el sumidero son las variables que deciden en C1, C3 y C4.
 - Fuente: Hoja F5 Incertidumbre; resultados/2026-10-17_sens2_U1
 
+**L7 [LÍMITES KALINA, fase A, confianza Media].** La clase KALINA exige m_O2 ≥ 0, es decir, cero margen de cavitación; exigir 3 K de margen reduce mucho la existencia, sobre todo en Húsavík y en el bloque frío.
+
+- Evidencia: El criterio O2 es m_O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tienen m_O2 < 1 K, 7.0 % < 3 K y 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C1). En la propagación de incertidumbre con tolerancias nominales, exigir m_O2 ≥ 3 K baja P(KALINA) de 0.48 a 0.12 en C1, de 0.85 a 0.58 en C4, de 1.00 a 0.94 en C3 y deja 0.98 en C2.
+- Implicación: La región KALINA y los pisos de P_baja de D1 valen para margen cero; un diseño real con margen de NPSH tendría pisos más altos y menos región. El resultado de Húsavík (P = 0.48) depende de aceptar margen cero.
+- Fuente: Revisión final (recalculado desde x1_cargar: m_O2 de cada punto y u1_filas.csv)
+
 ## 4. CORREGIBLE frente a KALINA
 
 Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % por O2) y L2 (rescate). Los CORREGIBLE aportan información sobre la frontera, no sobre el desempeño: su η es optimista porque incumplen la cavitación.
@@ -283,6 +289,6 @@ Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % po
 - 7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.
 - El criterio «distinguible del ruido» es laxo (algún método supera el máximo de 3 variables dummy); la conclusión M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.
 - La propagación de incertidumbre usa tolerancias supuestas (uniformes, ±a/√3 de incertidumbre estándar), 48 puntos por escenario y bloque (IC de Wilson) y entradas independientes; no se estableció la estabilidad del muestreo (JCGM 101) y la banda del modelo de propiedades (±0.7 pp) se suma de forma determinista. La importancia por permutación no se implementó.
-- La cavitación (O2) es un margen de subenfriamiento en la bomba, no un cálculo de NPSH; la «confianza» de cada conclusión es robustez dentro del modelo teqp, no validación física.
+- La cavitación (O2) exige m_O2 = T_burbuja − T9 ≥ 0 (margen cero, no un cálculo de NPSH; ver L7); la «confianza» de cada conclusión es robustez dentro del modelo teqp, no validación física.
 
 *Revisión con la lista de `validate-data` (plugin `data` de Anthropic): duplicados, denominadores, cifras recalculadas de forma independiente, sesgo de selección y gráficos revisados en Excel real. Estado: compartir con los caveats de la sección 6.*
