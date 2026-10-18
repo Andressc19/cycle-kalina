@@ -1,0 +1,289 @@
+bloque,respuesta,variable,tipo,rango_medio,n_metodos,n_sobre_ruido,distinguible,signo
+E3 C1 Husavik,Y1 KALINA (total),T_fuente,real,7.25,8,0,False,+
+E3 C1 Husavik,Y1 KALINA (total),T_sumidero,real,5.5,8,0,False,-
+E3 C1 Husavik,Y1 KALINA (total),P_alta,real,4.0,8,0,False,-
+E3 C1 Husavik,Y1 KALINA (total),P_baja,real,2.625,8,7,True,+
+E3 C1 Husavik,Y1 KALINA (total),x_b,real,1.0,8,8,True,-
+E3 C1 Husavik,Y1 KALINA (total),eta_t,real,9.375,8,0,False,-
+E3 C1 Husavik,Y1 KALINA (total),eps_hrvg,real,9.875,8,0,False,-
+E3 C1 Husavik,Y1 KALINA (total),eps_reg,real,9.625,8,0,False,+
+E3 C1 Husavik,Y1 KALINA (total),eps_cond,real,2.75,8,4,True,+
+E3 C1 Husavik,Y1 KALINA (total),dummy_1,dummy,6.75,8,0,False,+
+E3 C1 Husavik,Y1 KALINA (total),dummy_2,dummy,8.75,8,0,False,-
+E3 C1 Husavik,Y1 KALINA (total),dummy_3,dummy,10.5,8,0,False,-
+E3 C1 Husavik,Y2 eta (%),T_fuente,real,3.667,6,3,True,+
+E3 C1 Husavik,Y2 eta (%),T_sumidero,real,11.0,6,1,True,+
+E3 C1 Husavik,Y2 eta (%),P_alta,real,4.0,6,4,True,+
+E3 C1 Husavik,Y2 eta (%),P_baja,real,3.167,6,4,True,-
+E3 C1 Husavik,Y2 eta (%),x_b,real,5.5,6,3,True,+
+E3 C1 Husavik,Y2 eta (%),eta_t,real,1.167,6,5,True,+
+E3 C1 Husavik,Y2 eta (%),eps_hrvg,real,8.5,6,3,True,+
+E3 C1 Husavik,Y2 eta (%),eps_reg,real,5.5,6,3,True,+
+E3 C1 Husavik,Y2 eta (%),eps_cond,real,9.167,6,0,False,+
+E3 C1 Husavik,Y2 eta (%),dummy_1,dummy,10.167,6,1,False,+
+E3 C1 Husavik,Y2 eta (%),dummy_2,dummy,6.833,6,1,False,-
+E3 C1 Husavik,Y2 eta (%),dummy_3,dummy,9.333,6,1,False,+
+E3 C1 Husavik,Y3 W_net/m_b,T_fuente,real,1.0,6,6,True,+
+E3 C1 Husavik,Y3 W_net/m_b,T_sumidero,real,10.5,6,1,True,-
+E3 C1 Husavik,Y3 W_net/m_b,P_alta,real,4.833,6,2,True,-
+E3 C1 Husavik,Y3 W_net/m_b,P_baja,real,6.0,6,4,True,-
+E3 C1 Husavik,Y3 W_net/m_b,x_b,real,5.833,6,4,True,+
+E3 C1 Husavik,Y3 W_net/m_b,eta_t,real,3.167,6,5,True,+
+E3 C1 Husavik,Y3 W_net/m_b,eps_hrvg,real,4.167,6,5,True,+
+E3 C1 Husavik,Y3 W_net/m_b,eps_reg,real,7.667,6,1,True,+
+E3 C1 Husavik,Y3 W_net/m_b,eps_cond,real,7.5,6,2,True,+
+E3 C1 Husavik,Y3 W_net/m_b,dummy_1,dummy,10.333,6,1,False,+
+E3 C1 Husavik,Y3 W_net/m_b,dummy_2,dummy,8.0,6,2,False,-
+E3 C1 Husavik,Y3 W_net/m_b,dummy_3,dummy,9.0,6,2,False,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,T_fuente,real,4.333,6,3,True,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,T_sumidero,real,9.667,6,1,True,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,P_alta,real,3.833,6,4,True,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,P_baja,real,3.0,6,5,True,-
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,x_b,real,4.333,6,3,True,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,eta_t,real,1.0,6,6,True,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,eps_hrvg,real,8.5,6,2,True,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,eps_reg,real,6.5,6,3,True,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,eps_cond,real,8.833,6,0,False,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,dummy_1,dummy,10.667,6,1,False,+
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,dummy_2,dummy,7.167,6,1,False,-
+E3 C1 Husavik,Y2 eta (%) dentro del rango experimental,dummy_3,dummy,10.167,6,1,False,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,T_fuente,real,1.167,6,6,True,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,T_sumidero,real,9.833,6,1,True,-
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,P_alta,real,5.0,6,1,True,-
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,P_baja,real,4.667,6,3,True,-
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,x_b,real,3.167,6,4,True,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,eta_t,real,4.667,6,3,True,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,eps_hrvg,real,6.0,6,3,True,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,eps_reg,real,7.833,6,1,True,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,eps_cond,real,8.667,6,2,True,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,dummy_1,dummy,10.833,6,1,False,+
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,dummy_2,dummy,7.167,6,1,False,-
+E3 C1 Husavik,Y3 W_net/m_b dentro del rango experimental,dummy_3,dummy,9.0,6,1,False,+
+E3 C1 Husavik,Y4 D CORREGIBLE,T_fuente,real,2.333,6,5,True,+
+E3 C1 Husavik,Y4 D CORREGIBLE,T_sumidero,real,8.667,6,1,True,+
+E3 C1 Husavik,Y4 D CORREGIBLE,P_alta,real,5.667,6,2,True,-
+E3 C1 Husavik,Y4 D CORREGIBLE,P_baja,real,2.333,6,5,True,-
+E3 C1 Husavik,Y4 D CORREGIBLE,x_b,real,4.167,6,4,True,-
+E3 C1 Husavik,Y4 D CORREGIBLE,eta_t,real,7.167,6,1,True,+
+E3 C1 Husavik,Y4 D CORREGIBLE,eps_hrvg,real,11.167,6,0,False,+
+E3 C1 Husavik,Y4 D CORREGIBLE,eps_reg,real,8.5,6,1,True,-
+E3 C1 Husavik,Y4 D CORREGIBLE,eps_cond,real,2.667,6,1,True,-
+E3 C1 Husavik,Y4 D CORREGIBLE,dummy_1,dummy,8.667,6,1,False,-
+E3 C1 Husavik,Y4 D CORREGIBLE,dummy_2,dummy,9.0,6,2,False,-
+E3 C1 Husavik,Y4 D CORREGIBLE,dummy_3,dummy,7.667,6,1,False,+
+E3 C2 ancla A*,Y1 KALINA (total),T_fuente,real,4.5,8,4,True,-
+E3 C2 ancla A*,Y1 KALINA (total),T_sumidero,real,4.5,8,3,True,-
+E3 C2 ancla A*,Y1 KALINA (total),P_alta,real,6.75,8,0,False,-
+E3 C2 ancla A*,Y1 KALINA (total),P_baja,real,1.75,8,8,True,+
+E3 C2 ancla A*,Y1 KALINA (total),x_b,real,2.625,8,8,True,-
+E3 C2 ancla A*,Y1 KALINA (total),eta_t,real,10.125,8,0,False,-
+E3 C2 ancla A*,Y1 KALINA (total),eps_hrvg,real,9.375,8,0,False,-
+E3 C2 ancla A*,Y1 KALINA (total),eps_reg,real,8.75,8,0,False,+
+E3 C2 ancla A*,Y1 KALINA (total),eps_cond,real,1.625,8,8,True,+
+E3 C2 ancla A*,Y1 KALINA (total),dummy_1,dummy,10.0,8,0,False,-
+E3 C2 ancla A*,Y1 KALINA (total),dummy_2,dummy,8.5,8,0,False,+
+E3 C2 ancla A*,Y1 KALINA (total),dummy_3,dummy,9.5,8,0,False,+
+E3 C2 ancla A*,Y2 eta (%),T_fuente,real,3.667,6,5,True,+
+E3 C2 ancla A*,Y2 eta (%),T_sumidero,real,9.5,6,1,True,+
+E3 C2 ancla A*,Y2 eta (%),P_alta,real,7.833,6,2,True,+
+E3 C2 ancla A*,Y2 eta (%),P_baja,real,3.0,6,6,True,-
+E3 C2 ancla A*,Y2 eta (%),x_b,real,6.667,6,3,True,+
+E3 C2 ancla A*,Y2 eta (%),eta_t,real,1.333,6,6,True,+
+E3 C2 ancla A*,Y2 eta (%),eps_hrvg,real,7.0,6,3,True,+
+E3 C2 ancla A*,Y2 eta (%),eps_reg,real,4.0,6,4,True,+
+E3 C2 ancla A*,Y2 eta (%),eps_cond,real,7.5,6,3,True,-
+E3 C2 ancla A*,Y2 eta (%),dummy_1,dummy,7.833,6,1,False,+
+E3 C2 ancla A*,Y2 eta (%),dummy_2,dummy,8.667,6,1,False,+
+E3 C2 ancla A*,Y2 eta (%),dummy_3,dummy,11.0,6,1,False,-
+E3 C2 ancla A*,Y3 W_net/m_b,T_fuente,real,1.0,6,6,True,+
+E3 C2 ancla A*,Y3 W_net/m_b,T_sumidero,real,11.333,6,1,True,+
+E3 C2 ancla A*,Y3 W_net/m_b,P_alta,real,7.833,6,3,True,-
+E3 C2 ancla A*,Y3 W_net/m_b,P_baja,real,5.667,6,3,True,-
+E3 C2 ancla A*,Y3 W_net/m_b,x_b,real,5.0,6,3,True,+
+E3 C2 ancla A*,Y3 W_net/m_b,eta_t,real,3.333,6,5,True,+
+E3 C2 ancla A*,Y3 W_net/m_b,eps_hrvg,real,4.333,6,3,True,+
+E3 C2 ancla A*,Y3 W_net/m_b,eps_reg,real,7.833,6,2,True,+
+E3 C2 ancla A*,Y3 W_net/m_b,eps_cond,real,5.833,6,2,True,-
+E3 C2 ancla A*,Y3 W_net/m_b,dummy_1,dummy,6.5,6,1,False,-
+E3 C2 ancla A*,Y3 W_net/m_b,dummy_2,dummy,8.667,6,1,False,+
+E3 C2 ancla A*,Y3 W_net/m_b,dummy_3,dummy,10.667,6,1,False,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,T_fuente,real,3.5,6,4,True,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,T_sumidero,real,10.167,6,2,True,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,P_alta,real,8.833,6,2,True,-
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,P_baja,real,2.333,6,6,True,-
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,x_b,real,4.5,6,4,True,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,eta_t,real,1.5,6,5,True,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,eps_hrvg,real,8.5,6,3,True,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,eps_reg,real,5.667,6,3,True,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,eps_cond,real,6.5,6,1,True,-
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,dummy_1,dummy,8.667,6,2,False,-
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,dummy_2,dummy,9.333,6,2,False,+
+E3 C2 ancla A*,Y2 eta (%) dentro del rango experimental,dummy_3,dummy,8.5,6,1,False,-
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,T_fuente,real,1.167,6,6,True,+
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,T_sumidero,real,10.833,6,1,True,+
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,P_alta,real,9.5,6,3,True,-
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,P_baja,real,4.667,6,3,True,-
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,x_b,real,3.833,6,5,True,+
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,eta_t,real,4.167,6,3,True,+
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,eps_hrvg,real,6.0,6,3,True,+
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,eps_reg,real,8.667,6,1,True,+
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,eps_cond,real,4.167,6,2,True,-
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,dummy_1,dummy,6.833,6,1,False,-
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,dummy_2,dummy,10.5,6,1,False,-
+E3 C2 ancla A*,Y3 W_net/m_b dentro del rango experimental,dummy_3,dummy,7.667,6,1,False,+
+E3 C2 ancla A*,Y4 D CORREGIBLE,T_fuente,real,1.167,6,5,True,+
+E3 C2 ancla A*,Y4 D CORREGIBLE,T_sumidero,real,4.5,6,3,True,+
+E3 C2 ancla A*,Y4 D CORREGIBLE,P_alta,real,6.0,6,4,True,-
+E3 C2 ancla A*,Y4 D CORREGIBLE,P_baja,real,4.667,6,3,True,-
+E3 C2 ancla A*,Y4 D CORREGIBLE,x_b,real,6.5,6,3,True,+
+E3 C2 ancla A*,Y4 D CORREGIBLE,eta_t,real,7.833,6,1,True,-
+E3 C2 ancla A*,Y4 D CORREGIBLE,eps_hrvg,real,7.667,6,2,True,+
+E3 C2 ancla A*,Y4 D CORREGIBLE,eps_reg,real,10.333,6,1,True,-
+E3 C2 ancla A*,Y4 D CORREGIBLE,eps_cond,real,3.833,6,3,True,-
+E3 C2 ancla A*,Y4 D CORREGIBLE,dummy_1,dummy,8.833,6,1,False,+
+E3 C2 ancla A*,Y4 D CORREGIBLE,dummy_2,dummy,7.667,6,1,False,+
+E3 C2 ancla A*,Y4 D CORREGIBLE,dummy_3,dummy,9.0,6,1,False,+
+E14 C3 caliente 150 C,Y1 KALINA (total),T_fuente,real,5.5,8,4,True,+
+E14 C3 caliente 150 C,Y1 KALINA (total),T_sumidero,real,4.5,8,3,True,-
+E14 C3 caliente 150 C,Y1 KALINA (total),P_alta,real,10.5,8,0,False,-
+E14 C3 caliente 150 C,Y1 KALINA (total),P_baja,real,1.0,8,8,True,+
+E14 C3 caliente 150 C,Y1 KALINA (total),x_b,real,3.625,8,4,True,-
+E14 C3 caliente 150 C,Y1 KALINA (total),eta_t,real,7.875,8,0,False,+
+E14 C3 caliente 150 C,Y1 KALINA (total),eps_hrvg,real,4.0,8,0,False,-
+E14 C3 caliente 150 C,Y1 KALINA (total),eps_reg,real,8.75,8,0,False,+
+E14 C3 caliente 150 C,Y1 KALINA (total),eps_cond,real,4.375,8,1,True,+
+E14 C3 caliente 150 C,Y1 KALINA (total),dummy_1,dummy,8.625,8,1,False,-
+E14 C3 caliente 150 C,Y1 KALINA (total),dummy_2,dummy,10.0,8,1,False,-
+E14 C3 caliente 150 C,Y1 KALINA (total),dummy_3,dummy,9.25,8,0,False,-
+E14 C3 caliente 150 C,Y2 eta (%),T_fuente,real,6.0,6,3,True,+
+E14 C3 caliente 150 C,Y2 eta (%),T_sumidero,real,11.333,6,1,True,-
+E14 C3 caliente 150 C,Y2 eta (%),P_alta,real,2.0,6,6,True,+
+E14 C3 caliente 150 C,Y2 eta (%),P_baja,real,6.5,6,3,True,-
+E14 C3 caliente 150 C,Y2 eta (%),x_b,real,2.167,6,6,True,+
+E14 C3 caliente 150 C,Y2 eta (%),eta_t,real,3.0,6,5,True,+
+E14 C3 caliente 150 C,Y2 eta (%),eps_hrvg,real,6.333,6,0,False,+
+E14 C3 caliente 150 C,Y2 eta (%),eps_reg,real,6.667,6,0,False,+
+E14 C3 caliente 150 C,Y2 eta (%),eps_cond,real,9.667,6,0,False,-
+E14 C3 caliente 150 C,Y2 eta (%),dummy_1,dummy,6.333,6,1,False,-
+E14 C3 caliente 150 C,Y2 eta (%),dummy_2,dummy,9.667,6,1,False,+
+E14 C3 caliente 150 C,Y2 eta (%),dummy_3,dummy,8.333,6,1,False,-
+E14 C3 caliente 150 C,Y3 W_net/m_b,T_fuente,real,1.833,6,6,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b,T_sumidero,real,9.5,6,1,True,-
+E14 C3 caliente 150 C,Y3 W_net/m_b,P_alta,real,7.167,6,3,True,-
+E14 C3 caliente 150 C,Y3 W_net/m_b,P_baja,real,7.833,6,3,True,-
+E14 C3 caliente 150 C,Y3 W_net/m_b,x_b,real,1.833,6,5,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b,eta_t,real,4.5,6,3,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b,eps_hrvg,real,4.0,6,5,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b,eps_reg,real,7.667,6,1,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b,eps_cond,real,8.833,6,0,False,-
+E14 C3 caliente 150 C,Y3 W_net/m_b,dummy_1,dummy,7.333,6,1,False,-
+E14 C3 caliente 150 C,Y3 W_net/m_b,dummy_2,dummy,9.0,6,1,False,+
+E14 C3 caliente 150 C,Y3 W_net/m_b,dummy_3,dummy,8.5,6,1,False,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,T_fuente,real,7.333,6,2,True,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,T_sumidero,real,7.5,6,2,True,-
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,P_alta,real,2.0,6,4,True,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,P_baja,real,5.167,6,5,True,-
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,x_b,real,2.0,6,6,True,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,eta_t,real,3.0,6,6,True,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,eps_hrvg,real,7.0,6,1,True,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,eps_reg,real,7.167,6,1,True,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,eps_cond,real,9.167,6,0,False,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,dummy_1,dummy,8.5,6,2,False,-
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,dummy_2,dummy,11.333,6,1,False,+
+E14 C3 caliente 150 C,Y2 eta (%) dentro del rango experimental,dummy_3,dummy,7.833,6,2,False,-
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,T_fuente,real,3.167,6,6,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,T_sumidero,real,8.5,6,1,True,-
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,P_alta,real,5.333,6,2,True,-
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,P_baja,real,3.667,6,5,True,-
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,x_b,real,1.0,6,6,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,eta_t,real,4.167,6,4,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,eps_hrvg,real,4.5,6,3,True,+
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,eps_reg,real,10.0,6,0,False,+
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,eps_cond,real,8.833,6,0,False,-
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,dummy_1,dummy,9.167,6,2,False,-
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,dummy_2,dummy,10.833,6,1,False,+
+E14 C3 caliente 150 C,Y3 W_net/m_b dentro del rango experimental,dummy_3,dummy,8.833,6,2,False,+
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,T_fuente,real,4.833,6,3,True,+
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,T_sumidero,real,4.167,6,1,True,+
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,P_alta,real,9.5,6,1,True,-
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,P_baja,real,2.667,6,5,True,-
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,x_b,real,8.0,6,2,True,-
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,eta_t,real,10.167,6,1,True,+
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,eps_hrvg,real,5.833,6,1,True,+
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,eps_reg,real,6.833,6,1,True,+
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,eps_cond,real,2.667,6,1,True,-
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,dummy_1,dummy,8.0,6,1,False,-
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,dummy_2,dummy,8.0,6,1,False,-
+E14 C3 caliente 150 C,Y4 D CORREGIBLE,dummy_3,dummy,7.333,6,1,False,-
+E14 C4 frio 110 C,Y1 KALINA (total),T_fuente,real,1.0,8,7,True,+
+E14 C4 frio 110 C,Y1 KALINA (total),T_sumidero,real,6.125,8,0,False,-
+E14 C4 frio 110 C,Y1 KALINA (total),P_alta,real,5.375,8,0,False,-
+E14 C4 frio 110 C,Y1 KALINA (total),P_baja,real,2.0,8,3,True,+
+E14 C4 frio 110 C,Y1 KALINA (total),x_b,real,5.375,8,0,False,-
+E14 C4 frio 110 C,Y1 KALINA (total),eta_t,real,10.125,8,0,False,-
+E14 C4 frio 110 C,Y1 KALINA (total),eps_hrvg,real,11.125,8,0,False,-
+E14 C4 frio 110 C,Y1 KALINA (total),eps_reg,real,10.875,8,0,False,+
+E14 C4 frio 110 C,Y1 KALINA (total),eps_cond,real,3.25,8,0,False,+
+E14 C4 frio 110 C,Y1 KALINA (total),dummy_1,dummy,7.125,8,0,False,+
+E14 C4 frio 110 C,Y1 KALINA (total),dummy_2,dummy,8.5,8,0,False,+
+E14 C4 frio 110 C,Y1 KALINA (total),dummy_3,dummy,7.125,8,0,False,+
+E14 C4 frio 110 C,Y2 eta (%),T_fuente,real,4.667,6,3,True,+
+E14 C4 frio 110 C,Y2 eta (%),T_sumidero,real,10.833,6,1,True,+
+E14 C4 frio 110 C,Y2 eta (%),P_alta,real,1.833,6,6,True,+
+E14 C4 frio 110 C,Y2 eta (%),P_baja,real,6.0,6,3,True,-
+E14 C4 frio 110 C,Y2 eta (%),x_b,real,2.667,6,5,True,+
+E14 C4 frio 110 C,Y2 eta (%),eta_t,real,3.0,6,5,True,+
+E14 C4 frio 110 C,Y2 eta (%),eps_hrvg,real,7.333,6,2,True,+
+E14 C4 frio 110 C,Y2 eta (%),eps_reg,real,7.5,6,1,True,+
+E14 C4 frio 110 C,Y2 eta (%),eps_cond,real,10.5,6,0,False,-
+E14 C4 frio 110 C,Y2 eta (%),dummy_1,dummy,7.167,6,1,False,-
+E14 C4 frio 110 C,Y2 eta (%),dummy_2,dummy,9.333,6,1,False,+
+E14 C4 frio 110 C,Y2 eta (%),dummy_3,dummy,7.167,6,1,False,-
+E14 C4 frio 110 C,Y3 W_net/m_b,T_fuente,real,2.0,6,6,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b,T_sumidero,real,8.167,6,3,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b,P_alta,real,7.333,6,3,True,-
+E14 C4 frio 110 C,Y3 W_net/m_b,P_baja,real,7.167,6,5,True,-
+E14 C4 frio 110 C,Y3 W_net/m_b,x_b,real,1.333,6,6,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b,eta_t,real,5.167,6,5,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b,eps_hrvg,real,3.333,6,6,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b,eps_reg,real,9.5,6,2,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b,eps_cond,real,8.333,6,1,True,-
+E14 C4 frio 110 C,Y3 W_net/m_b,dummy_1,dummy,8.167,6,3,False,-
+E14 C4 frio 110 C,Y3 W_net/m_b,dummy_2,dummy,9.833,6,2,False,+
+E14 C4 frio 110 C,Y3 W_net/m_b,dummy_3,dummy,7.667,6,2,False,-
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,T_fuente,real,4.667,6,3,True,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,T_sumidero,real,10.833,6,1,True,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,P_alta,real,1.833,6,6,True,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,P_baja,real,6.0,6,3,True,-
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,x_b,real,2.667,6,5,True,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,eta_t,real,3.0,6,5,True,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,eps_hrvg,real,7.333,6,2,True,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,eps_reg,real,7.5,6,1,True,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,eps_cond,real,10.5,6,0,False,-
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,dummy_1,dummy,7.167,6,1,False,-
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,dummy_2,dummy,9.333,6,1,False,+
+E14 C4 frio 110 C,Y2 eta (%) dentro del rango experimental,dummy_3,dummy,7.167,6,1,False,-
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,T_fuente,real,2.0,6,6,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,T_sumidero,real,8.167,6,3,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,P_alta,real,7.333,6,3,True,-
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,P_baja,real,7.167,6,5,True,-
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,x_b,real,1.333,6,6,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,eta_t,real,5.167,6,5,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,eps_hrvg,real,3.333,6,6,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,eps_reg,real,9.5,6,2,True,+
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,eps_cond,real,8.333,6,1,True,-
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,dummy_1,dummy,8.167,6,3,False,-
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,dummy_2,dummy,9.833,6,2,False,+
+E14 C4 frio 110 C,Y3 W_net/m_b dentro del rango experimental,dummy_3,dummy,7.667,6,2,False,-
+E14 C4 frio 110 C,Y4 D CORREGIBLE,T_fuente,real,7.0,6,0,False,+
+E14 C4 frio 110 C,Y4 D CORREGIBLE,T_sumidero,real,4.667,6,0,False,+
+E14 C4 frio 110 C,Y4 D CORREGIBLE,P_alta,real,9.333,6,0,False,-
+E14 C4 frio 110 C,Y4 D CORREGIBLE,P_baja,real,5.667,6,0,False,-
+E14 C4 frio 110 C,Y4 D CORREGIBLE,x_b,real,2.167,6,1,True,-
+E14 C4 frio 110 C,Y4 D CORREGIBLE,eta_t,real,7.167,6,0,False,-
+E14 C4 frio 110 C,Y4 D CORREGIBLE,eps_hrvg,real,7.833,6,0,False,+
+E14 C4 frio 110 C,Y4 D CORREGIBLE,eps_reg,real,6.333,6,0,False,+
+E14 C4 frio 110 C,Y4 D CORREGIBLE,eps_cond,real,7.833,6,0,False,-
+E14 C4 frio 110 C,Y4 D CORREGIBLE,dummy_1,dummy,7.667,6,0,False,-
+E14 C4 frio 110 C,Y4 D CORREGIBLE,dummy_2,dummy,9.0,6,0,False,+
+E14 C4 frio 110 C,Y4 D CORREGIBLE,dummy_3,dummy,3.333,6,0,False,-

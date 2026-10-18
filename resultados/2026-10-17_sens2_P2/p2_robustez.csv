@@ -1,0 +1,87 @@
+seccion,centro,clave,subclave,valor,txt
+comparacion,todos,dist_frontera,Top10 vs resto,0.35742753623188406,med_top=0.1383;med_resto=0.3684;ks_p=9.965e-22;n_top=207;n_resto=1840
+univariado_top,todos,variable,P_baja,73.0,
+univariado_top,todos,variable,T_fuente,31.0,
+univariado_top,todos,variable,x_b,9.0,
+univariado_top,todos,variable,P_alta,6.0,
+univariado_top,todos,variable,eps_hrvg,2.0,
+top10_eta,todos,lugar,1,14.8212390561518,id=N1-T170-14;dist=0.2719;rango=fuera del rango experimental;atipico=no
+top10_eta,todos,lugar,2,14.533832271613653,id=N10-C3-0016;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,3,14.382430155414768,id=N7B-C3-B3-036;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,4,14.0583966269791,id=N7B-C3-B3-029;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,5,14.01029183068353,id=C1-B3-0127;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,6,13.94995363458362,id=C1-B5-0228;dist=0.6364;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,7,13.92493651629995,id=C1-B3-0120;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,8,13.84980130744446,id=C1-B5-0221;dist=0.5455;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,9,13.7309833196189,id=N10-C1-0002;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,todos,lugar,10,13.67122002083948,id=C1-LHS-0186;dist=0.6749;rango=dentro del rango experimental;atipico=no
+comparacion,C1 Husavik,dist_frontera,Top10 vs resto,0.47357203751065646,med_top=0.1133;med_resto=0.3636;ks_p=5.321e-09;n_top=46;n_resto=408
+univariado_top,C1 Husavik,variable,P_baja,13.0,
+univariado_top,C1 Husavik,variable,T_fuente,7.0,
+univariado_top,C1 Husavik,variable,x_b,2.0,
+top10_eta,C1 Husavik,lugar,1,14.01029183068353,id=C1-B3-0127;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,2,13.94995363458362,id=C1-B5-0228;dist=0.6364;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,3,13.92493651629995,id=C1-B3-0120;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,4,13.84980130744446,id=C1-B5-0221;dist=0.5455;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,5,13.7309833196189,id=N10-C1-0002;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,6,13.67122002083948,id=C1-LHS-0186;dist=0.6749;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,7,13.59036428619289,id=C1-B5-0214;dist=0.3636;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,8,13.556527486951367,id=C1-B3-0113;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,9,13.46357099813214,id=C1-eta_t-0092;dist=0.2727;rango=dentro del rango experimental;atipico=no
+top10_eta,C1 Husavik,lugar,10,13.34548611857382,id=C1-B2-0052;dist=0.1077;rango=dentro del rango experimental;atipico=no
+comparacion,C2 ancla A*,dist_frontera,Top10 vs resto,0.18895811240721105,med_top=0.1957;med_resto=0.3664;ks_p=0.1234;n_top=41;n_resto=368
+univariado_top,C2 ancla A*,variable,T_fuente,9.0,
+univariado_top,C2 ancla A*,variable,P_baja,8.0,
+univariado_top,C2 ancla A*,variable,P_alta,1.0,
+top10_eta,C2 ancla A*,lugar,1,13.120411284260667,id=C2-LHS-0124;dist=0.8755;rango=fuera del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,2,12.764216230001049,id=C2-LHS-0186;dist=0.7814;rango=fuera del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,3,12.37423609427077,id=C2-LHS-0005;dist=0.8843;rango=dentro del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,4,12.21170083498853,id=C2-LHS-0067;dist=0.7611;rango=dentro del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,5,12.01955097579456,id=C2-B5-0228;dist=0.61;rango=dentro del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,6,11.76154773639258,id=C2-B1-0029;dist=0.02632;rango=fuera del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,7,11.68378667829615,id=C2-B1-0037;dist=0.02632;rango=fuera del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,8,11.30634673447721,id=C2-B5-0227;dist=0.5191;rango=dentro del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,9,11.23936542311886,id=C2-T_fuente-0020;dist=0.03349;rango=fuera del rango experimental;atipico=no
+top10_eta,C2 ancla A*,lugar,10,11.217950727365,id=C2-B6-0256;dist=0.1244;rango=fuera del rango experimental;atipico=no
+comparacion,C3 caliente 150 C,dist_frontera,Top10 vs resto,0.5085498409331919,med_top=0.1564;med_resto=0.4273;ks_p=2.663e-09;n_top=41;n_resto=368
+univariado_top,C3 caliente 150 C,variable,P_baja,22.0,
+univariado_top,C3 caliente 150 C,variable,x_b,4.0,
+univariado_top,C3 caliente 150 C,variable,P_alta,4.0,
+top10_eta,C3 caliente 150 C,lugar,1,14.533832271613653,id=N10-C3-0016;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,2,14.382430155414768,id=N7B-C3-B3-036;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,3,14.0583966269791,id=N7B-C3-B3-029;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,4,13.55927407718629,id=N7B-C3-B3-022;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,5,13.27301953670702,id=N10-C3-0017;dist=0.1579;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,6,13.25858132835249,id=N7B-C3-B2-003;dist=0.1077;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,7,13.032850262684658,id=N7B-C3-B3-037;dist=0.1579;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,8,12.85943198262628,id=N7B-C3-B3-015;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,9,12.7986092559084,id=N7A-C3-P_baja-005;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,C3 caliente 150 C,lugar,10,12.73102417112576,id=N10-C3-0024;dist=0.07895;rango=dentro del rango experimental;atipico=no
+comparacion,C4 frio 110 C,dist_frontera,Top10 vs resto,0.4109272510435301,med_top=0.1561;med_resto=0.4545;ks_p=7.439e-06;n_top=39;n_resto=344
+univariado_top,C4 frio 110 C,variable,T_fuente,15.0,
+univariado_top,C4 frio 110 C,variable,P_baja,3.0,
+univariado_top,C4 frio 110 C,variable,x_b,3.0,
+univariado_top,C4 frio 110 C,variable,eps_hrvg,2.0,
+univariado_top,C4 frio 110 C,variable,P_alta,1.0,
+top10_eta,C4 frio 110 C,lugar,1,13.23358930376178,id=N7B-C4-B1-045;dist=0.06522;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,2,12.97818402828671,id=N9-C4-B5-0048;dist=0.6364;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,3,12.91014561121289,id=N7B-C4-B2-010;dist=0.07692;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,4,12.865569181481328,id=N9-C4-B5-0041;dist=0.5455;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,5,12.64461951829837,id=N9-C4-B5-0034;dist=0.3636;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,6,12.61078429166506,id=N7B-C4-B3-031;dist=0.05571;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,7,12.53623120778162,id=N7A-C4-eta_t-011;dist=0.2727;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,8,12.45791845538334,id=N7B-C4-B3-024;dist=0.07895;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,9,12.42919935443496,id=N9-C4-B5-0021;dist=0.3636;rango=dentro del rango experimental;atipico=no
+top10_eta,C4 frio 110 C,lugar,10,12.40619982862926,id=N7B-C4-B1-031;dist=0.06522;rango=dentro del rango experimental;atipico=no
+comparacion,Sin centro (muestreo o malla),dist_frontera,Top10 vs resto,0.53125,med_top=0.1053;med_resto=0.3421;ks_p=6.376e-10;n_top=40;n_resto=352
+univariado_top,Sin centro (muestreo o malla),variable,P_baja,27.0,
+top10_eta,Sin centro (muestreo o malla),lugar,1,14.8212390561518,id=N1-T170-14;dist=0.2719;rango=fuera del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,2,13.59983606645574,id=N1-T150-01;dist=0.3118;rango=dentro del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,3,13.14111346796144,id=N5-T150-S05-03;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,4,12.683650066558313,id=N5-T130-S05-03;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,5,12.681392792314591,id=N1-T190-01;dist=0.2685;rango=fuera del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,6,12.08955696691403,id=N5-T150-S10-04;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,7,11.93374892464398,id=N5-T170-S05-04;dist=0.05263;rango=fuera del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,8,11.9077613281665,id=N5-T150-S05-04;dist=0.1053;rango=dentro del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,9,11.89680075069895,id=N5-T110-S10-03;dist=0.05263;rango=dentro del rango experimental;atipico=no
+top10_eta,Sin centro (muestreo o malla),lugar,10,11.83980342191505,id=N5-T200-S05-04;dist=0.05263;rango=fuera del rango experimental;atipico=no

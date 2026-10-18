@@ -1,0 +1,31 @@
+centro,variable,forma,direccion,valor_frontera,valor_anterior,clase_anterior,frac_anterior,n_anterior,valor_siguiente,clase_siguiente,frac_siguiente,n_siguiente
+C1 Husavik,P_baja,escalon,a KALINA,550.0,500.0,no-KALINA,0.0,1,600.0,KALINA,1.0,1
+C1 Husavik,T_fuente,ventana,a KALINA,358.15,353.15,no-KALINA,0.0,1,363.15,KALINA,1.0,1
+C1 Husavik,T_fuente,ventana,a no-KALINA,440.65,438.15,KALINA,1.0,1,443.15,no-KALINA,0.0,1
+C1 Husavik,T_sumidero,escalon,a no-KALINA,284.4,283.15,KALINA,1.0,1,285.65,no-KALINA,0.0,1
+C1 Husavik,x_b,ventana,a KALINA,0.525,0.5,no-KALINA,0.0,1,0.55,KALINA,1.0,1
+C1 Husavik,x_b,ventana,a no-KALINA,0.925,0.9,KALINA,1.0,1,0.95,no-KALINA,0.0,1
+C2 ancla A*,P_alta,escalon,a no-KALINA,3875.0,3750.0,KALINA,1.0,1,4000.0,no-KALINA,0.0,1
+C2 ancla A*,P_baja,escalon,a KALINA,350.0,300.0,no-KALINA,0.0,1,400.0,KALINA,1.0,1
+C2 ancla A*,T_fuente,ventana,a KALINA,390.65,388.15,no-KALINA,0.0,1,393.15,KALINA,1.0,1
+C2 ancla A*,T_fuente,ventana,a no-KALINA,468.15,463.15,KALINA,1.0,1,473.15,no-KALINA,0.0,1
+C2 ancla A*,eps_cond,escalon,a KALINA,0.775,0.75,no-KALINA,0.0,1,0.8,KALINA,1.0,1
+C2 ancla A*,x_b,ventana,a KALINA,0.42500000000000004,0.4,no-KALINA,0.0,1,0.45,KALINA,1.0,1
+C2 ancla A*,x_b,ventana,a no-KALINA,0.575,0.55,KALINA,1.0,1,0.6,no-KALINA,0.0,1
+C3 caliente 150 C,P_baja,escalon,a KALINA,550.0,500.0,no-KALINA,0.0,1,600.0,KALINA,1.0,1
+C3 caliente 150 C,T_fuente,ventana,a KALINA,358.15,353.15,no-KALINA,0.0,1,363.15,KALINA,1.0,1
+C3 caliente 150 C,T_fuente,ventana,a no-KALINA,568.15,563.15,KALINA,1.0,1,573.15,no-KALINA,0.0,1
+C3 caliente 150 C,T_sumidero,escalon,a no-KALINA,296.9,295.65,KALINA,1.0,1,298.15,no-KALINA,0.0,1
+C3 caliente 150 C,eps_cond,escalon,a KALINA,0.875,0.85,no-KALINA,0.0,1,0.9,KALINA,1.0,1
+C3 caliente 150 C,x_b,escalon,a KALINA,0.375,0.35,no-KALINA,0.0,1,0.4,KALINA,1.0,1
+C4 frio 110 C,P_alta,ventana,a no-KALINA,1625.0,1500.0,KALINA,1.0,1,1750.0,no-KALINA,0.0,1
+C4 frio 110 C,P_alta,ventana,a KALINA,1875.0,1750.0,no-KALINA,0.0,1,2000.0,KALINA,1.0,1
+C4 frio 110 C,P_baja,escalon,a KALINA,750.0,700.0,no-KALINA,0.0,1,800.0,KALINA,1.0,1
+C4 frio 110 C,T_fuente,ventana,a KALINA,358.15,353.15,no-KALINA,0.0,1,363.15,KALINA,1.0,1
+C4 frio 110 C,T_fuente,ventana,a no-KALINA,528.15,523.15,KALINA,1.0,1,533.15,no-KALINA,0.0,1
+C4 frio 110 C,T_sumidero,escalon,a no-KALINA,291.9,290.65,KALINA,1.0,1,293.15,no-KALINA,0.0,1
+C4 frio 110 C,eps_hrvg,rampa,a no-KALINA,0.42500000000000004,0.4,KALINA,1.0,1,0.45,no-KALINA,0.0,1
+C4 frio 110 C,eps_hrvg,rampa,a KALINA,0.475,0.45,no-KALINA,0.0,1,0.5,KALINA,1.0,1
+C4 frio 110 C,eps_hrvg,rampa,a no-KALINA,0.525,0.5,KALINA,1.0,1,0.55,no-KALINA,0.0,1
+C4 frio 110 C,eps_hrvg,rampa,a KALINA,0.575,0.55,no-KALINA,0.0,1,0.6,KALINA,1.0,1
+C4 frio 110 C,x_b,escalon,a KALINA,0.625,0.6,no-KALINA,0.0,1,0.65,KALINA,1.0,1
