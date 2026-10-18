@@ -103,7 +103,9 @@ def hoja_leeme(wb, datos):
             "temperatura de burbuja; margen de seguridad CERO, la tolerancia de 1 K solo normaliza el indice D); no es un "
             "calculo de NPSH. La confianza (Alta, Media, Baja) de cada conclusion se calcula por codigo con la regla de la hoja Confianza y mide solidez dentro del modelo teqp, no validacion fisica.",
             "Los numeros salen de los CSV de resultados/ (P1 a P4, U1, R1 y R2). p5_conclusiones.csv se genera con "
-            "p5_generar.py desde p5_conclusiones_base.csv; las cifras con marcador no se escriben a mano.",
+            "p5_generar.py desde p5_conclusiones_base.csv: las cifras con marcador no se escriben a mano; las demas se comprueban contra las "
+            "fuentes que cada conclusion cita (p5_trazado_fuente.py, cuyo poder sobre cifras inventadas de prueba se informa en p5_trazado_fuente.md) y las mas importantes con "
+            "controles independientes (p5_cifras_check*.py).",
             "Clases: KALINA, CORREGIBLE, NO_CONVERGIO e INVIABLE. Un KALINA puede estar dentro o "
             "fuera del rango experimental (ver terminologia)."]:
         ws.cell(f, 1, linea).font = Font(size=10)

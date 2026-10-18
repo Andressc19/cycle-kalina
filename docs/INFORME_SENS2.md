@@ -34,63 +34,63 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: En los barridos de una variable la frontera está en 550 kPa (C1 y C3), 350 kPa (C2) y 750 kPa (C4); cada una es el punto medio entre el último nivel sin KALINA y el primero con KALINA (resolución de 50 a 100 kPa; en la malla P_baja×x_b el piso de C1 a x_b 0.82 es 600 kPa, D8). Subir P_baja es el movimiento que más CORREGIBLE rescata: 24 % de los 968 quedan a esa sola variable de un KALINA. Regresión logística de las 9 variables en el LHS sin los NO_CONVERGIO, con las demás en el centro: frontera de P_baja en 613 kPa [438, 765] en C1 (AUC 0.97) y 635 kPa [393, 852] en C3 (AUC 0.93), consistente con los 550 kPa de los barridos; en C2 y C4 el intervalo es demasiado ancho para informar (su límite inferior es -155 y -343 kPa) y no se usa. Con las otras variables libres la frontera de una variable se reproduce solo en parte (L9).
 - Implicación: Fijar P_baja por encima del piso de cada bloque con margen; el piso depende de x_b (D8) y del margen de cavitación exigido (L7).
 - Fuente: P1 p1_fronteras.csv; P2 p2_distancia_resumen.md
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_diseno = parcial
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial
 
 **D2 [DISEÑO REAL, fase A, confianza Media].** x_b define una ventana de existencia que cambia con el bloque.
 
 - Evidencia: Frontera de x_b en los barridos de una variable: C1 de 0.525 a 0.925; C2 de 0.425 a 0.575; C3 desde 0.375 y C4 desde 0.625 (sin techo hasta 0.95). En C1 x_b es la variable nº 1 para que haya KALINA (rango medio 1.0).
 - Implicación: No existe un x_b único: elegirlo junto con P_baja y la efectividad del condensador (interacción P_baja×x_b, ver F5).
 - Fuente: P1 p1_fronteras.csv; P3 p3_ranking.md
-- Criterio de confianza: cumple 4 de 6 criterios; falta: robusto_nc = pendiente; robusto_diseno = acotado (alcance no dicho en el enunciado)
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: robusto_nc = pendiente; robusto_diseno = acotado (alcance no dicho en el enunciado)
 
 **D3 [DISEÑO REAL, fase A, confianza Media].** La temperatura de la fuente tiene un techo que depende del bloque; el umbral inferior no está establecido porque coincide con puntos que no convergieron.
 
 - Evidencia: Frontera inferior ≈ 358 K (85 °C) en C1, C3 y C4 y 390.65 K en C2. Pero en el cuartil más bajo de T_fuente del muestreo LHS no convergieron 37 de 59 puntos en C4, 28 de 59 en C3 y 22 de 63 en C1; entre los que sí convergieron, el 95 % es KALINA en C4 [78, 99] frente a 36 % si NO_CONVERGIO cuenta como no KALINA. T_fuente es la variable que más separa los NO_CONVERGIO del resto en 4 de los 4 bloques (KS de 0.39 a 0.62). Techo en los barridos de una variable: 440.65 K (C1), 468.15 K (C2), 568.15 K (C3), 528.15 K (C4).
 - Implicación: No tomar el umbral inferior de T_fuente como límite de diseño hasta reintentar esos puntos con el motor. El techo no es universal: el mismo ciclo admite fuentes más calientes si se reajustan presión y composición. Resolución del barrido: 5 K.
 - Fuente: P1 p1_fronteras.csv
-- Criterio de confianza: cumple 4 de 6 criterios; falta: robusto_nc = no; robusto_diseno = acotado (alcance no dicho en el enunciado)
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: robusto_nc = no; robusto_diseno = acotado (alcance no dicho en el enunciado)
 
 **D4 [DISEÑO REAL, fase A, confianza Media].** El condensador es la restricción que manda: sin una efectividad mínima no hay KALINA, y esa mínima depende del bloque.
 
 - Evidencia: ε_cond mínima observada con KALINA en los datos: 0.80 (C1), 0.65 (C2), 0.85 (C3), 0.85 (C4); en C1, C3 y C4 coincide con el límite inferior del muestreo LHS, así que es un mínimo del diseño y no un mínimo físico. Frontera en barridos de una variable: 0.775 (C2) y 0.875 (C3). Con las demás variables en el centro, el barrido fino sitúa la frontera en ≈ 0.92 (C1) y ≈ 0.906 (C4) (U4); la regresión logística del LHS sin NO_CONVERGIO da 0.934 [0.901, 0.968] en C1 (en C2, C3 y C4 su intervalo no es informativo). En C1 y C2 ε_cond es de las 3 variables que deciden la existencia.
 - Implicación: No dimensionar con un ε_cond mínimo único: partir de U4 (≥ 0.93 en C1 y ≥ 0.91 en C4, orientativo) y comprobar cada diseño; con 0.95 y las demás variables en el centro no hay problema de existencia.
-- Fuente: P1 p1_existencia_rangos.csv; P3 p3_ranking.md
-- Criterio de confianza: cumple 4 de 6 criterios; falta: robusto_nc = pendiente; robusto_diseno = no
+- Fuente: P1 p1_existencia_rangos.csv; P1 p1_fronteras.csv; P3 p3_ranking.md
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: robusto_nc = pendiente; robusto_diseno = no
 
 **D5 [DISEÑO REAL, fase A, confianza Media].** El sumidero frío tiene un techo de temperatura en tres de los cuatro bloques.
 
 - Evidencia: KALINA deja de existir al subir T_sumidero por encima de 284.4 K (C1), 296.9 K (C3) y 291.9 K (C4). En C2 (centro a 300.15 K) no hay cambio en el barrido. La regresión logística del LHS da intervalos de T_sumidero demasiado anchos (más de la mitad del rango muestreado) para confirmar estos techos, y no se usa como evidencia.
 - Implicación: El diseño de Húsavík (278 K) no se traslada a climas cálidos sin subir P_baja y la efectividad del condensador.
 - Fuente: P1 p1_fronteras.csv
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_diseno = acotado (alcance no dicho en el enunciado)
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_diseno = acotado (alcance no dicho en el enunciado)
 
 **D6 [DISEÑO REAL, fase A, confianza Media].** P_alta rara vez limita la existencia, salvo en C2 y C4.
 
 - Evidencia: En los barridos de una variable: C1 y C3 sin cambio de clase; C2 pierde KALINA por encima de 3875 kPa; C4 tiene una ventana sin KALINA entre 1625 y 1875 kPa.
 - Implicación: Elegir P_alta por eficiencia (M2) y no por existencia, comprobando el título de salida (E3).
 - Fuente: P1 p1_fronteras.csv
-- Criterio de confianza: cumple 3 de 6 criterios; falta: una sola linea de evidencia; robusto_nc = pendiente; robusto_diseno = acotado (alcance no dicho en el enunciado)
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_nc = pendiente; robusto_diseno = acotado (alcance no dicho en el enunciado)
 
 **D7 [DISEÑO REAL, fase A, confianza Media].** Desde el centro KALINA de cada bloque hay margen amplio en casi todas las variables, pero no en el condensador ni, en C2, en x_b.
 
 - Evidencia: Moviendo una variable cada vez (último nivel KALINA contiguo al centro): C1 baja P_baja hasta 600 kPa (centro 690), ε_cond sin margen (0.95; con 0.90 ya no hay KALINA), T_sumidero sube hasta 283.15 K (centro 278.15), x_b de 0.55 a 0.90, T_fuente de 363.15 a 438.15 K. C4: P_baja hasta 800 kPa, ε_cond sin margen, T_sumidero hasta 290.65 K. C3: P_baja hasta 600 kPa, ε_cond hasta 0.90, T_sumidero hasta 295.65 K. C2: P_baja hasta 400 kPa, ε_cond hasta 0.80, x_b solo de 0.45 a 0.55. El barrido fino de ε_cond sitúa la frontera en ≈ 0.92 (C1) y ≈ 0.906 (C4).
 - Implicación: Un diseño en C1 o C4 no tolera perder efectividad del condensador ni subir T_sumidero más de 5 a 8 K; en C2 x_b debe controlarse a ±0.05. La frontera real está entre el último nivel KALINA y el siguiente.
 - Fuente: Hoja F1 Margenes de operacion (barridos de una variable, estudios 1 y 10)
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_nc = pendiente
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_nc = pendiente
 
 **D8 [DISEÑO REAL, fase A, confianza Media].** El piso de P_baja sube con x_b: cuanto más rica la mezcla, más alta debe ser la presión baja.
 
 - Evidencia: Menor P_baja con KALINA en cada columna de x_b de las mallas P_baja×x_b: C1 de 500 kPa (x_b 0.55 a 0.75) a 600, 690 y 800 kPa (x_b 0.82, 0.90 y 0.95); C2 de 400 kPa (0.45 y 0.50) a 563.64, 700 y 900 kPa (0.55, 0.60 y 0.70); C3 de 500 kPa (0.55 a 0.68) a 650, 800 y 950 kPa (0.75, 0.88 y 0.95; sin KALINA en 0.82); C4 de 500 kPa (0.65 y 0.72) a 910 kPa (0.95).
 - Implicación: x_b y P_baja no se eligen por separado (coincide con la interacción de F5 de P3): subir x_b para ganar η obliga a subir P_baja y se paga parte de lo ganado. La malla tiene solo 7 niveles de P_baja: el piso real está entre dos niveles. Mecanismo: a P_baja fija la temperatura de burbuja baja al subir x_b (C1 a 690 kPa: 330 K con x_b 0.45, 309 K con 0.60, 296 K con 0.75 y 290 K con 0.90), de modo que m_O2 = T_burbuja − T9 se reduce de 52 K a 0.9 K y hace falta más presión para recuperar el margen.
 - Fuente: Hoja F5 Superficies de respuesta (mallas P_baja×x_b, estudios 2 y 11)
-- Criterio de confianza: cumple 3 de 6 criterios; falta: robusto_nc = pendiente; robusto_diseno = acotado (alcance no dicho en el enunciado); intervalo = pendiente
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: robusto_nc = pendiente; robusto_diseno = acotado (alcance no dicho en el enunciado); intervalo = pendiente
 
 **U4 [DISEÑO REAL, fase C, confianza Media].** La efectividad del condensador es la especificación crítica: con las demás variables en el centro debe superar ≈ 0.92 en Húsavík y ≈ 0.906 en el bloque frío, y cuando todas las variables se mueven la especificación robusta es más alta.
 
 - Evidencia: Frontera del barrido fino de ε_cond: C1 entre 0.917 (sin convergencia) y 0.922 (KALINA con m_O2 0.3 K); C4 entre 0.900 (CORREGIBLE) y 0.906 (KALINA con m_O2 0.3 K); C2 y C3 KALINA en todo el barrido de 0.90 a 0.95. La regresión logística del LHS sin NO_CONVERGIO (otras variables en el centro) da una frontera de ε_cond de 0.934 [0.901, 0.968] en C1, que contiene a la del barrido fino (en C4 su intervalo no es informativo). Con todas las variables moviéndose (U1), la especificación de ≥ 0.93 en C1 y ≥ 0.91 en C4 todavía pierde 6 de 40 y 5 de 77 puntos. Margen de cavitación con ε_cond = 0.95: 5.5 K (C1), 11.8 K (C2), 14.9 K (C3) y 8.1 K (C4).
 - Implicación: Como punto de partida, pedir al condensador una efectividad garantizada de al menos 0.93 (C1) o 0.91 (C4), sabiendo que no basta si P_baja, T_sumidero o x_b se desvían (U1); un diseño que admita ε_cond menor necesita más P_baja o un sumidero más frío (PRCC de T_sumidero negativo, de P_baja positivo).
 - Fuente: Hoja F5 Incertidumbre (barrido fino, u1_scan_eps_cond.csv)
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_diseno = parcial
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial
 
 ### 3.2 EQUIPOS (hoja F4 del libro)
 
@@ -99,111 +99,111 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: KALINA (total), n = 2047: r_P mediana 3.47; Δh mediana 152.7 kJ/kg; Wt 10.7 a 145.9 kW por kg/s de m_b; T de entrada 361 a 443 K. Intervalos bootstrap al 95 %: r_P P5 1.70 [1.65, 1.81] y P95 5.51 [5.40, 6.00]; Δh P5 65 [61, 71] y P95 230 [225, 235] kJ/kg. Estas envolventes dependen del diseño de muestreo: restringiendo a los LHS (estudios 3 y 14) o dando el mismo peso a cada combinación centro-estudio, la mediana de 4 de las 11 cantidades de equipo se corre más de 0.15 veces el ancho P5–P95 en el total y de 7 a 10 por bloque. El 10 % de mayor η: r_P 4.26 a 7.25 y Δh 172 a 249 kJ/kg.
 - Implicación: Citar las envolventes como descriptivas del conjunto muestreado, no de una población. Preseleccionar una turbina radial de una etapa para r_P hasta ~7 (una revisión de ORC de pequeña escala da radial para EPR < 10; cifra de la literatura no verificada). Los diseños de máxima η piden la parte alta del rango.
 - Fuente: P4 p4_envolventes.csv; Etapa 0 §5.1
-- Criterio de confianza: cumple 4 de 6 criterios; falta: una sola linea de evidencia; robusto_diseno = parcial
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial
 
 **E2 [EQUIPOS, fase B, confianza Media].** El Δh de la turbina crece con la relación de presiones.
 
 - Evidencia: Regresión Δh sobre r_P: pendiente 30.2 kJ/kg por unidad de r_P (IC 95 % [27.5, 33.3]), R² 0.65 (n = 507 en el muestreo LHS). Por bandas de r_P: Δh mediana 46 kJ/kg en [1, 1.5) y 236 kJ/kg en [6, 10); η mediana 2.5 % y 10.2 % (descriptivo: sin IC y confundido con P_alta y T_fuente).
-- Implicación: No conviene operar a r_P bajo; el límite superior lo pone el título de salida (E3) y la existencia (D1).
+- Implicación: En los KALINA muestreados Δh crece con r_P; el efecto sobre η es descriptivo y está confundido con P_alta y T_fuente. El límite superior de r_P lo pone el título de salida (E3) y la existencia (D1).
 - Fuente: P4 p4_dependencias.csv; p4_bandas.csv
-- Criterio de confianza: cumple 5 de 6 criterios; falta: una sola linea de evidencia
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **E3 [EQUIPOS, fase B, confianza Media].** Los diseños de mayor η operan cerca del límite de humedad de la turbina.
 
 - Evidencia: Título de salida q4 en KALINA: mínimo 0.9014 (límite O1: 0.90). En el 10 % de mayor η: mediana 0.9355 y P5 0.9101, frente a 0.950 de todo KALINA. q4 baja con P_alta (Spearman −0.66 en C1) y con η_t (−0.72 en C2).
-- Implicación: Prever protección contra erosión en las últimas etapas o recalentamiento si se sube P_alta; el margen real al límite es ≤ 0.01 en los óptimos.
+- Implicación: Prever protección contra erosión en las últimas etapas o recalentamiento si se sube P_alta; en los puntos de máxima η (M1 y M2) el margen al límite es de 0.006 a 0.009; en el 10 % de mayor η su mediana es 0.036 (máximo 0.055) y solo el 5 % tiene 0.01 o menos.
 - Fuente: P4 p4_envolventes.csv; p4_dependencias.csv
-- Criterio de confianza: cumple 4 de 6 criterios; falta: robusto_diseno = parcial; intervalo = pendiente
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial; intervalo = pendiente
 
 **E4 [EQUIPOS, fase B, confianza Media].** En los KALINA muestreados el regenerador opera con un acercamiento mínimo de 9.7 K (P5) y una conductancia de 0.76 a 13.3 kW/K por kg/s; el pinch depende de la ε_reg muestreada (0.40 a 0.95).
 
 - Evidencia: Contraflujo, estados 5→6 y 10→1: pinch mediana 25.0 K (P5–P95 9.65–46.7); LMTD mediana 37.7 K; UA mediana 4.29 kW/K por kg/s (3.14 en el 10 % de mayor η); Q_reg/Q_i mediana 0.21 (0.03 a 1.31). Sin cruces en ningún KALINA. ε_reg fija el pinch (Spearman −0.92 en C1) y el UA (+0.79).
 - Implicación: Para los diseños óptimos, UA mediana 3.1 y P95 7.6 kW/K por kg/s; es una cota de preselección, no un diseño.
-- Fuente: P4 p4_envolventes.csv; p4_resumen.md
-- Criterio de confianza: cumple 3 de 6 criterios; falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
+- Fuente: P4 p4_envolventes.csv; P4 p4_dependencias.csv; p4_resumen.md
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
 
 **E5 [EQUIPOS, fase B, confianza Media].** En los KALINA muestreados el condensador evacúa de 218 a 1561 kW por kg/s de m_b con un acercamiento de 2.6 a 23.4 K en la salida.
 
 - Evidencia: Mediana: 721 kW por kg/s y 9.2 K. En el 10 % de mayor η: 542 a 1275 kW por kg/s. La carga la fija T_fuente (Spearman +0.55 en C1, +0.69 en C2); el acercamiento lo fija ε_cond (−0.60 y −0.69).
 - Implicación: Elegir el condensador por carga (T_fuente) y por acercamiento (ε_cond); el acercamiento no es un pinch de diseño.
 - Fuente: P4 p4_envolventes.csv; p4_dependencias.csv
-- Criterio de confianza: cumple 3 de 6 criterios; falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
 
 **E6 [EQUIPOS, fase B, confianza Media].** En los KALINA muestreados el HRVG aporta de 229 a 1695 kW por kg/s de m_b.
 
 - Evidencia: Mediana 790 kW por kg/s; T_fuente − T3 de 2.1 a 44.0 K. La carga la fija T_fuente (Spearman +0.56 en C1, +0.69 en C2).
 - Implicación: El tamaño del intercambiador de calor de la fuente escala con T_fuente y con m_b.
 - Fuente: P4 p4_envolventes.csv
-- Criterio de confianza: cumple 3 de 6 criterios; falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
 
 **E7 [EQUIPOS, fase B, confianza Media].** La bomba consume entre 2.4 % y 30 % del trabajo de la turbina, pero solo 2.7 a 7.8 % en los diseños óptimos.
 
 - Evidencia: W_p/W_t mediana 6.0 %; 10 % de mayor η: 2.7 a 7.8 %. P_alta de 1940 a 4500 kPa (P5–P95).
 - Implicación: Bomba de presión media; la cavitación (O2) manda sobre el consumo (D1).
 - Fuente: P4 p4_envolventes.csv
-- Criterio de confianza: cumple 3 de 6 criterios; falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = pendiente
 
 **E8 [EQUIPOS, fase B, confianza Media].** El regenerador pierde peso al subir T_fuente: su carga y su conductancia caen mientras el pinch sube.
 
 - Evidencia: Estudio 4 (T_fuente de 70 a 300 °C, mediana de los KALINA por nivel): Q_reg/Q_i de 0.587 a 0.013, UA de 9.53 a 0.34 kW/K por kg/s y pinch de 13.6 a 40.0 K. En los barridos de una variable la carga ya es baja a 150 °C (Q_reg/Q_i 0.121 en C3 y 0.048 en C4) y η se aplana desde ≈150 °C (C3 entre 9.28 y 9.47 %, C4 entre 12.23 y 12.32 %). KALINA aparece entre 90 y 165 °C (C1), 120 y 190 °C (C2), 90 y 290 °C (C3) y 90 y 250 °C (C4). Mecanismo (barrido de T_fuente en C3, KALINA): el lado caliente del regenerador es el líquido pobre del separador, y Q_reg = m_l·(h5 − h6) (0.809 × 281 = 227 kW por kg/s a 90 °C). Al subir T_fuente se vaporiza casi todo el fluido: m_l/m_b cae de 0.81 a 0.006 (0.65 a 0.008 en C4) y Q_reg de 227 a 3 kW por kg/s, aunque la caída de entalpía por kg de líquido sube de 281 a 503 kJ/kg.
 - Implicación: Con x_b alto (C1, C3, C4) el regenerador mueve 12 % o menos del calor de entrada desde 150 °C (máximos 0.074, 0.121 y 0.048) y η ya no mejora; con x_b bajo (C2) todavía mueve hasta 0.49 a 150 °C y 0.115 desde 190 °C. En el estudio 4 la mediana es 0.34 a 150 °C, 0.13 a 170 °C y no pasa de 0.04 desde 190 °C. Sugiere dimensionarlo pequeño o evaluar suprimirlo solo con fuentes calientes y x_b alto (no se simuló un ciclo sin regenerador). Entre 70 y 110 °C su carga mediana es de 0.27 a 0.59 del calor de entrada.
 - Fuente: Hoja F4 Regenerador vs T_fuente (estudios 1, 4 y 10)
-- Criterio de confianza: cumple 4 de 6 criterios; falta: robusto_diseno = parcial; intervalo = no
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial; intervalo = no
 
 **E9 [EQUIPOS, fase B, confianza Media].** Por kW neto, en los KALINA muestreados el HRVG aporta de 8 a 39 kW (mediana 13) y el condensador evacúa de 7 a 38 kW (mediana 12), y hace falta de 0.007 a 0.13 kg/s de fluido de trabajo.
 
 - Evidencia: KALINA (total), n = 2047, ámbito todos, P5 a P95 (mediana): Q_i 8.2 a 38.7 kW por kW neto (12.9); Q_out 7.2 a 37.7 (11.9); Q_reg 0.39 a 33.9 (2.75); W_t 1.02 a 1.43 (1.06); W_p 0.024 a 0.43 (0.064); UA del regenerador 0.006 a 1.43 kW/K por kW neto (0.071); fluido 0.007 a 0.129 kg/s por kW neto. En el 10 % de mayor η (n = 205): Q_i 7.4 a 8.6 kW por kW neto (8.2), Q_out 6.4 a 7.6, fluido 0.006 a 0.013 kg/s por kW neto. Salen de dividir las cifras por kg/s entre W_net por kg/s; Q_i por kW neto es 100/η en todos los puntos (2 047 de 2 047 dentro del 1 %).
 - Implicación: Para preseleccionar conviene el rango del 10 % de mayor η: con 100 kW netos, HRVG de 735 a 861 kW, condensador de 635 a 761 kW y fluido de 0.6 a 1.3 kg/s. Con todos los KALINA muestreados y 100 kW netos: HRVG de 818 a 3871 kW (mediana 1294), condensador de 718 a 3771 kW, fluido de trabajo de 0.7 a 12.9 kg/s. Son envolventes de un muestreo numérico, no especificaciones de compra; el flujo volumétrico de la turbina y la altura de la bomba necesitan las densidades de los estados, que no están en el conjunto de datos (se obtendrían con el motor).
 - Fuente: P4 p4_comun (columnas por kg/s); F1 p6_equipos_kw.csv; hoja F4 Equipos por kW
-- Criterio de confianza: cumple 3 de 6 criterios; falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = no
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = no
 
 ### 3.3 MÁXIMA EFICIENCIA (hoja F2 y F4 del libro)
 
 **M1 [MÁXIMA EFICIENCIA, fase B, confianza Media].** La mayor η muestreada es 14.82 % con la fuente a 170 °C, fuera del rango experimental; dentro del rango es 14.53 %.
 
 - Evidencia: 14.82 %: fuente 443.15 K, P_alta 4550 kPa, P_baja 610 kPa, x_b 0.73 (N1-T170-14). 14.53 %: fuente 423.15 K, P_alta 6000 kPa, P_baja 650 kPa, x_b 0.75, η_t 0.85, ε_reg 0.75, ε_cond 0.95 (N10-C3-0016). Mediana de η en KALINA 7.7 % (5.5 % en el muestreo LHS, que depende del diseño); P90 11.5 %. Son los mayores valores entre los puntos muestreados: no se corrió un optimizador. Su margen de cavitación es m_O2 = 0.7 K en el de 14.82 % y 6.7 K en el de 14.53 %.
-- Implicación: Para una fuente de 150 °C los puntos muestreados llegan a ≈ 14.5 % con P_alta alta (≥ 5000 kPa) y quedan en el borde de la caja muestreada (P_alta 6000 kPa, ε_cond 0.95), de modo que el techo real puede ser mayor; la cifra de 14.8 % necesita 170 °C.
+- Implicación: Para una fuente de 150 °C los puntos muestreados llegan a ≈ 14.5 % con P_alta alta (≥ 5000 kPa) y quedan en el borde de la caja muestreada (P_alta 6000 kPa, ε_cond 0.95), de modo que el techo real puede ser mayor; la cifra de 14.8 % necesita 170 °C. La diferencia entre el máximo dentro y fuera del rango (0.29 puntos) es menor que la banda del modelo de propiedades (±0.7 puntos).
 - Fuente: P2 p2_robustez.md; p2_dataset_dedup.csv
-- Criterio de confianza: cumple 5 de 6 criterios; falta: una sola linea de evidencia
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **M2 [MÁXIMA EFICIENCIA, fase B, confianza Media].** Para Húsavík el mejor KALINA muestreado llega a 14.0 % subiendo P_alta a 5000 kPa y bajando P_baja a 600 kPa, unos 2.0 puntos sobre el centro.
 
 - Evidencia: C1-B3-0127: 394.15 K, P_alta 5000, P_baja 600, x_b 0.82, η_t 0.85, ε_reg 0.75, ε_cond 0.95: η 14.01 %, dentro del rango experimental. El centro de Húsavík (C1-base-0000 en la campaña con duplicados, E95 en la base deduplicada: P_alta 3300, P_baja 690, ε_cond 0.95) es KALINA con η 12.00 %.
 - Implicación: Con la misma fuente de 121 °C, ganar ≈ 2.0 puntos exige más presión y quedar cerca del piso de P_baja (600 kPa a x_b 0.82, D8); su margen de cavitación es m_O2 = 3.7 K (L7).
 - Fuente: P2 p2_robustez.md; p1 dataset
-- Criterio de confianza: cumple 4 de 6 criterios; falta: una sola linea de evidencia
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **M3 [MÁXIMA EFICIENCIA, fase B, confianza Media].** Con mejores equipos (η_t y ε_reg en 0.95), el punto muestreado de Húsavík llega a 13.95 % sin cambiar las presiones.
 
 - Evidencia: C1-B5-0228: η_t 0.95 y ε_reg 0.95 con P_alta 3300 y P_baja 690: η 13.95 %, W_net 124.9 kW por kg/s.
 - Implicación: η_t y ε_reg son las palancas de equipo; η_t es la variable con mayor efecto sobre η en C1 y C2 (F1).
-- Fuente: P2 p2_robustez.md; P3 p3_ranking.md
-- Criterio de confianza: cumple 4 de 6 criterios; falta: una sola linea de evidencia
+- Fuente: P2 p2_robustez.md; p2_dataset_dedup.csv; P3 p3_ranking.md
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **M4 [MÁXIMA EFICIENCIA, fase B, confianza Media].** Los mayores valores muestreados de los otros dos bloques son 13.2 % (C4) y 12.4 % (C2, dentro del rango).
 
 - Evidencia: C4: N7B-C4-B1-045 con fuente 423.15 K, P_alta 3880, P_baja 800, x_b 0.88: 13.23 %. C2: C2-LHS-0005 con 436.5 K, P_alta 3090, P_baja 660, x_b 0.47, η_t 0.95: 12.37 % (13.12 % fuera del rango). El punto de C4 tiene un margen de cavitación casi nulo (m_O2 = 0.2 K) y el de C2 3.9 K.
-- Implicación: El bloque con x_b bajo (C2) rinde menos que los de x_b alto, con presiones menores.
-- Fuente: P2 p2_robustez.md
-- Criterio de confianza: cumple 5 de 6 criterios; falta: una sola linea de evidencia
+- Implicación: Los máximos muestreados de C2 (x_b bajo) son menores que los de C1 y C4, pero no son comparables: cada bloque tuvo un esfuerzo y un diseño de muestreo distintos.
+- Fuente: P2 p2_robustez.md; p2_dataset_dedup.csv
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **M5 [MÁXIMA EFICIENCIA, fase C, confianza Media].** Los diseños de mayor η tienden a quedar cerca del piso de P_baja; la cercanía a la frontera es real pero depende del diseño de muestreo.
 
 - Evidencia: η baja al subir P_baja (PRCC −0.63 en C1) y P_baja tiene piso por cavitación (D1). Con todos los puntos, el 10 % de mayor η está a 0.14 de la frontera frente a 0.37 en el resto (KS 0.357), con 121 de 207 a una sola variable de la frontera (73 de ellos en P_baja); pero esa diferencia mezcla mallas y barridos que ponen puntos junto a la frontera. Solo con el muestreo LHS la diferencia es significativa en C1 (0.62 frente a 0.75, p = 0.016) y no en C2 (0.79 frente a 0.83, p = 0.63), C3 (0.82 frente a 0.90, p = 0.09) ni C4 (0.83 frente a 0.82, p = 0.48).
 - Implicación: Un óptimo real debe llevar margen en P_baja y ε_cond. La afirmación general sobre todo el espacio queda como tendencia dependiente del diseño, no como resultado demostrado.
 - Fuente: P2 p2_robustez.md; revisión final (LHS solo, recalculado)
-- Criterio de confianza: cumple 4 de 6 criterios; falta: robusto_diseno = parcial
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial
 
 **R1 [MÁXIMA EFICIENCIA, fase B, confianza Media].** La superficie de η ajustada solo con celdas KALINA apunta siempre hacia el menor P_baja: el óptimo con restricciones queda en el piso de cavitación.
 
 - Evidencia: Ajuste cuadrático sobre las 8 mallas (P_baja×x_b y P_alta×P_baja; R² de 0.96 a 1.00): el máximo del ajuste cae en el menor P_baja de la malla (400 a 500 kPa) en las 8; en 7 esa celda es CORREGIBLE (no KALINA) y en C2 (P_alta×P_baja) es KALINA. Por ejemplo C1: 15.1 % a 500 kPa, mientras el mejor KALINA de la malla es 13.3 %. Validación cruzada dejando una celda fuera: R² de 0.91 a 1.00 (caída máxima 0.05 respecto del R² en la muestra); el máximo del ajuste cae en una celda del borde en 8 de 8 mallas, donde no hay datos KALINA que respalden al polinomio.
 - Implicación: η crece al bajar P_baja hasta chocar con la restricción de cavitación (O2): es coherente con la elasticidad de η frente a P_baja (F4) y con M5, pero sale de las mismas mallas y no es un argumento independiente. El máximo del polinomio fuera de las celdas KALINA indica dirección, no un diseño factible.
 - Fuente: Hoja F5 Superficies de respuesta (mallas de los estudios 2 y 11)
-- Criterio de confianza: cumple 3 de 6 criterios; falta: una sola linea de evidencia; robusto_nc = pendiente; robusto_diseno = parcial
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_nc = pendiente; robusto_diseno = parcial
 
-**M6 [MÁXIMA EFICIENCIA, fase B, confianza Baja].** En los KALINA muestreados dentro del rango experimental, la mayor η por banda de T_fuente es menor a 77 °C (7.0 %) y no muestra una caída clara entre 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 %); por encima de ≈ 160 °C casi todos los KALINA están fuera del rango experimental y no se puede evaluar.
+**M6 [MÁXIMA EFICIENCIA, fase B, confianza Baja].** En los KALINA muestreados dentro del rango experimental, la mayor η por banda de T_fuente es menor en la banda de 77 °C (7.0 %) y no muestra una caída clara entre 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 %); desde ≈ 160 °C la mayoría de los KALINA muestreados está fuera del rango experimental y no se puede evaluar.
 
-- Evidencia: Mayor η muestreada dentro del rango experimental por banda de T_fuente de 20 K (centro en °C y KALINA dentro del rango de la banda): 7.0 % (77; 17), 12.1 (97; 171), 14.0 (117; 681), 13.3 (137; 480), 14.5 (157; 369) y 12.3 (177; 17); las bandas de 197 y 217 °C tienen 5 y 1 puntos dentro del rango y no se usan. Desde ≈ 160 °C el límite de 420 K del líquido deja casi todos los KALINA fuera del rango (por encima de 210 °C, 91 de 92), de modo que la caída del máximo dentro del rango a 12.3 % en la banda de 177 °C coincide con ese corte; el máximo global (14.82 %) está a 170 °C, fuera del rango. En la banda de 77 °C la mayoría de los 106 puntos no convergió (P(KALINA) 0.16; 0.81 si se excluyen los NO_CONVERGIO). El máximo de un conjunto crece con su tamaño y las bandas tienen de 34 a 1257 puntos y diseños de muestreo distintos (la de 117 °C contiene la malla B3 diseñada cerca del óptimo): son mayores valores muestreados, no óptimos por temperatura.
+- Evidencia: Mayor η muestreada dentro del rango experimental por banda de T_fuente de 20 K (centro en °C y KALINA dentro del rango de la banda): 7.0 % (77; 17), 12.1 (97; 171), 14.0 (117; 681), 13.3 (137; 480), 14.5 (157; 369) y 12.3 (177; 17); las bandas de 197 y 217 °C tienen 5 y 1 puntos dentro del rango y no se usan. Desde ≈ 160 °C el límite de 420 K del líquido deja la mayoría de los KALINA fuera del rango (284 de 340, 84 %), de modo que la caída del máximo dentro del rango a 12.3 % en la banda de 177 °C coincide con ese corte; el máximo global (14.82 %) está a 170 °C, fuera del rango. En la banda de 77 °C la mayoría de los 106 puntos no convergió (P(KALINA) 0.16; 0.81 si se excluyen los NO_CONVERGIO). El máximo de un conjunto crece con su tamaño y las bandas tienen de 34 a 1257 puntos y diseños de muestreo distintos (la de 117 °C contiene la malla B3 diseñada cerca del óptimo): son mayores valores muestreados, no óptimos por temperatura.
 - Implicación: El panorama de η frente a T_fuente que se puede dar hoy es descriptivo; el máximo por temperatura exige optimizar P_alta, P_baja y x_b en cada banda con el motor (etapa C del plan).
 - Fuente: P2 p2_dataset_dedup.csv; F1 p6_ciclo_T.csv; hoja F4 Ciclo vs T_fuente
 - Criterio de confianza: cumple 1 de 6 criterios
@@ -215,28 +215,28 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: Rango medio entre 6 métodos (1 = mayor; η existe solo en los KALINA: 118 a 137 puntos por bloque): C1 η_t 1.2; C2 η_t 1.3; C3 P_alta 2.0 y x_b 2.2; C4 P_alta 1.8 y x_b 2.7. PRCC de η_t en C1 +0.74; P_baja −0.63. Con 2000 permutaciones de la respuesta y corrección de Benjamini–Hochberg (q < 0.05 en al menos 2 métodos) son distinguibles sobre η: C1 P_alta, P_baja, T_fuente, eps_reg, eta_t, x_b; C2 P_baja, T_fuente, eps_reg, eta_t, x_b; C3 P_alta, P_baja, T_fuente, eta_t, x_b; C4 P_alta, P_baja, T_fuente, eta_t, x_b, eps_hrvg. Las variables citadas lo son. La corrección reduce las variables marcadas de 31 (criterio anterior de las 3 dummy) a 22; las pruebas de las dummy dan p < 0.05 en el 3.5 % de los casos.
 - Implicación: Con fuente fría y x_b alto la presión es la palanca; con x_b bajo, la calidad de la turbina.
 - Fuente: P3 p3_ranking.md; p3_indices.csv
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_nc = pendiente
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_nc = pendiente
 
 **F2 [FLUCTUACIÓN, fase B, confianza Media].** La potencia específica la mueve T_fuente en C1, C2 y C3, y x_b en C4.
 
 - Evidencia: W_net por kg/s de m_b (6 métodos): T_fuente rango medio 1.0 (C1, C2) y 1.8 (C3); x_b 1.3 (C4). Le siguen η_t y ε_HRVG. Con la corrección de Benjamini–Hochberg son distinguibles sobre W_net por kg/s: C1 P_baja, T_fuente, eps_hrvg, eta_t, x_b; C2 P_baja, T_fuente, eps_cond, eps_hrvg, eta_t, x_b; C3 P_baja, T_fuente, eps_hrvg, eta_t, x_b; C4 P_baja, T_fuente, eps_hrvg, eta_t, x_b (21 variables frente a 35 con el criterio anterior).
 - Implicación: Para potencia, subir la fuente; para eficiencia, la presión y la calidad de la turbina.
 - Fuente: P3 p3_ranking.md
-- Criterio de confianza: cumple 5 de 6 criterios; falta: una sola linea de evidencia
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **F3 [FLUCTUACIÓN, fase B, confianza Media].** Para que exista KALINA decide P_baja en los cuatro bloques; x_b y ε_cond además en C1 y C2, y en C3 y C4 la lectura depende de cómo se trate NO_CONVERGIO.
 
 - Evidencia: Rango medio entre 8 métodos en Y1 (1 = mayor): C1 x_b 1.0, P_baja 2.6, ε_cond 2.8; C2 ε_cond 1.6, P_baja 1.8, x_b 2.6; C3 P_baja 1.0; C4 T_fuente 1.0, P_baja 2.0. Con 2000 permutaciones y corrección de Benjamini–Hochberg (q < 0.05 en al menos 2 métodos) son distinguibles: C1 P_baja, eps_cond, x_b, P_alta; C2 P_baja, eps_cond, x_b, T_sumidero, T_fuente; C3 P_baja; C4 T_fuente, P_baja. Signos: P_baja y ε_cond favorecen; x_b alto perjudica en C1 y C2. Sin las filas NO_CONVERGIO los tres primeros son C1 x_b, P_baja, eps_cond; C2 x_b, eps_cond, P_baja; C3 P_baja, x_b, T_sumidero; C4 P_baja, x_b, eps_cond: el conjunto cambia en C3 y C4 (en C4 T_fuente deja de estar entre los tres) y, si los NO_CONVERGIO se cuentan como KALINA, también en C1.
 - Implicación: P_baja es la variable común de la existencia. Los efectos de T_fuente en C3 y C4 no se pueden separar de los fallos de convergencia (D3) hasta reintentar esos puntos con el motor.
 - Fuente: P3 p3_ranking.md
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_nc = no
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_nc = no
 
 **F4 [FLUCTUACIÓN, fase B, confianza Media].** η responde casi proporcionalmente a η_t y es sensible a P_baja y T_fuente en el punto base.
 
 - Evidencia: Elasticidades locales: η_t 1.03 a 1.15 en los cuatro bloques; P_baja −0.60 a −0.79; T_fuente 1.02 (C1), 1.28 (C4), 0.25 (C3). En C2 T_fuente da 13.2 porque el punto base está sobre una rampa de la frontera: no usar como valor de diseño.
 - Implicación: Un punto de η_t equivale a un punto porcentual relativo de η; subir P_baja 100 kPa (≈ 14 % en C1) baja η ≈ 9 % en términos relativos.
 - Fuente: P3 p3_elasticidad.md
-- Criterio de confianza: cumple 5 de 6 criterios; falta: una sola linea de evidencia
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **F5 [FLUCTUACIÓN, fase B, confianza Baja].** P_baja×x_b y ε_cond×T_sumidero interactúan sobre la existencia; sobre η la interacción es débil o moderada.
 
@@ -250,42 +250,42 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: Medianas sin parear de η: 10.2 % frente a 7.7 % (+2.47 puntos, IC 95 % [+2.18, +2.70]); dentro de cada bloque la diferencia va de +1.4 a +3.2 puntos, y los puntos de muestreo o malla sin centro elevan el total (+4.4). Solo con el muestreo LHS: +3.1 puntos (IC [+2.46, +3.65]). W_net por kg/s: 82.7 frente a 57.9 (+24.8, IC [+19.0, +29.7]; LHS +40.9). Emparejando cada CORREGIBLE con su vecino KALINA más cercano, la η del vecino es menor en 0.43 puntos (L2).
 - Implicación: Un CORREGIBLE no sirve como estimador del desempeño real porque incumple cavitación. La diferencia sin parear mezcla zonas distintas del espacio y no es un efecto causal; para el costo de rescatar un punto se usa la cifra pareada de L2.
 - Fuente: P2 p2_comparacion.md
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_diseno = parcial
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial
 
 **U3 [FLUCTUACIÓN, fase C, confianza Media].** Al perturbar las variables, la eficiencia de los puntos KALINA se mantiene cerca de la del centro; lo que se pierde es la clase, no la eficiencia.
 
 - Evidencia: Escenario A (96 puntos por bloque), fracción de KALINA con |η − η del centro| ≤ 1 pp: 0.98 en C1, 0.95 en C3, 0.96 en C4 y 0.66 en C2. η P5–P95: C1 11.1 a 12.9 % (centro 12.0), C3 8.8 a 10.4 % (9.45), C4 10.5 a 12.1 % (11.15), C2 6.3 a 9.3 % (7.94). En B la dispersión crece (C2 de 2.6 a 10.6 %). La banda del modelo de propiedades (±0.7 pp) se suma de forma determinista a P5 y P95.
 - Implicación: El riesgo de diseño es salir de KALINA por cavitación (U1, U2), no perder eficiencia; C2 es el bloque con η más dispersa. Con 96 puntos por celda los percentiles P5 y P95 son aproximados.
 - Fuente: Hoja F5 Incertidumbre; u1_resumen.csv
-- Criterio de confianza: cumple 4 de 6 criterios; falta: una sola linea de evidencia; intervalo = no
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; intervalo = no
 
 ### 3.5 LÍMITES KALINA (hoja F1 y F2 del libro)
 
-**L1 [LÍMITES KALINA, fase A, confianza Alta].** El 96 % de los CORREGIBLE falla por cavitación (O2) y el 4 % por título de salida (O1).
+**L1 [LÍMITES KALINA, fase A, confianza Alta].** El 96 % de los CORREGIBLE muestreados falla por cavitación (O2) y el 4 % por título de salida (O1).
 
 - Evidencia: Entre 968 CORREGIBLE con vecino KALINA: violación dominante O2 96 %, O1 4 %; D mediana 1.17 (P90 10.1). En la base cruda (1 018 CORREGIBLE con duplicados) 255 son zona gris (D ≤ 0.278), 249 de ellos por O2.
 - Implicación: La frontera práctica de Kalina en este modelo es el piso de P_baja: es la que hay que explorar con mayor resolución.
-- Fuente: P1 p1_zonas_grises.csv; P2 p2_violaciones.md
+- Fuente: P1 p1_zonas_grises.csv; P1 p1_dataset.csv; P2 p2_violaciones.md
 - Criterio de confianza: recuento con n_min = 968
 
-**L2 [LÍMITES KALINA, fase C, confianza Media].** Rescatar un CORREGIBLE es posible con un solo cambio en casi la mitad de los casos, y cuesta eficiencia.
+**L2 [LÍMITES KALINA, fase C, confianza Media].** Rescatar un CORREGIBLE es posible con un solo cambio en casi la mitad de los casos; el efecto sobre η depende del conjunto de puntos y en C1 y C4 la media no se distingue de 0.
 
 - Evidencia: 49 % de los 968 CORREGIBLE está a una sola variable de un KALINA (P_baja sube 24 %, ε_cond sube 16 %, x_b baja 3 %, T_fuente baja 3 %). Distancia L1 mediana 0.365; mediana de 2 variables distintas. Emparejando cada CORREGIBLE de los 4 bloques con su KALINA más cercano del mismo bloque, la mediana de la diferencia de η (vecino − CORREGIBLE) es -0.43 puntos (IC [-0.55, -0.36], n = 734; la media es -0.33 [-0.53, -0.13] y en C1 y C4 su IC incluye 0) y -0.56 puntos (IC [-0.69, -0.44], n = 214) si el vecino está a L1 ≤ 0.2. Por diseño: -0.28 en barridos y mallas (vecinos cercanos) y -1.72 en el muestreo LHS (n = 262, vecinos lejanos); a L1 > 0.5, entre los puntos que no son LHS, la diferencia es 1.00 [0.72, 1.38] (n = 87), de signo contrario, así que una dependencia con la distancia no se puede separar del diseño y no se afirma. El ajuste lineal contra la distancia da -0.03 [-0.31, 0.27] a distancia cero, no distinguible de 0. (Con el bloque «sin centro» la mediana sería -0.64 con n = 968; no se usa porque mezcla bloques.)
-- Implicación: Vale rescatar solo si el rescate es un cambio pequeño: con un vecino KALINA a una o dos variables la mediana de η es 0.56 puntos menor (0.28 en barridos y mallas); con los vecinos lejanos del muestreo LHS es 1.72 puntos menor y, cuando la violación dominante es O1, el vecino rinde 1.34 puntos más (IC [-0.25, 1.71], n = 25). El costo no es un número único y la cifra de F6 no lo sustituye. D predice solo débilmente la distancia (Spearman +0.30).
+- Implicación: Rescatar es factible. Con un vecino KALINA a L1 ≤ 0.2 la mediana de η es 0.56 puntos menor, pero el efecto no es un número único ni crece de forma monótona con la distancia (-0.56 a L1 ≤ 0.2, -0.19 entre 0.2 y 0.5 y -0.87 por encima de 0.5, mezclando diseños); con los vecinos lejanos del muestreo LHS es -1.72 y, cuando la violación dominante es O1, 1.34 (IC [-0.25, 1.71], n = 25). La cifra de F6 no lo sustituye. D predice solo débilmente la distancia (Spearman +0.30).
 - Fuente: P2 p2_distancia_resumen.md
-- Criterio de confianza: cumple 4 de 6 criterios; falta: una sola linea de evidencia; robusto_diseno = parcial
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial
 
 **L3 [LÍMITES KALINA, fase A, confianza Media].** Ninguna regla simple separa KALINA de no-KALINA: la región es multivariable.
 
 - Evidencia: En el muestreo LHS el mejor corte único tiene ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay reglas puras para no-KALINA: C1 x_b > 0.785 y ε_cond ≤ 0.875 (n = 51, 6 % KALINA); C4 T_fuente ≤ 366.25 K y P_alta > 2800 kPa (n = 32, 3 % KALINA).
 - Implicación: Para declarar zonas seguras hay que combinar al menos 2 a 3 variables; los umbrales de D1 a D6 valen cada uno con las demás variables en el centro del bloque.
 - Fuente: P1 p1_reglas.md
-- Criterio de confianza: cumple 4 de 6 criterios; falta: robusto_nc = pendiente; intervalo = pendiente
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: robusto_nc = pendiente; intervalo = pendiente
 
-**L4 [LÍMITES KALINA, fase A, confianza Alta].** El 15 % de los KALINA está fuera del rango experimental (líquido > 420 K) y el máximo global es uno de ellos.
+**L4 [LÍMITES KALINA, fase A, confianza Alta].** El 15 % de los KALINA muestreados está fuera del rango experimental (líquido > 420 K) y el máximo global es uno de ellos.
 
 - Evidencia: Entre los 2047 KALINA (total) con η: 15 % fuera. El máximo global (14.82 %) está fuera; el máximo dentro del rango es 14.53 %. La marca empieza hacia una fuente de 150 °C.
-- Implicación: Citar siempre el máximo dentro del rango; los puntos fuera son resultados normales del modelo y se muestran aparte.
+- Implicación: Citar siempre el máximo dentro del rango; los puntos fuera son resultados normales del modelo y se muestran aparte. El 15 % es un conteo del muestreo (las fuentes de más de 150 °C solo vienen de estudios dirigidos), no una propiedad del ciclo.
 - Fuente: P2 p2_dataset_dedup.csv; docs/rangos_motor.md
 - Criterio de confianza: recuento con n_min = 2047
 
@@ -308,21 +308,21 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: Escenario A (96 puntos del motor por bloque en dos lotes independientes de 48, LHS de las 10 variables; T_fuente ±5 K, T_sumidero ±3 K, P_alta y P_baja ±5 %, x_b ±0.02, η_t, η_p, ε_HRVG, ε_reg y ε_cond ±0.05, esta última recortada a [0.90, 0.95] porque el centro (0.95) es el tope y solo puede variar hacia abajo): P(KALINA) 0.47 en C1 [0.37, 0.57], 0.99 en C2 [0.94, 1.00], 1.00 en C3 [0.96, 1.00] y 0.85 en C4 [0.77, 0.91]; los dos lotes difieren en 0.00 a 0.02 (|z| ≤ 1.0): son compatibles, pero con 48 puntos por lote el error típico de P es 0.05 (C4) a 0.07 (C1), así que esa coincidencia no prueba estabilidad (diferencia mínima detectable entre dos lotes de 48 puntos: 0.29 en el peor caso). Escenario C (igual, pero con ε_cond fija en 0.95): P(KALINA) = 1.00 en los cuatro bloques (48 de 48, IC [0.93, 1.00]) y PRCC de ε_cond = 1.00. Barrido fino de ε_cond (10 niveles de 0.90 a 0.95, resto en el centro): C1 es KALINA desde ε_cond 0.922 (CORREGIBLE con m_O2 −0.1 K en 0.911), C4 desde 0.906 (m_O2 −0.0 K en 0.900), y C2 y C3 lo son en todo el barrido. m_O2 con ε_cond = 0.95: 5.5 K (C1), 11.8 K (C2), 14.9 K (C3) y 8.1 K (C4); entre ε_cond 0.92 y 0.95 el margen cae ≈ 1.9 K por cada −0.01 en C1 y ≈ 1.8 K en C4 (promedio de todo el barrido: 1.2 y 1.7 K; la relación no es lineal). De los 66 puntos que pierden la clase en A, 64 son CORREGIBLE por cavitación (O2) y 2 no convergen. Pero con ε_cond ≥ 0.922 en C1 todavía 11 de 54 puntos no son KALINA (todos CORREGIBLE, con P_baja de 661 a 712 kPa, T_sumidero desde 279.0 K y x_b desde 0.82; es una descripción de esos puntos, no una prueba de qué variable pesa más) y con ε_cond ≥ 0.906 en C4 8 de 84; con la especificación de U4 (≥ 0.93 en C1 y ≥ 0.91 en C4) se pierden 6 de 40 y 5 de 77 puntos.
 - Implicación: P(KALINA) = 0.47 en C1 no es un riesgo de pérdida del 53 %: sale de muestrear ε_cond solo por debajo del centro (con ε_cond fija da 1.00). La causa dominante de las pérdidas es el condensador, pero no la única: la tolerancia que se pueda garantizar en él es la primera especificación, y conviene controlar también P_baja, T_sumidero y x_b. Con ε_cond en 0.95 los cuatro centros toleran las demás perturbaciones (48 de 48, IC inferior 0.93); el margen de ε_cond antes de salir de KALINA es 0.028 en C1, 0.044 en C4 y ≥ 0.05 en C2 y C3. Las tolerancias son supuestos de escenario (uniformes; incertidumbre estándar ±a/√3), no mediciones.
 - Fuente: Hoja F5 Incertidumbre; resultados/2026-10-17_sens2_U1
-- Criterio de confianza: cumple 5 de 6 criterios; falta: robusto_diseno = parcial
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial
 
 **U2 [LÍMITES KALINA, fase C, confianza Media].** Con el doble de tolerancia solo C2 y C3 conservan la clase en la mayoría de los casos; C1 y C4 caen a 17 y 42 %.
 
 - Evidencia: Escenario B (tolerancias ×2): P(KALINA) 0.17 en C1 [0.09, 0.30], 0.90 en C2 [0.78, 0.95], 0.65 en C3 [0.50, 0.77] y 0.42 en C4 [0.29, 0.56]. De 90 puntos que pierden la clase, 86 son CORREGIBLE por cavitación (O2). PRCC: C3 ε_cond +0.83 y T_sumidero −0.47; C4 ε_cond +0.79, T_sumidero −0.66 y x_b −0.47. En B ε_cond se muestrea en [0.85, 0.95], también de forma unilateral (media 0.90), de modo que la pérdida de clase vuelve a estar dominada por el condensador.
 - Implicación: La robustez ordena a los bloques distinto según la tolerancia (A: C3 > C2 > C4 > C1; B: C2 > C3 > C4 > C1). El condensador y el sumidero son las variables que deciden en C1, C3 y C4.
 - Fuente: Hoja F5 Incertidumbre; resultados/2026-10-17_sens2_U1
-- Criterio de confianza: cumple 5 de 6 criterios; falta: una sola linea de evidencia
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
 **L7 [LÍMITES KALINA, fase A, confianza Media].** La clase KALINA exige m_O2 ≥ 0, es decir, cero margen de cavitación; exigir 3 K de margen reduce mucho la existencia, sobre todo en Húsavík y en el bloque frío.
 
 - Evidencia: El criterio O2 es m_O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tienen m_O2 < 1 K, 7.0 % < 3 K y 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C1). En la propagación de incertidumbre con tolerancias nominales (96 puntos por bloque), exigir m_O2 ≥ 3 K baja P(KALINA) de 0.47 a 0.15 en C1, de 0.85 a 0.57 en C4 y de 1.00 a 0.93 en C3; en C2 se mantiene en 0.99. Con ε_cond fija en 0.95 y exigiendo m_O2 ≥ 3 K, P(KALINA) es 0.79 en C1 y 1.00 en C2, 1.00 en C3 y 1.00 en C4: la pérdida de región por exigir margen se concentra en Húsavík.
 - Implicación: La región KALINA y los pisos de P_baja de D1 valen para margen cero; un diseño real con margen de NPSH tendría pisos más altos y menos región. El resultado de Húsavík (P = 0.47) depende de aceptar margen cero.
 - Fuente: Revisión final (recalculado desde x1_cargar: m_O2 de cada punto y u1_filas.csv)
-- Criterio de confianza: cumple 5 de 6 criterios; falta: intervalo = no
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: intervalo = no
 
 **L8 [LÍMITES KALINA, fase C, confianza Baja].** Los rangos KALINA de Sens2 son consistentes con los de la campaña anterior en C2 (91 %) y no en C3 (35 %: 23 puntos, 15 de ellos con un único valor de ε_cond), y lo que sale del rango es una extensión mínima.
 
@@ -336,7 +336,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: Contando cada ventana una sola vez (sus dos bordes dan los mismos aciertos), 19 fronteras con n ≥ 5 acuerdan en 0.561 (2 619 evaluaciones frontera-punto, no puntos independientes); con las 5 eficiencias a ±0.10 del centro, 11 fronteras acuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resultado depende sobre todo de C2. Con los 5 vecinos más cercanos de Sens2 la clase se predice con exactitud 0.683 frente a 0.647 de la clase mayoritaria; donde hay un punto de Sens2 cercano (L1 ≤ 0.29, primer cuartil) es 0.682 frente a 0.568, y lejos (L1 > 1.09) 0.748 frente a 0.890.
 - Implicación: Un diseño no debe leerse de una sola frontera: la frontera de una variable depende del valor de las demás (por ejemplo, el piso de P_baja sube con x_b). Para decidir un diseño hay que consultar los puntos de Sens2 más cercanos o recalcular con el motor.
 - Fuente: R1 r1_fronteras_contraste.csv; R2 r2_fronteras_eficiencias.csv; r2_vecinos_resumen.csv
-- Criterio de confianza: cumple 4 de 6 criterios; falta: intervalo = no
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: intervalo = no
 
 ## 4. CORREGIBLE frente a KALINA
 
@@ -361,7 +361,8 @@ Ver F6 (diferencia sin parear de +2.47 puntos de η, que mezcla zonas distintas 
 - η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases condicionan en haber convergido (sesgo de supervivencia a vigilar).
 - m_b no se barrió; las potencias son por kg/s de m_b (el estudio 0 usa m_b distinto de 1).
 - Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sobre una rampa.
-- Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mallas no cumplen; la versión sobre LHS (η +3.1 puntos, IC [+2.46, +3.65]) es la más defendible.
+- El «10 % de mayor η» tiene n = 207 en P2 (M5) y n = 205 en P4 (E3, E4, E9): son dos cortes ligeramente distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); el trazado contra las fuentes que cita cada conclusión sí (`p5_trazado_fuente.md`) y deja una lista corta de cifras sin respaldo directo; los controles independientes cubren las más importantes.
+- Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mallas no cumplen; la versión sobre LHS (η +3.1 puntos, IC [+2.46, +3.65]) es la menos expuesta a la mezcla de diseños, pero sigue sin parear.
 - Los índices de D en C4 (n = 28) son indicativos.
 - LMTD y UA del regenerador se reconstruyen de los estados (contraflujo puro); el modelo usa efectividad.
 - 7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.

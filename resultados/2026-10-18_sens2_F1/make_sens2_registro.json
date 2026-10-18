@@ -1,5 +1,5 @@
 {
-  "commit": "dabd09878e607e96969f62a9451b84b3c71e7d7d",
+  "commit": "e42f4febcee9c280fd7e4286beb353d0de14bc2c",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -13,57 +13,33 @@
   },
   "pasos": [
     {
-      "nombre": "p5_generar",
-      "estado": "ok",
-      "segundos": 2.21,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_trazado",
-      "estado": "ok",
-      "segundos": 3.13,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_cifras_check",
-      "estado": "ok",
-      "segundos": 4.7,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_cifras_check_c",
-      "estado": "ok",
-      "segundos": 1.28,
-      "codigo": 0
-    },
-    {
       "nombre": "s2_construir",
       "estado": "ok",
-      "segundos": 13.92,
+      "segundos": 13.21,
       "codigo": 0
     },
     {
       "nombre": "s2_verificar",
       "estado": "ok",
-      "segundos": 34.03,
+      "segundos": 27.79,
       "codigo": 0
     },
     {
       "nombre": "s2_informe",
       "estado": "ok",
-      "segundos": 2.98,
+      "segundos": 3.15,
       "codigo": 0
     },
     {
       "nombre": "s2_figuras",
       "estado": "ok",
-      "segundos": 4.75,
+      "segundos": 5.14,
       "codigo": 0
     },
     {
       "nombre": "s2_informe_pdf",
       "estado": "ok",
-      "segundos": 4.58,
+      "segundos": 4.26,
       "codigo": 0
     }
   ]

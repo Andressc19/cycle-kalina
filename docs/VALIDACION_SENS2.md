@@ -30,7 +30,7 @@ temperatura y el flujo volumétrico de la turbina y la altura de la bomba (etapa
 
 ## Evaluación global: compartir con caveats
 
-Las cifras se recalcularon de forma independiente y coinciden. Los hallazgos corregidos están abajo. Quedan
+Las cifras se recalcularon con código distinto del que las genera (p5_cifras_check*.py) y coinciden. Los hallazgos corregidos están abajo. Quedan
 caveats que deben comunicarse (sección «Caveats obligatorios»).
 
 ## Revisión de método
@@ -64,7 +64,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 ## Objeciones previsibles de un evaluador (y estado)
 
 1. **«Todo es el modelo.»** Cierto: solo teqp, sin validación experimental; se contrasta con modelos publicados y un simulador, no con experimentos. Declarado.
-2. **«Falta propagar incertidumbre y superficies de respuesta.»** Hecho después de esta revisión: 808 puntos del motor (F5 Incertidumbre) y 8 mallas con ajuste cuadratico (F5 Superficies de respuesta). Reservas: las tolerancias (±5 K, ±3 K, ±5 %, ±0.02, ±0.05; el doble en B) son supuestos de escenario y las entradas se tomaron independientes y uniformes (incertidumbre estándar ±a/√3); con 48 puntos por celda los IC de Wilson son anchos, pero un segundo lote independiente de 48 (96 en total) coincide con el primero (diferencias de P(KALINA) de 0.00 a 0.02, |z| ≤ 1.0), de modo que el muestreo es estable; un escenario con ε_cond fija en 0.95 (192 puntos) y un barrido fino de ε_cond (40 puntos) aislaron el sesgo del tope 0.95: la pérdida de clase se debe solo al condensador; los percentiles P5 y P95 son aproximados; la banda del modelo (±0.7 pp) se suma de forma determinista.
+2. **«Falta propagar incertidumbre y superficies de respuesta.»** Hecho después de esta revisión: 808 puntos del motor (F5 Incertidumbre) y 8 mallas con ajuste cuadratico (F5 Superficies de respuesta). Reservas: las tolerancias (±5 K, ±3 K, ±5 %, ±0.02, ±0.05; el doble en B) son supuestos de escenario y las entradas se tomaron independientes y uniformes (incertidumbre estándar ±a/√3); con 48 puntos por celda los IC de Wilson son anchos, pero un segundo lote independiente de 48 (96 en total) coincide con el primero (diferencias de P(KALINA) de 0.00 a 0.02, |z| ≤ 1.0), son compatibles, pero con 48 puntos por lote eso no prueba que el muestreo sea estable; un escenario con ε_cond fija en 0.95 (192 puntos) y un barrido fino de ε_cond (40 puntos) aislaron el sesgo del tope 0.95: la pérdida de clase se debe solo al condensador; los percentiles P5 y P95 son aproximados; la banda del modelo (±0.7 pp) se suma de forma determinista.
 3. **«La regla de ruido con 3 dummy es débil.»** Cierto: se declara y se usa solo con 3 a 8 métodos concordantes.
 4. **«¿Por qué el regenerador pierde peso al subir T_fuente?»** Resuelto en la segunda evaluación (conclusión E8): el lado caliente es el líquido pobre y Q_reg = m_l·(h5 − h6); al subir T_fuente casi todo el fluido se vaporiza y m_l/m_b cae de 0.81 a 0.006.
 5. **«Los requisitos de equipos son envolventes, no especificaciones.»** Cierto: faltan flujo volumétrico de la turbina, altura de la bomba y geometría. Declarado.

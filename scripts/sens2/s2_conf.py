@@ -21,7 +21,8 @@ REGLA = [
     "distintas, campañas o muestreos distintos), n_min >= 30, robusta a NO_CONVERGIO y al diseño (o con el alcance acotado y dicho en el propio enunciado) y con intervalo o prueba corregida.",
     "No aplica: una declaracion de limites del analisis no es una inferencia y no lleva confianza.",
     "Media: el resto. Cualquier criterio `parcial`, `pendiente` o `no` impide Alta. Para que Media discrimine, cada conclusion muestra cuantos de 6 criterios cumple "
-    "(2 lineas, n_min, robusta a NO_CONVERGIO, robusta al diseño, intervalo, varios bloques).",
+    "(2 lineas, n_min, robusta a NO_CONVERGIO, robusta al diseño, intervalo, varios bloques); un criterio que no aplica (`na`) cuenta como cumplido y los criterios pesan igual. "
+    "El umbral de 2 o menos para Baja es una convencion, sin fundamento estadistico.",
     "Las entradas de la regla (lineas, n_min, robusto_nc, robusto_diseno, intervalo) las asigna el director a mano en p5_evidencia.csv, con una nota que las justifica; "
     "el codigo solo aplica la regla. Una cifra determinista con 2 o mas lineas no exige n_min.",
     "La confianza describe la solidez dentro del modelo teqp; no es una validacion experimental."]
@@ -52,14 +53,14 @@ def hoja_conf(wb, datos):
         r = e.loc[x["id"]]
         filas.append([x["id"], x["categoria"], x["confianza"], x["criterios_cumplidos"], x["criterio_confianza"], r["tipo"], int(r["lineas"]), int(r["n_min"]),
                       r["robusto_nc"], r["robusto_diseno"], r["intervalo"], r["un_bloque"], r["alcance_en_enunciado"], r["nota"]])
-    _, f, _ = tabla(ws, f, ["Id", "Categoria", "Confianza", "Criterios cumplidos (de 6)", "Por que", "Tipo", "Lineas", "n_min", "Robusta a NO_CONVERGIO", "Robusta al diseño",
+    _, f, _ = tabla(ws, f, ["Id", "Categoria", "Confianza", "Criterios cumplidos o que no aplican (de 6)", "Por que", "Tipo", "Lineas", "n_min", "Robusta a NO_CONVERGIO", "Robusta al diseño",
                             "Intervalo", "Un solo bloque", "Alcance dicho en el enunciado", "Nota"], filas,
                     anchos=[7, 20, 11, 12, 44, 13, 8, 8, 14, 14, 11, 12, 16, 70])
     f += 1
     f = nota(ws, f, "pendiente = aun no comprobado; acotado = el enunciado limita su alcance a la rebanada o escenario donde se midio; "
                     "na = el criterio no aplica a esa conclusion. `acotado` solo permite Alta si el alcance esta dicho en el propio enunciado.")
     descripcion(ws, f + 1, ["Regla de confianza aplicada por codigo y criterios que sostienen cada conclusion.",
-                            "Alta es rara a proposito: exige varias lineas de evidencia, robustez e intervalo."])
+                            "Alta es rara a proposito: las dos Alta son recuentos directos; una inferencia exige varias lineas de evidencia, robustez e intervalo."])
     return ws
 
 

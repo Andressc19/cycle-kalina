@@ -20,8 +20,8 @@ M2,determinista,1,972,na,acotado,na,si,si,mejor punto muestreado de C1; salida e
 M3,determinista,1,972,na,acotado,na,si,si,mejor punto muestreado de C1 con mejores equipos; salida exacta del modelo en puntos muestreados: el enunciado dice «muestreado» y no afirma un optimo
 M4,determinista,1,972,na,acotado,na,no,si,mejor punto muestreado de C4 y C2; el de C4 tiene m_O2 de 0.2 K; salida exacta del modelo en puntos muestreados: el enunciado dice «muestreado» y no afirma un optimo
 M5,inferencia,2,207,na,parcial,si,si,no,significativa en el LHS solo en C1; con todos los puntos depende del diseño
-F1,inferencia,2,231,pendiente,si,si,no,no,seis metodos (no independientes) y elasticidad local; la eta solo existe en puntos convergidos (24 % de NO_CONVERGIO en C3 y C4)
-F2,inferencia,1,231,na,si,si,no,no,seis metodos sobre W_net por kg/s con permutacion y correccion de Benjamini-Hochberg (p6_nulo_perm)
+F1,inferencia,2,118,pendiente,si,si,no,no,seis metodos (no independientes) y elasticidad local; la eta solo existe en puntos convergidos (24 % de NO_CONVERGIO en C3 y C4)
+F2,inferencia,1,118,na,si,si,no,no,seis metodos sobre W_net por kg/s con permutacion y correccion de Benjamini-Hochberg (p6_nulo_perm)
 F3,inferencia,2,231,no,si,si,no,no,con permutacion y correccion de Benjamini-Hochberg; los tres primeros cambian sin NO_CONVERGIO en C3 y C4 (p6_sens_nc)
 F4,determinista,1,2,na,acotado,na,no,si,elasticidades locales centradas en el centro de cada bloque (un solo punto base por bloque)
 F5,inferencia,1,49,pendiente,parcial,pendiente,no,no,mallas de pares 7 x 7; 1 - R2 del modelo aditivo

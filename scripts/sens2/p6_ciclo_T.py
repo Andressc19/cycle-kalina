@@ -24,7 +24,7 @@ MIN_KALINA = 10
 COLS = ["banda", "T_centro_C", "n", "n_kalina", "n_corregible", "n_inviable", "n_no_convergio",
         "p_kalina", "p_kalina_si_convergio", "eta_max", "id_punto", "T_fuente", "P_alta", "P_baja",
         "x_b", "eta_t", "eps_reg", "eps_cond", "fuera_rango", "eta_max_dentro", "eta_p90",
-        "eta_mediana", "wnet_mb_max", "wnet_mb_mediana", "eta_mediana_lhs", "n_kalina_lhs", "n_kalina_dentro"]
+        "eta_mediana", "wnet_mb_max", "wnet_mb_mediana", "eta_mediana_lhs", "n_kalina_lhs", "n_kalina_dentro", "eta_p90_dentro", "eta_mediana_dentro"]
 
 
 def _pct(v, p):
@@ -67,7 +67,7 @@ def fila_banda(sub, lo, hi):
             [emax_d, _pct(eta, 90), _pct(eta, 50),
              float(np.max(w)) if len(w) else np.nan,
              float(np.median(w)) if len(w) else np.nan,
-             float(np.median(lhs)) if len(lhs) else np.nan, int(len(lhs)), int(len(dentro))])
+             float(np.median(lhs)) if len(lhs) else np.nan, int(len(lhs)), int(len(dentro)), _pct(dentro, 90), _pct(dentro, 50)])
 
 
 def tablas(d):

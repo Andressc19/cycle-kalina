@@ -27,8 +27,11 @@ CAVEATS = [
     "condicionan en haber convergido (sesgo de supervivencia a vigilar).",
     "m_b no se barrió; las potencias son por kg/s de m_b (el estudio 0 usa m_b distinto de 1).",
     "Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sobre una rampa.",
+    "El «10 % de mayor η» tiene n = 207 en P2 (M5) y n = 205 en P4 (E3, E4, E9): son dos cortes ligeramente distintos del mismo percentil. "
+    "El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); el trazado contra las fuentes que cita cada conclusión "
+    "sí (`p5_trazado_fuente.md`) y deja una lista corta de cifras sin respaldo directo; los controles independientes cubren las más importantes.",
     "Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y "
-    "las mallas no cumplen; la versión sobre LHS (η +3.1 puntos, IC [+2.46, +3.65]) es la más defendible.",
+    "las mallas no cumplen; la versión sobre LHS (η +3.1 puntos, IC [+2.46, +3.65]) es la menos expuesta a la mezcla de diseños, pero sigue sin parear.",
     "Los índices de D en C4 (n = 28) son indicativos.",
     "LMTD y UA del regenerador se reconstruyen de los estados (contraflujo puro); el modelo usa efectividad.",
     "7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.",

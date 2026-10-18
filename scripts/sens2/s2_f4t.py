@@ -24,7 +24,7 @@ PROHIBIDAS = ["confiable", "no citable", "fuera de rango del motor", "indicio", 
 COLS = ["banda", "T_centro_C", "n", "n_kalina", "n_corregible", "n_inviable", "n_no_convergio",
         "p_kalina", "p_kalina_si_convergio", "eta_max", "id_punto", "T_fuente", "P_alta", "P_baja",
         "x_b", "eta_t", "eps_reg", "eps_cond", "fuera_rango", "eta_max_dentro", "eta_p90",
-        "eta_mediana", "wnet_mb_max", "wnet_mb_mediana", "eta_mediana_lhs", "n_kalina_lhs", "n_kalina_dentro"]
+        "eta_mediana", "wnet_mb_max", "wnet_mb_mediana", "eta_mediana_lhs", "n_kalina_lhs", "n_kalina_dentro", "eta_p90_dentro", "eta_mediana_dentro"]
 
 
 def _d():
@@ -64,20 +64,20 @@ def hoja_f4_ciclo_T(wb, datos):
     f = subtitulo(ws, f, "2. Eficiencia frente a T_fuente (bandas con al menos %d KALINA)" % MIN_KALINA)
     sel = d[(d["n_kalina_dentro"] >= MIN_KALINA) & d["eta_max_dentro"].notna()]
     xv = [numero(x["T_centro_C"], 1) for _, x in sel.iterrows()]
-    fl = [[xv[i], _c(x["eta_max_dentro"]), _c(x["eta_p90"]), _c(x["eta_mediana"])]
+    fl = [[xv[i], _c(x["eta_max_dentro"]), _c(x["eta_p90_dentro"]), _c(x["eta_mediana_dentro"])]
           for i, (_, x) in enumerate(sel.iterrows())]
-    f = bloque(ws, f, titulo="eta maxima dentro del rango, P90 y mediana frente a T_fuente",
-               encabezados=["T_centro_C (C)", "eta_max_dentro (%)", "eta_p90 (%)", "eta_mediana (%)"],
+    f = bloque(ws, f, titulo="eta maxima, P90 y mediana de los KALINA dentro del rango experimental frente a T_fuente",
+               encabezados=["T_centro_C (C)", "eta_max_dentro (%)", "eta_p90_dentro (%)", "eta_mediana_dentro (%)"],
                filas=fl, x="T_centro_C (C)", y="eta (%)", tipo="linea", x_vals=xv,
                nota_txt="Fuente: p6_ciclo_T.csv. Solo bandas con al menos %d KALINA dentro del rango experimental (columna n_kalina_dentro); "
                         "las bandas calientes tienen casi todos sus KALINA fuera del rango (liquido > 420 K) y no aparecen. El maximo es el mayor "
                         "valor muestreado y crece con el tamano del conjunto." % MIN_KALINA)
     f = subtitulo(ws, f, "3. P(KALINA) por banda de T_fuente (efecto de NO_CONVERGIO)")
-    fl2 = [[str(x["banda"]), _c(100 * x["p_kalina"]), _c(100 * x["p_kalina_si_convergio"])]
+    fl2 = [["%.0f C" % x["T_centro_C"], _c(100 * x["p_kalina"]), _c(100 * x["p_kalina_si_convergio"])]
            for _, x in d.iterrows()]
     f = bloque(ws, f, titulo="P(KALINA) por banda, con y sin NO_CONVERGIO en el denominador",
-               encabezados=["Banda de T_fuente (K)", "p_kalina (%)", "p_kalina_si_convergio (%)"],
-               filas=fl2, x="Banda de T_fuente (K)", y="P(KALINA) (%)",
+               encabezados=["Centro de la banda de T_fuente (C)", "p_kalina (%)", "p_kalina_si_convergio (%)"],
+               filas=fl2, x="Centro de la banda de T_fuente (C)", y="P(KALINA) (%)",
                nota_txt="Fuente: p6_ciclo_T.csv. NO_CONVERGIO sesga hacia abajo la P(KALINA); "
                         "p_kalina_si_convergio usa (n - NO_CONVERGIO) como denominador y se separa mas "
                         "en las bandas frias.")

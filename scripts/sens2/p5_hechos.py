@@ -277,6 +277,11 @@ def _ronda3(h):
     d = q[(q["variante"] == "mismo_centro") & (q["variable"] == "d_eta")]
     x = d[d["grupo"] == "todos"].iloc[0]
     h["par4.media"], h["par4.media.lo"], h["par4.media.hi"] = float(x["media"]), float(x["ic_media_lo"]), float(x["ic_media_hi"])
+    t0 = pd.read_csv(os.path.join(F1, "p6_pareado_dist.csv"))
+    z = t0[(t0["variante"] == "mismo_centro") & (t0["grupo"] == "todos") & (t0["calculo"] == "tramo L1 0.2 a 0.5")].iloc[0]
+    h["par.medio.med"], h["par.medio.n"] = float(z["estimador"]), float(z["n"])
+    z = t0[(t0["variante"] == "mismo_centro") & (t0["grupo"] == "todos") & (t0["calculo"] == "tramo L1 0.5 a mas")].iloc[0]
+    h["par.lejos.todos.med"], h["par.lejos.todos.n"] = float(z["estimador"]), float(z["n"])
     o1 = d[d["grupo"] == "O1"].iloc[0]
     h["par.o1.med"], h["par.o1.lo"], h["par.o1.hi"], h["par.o1.n"] = float(o1["mediana"]), float(o1["ic_med_lo"]), float(o1["ic_med_hi"]), float(o1["n"])
     cruza = [g for g in ("C1 Husavik", "C2 ancla A*", "C3 caliente 150 C", "C4 frio 110 C")
@@ -304,8 +309,13 @@ def _ciclo(h):
     h["ciclo.n.min"], h["ciclo.n.max"] = float(t["n"].min()), float(t["n"].max())
     from s2_cargar import dataset_dedup
     k = dataset_dedup()
-    k = k[k["kalina"] & (k["T_fuente"] >= 483.15)]
+    k = k[k["kalina"] & (k["T_fuente"] >= 433.15)]
     h["ciclo.caliente.n"], h["ciclo.caliente.fuera"] = float(len(k)), float(k["fuera_rango"].sum())
+    h["ciclo.caliente.pct"] = 100 * h["ciclo.caliente.fuera"] / h["ciclo.caliente.n"]
+    import p4_comun as c4
+    e = c4.cargar()
+    m = (e[c4.mascara(e, c4.REF_TOP10)]["q4"] - 0.90).to_numpy(float)
+    h["e3.med"], h["e3.max"], h["e3.p01"] = float(pd.Series(m).median()), float(m.max()), 100 * float((m <= 0.01).mean())
 
 
 def _kw(h):

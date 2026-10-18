@@ -18,7 +18,7 @@ ENC_CONCL = ["id", "fase", "afirmacion", "evidencia", "implicacion", "confianza"
 PREGUNTAS = [
     ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises", "D1 a D6"),
     ("Partiendo de un KALINA, que pasa al mover una o dos variables?",
-     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate", "D7; L6; L2; F6"),
+     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate; F5 Superficies de respuesta; F5 Incertidumbre", "D7; L6; L2; F6; F5; R1; D8; U1 a U4"),
     ("Como se comporta el regenerador y el ciclo con la temperatura de la fuente?",
      "F4 Regenerador vs T_fuente; F4 Regenerador y condensador; F4 Ciclo vs T_fuente", "E8; E4; M6"),
     ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion; F4 Equipos por kW",

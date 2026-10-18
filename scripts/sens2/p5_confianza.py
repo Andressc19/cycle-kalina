@@ -70,7 +70,7 @@ def regla(x):
             faltan.append("%s = %s%s" % (c, x[c], " (alcance no dicho en el enunciado)" if x[c] == "acotado" else ""))
     if not faltan:
         return "Alta", "lineas = %d, n_min = %d, robusta a NO_CONVERGIO y al diseño, con intervalo" % (x["lineas"], x["n_min"])
-    return "Media", "cumple %d de 6 criterios; falta: %s" % (puntaje(x), "; ".join(faltan))
+    return "Media", "cumple %d de 6 criterios (contando los que no aplican); falta: %s" % (puntaje(x), "; ".join(faltan))
 
 
 def puntaje(x):
