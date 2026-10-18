@@ -125,3 +125,50 @@ Sin la etapa C, todos los criterios llegan a ≥ 4 salvo cobertura (≈ 3.8). Co
 
 Se vuelve a pasar la evaluación tipo profesor con un revisor independiente; el plan se da por cumplido cuando ningún
 criterio queda por debajo de 4 y no hay hallazgos críticos ni importantes abiertos.
+
+## 6. Revisión del plan tras estudiar la etapa A (2026-10-18)
+
+### 6.1 Qué se hizo y qué se aprendió
+
+| Pieza | Estado | Qué mostró |
+|---|---|---|
+| **F0** textos y cifras (commits `4ac4e76`, `b7eb5fb`) | Hecha | 14 conclusiones, el BLUF del informe, el LEEME, `VALIDACION_SENS2.md`, el PLAN y el resumen del PDF corregidos; verificador, `rev_final.py` y reconstrucción del libro en verde |
+| **F2** generador (`p5_hechos.py`, `p5_generar.py`) | Hecha | `p5_conclusiones_base.csv` lleva marcadores `{{clave\|formato}}` y `p5_conclusiones.csv` se genera desde los CSV. Hoy 21 conclusiones tienen cifras con marcador; las otras 20 siguen con cifras escritas |
+| **F2** regla de confianza (`p5_confianza.py`, `p5_evidencia.csv`) | Primera versión sin commit | Aplicada, la regla deja **3 Alta, 37 Media y 1 Baja**. Es demasiado dura: 31 de 41 conclusiones quedan «parcial» en robustez al diseño |
+| **F2** comprobación de cifras (`p5_cifras_check.py`) | Sin hacer | Hoy las comprobaciones viven en un script fuera del repositorio (`rev_final.py`, 23 controles) |
+
+Tres hallazgos que cambian el plan:
+
+1. **La regla v1 confunde «depende del diseño» con «el enunciado ya acota su alcance».** D2 a D7 son fronteras medidas moviendo una variable con las demás en el centro; el texto ya lo dice. Marcarlas «parcial» les impide llegar a Alta, aunque sean exactas en su rebanada. Solución (regla v2): `robusto_diseno` pasa a `si` / `acotado` (el enunciado limita su alcance a la rebanada donde se midió) / `parcial` (se enuncia en general pero depende del diseño) / `no`. `acotado` cuenta como válido para Alta.
+2. **La mayor parte de lo pendiente se resuelve con tres cálculos de F1**: 15 conclusiones esperan la prueba de NO_CONVERGIO, 14 esperan un intervalo o una corrección por multiplicidad y 1 espera el emparejado. Hasta que F1 no exista, casi todo queda en Media por construcción, no por mala calidad.
+3. **NO_CONVERGIO no se resuelve del todo sin el motor.** En el muestreo LHS solo se puede acotar (extremos pesimista y optimista). En los estudios 4, 7 y 16 (35 % a 38 % de NO_CONVERGIO) y en el cuartil bajo de T_fuente de C3 y C4, la única forma de separar «no existe» de «no convergió» es reintentar esos puntos (etapa B). Con la etapa A, `robusto_nc` queda `si`, `no` o «acotado por cotas»; nunca «resuelto».
+
+### 6.2 Plan de acción revisado (etapa A, en este orden)
+
+| Paso | Contenido | Entregable | Depende de | Notas que mueve |
+|---|---|---|---|---|
+| **A1** | Cerrar F2: regla v2 (`acotado`), `p5_cifras_check.py` en el repositorio (portar los 23 controles de `rev_final.py` y cubrir las conclusiones nuevas), mover a `p5_hechos.py` las cifras literales de las conclusiones sin marcador que F1 vaya a tocar, y las del informe y el PDF | `p5_confianza.py` v2, `p5_cifras_check.py` | F0 | (b), (c), (e) |
+| **A2** | **F1 núcleo.** (1.1, 1.2) nulo por permutación (≥ 500 barajados) con corrección de Benjamini–Hochberg por respuesta, incluyendo la caja común de rangos (1.6) como opción. (1.3) NO_CONVERGIO: Y1 con NC como 0, sin NC y como KALINA; tabla de la fracción de NC por estudio y bloque. (1.4) pareado por bloque, diseño y tipo de violación. (1.5) envolventes de equipos solo con LHS y con peso inverso a la densidad de muestreo. (1.9) potencia de U1 | `p6_nulo_perm.csv`, `p6_indices_fdr.csv`, `p6_sens_nc.csv`, `p6_nc_fraccion.csv`, `p6_pareado.csv`, `p6_equipos_diseno.csv`, `p6_potencia_u1.csv` | A1 | (a) |
+| **A3** | **F1 secundario.** (1.7) frontera con intervalo (regresión logística de las 9 variables en el LHS, posición de la frontera con las demás en el centro, IC por bootstrap; se informa el AUC y se descarta si es < 0.8). (1.8) validación cruzada de las superficies (una celda fuera) | `p6_fronteras_ic.csv`, `p6_superficies_cv.csv` | A2 | (a) |
+| **A4** | **Reescribir las conclusiones afectadas** con lo que salga de A2 y A3 (F1 a F3, L3, E1 a E7, D1, D3, D8, R1, L6), actualizar `p5_evidencia.csv` desde los CSV (cada campo con su fuente) y regenerar. Si la corrección por multiplicidad quita variables «distinguibles», se escribe lo que quede | `p5_conclusiones_base.csv` v2 | A2, A3 | (a), (b), (c) |
+| **A5** | **F4**: `make_sens2.py` (una orden regenera P1 a P5, U1 a R2, F1, el libro y los informes), pruebas `tests/test_sens2_*.py`, `sens2_supuestos.yaml`, registro de procedencia, `p6_mO2_estadisticas.csv`, `.gitignore` para `~$*.xlsx` | script, pruebas, YAML | A4 | (e) |
+| **A6** | **F5**: barras de error con el IC de Wilson, ejes con el valor de la variable, histograma en lugar del gráfico de «requisitos por equipo», hojas nuevas con los resultados de F1 (nulo y BH, NO_CONVERGIO, pareado, fronteras con IC) y una hoja de «Cómo leer la confianza», LEEME nuevo | libro de 24 a 26 hojas | A4 | (f), (d) |
+| **A7** | Verificación: verificador del libro, `p5_cifras_check.py`, pruebas, auditoría en Excel real; **evaluación tipo profesor por un revisor independiente** | informe del revisor | A5, A6 | todos |
+
+### 6.3 Nota esperada tras la etapa A (estimación, no garantía)
+
+| Criterio | Hoy | Tras la etapa A | Qué falta para 4 o más |
+|---|---|---|---|
+| (a) Rigor | 2.5 | 3.5 a 4 | Reintentar NO_CONVERGIO (etapa B) para cerrar el sesgo de existencia |
+| (b) Coherencia | 2.5 | 4 a 4.5 | Nada, si `p5_cifras_check.py` cubre todas las conclusiones |
+| (c) Sobre-afirmaciones | 2.5 | 4 | Nada; la regla v2 con `acotado` debe dar una distribución creíble (no 3 Alta de 41) |
+| (d) Cobertura | 3.5 | 3.8 | Ciclo frente a T_fuente optimizado y equipos por potencia (etapa C) |
+| (e) Trazabilidad | 3.0 | 4 | Nada |
+| (f) Libro | 3.5 | 4 | Nada |
+
+### 6.4 Riesgos y decisiones abiertas
+
+- **La corrección por multiplicidad puede reducir los resultados.** Si F1, F2 y F3 pierden variables, hay que reescribir esas conclusiones; es el resultado correcto, pero cambia el mensaje del libro.
+- **Definir «líneas de evidencia independientes» es un juicio.** La regla las cuenta por familia de método (correlación, dependencia, derivada local, campaña distinta), no por número de métodos; el criterio queda escrito en `p5_confianza.py` y en el libro.
+- **Reglas y umbrales (n ≥ 30, 500 barajados, q = 0.05, AUC ≥ 0.8) son decisiones mías**, declaradas en `sens2_supuestos.yaml`.
+- **Regla de trabajo:** no se lanzan corridas del motor sin autorización expresa; A2 y A3 son solo cálculo sobre datos existentes.
