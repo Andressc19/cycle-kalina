@@ -1,9 +1,9 @@
 id,tipo,lineas,n_min,robusto_nc,robusto_diseno,intervalo,un_bloque,nota
-D1,inferencia,3,968,pendiente,parcial,pendiente,no,"968 CORREGIBLE (96 % por O2), fronteras de barridos y mallas P_baja x x_b; el valor numerico es un punto medio y L9 no lo reproduce con otras variables libres"
+D1,inferencia,4,968,si,acotado,si,no,"968 CORREGIBLE (96 % por O2), barridos, mallas y regresion logistica con IC (p6_fronteras_ic); la frontera es la misma con y sin NO_CONVERGIO"
 D2,determinista,2,2,pendiente,acotado,na,no,frontera de x_b en barridos de una variable (dos niveles) y ranking del LHS; otras variables en el centro
 D3,determinista,2,2,no,acotado,na,no,"el umbral inferior coincide con NO_CONVERGIO masivo (C4 37 de 59, C3 28 de 59)"
 D4,determinista,2,2,pendiente,no,na,no,"el minimo de eps_cond es el limite inferior del muestreo en C1, C3 y C4"
-D5,determinista,2,2,pendiente,acotado,na,no,frontera de T_sumidero en barridos de una variable y PRCC de U1
+D5,determinista,3,2,si,acotado,na,no,"barridos de una variable, PRCC de U1 y regresion logistica con IC (p6_fronteras_ic) que contiene a los barridos"
 D6,determinista,1,2,pendiente,acotado,na,no,frontera de P_alta en barridos de una variable
 D7,determinista,2,2,pendiente,acotado,na,no,margenes de barridos de una variable y barrido fino de eps_cond
 D8,inferencia,2,49,pendiente,acotado,pendiente,no,mallas P_baja x x_b de 7 niveles y mecanismo de la temperatura de burbuja
@@ -27,7 +27,7 @@ F4,determinista,2,2,na,acotado,na,no,"elasticidades locales centradas en el cent
 F5,inferencia,1,49,pendiente,parcial,pendiente,no,mallas de pares 7 x 7; 1 - R2 del modelo aditivo
 F6,inferencia,2,968,na,acotado,si,no,medianas sin parear con IC y diferencia pareada de L2; no es un efecto causal
 L1,recuento,1,968,na,na,na,no,conteo de la violacion dominante de los 968 CORREGIBLE
-L2,inferencia,1,968,na,pendiente,si,no,vecino KALINA mas cercano por bloque
+L2,inferencia,1,968,na,parcial,si,no,vecino KALINA mas cercano; depende de la distancia al vecino (p6_pareado_dist)
 L3,inferencia,2,231,pendiente,si,pendiente,no,ganancia de Gini de un solo corte y reglas puras en el LHS
 L4,recuento,1,2047,na,na,na,no,conteo de KALINA fuera del rango experimental
 L5,limite,1,3663,na,na,na,no,declaracion de limites del analisis
@@ -35,8 +35,8 @@ L6,inferencia,1,50,pendiente,parcial,no,no,fraccion KALINA segun el numero de va
 L7,inferencia,2,2243,na,acotado,no,no,porcentajes de m_O2 y reclasificacion de U1; sin intervalo
 L8,inferencia,1,1,na,parcial,no,si,C1 tiene 7 y C4 1 KALINA viejos; mismo motor y mismos centros
 L9,inferencia,2,665,na,acotado,no,si,evaluaciones que reutilizan puntos; depende de C2
-U1,inferencia,3,48,pendiente,acotado,si,no,"tolerancias supuestas; eps_cond solo hacia abajo; escenarios A, C y barrido fino"
-U2,inferencia,1,48,pendiente,acotado,si,no,escenario B con tolerancias supuestas; eps_cond unilateral
+U1,inferencia,3,48,si,acotado,si,no,"tolerancias supuestas; 5 de 808 puntos sin convergencia; escenarios A, C, barrido fino y regresion logistica (p6_fronteras_ic)"
+U2,inferencia,1,48,si,acotado,si,no,escenario B con tolerancias supuestas; eps_cond unilateral
 U3,inferencia,1,96,na,acotado,no,no,dispersion de eta de los KALINA bajo tolerancias supuestas
-R1,inferencia,1,49,pendiente,parcial,no,no,"ajuste cuadratico en la muestra de 8 mallas, sin validacion cruzada; el maximo cae en celdas sin datos KALINA"
-U4,determinista,2,10,pendiente,acotado,na,no,"barrido fino de eps_cond (10 niveles) con las demas variables en el centro, y barridos de una variable"
+R1,inferencia,1,49,pendiente,parcial,si,no,ajuste cuadratico con validacion cruzada (p6_superficies_cv); el maximo cae en el borde y sin datos KALINA
+U4,determinista,3,10,si,acotado,na,no,"barrido fino de eps_cond, barridos de una variable y regresion logistica con IC (p6_fronteras_ic)"

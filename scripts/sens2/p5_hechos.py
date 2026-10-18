@@ -138,6 +138,12 @@ def _f1(h):
         h["ncq1.%s.n" % c], h["ncq1.%s.nc" % c] = float(x["n"]), float(x["NO_CONVERGIO"])
         h["ncq1.%s.p0" % c], h["ncq1.%s.pconv" % c] = float(x["p_kalina_nc_cero"]), float(x["p_kalina_si_convergio"])
         h["ncq1.%s.lo" % c], h["ncq1.%s.hi" % c] = float(x["ic_lo"]), float(x["ic_hi"])
+        for sufijo in ("p0", "pconv", "lo", "hi"):
+            h["ncq1.%s.%s_pct" % (c, sufijo)] = 100 * h["ncq1.%s.%s" % (c, sufijo)]
+    cd = pd.read_csv(os.path.join(F1, "p6_nc_conductores.csv"))
+    top = cd.sort_values("ks_nc_vs_resto", ascending=False).groupby("bloque").head(1)
+    h["ncd.ks.min"], h["ncd.ks.max"] = float(top["ks_nc_vs_resto"].min()), float(top["ks_nc_vs_resto"].max())
+    h["ncd.todos_T_fuente"] = float((top["variable"] == "T_fuente").sum())
     t = pd.read_csv(os.path.join(F1, "p6_nc_top3.csv"))
     for _, x in t.iterrows():
         c = key[x["bloque"]]
@@ -162,9 +168,37 @@ def _pareado(h):
     h["par.otros.med"] = float(g["mediana"])
 
 
+def _f1b(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    cv = pd.read_csv(os.path.join(F1, "p6_superficies_cv.csv"))
+    h["cv.r2cv.min"], h["cv.r2cv.max"] = float(cv["r2_cv"].min()), float(cv["r2_cv"].max())
+    h["cv.r2.min"], h["cv.r2.max"] = float(cv["r2"].min()), float(cv["r2"].max())
+    h["cv.caida.max"] = float((cv["r2"] - cv["r2_cv"]).max())
+    h["cv.max_en_C"] = float((cv["clase_celda_max_ajuste"] == "C").sum())
+    h["cv.max_en_borde"] = float((cv["en_borde"].astype(str) == "True").sum() + (cv["en_borde"].astype(str) == "si").sum())
+    h["cv.mallas"] = float(len(cv))
+    eq = pd.read_csv(os.path.join(F1, "p6_equipos_diseno.csv"))
+    dep = ["rp", "dh_turb", "Wt_mb", "q4", "UA_reg", "pinch_reg", "qreg_qi", "Qout_mb", "aprox_cond_sal", "Qi_mb", "Wp_Wt"]
+    sens = eq[(eq["sensible"].astype(str) == "si")]
+    por = {a: g["cantidad"].nunique() for a, g in sens[sens["cantidad"].isin(dep)].groupby("ambito")}
+    h["eqd.todos"] = float(por.get("todos", 0))
+    bl = [v for k, v in por.items() if k != "todos"]
+    h["eqd.bloque.min"], h["eqd.bloque.max"] = float(min(bl)), float(max(bl))
+    pw = pd.read_csv(os.path.join(F1, "p6_potencia_u1.csv"))
+    h["pot.mdd_peor"] = float(pw[pw["tabla"] == "entre_lotes"]["d_min_peor"].iloc[0])
+    fi = pd.read_csv(os.path.join(F1, "p6_fronteras_ic.csv"))
+    key = {"E3 C1 Husavik": "C1", "E3 C2 ancla A*": "C2", "E14 C3 caliente 150 C": "C3", "E14 C4 frio 110 C": "C4"}
+    for _, x in fi.iterrows():
+        k = "fic.%s.%s.%s" % (key[x["bloque"]], x["variable"], x["variante"])
+        h[k + ".x"], h[k + ".lo"], h[k + ".hi"] = float(x["x_frontera"]), float(x["ic_lo"]), float(x["ic_hi"])
+    au = fi.groupby(["bloque", "variante"])["auc"].first()
+    for (b, v), a in au.items():
+        h["fic.%s.%s.auc" % (key[b], v)] = float(a)
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b):
         f(h)
     return h
 
