@@ -1,0 +1,83 @@
+{
+  "auc_minimo": {
+    "donde": "docs/PLAN_SENS2_MEJORA.md",
+    "valor": 0.8
+  },
+  "banda_modelo_pp": {
+    "donde": "scripts/sens2/u1_analisis.py",
+    "valor": 0.7
+  },
+  "cercania_r1": {
+    "donde": "scripts/sens2/r1_filtro.py",
+    "valor": 0.15
+  },
+  "cobertura_r1": {
+    "donde": "scripts/sens2/r1_filtro.py",
+    "valor": 0.25
+  },
+  "escenarios_u1": {
+    "donde": "scripts/sens2/u1_puntos.py",
+    "valor": {
+      "U1A": 1.0,
+      "U1B": 2.0
+    }
+  },
+  "k_vecinos": {
+    "donde": "scripts/sens2/r2_vecinos.py",
+    "valor": 5
+  },
+  "n_boot": {
+    "donde": "scripts/sens2/p3_comun.py",
+    "valor": 500
+  },
+  "n_min_confianza": {
+    "donde": "docs/PLAN_SENS2_MEJORA.md",
+    "valor": 30
+  },
+  "n_perm": {
+    "donde": "scripts/sens2/p3_comun.py",
+    "valor": 200
+  },
+  "n_permutaciones_f1": {
+    "donde": "docs/PLAN_SENS2_MEJORA.md",
+    "valor": 500
+  },
+  "procedencia": {
+    "donde": "docs/PLAN_SENS2_MEJORA.md",
+    "valor": {
+      "r1": "OpenCode con vigilante; r2: director",
+      "u1_808_puntos": "corridos por el director con u1_corrida.py (OpenCode no arrancó)"
+    }
+  },
+  "q_fdr": {
+    "donde": "docs/PLAN_SENS2_MEJORA.md",
+    "valor": 0.05
+  },
+  "semilla": {
+    "donde": "scripts/sens2/p3_comun.py",
+    "valor": 20261017
+  },
+  "semilla_f1": {
+    "donde": "docs/PLAN_SENS2_MEJORA.md",
+    "valor": 20261018
+  },
+  "tolerancia_eficiencias_r2": {
+    "donde": "scripts/sens2/r2_eficiencias.py",
+    "valor": 0.1
+  },
+  "tolerancias_u1": {
+    "donde": "scripts/sens2/u1_puntos.py",
+    "valor": {
+      "P_alta": 0.05,
+      "P_baja": 0.05,
+      "T_fuente": 5.0,
+      "T_sumidero": 3.0,
+      "eps_cond": 0.05,
+      "eps_hrvg": 0.05,
+      "eps_reg": 0.05,
+      "eta_p": 0.05,
+      "eta_t": 0.05,
+      "x_b": 0.02
+    }
+  }
+}

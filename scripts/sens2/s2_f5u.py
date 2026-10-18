@@ -49,12 +49,18 @@ def hoja_f5_incertidumbre(wb, datos):
     _, f, _ = tabla(ws, f, ["Escenario", "Bloque", "Puntos", "KALINA", "P(KALINA)", "IC 95 % bajo", "IC 95 % alto",
                             "CORREGIBLE", "NO_CONVERGIO", "INVIABLE"], filas, anchos=[10, 8, 8, 9, 10, 12, 12, 12, 14, 10])
     f += 1
-    piv = [[c] + [numero(float(r[(r["escenario"] == e) & (r["centro"] == c)]["p_kalina"].iloc[0]), 3) for e in ESC]
-           for c in CENTROS]
-    f = bloque(ws, f, titulo="P(KALINA) tras perturbar todas las variables, por bloque y escenario",
-               encabezados=["Bloque"] + [NOMBRE[e] for e in ESC], filas=piv, x="Bloque", y="P(KALINA)",
+    def _fila(c, e):
+        return r[(r["escenario"] == e) & (r["centro"] == c)].iloc[0]
+    piv = [[c] + [numero(float(_fila(c, e)["p_kalina"]), 3) for e in ESC]
+           + [numero(float(_fila(c, e)["p_hi"] - _fila(c, e)["p_kalina"]), 3) for e in ESC]
+           + [numero(float(_fila(c, e)["p_kalina"] - _fila(c, e)["p_lo"]), 3) for e in ESC] for c in CENTROS]
+    ne = len(ESC)
+    f = bloque(ws, f, titulo="P(KALINA) tras perturbar todas las variables, por bloque y escenario (barras: IC 95 % de Wilson)",
+               encabezados=["Bloque"] + [NOMBRE[e] for e in ESC] + ["IC alto - P (%s)" % NOMBRE[e] for e in ESC]
+               + ["P - IC bajo (%s)" % NOMBRE[e] for e in ESC], filas=piv, x="Bloque", y="P(KALINA)",
+               n_series=ne, errores={k: (1 + ne + k, 1 + 2 * ne + k) for k in range(ne)},
                nota_txt="Fuente: u1_resumen.csv. A = tolerancias nominales; B = el doble; C = A sin perturbar eps_cond (aisla el sesgo del tope 0.95). "
-                        "Intervalos de Wilson en la tabla.")
+                        "Las barras de error son el intervalo de Wilson al 95 %; las columnas de la derecha dan su ancho hacia arriba y hacia abajo.")
     f = subtitulo(ws, f, "1b. Sensibilidad al margen de cavitacion exigido (m_O2 minimo)")
     f = condiciones(ws, f, ["La clase KALINA del motor exige m_O2 >= 0 (margen cero). Aqui se reclasifican los mismos puntos exigiendo 1, 3 o 5 K."])
     mm = [[NOMBRE[e], c] + [numero(float(r[(r["escenario"] == e) & (r["centro"] == c)][k].iloc[0]), 3) for k in ("p_kalina", "p_m1", "p_m3", "p_m5")]

@@ -1,0 +1,28 @@
+{
+  "commit": "7fc5f7304dee8bb8d2daa01f95f43feb02f48388",
+  "versiones": {
+    "python": "3.13.7",
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "openpyxl": "3.1.5"
+  },
+  "huellas": {
+    "resultados/2026-10-17_sens2_P2/p2_dataset_dedup.csv": "2c04298e66aad171fc5d319a4cdd03ed7444c5ca39a5e48e0f58c7c7f0d45e1e",
+    "resultados/2026-10-17_sens2_U1/u1_filas.csv": "8ec19c76c804a0cc768f6235783ed8047c7e1111aee6ca7d9f2a234a2c871fd9"
+  },
+  "pasos": [
+    {
+      "nombre": "p5_generar",
+      "estado": "ok",
+      "segundos": 3.72,
+      "codigo": 0
+    },
+    {
+      "nombre": "p6_mO2",
+      "estado": "ok",
+      "segundos": 2.77,
+      "codigo": 0
+    }
+  ]
+}

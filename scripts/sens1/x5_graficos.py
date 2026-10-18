@@ -58,6 +58,15 @@ def _valores(spec):
     return [v for s in spec["series"] for v in s["valores"] if v is not None]
 
 
+def _barras_error(ws, ser, e):
+    """Barras de error personalizadas (celdas con el aumento y la disminucion) para una serie de barras."""
+    from openpyxl.chart.data_source import NumDataSource, NumRef
+    from openpyxl.chart.error_bar import ErrorBars
+    ser.errBars = ErrorBars(errDir="y", errBarType="both", errValType="cust", noEndCap=False,
+                            plus=NumDataSource(numRef=NumRef(f=str(_ref(ws, e["mas"])))),
+                            minus=NumDataSource(numRef=NumRef(f=str(_ref(ws, e["menos"])))))
+
+
 def _barras(ws, spec):
     b = BarChart()
     b.type = "bar" if spec.get("horizontal") else "col"
@@ -71,6 +80,8 @@ def _barras(ws, spec):
         ser.graphicalProperties.line.solidFill = col
         ser.invertIfNegative = False
         ser.tx = SeriesLabel(v=s["nombre"])
+        if s.get("error"):
+            _barras_error(ws, ser, s["error"])
     b.set_categories(_ref(ws, spec["cat"]))
     escala(b.y_axis, _valores(spec), desde_cero=True)
     if len(spec["series"]) > 1:
@@ -149,11 +160,13 @@ def grafico_sobre_tabla(ws, fila_enc, n_filas, cols_series, *, titulo, x, y, cat
 
 def bloque(ws, fila, *, titulo, encabezados, filas, x, y, nota_txt,
            tipo="barras", apiladas=False, horizontal=False, x_vals=None,
-           ancho=16.0, alto=8.0, colores=None):
+           ancho=16.0, alto=8.0, colores=None, n_series=None, errores=None):
     """Escribe la tabla de datos del grafico (con cuadricula) y registra el grafico a su derecha.
 
     `encabezados[0]` es la categoria y `encabezados[1:]` los nombres de serie. `filas` es una
-    lista de filas [categoria, valor_serie1, ...]. El grafico se ancla en la columna L (12),
+    lista de filas [categoria, valor_serie1, ...]. `n_series` limita las columnas dibujadas como series (las demas son
+    auxiliares); `errores` = {indice_de_serie: (indice_col_mas, indice_col_menos)} da las columnas (posicion en
+    `encabezados`) con el aumento y la disminucion de las barras de error. El grafico se ancla en la columna L (12),
     junto a la tabla, y debajo queda una celda con el criterio (nota). Devuelve la fila
     siguiente libre (deja FILAS_GRAF filas de hueco para que no se solapen dos graficos).
     """
@@ -165,13 +178,17 @@ def bloque(ws, fila, *, titulo, encabezados, filas, x, y, nota_txt,
         r += 1
     ultima = fila + len(filas)
     series = []
-    for k in range(len(encabezados) - 1):
+    for k in range((n_series if n_series is not None else len(encabezados) - 1)):
         col = 2 + k
         serie = {"nombre": encabezados[k + 1],
                  "ref": (col, fila + 1, col, fila + len(filas)),
                  "valores": [f[k + 1] for f in filas]}
         if colores and k < len(colores):
             serie["color"] = colores[k]
+        if errores and k in errores:
+            cm, cn = errores[k]
+            serie["error"] = {"mas": (cm + 1, fila + 1, cm + 1, fila + len(filas)),
+                              "menos": (cn + 1, fila + 1, cn + 1, fila + len(filas))}
         series.append(serie)
     registrar({"tipo": tipo, "hoja": ws.title, "titulo": titulo, "x": x, "y": y,
                "celda": celda_grafico(ws.title, fila, COL_GRAF), "ancho": ancho, "alto": alto,

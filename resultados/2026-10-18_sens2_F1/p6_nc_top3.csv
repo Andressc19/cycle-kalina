@@ -1,0 +1,5 @@
+bloque,top3_nc_como_no_kalina,top3_sin_nc,top3_nc_como_kalina,igual_sin_nc,igual_nc_como_kalina
+E3 C1 Husavik,"x_b, P_baja, eps_cond","x_b, P_baja, eps_cond","x_b, P_baja, T_fuente",si,no
+E3 C2 ancla A*,"P_baja, eps_cond, x_b","x_b, eps_cond, P_baja","x_b, eps_cond, P_baja",si,si
+E14 C3 caliente 150 C,"P_baja, eps_cond, x_b","P_baja, x_b, T_sumidero","P_baja, x_b, T_sumidero",no,no
+E14 C4 frio 110 C,"T_fuente, P_baja, P_alta","P_baja, x_b, eps_cond","P_baja, T_fuente, T_sumidero",no,no

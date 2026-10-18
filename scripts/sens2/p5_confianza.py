@@ -11,14 +11,17 @@ justifica). La confianza NO se escribe en el texto: se calcula aqui. Columnas de
 - lineas: lineas de evidencia independientes (metodos de familias distintas, campañas o muestreos distintos).
 - n_min: tamaño de la muestra mas pequeña que sostiene la afirmacion principal.
 - robusto_nc: `si`, `no`, `na` (no depende de NO_CONVERGIO) o `pendiente` (aun no comprobado).
-- robusto_diseno: `si` (se sostiene solo con LHS y con todos los diseños), `parcial`, `no`, `na` o `pendiente`.
+- robusto_diseno: `si` (se sostiene solo con LHS y con todos los diseños), `acotado`, `parcial`, `no`, `na` o `pendiente`.
+  `acotado` = el enunciado de la conclusion limita su alcance a la rebanada o escenario donde se midio (por ejemplo
+  "con las demas variables en el centro" o "con tolerancias supuestas") y la cifra vale en esa rebanada.
+  `parcial` = se enuncia en general pero depende del diseno de muestreo.
 - intervalo: `si` si la cifra principal lleva intervalo o prueba corregida, `na` si no aplica, `no` o `pendiente`.
 - un_bloque: `si` si la afirmacion descansa en un solo bloque.
 
 Regla (el orden importa):
   Baja  = (n_min < 10 si el tipo no es determinista), o lineas < 1, o (robusto_diseno = no y lineas < 2), o (robusto_nc = no y un_bloque = si).
   Alta  = tipo recuento o limite con n_min >= 30;  o tipo inferencia con lineas >= 2, n_min >= 30,
-          robusto_nc en {si, na}, robusto_diseno en {si, na} e intervalo en {si, na}; o tipo determinista con
+          robusto_nc en {si, na}, robusto_diseno en {si, acotado, na} e intervalo en {si, na}; o tipo determinista con
           lineas >= 2 y los mismos tres criterios (el intervalo es `na`: la cifra es exacta en su rebanada).
   Media = el resto (cualquier criterio `parcial`, `pendiente` o `no` impide Alta).
 """
@@ -29,7 +32,7 @@ import pandas as pd
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(os.path.dirname(AQUI))
 EVIDENCIA = os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5", "p5_evidencia.csv")
-OK = {"si", "na"}
+OK = {"si", "acotado", "na"}
 
 
 def regla(x):

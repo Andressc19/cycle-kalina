@@ -129,9 +129,42 @@ def _rob(h):
     h["m5.p_baja"] = float(u[u["subclave"] == "P_baja"]["valor"].iloc[0])
 
 
+def _f1(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    key = {"E3 C1 Husavik": "C1", "E3 C2 ancla A*": "C2", "E14 C3 caliente 150 C": "C3", "E14 C4 frio 110 C": "C4"}
+    cu = pd.read_csv(os.path.join(F1, "p6_nc_cuartiles.csv"))
+    for _, x in cu[cu["cuartil_T_fuente"] == 1].iterrows():
+        c = key[x["bloque"]]
+        h["ncq1.%s.n" % c], h["ncq1.%s.nc" % c] = float(x["n"]), float(x["NO_CONVERGIO"])
+        h["ncq1.%s.p0" % c], h["ncq1.%s.pconv" % c] = float(x["p_kalina_nc_cero"]), float(x["p_kalina_si_convergio"])
+        h["ncq1.%s.lo" % c], h["ncq1.%s.hi" % c] = float(x["ic_lo"]), float(x["ic_hi"])
+    t = pd.read_csv(os.path.join(F1, "p6_nc_top3.csv"))
+    for _, x in t.iterrows():
+        c = key[x["bloque"]]
+        h["nctop.%s.base" % c], h["nctop.%s.sin" % c] = str(x["top3_nc_como_no_kalina"]), str(x["top3_sin_nc"])
+        h["nctop.%s.igual_sin" % c], h["nctop.%s.igual_uno" % c] = str(x["igual_sin_nc"]), str(x["igual_nc_como_kalina"])
+
+
+def _pareado(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    t = pd.read_csv(os.path.join(F1, "p6_pareado_dist.csv"))
+    x = t[(t["variante"] == "mismo_centro") & (t["grupo"] == "todos") & (t["calculo"] == "tramo L1 0.0 a 0.2")].iloc[0]
+    h["par.cerca.med"], h["par.cerca.lo"], h["par.cerca.hi"], h["par.cerca.n"] = (float(x["estimador"]), float(x["ic_lo"]),
+                                                                              float(x["ic_hi"]), float(x["n"]))
+    y = t[(t["variante"] == "mismo_centro") & (t["grupo"] == "todos") & (t["calculo"] == "tramo L1 0.5 a mas")].iloc[0]
+    h["par.lejos.med"], h["par.lejos.n"] = float(y["estimador"]), float(y["n"])
+    z = t[(t["variante"] == "mismo_centro") & (t["grupo"] == "LHS") & (t["calculo"] == "ajuste")].iloc[0]
+    h["par.lhs.n"] = float(z["n"])
+    q = pd.read_csv(os.path.join(F1, "p6_pareado.csv"))
+    g = q[(q["variante"] == "mismo_centro") & (q["grupo"] == "LHS") & (q["variable"] == "d_eta")].iloc[0]
+    h["par.lhs.med"] = float(g["mediana"])
+    g = q[(q["variante"] == "mismo_centro") & (q["grupo"] == "otros") & (q["variable"] == "d_eta")].iloc[0]
+    h["par.otros.med"] = float(g["mediana"])
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado):
         f(h)
     return h
 
