@@ -1,0 +1,45 @@
+centro,variable,n,n_dentro,fraccion
+C1 Husavik,T_fuente,7,7,1.0
+C1 Husavik,T_sumidero,7,7,1.0
+C1 Husavik,P_alta,7,7,1.0
+C1 Husavik,P_baja,7,7,1.0
+C1 Husavik,x_b,7,7,1.0
+C1 Husavik,eta_t,7,7,1.0
+C1 Husavik,eta_p,7,7,1.0
+C1 Husavik,eps_hrvg,7,7,1.0
+C1 Husavik,eps_reg,7,7,1.0
+C1 Husavik,eps_cond,7,7,1.0
+C1 Husavik,(las 10 a la vez),7,7,1.0
+C2 ancla A*,T_fuente,182,165,0.9065934065934066
+C2 ancla A*,T_sumidero,182,182,1.0
+C2 ancla A*,P_alta,182,182,1.0
+C2 ancla A*,P_baja,182,182,1.0
+C2 ancla A*,x_b,182,182,1.0
+C2 ancla A*,eta_t,182,182,1.0
+C2 ancla A*,eta_p,182,182,1.0
+C2 ancla A*,eps_hrvg,182,182,1.0
+C2 ancla A*,eps_reg,182,182,1.0
+C2 ancla A*,eps_cond,182,182,1.0
+C2 ancla A*,(las 10 a la vez),182,165,0.9065934065934066
+C3 caliente 150 C,T_fuente,23,23,1.0
+C3 caliente 150 C,T_sumidero,23,23,1.0
+C3 caliente 150 C,P_alta,23,23,1.0
+C3 caliente 150 C,P_baja,23,23,1.0
+C3 caliente 150 C,x_b,23,23,1.0
+C3 caliente 150 C,eta_t,23,23,1.0
+C3 caliente 150 C,eta_p,23,23,1.0
+C3 caliente 150 C,eps_hrvg,23,23,1.0
+C3 caliente 150 C,eps_reg,23,23,1.0
+C3 caliente 150 C,eps_cond,23,8,0.34782608695652173
+C3 caliente 150 C,(las 10 a la vez),23,8,0.34782608695652173
+C4 frio 110 C,T_fuente,1,1,1.0
+C4 frio 110 C,T_sumidero,1,1,1.0
+C4 frio 110 C,P_alta,1,1,1.0
+C4 frio 110 C,P_baja,1,1,1.0
+C4 frio 110 C,x_b,1,1,1.0
+C4 frio 110 C,eta_t,1,1,1.0
+C4 frio 110 C,eta_p,1,1,1.0
+C4 frio 110 C,eps_hrvg,1,1,1.0
+C4 frio 110 C,eps_reg,1,1,1.0
+C4 frio 110 C,eps_cond,1,1,1.0
+C4 frio 110 C,(las 10 a la vez),1,1,1.0
