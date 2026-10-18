@@ -2,7 +2,7 @@
 
 > **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la η máxima es 14.53 % dentro del rango experimental (14.82 % fuera).** Los óptimos tienden a quedar cerca del piso de P_baja.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (22 hojas, 72 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (23 hojas, 76 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -267,6 +267,18 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: El criterio O2 es m_O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tienen m_O2 < 1 K, 7.0 % < 3 K y 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C1). En la propagación de incertidumbre con tolerancias nominales (96 puntos por bloque), exigir m_O2 ≥ 3 K baja P(KALINA) de 0.47 a 0.15 en C1, de 0.85 a 0.57 en C4, de 1.00 a 0.93 en C3 y de 0.99 a 0.99 en C2. Con ε_cond fija en 0.95 y exigiendo m_O2 ≥ 3 K, P(KALINA) es 0.79 en C1 y 1.00 en C2, C3 y C4: la pérdida de región por exigir margen se concentra en Húsavík.
 - Implicación: La región KALINA y los pisos de P_baja de D1 valen para margen cero; un diseño real con margen de NPSH tendría pisos más altos y menos región. El resultado de Húsavík (P = 0.48) depende de aceptar margen cero.
 - Fuente: Revisión final (recalculado desde x1_cargar: m_O2 de cada punto y u1_filas.csv)
+
+**L8 [LÍMITES KALINA, fase C, confianza Baja].** Los rangos KALINA de Sens2 se reproducen con los datos de la campaña anterior en C2 (91 %) y no en C3 (35 %), y lo que sale del rango es una extensión mínima.
+
+- Evidencia: De 213 KALINA del libro viejo a distancia ≤ 0.15 de un centro (puntos que Sens2 no tenía), 181 (85.0 %) caen dentro de los rangos KALINA de Sens2 en las 10 variables: C1 7/7, C2 165/182 (90.7 %), C3 8/23 (34.8 %) y C4 1/1; el total está dominado por C2. Los 32 que salen son 17 de C2 con T_fuente de 390 a 392.5 K (mínimo de Sens2 393.15 K) y 15 de C3 que comparten un único valor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, un solo aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba solo mira que los KALINA caigan dentro del mínimo-máximo; no cuenta cuántos no-KALINA caen también dentro.
+- Implicación: Los rangos de existencia de C2 quedan respaldados por una segunda campaña; en C3 la efectividad mínima del condensador observada es algo menor (0.8418), sin definir un rango nuevo. C1 y C4 no permiten concluir.
+- Fuente: R1 r1_rangos_fraccion.csv; r1_fuera_de_rango_sens2.csv
+
+**L9 [LÍMITES KALINA, fase C, confianza Media].** Las fronteras de una variable de Sens2 no se reproducen cuando las otras variables cambian a la vez; sirven como guía local, no como regla global.
+
+- Evidencia: Contando cada ventana una sola vez (sus dos bordes dan los mismos aciertos), 19 fronteras con n ≥ 5 acuerdan en 0.561 (2 619 evaluaciones frontera-punto, no puntos independientes); con las 5 eficiencias a ±0.10 del centro, 11 fronteras acuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resultado depende sobre todo de C2. Con los 5 vecinos más cercanos de Sens2 la clase se predice con exactitud 0.683 frente a 0.647 de la clase mayoritaria; donde hay un punto de Sens2 cercano (L1 ≤ 0.29, primer cuartil) es 0.682 frente a 0.568, y lejos (L1 > 1.09) 0.748 frente a 0.890.
+- Implicación: Un diseño no debe leerse de una sola frontera: la frontera de una variable depende del valor de las demás (por ejemplo, el piso de P_baja sube con x_b). Para decidir un diseño hay que consultar los puntos de Sens2 más cercanos o recalcular con el motor.
+- Fuente: R1 r1_fronteras_contraste.csv; R2 r2_fronteras_eficiencias.csv; r2_vecinos_resumen.csv
 
 ## 4. CORREGIBLE frente a KALINA
 

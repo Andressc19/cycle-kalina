@@ -20,7 +20,7 @@ ERRORES = []
 ORDEN = ["LEEME", "Conclusion consolidada", "F1 Existencia", "F1 Reglas y zonas grises",
          "F1 Margenes de operacion", "F2 CORREGIBLE vs KALINA", "F2 Distancia y rescate", "F3 Indices globales",
          "F3 Interacciones", "F3 Elasticidades", "F4 Turbina", "F4 Regenerador y condensador",
-         "F4 Preseleccion", "F4 Regenerador vs T_fuente", "F5 Superficies de respuesta", "F5 Incertidumbre", "D1 Datos puntos", "D2 Datos fronteras", "D3 Datos zonas grises",
+         "F4 Preseleccion", "F4 Regenerador vs T_fuente", "F5 Superficies de respuesta", "F5 Incertidumbre", "F6 Respaldo libro viejo", "D1 Datos puntos", "D2 Datos fronteras", "D3 Datos zonas grises",
          "D4 Datos distancia", "D5 Datos indices", "D6 Datos equipos"]
 PROHIBIDOS = ["confiable", "no citable", "fuera de rango del motor", "sin respaldo", "indicio",
               "extrapol"]
@@ -256,7 +256,7 @@ fallas14 = []
 for nom in ("LEEME", "F1 Existencia", "F1 Reglas y zonas grises", "F2 CORREGIBLE vs KALINA",
             "F2 Distancia y rescate", "F3 Indices globales", "F3 Interacciones", "F3 Elasticidades",
             "F4 Turbina", "F4 Regenerador y condensador", "F1 Margenes de operacion",
-            "F4 Regenerador vs T_fuente", "F5 Superficies de respuesta", "F5 Incertidumbre"):
+            "F4 Regenerador vs T_fuente", "F5 Superficies de respuesta", "F5 Incertidumbre", "F6 Respaldo libro viejo"):
     txt = " ".join(str(c.value) for row in wb[nom].iter_rows(max_row=40) for c in row if c.value is not None)
     if "Base" not in txt:
         fallas14.append(nom)

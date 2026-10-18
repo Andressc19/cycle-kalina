@@ -1,0 +1,27 @@
+centro,variable,forma,direccion,valor_frontera,n,aciertos,acuerdo,acuerdo_clase_mayoritaria,ganancia,nota
+C1 Husavik,P_baja,escalon,a KALINA,550.0,9,8,0.8888888888888888,0.7777777777777778,0.11111111111111105,
+C1 Husavik,T_fuente,ventana,a KALINA,358.15,9,7,0.7777777777777778,0.7777777777777778,0.0,
+C1 Husavik,T_fuente,ventana,a no-KALINA,440.65,9,7,0.7777777777777778,0.7777777777777778,0.0,
+C1 Husavik,T_sumidero,escalon,a no-KALINA,284.4,9,7,0.7777777777777778,0.7777777777777778,0.0,
+C1 Husavik,x_b,ventana,a KALINA,0.525,9,7,0.7777777777777778,0.7777777777777778,0.0,
+C1 Husavik,x_b,ventana,a no-KALINA,0.925,9,7,0.7777777777777778,0.7777777777777778,0.0,
+C2 ancla A*,P_alta,escalon,a no-KALINA,3875.0,93,38,0.40860215053763443,0.5806451612903226,-0.17204301075268819,
+C2 ancla A*,P_baja,escalon,a KALINA,350.0,93,39,0.41935483870967744,0.5806451612903226,-0.16129032258064518,
+C2 ancla A*,T_fuente,ventana,a KALINA,390.65,104,54,0.5192307692307693,0.6346153846153846,-0.11538461538461531,
+C2 ancla A*,T_fuente,ventana,a no-KALINA,468.15,104,54,0.5192307692307693,0.6346153846153846,-0.11538461538461531,
+C2 ancla A*,eps_cond,escalon,a KALINA,0.775,233,113,0.48497854077253216,0.5622317596566524,-0.07725321888412023,
+C2 ancla A*,x_b,ventana,a KALINA,0.425,92,38,0.41304347826086957,0.5869565217391305,-0.17391304347826092,
+C2 ancla A*,x_b,ventana,a no-KALINA,0.575,92,38,0.41304347826086957,0.5869565217391305,-0.17391304347826092,
+C3 caliente 150 C,P_baja,escalon,a KALINA,550.0,4,4,,,,n insuficiente
+C3 caliente 150 C,T_fuente,ventana,a KALINA,358.15,3,2,,,,n insuficiente
+C3 caliente 150 C,T_fuente,ventana,a no-KALINA,568.15,3,2,,,,n insuficiente
+C3 caliente 150 C,T_sumidero,escalon,a no-KALINA,296.9,4,4,,,,n insuficiente
+C3 caliente 150 C,eps_cond,escalon,a KALINA,0.875,5,5,1.0,0.6,0.4,
+C3 caliente 150 C,x_b,escalon,a KALINA,0.375,3,3,,,,n insuficiente
+C4 frio 110 C,P_alta,ventana,a no-KALINA,1625.0,3,1,,,,n insuficiente
+C4 frio 110 C,P_alta,ventana,a KALINA,1875.0,3,1,,,,n insuficiente
+C4 frio 110 C,P_baja,escalon,a KALINA,750.0,3,2,,,,n insuficiente
+C4 frio 110 C,T_fuente,ventana,a KALINA,358.15,3,1,,,,n insuficiente
+C4 frio 110 C,T_fuente,ventana,a no-KALINA,528.15,3,1,,,,n insuficiente
+C4 frio 110 C,T_sumidero,escalon,a no-KALINA,291.9,9,2,0.2222222222222222,0.8888888888888888,-0.6666666666666666,
+C4 frio 110 C,x_b,escalon,a KALINA,0.625,3,1,,,,n insuficiente

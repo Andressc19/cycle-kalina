@@ -49,6 +49,7 @@ GUIA = [
     ("F4 Regenerador vs T_fuente", "Regenerador y ciclo frente a T_fuente de 70 a 300 C: Q_reg/Q_i, pinch, UA y eta."),
     ("F5 Superficies de respuesta", "Mapas de calor de eta en las mallas P_baja x x_b y P_alta x P_baja y ajuste cuadratico."),
     ("F5 Incertidumbre", "Propagacion de incertidumbre: P(KALINA) y eta al perturbar las 10 variables alrededor de cada centro (384 puntos del motor)."),
+    ("F6 Respaldo libro viejo", "Contraste fuera de muestra con la campaña M1-M10b: rangos, fronteras de una variable, vecinos de Sens2, aportes y cobertura."),
     ("D1 Datos puntos", "Todos los puntos analizados (p2_dataset_dedup.csv)."),
     ("D2 Datos fronteras", "Fronteras de los barridos de una variable (p1_fronteras.csv)."),
     ("D3 Datos zonas grises", "Zonas grises por bloque y violacion dominante (p1_zonas_grises.csv)."),
