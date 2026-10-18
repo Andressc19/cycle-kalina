@@ -1,0 +1,32 @@
+grupo,control,resultado,detalle
+E,E6,OK,Qi_mb p5=228.8 p95=1695.3 (229-1695)
+E,E7,OK,Wp/Wt p5=0.0238 p95=0.3014 p50=0.060
+E,E7top10,OK,Wp/Wt top10 p5=0.0272 p95=0.0781
+E,E5qout,OK,Qout_mb p50=721.2 (721)
+E,E5aprox,OK,aprox p5=2.6 p95=23.4 (2.6-23.4)
+E,E3q4,OK,q4 top10 p50=0.9355 (0.9355)
+M,M2pt,OK,C1-B3-0127 eta=14.01 P_alta=5000 P_baja=600
+M,M3,OK,C1-B5-0228 eta=13.95 eta_t=0.95 eps_reg=0.95
+M,M4c4,OK,N7B-C4-B1-045 eta=13.23 T_fuente=423.15 P_baja=800
+M,M4c2,OK,C2-LHS-0005 eta=12.37
+M,M1max,OK,eta max dentro=14.53 fuera=14.82
+M,M1medp90,OK,eta mediana=7.73 P90=11.53
+L,L4frac,OK,fuera de rango=0.149
+L,L1,OK,zonas=255 O2=249
+L,L2n,OK,CORREGIBLE con vecino=968
+L,L2nvars,OK,a una variable=0.493
+D,D4c1,OK,C1 Husavik eps_cond min=0.8000
+D,D4c2,OK,C2 ancla A* eps_cond min=0.6500
+D,D4c3,OK,C3 caliente 150 C eps_cond min=0.8500
+D,D4c4,OK,C4 frio 110 C eps_cond min=0.8500
+F,F6medianas,OK,medianas cor=10.20 kal=7.73
+GLOBAL,G41,OK,conclusiones=41
+GLOBAL,Gterm,OK,terminos prohibidos en conclusiones: ninguno
+U,U1,OK,P(KALINA) CC1=0.47 CC2=0.99 CC3=1.00 CC4=0.85
+L,L7,OK,m_O2<3 K = 7.0 % en evidencia L7
+L,L8,OK,cerca y KALINA = 213 en evidencia L8
+L,L9,OK,exactitud = 0.683 en evidencia L9
+M,M2,OK,centro C1 eta = 12.00 % en evidencia M2
+F,F6,OK,medianas cor=10.2 kal=7.7 en evidencia F6
+D,D3,OK,C4 cuartil bajo: 37 de 59 en evidencia D3
+L,L2,OK,abs(mediana eta) = 0.64 en evidencia L2

@@ -196,9 +196,26 @@ def _f1b(h):
         h["fic.%s.%s.auc" % (key[b], v)] = float(a)
 
 
+def _fdr(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    f = pd.read_csv(os.path.join(F1, "p6_indices_fdr.csv"))
+    key = {"E3 C1 Husavik": "C1", "E3 C2 ancla A*": "C2", "E14 C3 caliente 150 C": "C3", "E14 C4 frio 110 C": "C4"}
+    for y in ("Y1", "Y2", "Y3"):
+        g = f[f["respuesta"].str.startswith(y)]
+        h["fdr.%s.n_fdr" % y] = float(g["distinguible_fdr"].astype(bool).sum())
+        h["fdr.%s.n_p3" % y] = float(g["distinguible_p3"].fillna(False).astype(bool).sum())
+        for b, c in key.items():
+            v = g[(g["bloque"] == b) & g["distinguible_fdr"].astype(bool)]
+            h["fdr.%s.%s.vars" % (y, c)] = ", ".join(v.sort_values("q_min")["variable"]) or "ninguna"
+    nul = pd.read_csv(os.path.join(F1, "p6_nulo_perm.csv"))
+    d = nul[nul["tipo"] == "dummy"]
+    h["fdr.calib_pct"] = 100 * float((d["p_perm"] < 0.05).mean())
+    h["fdr.B"] = 2000.0
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr):
         f(h)
     return h
 

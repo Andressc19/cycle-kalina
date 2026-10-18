@@ -55,6 +55,18 @@ def prob_lhs(datos, variable, bloques):
     return out
 
 
+def niveles_lhs(datos, variable, bloques):
+    """Texto del intervalo de cada banda del muestreo LHS de una variable, ordenado por nivel, por bloque."""
+    p = datos["existencia_prob"]
+    p = p[(p["muestra"] == "lhs") & (p["variable"] == variable) & (p["centro"].isin(bloques))]
+    out = {}
+    for b in bloques:
+        s = p[p["centro"] == b].copy()
+        s["_lo"] = s["nivel"].map(nivel_lo)
+        out[b] = s.sort_values("_lo")["nivel"].astype(str).tolist()
+    return out
+
+
 def barras_con_signo(ws, fila, encabezados, filas, *, titulo, x, y, anchos=None):
     """Tabla + grafico de barras de Excel cuyos valores pueden ser negativos (escala propia)."""
     encabezado(ws, fila, list(encabezados), anchos)

@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from x1_cargar import VARIABLES_ORDEN  # noqa: E402
 from x2_formato import condiciones, descripcion, nota, subtitulo, tabla, titulo  # noqa: E402
 from x5_graficos import bloque  # noqa: E402
-from s2_comun import centro_txt, numero, nivel_lo, barras_con_signo, prob_lhs  # noqa: E402
+from s2_comun import centro_txt, numero, nivel_lo, barras_con_signo, prob_lhs, niveles_lhs  # noqa: E402
 
 BASE_F1 = "Base: 3921 puntos de Sensibilidad 1, con los duplicados exactos (n mayores que en F2 a F4)."
 BLOQUES = ["C1 Husavik", "C2 ancla A*", "C3 caliente 150 C", "C4 frio 110 C"]
@@ -113,7 +113,13 @@ def hoja_f1_existencia(wb, datos):
                    encabezados=["Banda (cuantil 1 a %d)" % n] + BLOQUES, filas=filas,
                    x="Banda (cuantil)", y="P(KALINA)", tipo="linea", x_vals=list(range(1, n + 1)),
                    nota_txt="Fuente: p1_existencia_prob.csv (muestra lhs). Cada bloque tiene sus "
-                            "propios 8 cuantiles; la banda 1 es el cuantil mas bajo de cada bloque.")
+                            "propios 8 cuantiles; la banda 1 es el cuantil mas bajo de cada bloque. "
+                            "El intervalo de %s de cada banda esta en la tabla siguiente." % var)
+        niv = niveles_lhs(datos, var, BLOQUES)
+        _, f, _ = tabla(ws, f, ["Banda"] + ["Intervalo de %s en %s" % (var, b) for b in BLOQUES],
+                        [[i + 1] + [(niv[b][i] if i < len(niv[b]) else "") for b in BLOQUES] for i in range(n)],
+                        anchos=[10, 26, 26, 26, 26])
+        f += 1
 
     f = descripcion(ws, f, ["Rango con KALINA (total), fronteras de los barridos y P(KALINA) por "
                             "nivel. Los numeros salen de p1_existencia_rangos.csv, "

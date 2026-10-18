@@ -20,9 +20,9 @@ M2,inferencia,1,972,na,parcial,no,si,mejor punto muestreado de C1
 M3,inferencia,1,972,na,parcial,no,si,mejor punto muestreado de C1 con mejores equipos
 M4,inferencia,1,972,na,parcial,no,no,mejor punto muestreado de C4 y C2; el de C4 tiene m_O2 de 0.2 K
 M5,inferencia,2,207,na,parcial,si,si,significativa en el LHS solo en C1; con todos los puntos depende del diseño
-F1,inferencia,2,231,na,si,pendiente,no,ocho metodos de dependencia (no independientes) y elasticidad local; falta correccion por multiplicidad
-F2,inferencia,1,231,na,si,pendiente,no,ranking de metodos sobre W_net por kg/s; falta correccion por multiplicidad
-F3,inferencia,2,231,pendiente,si,pendiente,no,ranking de existencia con NO_CONVERGIO como no KALINA; falta correccion por multiplicidad
+F1,inferencia,2,231,na,si,si,no,"ocho metodos (no independientes), elasticidad local y prueba de permutacion con correccion de Benjamini-Hochberg (p6_nulo_perm)"
+F2,inferencia,1,231,na,si,si,no,ocho metodos sobre W_net por kg/s con permutacion y correccion de Benjamini-Hochberg (p6_nulo_perm)
+F3,inferencia,2,231,no,si,si,no,con permutacion y correccion de Benjamini-Hochberg; los tres primeros cambian sin NO_CONVERGIO en C3 y C4 (p6_sens_nc)
 F4,determinista,2,2,na,acotado,na,no,"elasticidades locales centradas en el centro de cada bloque, coherentes con F1"
 F5,inferencia,1,49,pendiente,parcial,pendiente,no,mallas de pares 7 x 7; 1 - R2 del modelo aditivo
 F6,inferencia,2,968,na,acotado,si,no,medianas sin parear con IC y diferencia pareada de L2; no es un efecto causal

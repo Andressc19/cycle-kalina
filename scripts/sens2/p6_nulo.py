@@ -74,7 +74,7 @@ def procesar(nombre, g, cod, rng, caja):
 def main():
     t0 = time.time()
     todas = []
-    for caja in (False, True):
+    for caja in (False,):   # la caja comun de los 4 LHS queda con 1 a 9 puntos por bloque (ver nota_caja): no se calcula
         rng = np.random.default_rng(K.SEMILLA + (1 if caja else 0))
         for nombre, g in K.bloques(caja):
             for cod in ("Y1", "Y2", "Y3"):
@@ -92,6 +92,16 @@ def main():
     df.to_csv(os.path.join(K.OUT, "p6_nulo_perm.csv"), index=False)
     resumen(df)
     print("listo en %.0f s; filas %d" % (time.time() - t0, len(df)))
+
+
+def nota_caja():
+    """Tamaño de cada LHS dentro de la caja comun de rangos de los 4 bloques (1.6): inviable si queda con menos de 30 puntos."""
+    n = [(nombre, len(g)) for nombre, g in K.bloques(True)]
+    return ["## Caja comun de rangos (comparar magnitudes entre bloques)", "",
+            "Puntos de cada LHS que caen dentro del rango comun de las 9 variables de los 4 bloques: " +
+            ", ".join("%s %d" % x for x in n) + ".",
+            "Quedan menos de 30 puntos por bloque, asi que no se calculan indices en la caja comun: las magnitudes de los indices no se "
+            "comparan entre bloques; solo se usan los rangos y las pruebas dentro de cada bloque.", ""]
 
 
 def resumen(df):
@@ -114,7 +124,7 @@ def resumen(df):
           % (K.B_PERM, K.SEMILLA, K.Q, K.Q), "",
           "Calibracion: fraccion de pruebas con p < 0.05 en las 3 variables dummy (debe ser cercana a 0.05): " +
           ", ".join("caja=%s %.3f" % (k, v) for k, v in cal.items()), ""]
-    for caja in ("no", "si"):
+    for caja in ("no",):
         t = s[(s["caja"] == caja) & (s["respuesta"].notna())]
         md.append("## Caja comun = %s" % caja)
         md.append("")
@@ -124,6 +134,7 @@ def resumen(df):
             a, b = g["distinguible_fdr"].astype(bool), g["distinguible_p3"].fillna(False).astype(bool)
             md.append("| %s | %d | %d | %d |" % (rs, a.sum(), b.sum(), (a & b).sum()))
         md.append("")
+    md += nota_caja()
     with open(os.path.join(K.OUT, "p6_nulo_perm.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(md) + "\n")
 

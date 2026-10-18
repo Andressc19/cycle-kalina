@@ -147,6 +147,8 @@ def main():
     print("triviales: %d" % tri)
     print("no trazados: %d" % no)
     print("porcentaje de trazados: %.1f %%" % pct)
+    import p5_trazado_extra as extra
+    extra.anexo(ref, perm)
 
 
 if __name__ == "__main__":

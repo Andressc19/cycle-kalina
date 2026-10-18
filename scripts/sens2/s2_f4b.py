@@ -10,6 +10,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from x2_formato import condiciones, descripcion, nota, subtitulo, tabla, titulo  # noqa: E402
 from x5_graficos import bloque  # noqa: E402
 from s2_comun import numero  # noqa: E402
+import pandas as pd  # noqa: E402
+from p4_comun import CANT_DEP as DEP  # noqa: E402
 from s2_f4 import (BLQ, TOP, TOT, UNIDAD, grafico_rango, nan, tabla_dependencias,  # noqa: E402
                    tabla_rangos)
 
@@ -102,10 +104,16 @@ def hoja_f4_presel(wb, datos):
                             "Variable que lo fija", "Restriccion activa", "Referencia de la literatura"],
                     filas, anchos=[14, 30, 20, 20, 24, 30, 60])
     f += 1
-    cuenta = Counter(x[0] for x in filas)
-    f = bloque(ws, f, titulo="Numero de requisitos cuantificados por equipo",
-               encabezados=["Equipo", "Requisitos"], filas=[[k, v] for k, v in cuenta.items()],
-               x="Equipo", y="Requisitos (n)", nota_txt="Fuente: tabla anterior (una fila por requisito).")
+    eq = pd.read_csv(os.path.join(RAIZ, "resultados", "2026-10-18_sens2_F1", "p6_equipos_diseno.csv"))
+    eq = eq[(eq["ambito"] == "todos") & eq["conjunto"].isin(["b_solo_LHS", "c_peso_igual"]) & eq["cantidad"].isin(DEP)]
+    cants = [q for q in DEP if q in set(eq["cantidad"])]
+    des = {c: {x["conjunto"]: x["desplazamiento"] for _, x in g.iterrows()} for c, g in eq.groupby("cantidad")}
+    f = bloque(ws, f, titulo="Cuanto se corre la mediana de cada requisito si cambia el diseno de muestreo (fraccion del ancho P5-P95)",
+               encabezados=["Cantidad", "Solo muestreo LHS", "Peso igual por centro y estudio"],
+               filas=[[q, numero(des[q].get("b_solo_LHS"), 3), numero(des[q].get("c_peso_igual"), 3)] for q in cants],
+               x="Cantidad de equipo", y="Desplazamiento de la mediana (-)",
+               nota_txt="Fuente: p6_equipos_diseno.csv, KALINA (total) de todos los bloques. Un valor mayor que 0.15 en valor absoluto indica que la "
+                        "envolvente depende del diseno de muestreo y debe citarse con esa precision.")
     f = subtitulo(ws, f, "2. Limites de la preseleccion")
     with open(P4_RES, encoding="utf-8") as fh:
         txt = fh.read().split("## Limites de este analisis", 1)[1]
