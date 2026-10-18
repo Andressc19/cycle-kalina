@@ -7,25 +7,26 @@ sesión). Fecha: 2026-10-17. Rama `test/anal_terremoto`.
 
 ## Actualización 2026-10-18 (evaluaciones tipo profesor y plan de mejora)
 
-El libro actual tiene 41 conclusiones y 808 puntos nuevos del motor (F5 Incertidumbre, corridos por el director, no por OpenCode)
-y el contraste con la campaña anterior (F6, L8 y L9): (28 hojas, 88 gráficos). Dos revisores independientes lo evaluaron como un
-profesor exigente. Primera evaluación: rigor 2.5, coherencia 2.5, sobre-afirmaciones 2.5, cobertura 3.5, trazabilidad 3.0, libro 3.5.
-Segunda evaluación, después de la etapa A del plan (`docs/PLAN_SENS2_MEJORA.md`): rigor 3.5, coherencia 3.0, sobre-afirmaciones 3.0,
-cobertura 3.5, trazabilidad 3.8, libro 3.8.
+El libro actual tiene 43 conclusiones y 808 puntos nuevos del motor (F5 Incertidumbre, corridos por el director, no por OpenCode) y el
+contraste con la campaña anterior (F6, L8 y L9): (28 hojas, 88 gráficos). Cuatro revisores independientes lo evaluaron como un profesor
+exigente. Notas (0 a 5) en el orden rigor, coherencia, sobre-afirmaciones, cobertura, trazabilidad y libro: evaluación 1 = 2.5, 2.5, 2.5, 3.5, 3.0, 3.5;
+evaluación 2 (tras la etapa A del plan `docs/PLAN_SENS2_MEJORA.md`) = 3.5, 3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 = 3.8, 3.5, 3.5, 3.5, 4.2, 4.0;
+evaluación 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1. La cobertura de las preguntas 3 y 4 del profesor es el criterio que no sube de ≈ 3.8 sin el motor.
 
-Etapa A (hecha): conclusiones generadas desde los CSV con marcadores (`p5_conclusiones_base.csv`, `p5_hechos.py`, `p5_generar.py`),
-regla de confianza por código (`p5_confianza.py`, `p5_evidencia.csv`; hoja Confianza), 36 controles independientes de cifras,
-prueba de permutación con 2 000 barajados y corrección de Benjamini–Hochberg (hoja F7 Nulo y correccion FDR), sensibilidad a
-NO_CONVERGIO, comparación pareada por distancia, envolventes de equipos por diseño, fronteras con intervalo, validación cruzada de las
-superficies, potencia de U1, orquestador `make_sens2.py` (probado con `--todo`: todos los pasos OK y resultados idénticos) y pruebas pytest.
+Etapa A (hecha): conclusiones generadas desde los CSV con marcadores (`p5_conclusiones_base.csv`, `p5_hechos.py`, `p5_generar.py`), regla de
+confianza por código con criterios cumplidos de 6 (`p5_confianza.py`, `p5_evidencia.csv`; hoja Confianza), controles independientes de cifras
+(`p5_cifras_check*.py`), prueba de permutación con 2 000 barajados y corrección de Benjamini–Hochberg (hoja F7 Nulo y correccion FDR), sensibilidad
+a NO_CONVERGIO, comparación pareada por distancia y diseño, envolventes de equipos por diseño, fronteras con intervalo, validación cruzada de las
+superficies, potencia de U1, hojas F4 Ciclo vs T_fuente y F4 Equipos por kW (sin motor), orquestador `make_sens2.py` (probado con `--todo`) y
+pruebas pytest que vigilan los conteos del libro.
 
-Hallazgos de la segunda evaluación y su estado: corregidos la regla de confianza (`acotado` exige que el enunciado diga el alcance;
-los límites del análisis no llevan confianza), U1 y U4 (con ε_cond sobre el umbral todavía se pierden puntos por P_baja bajo,
-T_sumidero alto y x_b alto; la pendiente del margen de cavitación es ≈ 1.9 K por −0.01 de ε_cond entre 0.92 y 0.95, no 1.1), L2
-(cifra pareada de los 4 bloques, n = 734), D1 y D5 (la regresión logística solo se usa donde su intervalo es informativo), F1 (los
-métodos son 6 y la prueba solo dice «distinguible del ruido»), M1 (mayor valor muestreado, sin optimizador), los textos con el número de
-hojas y gráficos (ahora salen del libro) y la hoja Confianza. Siguen abiertos, porque requieren el motor: reintentar los
-NO_CONVERGIO, el ciclo frente a T_fuente optimizado y los datos de equipos por kW (etapas B y C del plan).
+Hallazgos de las evaluaciones 2 a 4 atendidos: M2 con la línea base correcta; U1 y U4 (con ε_cond sobre el umbral todavía se pierden puntos;
+pendiente del margen de cavitación ≈ 1.9 K por −0.01 entre 0.92 y 0.95); L2 con el pareado de los 4 bloques (n = 734), separado por diseño y sin
+afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible
+del ruido»; M1 a M4 como valores muestreados; enunciados de E1, E4, E5 y E6 como lo observado en los KALINA muestreados; E2 limitada a Δh y con
+una sola línea; M6 limitada a las bandas con al menos 10 KALINA dentro del rango experimental; las tablas de preguntas del LEEME y de la conclusión consolidada
+con las hojas nuevas. Siguen abiertos, porque requieren el motor y autorización: reintentar NO_CONVERGIO, el ciclo frente a T_fuente optimizado por
+temperatura y el flujo volumétrico de la turbina y la altura de la bomba (etapas B y C del plan).
 
 ## Evaluación global: compartir con caveats
 
@@ -81,7 +82,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 - Control cruzado de la η máxima del BLUF contra la conclusión M1: incluido en `s2_verificar.py`.
 - No verificado: fuentes web de la Etapa 0 (10 marcadas ⚠) y cifras de otros autores citadas en las conclusiones E1 y E3.
 
-## Revisión de gráficos (76 en el libro actual; los 56 de esta revisión se abrieron y exportaron desde Excel real, los 20 de superficies, incertidumbre y respaldo se auditaron con Excel real el 2026-10-18)
+## Revisión de gráficos (los 56 de esta revisión se abrieron y exportaron desde Excel real; los demás gráficos del libro actual se auditaron con Excel real el 2026-10-18)
 
 Los 41 de la primera versión y los 15 de las hojas añadidas después (márgenes de operación y regenerador frente a T_fuente) tienen series numéricas, ejes rotulados con unidades, sin vacíos, solapes ni celdas tapadas. Las barras
 parten de cero salvo las de elasticidad y coeficientes (con signo, con escala propia). Reservas que quedan:

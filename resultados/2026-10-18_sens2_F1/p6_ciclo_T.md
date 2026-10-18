@@ -24,6 +24,8 @@ optimizador: no se busca el optimo, solo se describe lo ya calculado).
 Notas:
 
 - El maximo por banda es el mayor valor muestreado y no el optimo del ciclo.
-- Las bandas con pocos KALINA (< 10): 0 de 12 bandas; en ellas el maximo y la P(KALINA) no concluyen.
+- Las bandas con menos de 10 KALINA dentro del rango experimental: 6 de 12 bandas; en ellas el maximo dentro del rango no concluye (columna n_kalina_dentro del CSV).
+- Sobre ~150 C el limite de 420 K del liquido deja casi todos los KALINA fuera del rango experimental: la caida del maximo dentro del rango en las bandas calientes coincide con ese corte y no es una caida del ciclo.
+- El maximo de un conjunto crece con su tamano y las bandas tienen tamanos y disenos de muestreo distintos.
 - NO_CONVERGIO sesga hacia abajo la P(KALINA) de las bandas frias;
   p_kalina_si_convergio usa (n - NO_CONVERGIO) como denominador.

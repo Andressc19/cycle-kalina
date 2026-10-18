@@ -150,6 +150,7 @@ def main():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import p5_cifras_check_b as B
     B.extra(chk, ev, sub, P)
+    B.extra2(chk, ev, sub, P)
 
     # --- Salidas ---
     n = len(FILAS)

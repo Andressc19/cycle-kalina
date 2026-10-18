@@ -277,6 +277,8 @@ def _ronda3(h):
     d = q[(q["variante"] == "mismo_centro") & (q["variable"] == "d_eta")]
     x = d[d["grupo"] == "todos"].iloc[0]
     h["par4.media"], h["par4.media.lo"], h["par4.media.hi"] = float(x["media"]), float(x["ic_media_lo"]), float(x["ic_media_hi"])
+    o1 = d[d["grupo"] == "O1"].iloc[0]
+    h["par.o1.med"], h["par.o1.lo"], h["par.o1.hi"], h["par.o1.n"] = float(o1["mediana"]), float(o1["ic_med_lo"]), float(o1["ic_med_hi"]), float(o1["n"])
     cruza = [g for g in ("C1 Husavik", "C2 ancla A*", "C3 caliente 150 C", "C4 frio 110 C")
              if (d[d["grupo"] == g]["ic_media_lo"].iloc[0] <= 0 <= d[d["grupo"] == g]["ic_media_hi"].iloc[0])]
     h["par4.cruza0"] = " y ".join(g.split(" ")[0] for g in cruza) or "ningun bloque"
@@ -295,6 +297,7 @@ def _ciclo(h):
             h["ciclo.eta%d" % c] = float(x["eta_max_dentro"])
         h["ciclo.n%d" % c] = float(x["n"])
         h["ciclo.nkal%d" % c] = float(x["n_kalina"])
+        h["ciclo.nin%d" % c] = float(x["n_kalina_dentro"])
         h["ciclo.p%d" % c] = float(x["p_kalina"])
         h["ciclo.pconv%d" % c] = float(x["p_kalina_si_convergio"])
     h["ciclo.nkal.min"] = float(t["n_kalina"].min())
@@ -308,6 +311,13 @@ def _ciclo(h):
 def _kw(h):
     t = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_equipos_kw.csv"))
     t = t[t["ambito"] == "todos"]
+    top = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_equipos_kw.csv"))
+    top = top[top["ambito"].str.startswith("10 %")]
+    for _, x in top.iterrows():
+        for p in ("p5", "p50", "p95"):
+            h["kwtop.%s.%s" % (x["magnitud"], p)] = float(x[p])
+            h["kwtop100.%s.%s" % (x["magnitud"], p)] = 100 * float(x[p])
+    h["kwtop.n"] = float(top["n"].iloc[0])
     for _, x in t.iterrows():
         for p in ("p5", "p50", "p95"):
             h["kw.%s.%s" % (x["magnitud"], p)] = float(x[p])

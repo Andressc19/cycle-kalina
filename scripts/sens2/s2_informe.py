@@ -96,6 +96,8 @@ def main():
          "- %.1f %% de los CORREGIBLE falla por cavitación (O2); su η mediana es %.1f puntos mayor que la de los KALINA sin parear, pero emparejados con su vecino KALINA más cercano del mismo bloque (n = %d) la diferencia es de %.2f puntos (F6, L2)." % (
              100.0 * float(o2.iloc[0]["fraccion"]), H["f6.todos.dif"], H["par4.n"], abs(H["par4.med"])),
          "- Casi la mitad de los CORREGIBLE está a una sola variable de un KALINA; P_baja es la que más rescata.",
+         "- Frente a T_fuente se dispone de la mayor η muestreada por banda de 20 K (M6: sin caída clara entre 97 y 157 °C y sin poder evaluarse por encima de ≈ 160 °C, donde casi todos los "
+         "KALINA salen del rango experimental) y de los requisitos de equipos por kW neto (E9); ninguno es un óptimo.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
          "- Desde el centro KALINA de cada bloque, C1 y C4 tienen muy poco margen de ε_cond (el barrido fino sitúa la frontera local en "
          "≈ 0.92 y ≈ 0.906, con las demás variables en el centro); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) (D7, U4, L6).",
@@ -120,9 +122,9 @@ def main():
          "Fase B: índices globales, interacciones y elasticidades (P3). Equipos (P4). Plan en "
          "`docs/PLAN_SENS2_ANALISIS.md`.", "",
          "**Confianza.** Baja: n_min < 10 (salvo cifras deterministas), sin línea de evidencia, dependiente del diseño (robusto_diseno = no) con una sola línea, "
-         "o cambia al tratar NO_CONVERGIO y descansa en un solo bloque. Alta: un recuento directo con n_min ≥ 30, o una "
+         "o cambia al tratar NO_CONVERGIO y descansa en un solo bloque, o cumple 2 o menos de 6 criterios. Alta: un recuento directo con n_min ≥ 30, o una "
          "inferencia con al menos 2 líneas de evidencia independientes, n_min ≥ 30, robusta a NO_CONVERGIO y al diseño (o con el alcance "
-         "acotado y dicho en el propio enunciado) y con intervalo o prueba corregida. No aplica: las declaraciones de límites del análisis. Media: el resto. Se calcula por código desde `p5_evidencia.csv`; "
+         "acotado y dicho en el propio enunciado) y con intervalo o prueba corregida (una cifra determinista con 2 o más líneas no exige n_min). No aplica: las declaraciones de límites del análisis. Media: el resto. La regla se aplica por código a las entradas de `p5_evidencia.csv`, que se asignan a mano con una nota que las justifica; "
          "las inferencias de F1 a F3 usan 2 000 permutaciones de la respuesta y la corrección de Benjamini–Hochberg.", "",
          "## 3. Conclusiones por categoría", "",
          "Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparación), su confianza y su "

@@ -94,7 +94,7 @@ def test_informe_y_validacion_dicen_hojas_y_graficos_reales():
         assert texto in contenido, "%s no contiene %r" % (os.path.basename(doc), texto)
 
 
-def test_confianza_tiene_los_41_ids():
+def test_confianza_tiene_todos_los_ids():
     ids = set(pd.read_csv(CONCLUSIONES)["id"].astype(str))
     wb = _wb()
     col_a = [str(r[0]) for r in wb["Confianza"].iter_rows(values_only=True) if r[0] is not None]

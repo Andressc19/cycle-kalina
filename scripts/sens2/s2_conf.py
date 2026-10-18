@@ -16,12 +16,14 @@ P5 = os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5")
 CATS = ["DISEÑO REAL", "EQUIPOS", "MÁXIMA EFICIENCIA", "FLUCTUACIÓN", "LÍMITES KALINA"]
 REGLA = [
     "Baja: n_min < 10 (salvo cifras deterministas), o ninguna linea de evidencia, o depende del diseño (robusto_diseno = no) con una sola linea, o cambia al tratar "
-    "NO_CONVERGIO y descansa en un solo bloque.",
+    "NO_CONVERGIO y descansa en un solo bloque, o cumple 2 o menos de 6 criterios.",
     "Alta: un recuento directo con n_min >= 30; o una inferencia con >= 2 lineas de evidencia independientes (familias de metodo "
     "distintas, campañas o muestreos distintos), n_min >= 30, robusta a NO_CONVERGIO y al diseño (o con el alcance acotado y dicho en el propio enunciado) y con intervalo o prueba corregida.",
     "No aplica: una declaracion de limites del analisis no es una inferencia y no lleva confianza.",
     "Media: el resto. Cualquier criterio `parcial`, `pendiente` o `no` impide Alta. Para que Media discrimine, cada conclusion muestra cuantos de 6 criterios cumple "
     "(2 lineas, n_min, robusta a NO_CONVERGIO, robusta al diseño, intervalo, varios bloques).",
+    "Las entradas de la regla (lineas, n_min, robusto_nc, robusto_diseno, intervalo) las asigna el director a mano en p5_evidencia.csv, con una nota que las justifica; "
+    "el codigo solo aplica la regla. Una cifra determinista con 2 o mas lineas no exige n_min.",
     "La confianza describe la solidez dentro del modelo teqp; no es una validacion experimental."]
 
 

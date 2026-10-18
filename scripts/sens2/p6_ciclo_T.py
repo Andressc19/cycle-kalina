@@ -24,7 +24,7 @@ MIN_KALINA = 10
 COLS = ["banda", "T_centro_C", "n", "n_kalina", "n_corregible", "n_inviable", "n_no_convergio",
         "p_kalina", "p_kalina_si_convergio", "eta_max", "id_punto", "T_fuente", "P_alta", "P_baja",
         "x_b", "eta_t", "eps_reg", "eps_cond", "fuera_rango", "eta_max_dentro", "eta_p90",
-        "eta_mediana", "wnet_mb_max", "wnet_mb_mediana", "eta_mediana_lhs", "n_kalina_lhs"]
+        "eta_mediana", "wnet_mb_max", "wnet_mb_mediana", "eta_mediana_lhs", "n_kalina_lhs", "n_kalina_dentro"]
 
 
 def _pct(v, p):
@@ -67,7 +67,7 @@ def fila_banda(sub, lo, hi):
             [emax_d, _pct(eta, 90), _pct(eta, 50),
              float(np.max(w)) if len(w) else np.nan,
              float(np.median(w)) if len(w) else np.nan,
-             float(np.median(lhs)) if len(lhs) else np.nan, int(len(lhs))])
+             float(np.median(lhs)) if len(lhs) else np.nan, int(len(lhs)), int(len(dentro))])
 
 
 def tablas(d):
@@ -96,11 +96,14 @@ def markdown(tab):
             "" if not np.isfinite(x["eta_max_dentro"]) else "%.3f" % x["eta_max_dentro"],
             "" if not np.isfinite(x["P_alta"]) else "%.3f" % x["P_alta"],
             "" if not np.isfinite(x["x_b"]) else "%.3f" % x["x_b"]))
-    n_pocos = int((tab["n_kalina"] < MIN_KALINA).sum())
+    n_pocos = int((tab["n_kalina_dentro"] < MIN_KALINA).sum())
     l += ["", "Notas:", "",
           "- El maximo por banda es el mayor valor muestreado y no el optimo del ciclo.",
-          "- Las bandas con pocos KALINA (< %d): %d de %d bandas; en ellas el maximo y la P(KALINA)"
-          " no concluyen." % (MIN_KALINA, n_pocos, len(tab)),
+          "- Las bandas con menos de %d KALINA dentro del rango experimental: %d de %d bandas; en ellas el maximo"
+          " dentro del rango no concluye (columna n_kalina_dentro del CSV)." % (MIN_KALINA, n_pocos, len(tab)),
+          "- Sobre ~150 C el limite de 420 K del liquido deja casi todos los KALINA fuera del rango experimental: la caida del maximo"
+          " dentro del rango en las bandas calientes coincide con ese corte y no es una caida del ciclo.",
+          "- El maximo de un conjunto crece con su tamano y las bandas tienen tamanos y disenos de muestreo distintos.",
           "- NO_CONVERGIO sesga hacia abajo la P(KALINA) de las bandas frias;",
           "  p_kalina_si_convergio usa (n - NO_CONVERGIO) como denominador.", ""]
     return "\n".join(l)

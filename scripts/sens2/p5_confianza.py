@@ -21,7 +21,7 @@ justifica). La confianza NO se escribe en el texto: se calcula aqui. Columnas de
   `robusto_diseno = acotado` cuenta como valido para Alta.
 
 Regla (el orden importa):
-  Baja  = (n_min < 10 si el tipo no es determinista), o lineas < 1, o (robusto_diseno = no y lineas < 2), o (robusto_nc = no y un_bloque = si).
+  Baja  = (n_min < 10 si el tipo no es determinista), o lineas < 1, o cumple 2 o menos de 6 criterios, o (robusto_diseno = no y lineas < 2), o (robusto_nc = no y un_bloque = si).
   No aplica = tipo limite (una declaracion de limites del analisis no es una inferencia y no lleva confianza).
   Alta  = tipo recuento con n_min >= 30;  o tipo inferencia con lineas >= 2, n_min >= 30,
           robusto_nc en {si, na}, robusto_diseno en {si, acotado, na} e intervalo en {si, na}; o tipo determinista con
@@ -49,6 +49,8 @@ def regla(x):
         razones.append("depende del diseño (robusto_diseno = no) con una sola linea")
     if x["robusto_nc"] == "no" and x["un_bloque"] == "si":
         razones.append("cambia al tratar NO_CONVERGIO y descansa en un bloque")
+    if x["tipo"] != "limite" and puntaje(x) <= 2:
+        razones.append("cumple %d de 6 criterios" % puntaje(x))
     if razones:
         return "Baja", "; ".join(razones)
     if x["tipo"] == "limite":

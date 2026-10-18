@@ -19,9 +19,10 @@ PREGUNTAS = [
     ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises", "D1 a D6"),
     ("Partiendo de un KALINA, que pasa al mover una o dos variables?",
      "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate", "D7; L6; L2; F6"),
-    ("Como se comporta el regenerador?", "F4 Regenerador vs T_fuente; F4 Regenerador y condensador", "E8; E4"),
-    ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion",
-     "E1, E2, E3, E5, E6, E7"),
+    ("Como se comporta el regenerador y el ciclo con la temperatura de la fuente?",
+     "F4 Regenerador vs T_fuente; F4 Regenerador y condensador; F4 Ciclo vs T_fuente", "E8; E4; M6"),
+    ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion; F4 Equipos por kW",
+     "E1 a E7; E9"),
 ]
 
 

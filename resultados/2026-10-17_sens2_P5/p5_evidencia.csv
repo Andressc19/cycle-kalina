@@ -8,17 +8,17 @@ D6,determinista,1,2,pendiente,acotado,na,no,no,frontera de P_alta en barridos de
 D7,determinista,2,2,pendiente,acotado,na,no,si,margenes de barridos de una variable y barrido fino de eps_cond
 D8,inferencia,2,49,pendiente,acotado,pendiente,no,no,mallas P_baja x x_b de 7 niveles y mecanismo de la temperatura de burbuja
 E1,inferencia,1,2047,na,parcial,si,no,no,percentiles de los KALINA de diseños mezclados con IC bootstrap (p6_equipos_ic); cifras de la literatura no verificadas
-E2,inferencia,2,507,na,si,si,no,no,regresion de dh sobre r_P en los 4 LHS con IC bootstrap; la afirmacion se limita a dh (la eta por bandas es descriptiva)
+E2,inferencia,1,507,na,si,si,no,no,regresion de dh sobre r_P en los 4 LHS con IC bootstrap; las bandas de r_P son los mismos datos (no son otra linea); la afirmacion se limita a dh
 E3,inferencia,2,2047,na,parcial,pendiente,no,no,q4 de los KALINA; el 10 % de mayor eta mezcla diseños
 E4,inferencia,1,2047,na,parcial,pendiente,no,no,pinch y UA salen de eps_reg muestreada de 0.4 a 0.95; el enunciado dice que lo observado depende de ese rango
 E5,inferencia,1,2047,na,parcial,pendiente,no,no,carga del condensador de los KALINA de diseños mezclados
 E6,inferencia,1,2047,na,parcial,pendiente,no,no,carga del HRVG de los KALINA de diseños mezclados
 E7,inferencia,1,2047,na,parcial,pendiente,no,no,cociente Wp/Wt de los KALINA de diseños mezclados
 E8,inferencia,3,159,na,parcial,no,no,no,"estudio 4 (159 KALINA), barridos de una variable y mecanismo m_l/m_b; solo 2 KALINA a 70 C"
-M1,inferencia,1,972,na,parcial,no,no,no,maximo entre puntos muestreados; no se corrio un optimizador; el de 14.82 % tiene m_O2 de 0.7 K
-M2,inferencia,1,972,na,parcial,no,si,no,mejor punto muestreado de C1
-M3,inferencia,1,972,na,parcial,no,si,no,mejor punto muestreado de C1 con mejores equipos
-M4,inferencia,1,972,na,parcial,no,no,no,mejor punto muestreado de C4 y C2; el de C4 tiene m_O2 de 0.2 K
+M1,determinista,1,972,na,acotado,na,no,si,maximo entre puntos muestreados; no se corrio un optimizador; el de 14.82 % tiene m_O2 de 0.7 K; salida exacta del modelo en puntos muestreados: el enunciado dice «muestreado» y no afirma un optimo
+M2,determinista,1,972,na,acotado,na,si,si,mejor punto muestreado de C1; salida exacta del modelo en puntos muestreados: el enunciado dice «muestreado» y no afirma un optimo
+M3,determinista,1,972,na,acotado,na,si,si,mejor punto muestreado de C1 con mejores equipos; salida exacta del modelo en puntos muestreados: el enunciado dice «muestreado» y no afirma un optimo
+M4,determinista,1,972,na,acotado,na,no,si,mejor punto muestreado de C4 y C2; el de C4 tiene m_O2 de 0.2 K; salida exacta del modelo en puntos muestreados: el enunciado dice «muestreado» y no afirma un optimo
 M5,inferencia,2,207,na,parcial,si,si,no,significativa en el LHS solo en C1; con todos los puntos depende del diseño
 F1,inferencia,2,231,pendiente,si,si,no,no,seis metodos (no independientes) y elasticidad local; la eta solo existe en puntos convergidos (24 % de NO_CONVERGIO en C3 y C4)
 F2,inferencia,1,231,na,si,si,no,no,seis metodos sobre W_net por kg/s con permutacion y correccion de Benjamini-Hochberg (p6_nulo_perm)
@@ -40,5 +40,5 @@ U2,inferencia,1,48,si,acotado,si,no,si,escenario B con tolerancias supuestas; ep
 U3,inferencia,1,96,na,acotado,no,no,si,dispersion de eta de los KALINA bajo tolerancias supuestas
 R1,inferencia,1,49,pendiente,parcial,si,no,no,ajuste cuadratico con validacion cruzada (p6_superficies_cv); el maximo cae en el borde y sin datos KALINA
 U4,determinista,3,10,si,parcial,na,no,no,el umbral de eps_cond vale con las demas variables en el centro; con todas moviendose la especificacion robusta es mas alta
-M6,inferencia,1,13,na,parcial,no,no,no,mayor valor muestreado por banda de T_fuente; sin optimizador y con diseños de muestreo distintos por banda
+M6,inferencia,1,17,pendiente,parcial,no,no,no,"mayor valor muestreado por banda de T_fuente con al menos 10 KALINA dentro del rango (17 a 681); sin optimizador, con tamaños y diseños distintos por banda; la banda de 77 C casi no converge"
 E9,inferencia,1,2047,na,parcial,no,no,si,aritmetica sobre las cifras por kg/s de los KALINA de diseños mezclados (p6_equipos_kw); depende del diseño como E1 a E7

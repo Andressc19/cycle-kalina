@@ -66,7 +66,7 @@ def construir():
     h.append("<h1>Análisis de sensibilidad del ciclo Kalina KSC-11 (NH₃–H₂O)</h1><p class='n'>Informe técnico de la campaña «Sensibilidad 2»: "
              "análisis de 3 921 puntos de Sensibilidad 1 y de 384 + 424 puntos nuevos de propagación de incertidumbre. Rama "
              "<code>test/anal_terremoto</code>. Todo número sale de los CSV de <code>resultados/</code>; libro de apoyo "
-             "<code>datos/Kalina_anal_sensible_2.xlsx</code>.</p>")
+             "<code>datos/Kalina_anal_sensible_2.xlsx</code> (incluye las hojas F4 Ciclo vs T_fuente y F4 Equipos por kW).</p>")
     h.append("<h2>1. Resumen</h2><ul><li>La región KALINA depende del bloque y del lado frío del ciclo (los barridos de una variable la hallan con fuentes de 90 a 165 °C en C1, 120 a 190 °C en C2, 90 a 290 °C en C3 y 90 a 250 °C en C4): "
              "el piso de P_baja (cavitación), la efectividad del condensador y x_b.</li>"
              "<li>La eficiencia máxima es 14.53 % dentro del rango experimental y 14.82 % fuera (fuente de 170 °C).</li>"

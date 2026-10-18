@@ -26,7 +26,7 @@ import p4_comun as c  # noqa: E402
 SALIDA = os.path.join(RAIZ, "resultados", "2026-10-18_sens2_F1")
 MAGS = [("Qi_kW", "kW por kW neto"), ("Qout_kW", "kW por kW neto"),
         ("Qreg_kW", "kW por kW neto"), ("Wt_kW", "kW por kW neto"),
-        ("Wp_kW", "kW por kW neto"), ("UA_kW", "K^-1"),
+        ("Wp_kW", "kW por kW neto"), ("UA_kW", "kW/K por kW neto"),
         ("m_b_kW", "kg/s por kW neto")]
 UNIDAD_100 = {"Qi_kW": "kW", "Qout_kW": "kW", "Qreg_kW": "kW", "Wt_kW": "kW",
               "Wp_kW": "kW", "UA_kW": "kW/K", "m_b_kW": "kg/s"}

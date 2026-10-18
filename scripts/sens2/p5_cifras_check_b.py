@@ -44,3 +44,25 @@ def extra(chk, ev, sub, P):
     r2 = m[(m["bloque"] == "C1 Husavik") & (m["variable"] == "T_fuente")].iloc[0]
     chk("D", "D7", sub(ev("D7"), r["ult_abajo"], "%.0f") and sub(ev("D7"), r2["ult_abajo"], "%.2f") and sub(ev("D7"), r2["ult_arriba"], "%.2f"),
         "C1 P_baja %.0f; T_fuente %.2f a %.2f" % (r["ult_abajo"], r2["ult_abajo"], r2["ult_arriba"]))
+
+
+def extra2(chk, ev, sub, P):
+    """M6 (mayor eta por banda de T_fuente) y E9 (requisitos por kW neto), recalculados desde los datos."""
+    import numpy as np
+    d = pd.read_csv(P("2026-10-17_sens2_P2", "p2_dataset_dedup.csv"))
+    k = d[d["kalina"] & ~d["fuera_rango"].astype(bool)]
+    t6, ok, det = ev("M6"), True, []
+    for lo in (340, 360, 380, 400, 420, 440):
+        b = k[(k["T_fuente"] >= lo) & (k["T_fuente"] < lo + 20)]
+        ok &= sub(t6, float(b["eta_pct"].max()), "%.1f") and sub(t6, len(b), "%d")
+        det.append("%d: %.1f (%d)" % (lo, float(b["eta_pct"].max()), len(b)))
+    chk("M", "M6", ok, "eta max dentro por banda: " + "; ".join(det))
+    import p4_comun as c4
+    e = c4.cargar()
+    k4 = e[c4.mascara(e, c4.REF_TOTAL) & (e["wnet_mb"] > 0)]
+    qi = (k4["Qi_mb"] / k4["wnet_mb"]).to_numpy(float)
+    mb = (1.0 / k4["wnet_mb"]).to_numpy(float)
+    t9 = ev("E9")
+    vals = [float(np.percentile(qi, 5)), float(np.percentile(qi, 50)), float(np.percentile(qi, 95))]
+    chk("E", "E9", all(sub(t9, v, "%.1f") for v in vals) and sub(t9, float(np.percentile(mb, 5)), "%.3f") and sub(t9, len(k4), "%d"),
+        "Q_i por kW neto P5/P50/P95 = %.1f/%.1f/%.1f; n = %d" % (vals[0], vals[1], vals[2], len(k4)))
