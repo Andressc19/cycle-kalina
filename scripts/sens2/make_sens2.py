@@ -75,7 +75,7 @@ def correr(nombre):
         return {"nombre": nombre, "estado": "ausente", "segundos": 0.0, "codigo": None}, 0
     print("[%s] ..." % nombre)
     t = time.time()
-    r = subprocess.run([sys.executable, "-I", ruta], cwd=RAIZ, env=entorno())
+    r = subprocess.run([sys.executable, ruta], cwd=RAIZ, env=entorno())
     seg = round(time.time() - t, 2)
     estado = "ok" if r.returncode == 0 else "fallo"
     print("[%s] %s (%.2f s)" % (nombre, estado, seg))
