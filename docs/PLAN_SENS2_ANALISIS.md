@@ -1,7 +1,9 @@
 # Plan del análisis de sensibilidad 2 (sobre los 3 921 puntos de Sensibilidad 1)
 
 **Fecha:** 2026-10-17 · **Rama:** `test/anal_terremoto` · Base: `docs/ETAPA0_INVESTIGACION_SENSIBILIDAD_KALINA.md`.
-Sin corridas nuevas del motor: todo se calcula desde los CSV (`scripts/sens1/x1_cargar.py::cargar_todo`).
+Sin corridas nuevas del motor en el plan original: todo se calcula desde los CSV (`scripts/sens1/x1_cargar.py::cargar_todo`).
+Después se añadieron 808 puntos nuevos del motor para la propagación de incertidumbre (U1; los corrió el director) y un contraste
+con la campaña anterior (R1 y R2); ver `docs/PLAN_SENS2_MEJORA.md`.
 
 ## Ajustes a la guía del prompt (qué se conserva, qué se cambia)
 

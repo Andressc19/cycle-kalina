@@ -86,8 +86,9 @@ def hoja_leeme(wb, datos):
     f = titulo(ws, f, "Libro 2 - Analisis de sensibilidad sobre la campana de Sensibilidad 1", ancho=12)
     f = subtitulo(ws, f, "Que es este libro y de que campana viene")
     for linea in [
-            "Este libro analiza, sin corridas nuevas del motor, los 3 921 puntos de la campana de "
-            "Sensibilidad 1 (libro 1).",
+            "Este libro analiza los 3 921 puntos de la campana de Sensibilidad 1 (libro 1) y anade 808 puntos nuevos del motor "
+            "para la propagacion de incertidumbre (F5 Incertidumbre; los corrio el director, no OpenCode) y un contraste con "
+            "la campana anterior M1-M10b (F6). El resto de las hojas no usa corridas nuevas.",
             "Se quitan los duplicados exactos (mismas 10 entradas y mismo centro): quedan 3 663 "
             "puntos, que son los que usa el analisis.",
             "Base por hoja: F1 usa los 3 921 puntos (con duplicados); F2, F3 y F4 usan los 3 663 sin "
@@ -95,8 +96,8 @@ def hoja_leeme(wb, datos):
             "Cavitacion (O2) = margen m_O2 = T_burbuja(P_baja, x_b) - T9 >= 0 (el liquido a la entrada de la bomba no supera su "
             "temperatura de burbuja; margen de seguridad CERO, la tolerancia de 1 K solo normaliza el indice D); no es un "
             "calculo de NPSH. 'Confianza' de cada conclusion = robustez dentro del modelo teqp.",
-            "Todos los numeros salen de los CSV de resultados/ (P1 a P4 y p5_conclusiones.csv); "
-            "ninguno se escribe a mano.",
+            "Los numeros salen de los CSV de resultados/ (P1 a P4, U1, R1 y R2). p5_conclusiones.csv se genera con "
+            "p5_generar.py desde p5_conclusiones_base.csv; las cifras con marcador no se escriben a mano.",
             "Clases: KALINA, CORREGIBLE, NO_CONVERGIO e INVIABLE. Un KALINA puede estar dentro o "
             "fuera del rango experimental (ver terminologia)."]:
         ws.cell(f, 1, linea).font = Font(size=10)
@@ -116,8 +117,8 @@ def hoja_leeme(wb, datos):
 
     f = subtitulo(ws, f, "Los 4 centros de bloque y sus constantes")
     f = condiciones(ws, f, ["Que quedo fijo: las constantes de cada bloque (las mismas del libro 1).",
-                            "Que se barrio: en Sensibilidad 2 no se barre nada; se analizan los "
-                            "puntos ya calculados alrededor de estos centros."])
+                            "Que se barrio: el analisis de los 3 921 puntos no barre nada; solo F5 Incertidumbre usa "
+                            "puntos nuevos del motor alrededor de estos centros."])
     enc = ["Bloque"] + [v + " (" + u + ")" for v, u in (
         ("T_fuente", "K"), ("T_sumidero", "K"), ("P_alta", "kPa"), ("P_baja", "kPa"), ("x_b", "-"),
         ("eta_t", "-"), ("eta_p", "-"), ("eps_HRVG", "-"), ("eps_reg", "-"), ("eps_cond", "-"))]

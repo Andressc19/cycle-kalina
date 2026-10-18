@@ -67,7 +67,7 @@ def construir():
              "análisis de 3 921 puntos de Sensibilidad 1 y de 384 + 424 puntos nuevos de propagación de incertidumbre. Rama "
              "<code>test/anal_terremoto</code>. Todo número sale de los CSV de <code>resultados/</code>; libro de apoyo "
              "<code>datos/Kalina_anal_sensible_2.xlsx</code>.</p>")
-    h.append("<h2>1. Resumen</h2><ul><li>Existe KALINA en todo el intervalo de 70 a 300 °C de la fuente, pero su región depende del lado frío del ciclo: "
+    h.append("<h2>1. Resumen</h2><ul><li>La región KALINA depende del bloque y del lado frío del ciclo (los barridos de una variable la hallan con fuentes de 90 a 165 °C en C1, 120 a 190 °C en C2, 90 a 290 °C en C3 y 90 a 250 °C en C4): "
              "el piso de P_baja (cavitación), la efectividad del condensador y x_b.</li>"
              "<li>La eficiencia máxima es 14.53 % dentro del rango experimental y 14.82 % fuera (fuente de 170 °C).</li>"
              "<li>El regenerador pierde peso al subir la temperatura de la fuente.</li>"

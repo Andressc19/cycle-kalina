@@ -5,6 +5,21 @@ lista de comprobación de `validate-data` y los criterios de `statistical-analys
 (plugin `data` de Anthropic; se aplicaron sus instrucciones leyendo sus `SKILL.md`, no como skills cargadas por la
 sesión). Fecha: 2026-10-17. Rama `test/anal_terremoto`.
 
+## Actualización 2026-10-18 (evaluación tipo profesor y plan de mejora)
+
+El libro creció después de esta revisión: **23 hojas, 76 gráficos, 41 conclusiones y 808 puntos nuevos del motor** (F5
+Incertidumbre, corridos por el director, no por OpenCode), más el contraste con la campaña anterior (F6, L8 y L9). Un
+revisor independiente reevaluó todo como un profesor exigente (rigor 2.5, coherencia 2.5, sobre-afirmaciones 2.5,
+cobertura 3.5, trazabilidad 3.0, libro 3.5) y el plan para llevar cada criterio a 4 está en `docs/PLAN_SENS2_MEJORA.md`.
+
+Corregido en la fase F0: M2 (la línea base era el punto M10 y no el centro de Húsavík), U3 y el BLUF del informe
+(cifras del primer lote de 48 puntos), L7 (0.48 frente a 0.47), la frase «P(KALINA) es estable con 48 puntos» (dos
+lotes compatibles no prueban estabilidad), P(KALINA) = 0.47 condicionada al diseño unilateral de ε_cond, D4 (el mínimo
+de ε_cond es un límite del muestreo), F6 frente a L2 (la diferencia sin parear no es un efecto causal), R1 (no es un
+argumento independiente), L8 («consistente con», no «respaldados»), D1 (resolución de la frontera) y los textos
+desactualizados del LEEME, del informe y del resumen del PDF. Pendiente (F1 a F5): corrección por multiplicidad, nulo por
+permutación, NO_CONVERGIO como cota, comparaciones pareadas, regla de confianza por código y mejoras del libro.
+
 ## Evaluación global: compartir con caveats
 
 Las cifras se recalcularon de forma independiente y coinciden. Los hallazgos corregidos están abajo. Quedan
@@ -41,7 +56,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 ## Objeciones previsibles de un evaluador (y estado)
 
 1. **«Todo es el modelo.»** Cierto: solo teqp, sin validación experimental; se contrasta con modelos publicados y un simulador, no con experimentos. Declarado.
-2. **«Falta propagar incertidumbre y superficies de respuesta.»** Hecho después de esta revisión: 384 puntos del motor (F5 Incertidumbre) y 8 mallas con ajuste cuadratico (F5 Superficies de respuesta). Reservas: las tolerancias (±5 K, ±3 K, ±5 %, ±0.02, ±0.05; el doble en B) son supuestos de escenario y las entradas se tomaron independientes y uniformes (incertidumbre estándar ±a/√3); con 48 puntos por celda los IC de Wilson son anchos, pero un segundo lote independiente de 48 (96 en total) coincide con el primero (diferencias de P(KALINA) de 0.00 a 0.02, |z| ≤ 1.0), de modo que el muestreo es estable; un escenario con ε_cond fija en 0.95 (192 puntos) y un barrido fino de ε_cond (40 puntos) aislaron el sesgo del tope 0.95: la pérdida de clase se debe solo al condensador; los percentiles P5 y P95 son aproximados; la banda del modelo (±0.7 pp) se suma de forma determinista.
+2. **«Falta propagar incertidumbre y superficies de respuesta.»** Hecho después de esta revisión: 808 puntos del motor (F5 Incertidumbre) y 8 mallas con ajuste cuadratico (F5 Superficies de respuesta). Reservas: las tolerancias (±5 K, ±3 K, ±5 %, ±0.02, ±0.05; el doble en B) son supuestos de escenario y las entradas se tomaron independientes y uniformes (incertidumbre estándar ±a/√3); con 48 puntos por celda los IC de Wilson son anchos, pero un segundo lote independiente de 48 (96 en total) coincide con el primero (diferencias de P(KALINA) de 0.00 a 0.02, |z| ≤ 1.0), de modo que el muestreo es estable; un escenario con ε_cond fija en 0.95 (192 puntos) y un barrido fino de ε_cond (40 puntos) aislaron el sesgo del tope 0.95: la pérdida de clase se debe solo al condensador; los percentiles P5 y P95 son aproximados; la banda del modelo (±0.7 pp) se suma de forma determinista.
 3. **«La regla de ruido con 3 dummy es débil.»** Cierto: se declara y se usa solo con 3 a 8 métodos concordantes.
 4. **«¿Por qué el regenerador pierde peso al subir T_fuente?»** Resuelto en la segunda evaluación (conclusión E8): el lado caliente es el líquido pobre y Q_reg = m_l·(h5 − h6); al subir T_fuente casi todo el fluido se vaporiza y m_l/m_b cae de 0.81 a 0.006.
 5. **«Los requisitos de equipos son envolventes, no especificaciones.»** Cierto: faltan flujo volumétrico de la turbina, altura de la bomba y geometría. Declarado.
@@ -59,7 +74,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 - Control cruzado de la η máxima del BLUF contra la conclusión M1: incluido en `s2_verificar.py`.
 - No verificado: fuentes web de la Etapa 0 (10 marcadas ⚠) y cifras de otros autores citadas en las conclusiones E1 y E3.
 
-## Revisión de gráficos (56, abiertos y exportados desde Excel real)
+## Revisión de gráficos (76 en el libro actual; los 56 de esta revisión se abrieron y exportaron desde Excel real, los 20 de superficies, incertidumbre y respaldo se auditaron con Excel real el 2026-10-18)
 
 Los 41 de la primera versión y los 15 de las hojas añadidas después (márgenes de operación y regenerador frente a T_fuente) tienen series numéricas, ejes rotulados con unidades, sin vacíos, solapes ni celdas tapadas. Las barras
 parten de cero salvo las de elasticidad y coeficientes (con signo, con escala propia). Reservas que quedan:

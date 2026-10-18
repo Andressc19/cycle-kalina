@@ -48,6 +48,8 @@ def _mo2(h):
         h["mo2.todos.p%d" % t] = 100 * float((k["m_O2"] < t).mean())
         s = k[k["centro"].astype(str).str.startswith("C1")]
         h["mo2.C1.p%d" % t] = 100 * float((s["m_O2"] < t).mean())
+    for clave, pid in (("n1t170", "N1-T170-14"), ("n10c3", "N10-C3-0016"), ("c1b3", "C1-B3-0127"), ("n7bc4", "N7B-C4-B1-045"), ("c2lhs", "C2-LHS-0005")):
+        h["mo2.%s" % clave] = float(d[d["id_punto"] == pid]["m_O2"].iloc[0])
     b = d[d["estudio"].isin([1, 10]) & (d["variable"] == "base") & d["centro"].astype(str).str.startswith("C1")].iloc[0]
     h["c1.base.eta"], h["c1.base.clase"], h["c1.base.eps_cond"] = float(b["eta_pct"]), str(b["clasificacion"]), float(b["eps_cond"])
 
@@ -61,6 +63,7 @@ def _nc(h):
         lo = g[g["T_fuente"] <= g["T_fuente"].quantile(0.25)]
         h["nc.%s.n" % c] = float(len(lo))
         h["nc.%s.nc" % c] = float((lo["clasificacion"] == "NO_CONVERGIO").sum())
+    h["eta.mediana.lhs"] = float(s[s["kalina"] & s["estudio"].isin([3, 14])]["eta_pct"].median())
     h["nc.total"] = float((s["clasificacion"] == "NO_CONVERGIO").sum())
     h["nc.n"] = float(len(s))
     h["m2.mejor.eta"] = float(s[s["id_punto"] == "C1-B3-0127"]["eta_pct"].iloc[0])

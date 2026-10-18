@@ -10,6 +10,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(os.path.dirname(AQUI))
 sys.path.insert(0, AQUI)
 from s2_cargar import conclusiones, dataset_dedup, distancia_resumen, violaciones  # noqa: E402
+from p5_hechos import hechos  # noqa: E402
 
 SALIDA = os.path.join(RAIZ, "docs", "INFORME_SENS2.md")
 CATEGORIAS = ["DISEÑO REAL", "EQUIPOS", "MÁXIMA EFICIENCIA", "FLUCTUACIÓN", "LÍMITES KALINA"]
@@ -32,10 +33,13 @@ CAVEATS = [
     "7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.",
     "El criterio «distinguible del ruido» es laxo (algún método supera el máximo de 3 variables dummy); la conclusión "
     "M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.",
-    "La propagación de incertidumbre usa tolerancias supuestas (uniformes, ±a/√3 de incertidumbre estándar), 48 puntos "
-    "por escenario y bloque (IC de Wilson) y entradas independientes; no se estableció la estabilidad del muestreo "
-    "(JCGM 101) y la banda del modelo de propiedades (±0.7 pp) se suma de forma determinista. La importancia por "
-    "permutación no se implementó.",
+    "La propagación de incertidumbre usa tolerancias supuestas (uniformes, ±a/√3 de incertidumbre estándar), 96 puntos "
+    "por bloque en el escenario A (dos lotes de 48) y 48 en B (IC de Wilson) y entradas independientes; dos lotes "
+    "compatibles no prueban la estabilidad del muestreo (error típico de P con 48 puntos de 0.05 a 0.07; JCGM 101) y la "
+    "banda del modelo de propiedades (±0.7 pp) se suma de forma determinista. La importancia por permutación no se implementó.",
+    "NO_CONVERGIO (14 % de los puntos) se cuenta como «no KALINA» en los índices de existencia y en P(KALINA); según los "
+    "mensajes del motor la mayoría son balances de energía que no cierran o brackets sin extremos evaluables, así que los "
+    "umbrales inferiores de T_fuente (D3) pueden estar sesgados por el solver y no por el ciclo.",
     "La cavitación (O2) exige m_O2 = T_burbuja − T9 ≥ 0 (margen cero, no un cálculo de NPSH; ver L7); la «confianza» de cada "
     "conclusión es robustez dentro del modelo teqp, no validación física.",
 ]
@@ -55,6 +59,7 @@ PROXIMA = [
 def main():
     d = dataset_dedup()
     c = conclusiones()
+    H = hechos()
     k = d[d["kalina"]]
     n_in = round(float(k[~k["fuera_rango"]]["eta_pct"].max()), 2)
     n_out = round(float(k[k["fuera_rango"]]["eta_pct"].max()), 2)
@@ -69,15 +74,18 @@ def main():
          "## 1. Resumen ejecutivo", "",
          "- %d puntos sin duplicados (de 3 921); %.1f %% son KALINA (total)." % (
              len(d), 100.0 * len(k) / len(d)),
-         "- %.1f %% de los CORREGIBLE falla por cavitación (O2) y sobreestiman η en +2.5 puntos." % (
-             100.0 * float(o2.iloc[0]["fraccion"])),
+         "- %.1f %% de los CORREGIBLE falla por cavitación (O2); su η mediana es %.1f puntos mayor que la de los KALINA sin parear, pero emparejados con su vecino KALINA la diferencia es de %.2f puntos (F6, L2)." % (
+             100.0 * float(o2.iloc[0]["fraccion"]), H["f6.todos.dif"], abs(H["l2.pareado"])),
          "- Casi la mitad de los CORREGIBLE está a una sola variable de un KALINA; P_baja es la que más rescata.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
          "- Desde el centro KALINA de cada bloque, C1 y C4 no toleran bajar ε_cond (0.95); P_baja puede bajar hasta "
          "600 kPa (C1) y 800 kPa (C4) (D7, L6).",
-         "- Al perturbar las 10 variables a la vez (48 puntos del motor por bloque), con tolerancias nominales seguirían "
-         "siendo KALINA el 48 % (C1), 98 % (C2), 100 % (C3) y 85 % (C4); con el doble, 17, 90, 65 y 42 %; casi todas las "
-         "pérdidas son por cavitación (U1, U2).",
+         "- Al perturbar las 10 variables a la vez (96 puntos del motor por bloque, con la efectividad del condensador variando "
+         "solo por debajo de su centro 0.95), con tolerancias nominales seguirían siendo KALINA el %.0f %% (C1), %.0f %% (C2), "
+         "%.0f %% (C3) y %.0f %% (C4); con el doble, %.0f, %.0f, %.0f y %.0f %%; con ε_cond fija en 0.95 el 100 %% en los "
+         "cuatro. No es un riesgo del %.0f %% en C1: casi todas las pérdidas son por cavitación debida al condensador (U1, U2)." % (
+             H["u1p.C1.pct"], H["u1p.C2.pct"], H["u1p.C3.pct"], H["u1p.C4.pct"],
+             H["u1b.C1.pct"], H["u1b.C2.pct"], H["u1b.C3.pct"], H["u1b.C4.pct"], H["u1p.C1.pierde"]),
          "- El piso de P_baja sube con x_b y la superficie de η apunta hacia el menor P_baja (D8, R1).",
          "- El regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C) a 0.013 (300 °C) y UA de 9.5 a 0.34 "
          "kW/K por kg/s (E8).",
