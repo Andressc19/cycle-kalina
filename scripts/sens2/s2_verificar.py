@@ -137,7 +137,7 @@ esperado = {
     "% KALINA (total)": pct,
     "eta maxima dentro / fuera del rango experimental (%)": "%s / %s" % (eta_in, eta_out),
     "% de CORREGIBLE por cavitacion (viol_O2 dominante)": pct_o2,
-    "variable que mas rescata": "%s (%s %%)" % (b["clave"], round(100.0 * float(b["valor"]), 1)),
+    "variable que mas rescata en barridos y mallas (conteo del diseno)": "%s (%s %%)" % (b["clave"], round(100.0 * float(b["valor"]), 1)),
 }
 ws = wb["Conclusion consolidada"]
 hallado = {}
