@@ -5,20 +5,27 @@ lista de comprobación de `validate-data` y los criterios de `statistical-analys
 (plugin `data` de Anthropic; se aplicaron sus instrucciones leyendo sus `SKILL.md`, no como skills cargadas por la
 sesión). Fecha: 2026-10-17. Rama `test/anal_terremoto`.
 
-## Actualización 2026-10-18 (evaluación tipo profesor y plan de mejora)
+## Actualización 2026-10-18 (evaluaciones tipo profesor y plan de mejora)
 
-El libro creció después de esta revisión: **23 hojas, 76 gráficos, 41 conclusiones y 808 puntos nuevos del motor** (F5
-Incertidumbre, corridos por el director, no por OpenCode), más el contraste con la campaña anterior (F6, L8 y L9). Un
-revisor independiente reevaluó todo como un profesor exigente (rigor 2.5, coherencia 2.5, sobre-afirmaciones 2.5,
-cobertura 3.5, trazabilidad 3.0, libro 3.5) y el plan para llevar cada criterio a 4 está en `docs/PLAN_SENS2_MEJORA.md`.
+El libro actual tiene 41 conclusiones y 808 puntos nuevos del motor (F5 Incertidumbre, corridos por el director, no por OpenCode)
+y el contraste con la campaña anterior (F6, L8 y L9): (26 hojas, 84 gráficos). Dos revisores independientes lo evaluaron como un
+profesor exigente. Primera evaluación: rigor 2.5, coherencia 2.5, sobre-afirmaciones 2.5, cobertura 3.5, trazabilidad 3.0, libro 3.5.
+Segunda evaluación, después de la etapa A del plan (`docs/PLAN_SENS2_MEJORA.md`): rigor 3.5, coherencia 3.0, sobre-afirmaciones 3.0,
+cobertura 3.5, trazabilidad 3.8, libro 3.8.
 
-Corregido en la fase F0: M2 (la línea base era el punto M10 y no el centro de Húsavík), U3 y el BLUF del informe
-(cifras del primer lote de 48 puntos), L7 (0.48 frente a 0.47), la frase «P(KALINA) es estable con 48 puntos» (dos
-lotes compatibles no prueban estabilidad), P(KALINA) = 0.47 condicionada al diseño unilateral de ε_cond, D4 (el mínimo
-de ε_cond es un límite del muestreo), F6 frente a L2 (la diferencia sin parear no es un efecto causal), R1 (no es un
-argumento independiente), L8 («consistente con», no «respaldados»), D1 (resolución de la frontera) y los textos
-desactualizados del LEEME, del informe y del resumen del PDF. Pendiente (F1 a F5): corrección por multiplicidad, nulo por
-permutación, NO_CONVERGIO como cota, comparaciones pareadas, regla de confianza por código y mejoras del libro.
+Etapa A (hecha): conclusiones generadas desde los CSV con marcadores (`p5_conclusiones_base.csv`, `p5_hechos.py`, `p5_generar.py`),
+regla de confianza por código (`p5_confianza.py`, `p5_evidencia.csv`; hoja Confianza), 36 controles independientes de cifras,
+prueba de permutación con 2 000 barajados y corrección de Benjamini–Hochberg (hoja F7 Nulo y correccion FDR), sensibilidad a
+NO_CONVERGIO, comparación pareada por distancia, envolventes de equipos por diseño, fronteras con intervalo, validación cruzada de las
+superficies, potencia de U1, orquestador `make_sens2.py` (probado con `--todo`: todos los pasos OK y resultados idénticos) y pruebas pytest.
+
+Hallazgos de la segunda evaluación y su estado: corregidos la regla de confianza (`acotado` exige que el enunciado diga el alcance;
+los límites del análisis no llevan confianza), U1 y U4 (con ε_cond sobre el umbral todavía se pierden puntos por P_baja bajo,
+T_sumidero alto y x_b alto; la pendiente del margen de cavitación es ≈ 1.9 K por −0.01 de ε_cond entre 0.92 y 0.95, no 1.1), L2
+(cifra pareada de los 4 bloques, n = 734), D1 y D5 (la regresión logística solo se usa donde su intervalo es informativo), F1 (los
+métodos son 6 y la prueba solo dice «distinguible del ruido»), M1 (mayor valor muestreado, sin optimizador), los textos con el número de
+hojas y gráficos (ahora salen del libro) y la hoja Confianza. Siguen abiertos, porque requieren el motor: reintentar los
+NO_CONVERGIO, el ciclo frente a T_fuente optimizado y los datos de equipos por kW (etapas B y C del plan).
 
 ## Evaluación global: compartir con caveats
 

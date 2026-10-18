@@ -1,0 +1,13 @@
+control,resultado,detalle
+F3 C1,OK,"E3 C1 Husavik: recalculado 4, texto 4"
+F3 C2,OK,"E3 C2 ancla A*: recalculado 5, texto 5"
+F3 C3,OK,"E14 C3 caliente 150 C: recalculado 1, texto 1"
+F3 C4,OK,"E14 C4 frio 110 C: recalculado 2, texto 2"
+F1 C1,OK,"E3 C1 Husavik: recalculado 6, texto 6"
+F1 C2,OK,"E3 C2 ancla A*: recalculado 5, texto 5"
+F1 C3,OK,"E14 C3 caliente 150 C: recalculado 5, texto 5"
+F1 C4,OK,"E14 C4 frio 110 C: recalculado 6, texto 6"
+F2 C1,OK,"E3 C1 Husavik: recalculado 5, texto 5"
+F2 C2,OK,"E3 C2 ancla A*: recalculado 6, texto 6"
+F2 C3,OK,"E14 C3 caliente 150 C: recalculado 5, texto 5"
+F2 C4,OK,"E14 C4 frio 110 C: recalculado 5, texto 5"

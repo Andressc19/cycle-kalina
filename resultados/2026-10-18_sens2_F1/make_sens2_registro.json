@@ -1,5 +1,5 @@
 {
-  "commit": "bcea6dab2601c75b56181c7b7d5df3ef751cf999",
+  "commit": "d634bc90e13a4f7f48fc9d7d5de7adbc7f9c5377",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -13,147 +13,21 @@
   },
   "pasos": [
     {
-      "nombre": "p1_dataset",
-      "estado": "ok",
-      "segundos": 2.13,
-      "codigo": 0
-    },
-    {
-      "nombre": "p1_existencia",
-      "estado": "ok",
-      "segundos": 1.78,
-      "codigo": 0
-    },
-    {
-      "nombre": "p1_fronteras",
-      "estado": "ok",
-      "segundos": 2.06,
-      "codigo": 0
-    },
-    {
-      "nombre": "p1_reglas",
-      "estado": "ok",
-      "segundos": 1.41,
-      "codigo": 0
-    },
-    {
-      "nombre": "p2_comparacion",
-      "estado": "ok",
-      "segundos": 6.03,
-      "codigo": 0
-    },
-    {
-      "nombre": "p2_violaciones",
-      "estado": "ok",
-      "segundos": 2.37,
-      "codigo": 0
-    },
-    {
-      "nombre": "p2_distancia",
-      "estado": "ok",
-      "segundos": 3.01,
-      "codigo": 0
-    },
-    {
-      "nombre": "p2_robustez",
-      "estado": "ok",
-      "segundos": 3.38,
-      "codigo": 0
-    },
-    {
-      "nombre": "p3_indices",
-      "estado": "ok",
-      "segundos": 365.63,
-      "codigo": 0
-    },
-    {
-      "nombre": "p3_elasticidad",
-      "estado": "ok",
-      "segundos": 1.66,
-      "codigo": 0
-    },
-    {
-      "nombre": "p3_interaccion",
-      "estado": "ok",
-      "segundos": 1.61,
-      "codigo": 0
-    },
-    {
-      "nombre": "p3_resumen",
-      "estado": "ok",
-      "segundos": 1.46,
-      "codigo": 0
-    },
-    {
-      "nombre": "p4_envolventes",
-      "estado": "ok",
-      "segundos": 1.89,
-      "codigo": 0
-    },
-    {
-      "nombre": "p4_dependencias",
-      "estado": "ok",
-      "segundos": 2.95,
-      "codigo": 0
-    },
-    {
-      "nombre": "p4_bandas",
-      "estado": "ok",
-      "segundos": 1.59,
-      "codigo": 0
-    },
-    {
-      "nombre": "u1_analisis",
-      "estado": "ok",
-      "segundos": 3.16,
-      "codigo": 0
-    },
-    {
-      "nombre": "r1_filtro",
-      "estado": "ok",
-      "segundos": 3.26,
-      "codigo": 0
-    },
-    {
-      "nombre": "r1_contraste",
-      "estado": "ok",
-      "segundos": 1.16,
-      "codigo": 0
-    },
-    {
-      "nombre": "r2_eficiencias",
-      "estado": "ok",
-      "segundos": 1.04,
-      "codigo": 0
-    },
-    {
-      "nombre": "r2_vecinos",
-      "estado": "ok",
-      "segundos": 1.97,
-      "codigo": 0
-    },
-    {
-      "nombre": "r2_agregado",
-      "estado": "ok",
-      "segundos": 0.93,
-      "codigo": 0
-    },
-    {
       "nombre": "p5_generar",
       "estado": "ok",
-      "segundos": 1.64,
+      "segundos": 3.27,
       "codigo": 0
     },
     {
       "nombre": "p6_mO2",
       "estado": "ok",
-      "segundos": 1.48,
+      "segundos": 2.38,
       "codigo": 0
     },
     {
       "nombre": "p6_nulo",
       "estado": "ok",
-      "segundos": 358.63,
+      "segundos": 394.57,
       "codigo": 0
     },
     {
@@ -171,67 +45,79 @@
     {
       "nombre": "p6_equipos_diseno",
       "estado": "ok",
-      "segundos": 1.91,
+      "segundos": 2.02,
       "codigo": 0
     },
     {
       "nombre": "p6_potencia_u1",
       "estado": "ok",
-      "segundos": 0.93,
+      "segundos": 1.07,
       "codigo": 0
     },
     {
       "nombre": "p6_fronteras_ic",
       "estado": "ok",
-      "segundos": 6.12,
+      "segundos": 6.17,
       "codigo": 0
     },
     {
       "nombre": "p6_superficies_cv",
       "estado": "ok",
-      "segundos": 1.57,
+      "segundos": 1.74,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado",
       "estado": "ok",
-      "segundos": 2.49,
+      "segundos": 2.83,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_cifras_check",
+      "estado": "ok",
+      "segundos": 3.24,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_cifras_check_c",
+      "estado": "ok",
+      "segundos": 1.2,
       "codigo": 0
     },
     {
       "nombre": "s2_construir",
       "estado": "ok",
-      "segundos": 10.92,
+      "segundos": 11.3,
       "codigo": 0
     },
     {
       "nombre": "s2_verificar",
       "estado": "ok",
-      "segundos": 27.5,
+      "segundos": 23.3,
       "codigo": 0
     },
     {
       "nombre": "s2_informe",
       "estado": "ok",
-      "segundos": 1.85,
+      "segundos": 2.11,
       "codigo": 0
     },
     {
       "nombre": "s2_figuras",
       "estado": "ok",
-      "segundos": 4.16,
+      "segundos": 3.7,
       "codigo": 0
     },
     {
       "nombre": "s2_informe_pdf",
       "estado": "ok",
-      "segundos": 3.23,
+      "segundos": 3.32,
       "codigo": 0
     },
     {
       "nombre": "pruebas",
       "estado": "ok",
-      "segundos": 4.43,
+      "segundos": 5.04,
       "codigo": 0
     }
   ]

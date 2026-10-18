@@ -7,6 +7,8 @@ hojas, que ninguna celda de texto use el vocabulario prohibido y que las conclus
 """
 import os
 import re
+import sys
+import zipfile
 
 import openpyxl
 import pandas as pd
@@ -14,6 +16,9 @@ import pandas as pd
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIBRO = os.path.join(RAIZ, "datos", "Kalina_anal_sensible_2.xlsx")
 CONCLUSIONES = os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5", "p5_conclusiones.csv")
+EVIDENCIA = os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5", "p5_evidencia.csv")
+INFORME = os.path.join(RAIZ, "docs", "INFORME_SENS2.md")
+VALIDACION = os.path.join(RAIZ, "docs", "VALIDACION_SENS2.md")
 
 PROHIBIDAS = ["confiable", "no citable", "fuera de rango del motor", "indicio", "extrapol",
               "sin respaldo"]
@@ -70,3 +75,55 @@ def test_conclusiones_coinciden_con_csv():
         if fila and fila[0] is not None and patron.match(str(fila[0])):
             n += 1
     assert n == len(ids)
+
+
+def _hojas_y_graficos():
+    """Cuenta hojas con openpyxl y graficos (xl/charts/chart<N>.xml) con zipfile."""
+    n_hojas = len(_wb().sheetnames)
+    with zipfile.ZipFile(LIBRO) as z:
+        n_graficos = sum(1 for n in z.namelist() if re.match(r"^xl/charts/chart\d+\.xml$", n))
+    return n_hojas, n_graficos
+
+
+def test_informe_y_validacion_dicen_hojas_y_graficos_reales():
+    n_hojas, n_graficos = _hojas_y_graficos()
+    texto = "(%d hojas, %d gráficos)" % (n_hojas, n_graficos)
+    for doc in (INFORME, VALIDACION):
+        with open(doc, encoding="utf-8") as f:
+            contenido = f.read()
+        assert texto in contenido, "%s no contiene %r" % (os.path.basename(doc), texto)
+
+
+def test_confianza_tiene_los_41_ids():
+    ids = set(pd.read_csv(CONCLUSIONES)["id"].astype(str))
+    wb = _wb()
+    col_a = [str(r[0]) for r in wb["Confianza"].iter_rows(values_only=True) if r[0] is not None]
+    encontrados = [v for v in col_a if v in ids]
+    assert len(encontrados) == len(set(encontrados)) == len(ids) == 41
+    assert set(encontrados) == ids
+
+
+def test_toda_hoja_esta_en_la_guia_del_leeme():
+    wb = _wb()
+    hojas = set(wb.sheetnames)
+    col_a = [str(r[0]) for r in wb["LEEME"].iter_rows(values_only=True) if r[0] is not None]
+    for hoja in wb.sheetnames:
+        if hoja != "LEEME":
+            assert hoja in col_a, "hoja %r no listada en la columna A de LEEME" % hoja
+    for texto in col_a:
+        if texto in hojas:
+            assert texto in hojas
+
+
+def test_confianza_coincide_con_la_regla():
+    sys.path.insert(0, os.path.join(RAIZ, "scripts", "sens2"))
+    from p5_confianza import regla  # noqa: E402
+
+    ev = pd.read_csv(EVIDENCIA)
+    c = pd.read_csv(CONCLUSIONES).set_index("id")
+    for _, fila in ev.iterrows():
+        cid = fila["id"]
+        assert cid in c.index, "conclusion %r sin confianza" % cid
+        esperado = regla(fila)[0]
+        obtenido = c.loc[cid, "confianza"]
+        assert obtenido == esperado, "%s: confianza %r, regla dice %r" % (cid, obtenido, esperado)

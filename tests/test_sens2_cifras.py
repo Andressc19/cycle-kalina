@@ -33,7 +33,7 @@ def test_sin_marcadores():
 
 def test_confianza_valores():
     c = pd.read_csv(CONCLUSIONES)
-    assert set(c["confianza"].dropna()) <= {"Alta", "Media", "Baja"}
+    assert set(c["confianza"].dropna()) <= {"Alta", "Media", "Baja", "No aplica"}
 
 
 def test_ids_unicos_y_evidencia():

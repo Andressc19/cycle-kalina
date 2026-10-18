@@ -64,7 +64,7 @@ GUIA = [
 PREGUNTAS = [
     ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises"),
     ("Partiendo de un KALINA, que pasa si muevo una o dos variables?",
-     "F2 CORREGIBLE vs KALINA; F2 Distancia y rescate"),
+     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate; F5 Superficies de respuesta; F5 Incertidumbre"),
     ("Como se comporta el regenerador?", "F4 Regenerador vs T_fuente; F4 Regenerador y condensador"),
     ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion"),
 ]

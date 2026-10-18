@@ -68,9 +68,9 @@ def cuartiles(bl):
             conv = len(s) - nn
             lo, hi = K.wilson(nk, conv)
             filas.append([nombre, int(k) + 1, float(s["T_fuente"].min()), float(s["T_fuente"].max()), len(s), nk, nc_, ni, nn,
-                          nk / len(s), nn / len(s), nk / conv if conv else np.nan, lo, hi])
+                          nk / len(s), nn / len(s), nk / conv if conv else np.nan, lo, hi, (nk + nn) / len(s)])
     return pd.DataFrame(filas, columns=["bloque", "cuartil_T_fuente", "T_min", "T_max", "n", "KALINA", "CORREGIBLE", "INVIABLE",
-                                        "NO_CONVERGIO", "p_kalina_nc_cero", "p_nc", "p_kalina_si_convergio", "ic_lo", "ic_hi"])
+                                        "NO_CONVERGIO", "p_kalina_nc_cero", "p_nc", "p_kalina_si_convergio", "ic_lo", "ic_hi", "p_kalina_nc_uno"])
 
 
 def fraccion():

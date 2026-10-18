@@ -17,10 +17,13 @@ justifica). La confianza NO se escribe en el texto: se calcula aqui. Columnas de
   `parcial` = se enuncia en general pero depende del diseno de muestreo.
 - intervalo: `si` si la cifra principal lleva intervalo o prueba corregida, `na` si no aplica, `no` o `pendiente`.
 - un_bloque: `si` si la afirmacion descansa en un solo bloque.
+- alcance_en_enunciado: `si` si el propio texto de la conclusion dice la rebanada o el escenario donde vale; solo entonces
+  `robusto_diseno = acotado` cuenta como valido para Alta.
 
 Regla (el orden importa):
   Baja  = (n_min < 10 si el tipo no es determinista), o lineas < 1, o (robusto_diseno = no y lineas < 2), o (robusto_nc = no y un_bloque = si).
-  Alta  = tipo recuento o limite con n_min >= 30;  o tipo inferencia con lineas >= 2, n_min >= 30,
+  No aplica = tipo limite (una declaracion de limites del analisis no es una inferencia y no lleva confianza).
+  Alta  = tipo recuento con n_min >= 30;  o tipo inferencia con lineas >= 2, n_min >= 30,
           robusto_nc en {si, na}, robusto_diseno en {si, acotado, na} e intervalo en {si, na}; o tipo determinista con
           lineas >= 2 y los mismos tres criterios (el intervalo es `na`: la cifra es exacta en su rebanada).
   Media = el resto (cualquier criterio `parcial`, `pendiente` o `no` impide Alta).
@@ -32,7 +35,7 @@ import pandas as pd
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(os.path.dirname(AQUI))
 EVIDENCIA = os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5", "p5_evidencia.csv")
-OK = {"si", "acotado", "na"}
+OK = {"si", "na"}
 
 
 def regla(x):
@@ -48,18 +51,21 @@ def regla(x):
         razones.append("cambia al tratar NO_CONVERGIO y descansa en un bloque")
     if razones:
         return "Baja", "; ".join(razones)
-    if x["tipo"] in ("recuento", "limite"):
+    if x["tipo"] == "limite":
+        return "No aplica", "declaracion de limites del analisis, no una inferencia"
+    if x["tipo"] == "recuento":
         if x["n_min"] >= 30:
-            return "Alta", "%s con n_min = %d" % (x["tipo"], x["n_min"])
+            return "Alta", "recuento con n_min = %d" % x["n_min"]
         return "Media", "n_min < 30"
     faltan = []
     if x["lineas"] < 2:
         faltan.append("una sola linea de evidencia")
     if x["n_min"] < 30 and x["tipo"] != "determinista":
         faltan.append("n_min < 30")
+    acotado = x["robusto_diseno"] == "acotado" and x.get("alcance_en_enunciado", "no") == "si"
     for c in ("robusto_nc", "robusto_diseno", "intervalo"):
-        if x[c] not in OK:
-            faltan.append("%s = %s" % (c, x[c]))
+        if x[c] not in OK and not (c == "robusto_diseno" and acotado):
+            faltan.append("%s = %s%s" % (c, x[c], " (alcance no dicho en el enunciado)" if x[c] == "acotado" else ""))
     if not faltan:
         return "Alta", "lineas = %d, n_min = %d, robusta a NO_CONVERGIO y al diseño, con intervalo" % (x["lineas"], x["n_min"])
     return "Media", "; ".join(faltan)

@@ -108,12 +108,12 @@ def hoja_f7_rigor(wb, datos):  # noqa: ARG001
                             "IC bajo", "IC alto"], r2, anchos=[8, 8, 10, 10, 8, 8, 12, 10, 14, 20, 15, 20, 10, 10])
     f += 1
     piv = [["%s Q%d" % (_bl(x["bloque"]), int(x["cuartil_T_fuente"])), numero(x["p_kalina_nc_cero"], 3),
-            numero(x["p_kalina_si_convergio"], 3), numero(x["ic_hi"] - x["p_kalina_si_convergio"], 3),
+            numero(x["p_kalina_si_convergio"], 3), numero(x["p_kalina_nc_uno"], 3), numero(x["ic_hi"] - x["p_kalina_si_convergio"], 3),
             numero(x["p_kalina_si_convergio"] - x["ic_lo"], 3)] for _, x in cu.iterrows()]
     f = bloque(ws, f, titulo="P(KALINA) por cuartil de T_fuente: con NO_CONVERGIO como no KALINA y si convergio (barras: IC 95 %)",
-               encabezados=["Cuartil", "P(KALINA), NC = no KALINA", "P(KALINA) si convergio", "IC alto - P", "P - IC bajo"],
-               filas=piv, x="Cuartil de T_fuente", y="Probabilidad (-)", n_series=2, errores={1: (3, 4)}, ancho=20.0,
-               nota_txt="Fuente: p6_nc_cuartiles.csv. La primera serie cuenta los NO_CONVERGIO como no KALINA; la segunda los excluye. "
+               encabezados=["Cuartil", "P(KALINA), NC = no KALINA", "P(KALINA) si convergio", "P(KALINA), NC = KALINA", "IC alto - P", "P - IC bajo"],
+               filas=piv, x="Cuartil de T_fuente", y="Probabilidad (-)", n_series=3, errores={1: (4, 5)}, ancho=20.0,
+               nota_txt="Fuente: p6_nc_cuartiles.csv. La primera serie cuenta los NO_CONVERGIO como no KALINA (cota baja), la segunda los excluye y la tercera los cuenta como KALINA (cota alta). "
                         "Las barras de error son el IC al 95 % de la segunda serie (columnas auxiliares a la derecha).")
     f = subtitulo(ws, f, "3. Estabilidad de los tres primeros conductores de NO_CONVERGIO")
     _, f, _ = tabla(ws, f, ["Bloque", "Top 3 con NC como no KALINA", "Top 3 sin NC", "Top 3 con NC como KALINA",

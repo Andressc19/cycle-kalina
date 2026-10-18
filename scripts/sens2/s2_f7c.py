@@ -12,6 +12,7 @@ sys.path.insert(0, AQUI)
 from x2_formato import condiciones, descripcion, nota, subtitulo, tabla, titulo  # noqa: E402
 from x5_graficos import bloque  # noqa: E402
 from s2_comun import numero  # noqa: E402
+import p6_comun as K  # noqa: E402
 
 F1 = os.path.join(RAIZ, "resultados", "2026-10-18_sens2_F1")
 CORTO = {"E3 C1 Husavik": "C1", "E3 C2 ancla A*": "C2", "E14 C3 caliente 150 C": "C3", "E14 C4 frio 110 C": "C4"}
@@ -37,6 +38,17 @@ def hoja_f7_fdr(wb, datos):
                encabezados=["Respuesta", "Criterio anterior (3 dummy)", "Con permutacion y Benjamini-Hochberg"], filas=fl,
                x="Respuesta", y="Variables distinguibles (n)",
                nota_txt="Fuente: p6_indices_fdr.csv. La correccion por multiplicidad reduce las variables marcadas en las tres respuestas.")
+    r = n[n["tipo"] == "real"].copy()
+    r["q"] = float("nan")
+    for _, ix in r.groupby(["bloque", "respuesta"]).groups.items():
+        r.loc[ix, "q"] = K.bh(r.loc[ix, "p_perm"])
+    cm = r[r["q"] < K.Q].groupby(["bloque", "respuesta", "variable"]).size()
+    fl = [[y.split(" ")[0]] + [int((cm[cm.index.get_level_values("respuesta") == y] >= k).sum()) for k in (1, 2, 3)] for y in ys]
+    f = bloque(ws, f, titulo="Variables distinguibles segun el numero minimo de metodos que exigimos (suma de los 4 bloques)",
+               encabezados=["Respuesta", "Al menos 1 metodo", "Al menos 2 metodos (regla usada)", "Al menos 3 metodos"], filas=fl,
+               x="Respuesta", y="Variables distinguibles (n)",
+               nota_txt="Fuente: p6_nulo_perm.csv. La exigencia de 2 metodos es una regla propia (los metodos no son independientes y la correccion "
+                        "controla cada metodo por separado); el grafico muestra cuanto cambia el resultado si se exige 1 o 3.")
     f = subtitulo(ws, f, "2. Variables que pasan la correccion, por bloque y respuesta")
     filas = []
     for (b, r), g in s.groupby(["bloque", "respuesta"], sort=False):

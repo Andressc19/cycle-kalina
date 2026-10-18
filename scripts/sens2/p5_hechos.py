@@ -209,6 +209,8 @@ def _fdr(h):
             h["fdr.%s.%s.vars" % (y, c)] = ", ".join(v.sort_values("q_min")["variable"]) or "ninguna"
     nul = pd.read_csv(os.path.join(F1, "p6_nulo_perm.csv"))
     d = nul[nul["tipo"] == "dummy"]
+    n2 = f[f["respuesta"].str.startswith("Y2")]["n"]
+    h["fdr.Y2.nmin"], h["fdr.Y2.nmax"] = float(n2.min()), float(n2.max())
     h["fdr.calib_pct"] = 100 * float((d["p_perm"] < 0.05).mean())
     h["fdr.B"] = 2000.0
 
@@ -225,9 +227,53 @@ def _eqic(h):
                 float(y["estimador"]), float(y["ic_lo"]), float(y["ic_hi"]))
 
 
+def _ronda2(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    q = pd.read_csv(os.path.join(F1, "p6_pareado.csv"))
+    x = q[(q["variante"] == "mismo_centro") & (q["grupo"] == "todos") & (q["variable"] == "d_eta")].iloc[0]
+    h["par4.med"], h["par4.lo"], h["par4.hi"], h["par4.n"] = float(x["mediana"]), float(x["ic_med_lo"]), float(x["ic_med_hi"]), float(x["n"])
+    t = pd.read_csv(os.path.join(F1, "p6_pareado_dist.csv"))
+    a = t[(t["variante"] == "mismo_centro") & (t["grupo"] == "todos") & (t["calculo"] == "ajuste")].iloc[0]
+    h["par.int"], h["par.int.lo"], h["par.int.hi"] = float(a["estimador"]), float(a["ic_lo"]), float(a["ic_hi"])
+    u = pd.read_csv(os.path.join(U1, "u1_filas.csv"))
+    u = u[u["barrido"].isin(["U1A", "U1A2"])]
+    for c, thr, tag in (("C1", 0.922, "a"), ("C1", 0.93, "b"), ("C4", 0.906, "a"), ("C4", 0.91, "b")):
+        g = u[(u["centro"] == c) & (u["eps_cond"] >= thr)]
+        h["u1x.%s.%s.n" % (c, tag)] = float(len(g))
+        h["u1x.%s.%s.perdidos" % (c, tag)] = float((g["clasificacion"] != "KALINA").sum())
+        h["u1x.%s.%s.thr" % (c, tag)] = thr
+        pe = g[g["clasificacion"] != "KALINA"]
+        if tag == "a" and len(pe):
+            h["u1x.%s.a.pb_min" % c], h["u1x.%s.a.pb_max" % c] = float(pe["P_baja"].min()), float(pe["P_baja"].max())
+            h["u1x.%s.a.ts_min" % c], h["u1x.%s.a.xb_min" % c] = float(pe["T_sumidero"].min()), float(pe["x_b"].min())
+    sc = pd.read_csv(os.path.join(U1, "u1_scan_eps_cond.csv"))
+    for c in ("C1", "C4"):
+        g = sc[(sc["centro"] == c) & sc["m_O2"].notna()].sort_values("eps_cond")
+        h["u1s.%s.media" % c] = float(np.polyfit(g["eps_cond"], g["m_O2"], 1)[0] * 0.01)
+        k = g[g["m_O2"] >= 0]
+        a0, a1 = k.iloc[0], g.iloc[-1]
+        h["u1s.%s.cerca" % c] = float((a1["m_O2"] - a0["m_O2"]) / (a1["eps_cond"] - a0["eps_cond"]) * 0.01)
+    u2 = pd.read_csv(os.path.join(U1, "u1_filas.csv"))
+    h["u1.nc_clase"] = float((u2["clasificacion"] == "NO_CONVERGIO").sum())
+    h["u1.n"] = float(len(u2))
+    import p6_comun as K
+    fi = pd.read_csv(os.path.join(F1, "p6_fronteras_ic.csv"))
+    rng = {n: {v: (g[v].min(), g[v].max()) for v in K.REALES} for n, g in K.bloques()}
+    cuenta = 0
+    for _, x in fi.iterrows():
+        lo, hi = rng[x["bloque"]][x["variable"]]
+        cota_baja = 0.0 if x["variable"] in ("P_alta", "P_baja") else lo * 0.0 - 1e9
+        cota_alta = 1.0 if x["variable"] in ("x_b", "eps_cond", "eps_hrvg", "eps_reg", "eta_t") else 1e9
+        ok = (x["ic_lo"] >= cota_baja) and (x["ic_hi"] <= cota_alta) and (x["ic_hi"] - x["ic_lo"] <= 0.5 * (hi - lo))
+        cuenta += int(ok)
+        key = {"E3 C1 Husavik": "C1", "E3 C2 ancla A*": "C2", "E14 C3 caliente 150 C": "C3", "E14 C4 frio 110 C": "C4"}[x["bloque"]]
+        h["fic.%s.%s.%s.info" % (key, x["variable"], x["variante"])] = "si" if ok else "no"
+    h["fic.informativas"], h["fic.filas"] = float(cuenta), float(len(fi))
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2):
         f(h)
     return h
 

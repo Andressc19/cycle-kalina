@@ -4,6 +4,7 @@
 Las cifras de cabecera se calculan aqui; las conclusiones se copian tal cual del CSV.
 """
 import os
+import re
 import sys
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
@@ -47,6 +48,10 @@ CAVEATS = [
     "no validación física.",
 ]
 PROXIMA = [
+    "Reintentar con el modo tolerante del motor los NO_CONVERGIO (14 % de los puntos; 24 % en los LHS de C3 y C4, concentrados en T_fuente baja) "
+    "para separar «no existe» de «no convergió»: es lo que falta para establecer el umbral inferior de T_fuente (D3).",
+    "Calcular el ciclo frente a T_fuente optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y "
+    "obtener los datos de equipos por kW neto (flujo volumétrico de la turbina, altura de la bomba, Q y UA) en lugar de por kg/s de m_b.",
     "Refinar P_baja cerca de su piso (paso de 25 kPa en C1 y C3, 550 kPa; C2 350 kPa; C4 750 kPa): es la "
     "frontera que más puntos separa.",
     "Barrer T_fuente con paso de 2.5 K en los techos de cada bloque (440.65, 468.15, 568.15 y 528.15 K).",
@@ -57,6 +62,17 @@ PROXIMA = [
     "medidas o acordadas con el profesor, y muestrear la banda del modelo de propiedades en vez de sumarla.",
     "Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal.",
 ]
+
+
+def libro_conteos():
+    """(hojas, graficos) del libro generado, contados del propio archivo."""
+    import zipfile
+    import openpyxl
+    ruta = os.path.join(RAIZ, "datos", "Kalina_anal_sensible_2.xlsx")
+    n_h = len(openpyxl.load_workbook(ruta, read_only=True).sheetnames)
+    with zipfile.ZipFile(ruta) as z:
+        n_g = sum(1 for x in z.namelist() if re.match(r"^xl/charts/chart\d+\.xml$", x))
+    return n_h, n_g
 
 
 def main():
@@ -70,28 +86,29 @@ def main():
     o2 = v[(v["seccion"] == "dominante") & (v["centro"] == "todos") & (v["clave"] == "viol_O2")]
     L = ["# Informe de Sensibilidad 2: análisis de los 3 921 puntos de Sensibilidad 1", "",
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
-         "alta; la η máxima es %.2f %% dentro del rango experimental (%.2f %% fuera).** Los óptimos "
-         "tienden a quedar cerca del piso de P_baja." % (n_in, n_out), "",
-         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (23 hojas, 76 gráficos). Todo número sale de los "
-         "CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.", "",
+         "alta; la mayor η muestreada es %.2f %% dentro del rango experimental (%.2f %% fuera; no se corrió un optimizador).** "
+         "Los puntos de mayor η tienden a quedar cerca del piso de P_baja (dependiente del diseño, M5)." % (n_in, n_out), "",
+         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (%d hojas, %d gráficos). Las cifras salen de los CSV de `resultados/` "
+         "(P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`." % libro_conteos(), "",
          "## 1. Resumen ejecutivo", "",
          "- %d puntos sin duplicados (de 3 921); %.1f %% son KALINA (total)." % (
              len(d), 100.0 * len(k) / len(d)),
-         "- %.1f %% de los CORREGIBLE falla por cavitación (O2); su η mediana es %.1f puntos mayor que la de los KALINA sin parear, pero emparejados con su vecino KALINA la diferencia es de %.2f puntos (F6, L2)." % (
-             100.0 * float(o2.iloc[0]["fraccion"]), H["f6.todos.dif"], abs(H["l2.pareado"])),
+         "- %.1f %% de los CORREGIBLE falla por cavitación (O2); su η mediana es %.1f puntos mayor que la de los KALINA sin parear, pero emparejados con su vecino KALINA más cercano del mismo bloque (n = %d) la diferencia es de %.2f puntos (F6, L2)." % (
+             100.0 * float(o2.iloc[0]["fraccion"]), H["f6.todos.dif"], H["par4.n"], abs(H["par4.med"])),
          "- Casi la mitad de los CORREGIBLE está a una sola variable de un KALINA; P_baja es la que más rescata.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
-         "- Desde el centro KALINA de cada bloque, C1 y C4 no toleran bajar ε_cond (0.95); P_baja puede bajar hasta "
-         "600 kPa (C1) y 800 kPa (C4) (D7, L6).",
+         "- Desde el centro KALINA de cada bloque, C1 y C4 tienen muy poco margen de ε_cond (el barrido fino sitúa la frontera local en "
+         "≈ 0.92 y ≈ 0.906, con las demás variables en el centro); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) (D7, U4, L6).",
          "- Al perturbar las 10 variables a la vez (96 puntos del motor por bloque, con la efectividad del condensador variando "
          "solo por debajo de su centro 0.95), con tolerancias nominales seguirían siendo KALINA el %.0f %% (C1), %.0f %% (C2), "
          "%.0f %% (C3) y %.0f %% (C4); con el doble, %.0f, %.0f, %.0f y %.0f %%; con ε_cond fija en 0.95 el 100 %% en los "
-         "cuatro. No es un riesgo del %.0f %% en C1: casi todas las pérdidas son por cavitación debida al condensador (U1, U2)." % (
+         "cuatro. No es un riesgo del %.0f %% en C1: la causa dominante de perder la clase es la cavitación ligada al condensador, aunque con ε_cond sobre el "
+         "umbral todavía se pierden puntos por P_baja bajo, T_sumidero alto y x_b alto (U1, U2, U4)." % (
              H["u1p.C1.pct"], H["u1p.C2.pct"], H["u1p.C3.pct"], H["u1p.C4.pct"],
              H["u1b.C1.pct"], H["u1b.C2.pct"], H["u1b.C3.pct"], H["u1b.C4.pct"], H["u1p.C1.pierde"]),
          "- El piso de P_baja sube con x_b y la superficie de η apunta hacia el menor P_baja (D8, R1).",
-         "- El regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C) a 0.013 (300 °C) y UA de 9.5 a 0.34 "
-         "kW/K por kg/s (E8).",
+         "- En el estudio 4 (presiones y x_b fijos) el regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C, solo 2 KALINA) a 0.013 "
+         "(300 °C) y UA de 9.5 a 0.34 kW/K por kg/s; no se reoptimizó el ciclo en cada temperatura (E8).",
          "- La condensación y la cavitación (P_baja, ε_cond, x_b) gobiernan la existencia; η_t, P_alta y "
          "T_fuente gobiernan η y potencia.", "",
          "## 2. Método", "",
@@ -102,9 +119,9 @@ def main():
          "Fase B: índices globales, interacciones y elasticidades (P3). Equipos (P4). Plan en "
          "`docs/PLAN_SENS2_ANALISIS.md`.", "",
          "**Confianza.** Baja: n_min < 10 (salvo cifras deterministas), sin línea de evidencia, dependiente del diseño con una sola línea, "
-         "o cambia al tratar NO_CONVERGIO y descansa en un solo bloque. Alta: un recuento directo o un límite con n_min ≥ 30, o una "
+         "o cambia al tratar NO_CONVERGIO y descansa en un solo bloque. Alta: un recuento directo con n_min ≥ 30, o una "
          "inferencia con al menos 2 líneas de evidencia independientes, n_min ≥ 30, robusta a NO_CONVERGIO y al diseño (o con el alcance "
-         "acotado en el enunciado) y con intervalo o prueba corregida. Media: el resto. Se calcula por código desde `p5_evidencia.csv`; "
+         "acotado y dicho en el propio enunciado) y con intervalo o prueba corregida. No aplica: las declaraciones de límites del análisis. Media: el resto. Se calcula por código desde `p5_evidencia.csv`; "
          "las inferencias de F1 a F3 usan 2 000 permutaciones de la respuesta y la corrección de Benjamini–Hochberg.", "",
          "## 3. Conclusiones por categoría", "",
          "Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparación), su confianza y su "
@@ -121,13 +138,21 @@ def main():
           "Ver F6 (diferencia sin parear de +%.2f puntos de η, que mezcla zonas distintas del espacio), L1 (96 %% por O2) y L2 "
           "(rescate; con el vecino KALINA a L1 ≤ 0.2 la η del vecino es %.2f puntos menor). Los CORREGIBLE aportan información sobre la "
           "frontera, no sobre el desempeño: incumplen la cavitación y no son un estimador del desempeño real." % (
-              H["f6.todos.dif"], abs(H["par.cerca.med"])), "",
+              H["f6.todos.dif"], abs(H["par4.med"])), "",
           "## 5. Recomendaciones para la próxima campaña", ""]
     L += ["%d. %s" % (i, t) for i, t in enumerate(PROXIMA, 1)]
     L += ["", "## 6. Limitaciones y supuestos", ""] + ["- " + t for t in CAVEATS]
     L += ["", "*Revisión con la lista de `validate-data` (plugin `data` de Anthropic): duplicados, denominadores, "
           "cifras recalculadas de forma independiente, sesgo de selección y gráficos revisados en Excel real. "
           "Estado: compartir con los caveats de la sección 6.*"]
+    ruta_val = os.path.join(RAIZ, "docs", "VALIDACION_SENS2.md")
+    if os.path.exists(ruta_val):    # el conteo de hojas y graficos de la validacion sigue al libro
+        with open(ruta_val, encoding="utf-8", newline="") as fh:
+            txt = fh.read()
+        cambiado = re.sub(r"\(\d+ hojas, \d+ gráficos\)", "(%d hojas, %d gráficos)" % libro_conteos(), txt)
+        if cambiado != txt:
+            with open(ruta_val, "w", encoding="utf-8", newline="") as fh:
+                fh.write(cambiado)
     with open(SALIDA, "w", encoding="utf-8") as fh:
         fh.write("\n".join(L) + "\n")
     print("OK:", SALIDA, len(L), "lineas")
