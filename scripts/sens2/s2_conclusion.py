@@ -48,7 +48,7 @@ def bluf(datos):
          "%s / %s" % (eta_in, eta_out), "p2_dataset_dedup.csv (solo KALINA (total))"),
         ("% de CORREGIBLE por cavitacion (viol_O2 dominante)", pct_o2,
          "p2_violaciones.csv (centro todos)"),
-        ("variable que mas rescata", "%s (%s %%)" % (b["clave"], round(100.0 * float(b["valor"]), 1)),
+        ("variable que mas rescata en barridos y mallas (conteo del diseno)", "%s (%s %%)" % (b["clave"], round(100.0 * float(b["valor"]), 1)),
          "p2_distancia_resumen.csv (univariado, todos)"),
     ]
 

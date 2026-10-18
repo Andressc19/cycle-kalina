@@ -151,6 +151,7 @@ def main():
     import p5_cifras_check_b as B
     B.extra(chk, ev, sub, P)
     B.extra2(chk, ev, sub, P)
+    B.extra3(chk, ev, sub, P)
 
     # --- Salidas ---
     n = len(FILAS)

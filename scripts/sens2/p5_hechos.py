@@ -306,7 +306,8 @@ def _ciclo(h):
         h["ciclo.p%d" % c] = float(x["p_kalina"])
         h["ciclo.pconv%d" % c] = float(x["p_kalina_si_convergio"])
     h["ciclo.nkal.min"] = float(t["n_kalina"].min())
-    h["ciclo.n.min"], h["ciclo.n.max"] = float(t["n"].min()), float(t["n"].max())
+    mostradas = t[t["n_kalina_dentro"] >= 10]
+    h["ciclo.n.min"], h["ciclo.n.max"] = float(mostradas["n"].min()), float(mostradas["n"].max())
     from s2_cargar import dataset_dedup
     k = dataset_dedup()
     k = k[k["kalina"] & (k["T_fuente"] >= 433.15)]
@@ -335,9 +336,34 @@ def _kw(h):
     h["kw.n"] = float(t["n"].iloc[0])
 
 
+def _ronda6(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    dist = pd.read_csv(os.path.join(R, "2026-10-17_sens2_P2", "p2_distancia.csv"))
+    from s2_cargar import dataset_dedup
+    est = dataset_dedup()[["id_punto", "estudio"]].astype({"id_punto": str})
+    dist["id_punto"] = dist["id_punto"].astype(str)
+    j = dist.merge(est, on="id_punto", how="left")
+    una = j["nvars_diff"] == 1
+    lhs = j["estudio"].isin([3, 14])
+    h["h1.todos"], h["h1.todos.n"] = 100 * float(una.mean()), float(len(j))
+    h["h1.nolhs"], h["h1.nolhs.n"] = 100 * float(una[~lhs].mean()), float((~lhs).sum())
+    h["h1.lhs"], h["h1.lhs.n"] = 100 * float(una[lhs].mean()), float(lhs.sum())
+    t = pd.read_csv(os.path.join(F1, "p6_pareado_dist.csv"))
+    t = t[(t["variante"] == "mismo_centro") & (t["calculo"] == "ajuste")]
+    for g, tag in (("otros", "otros"), ("LHS", "lhs")):
+        x = t[t["grupo"] == g].iloc[0]
+        h["par.int.%s" % tag], h["par.int.%s.lo" % tag], h["par.int.%s.hi" % tag] = float(x["estimador"]), float(x["ic_lo"]), float(x["ic_hi"])
+    m = pd.read_csv(os.path.join(F1, "p6_m5_lhs.csv"))
+    for norma, tag in (("completo", "c"), ("lhs", "l")):
+        for _, x in m[m["normalizacion"] == norma].iterrows():
+            b = x["bloque"].split(" ")[0]
+            h["m5.%s.%s.top" % (tag, b)], h["m5.%s.%s.resto" % (tag, b)] = float(x["mediana_top"]), float(x["mediana_resto"])
+            h["m5.%s.%s.p" % (tag, b)], h["m5.%s.%s.pb" % (tag, b)] = float(x["p_ks"]), float(x["p_bonferroni4"])
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6):
         f(h)
     return h
 

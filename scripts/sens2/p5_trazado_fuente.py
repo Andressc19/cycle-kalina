@@ -87,6 +87,10 @@ def main():
     ids = list(refs)
     inv = [(round(float(rng.uniform(0.01, 99.99)), 2), ids[int(rng.integers(0, len(ids)))]) for _ in range(300)]
     poder = 100.0 * float(np.mean([T.clasificar(2, v, refs[i], perm)[0] == "si" for v, i in inv]))
+    pod = {}
+    for i in ids:
+        v = [round(float(rng.uniform(0.01, 99.99)), 2) for _ in range(200)]
+        pod[i] = 100.0 * float(np.mean([T.clasificar(2, x, refs[i], perm)[0] == "si" for x in v]))
     tot = len(filas)
     tra = sum(x["trazado"] == "si" for x in filas)
     tri = sum(x["trazado"] == "trivial" for x in filas)
@@ -101,14 +105,22 @@ def main():
           "Los no trazados no son necesariamente erroneos (rangos redondeados, cifras de la literatura, constantes de diseno), pero no tienen respaldo automatico: "
           "las mas importantes se vigilan con `p5_cifras_check*.py`.", "", "## No trazados", "", "| id | campo | numero | contexto |", "|---|---|---|---|"]
     md += ["| %s | %s | %s | %s |" % (x["id"], x["campo"], x["numero"], x["_ctx"]) for x in no]
+    md += ["", "## Poder por conclusion", "", "Porcentaje de cifras inventadas de dos decimales que se trazarian contra las fuentes de esa conclusion (200 por conclusion, semilla 20261018). "
+           "Arriba del 80 % el trazado de esa conclusion es poco informativo y su respaldo real son los controles independientes.", "", "| id | poder (%) | trazado poco informativo |", "|---|---|---|"]
+    md += ["| %s | %.0f | %s |" % (i, pod[i], "si" if pod[i] > 80 else "no") for i in ids]
     with open(os.path.join(D, "p5_trazado_fuente.md"), "w", encoding="utf-8") as fh:
         fh.write("\n".join(md) + "\n")
-    print("numeros %d | trazados %d | triviales %d | no trazados %d | poder %.1f %%" % (tot, tra, tri, len(no), poder))
+    print("numeros %d | trazados %d | triviales %d | no trazados %d | poder %.1f %% | conclusiones con poder > 80 %%: %d de %d" % (
+        tot, tra, tri, len(no), poder, sum(v > 80 for v in pod.values()), len(pod)))
+    return len(no)
 
 
 if __name__ == "__main__":
+    # compuerta: sale con codigo 1 si queda alguna cifra sin respaldo en la fuente citada (o si el script falla)
     try:
-        main()
+        raise SystemExit(1 if main() else 0)
+    except SystemExit:
+        raise
     except Exception as e:
         print("ERROR: %s" % e)
-    raise SystemExit(0)
+        raise SystemExit(1)

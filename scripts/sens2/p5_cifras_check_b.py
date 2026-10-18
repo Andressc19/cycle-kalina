@@ -66,3 +66,15 @@ def extra2(chk, ev, sub, P):
     vals = [float(np.percentile(qi, 5)), float(np.percentile(qi, 50)), float(np.percentile(qi, 95))]
     chk("E", "E9", all(sub(t9, v, "%.1f") for v in vals) and sub(t9, float(np.percentile(mb, 5)), "%.3f") and sub(t9, len(k4), "%d"),
         "Q_i por kW neto P5/P50/P95 = %.1f/%.1f/%.1f; n = %d" % (vals[0], vals[1], vals[2], len(k4)))
+
+
+def extra3(chk, ev, sub, P):
+    """L2: fraccion de CORREGIBLE a una variable de un KALINA, global y por tipo de diseño (recalculada de p2_distancia y el dataset)."""
+    dist = pd.read_csv(P("2026-10-17_sens2_P2", "p2_distancia.csv"))
+    est = pd.read_csv(P("2026-10-17_sens2_P2", "p2_dataset_dedup.csv"))[["id_punto", "estudio"]]
+    j = dist.merge(est, on="id_punto", how="left")
+    una = j["nvars_diff"] == 1
+    lhs = j["estudio"].isin([3, 14])
+    v = [100 * float(una.mean()), 100 * float(una[~lhs].mean()), 100 * float(una[lhs].mean())]
+    t = ev("L2")
+    chk("L", "L2c", all(sub(t, x, "%.0f") for x in v), "a una variable: global %.1f, barridos y mallas %.1f, LHS %.1f" % tuple(v))

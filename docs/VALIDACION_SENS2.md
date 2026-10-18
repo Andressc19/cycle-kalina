@@ -11,7 +11,7 @@ El libro actual tiene 43 conclusiones y 808 puntos nuevos del motor (F5 Incertid
 contraste con la campaña anterior (F6, L8 y L9): (28 hojas, 88 gráficos). Cuatro revisores independientes lo evaluaron como un profesor
 exigente. Notas (0 a 5) en el orden rigor, coherencia, sobre-afirmaciones, cobertura, trazabilidad y libro: evaluación 1 = 2.5, 2.5, 2.5, 3.5, 3.0, 3.5;
 evaluación 2 (tras la etapa A del plan `docs/PLAN_SENS2_MEJORA.md`) = 3.5, 3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 = 3.8, 3.5, 3.5, 3.5, 4.2, 4.0;
-evaluación 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1. La cobertura de las preguntas 3 y 4 del profesor es el criterio que no sube de ≈ 3.8 sin el motor.
+evaluación 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1; evaluación 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2; evaluación 6 = 4.0, 3.8, 3.7, 3.9, 3.9, 4.2. La cobertura de las preguntas 3 y 4 del profesor es el criterio que no sube de ≈ 3.8 sin el motor.
 
 Etapa A (hecha): conclusiones generadas desde los CSV con marcadores (`p5_conclusiones_base.csv`, `p5_hechos.py`, `p5_generar.py`), regla de
 confianza por código con criterios cumplidos de 6 (`p5_confianza.py`, `p5_evidencia.csv`; hoja Confianza), controles independientes de cifras
@@ -20,7 +20,7 @@ a NO_CONVERGIO, comparación pareada por distancia y diseño, envolventes de equ
 superficies, potencia de U1, hojas F4 Ciclo vs T_fuente y F4 Equipos por kW (sin motor), orquestador `make_sens2.py` (probado con `--todo`) y
 pruebas pytest que vigilan los conteos del libro.
 
-Hallazgos de las evaluaciones 2 a 4 atendidos: M2 con la línea base correcta; U1 y U4 (con ε_cond sobre el umbral todavía se pierden puntos;
+Hallazgos de las evaluaciones 2 a 6 atendidos (en la última ronda: el «49 % a una sola variable» pasó a conteo del diseño, 68 % en barridos y mallas y 0 % en el LHS; el ajuste lineal de L2 deja de usarse como evidencia; M5 con Bonferroni y con otra normalización, con su script `p6_m5_lhs.py`; el trazado contra la fuente citada es ahora una compuerta que falla si queda una cifra sin respaldo): M2 con la línea base correcta; U1 y U4 (con ε_cond sobre el umbral todavía se pierden puntos;
 pendiente del margen de cavitación ≈ 1.9 K por −0.01 entre 0.92 y 0.95); L2 con el pareado de los 4 bloques (n = 734), separado por diseño y sin
 afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible
 del ruido»; M1 a M4 como valores muestreados; enunciados de E1, E4, E5 y E6 como lo observado en los KALINA muestreados; E2 limitada a Δh y con
@@ -68,7 +68,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 3. **«La regla de ruido con 3 dummy es débil.»** Cierto: se declara y se usa solo con 3 a 8 métodos concordantes.
 4. **«¿Por qué el regenerador pierde peso al subir T_fuente?»** Resuelto en la segunda evaluación (conclusión E8): el lado caliente es el líquido pobre y Q_reg = m_l·(h5 − h6); al subir T_fuente casi todo el fluido se vaporiza y m_l/m_b cae de 0.81 a 0.006.
 5. **«Los requisitos de equipos son envolventes, no especificaciones.»** Cierto: faltan flujo volumétrico de la turbina, altura de la bomba y geometría. Declarado.
-6. **«El pinch del regenerador sale de ε_reg = 0.75 prefijada, no del diseño óptimo.»** Cierto: UA y pinch son consecuencia de la efectividad impuesta.
+6. **«El pinch del regenerador sale de ε_reg prefijada, no del diseño óptimo.»** Cierto en parte: en el LHS ε_reg se muestrea de 0.40 a 0.95, y el pinch y el UA observados (E4) dependen de ese rango; no son requisitos.
 7. **«Los barridos no son comparables entre sí.»** Declarado; los índices globales usan solo el LHS.
 
 ## Comprobaciones de cálculo (independientes)
@@ -80,7 +80,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 - Elasticidades y 10 correlaciones citadas en las conclusiones: verificado.
 - Rangos mínimos de ε_cond por bloque y fronteras de P1: verificado.
 - Control cruzado de la η máxima del BLUF contra la conclusión M1: incluido en `s2_verificar.py`.
-- No verificado: fuentes web de la Etapa 0 (10 marcadas ⚠) y cifras de otros autores citadas en las conclusiones E1 y E3.
+- No verificado: fuentes web de la Etapa 0 (10 marcadas ⚠) y cifras de otros autores citadas en la conclusión E1.
 
 ## Revisión de gráficos (los 56 de esta revisión se abrieron y exportaron desde Excel real; los demás gráficos del libro actual se auditaron con Excel real el 2026-10-18)
 

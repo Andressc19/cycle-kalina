@@ -37,3 +37,4 @@ D,D8,OK,"piso P_baja C1 en x_b 0.82/0.90/0.95: [600.0, 690.0, 800.0]"
 D,D7,OK,C1 P_baja 600; T_fuente 363.15 a 438.15
 M,M6,OK,eta max dentro por banda: 340: 7.0 (17); 360: 12.1 (171); 380: 14.0 (681); 400: 13.3 (480); 420: 14.5 (369); 440: 12.3 (17)
 E,E9,OK,Q_i por kW neto P5/P50/P95 = 8.2/12.9/38.7; n = 2047
+L,L2c,OK,"a una variable: global 49.3, barridos y mallas 67.6, LHS 0.0"

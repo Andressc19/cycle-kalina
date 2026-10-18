@@ -98,7 +98,8 @@ def main():
              len(d), 100.0 * len(k) / len(d)),
          "- %.1f %% de los CORREGIBLE falla por cavitación (O2); su η mediana es %.1f puntos mayor que la de los KALINA sin parear, pero emparejados con su vecino KALINA más cercano del mismo bloque (n = %d) la diferencia es de %.2f puntos (F6, L2)." % (
              100.0 * float(o2.iloc[0]["fraccion"]), H["f6.todos.dif"], H["par4.n"], abs(H["par4.med"])),
-         "- Casi la mitad de los CORREGIBLE está a una sola variable de un KALINA; P_baja es la que más rescata.",
+         "- En barridos y mallas el %.0f %% de los CORREGIBLE está a una sola variable de un KALINA (0 %% en el muestreo LHS, que mueve las diez variables a la vez; %.0f %% global): "
+         "es un conteo del diseño y no una propiedad de los CORREGIBLE; en esos diseños P_baja es la variable que más rescata." % (H["h1.nolhs"], H["h1.todos"]),
          "- Frente a T_fuente se dispone de la mayor η muestreada por banda de 20 K (M6: sin caída clara entre 97 y 157 °C y sin poder evaluarse por encima de ≈ 160 °C, donde casi todos los "
          "KALINA salen del rango experimental) y de los requisitos de equipos por kW neto (E9); ninguno es un óptimo.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",

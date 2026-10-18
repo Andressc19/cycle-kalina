@@ -1,7 +1,7 @@
 # Sens2 P5 - comprobacion independiente de las cifras
 
-- controles: 38
-- OK: 38
+- controles: 39
+- OK: 39
 - FALLA: 0
 
 ## FALLA
