@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+"""Sens2 P5 - controles de cifras adicionales (E4, E8, D7, D8, U4): recalculo independiente y subcadena en la conclusion."""
+import os
+import sys
+
+import pandas as pd
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+
+def extra(chk, ev, sub, P):
+    import p4_comun as c4
+    import s2_calc as C
+    e = c4.cargar()
+    k4 = e[c4.mascara(e, c4.REF_TOTAL)]
+    # E8: regenerador frente a T_fuente (estudio 4, mediana por nivel)
+    s = k4[k4["estudio"] == 4]
+    lv = sorted(s["T_fuente"].unique())
+    lo, hi = s[s["T_fuente"] == lv[0]], s[s["T_fuente"] == lv[-1]]
+    v = [float(lo["qreg_qi"].median()), float(hi["qreg_qi"].median()), float(lo["UA_reg"].median()), float(hi["UA_reg"].median())]
+    t = ev("E8")
+    chk("E", "E8", sub(t, v[0], "%.3f") and sub(t, v[1], "%.3f") and sub(t, v[2], "%.2f") and sub(t, v[3], "%.2f"),
+        "estudio 4: Q_reg/Q_i %.3f -> %.3f; UA %.2f -> %.2f" % tuple(v))
+    # E4: pinch y UA del regenerador en todos los KALINA
+    p5, p95, ua = (float(k4["pinch_reg"].quantile(0.05)), float(k4["pinch_reg"].quantile(0.95)), float(k4["UA_reg"].median()))
+    t = ev("E4")
+    chk("E", "E4", sub(t, p5, "%.2f") and sub(t, p95, "%.1f") and sub(t, ua, "%.2f"), "pinch P5 %.2f P95 %.1f; UA mediana %.2f" % (p5, p95, ua))
+    # U4: frontera del barrido fino de eps_cond (primer nivel KALINA)
+    sc = pd.read_csv(P("2026-10-17_sens2_U1", "u1_scan_eps_cond.csv"))
+    f = {c: float(sc[(sc["centro"] == c) & (sc["clasificacion"] == "KALINA")]["eps_cond"].min()) for c in ("C1", "C4")}
+    chk("U", "U4", sub(ev("U4"), f["C1"], "%.3f") and sub(ev("U4"), f["C4"], "%.3f"),
+        "primer eps_cond KALINA: C1 %.3f, C4 %.3f" % (f["C1"], f["C4"]))
+    # D8: piso de P_baja en C1 para x_b 0.82, 0.90 y 0.95 (malla P_baja x x_b)
+    eta, cls, av, bv = C.malla_clases("C1 Husavik", "B2")
+    pisos = []
+    for xb in (0.82, 0.90, 0.95):
+        j = [i for i, b in enumerate(bv) if abs(b - xb) < 1e-6]
+        col = [i for i in range(len(av)) if j and cls[i, j[0]] == "K"]
+        pisos.append(float(av[min(col)]) if col else float("nan"))
+    chk("D", "D8", all(sub(ev("D8"), x, "%.0f") for x in pisos), "piso P_baja C1 en x_b 0.82/0.90/0.95: %s" % pisos)
+    # D7: margenes de una variable en C1 (ultimo nivel KALINA)
+    m = C.margenes_ofat()
+    r = m[(m["bloque"] == "C1 Husavik") & (m["variable"] == "P_baja")].iloc[0]
+    r2 = m[(m["bloque"] == "C1 Husavik") & (m["variable"] == "T_fuente")].iloc[0]
+    chk("D", "D7", sub(ev("D7"), r["ult_abajo"], "%.0f") and sub(ev("D7"), r2["ult_abajo"], "%.2f") and sub(ev("D7"), r2["ult_arriba"], "%.2f"),
+        "C1 P_baja %.0f; T_fuente %.2f a %.2f" % (r["ult_abajo"], r2["ult_abajo"], r2["ult_arriba"]))

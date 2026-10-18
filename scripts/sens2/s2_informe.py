@@ -31,8 +31,10 @@ CAVEATS = [
     "Los índices de D en C4 (n = 28) son indicativos.",
     "LMTD y UA del regenerador se reconstruyen de los estados (contraflujo puro); el modelo usa efectividad.",
     "7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.",
-    "El criterio «distinguible del ruido» es laxo (algún método supera el máximo de 3 variables dummy); la conclusión "
-    "M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.",
+    "«Distinguible» en F1 a F3 significa q < 0.05 de Benjamini–Hochberg en al menos 2 métodos sobre 2 000 permutaciones de la respuesta "
+    "(más estricto que el criterio anterior de las 3 variables dummy); los 8 métodos no son independientes, NO_CONVERGIO cuenta como «no KALINA» "
+    "en la existencia y las magnitudes de los índices no se comparan entre bloques (la caja común de rangos de los 4 LHS queda con 1 a 9 puntos). "
+    "La conclusión M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.",
     "La propagación de incertidumbre usa tolerancias supuestas (uniformes, ±a/√3 de incertidumbre estándar), 96 puntos "
     "por bloque en el escenario A (dos lotes de 48) y 48 en B (IC de Wilson) y entradas independientes; dos lotes "
     "compatibles no prueban la estabilidad del muestreo (error típico de P con 48 puntos de 0.05 a 0.07; JCGM 101) y la "
@@ -40,8 +42,9 @@ CAVEATS = [
     "NO_CONVERGIO (14 % de los puntos) se cuenta como «no KALINA» en los índices de existencia y en P(KALINA); según los "
     "mensajes del motor la mayoría son balances de energía que no cierran o brackets sin extremos evaluables, así que los "
     "umbrales inferiores de T_fuente (D3) pueden estar sesgados por el solver y no por el ciclo.",
-    "La cavitación (O2) exige m_O2 = T_burbuja − T9 ≥ 0 (margen cero, no un cálculo de NPSH; ver L7); la «confianza» de cada "
-    "conclusión es robustez dentro del modelo teqp, no validación física.",
+    "La cavitación (O2) exige m_O2 = T_burbuja − T9 ≥ 0 (margen cero, no un cálculo de NPSH; ver L7); la confianza (Alta, Media, Baja) "
+    "de cada conclusión se calcula con la regla de `p5_confianza.py` (hoja Confianza del libro) y mide solidez dentro del modelo teqp, "
+    "no validación física.",
 ]
 PROXIMA = [
     "Refinar P_baja cerca de su piso (paso de 25 kPa en C1 y C3, 550 kPa; C2 350 kPa; C4 750 kPa): es la "
@@ -94,10 +97,15 @@ def main():
          "## 2. Método", "",
          "Etapa 0 (`docs/ETAPA0_INVESTIGACION_SENSIBILIDAD_KALINA.md`) eligió métodos que se calculan sobre "
          "muestreos existentes: RSA/KS, PAWN, δ de Borgonovo, HSIC, PRCC, η², logística, con 3 variables dummy "
-         "como piso de ruido y bootstrap. Se descartaron Morris, Sobol y FAST (exigen corridas nuevas y salida en "
+         "como piso de ruido, bootstrap y, para F1 a F3, 2 000 permutaciones de la respuesta con corrección de Benjamini–Hochberg. Se descartaron Morris, Sobol y FAST (exigen corridas nuevas y salida en "
          "todos los puntos). Fase A: existencia y fronteras (P1). Fase C: CORREGIBLE frente a KALINA y distancia (P2). "
          "Fase B: índices globales, interacciones y elasticidades (P3). Equipos (P4). Plan en "
          "`docs/PLAN_SENS2_ANALISIS.md`.", "",
+         "**Confianza.** Baja: n_min < 10 (salvo cifras deterministas), sin línea de evidencia, dependiente del diseño con una sola línea, "
+         "o cambia al tratar NO_CONVERGIO y descansa en un solo bloque. Alta: un recuento directo o un límite con n_min ≥ 30, o una "
+         "inferencia con al menos 2 líneas de evidencia independientes, n_min ≥ 30, robusta a NO_CONVERGIO y al diseño (o con el alcance "
+         "acotado en el enunciado) y con intervalo o prueba corregida. Media: el resto. Se calcula por código desde `p5_evidencia.csv`; "
+         "las inferencias de F1 a F3 usan 2 000 permutaciones de la respuesta y la corrección de Benjamini–Hochberg.", "",
          "## 3. Conclusiones por categoría", "",
          "Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparación), su confianza y su "
          "fuente. Orden de categorías por utilidad para el diseño.", ""]
@@ -108,11 +116,12 @@ def main():
             L += ["**%s [%s, fase %s, confianza %s].** %s" % (x["id"], cat, x["fase"], x["confianza"],
                                                               x["afirmacion"]), "",
                   "- Evidencia: %s" % x["evidencia"], "- Implicación: %s" % x["implicacion"],
-                  "- Fuente: %s" % x["fuente"], ""]
+                  "- Fuente: %s" % x["fuente"], "- Criterio de confianza: %s" % x["criterio_confianza"], ""]
     L += ["## 4. CORREGIBLE frente a KALINA", "",
-          "Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % por O2) y L2 (rescate). "
-          "Los CORREGIBLE aportan información sobre la frontera, no sobre el desempeño: su η es optimista "
-          "porque incumplen la cavitación.", "",
+          "Ver F6 (diferencia sin parear de +%.2f puntos de η, que mezcla zonas distintas del espacio), L1 (96 %% por O2) y L2 "
+          "(rescate; con el vecino KALINA a L1 ≤ 0.2 la η del vecino es %.2f puntos menor). Los CORREGIBLE aportan información sobre la "
+          "frontera, no sobre el desempeño: incumplen la cavitación y no son un estimador del desempeño real." % (
+              H["f6.todos.dif"], abs(H["par.cerca.med"])), "",
           "## 5. Recomendaciones para la próxima campaña", ""]
     L += ["%d. %s" % (i, t) for i, t in enumerate(PROXIMA, 1)]
     L += ["", "## 6. Limitaciones y supuestos", ""] + ["- " + t for t in CAVEATS]

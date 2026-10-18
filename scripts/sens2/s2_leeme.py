@@ -50,6 +50,9 @@ GUIA = [
     ("F5 Superficies de respuesta", "Mapas de calor de eta en las mallas P_baja x x_b y P_alta x P_baja y ajuste cuadratico."),
     ("F5 Incertidumbre", "Propagacion de incertidumbre: P(KALINA) y eta al perturbar las 10 variables alrededor de cada centro (808 puntos del motor)."),
     ("F6 Respaldo libro viejo", "Contraste fuera de muestra con la campaña M1-M10b: rangos, fronteras de una variable, vecinos de Sens2, aportes y cobertura."),
+    ("F7 Rigor estadistico", "NO_CONVERGIO por estudio y por cuartil de T_fuente, comparacion pareada por distancia, equipos segun el diseño, fronteras con intervalo, validacion cruzada y potencia de U1."),
+    ("F7 Nulo y correccion FDR", "Pruebas de permutacion y correccion de Benjamini-Hochberg de los indices globales (F1 a F3)."),
+    ("Confianza", "Regla de confianza (Alta, Media, Baja), reparto por categoria y criterios de cada conclusion."),
     ("D1 Datos puntos", "Todos los puntos analizados (p2_dataset_dedup.csv)."),
     ("D2 Datos fronteras", "Fronteras de los barridos de una variable (p1_fronteras.csv)."),
     ("D3 Datos zonas grises", "Zonas grises por bloque y violacion dominante (p1_zonas_grises.csv)."),
@@ -95,7 +98,7 @@ def hoja_leeme(wb, datos):
             "duplicados; por eso los n difieren (p. ej. C1: 502 KALINA en F1 y 454 en F2).",
             "Cavitacion (O2) = margen m_O2 = T_burbuja(P_baja, x_b) - T9 >= 0 (el liquido a la entrada de la bomba no supera su "
             "temperatura de burbuja; margen de seguridad CERO, la tolerancia de 1 K solo normaliza el indice D); no es un "
-            "calculo de NPSH. 'Confianza' de cada conclusion = robustez dentro del modelo teqp.",
+            "calculo de NPSH. La confianza (Alta, Media, Baja) de cada conclusion se calcula por codigo con la regla de la hoja Confianza y mide solidez dentro del modelo teqp, no validacion fisica.",
             "Los numeros salen de los CSV de resultados/ (P1 a P4, U1, R1 y R2). p5_conclusiones.csv se genera con "
             "p5_generar.py desde p5_conclusiones_base.csv; las cifras con marcador no se escriben a mano.",
             "Clases: KALINA, CORREGIBLE, NO_CONVERGIO e INVIABLE. Un KALINA puede estar dentro o "

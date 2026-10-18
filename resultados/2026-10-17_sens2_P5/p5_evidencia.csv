@@ -7,8 +7,8 @@ D5,determinista,3,2,si,acotado,na,no,"barridos de una variable, PRCC de U1 y reg
 D6,determinista,1,2,pendiente,acotado,na,no,frontera de P_alta en barridos de una variable
 D7,determinista,2,2,pendiente,acotado,na,no,margenes de barridos de una variable y barrido fino de eps_cond
 D8,inferencia,2,49,pendiente,acotado,pendiente,no,mallas P_baja x x_b de 7 niveles y mecanismo de la temperatura de burbuja
-E1,inferencia,1,2047,na,parcial,pendiente,no,percentiles de los KALINA de diseños mezclados; cifras de la literatura no verificadas
-E2,inferencia,2,507,na,si,pendiente,no,regresion sobre los 4 LHS y bandas de r_P; falta intervalo de la pendiente
+E1,inferencia,1,2047,na,parcial,si,no,percentiles de los KALINA de diseños mezclados con IC bootstrap (p6_equipos_ic); cifras de la literatura no verificadas
+E2,inferencia,2,507,na,si,si,no,regresion sobre los 4 LHS y bandas de r_P; pendiente con IC bootstrap (p6_equipos_ic)
 E3,inferencia,2,2047,na,parcial,pendiente,no,q4 de los KALINA; el 10 % de mayor eta mezcla diseños
 E4,inferencia,1,2047,na,parcial,pendiente,no,pinch y UA salen de eps_reg muestreada de 0.4 a 0.95; Spearman con eps_reg es consecuencia del rango
 E5,inferencia,1,2047,na,parcial,pendiente,no,carga del condensador de los KALINA de diseños mezclados

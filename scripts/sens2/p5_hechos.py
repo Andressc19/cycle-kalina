@@ -213,9 +213,21 @@ def _fdr(h):
     h["fdr.B"] = 2000.0
 
 
+def _eqic(h):
+    t = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_equipos_ic.csv")).set_index("cantidad")
+    x = t.loc["pendiente dh_turb sobre rp (LHS)"]
+    h["eqic.pend"], h["eqic.pend.lo"], h["eqic.pend.hi"], h["eqic.r2"], h["eqic.n"] = (float(x["estimador"]), float(x["ic_lo"]),
+                                                                                  float(x["ic_hi"]), float(x["r2"]), float(x["n"]))
+    for q, tag in (("rp", "rp"), ("dh_turb", "dh")):
+        for pc in (5, 95):
+            y = t.loc["%s P%d (todos los KALINA)" % (q, pc)]
+            h["eqic.%s.p%d" % (tag, pc)], h["eqic.%s.p%d.lo" % (tag, pc)], h["eqic.%s.p%d.hi" % (tag, pc)] = (
+                float(y["estimador"]), float(y["ic_lo"]), float(y["ic_hi"]))
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic):
         f(h)
     return h
 

@@ -23,7 +23,7 @@ EXPLICA = [
     "la salida y la condicionada; delta de Borgonovo: cambio en toda la distribucion; HSIC: dependencia",
     "no lineal; eta^2: varianza entre rebanadas; logistica: coeficiente estandarizado.",
     "Piso de ruido: 3 variables dummy uniformes. Una variable es 'distinguible del ruido' si el limite",
-    "inferior del IC 95 % de algun metodo supera el maximo de las dummy.",
+    "inferior del IC 95 % de algun metodo supera el maximo de las dummy. Criterio mas estricto (permutacion y Benjamini-Hochberg): hoja F7 Rigor estadistico.",
     "Rango medio: puesto medio entre metodos (1 = mas importante). Importancia = %d - rango medio." % TOPE,
 ]
 

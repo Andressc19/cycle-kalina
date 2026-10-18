@@ -147,6 +147,10 @@ def main():
     l2 = abs(float(dr[(dr.seccion == "eta") & (dr.centro == "todos")].iloc[0].mediana))
     chk("L", "L2", sub(ev("L2"), l2, "%.2f"), "abs(mediana eta) = %.2f en evidencia L2" % l2)
 
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import p5_cifras_check_b as B
+    B.extra(chk, ev, sub, P)
+
     # --- Salidas ---
     n = len(FILAS)
     nf = sum(f["resultado"] == "FALLA" for f in FILAS)

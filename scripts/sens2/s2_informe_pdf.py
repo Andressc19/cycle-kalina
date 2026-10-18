@@ -80,7 +80,7 @@ def construir():
     h.append("<h2>3. Datos y método</h2><p>Campaña Sensibilidad 1: 3 921 puntos en cuatro centros KALINA (C1 Húsavík, C2 ancla A*, C3 caliente 150 °C, C4 frío 110 °C) con "
              "barridos de una variable, mallas de pares 7×7 y muestreo LHS de 9 variables; 3 663 sin duplicados exactos. Clase KALINA: se cumplen los criterios "
              "O1 (título de salida q4 ≥ 0.90), O2 (m_O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0, <b>margen cero</b>), O3 (W_net &gt; 0) y O5 (mezcla bifásica en el separador). "
-             "Índices globales sobre el LHS de cada bloque con tres variables dummy como piso de ruido y bootstrap; superficies de respuesta sobre las mallas de pares; propagación de "
+             "Índices globales sobre el LHS de cada bloque con tres variables dummy como piso de ruido, bootstrap y, para F1 a F3, 2 000 permutaciones con corrección de Benjamini–Hochberg; superficies de respuesta sobre las mallas de pares; propagación de "
              "incertidumbre con LHS de las 10 variables alrededor de cada centro (tolerancias uniformes supuestas: T_fuente ±5 K, T_sumidero ±3 K, P ±5 %, x_b ±0.02, "
              "η y ε ±0.05; escenario B el doble). Eficiencias y efectividades en [0.40, 0.95]; T_sumidero de 5 a 30 °C igual a la temperatura ambiente de diseño; m_b = 1.</p>")
     h.append("<h2>4. Resultados</h2><h3>4.1 Dónde existe KALINA</h3>" + parrafos(c, ["D1", "D2", "D3", "D4", "D5", "D6", "D8"]))
