@@ -8,7 +8,7 @@ sesión). Fecha: 2026-10-17. Rama `test/anal_terremoto`.
 ## Actualización 2026-10-18 (evaluaciones tipo profesor y plan de mejora)
 
 El libro actual tiene 41 conclusiones y 808 puntos nuevos del motor (F5 Incertidumbre, corridos por el director, no por OpenCode)
-y el contraste con la campaña anterior (F6, L8 y L9): (26 hojas, 84 gráficos). Dos revisores independientes lo evaluaron como un
+y el contraste con la campaña anterior (F6, L8 y L9): (28 hojas, 88 gráficos). Dos revisores independientes lo evaluaron como un
 profesor exigente. Primera evaluación: rigor 2.5, coherencia 2.5, sobre-afirmaciones 2.5, cobertura 3.5, trazabilidad 3.0, libro 3.5.
 Segunda evaluación, después de la etapa A del plan (`docs/PLAN_SENS2_MEJORA.md`): rigor 3.5, coherencia 3.0, sobre-afirmaciones 3.0,
 cobertura 3.5, trazabilidad 3.8, libro 3.8.

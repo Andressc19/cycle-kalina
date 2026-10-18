@@ -70,7 +70,8 @@ def hoja_f3_indices(wb, datos):
                                         colores=["2E7D32", "B9770E", "7F8C8D"],
                                         titulo="%s: importancia por variable (%s)" % (resp, nombre),
                                         x="Variable", y="Importancia (%d - rango medio)" % TOPE,
-                                        nota_txt="Fuente: p3_ranking.csv. Barra mas alta = mas importante; verde = supera el piso "
+                                        nota_txt="Fuente: p3_ranking.csv. Importancia = 13 - rango medio (hay 12 variables en el ranking: 9 reales y 3 dummy; "
+                                                 "el rango 1 es el mejor). Barra mas alta = mas importante; verde = supera el piso "
                                                  "de ruido, ambar = no lo supera, gris = mejor dummy. 0 = no aplica a esa serie.")
             else:
                 f = nota(ws, ult + 1, "Fuente: p3_ranking.csv (Y4: n pequeno en C4, indicativo).") + 1

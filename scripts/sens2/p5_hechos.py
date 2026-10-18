@@ -271,9 +271,53 @@ def _ronda2(h):
     h["fic.informativas"], h["fic.filas"] = float(cuenta), float(len(fi))
 
 
+def _ronda3(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    q = pd.read_csv(os.path.join(F1, "p6_pareado.csv"))
+    d = q[(q["variante"] == "mismo_centro") & (q["variable"] == "d_eta")]
+    x = d[d["grupo"] == "todos"].iloc[0]
+    h["par4.media"], h["par4.media.lo"], h["par4.media.hi"] = float(x["media"]), float(x["ic_media_lo"]), float(x["ic_media_hi"])
+    cruza = [g for g in ("C1 Husavik", "C2 ancla A*", "C3 caliente 150 C", "C4 frio 110 C")
+             if (d[d["grupo"] == g]["ic_media_lo"].iloc[0] <= 0 <= d[d["grupo"] == g]["ic_media_hi"].iloc[0])]
+    h["par4.cruza0"] = " y ".join(g.split(" ")[0] for g in cruza) or "ningun bloque"
+    t = pd.read_csv(os.path.join(F1, "p6_pareado_dist.csv"))
+    t = t[t["variante"] == "mismo_centro"]
+    y = t[(t["grupo"] == "otros") & (t["calculo"] == "tramo L1 0.5 a mas")].iloc[0]
+    h["par.otros.lejos"], h["par.otros.lejos.lo"], h["par.otros.lejos.hi"], h["par.otros.lejos.n"] = (
+        float(y["estimador"]), float(y["ic_lo"]), float(y["ic_hi"]), float(y["n"]))
+
+
+def _ciclo(h):
+    t = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_ciclo_T.csv"))
+    for _, x in t.iterrows():
+        c = int(round(x["T_centro_C"]))
+        if pd.notna(x["eta_max_dentro"]):
+            h["ciclo.eta%d" % c] = float(x["eta_max_dentro"])
+        h["ciclo.n%d" % c] = float(x["n"])
+        h["ciclo.nkal%d" % c] = float(x["n_kalina"])
+        h["ciclo.p%d" % c] = float(x["p_kalina"])
+        h["ciclo.pconv%d" % c] = float(x["p_kalina_si_convergio"])
+    h["ciclo.nkal.min"] = float(t["n_kalina"].min())
+    h["ciclo.n.min"], h["ciclo.n.max"] = float(t["n"].min()), float(t["n"].max())
+    from s2_cargar import dataset_dedup
+    k = dataset_dedup()
+    k = k[k["kalina"] & (k["T_fuente"] >= 483.15)]
+    h["ciclo.caliente.n"], h["ciclo.caliente.fuera"] = float(len(k)), float(k["fuera_rango"].sum())
+
+
+def _kw(h):
+    t = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_equipos_kw.csv"))
+    t = t[t["ambito"] == "todos"]
+    for _, x in t.iterrows():
+        for p in ("p5", "p50", "p95"):
+            h["kw.%s.%s" % (x["magnitud"], p)] = float(x[p])
+            h["kw100.%s.%s" % (x["magnitud"], p)] = 100 * float(x[p])
+    h["kw.n"] = float(t["n"].iloc[0])
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw):
         f(h)
     return h
 

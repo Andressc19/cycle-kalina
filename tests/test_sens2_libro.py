@@ -99,7 +99,7 @@ def test_confianza_tiene_los_41_ids():
     wb = _wb()
     col_a = [str(r[0]) for r in wb["Confianza"].iter_rows(values_only=True) if r[0] is not None]
     encontrados = [v for v in col_a if v in ids]
-    assert len(encontrados) == len(set(encontrados)) == len(ids) == 41
+    assert len(encontrados) == len(set(encontrados)) == len(ids) >= 43
     assert set(encontrados) == ids
 
 

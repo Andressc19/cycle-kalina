@@ -47,6 +47,8 @@ GUIA = [
                                      "el HRVG y la bomba; restricciones activas."),
     ("F4 Preseleccion", "Datos para preseleccionar los equipos."),
     ("F4 Regenerador vs T_fuente", "Regenerador y ciclo frente a T_fuente de 70 a 300 C: Q_reg/Q_i, pinch, UA y eta."),
+    ("F4 Ciclo vs T_fuente", "Mejor eta muestreada y sus condiciones por banda de T_fuente de 20 K (datos ya calculados; no es un optimo)."),
+    ("F4 Equipos por kW", "Requisitos de equipos por kW neto en lugar de por kg/s de fluido: calores, trabajos, UA y caudal de fluido por kW."),
     ("F5 Superficies de respuesta", "Mapas de calor de eta en las mallas P_baja x x_b y P_alta x P_baja y ajuste cuadratico."),
     ("F5 Incertidumbre", "Propagacion de incertidumbre: P(KALINA) y eta al perturbar las 10 variables alrededor de cada centro (808 puntos del motor)."),
     ("F6 Respaldo libro viejo", "Contraste fuera de muestra con la campaña M1-M10b: rangos, fronteras de una variable, vecinos de Sens2, aportes y cobertura."),

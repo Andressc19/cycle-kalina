@@ -103,8 +103,8 @@ def main():
     f6k = float(k.eta_pct.median())
     chk("F", "F6medianas", abs(f6c - 10.20) < 0.01 and abs(f6k - 7.73) < 0.01,
         "medianas cor=%.2f kal=%.2f" % (f6c, f6k))
-    chk("GLOBAL", "G41", len(concl) == 41 and concl.id.is_unique, "conclusiones=%d" % len(concl))
-    txt = " ".join(concl.astype(str).values.ravel()).lower()
+    chk("GLOBAL", "Gn", len(concl) == len(pd.read_csv(P("2026-10-17_sens2_P5", "p5_evidencia.csv"))) and concl.id.is_unique, "conclusiones=%d" % len(concl))
+    txt = " ".join(concl.fillna("").astype(str).values.ravel()).lower()
     malas = [w for w in ("confiable", "no citable", "fuera de rango del motor", "sin respaldo", "indicio", "extrapol") if w in txt]
     chk("GLOBAL", "Gterm", not malas, "terminos prohibidos en conclusiones: %s" % (malas or "ninguno"))
 

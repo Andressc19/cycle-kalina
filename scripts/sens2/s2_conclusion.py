@@ -103,7 +103,7 @@ def hoja_conclusion(wb, datos):
 
     f = subtitulo(ws, f, "Numero de conclusiones por categoria y confianza")
     cats = list(dict.fromkeys(concl["categoria"]))
-    confs = list(dict.fromkeys(concl["confianza"]))
+    confs = [k for k in ("Alta", "Media", "Baja", "No aplica") if k in set(concl["confianza"])]
     filas = [[c] + [int((concl[(concl["categoria"] == c) & (concl["confianza"] == k)]).shape[0])
                     for k in confs] for c in cats]
     f = bloque(ws, f, titulo="Conclusiones por categoria y confianza",

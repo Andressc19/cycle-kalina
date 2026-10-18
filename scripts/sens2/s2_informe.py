@@ -44,14 +44,14 @@ CAVEATS = [
     "mensajes del motor la mayoría son balances de energía que no cierran o brackets sin extremos evaluables, así que los "
     "umbrales inferiores de T_fuente (D3) pueden estar sesgados por el solver y no por el ciclo.",
     "La cavitación (O2) exige m_O2 = T_burbuja − T9 ≥ 0 (margen cero, no un cálculo de NPSH; ver L7); la confianza (Alta, Media, Baja) "
-    "de cada conclusión se calcula con la regla de `p5_confianza.py` (hoja Confianza del libro) y mide solidez dentro del modelo teqp, "
+    "de cada conclusión se calcula con la regla de `p5_confianza.py` (hoja Confianza del libro, con los criterios cumplidos de 6) y mide solidez dentro del modelo teqp, "
     "no validación física.",
 ]
 PROXIMA = [
     "Reintentar con el modo tolerante del motor los NO_CONVERGIO (14 % de los puntos; 24 % en los LHS de C3 y C4, concentrados en T_fuente baja) "
     "para separar «no existe» de «no convergió»: es lo que falta para establecer el umbral inferior de T_fuente (D3).",
     "Calcular el ciclo frente a T_fuente optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y "
-    "obtener los datos de equipos por kW neto (flujo volumétrico de la turbina, altura de la bomba, Q y UA) en lugar de por kg/s de m_b.",
+    "obtener el flujo volumétrico de la turbina y la altura de la bomba (los calores, trabajos y UA por kW neto ya están en la hoja F4 Equipos por kW).",
     "Refinar P_baja cerca de su piso (paso de 25 kPa en C1 y C3, 550 kPa; C2 350 kPa; C4 750 kPa): es la "
     "frontera que más puntos separa.",
     "Barrer T_fuente con paso de 2.5 K en los techos de cada bloque (440.65, 468.15, 568.15 y 528.15 K).",
@@ -87,7 +87,7 @@ def main():
     L = ["# Informe de Sensibilidad 2: análisis de los 3 921 puntos de Sensibilidad 1", "",
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
          "alta; la mayor η muestreada es %.2f %% dentro del rango experimental (%.2f %% fuera; no se corrió un optimizador).** "
-         "Los puntos de mayor η tienden a quedar cerca del piso de P_baja (dependiente del diseño, M5)." % (n_in, n_out), "",
+         "Los puntos de mayor η están cerca del piso de P_baja solo en C1 con el muestreo LHS (M5); con todos los puntos la cercanía depende del diseño." % (n_in, n_out), "",
          "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (%d hojas, %d gráficos). Las cifras salen de los CSV de `resultados/` "
          "(P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`." % libro_conteos(), "",
          "## 1. Resumen ejecutivo", "",
@@ -109,8 +109,9 @@ def main():
          "- El piso de P_baja sube con x_b y la superficie de η apunta hacia el menor P_baja (D8, R1).",
          "- En el estudio 4 (presiones y x_b fijos) el regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C, solo 2 KALINA) a 0.013 "
          "(300 °C) y UA de 9.5 a 0.34 kW/K por kg/s; no se reoptimizó el ciclo en cada temperatura (E8).",
-         "- La condensación y la cavitación (P_baja, ε_cond, x_b) gobiernan la existencia; η_t, P_alta y "
-         "T_fuente gobiernan η y potencia.", "",
+         "- La condensación y la cavitación (P_baja, ε_cond, x_b) gobiernan la existencia. Sobre η, η_t tiene el mayor rango medio en C1 y C2, y P_alta "
+         "y x_b en C3 y C4; sobre la potencia específica, T_fuente y x_b; P_baja y x_b son distinguibles del ruido sobre η y sobre W_net en los cuatro bloques "
+         "y P_alta no lo es sobre W_net en ninguno (F1, F2).", "",
          "## 2. Método", "",
          "Etapa 0 (`docs/ETAPA0_INVESTIGACION_SENSIBILIDAD_KALINA.md`) eligió métodos que se calculan sobre "
          "muestreos existentes: RSA/KS, PAWN, δ de Borgonovo, HSIC, PRCC, η², logística, con 3 variables dummy "
@@ -118,7 +119,7 @@ def main():
          "todos los puntos). Fase A: existencia y fronteras (P1). Fase C: CORREGIBLE frente a KALINA y distancia (P2). "
          "Fase B: índices globales, interacciones y elasticidades (P3). Equipos (P4). Plan en "
          "`docs/PLAN_SENS2_ANALISIS.md`.", "",
-         "**Confianza.** Baja: n_min < 10 (salvo cifras deterministas), sin línea de evidencia, dependiente del diseño con una sola línea, "
+         "**Confianza.** Baja: n_min < 10 (salvo cifras deterministas), sin línea de evidencia, dependiente del diseño (robusto_diseno = no) con una sola línea, "
          "o cambia al tratar NO_CONVERGIO y descansa en un solo bloque. Alta: un recuento directo con n_min ≥ 30, o una "
          "inferencia con al menos 2 líneas de evidencia independientes, n_min ≥ 30, robusta a NO_CONVERGIO y al diseño (o con el alcance "
          "acotado y dicho en el propio enunciado) y con intervalo o prueba corregida. No aplica: las declaraciones de límites del análisis. Media: el resto. Se calcula por código desde `p5_evidencia.csv`; "
@@ -136,9 +137,9 @@ def main():
                   "- Fuente: %s" % x["fuente"], "- Criterio de confianza: %s" % x["criterio_confianza"], ""]
     L += ["## 4. CORREGIBLE frente a KALINA", "",
           "Ver F6 (diferencia sin parear de +%.2f puntos de η, que mezcla zonas distintas del espacio), L1 (96 %% por O2) y L2 "
-          "(rescate; con el vecino KALINA a L1 ≤ 0.2 la η del vecino es %.2f puntos menor). Los CORREGIBLE aportan información sobre la "
+          "(rescate; la mediana de η del vecino KALINA más cercano es %.2f puntos menor y %.2f si el vecino está a L1 ≤ 0.2). Los CORREGIBLE aportan información sobre la "
           "frontera, no sobre el desempeño: incumplen la cavitación y no son un estimador del desempeño real." % (
-              H["f6.todos.dif"], abs(H["par4.med"])), "",
+              H["f6.todos.dif"], abs(H["par4.med"]), abs(H["par.cerca.med"])), "",
           "## 5. Recomendaciones para la próxima campaña", ""]
     L += ["%d. %s" % (i, t) for i, t in enumerate(PROXIMA, 1)]
     L += ["", "## 6. Limitaciones y supuestos", ""] + ["- " + t for t in CAVEATS]

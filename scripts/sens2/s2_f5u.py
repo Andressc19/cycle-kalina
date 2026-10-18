@@ -34,8 +34,8 @@ def hoja_f5_incertidumbre(wb, datos):
     n = int(r[r["escenario"].isin(ESC)]["n"].sum())
     f = titulo(ws, 1, "F5 Propagacion de incertidumbre alrededor de los 4 centros KALINA", ancho=10)
     f = condiciones(ws, f, [
-        "Base: %d puntos nuevos del motor (teqp): %d por escenario y centro (LHS de 10 variables, uniforme alrededor del centro)." % (
-            n, int(r["n"].max())),
+        "Base: %d puntos nuevos del motor (teqp): escenario A 96 por centro (dos lotes de 48), B y C 48 por centro (LHS de 10 variables, uniforme alrededor del centro) "
+        "y el barrido fino de eps_cond (10 niveles por centro)." % len(pd.read_csv(os.path.join(U1, "u1_filas.csv"))),
         "Escenario A (tolerancias nominales): " + _tol_txt() + " (absolutas; P_alta y P_baja relativas).",
         "Escenario B: el doble de cada tolerancia. Limites: eficiencias y efectividades en 0.40 a 0.95; T_sumidero 5 a 30 °C; P_alta >= 1.3 P_baja.",
         "Las tolerancias son SUPUESTOS de escenario (variabilidad de operacion y de rendimiento de equipos), no mediciones.",
@@ -87,7 +87,7 @@ def hoja_f5_incertidumbre(wb, datos):
                    encabezados=["Bloque", "Centro", "P5", "Mediana", "P95"], filas=fl, x="Bloque", y="eta (%)",
                    nota_txt="Fuente: u1_resumen.csv; solo los puntos que siguen siendo KALINA.")
     f = subtitulo(ws, f, "3. Por que dejan de ser KALINA")
-    fl = [["%s %s" % (x["escenario"][3:], x["centro"]), int(x["corr_o2"]), int(x["corr_o1"]),
+    fl = [["%s %s" % ({"U1Ap": "A", "U1B": "B", "U1C": "C", "U1A": "A"}[x["escenario"]], x["centro"]), int(x["corr_o2"]), int(x["corr_o1"]),
            int(x["n_corregible"] - x["corr_o2"] - x["corr_o1"]), int(x["n_no_conv"]), int(x["n_inviable"])]
           for _, x in r[r["escenario"].isin(ESC)].iterrows()]
     f = bloque(ws, f, titulo="Puntos que dejan de ser KALINA, por causa (escenario y bloque)",

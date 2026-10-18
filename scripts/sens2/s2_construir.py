@@ -28,7 +28,8 @@ HOJAS = [hoja_conclusion, hoja_f1_existencia, hoja_f1_reglas, hoja_f1_margenes, 
 def _opcionales():
     """Hojas de la parte 2, si sus modulos ya estan en disco."""
     hojas = []
-    for mod, attr in (("s2_f3", "HOJAS_F3"), ("s2_f4", "HOJAS_F4"), ("s2_f5", "HOJAS_F5"), ("s2_f5u", "HOJAS_F5U"), ("s2_f6", "HOJAS_F6"), ("s2_f7", "HOJAS_F7"),
+    for mod, attr in (("s2_f3", "HOJAS_F3"), ("s2_f4", "HOJAS_F4"), ("s2_f4t", "HOJAS_F4T"), ("s2_f4k", "HOJAS_F4K"),
+                      ("s2_f5", "HOJAS_F5"), ("s2_f5u", "HOJAS_F5U"), ("s2_f6", "HOJAS_F6"), ("s2_f7", "HOJAS_F7"),
                       ("s2_f7c", "HOJAS_F7C"), ("s2_conf", "HOJAS_CONF")):
         try:
             hojas += list(getattr(__import__(mod), attr, []))

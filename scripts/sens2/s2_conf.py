@@ -15,12 +15,13 @@ from x5_graficos import bloque  # noqa: E402
 P5 = os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5")
 CATS = ["DISEÑO REAL", "EQUIPOS", "MÁXIMA EFICIENCIA", "FLUCTUACIÓN", "LÍMITES KALINA"]
 REGLA = [
-    "Baja: n_min < 10 (salvo cifras deterministas), o ninguna linea de evidencia, o depende del diseño con una sola linea, o cambia al tratar "
+    "Baja: n_min < 10 (salvo cifras deterministas), o ninguna linea de evidencia, o depende del diseño (robusto_diseno = no) con una sola linea, o cambia al tratar "
     "NO_CONVERGIO y descansa en un solo bloque.",
     "Alta: un recuento directo con n_min >= 30; o una inferencia con >= 2 lineas de evidencia independientes (familias de metodo "
     "distintas, campañas o muestreos distintos), n_min >= 30, robusta a NO_CONVERGIO y al diseño (o con el alcance acotado y dicho en el propio enunciado) y con intervalo o prueba corregida.",
     "No aplica: una declaracion de limites del analisis no es una inferencia y no lleva confianza.",
-    "Media: el resto. Cualquier criterio `parcial`, `pendiente` o `no` impide Alta.",
+    "Media: el resto. Cualquier criterio `parcial`, `pendiente` o `no` impide Alta. Para que Media discrimine, cada conclusion muestra cuantos de 6 criterios cumple "
+    "(2 lineas, n_min, robusta a NO_CONVERGIO, robusta al diseño, intervalo, varios bloques).",
     "La confianza describe la solidez dentro del modelo teqp; no es una validacion experimental."]
 
 
@@ -47,11 +48,11 @@ def hoja_conf(wb, datos):
     filas = []
     for _, x in c.iterrows():
         r = e.loc[x["id"]]
-        filas.append([x["id"], x["categoria"], x["confianza"], x["criterio_confianza"], r["tipo"], int(r["lineas"]), int(r["n_min"]),
+        filas.append([x["id"], x["categoria"], x["confianza"], x["criterios_cumplidos"], x["criterio_confianza"], r["tipo"], int(r["lineas"]), int(r["n_min"]),
                       r["robusto_nc"], r["robusto_diseno"], r["intervalo"], r["un_bloque"], r["alcance_en_enunciado"], r["nota"]])
-    _, f, _ = tabla(ws, f, ["Id", "Categoria", "Confianza", "Por que", "Tipo", "Lineas", "n_min", "Robusta a NO_CONVERGIO", "Robusta al diseño",
+    _, f, _ = tabla(ws, f, ["Id", "Categoria", "Confianza", "Criterios cumplidos (de 6)", "Por que", "Tipo", "Lineas", "n_min", "Robusta a NO_CONVERGIO", "Robusta al diseño",
                             "Intervalo", "Un solo bloque", "Alcance dicho en el enunciado", "Nota"], filas,
-                    anchos=[7, 20, 11, 44, 13, 8, 8, 14, 14, 11, 12, 16, 70])
+                    anchos=[7, 20, 11, 12, 44, 13, 8, 8, 14, 14, 11, 12, 16, 70])
     f += 1
     f = nota(ws, f, "pendiente = aun no comprobado; acotado = el enunciado limita su alcance a la rebanada o escenario donde se midio; "
                     "na = el criterio no aplica a esa conclusion. `acotado` solo permite Alta si el alcance esta dicho en el propio enunciado.")

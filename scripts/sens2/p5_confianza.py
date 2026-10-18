@@ -46,7 +46,7 @@ def regla(x):
     if x["lineas"] < 1:
         razones.append("sin linea de evidencia")
     if x["robusto_diseno"] == "no" and x["lineas"] < 2:
-        razones.append("depende del diseño con una sola linea")
+        razones.append("depende del diseño (robusto_diseno = no) con una sola linea")
     if x["robusto_nc"] == "no" and x["un_bloque"] == "si":
         razones.append("cambia al tratar NO_CONVERGIO y descansa en un bloque")
     if razones:
@@ -68,7 +68,15 @@ def regla(x):
             faltan.append("%s = %s%s" % (c, x[c], " (alcance no dicho en el enunciado)" if x[c] == "acotado" else ""))
     if not faltan:
         return "Alta", "lineas = %d, n_min = %d, robusta a NO_CONVERGIO y al diseño, con intervalo" % (x["lineas"], x["n_min"])
-    return "Media", "; ".join(faltan)
+    return "Media", "cumple %d de 6 criterios; falta: %s" % (puntaje(x), "; ".join(faltan))
+
+
+def puntaje(x):
+    """Criterios cumplidos de 6: 2 lineas, n_min, robusta a NO_CONVERGIO, robusta al diseño (o acotada y dicha), intervalo y varios bloques."""
+    acotado = x["robusto_diseno"] == "acotado" and x.get("alcance_en_enunciado", "no") == "si"
+    n_ok = x["tipo"] == "determinista" or x["n_min"] >= 30
+    return int(x["lineas"] >= 2) + int(n_ok) + int(x["robusto_nc"] in OK) + int(x["robusto_diseno"] in OK or acotado) + \
+        int(x["intervalo"] in OK) + int(x["un_bloque"] != "si")
 
 
 def asignar(base, h=None):
@@ -80,6 +88,7 @@ def asignar(base, h=None):
     res = [regla(ev.loc[i]) for i in sal["id"]]
     sal["confianza"] = [r[0] for r in res]
     sal["criterio_confianza"] = [r[1] for r in res]
+    sal["criterios_cumplidos"] = [("" if r[0] == "No aplica" else puntaje(ev.loc[i])) for r, i in zip(res, sal["id"])]
     return sal
 
 
