@@ -20,7 +20,7 @@ ERRORES = []
 ORDEN = ["LEEME", "Conclusion consolidada", "F1 Existencia", "F1 Reglas y zonas grises",
          "F1 Margenes de operacion", "F2 CORREGIBLE vs KALINA", "F2 Distancia y rescate", "F3 Indices globales",
          "F3 Interacciones", "F3 Elasticidades", "F4 Turbina", "F4 Regenerador y condensador",
-         "F4 Preseleccion", "F4 Regenerador vs T_fuente", "D1 Datos puntos", "D2 Datos fronteras", "D3 Datos zonas grises",
+         "F4 Preseleccion", "F4 Regenerador vs T_fuente", "F5 Superficies de respuesta", "F5 Incertidumbre", "D1 Datos puntos", "D2 Datos fronteras", "D3 Datos zonas grises",
          "D4 Datos distancia", "D5 Datos indices", "D6 Datos equipos"]
 PROHIBIDOS = ["confiable", "no citable", "fuera de rango del motor", "sin respaldo", "indicio",
               "extrapol"]
@@ -256,7 +256,7 @@ fallas14 = []
 for nom in ("LEEME", "F1 Existencia", "F1 Reglas y zonas grises", "F2 CORREGIBLE vs KALINA",
             "F2 Distancia y rescate", "F3 Indices globales", "F3 Interacciones", "F3 Elasticidades",
             "F4 Turbina", "F4 Regenerador y condensador", "F1 Margenes de operacion",
-            "F4 Regenerador vs T_fuente"):
+            "F4 Regenerador vs T_fuente", "F5 Superficies de respuesta", "F5 Incertidumbre"):
     txt = " ".join(str(c.value) for row in wb[nom].iter_rows(max_row=40) for c in row if c.value is not None)
     if "Base" not in txt:
         fallas14.append(nom)
@@ -264,6 +264,31 @@ if fallas14:
     fail("14. sin nota de base: %s" % fallas14)
 else:
     ok("14. la nota de base aparece en LEEME y en las hojas F1 a F4")
+
+# 15. propagacion de incertidumbre: P(KALINA) y eta de la hoja contra las filas crudas
+import pandas as pd  # noqa: E402,F811
+_d = pd.read_csv(os.path.join(RAIZ, "resultados", "2026-10-17_sens2_U1", "u1_filas.csv"))
+_k = _d[_d["clasificacion"] == "KALINA"]
+ws = wb["F5 Incertidumbre"]
+_hall = {}
+for row in ws.iter_rows(max_col=7, values_only=True):
+    if row[0] in ("U1A", "U1B") and row[1] in ("C1", "C2", "C3", "C4") and isinstance(row[2], int):
+        _hall.setdefault((row[0], row[1]), (row[2], row[3], row[4]))
+_mal = []
+for (e, c), (n_, k_, p_) in _hall.items():
+    gg = _d[(_d["barrido"] == e) & (_d["centro"] == c)]
+    kk = int((gg["clasificacion"] == "KALINA").sum())
+    if (n_, k_) != (len(gg), kk) or abs(p_ - round(kk / len(gg), 3)) > 1e-9:
+        _mal.append((e, c, n_, k_, p_, len(gg), kk))
+if len(_hall) != 8 or _mal:
+    fail("15. F5 Incertidumbre no coincide con u1_filas.csv: %s (celdas halladas %d)" % (_mal, len(_hall)))
+else:
+    ok("15. F5 Incertidumbre: 8 celdas de P(KALINA) coinciden con las %d filas de u1_filas.csv" % len(_d))
+if int(_d["convergio"].astype(str).str.lower().eq("false").sum()) > 0.05 * len(_d):
+    fail("15b. mas del 5 % de los puntos de U1 no convergio")
+else:
+    ok("15b. puntos sin convergencia en U1: %d de %d" % (int(_d["convergio"].astype(str).str.lower().eq("false").sum()), len(_d)))
+_t = ws.cell(1, 1).value
 
 if ERRORES:
     print("== FIN FALLA ==")

@@ -131,3 +131,55 @@ def num(x, n=4):
     if x is None or (isinstance(x, float) and (math.isnan(x) or math.isinf(x))):
         return None
     return round(float(x), n)
+
+
+def malla_clases(b, par):
+    """Matriz de la malla de un par: (eta de KALINA, clase por celda, niveles a, niveles b)."""
+    est = {"C1 Husavik": 2, "C2 ancla A*": 2, "C3 caliente 150 C": 11, "C4 frio 110 C": 11}[b]
+    d = todo()
+    g = d[(d["estudio"] == est) & (d["centro"] == b)].reset_index(drop=True)
+    cen = X.CENTROS[b]
+    a, c = PARS[par]
+    mask = np.ones(len(g), bool)
+    for v in VARS:
+        if v not in (a, c):
+            mask &= np.round(g[v].to_numpy(float), 2) == round(float(cen[v]), 2)
+    sub = g[mask]
+    av = np.sort(np.unique(np.round(sub[a].to_numpy(float), 2)))
+    bv = np.sort(np.unique(np.round(sub[c].to_numpy(float), 2)))
+    eta = np.full((len(av), len(bv)), np.nan)
+    cls = np.full((len(av), len(bv)), "-", dtype=object)
+    ia = {v: i for i, v in enumerate(av)}
+    ib = {v: j for j, v in enumerate(bv)}
+    for _, r in sub.iterrows():
+        i, j = ia[np.round(r[a], 2)], ib[np.round(r[c], 2)]
+        cls[i, j] = {"KALINA": "K", "CORREGIBLE": "C", "NO_CONVERGIO": "NC", "INVIABLE": "I"}[r["clasificacion"]]
+        if r["clasificacion"] == "KALINA":
+            eta[i, j] = r["eta_pct"]
+    return eta, cls, av, bv
+
+
+def ajuste_cuadratico(eta, av, bv):
+    """Superficie cuadratica eta ~ a, b, a^2, b^2, ab sobre las celdas KALINA (variables estandarizadas)."""
+    A, B = np.meshgrid(av, bv, indexing="ij")
+    ok = np.isfinite(eta)
+    a, b, y = A[ok], B[ok], eta[ok]
+    if len(y) < 8:
+        return None
+    ma, sa, mb, sb = a.mean(), a.std() or 1.0, b.mean(), b.std() or 1.0
+    za, zb = (a - ma) / sa, (b - mb) / sb
+    M = np.column_stack([np.ones(len(y)), za, zb, za ** 2, zb ** 2, za * zb])
+    coef, *_ = np.linalg.lstsq(M, y, rcond=None)
+    res = y - M @ coef
+    r2 = 1.0 - (res ** 2).sum() / ((y - y.mean()) ** 2).sum()
+    p = M.shape[1]
+    adj = 1.0 - (1.0 - r2) * (len(y) - 1) / (len(y) - p)
+    ia, ib = np.unravel_index(np.nanargmax(np.where(ok, eta, -np.inf)), eta.shape)
+    # maximo del ajuste sobre la malla completa (celdas KALINA y no KALINA) para ver hacia donde apunta
+    za_g, zb_g = (A - ma) / sa, (B - mb) / sb
+    Mg = np.stack([np.ones_like(za_g), za_g, zb_g, za_g ** 2, zb_g ** 2, za_g * zb_g], axis=-1)
+    pred = Mg @ coef
+    ig = np.unravel_index(np.argmax(pred), pred.shape)
+    return {"n": int(len(y)), "r2": float(r2), "r2_aj": float(adj), "rmse": float(np.sqrt((res ** 2).mean())),
+            "coef": [float(c) for c in coef], "max_malla": (float(av[ia]), float(bv[ib]), float(eta[ia, ib])),
+            "max_ajuste": (float(av[ig[0]]), float(bv[ig[1]]), float(pred[ig]))}

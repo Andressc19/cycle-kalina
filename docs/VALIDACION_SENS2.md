@@ -41,7 +41,7 @@ caveats que deben comunicarse (sección «Caveats obligatorios»).
 ## Objeciones previsibles de un evaluador (y estado)
 
 1. **«Todo es el modelo.»** Cierto: solo teqp, sin validación experimental; se contrasta con modelos publicados y un simulador, no con experimentos. Declarado.
-2. **«Falta propagar incertidumbre y superficies de respuesta.»** Cierto: no se hicieron. Recomendado para la próxima campaña.
+2. **«Falta propagar incertidumbre y superficies de respuesta.»** Hecho después de esta revisión: 384 puntos del motor (F5 Incertidumbre) y 8 mallas con ajuste cuadratico (F5 Superficies de respuesta). Reservas: las tolerancias (±5 K, ±3 K, ±5 %, ±0.02, ±0.05; el doble en B) son supuestos de escenario y las entradas se tomaron independientes y uniformes (incertidumbre estándar ±a/√3); 48 puntos por celda dan IC de Wilson anchos (p. ej. C1: [0.34, 0.62]) y no se estableció la estabilidad del muestreo; los percentiles P5 y P95 son aproximados; la banda del modelo (±0.7 pp) se suma de forma determinista.
 3. **«La regla de ruido con 3 dummy es débil.»** Cierto: se declara y se usa solo con 3 a 8 métodos concordantes.
 4. **«¿Por qué el regenerador pierde peso al subir T_fuente?»** El libro lo describe (Q_reg/Q_i, UA y pinch) pero no explica el mecanismo; la explicación termodinámica queda pendiente.
 5. **«Los requisitos de equipos son envolventes, no especificaciones.»** Cierto: faltan flujo volumétrico de la turbina, altura de la bomba y geometría. Declarado.

@@ -32,7 +32,9 @@ CAVEATS = [
     "7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.",
     "El criterio «distinguible del ruido» es laxo (algún método supera el máximo de 3 variables dummy); la conclusión "
     "M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.",
-    "No se propagó incertidumbre (η_t, ε, modelo) ni se construyeron superficies de respuesta; la importancia por "
+    "La propagación de incertidumbre usa tolerancias supuestas (uniformes, ±a/√3 de incertidumbre estándar), 48 puntos "
+    "por escenario y bloque (IC de Wilson) y entradas independientes; no se estableció la estabilidad del muestreo "
+    "(JCGM 101) y la banda del modelo de propiedades (±0.7 pp) se suma de forma determinista. La importancia por "
     "permutación no se implementó.",
     "La cavitación (O2) es un margen de subenfriamiento en la bomba, no un cálculo de NPSH; la «confianza» de cada "
     "conclusión es robustez dentro del modelo teqp, no validación física.",
@@ -44,8 +46,8 @@ PROXIMA = [
     "Repetir las mallas B2 (P_baja x x_b) y B4 (ε_cond x T_sumidero) con más niveles en C3 y C4, donde la "
     "no aditividad de la existencia es alta.",
     "Validar con el motor real los 7 atípicos y los óptimos M1 a M4 antes de citarlos como cifras de diseño.",
-    "Propagar la incertidumbre de η_t, ε_reg, ε_cond y de la ecuación de estado a P(KALINA) y a η (muestreo alrededor "
-    "de cada centro) y construir superficies de respuesta (η frente a P_baja y x_b).",
+    "Repetir la propagación con más puntos por celda (≥ 200) y comprobar la estabilidad de P(KALINA), con tolerancias "
+    "medidas o acordadas con el profesor, y muestrear la banda del modelo de propiedades en vez de sumarla.",
     "Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal.",
 ]
 
@@ -62,7 +64,7 @@ def main():
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
          "alta; la η máxima es %.2f %% dentro del rango experimental (%.2f %% fuera).** Los óptimos "
          "tienden a quedar cerca del piso de P_baja." % (n_in, n_out), "",
-         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (20 hojas, 56 gráficos). Todo número sale de los "
+         "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (22 hojas, 70 gráficos). Todo número sale de los "
          "CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.", "",
          "## 1. Resumen ejecutivo", "",
          "- %d puntos sin duplicados (de 3 921); %.1f %% son KALINA (total)." % (
@@ -73,6 +75,10 @@ def main():
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
          "- Desde el centro KALINA de cada bloque, C1 y C4 no toleran bajar ε_cond (0.95); P_baja puede bajar hasta "
          "600 kPa (C1) y 800 kPa (C4) (D7, L6).",
+         "- Al perturbar las 10 variables a la vez (48 puntos del motor por bloque), con tolerancias nominales seguirían "
+         "siendo KALINA el 48 % (C1), 98 % (C2), 100 % (C3) y 85 % (C4); con el doble, 17, 90, 65 y 42 %; casi todas las "
+         "pérdidas son por cavitación (U1, U2).",
+         "- El piso de P_baja sube con x_b y la superficie de η apunta hacia el menor P_baja (D8, R1).",
          "- El regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C) a 0.013 (300 °C) y UA de 9.5 a 0.34 "
          "kW/K por kg/s (E8).",
          "- La condensación y la cavitación (P_baja, ε_cond, x_b) gobiernan la existencia; η_t, P_alta y "

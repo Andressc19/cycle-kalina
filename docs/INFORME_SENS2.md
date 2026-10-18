@@ -2,7 +2,7 @@
 
 > **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la η máxima es 14.53 % dentro del rango experimental (14.82 % fuera).** Los óptimos tienden a quedar cerca del piso de P_baja.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (20 hojas, 56 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (22 hojas, 70 gráficos). Todo número sale de los CSV de `resultados/2026-10-17_sens2_P1..P4`. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -11,6 +11,8 @@ Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (20 hojas, 56 gráficos). To
 - Casi la mitad de los CORREGIBLE está a una sola variable de un KALINA; P_baja es la que más rescata.
 - Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).
 - Desde el centro KALINA de cada bloque, C1 y C4 no toleran bajar ε_cond (0.95); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) (D7, L6).
+- Al perturbar las 10 variables a la vez (48 puntos del motor por bloque), con tolerancias nominales seguirían siendo KALINA el 48 % (C1), 98 % (C2), 100 % (C3) y 85 % (C4); con el doble, 17, 90, 65 y 42 %; casi todas las pérdidas son por cavitación (U1, U2).
+- El piso de P_baja sube con x_b y la superficie de η apunta hacia el menor P_baja (D8, R1).
 - El regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C) a 0.013 (300 °C) y UA de 9.5 a 0.34 kW/K por kg/s (E8).
 - La condensación y la cavitación (P_baja, ε_cond, x_b) gobiernan la existencia; η_t, P_alta y T_fuente gobiernan η y potencia.
 
@@ -65,6 +67,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: Moviendo una variable cada vez (último nivel KALINA contiguo al centro): C1 baja P_baja hasta 600 kPa (centro 690), ε_cond sin margen (0.95; con 0.90 ya no hay KALINA), T_sumidero sube hasta 283.15 K (centro 278.15), x_b de 0.55 a 0.90, T_fuente de 363.15 a 438.15 K. C4: P_baja hasta 800 kPa, ε_cond sin margen, T_sumidero hasta 290.65 K. C3: P_baja hasta 600 kPa, ε_cond hasta 0.90, T_sumidero hasta 295.65 K. C2: P_baja hasta 400 kPa, ε_cond hasta 0.80, x_b solo de 0.45 a 0.55.
 - Implicación: Un diseño en C1 o C4 no tolera perder efectividad del condensador ni subir T_sumidero más de 5 a 8 K; en C2 x_b debe controlarse a ±0.05. La frontera real está entre el último nivel KALINA y el siguiente.
 - Fuente: Hoja F1 Margenes de operacion (barridos de una variable, estudios 1 y 10)
+
+**D8 [DISEÑO REAL, fase A, confianza Media].** El piso de P_baja sube con x_b: cuanto más rica la mezcla, más alta debe ser la presión baja.
+
+- Evidencia: Menor P_baja con KALINA en cada columna de x_b de las mallas P_baja×x_b: C1 de 500 kPa (x_b 0.55 a 0.75) a 600, 690 y 800 kPa (x_b 0.82, 0.90 y 0.95); C2 de 400 kPa (0.45 y 0.50) a 563.64, 700 y 900 kPa (0.55, 0.60 y 0.70); C3 de 500 kPa (0.55 a 0.68) a 650, 800 y 950 kPa (0.75, 0.88 y 0.95; sin KALINA en 0.82); C4 de 500 kPa (0.65 y 0.72) a 910 kPa (0.95).
+- Implicación: x_b y P_baja no se eligen por separado (coincide con la interacción de F5 de P3): subir x_b para ganar η obliga a subir P_baja y se paga parte de lo ganado. La malla tiene solo 7 niveles de P_baja: el piso real está entre dos niveles.
+- Fuente: Hoja F5 Superficies de respuesta (mallas P_baja×x_b, estudios 2 y 11)
 
 ### 3.2 EQUIPOS (hoja F4 del libro)
 
@@ -148,6 +156,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: Un óptimo real debe llevar margen en P_baja y ε_cond. La afirmación general sobre todo el espacio queda como tendencia dependiente del diseño, no como resultado demostrado.
 - Fuente: P2 p2_robustez.md; revisión final (LHS solo, recalculado)
 
+**R1 [MÁXIMA EFICIENCIA, fase B, confianza Media].** La superficie de η ajustada solo con celdas KALINA apunta siempre hacia el menor P_baja: el óptimo con restricciones queda en el piso de cavitación.
+
+- Evidencia: Ajuste cuadrático sobre las 8 mallas (P_baja×x_b y P_alta×P_baja; R² de 0.96 a 1.00): el máximo del ajuste cae en el menor P_baja de la malla (400 a 500 kPa) en las 8; en 7 esa celda es CORREGIBLE (no KALINA) y en C2 (P_alta×P_baja) es KALINA. Por ejemplo C1: 15.1 % a 500 kPa, mientras el mejor KALINA de la malla es 13.3 %.
+- Implicación: η crece al bajar P_baja hasta chocar con la restricción de cavitación (O2): refuerza M5 con un argumento independiente del muestreo. El máximo del polinomio fuera de las celdas KALINA indica dirección, no un diseño factible.
+- Fuente: Hoja F5 Superficies de respuesta (mallas de los estudios 2 y 11)
+
 ### 3.4 FLUCTUACIÓN (hoja F3 del libro)
 
 **F1 [FLUCTUACIÓN, fase B, confianza Alta].** Sobre η, manda η_t en C1 y C2, y manda P_alta con x_b en C3 y C4.
@@ -186,6 +200,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: Un CORREGIBLE parece mejor porque incumple cavitación; no sirve como estimador del desempeño real.
 - Fuente: P2 p2_comparacion.md
 
+**U3 [FLUCTUACIÓN, fase C, confianza Media].** Al perturbar las variables, la eficiencia de los puntos KALINA se mantiene cerca de la del centro; lo que se pierde es la clase, no la eficiencia.
+
+- Evidencia: Escenario A, fracción de KALINA con |η − η del centro| ≤ 1 pp: 1.00 en C1, 0.94 en C3, 0.98 en C4 y 0.64 en C2. η P5–P95: C1 11.2 a 13.0 % (centro 12.0), C3 8.8 a 10.4 % (9.45), C4 10.7 a 12.1 % (11.15), C2 5.8 a 9.1 % (7.94). En B la dispersión crece (C2 de 2.6 a 10.6 %). La banda del modelo de propiedades (±0.7 pp) se suma de forma determinista a P5 y P95.
+- Implicación: El riesgo de diseño es salir de KALINA por cavitación (U1, U2), no perder eficiencia; C2 es el bloque con η más dispersa. Con 48 puntos por celda los percentiles P5 y P95 son aproximados.
+- Fuente: Hoja F5 Incertidumbre; u1_resumen.csv
+
 ### 3.5 LÍMITES KALINA (hoja F1 y F2 del libro)
 
 **L1 [LÍMITES KALINA, fase A, confianza Alta].** El 96 % de los CORREGIBLE falla por cavitación (O2) y el 4 % por título de salida (O1).
@@ -214,7 +234,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 **L5 [LÍMITES KALINA, fase A, confianza Alta].** Quedan límites del análisis que ningún barrido cierra.
 
-- Evidencia: Solo se usó el motor teqp, sin validación experimental propia del ciclo; el lugar crítico de la mezcla no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalmente bajo) y no se descartan; el diseño mezcla barridos de una variable, mallas y LHS, por lo que las probabilidades por nivel dependen del diseño; los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas no cumplen, y la versión sobre el muestreo LHS (+3.1 puntos de η, IC [+2.46, +3.65]) es la más defendible. Tampoco se propagó la incertidumbre de η_t, ε y del modelo a la probabilidad de KALINA ni se construyeron superficies de respuesta; la importancia por permutación no se implementó; la «confianza» de cada conclusión es la robustez dentro del modelo teqp, no una validación física.
+- Evidencia: Solo se usó el motor teqp, sin validación experimental propia del ciclo; el lugar crítico de la mezcla no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalmente bajo) y no se descartan; el diseño mezcla barridos de una variable, mallas y LHS, por lo que las probabilidades por nivel dependen del diseño; los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas no cumplen, y la versión sobre el muestreo LHS (+3.1 puntos de η, IC [+2.46, +3.65]) es la más defendible. La propagación de incertidumbre (U1 a U3) usa tolerancias supuestas (uniformes, 48 puntos por celda, entradas independientes) y no se estableció la estabilidad del muestreo; la banda del modelo de propiedades se suma de forma determinista y no se muestreó; la importancia por permutación no se implementó; la «confianza» de cada conclusión es la robustez dentro del modelo teqp, no una validación física.
 - Implicación: Validar con el motor real los 7 atípicos y los óptimos de M1 a M4 antes de citarlos como cifras de diseño.
 - Fuente: Excel 1 LEEME; P1 p1_existencia.md
 
@@ -223,6 +243,18 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Evidencia: Fracción de KALINA (C1, C2, C3, C4): moviendo 1 variable 67, 70, 84 y 71 %; 2 variables 66, 63, 71 y 57 %; 7 a 9 variables 47, 52, 51 y 59 %. En las mallas de pares la de ε_cond×T_sumidero deja KALINA solo el 6 % (C1), 67 % (C2), 16 % (C3) y 10 % (C4); la de ε_reg×η_t es 100 % KALINA en C1 y C2.
 - Implicación: Los diseños tienen pasos de tamaño distinto (una variable recorre todo su rango, el LHS recorre las nueve), así que la lectura es exploratoria. Mover el condensador junto con T_sumidero es el cambio de dos variables más peligroso.
 - Fuente: Hoja F1 Margenes de operacion (secciones 2 y 3)
+
+**U1 [LÍMITES KALINA, fase C, confianza Media].** Con tolerancias nominales de operación y equipos, Húsavík (C1) deja de ser KALINA en la mitad de los casos; C2, C3 y C4 conservan la clase en 98, 100 y 85 %.
+
+- Evidencia: Escenario A, 48 puntos del motor por bloque, LHS de las 10 variables (T_fuente ±5 K, T_sumidero ±3 K, P_alta y P_baja ±5 %, x_b ±0.02, η_t, η_p, ε_HRVG, ε_reg y ε_cond ±0.05): P(KALINA) 0.48 en C1 (IC 95 % [0.34, 0.62]), 0.98 en C2 [0.89, 1.00], 1.00 en C3 [0.93, 1.00] y 0.85 en C4 [0.73, 0.93]. De los 33 puntos que pierden la clase, 32 son CORREGIBLE por cavitación (O2) y 1 no converge. PRCC con P(KALINA): C1 ε_cond +0.81, x_b −0.46, T_sumidero −0.43; C4 ε_cond +0.63, x_b −0.39, P_baja +0.32.
+- Implicación: Con el condensador en su tope (ε_cond 0.95) cualquier degradación saca a Húsavík de KALINA; sugiere darle margen con P_baja mayor o un sumidero más frío. Las tolerancias son supuestos de escenario (uniformes; incertidumbre estándar ±a/√3), no mediciones.
+- Fuente: Hoja F5 Incertidumbre; resultados/2026-10-17_sens2_U1
+
+**U2 [LÍMITES KALINA, fase C, confianza Media].** Con el doble de tolerancia solo C2 y C3 conservan la clase en la mayoría de los casos; C1 y C4 caen a 17 y 42 %.
+
+- Evidencia: Escenario B (tolerancias ×2): P(KALINA) 0.17 en C1 [0.09, 0.30], 0.90 en C2 [0.78, 0.95], 0.65 en C3 [0.50, 0.77] y 0.42 en C4 [0.29, 0.56]. De 90 puntos que pierden la clase, 86 son CORREGIBLE por cavitación (O2). PRCC: C3 ε_cond +0.83 y T_sumidero −0.47; C4 ε_cond +0.79, T_sumidero −0.66 y x_b −0.47.
+- Implicación: La robustez ordena a los bloques distinto según la tolerancia (A: C3 > C2 > C4 > C1; B: C2 > C3 > C4 > C1). El condensador y el sumidero son las variables que deciden en C1, C3 y C4.
+- Fuente: Hoja F5 Incertidumbre; resultados/2026-10-17_sens2_U1
 
 ## 4. CORREGIBLE frente a KALINA
 
@@ -234,7 +266,7 @@ Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % po
 2. Barrer T_fuente con paso de 2.5 K en los techos de cada bloque (440.65, 468.15, 568.15 y 528.15 K).
 3. Repetir las mallas B2 (P_baja x x_b) y B4 (ε_cond x T_sumidero) con más niveles en C3 y C4, donde la no aditividad de la existencia es alta.
 4. Validar con el motor real los 7 atípicos y los óptimos M1 a M4 antes de citarlos como cifras de diseño.
-5. Propagar la incertidumbre de η_t, ε_reg, ε_cond y de la ecuación de estado a P(KALINA) y a η (muestreo alrededor de cada centro) y construir superficies de respuesta (η frente a P_baja y x_b).
+5. Repetir la propagación con más puntos por celda (≥ 200) y comprobar la estabilidad de P(KALINA), con tolerancias medidas o acordadas con el profesor, y muestrear la banda del modelo de propiedades en vez de sumarla.
 6. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal.
 
 ## 6. Limitaciones y supuestos
@@ -250,7 +282,7 @@ Ver F6 (sobreestimación de +2.47 puntos de η y +24.8 kW por kg/s), L1 (96 % po
 - LMTD y UA del regenerador se reconstruyen de los estados (contraflujo puro); el modelo usa efectividad.
 - 7 puntos atípicos del libro 1 no se descartan ni se validaron con el motor real.
 - El criterio «distinguible del ruido» es laxo (algún método supera el máximo de 3 variables dummy); la conclusión M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1.
-- No se propagó incertidumbre (η_t, ε, modelo) ni se construyeron superficies de respuesta; la importancia por permutación no se implementó.
+- La propagación de incertidumbre usa tolerancias supuestas (uniformes, ±a/√3 de incertidumbre estándar), 48 puntos por escenario y bloque (IC de Wilson) y entradas independientes; no se estableció la estabilidad del muestreo (JCGM 101) y la banda del modelo de propiedades (±0.7 pp) se suma de forma determinista. La importancia por permutación no se implementó.
 - La cavitación (O2) es un margen de subenfriamiento en la bomba, no un cálculo de NPSH; la «confianza» de cada conclusión es robustez dentro del modelo teqp, no validación física.
 
 *Revisión con la lista de `validate-data` (plugin `data` de Anthropic): duplicados, denominadores, cifras recalculadas de forma independiente, sesgo de selección y gráficos revisados en Excel real. Estado: compartir con los caveats de la sección 6.*
