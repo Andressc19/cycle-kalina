@@ -39,12 +39,96 @@
     "valor": 200
   },
   "n_permutaciones_f1": {
-    "donde": "docs/PLAN_SENS2_MEJORA.md",
-    "valor": 500
+    "donde": "scripts/sens2/p6_comun.py",
+    "valor": 2000
+  },
+  "optimo_T_fuente": {
+    "donde": "scripts/sens2/s2b_opt_T.py",
+    "valor": {
+      "bandas_K": [
+        353.15,
+        373.15,
+        393.15,
+        413.15,
+        433.15,
+        453.15,
+        473.15,
+        493.15,
+        513.15,
+        533.15,
+        553.15,
+        573.15
+      ],
+      "limites": {
+        "P_alta": [
+          1500.0,
+          9000.0
+        ],
+        "P_baja": [
+          300.0,
+          2500.0
+        ],
+        "x_b": [
+          0.5,
+          0.95
+        ]
+      },
+      "max_eval_por_banda": 30,
+      "paso_inicial": {
+        "P_alta": 600.0,
+        "P_baja": 100.0,
+        "x_b": 0.03
+      },
+      "variables_fijas": {
+        "T_sumidero": 280.5,
+        "eps_cond": 0.95,
+        "eps_hrvg": 0.85,
+        "eps_reg": 0.75,
+        "eta_p": 0.8,
+        "eta_t": 0.85,
+        "m_b": 1.0
+      },
+      "variables_libres": [
+        "P_alta",
+        "P_baja",
+        "x_b"
+      ]
+    }
+  },
+  "pisos_paso_kpa": {
+    "donde": "scripts/sens2/s2b_puntos.py",
+    "valor": 25.0
+  },
+  "pisos_x_b_por_centro": {
+    "donde": "scripts/sens2/s2b_puntos.py",
+    "valor": {
+      "C1 Husavik": [
+        0.82,
+        0.9,
+        0.95
+      ],
+      "C2 ancla A*": [
+        0.5,
+        0.55,
+        0.6
+      ],
+      "C3 caliente 150 C": [
+        0.75,
+        0.88,
+        0.95
+      ],
+      "C4 frio 110 C": [
+        0.83,
+        0.88,
+        0.95
+      ]
+    }
   },
   "procedencia": {
     "donde": "docs/PLAN_SENS2_MEJORA.md",
     "valor": {
+      "etapa_B_densidades_y_optimo_T": "OpenCode con vigilante (B4); el director escribio los scripts y los probo en un punto",
+      "etapa_B_pisos_y_reintento": "OpenCode con vigilante (B3, 139 puntos del motor)",
       "r1": "OpenCode con vigilante; r2: director",
       "u1_808_puntos": "corridos por el director con u1_corrida.py (OpenCode no arrancó)"
     }
@@ -52,6 +136,17 @@
   "q_fdr": {
     "donde": "docs/PLAN_SENS2_MEJORA.md",
     "valor": 0.05
+  },
+  "reintento_nc": {
+    "donde": "scripts/sens2/s2b_puntos.py",
+    "valor": {
+      "control": "t_s < 100 (15, semilla 20261018)",
+      "lentos": "t_s >= 250",
+      "presupuesto_original_s": 300,
+      "presupuesto_s": 900,
+      "tope_original_s": 600,
+      "tope_s": 1100
+    }
   },
   "semilla": {
     "donde": "scripts/sens2/p3_comun.py",

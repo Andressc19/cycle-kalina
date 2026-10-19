@@ -398,9 +398,25 @@ def _ronda9(h):
     h["reint.c_otras"] = float(len(c)) - h["reint.c_bracket"] - h["reint.c_balance"] - h["reint.c_lazo"]
 
 
+def _ronda10(h):
+    b = pd.read_csv(os.path.join(R, "2026-10-17_sens2_P4", "p4_bandas.csv"))
+    b = b[b["centro"] == "todos"].set_index("banda")
+    h["bandas.dh1"], h["bandas.dh6"] = float(b.loc["[1, 1.5)", "dh_p50"]), float(b.loc["[6, 10)", "dh_p50"])
+    h["bandas.eta1"], h["bandas.eta6"] = float(b.loc["[1, 1.5)", "eta_p50"]), float(b.loc["[6, 10)", "eta_p50"])
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    t = pd.read_csv(os.path.join(F1, "p6_dens.csv"))
+    for x in t[t["ambito"] == "todos"].itertuples():
+        h["dens.%s.p5" % x.magnitud], h["dens.%s.p50" % x.magnitud], h["dens.%s.p95" % x.magnitud] = float(x.p5), float(x.p50), float(x.p95)
+        h["dens.n"] = float(x.n)
+    d = pd.read_csv(os.path.join(R, "2026-10-18_sens2_B", "s2b_dens_filas.csv"))
+    h["dens.n_filas"] = float(len(d))
+    h["dens.n_bifasico"] = float((d["fase4"] == "bifasico").sum())
+    h["dens.repro_pp"] = float((100.0 * d["eta"] - d["val1"]).abs().max())
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8, _ronda9):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8, _ronda9, _ronda10):
         f(h)
     return h
 

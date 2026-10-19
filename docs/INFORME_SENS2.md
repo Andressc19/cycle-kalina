@@ -2,7 +2,7 @@
 
 > **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la mayor η muestreada es 14.53 % dentro del rango experimental (14.82 % fuera; no se corrió un optimizador).** La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (29 hojas, 90 gráficos). Las cifras salen de los CSV de `resultados/` (P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (30 hojas, 92 gráficos). Las cifras salen de los CSV de `resultados/` (P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -110,7 +110,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 **E2 [EQUIPOS, fase B, confianza Media].** El Δh de la turbina crece con la relación de presiones.
 
-- Evidencia: Regresión Δh sobre r_P: pendiente 30.2 kJ/kg por unidad de r_P (IC 95 % [27.5, 33.3]), R² 0.65 (n = 507 en el muestreo LHS). Por bandas de r_P: Δh mediana 46 kJ/kg en [1, 1.5) y 236 kJ/kg en [6, 10); η mediana 2.5 % y 10.2 % (descriptivo: sin IC y confundido con P_alta y T_fuente).
+- Evidencia: Regresión Δh sobre r_P: pendiente 30.2 kJ/kg por unidad de r_P (IC 95 % [27.5, 33.3]), R² 0.65 (n = 507 en el muestreo LHS). Por bandas de r_P: Δh mediana 47 kJ/kg en [1, 1.5) y 236 kJ/kg en [6, 10); η mediana 2.5 % y 10.1 % (descriptivo: sin IC y confundido con P_alta y T_fuente).
 - Implicación: En los KALINA muestreados Δh crece con r_P; el efecto sobre η es descriptivo y está confundido con P_alta y T_fuente. El límite superior de r_P lo pone el título de salida (E3) y la existencia (D1).
 - Fuente: P4 p4_dependencias.csv; p4_bandas.csv
 - Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
@@ -163,6 +163,13 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: Para preseleccionar conviene el rango del 10 % de mayor η: con 100 kW netos, HRVG de 735 a 861 kW, condensador de 635 a 761 kW y fluido de 0.6 a 1.3 kg/s. Con todos los KALINA muestreados y 100 kW netos: HRVG de 818 a 3871 kW (mediana 1294), condensador de 718 a 3771 kW, fluido de trabajo de 0.7 a 12.9 kg/s. Son envolventes de un muestreo numérico, no especificaciones de compra; el flujo volumétrico de la turbina y la altura de la bomba necesitan las densidades de los estados, que no están en el conjunto de datos (se obtendrían con el motor).
 - Fuente: P4 p4_comun (columnas por kg/s); F1 p6_equipos_kw.csv; hoja F4 Equipos por kW
 - Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial; intervalo = no
+
+**E10 [EQUIPOS, fase C, confianza Media].** Por kW neto, la turbina de un KALINA maneja un caudal volumétrico de 0.25 a 1.69 L/s a la entrada y de 0.93 a 4.01 L/s a la salida (P5 a P95; medianas 0.56 y 1.48), y la bomba mueve 0.015 a 0.244 L/s con una altura de 102 a 503 m.
+
+- Evidencia: Se volvieron a resolver 150 KALINA dentro del rango experimental (30 por ámbito: el LHS de cada centro y el resto de estudios, en posiciones equiespaciadas del orden por η) y todos reprodujeron su η original (diferencia máxima 0.00 pp). Densidades (P5 a P95): vapor a la entrada de la turbina 11.1 a 31.0 kg/m³, salida de la turbina 3.8 a 11.1 kg/m³ (bifásica en 150 de 150 puntos) y líquido a la entrada de la bomba 656 a 832 kg/m³. La relación de volúmenes de la turbina (V4/V3) va de 1.59 a 4.73 (mediana 2.72).
+- Implicación: Sirven para preseleccionar turbina y bomba: la relación de volúmenes fija cuánta expansión volumétrica debe aceptar la turbina y la altura fija la presión de descarga de la bomba. Son envolventes por kW neto de 150 puntos elegidos, no de toda la campaña, y no son especificaciones de compra.
+- Fuente: F1 p6_dens.csv; Excel 2 hoja F4 Caudales y bomba
+- Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; robusto_diseno = parcial
 
 ### 3.3 MÁXIMA EFICIENCIA (hoja F2 y F4 del libro)
 

@@ -20,7 +20,7 @@ D,D4c2,OK,C2 ancla A* eps_cond min=0.6500
 D,D4c3,OK,C3 caliente 150 C eps_cond min=0.8500
 D,D4c4,OK,C4 frio 110 C eps_cond min=0.8500
 F,F6medianas,OK,medianas cor=10.20 kal=7.73
-GLOBAL,Gn,OK,conclusiones=45
+GLOBAL,Gn,OK,conclusiones=46
 GLOBAL,Gterm,OK,terminos prohibidos en conclusiones: ninguno
 U,U1,OK,P(KALINA) C1=0.47 C2=0.99 C3=1.00 C4=0.85
 L,L7,OK,m_O2<3 K = 7.0 % en evidencia L7
@@ -41,3 +41,34 @@ L,L2c,OK,"a una variable: global 49.3, barridos y mallas 67.6, LHS 0.0"
 L,L5c,OK,dummy marcadas 1 de 36; reales distinguibles con una sola familia (reales y dummy mezcladas): 54
 L,L10,OK,"REINT0 crudo: 88 NO_CONVERGIO de 90 (control 15, error de motor 2)"
 D,D9,OK,PISOS crudo: 49 puntos
+E,E10,OK,V3 P5-P95 0.25-1.69; V4 P50 1.48; H 102-503 m; n = 150
+E,E1rp,OK,r_P P5/P50/P95 = 1.70/3.47/5.51
+E,E1dh,OK,dh_turb P5/P50/P95 = 65.3/152.7/230.4 kJ/kg
+E,E1top_rp,OK,10 pct mayor eta (n=205): r_P P5/P95 = 4.26/7.25
+E,E1top_dh,OK,10 pct mayor eta: dh P5/P95 = 171.7/248.7 kJ/kg
+E,E2reg,OK,pendiente = 30.2; R2 = 0.65; n = 507 (LHS)
+E,E2dh1,OK,"dh mediana [1,1.5) = 46.54 kJ/kg (texto: 46)"
+E,E2dh6,OK,"dh mediana [6,10) = 236.11 kJ/kg (texto: 236)"
+E,E2eta1,OK,"eta mediana [1,1.5) = 2.483 % (texto: 2.5)"
+E,E2eta6,OK,"eta mediana [6,10) = 10.147 % (texto: 10.2)"
+E,E3min,OK,q4 minimo KALINA = 0.9014
+E,E3med,OK,q4 mediana KALINA = 0.9499
+E,E3top,OK,q4 top10 P5/P50 = 0.9101/0.9355
+E,E3marg,OK,"margen top10 mediana 0.0355, max 0.0549, <=0.01 5.37 %"
+E,E3marg_pt,OK,"margen M1/M2 min 0.0063, max 0.0092"
+E,E6med,OK,Q_i/m_b mediana KALINA = 789.51 (790)
+M,M1txt,OK,"eta max fuera = 14.82, dentro = 14.53"
+M,M1med,OK,"eta mediana = 7.73, P90 = 11.53"
+M,M2txt,OK,C1-B3-0127 eta = 14.01
+M,M3txt,OK,C1-B5-0228 eta = 13.95; W_net/m_b = 124.9
+M,M4c4,OK,C4 max eta KALINA = 13.234
+M,M4c2,OK,C2 max dentro = 12.374; fuera = 13.120
+F,F6w,OK,W_net/m_b medianas COR=82.70 KAL=57.86 dif=+24.84
+F,F6eta,OK,eta dif COR-KAL = +2.469
+F,F6lhs,OK,eta dif LHS = +3.100
+F,F6bloques,OK,dif por bloque min +1.413 max +3.241
+F,F6sinc,OK,dif sin centro = +4.421
+L,L1n,OK,CORREGIBLE en dedup = 968
+L,L4pct,OK,KALINA fuera de rango = 14.95 %
+L,L4n,OK,KALINA con eta = 2047
+L,L5nc,OK,NO_CONVERGIO 515 de 3663 puntos

@@ -166,9 +166,9 @@ INFORME_SENS2.md,113,95,en_conclusiones,"r unidad de r_P (IC 95 % [27.5, 33.3]),
 INFORME_SENS2.md,113,27.5,en_conclusiones,"ad de r_P (IC 95 % [27.5, 33.3]), R² 0.65 (n"
 INFORME_SENS2.md,113,33.3,en_conclusiones,"r_P (IC 95 % [27.5, 33.3]), R² 0.65 (n = 507"
 INFORME_SENS2.md,113,0.65,en_conclusiones,"% [27.5, 33.3]), R² 0.65 (n = 507 en el mues"
-INFORME_SENS2.md,113,1.5,en_conclusiones,"ana 46 kJ/kg en [1, 1.5) y 236 kJ/kg en [6,"
-INFORME_SENS2.md,113,2.5,en_conclusiones," [6, 10); η mediana 2.5 % y 10.2 % (descrip"
-INFORME_SENS2.md,113,10.2,en_conclusiones,; η mediana 2.5 % y 10.2 % (descriptivo: sin
+INFORME_SENS2.md,113,1.5,en_conclusiones,"ana 47 kJ/kg en [1, 1.5) y 236 kJ/kg en [6,"
+INFORME_SENS2.md,113,2.5,en_conclusiones," [6, 10); η mediana 2.5 % y 10.1 % (descrip"
+INFORME_SENS2.md,113,10.1,en_conclusiones,; η mediana 2.5 % y 10.1 % (descriptivo: sin
 INFORME_SENS2.md,120,0.9014,en_conclusiones,4 en KALINA: mínimo 0.9014 (límite O1: 0.90). 
 INFORME_SENS2.md,120,0.90,en_conclusiones, 0.9014 (límite O1: 0.90). En el 10 % de may
 INFORME_SENS2.md,120,10,en_conclusiones,te O1: 0.90). En el 10 % de mayor η: media
@@ -287,433 +287,449 @@ INFORME_SENS2.md,163,0.6,en_conclusiones, 761 kW y fluido de 0.6 a 1.3 kg/s. Con
 INFORME_SENS2.md,163,1.3,en_conclusiones,W y fluido de 0.6 a 1.3 kg/s. Con todos los
 INFORME_SENS2.md,163,0.7,en_conclusiones,luido de trabajo de 0.7 a 12.9 kg/s. Son en
 INFORME_SENS2.md,163,12.9,en_conclusiones,de trabajo de 0.7 a 12.9 kg/s. Son envolvent
-INFORME_SENS2.md,167,3.3,en_csv,### 3.3 MÁXIMA EFICIENCIA (
-INFORME_SENS2.md,169,14.82,en_conclusiones,yor η muestreada es 14.82 % con la fuente a 1
-INFORME_SENS2.md,169,14.53,en_conclusiones,dentro del rango es 14.53 %.
-INFORME_SENS2.md,171,14.82,en_conclusiones,"- Evidencia: 14.82 %: fuente 443.15 K,"
-INFORME_SENS2.md,171,443.15,en_conclusiones,"ia: 14.82 %: fuente 443.15 K, P_alta 4550 kPa,"
-INFORME_SENS2.md,171,0.73,en_conclusiones,"P_baja 610 kPa, x_b 0.73 (N1-T170-14). 14.53"
-INFORME_SENS2.md,171,14.53,en_conclusiones," 0.73 (N1-T170-14). 14.53 %: fuente 423.15 K,"
-INFORME_SENS2.md,171,423.15,en_conclusiones,"4). 14.53 %: fuente 423.15 K, P_alta 6000 kPa,"
-INFORME_SENS2.md,171,0.75,en_conclusiones,"P_baja 650 kPa, x_b 0.75, η_t 0.85, ε_reg 0."
-INFORME_SENS2.md,171,0.85,en_conclusiones," kPa, x_b 0.75, η_t 0.85, ε_reg 0.75, ε_cond"
-INFORME_SENS2.md,171,0.75,en_conclusiones,"75, η_t 0.85, ε_reg 0.75, ε_cond 0.95 (N10-C"
-INFORME_SENS2.md,171,0.95,en_conclusiones," ε_reg 0.75, ε_cond 0.95 (N10-C3-0016). Medi"
-INFORME_SENS2.md,171,7.7,en_conclusiones,iana de η en KALINA 7.7 % (5.5 % en el mues
-INFORME_SENS2.md,171,5.5,en_conclusiones, η en KALINA 7.7 % (5.5 % en el muestreo LH
-INFORME_SENS2.md,171,11.5,en_conclusiones,de del diseño); P90 11.5 %. Son los mayores 
-INFORME_SENS2.md,171,0.7,en_conclusiones,avitación es m_O2 = 0.7 K en el de 14.82 % 
-INFORME_SENS2.md,171,14.82,en_conclusiones,O2 = 0.7 K en el de 14.82 % y 6.7 K en el de 
-INFORME_SENS2.md,171,6.7,en_conclusiones, en el de 14.82 % y 6.7 K en el de 14.53 %.
-INFORME_SENS2.md,171,14.53,en_conclusiones, % y 6.7 K en el de 14.53 %.
-INFORME_SENS2.md,172,14.5,en_conclusiones,streados llegan a ≈ 14.5 % con P_alta alta (
-INFORME_SENS2.md,172,0.95,en_conclusiones,"ta 6000 kPa, ε_cond 0.95), de modo que el te"
-INFORME_SENS2.md,172,14.8,en_conclusiones, mayor; la cifra de 14.8 % necesita 170 °C. 
-INFORME_SENS2.md,172,0.29,en_conclusiones, y fuera del rango (0.29 puntos) es menor qu
-INFORME_SENS2.md,172,0.7,en_conclusiones,lo de propiedades (±0.7 puntos).
-INFORME_SENS2.md,176,14.0,en_conclusiones, muestreado llega a 14.0 % subiendo P_alta a
-INFORME_SENS2.md,176,2.0,en_conclusiones,"aja a 600 kPa, unos 2.0 puntos sobre el cen"
-INFORME_SENS2.md,178,394.15,en_conclusiones,"dencia: C1-B3-0127: 394.15 K, P_alta 5000, P_b"
-INFORME_SENS2.md,178,0.82,en_conclusiones,"00, P_baja 600, x_b 0.82, η_t 0.85, ε_reg 0."
-INFORME_SENS2.md,178,0.85,en_conclusiones," 600, x_b 0.82, η_t 0.85, ε_reg 0.75, ε_cond"
-INFORME_SENS2.md,178,0.75,en_conclusiones,"82, η_t 0.85, ε_reg 0.75, ε_cond 0.95: η 14."
-INFORME_SENS2.md,178,0.95,en_conclusiones," ε_reg 0.75, ε_cond 0.95: η 14.01 %, dentro "
-INFORME_SENS2.md,178,14.01,en_conclusiones,".75, ε_cond 0.95: η 14.01 %, dentro del rango"
-INFORME_SENS2.md,178,0.95,en_conclusiones," P_baja 690, ε_cond 0.95) es KALINA con η 12"
-INFORME_SENS2.md,178,12.00,en_conclusiones,95) es KALINA con η 12.00 %.
-INFORME_SENS2.md,179,2.0,en_conclusiones," de 121 °C, ganar ≈ 2.0 puntos exige más pr"
-INFORME_SENS2.md,179,0.82,en_conclusiones,"baja (600 kPa a x_b 0.82, D8); su margen de "
-INFORME_SENS2.md,179,3.7,en_conclusiones,avitación es m_O2 = 3.7 K (L7).
-INFORME_SENS2.md,183,0.95,en_conclusiones,"pos (η_t y ε_reg en 0.95), el punto muestrea"
-INFORME_SENS2.md,183,13.95,en_conclusiones, de Húsavík llega a 13.95 % sin cambiar las p
-INFORME_SENS2.md,185,0.95,en_conclusiones,ia: C1-B5-0228: η_t 0.95 y ε_reg 0.95 con P_
-INFORME_SENS2.md,185,0.95,en_conclusiones,8: η_t 0.95 y ε_reg 0.95 con P_alta 3300 y P
-INFORME_SENS2.md,185,13.95,en_conclusiones,"300 y P_baja 690: η 13.95 %, W_net 124.9 kW p"
-INFORME_SENS2.md,185,124.9,en_conclusiones,"0: η 13.95 %, W_net 124.9 kW por kg/s."
-INFORME_SENS2.md,190,13.2,en_conclusiones,ros dos bloques son 13.2 % (C4) y 12.4 % (C2
-INFORME_SENS2.md,190,12.4,en_conclusiones,"s son 13.2 % (C4) y 12.4 % (C2, dentro del r"
-INFORME_SENS2.md,192,423.15,en_conclusiones,"4-B1-045 con fuente 423.15 K, P_alta 3880, P_b"
-INFORME_SENS2.md,192,0.88,en_conclusiones,"80, P_baja 800, x_b 0.88: 13.23 %. C2: C2-LH"
-INFORME_SENS2.md,192,13.23,en_conclusiones,"baja 800, x_b 0.88: 13.23 %. C2: C2-LHS-0005 "
-INFORME_SENS2.md,192,436.5,en_conclusiones,"C2: C2-LHS-0005 con 436.5 K, P_alta 3090, P_b"
-INFORME_SENS2.md,192,0.47,en_conclusiones,"90, P_baja 660, x_b 0.47, η_t 0.95: 12.37 % "
-INFORME_SENS2.md,192,0.95,en_conclusiones," 660, x_b 0.47, η_t 0.95: 12.37 % (13.12 % f"
-INFORME_SENS2.md,192,12.37,en_conclusiones,"x_b 0.47, η_t 0.95: 12.37 % (13.12 % fuera de"
-INFORME_SENS2.md,192,13.12,en_conclusiones, η_t 0.95: 12.37 % (13.12 % fuera del rango).
-INFORME_SENS2.md,192,0.2,en_conclusiones,n casi nulo (m_O2 = 0.2 K) y el de C2 3.9 K
-INFORME_SENS2.md,192,3.9,en_conclusiones,= 0.2 K) y el de C2 3.9 K.
-INFORME_SENS2.md,199,−0.63,en_conclusiones, subir P_baja (PRCC −0.63 en C1) y P_baja tie
-INFORME_SENS2.md,199,10,en_conclusiones,"odos los puntos, el 10 % de mayor η está a"
-INFORME_SENS2.md,199,0.14,en_conclusiones,% de mayor η está a 0.14 de la frontera fren
-INFORME_SENS2.md,199,0.37,en_conclusiones,a frontera frente a 0.37 en el resto (KS 0.3
-INFORME_SENS2.md,199,0.357,en_conclusiones,".37 en el resto (KS 0.357), con 121 de 207 a "
-INFORME_SENS2.md,199,0.62,en_conclusiones,"ignificativa en C1 (0.62 frente a 0.75, p = "
-INFORME_SENS2.md,199,0.75,en_conclusiones,"n C1 (0.62 frente a 0.75, p = 0.016; 0.064 c"
-INFORME_SENS2.md,199,0.016,en_conclusiones," frente a 0.75, p = 0.016; 0.064 con Bonferro"
-INFORME_SENS2.md,199,0.064,en_conclusiones," a 0.75, p = 0.016; 0.064 con Bonferroni por "
-INFORME_SENS2.md,199,0.79,en_conclusiones,"loques) y no en C2 (0.79 frente a 0.83, p = "
-INFORME_SENS2.md,199,0.83,en_conclusiones,"n C2 (0.79 frente a 0.83, p = 0.63), C3 (0.8"
-INFORME_SENS2.md,199,0.63,en_conclusiones," frente a 0.83, p = 0.63), C3 (0.82 frente a"
-INFORME_SENS2.md,199,0.82,en_conclusiones,".83, p = 0.63), C3 (0.82 frente a 0.90, p = "
-INFORME_SENS2.md,199,0.90,en_conclusiones,", C3 (0.82 frente a 0.90, p = 0.09) ni C4 (0"
-INFORME_SENS2.md,199,0.09,en_conclusiones," frente a 0.90, p = 0.09) ni C4 (0.83 frente"
-INFORME_SENS2.md,199,0.83,en_conclusiones,"0, p = 0.09) ni C4 (0.83 frente a 0.81, p = "
-INFORME_SENS2.md,199,0.81,en_conclusiones,"i C4 (0.83 frente a 0.81, p = 0.48). Si la d"
-INFORME_SENS2.md,199,0.48,en_conclusiones," frente a 0.81, p = 0.48). Si la distancia s"
-INFORME_SENS2.md,199,0.086,en_conclusiones," LHS, C1 pasa a p = 0.086 y C3 a p = 0.003 (0"
-INFORME_SENS2.md,199,0.003,en_conclusiones, = 0.086 y C3 a p = 0.003 (0.010 con Bonferro
-INFORME_SENS2.md,199,0.010,en_conclusiones,6 y C3 a p = 0.003 (0.010 con Bonferroni): cu
-INFORME_SENS2.md,199,0.029,en_conclusiones,"ación completa (p = 0.029) y C1 (p = 0.044), "
-INFORME_SENS2.md,199,0.044,en_conclusiones," = 0.029) y C1 (p = 0.044), pero ninguna salv"
-INFORME_SENS2.md,206,0.96,en_conclusiones,_alta×P_baja; R² de 0.96 a 1.00): el máximo 
-INFORME_SENS2.md,206,1.00,en_conclusiones,_baja; R² de 0.96 a 1.00): el máximo del aju
-INFORME_SENS2.md,206,15.1,en_conclusiones,"NA. Por ejemplo C1: 15.1 % a 500 kPa, mientr"
-INFORME_SENS2.md,206,13.3,en_conclusiones,LINA de la malla es 13.3 %. Validación cruza
-INFORME_SENS2.md,206,0.91,en_conclusiones, celda fuera: R² de 0.91 a 1.00 (caída máxim
-INFORME_SENS2.md,206,1.00,en_conclusiones,fuera: R² de 0.91 a 1.00 (caída máxima 0.05 
-INFORME_SENS2.md,206,0.05,en_conclusiones, 1.00 (caída máxima 0.05 respecto del R² en 
-INFORME_SENS2.md,211,7.0,en_conclusiones, la banda de 77 °C (7.0 %) y no muestra una
-INFORME_SENS2.md,211,12.1,en_conclusiones," entre 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 "
-INFORME_SENS2.md,211,14.0,en_conclusiones," 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 %); de"
-INFORME_SENS2.md,211,13.3,en_conclusiones,"157 °C (12.1, 14.0, 13.3 y 14.5 %); desde ≈ "
-INFORME_SENS2.md,211,14.5,en_conclusiones,"(12.1, 14.0, 13.3 y 14.5 %); desde ≈ 160 °C "
-INFORME_SENS2.md,213,7.0,en_conclusiones,"rango de la banda): 7.0 % (77; 17), 12.1 (9"
-INFORME_SENS2.md,213,12.1,en_conclusiones,"a): 7.0 % (77; 17), 12.1 (97; 171), 14.0 (11"
-INFORME_SENS2.md,213,14.0,en_conclusiones,"7), 12.1 (97; 171), 14.0 (117; 681), 13.3 (1"
-INFORME_SENS2.md,213,13.3,en_conclusiones,"), 14.0 (117; 681), 13.3 (137; 480), 14.5 (1"
-INFORME_SENS2.md,213,14.5,en_conclusiones,"), 13.3 (137; 480), 14.5 (157; 369) y 12.3 ("
-INFORME_SENS2.md,213,12.3,en_conclusiones,", 14.5 (157; 369) y 12.3 (177; 17); las band"
-INFORME_SENS2.md,213,84,en_conclusiones," rango (284 de 340, 84 %), de modo que la "
-INFORME_SENS2.md,213,12.3,en_conclusiones, dentro del rango a 12.3 % en la banda de 17
-INFORME_SENS2.md,213,14.82,en_conclusiones,"; el máximo global (14.82 %) está a 170 °C, f"
-INFORME_SENS2.md,213,0.16,en_conclusiones,onvergió (P(KALINA) 0.16; 0.81 si se excluye
-INFORME_SENS2.md,213,0.81,en_conclusiones,ió (P(KALINA) 0.16; 0.81 si se excluyen los 
-INFORME_SENS2.md,218,3.4,en_csv,### 3.4 FLUCTUACIÓN (hoja F
-INFORME_SENS2.md,222,1.2,en_conclusiones,por bloque): C1 η_t 1.2; C2 η_t 1.3; C3 P_a
-INFORME_SENS2.md,222,1.3,en_conclusiones, C1 η_t 1.2; C2 η_t 1.3; C3 P_alta 2.0 y x_
-INFORME_SENS2.md,222,2.0,en_conclusiones, η_t 1.3; C3 P_alta 2.0 y x_b 2.2; C4 P_alt
-INFORME_SENS2.md,222,2.2,en_conclusiones,C3 P_alta 2.0 y x_b 2.2; C4 P_alta 1.8 y x_
-INFORME_SENS2.md,222,1.8,en_conclusiones, x_b 2.2; C4 P_alta 1.8 y x_b 2.7. PRCC de 
-INFORME_SENS2.md,222,2.7,en_conclusiones,C4 P_alta 1.8 y x_b 2.7. PRCC de η_t en C1 
-INFORME_SENS2.md,222,0.74,en_conclusiones, PRCC de η_t en C1 +0.74; P_baja −0.63. Con 
-INFORME_SENS2.md,222,−0.63,en_conclusiones,en C1 +0.74; P_baja −0.63. Con 2000 permutaci
-INFORME_SENS2.md,222,0.05,en_conclusiones,amini–Hochberg (q < 0.05 en al menos 2 métod
-INFORME_SENS2.md,222,0.05,en_conclusiones,e las dummy dan p < 0.05 en el 3.5 % de los 
-INFORME_SENS2.md,222,3.5,en_conclusiones, dan p < 0.05 en el 3.5 % de los casos.
-INFORME_SENS2.md,229,1.0,en_conclusiones,"_fuente rango medio 1.0 (C1, C2) y 1.8 (C3)"
-INFORME_SENS2.md,229,1.8,en_conclusiones,"edio 1.0 (C1, C2) y 1.8 (C3); x_b 1.3 (C4)."
-INFORME_SENS2.md,229,1.3,en_conclusiones,C2) y 1.8 (C3); x_b 1.3 (C4). Le siguen η_t
-INFORME_SENS2.md,236,1.0,en_conclusiones,"(1 = mayor): C1 x_b 1.0, P_baja 2.6, ε_cond"
-INFORME_SENS2.md,236,2.6,en_conclusiones," C1 x_b 1.0, P_baja 2.6, ε_cond 2.8; C2 ε_c"
-INFORME_SENS2.md,236,2.8,en_conclusiones," P_baja 2.6, ε_cond 2.8; C2 ε_cond 1.6, P_b"
-INFORME_SENS2.md,236,1.6,en_conclusiones,"cond 2.8; C2 ε_cond 1.6, P_baja 1.8, x_b 2."
-INFORME_SENS2.md,236,1.8,en_conclusiones," ε_cond 1.6, P_baja 1.8, x_b 2.6; C3 P_baja"
-INFORME_SENS2.md,236,2.6,en_conclusiones,".6, P_baja 1.8, x_b 2.6; C3 P_baja 1.0; C4 "
-INFORME_SENS2.md,236,1.0,en_conclusiones," x_b 2.6; C3 P_baja 1.0; C4 T_fuente 1.0, P"
-INFORME_SENS2.md,236,1.0,en_conclusiones,"ja 1.0; C4 T_fuente 1.0, P_baja 2.0. Con 20"
-INFORME_SENS2.md,236,2.0,en_conclusiones,"_fuente 1.0, P_baja 2.0. Con 2000 permutaci"
-INFORME_SENS2.md,236,0.05,en_conclusiones,amini–Hochberg (q < 0.05 en al menos 2 métod
-INFORME_SENS2.md,243,1.03,en_conclusiones,el punto base): η_t 1.03 a 1.15 en los cuatr
-INFORME_SENS2.md,243,1.15,en_conclusiones,o base): η_t 1.03 a 1.15 en los cuatro bloqu
-INFORME_SENS2.md,243,−0.60,en_conclusiones,tro bloques; P_baja −0.60 a −0.79; T_fuente 1
-INFORME_SENS2.md,243,−0.79,en_conclusiones,ues; P_baja −0.60 a −0.79; T_fuente 1.02 (C1)
-INFORME_SENS2.md,243,1.02,en_conclusiones,"0 a −0.79; T_fuente 1.02 (C1), 1.28 (C4), 0."
-INFORME_SENS2.md,243,1.28,en_conclusiones,"T_fuente 1.02 (C1), 1.28 (C4), 0.25 (C3). En"
-INFORME_SENS2.md,243,0.25,en_conclusiones,"02 (C1), 1.28 (C4), 0.25 (C3). En C2 T_fuent"
-INFORME_SENS2.md,243,13.2,en_conclusiones,. En C2 T_fuente da 13.2 porque el punto bas
-INFORME_SENS2.md,244,1.2,en_conclusiones, Un punto de η_t (≈ 1.2 % relativo) equival
-INFORME_SENS2.md,244,1.2,en_conclusiones,ativo) equivale a ≈ 1.2 a 1.4 % relativo de
-INFORME_SENS2.md,244,1.4,en_conclusiones, equivale a ≈ 1.2 a 1.4 % relativo de η; su
-INFORME_SENS2.md,244,14,en_conclusiones,r P_baja 100 kPa (≈ 14 % en C1) baja η ≈ 9
-INFORME_SENS2.md,244,9,en_conclusiones,4 % en C1) baja η ≈ 9 % en términos relat
-INFORME_SENS2.md,250,0.26,en_conclusiones,ndicador KALINA: B2 0.26 a 0.52 y B4 0.33 a 
-INFORME_SENS2.md,250,0.52,en_conclusiones,r KALINA: B2 0.26 a 0.52 y B4 0.33 a 0.52 (C
-INFORME_SENS2.md,250,0.33,en_conclusiones,B2 0.26 a 0.52 y B4 0.33 a 0.52 (C1 a C4). S
-INFORME_SENS2.md,250,0.52,en_conclusiones, a 0.52 y B4 0.33 a 0.52 (C1 a C4). Sobre η:
-INFORME_SENS2.md,250,0.00,en_conclusiones,C4). Sobre η: entre 0.00 y 0.18 en casi todo
-INFORME_SENS2.md,250,0.18,en_conclusiones,bre η: entre 0.00 y 0.18 en casi todos los p
-INFORME_SENS2.md,250,0.05,en_conclusiones," pares (aditivos, < 0.05, en B1, B3 y B5 sal"
-INFORME_SENS2.md,250,0.08,en_conclusiones,o B1 y B3 en C2 con 0.08 y 0.05); fuertes so
-INFORME_SENS2.md,250,0.05,en_conclusiones,B3 en C2 con 0.08 y 0.05); fuertes solo B6 e
-INFORME_SENS2.md,250,0.28,en_conclusiones,rtes solo B6 en C1 (0.28) y B4 en C4 (0.28).
-INFORME_SENS2.md,250,0.28,en_conclusiones, (0.28) y B4 en C4 (0.28).
-INFORME_SENS2.md,257,10.2,en_conclusiones,as sin parear de η: 10.2 % frente a 7.7 % (+
-INFORME_SENS2.md,257,7.7,en_conclusiones," η: 10.2 % frente a 7.7 % (+2.47 puntos, IC"
-INFORME_SENS2.md,257,2.47,en_conclusiones," % frente a 7.7 % (+2.47 puntos, IC 95 % [+2"
-INFORME_SENS2.md,257,95,en_conclusiones,"% (+2.47 puntos, IC 95 % [+2.18, +2.70]); "
-INFORME_SENS2.md,257,2.18,en_conclusiones,"7 puntos, IC 95 % [+2.18, +2.70]); dentro de"
-INFORME_SENS2.md,257,2.70,en_conclusiones,"s, IC 95 % [+2.18, +2.70]); dentro de cada b"
-INFORME_SENS2.md,257,1.4,en_conclusiones,"a diferencia va de +1.4 a +3.2 puntos, y lo"
-INFORME_SENS2.md,257,3.2,en_conclusiones,"encia va de +1.4 a +3.2 puntos, y los punto"
-INFORME_SENS2.md,257,4.4,en_conclusiones,o elevan el total (+4.4). Solo con el muest
-INFORME_SENS2.md,257,3.1,en_conclusiones,"n el muestreo LHS: +3.1 puntos (IC [+2.46, "
-INFORME_SENS2.md,257,2.46,en_conclusiones,": +3.1 puntos (IC [+2.46, +3.65]). W_net por"
-INFORME_SENS2.md,257,3.65,en_conclusiones,"puntos (IC [+2.46, +3.65]). W_net por kg/s: "
-INFORME_SENS2.md,257,82.7,en_conclusiones,]). W_net por kg/s: 82.7 frente a 57.9 (+24.
-INFORME_SENS2.md,257,57.9,en_conclusiones,"kg/s: 82.7 frente a 57.9 (+24.8, IC [+19.0, "
-INFORME_SENS2.md,257,24.8,en_conclusiones,"2.7 frente a 57.9 (+24.8, IC [+19.0, +29.7];"
-INFORME_SENS2.md,257,19.0,en_conclusiones,"a 57.9 (+24.8, IC [+19.0, +29.7]; LHS +40.9)"
-INFORME_SENS2.md,257,29.7,en_conclusiones,"(+24.8, IC [+19.0, +29.7]; LHS +40.9). Empar"
-INFORME_SENS2.md,257,40.9,en_conclusiones,"+19.0, +29.7]; LHS +40.9). Emparejando cada "
-INFORME_SENS2.md,257,0.43,en_conclusiones, vecino es menor en 0.43 puntos (L2).
-INFORME_SENS2.md,264,0.98,en_conclusiones,"del centro/ ≤ 1 pp: 0.98 en C1, 0.95 en C3, "
-INFORME_SENS2.md,264,0.95,en_conclusiones,"≤ 1 pp: 0.98 en C1, 0.95 en C3, 0.96 en C4 y"
-INFORME_SENS2.md,264,0.96,en_conclusiones," en C1, 0.95 en C3, 0.96 en C4 y 0.66 en C2."
-INFORME_SENS2.md,264,0.66,en_conclusiones,"en C3, 0.96 en C4 y 0.66 en C2. η P5–P95: C1"
-INFORME_SENS2.md,264,11.1,en_conclusiones,en C2. η P5–P95: C1 11.1 a 12.9 % (centro 12
-INFORME_SENS2.md,264,12.9,en_conclusiones,"η P5–P95: C1 11.1 a 12.9 % (centro 12.0), C3"
-INFORME_SENS2.md,264,12.0,en_conclusiones,".1 a 12.9 % (centro 12.0), C3 8.8 a 10.4 % ("
-INFORME_SENS2.md,264,8.8,en_conclusiones,"% (centro 12.0), C3 8.8 a 10.4 % (9.45), C4"
-INFORME_SENS2.md,264,10.4,en_conclusiones,"tro 12.0), C3 8.8 a 10.4 % (9.45), C4 10.5 a"
-INFORME_SENS2.md,264,9.45,en_conclusiones,"), C3 8.8 a 10.4 % (9.45), C4 10.5 a 12.1 % "
-INFORME_SENS2.md,264,10.5,en_conclusiones,"a 10.4 % (9.45), C4 10.5 a 12.1 % (11.15), C"
-INFORME_SENS2.md,264,12.1,en_conclusiones,"% (9.45), C4 10.5 a 12.1 % (11.15), C2 6.3 a"
-INFORME_SENS2.md,264,11.15,en_conclusiones,", C4 10.5 a 12.1 % (11.15), C2 6.3 a 9.3 % (7"
-INFORME_SENS2.md,264,6.3,en_conclusiones," 12.1 % (11.15), C2 6.3 a 9.3 % (7.94). En "
-INFORME_SENS2.md,264,9.3,en_conclusiones,"% (11.15), C2 6.3 a 9.3 % (7.94). En B la d"
-INFORME_SENS2.md,264,7.94,en_conclusiones,"5), C2 6.3 a 9.3 % (7.94). En B la dispersió"
-INFORME_SENS2.md,264,2.6,en_conclusiones,ersión crece (C2 de 2.6 a 10.6 %). La banda
-INFORME_SENS2.md,264,10.6,en_conclusiones, crece (C2 de 2.6 a 10.6 %). La banda del mo
-INFORME_SENS2.md,264,0.7,en_conclusiones,lo de propiedades (±0.7 pp) se suma de form
-INFORME_SENS2.md,269,3.5,en_conclusiones,### 3.5 LÍMITES KALINA (hoj
-INFORME_SENS2.md,271,96,en_conclusiones,fianza Media].** El 96 % de los CORREGIBLE
-INFORME_SENS2.md,271,4,en_conclusiones,avitación (O2) y el 4 % por título de sal
-INFORME_SENS2.md,273,96,en_conclusiones,"lación dominante O2 96 %, O1 4 %; D median"
-INFORME_SENS2.md,273,4,en_conclusiones,"minante O2 96 %, O1 4 %; D mediana 1.17 ("
-INFORME_SENS2.md,273,1.17,en_conclusiones,", O1 4 %; D mediana 1.17 (P90 10.1). En la b"
-INFORME_SENS2.md,273,10.1,en_conclusiones,D mediana 1.17 (P90 10.1). En la base cruda 
-INFORME_SENS2.md,273,0.278,en_conclusiones," son zona gris (D ≤ 0.278), 249 de ellos por "
-INFORME_SENS2.md,274,96,en_conclusiones,ayor resolución. El 96 % es un conteo del 
-INFORME_SENS2.md,278,68,en_conclusiones,n un solo cambio en 68 % de los CORREGIBLE
-INFORME_SENS2.md,278,0,en_conclusiones,ridos y mallas y en 0 % de los del muestr
-INFORME_SENS2.md,278,49,en_conclusiones,ables a la vez): el 49 % global es un cont
-INFORME_SENS2.md,280,49,en_conclusiones,- Evidencia: 49 % de los 968 CORREG
-INFORME_SENS2.md,280,68,en_conclusiones," un KALINA, pero es 68 % en los 706 de bar"
-INFORME_SENS2.md,280,0,en_conclusiones,barridos y mallas y 0 % en los 262 del mu
-INFORME_SENS2.md,280,24,en_conclusiones,"diseño (P_baja sube 24 %, ε_cond sube 16 %"
-INFORME_SENS2.md,280,16,en_conclusiones,"e 24 %, ε_cond sube 16 %, x_b baja 3 %, T_"
-INFORME_SENS2.md,280,3,en_conclusiones,"sube 16 %, x_b baja 3 %, T_fuente baja 3 "
-INFORME_SENS2.md,280,3,en_conclusiones," 3 %, T_fuente baja 3 %). Distancia L1 me"
-INFORME_SENS2.md,280,0.365,en_conclusiones,istancia L1 mediana 0.365; mediana de 2 varia
-INFORME_SENS2.md,280,-0.43,en_conclusiones,"no − CORREGIBLE) es -0.43 puntos (IC [-0.55, "
-INFORME_SENS2.md,280,-0.55,en_conclusiones,"s -0.43 puntos (IC [-0.55, -0.36], n = 734; l"
-INFORME_SENS2.md,280,-0.36,en_conclusiones," puntos (IC [-0.55, -0.36], n = 734; la media"
-INFORME_SENS2.md,280,-0.33,en_conclusiones," = 734; la media es -0.33 [-0.53, -0.13] y en"
-INFORME_SENS2.md,280,-0.53,en_conclusiones," la media es -0.33 [-0.53, -0.13] y en C1 y C"
-INFORME_SENS2.md,280,-0.13,en_conclusiones,"ia es -0.33 [-0.53, -0.13] y en C1 y C4 su IC"
-INFORME_SENS2.md,280,-0.56,en_conclusiones," su IC incluye 0) y -0.56 puntos (IC [-0.69, "
-INFORME_SENS2.md,280,-0.69,en_conclusiones,"y -0.56 puntos (IC [-0.69, -0.44], n = 214) s"
-INFORME_SENS2.md,280,-0.44,en_conclusiones," puntos (IC [-0.69, -0.44], n = 214) si el ve"
-INFORME_SENS2.md,280,0.2,en_conclusiones, vecino está a L1 ≤ 0.2. Por diseño: -0.28 
-INFORME_SENS2.md,280,-0.28,en_conclusiones, ≤ 0.2. Por diseño: -0.28 en barridos y malla
-INFORME_SENS2.md,280,-1.72,en_conclusiones,vecinos cercanos) y -1.72 en el muestreo LHS 
-INFORME_SENS2.md,280,0.5,en_conclusiones,"os lejanos); a L1 > 0.5, entre los puntos q"
-INFORME_SENS2.md,280,1.00,en_conclusiones,"S, la diferencia es 1.00 [0.72, 1.38] (n = 8"
-INFORME_SENS2.md,280,0.72,en_conclusiones,"diferencia es 1.00 [0.72, 1.38] (n = 87), de"
-INFORME_SENS2.md,280,1.38,en_conclusiones,"ncia es 1.00 [0.72, 1.38] (n = 87), de signo"
-INFORME_SENS2.md,280,-1.19,en_conclusiones,"a distancia cero da -1.19 [-1.48, -0.88] en b"
-INFORME_SENS2.md,280,-1.48,en_conclusiones,"ncia cero da -1.19 [-1.48, -0.88] en barridos"
-INFORME_SENS2.md,280,-0.88,en_conclusiones,"ro da -1.19 [-1.48, -0.88] en barridos y mall"
-INFORME_SENS2.md,280,-1.84,en_conclusiones,"barridos y mallas y -1.84 [-3.56, -0.34] en e"
-INFORME_SENS2.md,280,-3.56,en_conclusiones,"s y mallas y -1.84 [-3.56, -0.34] en el LHS, "
-INFORME_SENS2.md,280,-0.34,en_conclusiones,"las y -1.84 [-3.56, -0.34] en el LHS, y el va"
-INFORME_SENS2.md,280,-0.03,en_conclusiones, y el valor global (-0.03) sale de mezclar su
-INFORME_SENS2.md,280,-0.64,en_conclusiones,o» la mediana sería -0.64 con n = 968; no se 
-INFORME_SENS2.md,281,0.2,en_conclusiones,ecino KALINA a L1 ≤ 0.2 la mediana de η es 
-INFORME_SENS2.md,281,0.56,en_conclusiones, la mediana de η es 0.56 puntos menor (todas
-INFORME_SENS2.md,281,-0.56,en_conclusiones,"a con la distancia (-0.56 a L1 ≤ 0.2, -0.19 e"
-INFORME_SENS2.md,281,0.2,en_conclusiones,"ancia (-0.56 a L1 ≤ 0.2, -0.19 entre 0.2 y "
-INFORME_SENS2.md,281,-0.19,en_conclusiones," (-0.56 a L1 ≤ 0.2, -0.19 entre 0.2 y 0.5 y -"
-INFORME_SENS2.md,281,0.2,en_conclusiones," ≤ 0.2, -0.19 entre 0.2 y 0.5 y -0.87 por e"
-INFORME_SENS2.md,281,0.5,en_conclusiones,", -0.19 entre 0.2 y 0.5 y -0.87 por encima "
-INFORME_SENS2.md,281,-0.87,en_conclusiones,"9 entre 0.2 y 0.5 y -0.87 por encima de 0.5, "
-INFORME_SENS2.md,281,0.5,en_conclusiones,"-0.87 por encima de 0.5, mezclando diseños;"
-INFORME_SENS2.md,281,0.5,en_conclusiones,están por encima de 0.5 la mediana es posit
-INFORME_SENS2.md,281,-1.72,en_conclusiones,"del muestreo LHS es -1.72 y, cuando la violac"
-INFORME_SENS2.md,281,1.34,en_conclusiones,"ón dominante es O1, 1.34 (IC [-0.25, 1.71], "
-INFORME_SENS2.md,281,-0.25,en_conclusiones,"te es O1, 1.34 (IC [-0.25, 1.71], n = 25). La"
-INFORME_SENS2.md,281,1.71,en_conclusiones,"1, 1.34 (IC [-0.25, 1.71], n = 25). La cifra"
-INFORME_SENS2.md,281,0.30,en_conclusiones,istancia (Spearman +0.30).
-INFORME_SENS2.md,287,0.072,en_conclusiones, ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). 
-INFORME_SENS2.md,287,0.785,en_conclusiones, ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay reglas p
-INFORME_SENS2.md,287,0.785,en_conclusiones,no-KALINA: C1 x_b > 0.785 y ε_cond ≤ 0.875 (n
-INFORME_SENS2.md,287,0.875,en_conclusiones," > 0.785 y ε_cond ≤ 0.875 (n = 51, 6 % KALINA"
-INFORME_SENS2.md,287,6,en_conclusiones,"nd ≤ 0.875 (n = 51, 6 % KALINA); C4 T_fue"
-INFORME_SENS2.md,287,366.25,en_conclusiones,INA); C4 T_fuente ≤ 366.25 K y P_alta > 2800 k
-INFORME_SENS2.md,287,3,en_conclusiones,"> 2800 kPa (n = 32, 3 % KALINA)."
-INFORME_SENS2.md,292,15,en_conclusiones,nfianza Alta].** El 15 % de los KALINA mue
-INFORME_SENS2.md,294,15,en_conclusiones,LINA (total) con η: 15 % fuera. El máximo 
-INFORME_SENS2.md,294,14.82,en_conclusiones,. El máximo global (14.82 %) está fuera; el m
-INFORME_SENS2.md,294,14.53,en_conclusiones,dentro del rango es 14.53 %. La marca empieza
-INFORME_SENS2.md,295,15,en_conclusiones,muestran aparte. El 15 % es un conteo del 
-INFORME_SENS2.md,301,0.05,en_conclusiones,«distinguible» (q < 0.05 en al menos 2 métod
-INFORME_SENS2.md,301,95,en_conclusiones,variables dummy (IC 95 % de Wilson 0.5 a 1
-INFORME_SENS2.md,301,0.5,en_conclusiones," (IC 95 % de Wilson 0.5 a 14.2 %) y, al jun"
-INFORME_SENS2.md,301,14.2,en_conclusiones,"5 % de Wilson 0.5 a 14.2 %) y, al juntar tod"
-INFORME_SENS2.md,301,3.1,en_conclusiones,"e el muestreo LHS (+3.1 puntos de η, IC [+2"
-INFORME_SENS2.md,301,2.46,en_conclusiones,"1 puntos de η, IC [+2.46, +3.65]) es la más "
-INFORME_SENS2.md,301,3.65,en_conclusiones,"s de η, IC [+2.46, +3.65]) es la más defendi"
-INFORME_SENS2.md,301,0.05,en_conclusiones,de P con 48 puntos: 0.05 en C4 y 0.07 en C1)
-INFORME_SENS2.md,301,0.07,en_conclusiones,untos: 0.05 en C4 y 0.07 en C1); NO_CONVERGI
-INFORME_SENS2.md,308,71,en_conclusiones,"riable 67, 70, 84 y 71 %; 2 variables 66, "
-INFORME_SENS2.md,308,57,en_conclusiones,"iables 66, 63, 71 y 57 %; 7 a 9 variables "
-INFORME_SENS2.md,308,59,en_conclusiones,"iables 47, 52, 51 y 59 %. En las mallas de"
-INFORME_SENS2.md,308,6,en_conclusiones,"deja KALINA solo el 6 % (C1), 67 % (C2), "
-INFORME_SENS2.md,308,67,en_conclusiones,"A solo el 6 % (C1), 67 % (C2), 16 % (C3) y"
-INFORME_SENS2.md,308,16,en_conclusiones," % (C1), 67 % (C2), 16 % (C3) y 10 % (C4);"
-INFORME_SENS2.md,308,10,en_conclusiones,"% (C2), 16 % (C3) y 10 % (C4); la de ε_reg"
-INFORME_SENS2.md,308,100,en_conclusiones, la de ε_reg×η_t es 100 % KALINA en C1 y C2
-INFORME_SENS2.md,313,0.92,en_conclusiones,r (frontera local ≈ 0.92 en C1 y ≈ 0.906 en 
-INFORME_SENS2.md,313,0.906,en_conclusiones,"al ≈ 0.92 en C1 y ≈ 0.906 en C4), pero no la "
-INFORME_SENS2.md,315,5,en_conclusiones,"K, P_alta y P_baja ±5 %, x_b ±0.02, η_t, "
-INFORME_SENS2.md,315,0.02,en_conclusiones,"y P_baja ±5 %, x_b ±0.02, η_t, η_p, ε_HRVG, "
-INFORME_SENS2.md,315,0.05,en_conclusiones,"VG, ε_reg y ε_cond ±0.05, esta última recort"
-INFORME_SENS2.md,315,0.90,en_conclusiones,"última recortada a [0.90, 0.95] porque el ce"
-INFORME_SENS2.md,315,0.95,en_conclusiones," recortada a [0.90, 0.95] porque el centro ("
-INFORME_SENS2.md,315,0.95,en_conclusiones,] porque el centro (0.95) es el tope y solo 
-INFORME_SENS2.md,315,0.47,en_conclusiones,"a abajo): P(KALINA) 0.47 en C1 [0.37, 0.57],"
-INFORME_SENS2.md,315,0.37,en_conclusiones,"KALINA) 0.47 en C1 [0.37, 0.57], 0.99 en C2 "
-INFORME_SENS2.md,315,0.57,en_conclusiones,") 0.47 en C1 [0.37, 0.57], 0.99 en C2 [0.94,"
-INFORME_SENS2.md,315,0.99,en_conclusiones,"en C1 [0.37, 0.57], 0.99 en C2 [0.94, 1.00],"
-INFORME_SENS2.md,315,0.94,en_conclusiones," 0.57], 0.99 en C2 [0.94, 1.00], 1.00 en C3 "
-INFORME_SENS2.md,315,1.00,en_conclusiones,", 0.99 en C2 [0.94, 1.00], 1.00 en C3 [0.96,"
-INFORME_SENS2.md,315,1.00,en_conclusiones,"en C2 [0.94, 1.00], 1.00 en C3 [0.96, 1.00] "
-INFORME_SENS2.md,315,0.96,en_conclusiones," 1.00], 1.00 en C3 [0.96, 1.00] y 0.85 en C4"
-INFORME_SENS2.md,315,1.00,en_conclusiones,", 1.00 en C3 [0.96, 1.00] y 0.85 en C4 [0.77"
-INFORME_SENS2.md,315,0.85,en_conclusiones,"n C3 [0.96, 1.00] y 0.85 en C4 [0.77, 0.91];"
-INFORME_SENS2.md,315,0.77,en_conclusiones,"1.00] y 0.85 en C4 [0.77, 0.91]; los dos lot"
-INFORME_SENS2.md,315,0.91,en_conclusiones,"y 0.85 en C4 [0.77, 0.91]; los dos lotes dif"
-INFORME_SENS2.md,315,0.00,en_conclusiones,s lotes difieren en 0.00 a 0.02 (/z/ ≤ 1.0):
-INFORME_SENS2.md,315,0.02,en_conclusiones, difieren en 0.00 a 0.02 (/z/ ≤ 1.0): son co
-INFORME_SENS2.md,315,1.0,en_conclusiones," 0.00 a 0.02 (/z/ ≤ 1.0): son compatibles, "
-INFORME_SENS2.md,315,0.05,en_conclusiones,"rror típico de P es 0.05 (C4) a 0.07 (C1), a"
-INFORME_SENS2.md,315,0.07,en_conclusiones,"de P es 0.05 (C4) a 0.07 (C1), así que esa c"
-INFORME_SENS2.md,315,0.29,en_conclusiones,lotes de 48 puntos: 0.29 en el peor caso). E
-INFORME_SENS2.md,315,0.95,en_conclusiones, con ε_cond fija en 0.95): P(KALINA) = 1.00 
-INFORME_SENS2.md,315,1.00,en_conclusiones, 0.95): P(KALINA) = 1.00 en los cuatro bloqu
-INFORME_SENS2.md,315,0.93,en_conclusiones,"ques (48 de 48, IC [0.93, 1.00]) y PRCC de ε"
-INFORME_SENS2.md,315,1.00,en_conclusiones,"48 de 48, IC [0.93, 1.00]) y PRCC de ε_cond "
-INFORME_SENS2.md,315,1.00,en_conclusiones, y PRCC de ε_cond = 1.00. Barrido fino de ε_
-INFORME_SENS2.md,315,0.90,en_conclusiones,"cond (10 niveles de 0.90 a 0.95, resto en el"
-INFORME_SENS2.md,315,0.95,en_conclusiones,"0 niveles de 0.90 a 0.95, resto en el centro"
-INFORME_SENS2.md,315,0.922,en_conclusiones,KALINA desde ε_cond 0.922 (CORREGIBLE con m_O
-INFORME_SENS2.md,315,−0.1,en_conclusiones,"CORREGIBLE con m_O2 −0.1 K en 0.911), C4 des"
-INFORME_SENS2.md,315,0.911,en_conclusiones," con m_O2 −0.1 K en 0.911), C4 desde 0.906 (m"
-INFORME_SENS2.md,315,0.906,en_conclusiones,"en 0.911), C4 desde 0.906 (m_O2 −0.0 K en 0.9"
-INFORME_SENS2.md,315,−0.0,en_conclusiones,"4 desde 0.906 (m_O2 −0.0 K en 0.900), y C2 y"
-INFORME_SENS2.md,315,0.900,en_conclusiones,"906 (m_O2 −0.0 K en 0.900), y C2 y C3 lo son "
-INFORME_SENS2.md,315,0.95,en_conclusiones,". m_O2 con ε_cond = 0.95: 5.5 K (C1), 11.8 K"
-INFORME_SENS2.md,315,5.5,en_conclusiones," con ε_cond = 0.95: 5.5 K (C1), 11.8 K (C2)"
-INFORME_SENS2.md,315,11.8,en_conclusiones,"= 0.95: 5.5 K (C1), 11.8 K (C2), 14.9 K (C3)"
-INFORME_SENS2.md,315,14.9,en_conclusiones," (C1), 11.8 K (C2), 14.9 K (C3) y 8.1 K (C4)"
-INFORME_SENS2.md,315,8.1,en_conclusiones,"(C2), 14.9 K (C3) y 8.1 K (C4); entre ε_con"
-INFORME_SENS2.md,315,0.92,en_conclusiones, (C4); entre ε_cond 0.92 y 0.95 el margen ca
-INFORME_SENS2.md,315,0.95,en_conclusiones,entre ε_cond 0.92 y 0.95 el margen cae ≈ 1.9
-INFORME_SENS2.md,315,1.9,en_conclusiones,.95 el margen cae ≈ 1.9 K por cada −0.01 en
-INFORME_SENS2.md,315,−0.01,en_conclusiones,ae ≈ 1.9 K por cada −0.01 en C1 y ≈ 1.8 K en 
-INFORME_SENS2.md,315,1.8,en_conclusiones,ada −0.01 en C1 y ≈ 1.8 K en C4 (promedio d
-INFORME_SENS2.md,315,1.2,en_conclusiones,de todo el barrido: 1.2 y 1.7 K; la relació
-INFORME_SENS2.md,315,1.7,en_conclusiones,o el barrido: 1.2 y 1.7 K; la relación no e
-INFORME_SENS2.md,315,0.922,en_conclusiones,. Pero con ε_cond ≥ 0.922 en C1 todavía 11 de
-INFORME_SENS2.md,315,279.0,en_conclusiones,"a, T_sumidero desde 279.0 K y x_b desde 0.82;"
-INFORME_SENS2.md,315,0.82,en_conclusiones,279.0 K y x_b desde 0.82; es una descripción
-INFORME_SENS2.md,315,0.906,en_conclusiones,más) y con ε_cond ≥ 0.906 en C4 8 de 84; con 
-INFORME_SENS2.md,315,0.93,en_conclusiones,cificación de U4 (≥ 0.93 en C1 y ≥ 0.91 en C
-INFORME_SENS2.md,315,0.91,en_conclusiones,4 (≥ 0.93 en C1 y ≥ 0.91 en C4) se pierden 6
-INFORME_SENS2.md,316,0.47,en_conclusiones,cación: P(KALINA) = 0.47 en C1 no es un ries
-INFORME_SENS2.md,316,53,en_conclusiones,esgo de pérdida del 53 %: sale de muestrea
-INFORME_SENS2.md,316,1.00,en_conclusiones,(con ε_cond fija da 1.00). El factor dominan
-INFORME_SENS2.md,316,0.95,en_conclusiones, x_b. Con ε_cond en 0.95 los cuatro centros 
-INFORME_SENS2.md,316,0.93,en_conclusiones," de 48, IC inferior 0.93); el margen de ε_co"
-INFORME_SENS2.md,316,0.028,en_conclusiones," salir de KALINA es 0.028 en C1, 0.044 en C4 "
-INFORME_SENS2.md,316,0.044,en_conclusiones,"INA es 0.028 en C1, 0.044 en C4 y ≥ 0.05 en C"
-INFORME_SENS2.md,316,0.05,en_conclusiones,"C1, 0.044 en C4 y ≥ 0.05 en C2 y C3. Las tol"
-INFORME_SENS2.md,320,42,en_conclusiones,C1 y C4 caen a 17 y 42 %.
-INFORME_SENS2.md,322,0.17,en_conclusiones,"cias ×2): P(KALINA) 0.17 en C1 [0.09, 0.30],"
-INFORME_SENS2.md,322,0.09,en_conclusiones,"KALINA) 0.17 en C1 [0.09, 0.30], 0.90 en C2 "
-INFORME_SENS2.md,322,0.30,en_conclusiones,") 0.17 en C1 [0.09, 0.30], 0.90 en C2 [0.78,"
-INFORME_SENS2.md,322,0.90,en_conclusiones,"en C1 [0.09, 0.30], 0.90 en C2 [0.78, 0.95],"
-INFORME_SENS2.md,322,0.78,en_conclusiones," 0.30], 0.90 en C2 [0.78, 0.95], 0.65 en C3 "
-INFORME_SENS2.md,322,0.95,en_conclusiones,", 0.90 en C2 [0.78, 0.95], 0.65 en C3 [0.50,"
-INFORME_SENS2.md,322,0.65,en_conclusiones,"en C2 [0.78, 0.95], 0.65 en C3 [0.50, 0.77] "
-INFORME_SENS2.md,322,0.50,en_conclusiones," 0.95], 0.65 en C3 [0.50, 0.77] y 0.42 en C4"
-INFORME_SENS2.md,322,0.77,en_conclusiones,", 0.65 en C3 [0.50, 0.77] y 0.42 en C4 [0.29"
-INFORME_SENS2.md,322,0.42,en_conclusiones,"n C3 [0.50, 0.77] y 0.42 en C4 [0.29, 0.56]."
-INFORME_SENS2.md,322,0.29,en_conclusiones,"0.77] y 0.42 en C4 [0.29, 0.56]. De 90 punto"
-INFORME_SENS2.md,322,0.56,en_conclusiones,"y 0.42 en C4 [0.29, 0.56]. De 90 puntos que "
-INFORME_SENS2.md,322,0.83,en_conclusiones,). PRCC: C3 ε_cond +0.83 y T_sumidero −0.47;
-INFORME_SENS2.md,322,−0.47,en_conclusiones," +0.83 y T_sumidero −0.47; C4 ε_cond +0.79, T"
-INFORME_SENS2.md,322,0.79,en_conclusiones,"o −0.47; C4 ε_cond +0.79, T_sumidero −0.66 y"
-INFORME_SENS2.md,322,−0.66,en_conclusiones,"d +0.79, T_sumidero −0.66 y x_b −0.47. En B ε"
-INFORME_SENS2.md,322,−0.47,en_conclusiones,umidero −0.66 y x_b −0.47. En B ε_cond se mue
-INFORME_SENS2.md,322,0.85,en_conclusiones,"ond se muestrea en [0.85, 0.95], también de "
-INFORME_SENS2.md,322,0.95,en_conclusiones," muestrea en [0.85, 0.95], también de forma "
-INFORME_SENS2.md,322,0.90,en_conclusiones,"a unilateral (media 0.90), de modo que la pé"
-INFORME_SENS2.md,329,2.6,en_conclusiones,"1 (con duplicados), 2.6 % tienen m_O2 < 1 K"
-INFORME_SENS2.md,329,7.0,en_conclusiones," tienen m_O2 < 1 K, 7.0 % < 3 K y 13.2 % < "
-INFORME_SENS2.md,329,13.2,en_conclusiones," 1 K, 7.0 % < 3 K y 13.2 % < 5 K (4.0, 10.0 "
-INFORME_SENS2.md,329,4.0,en_conclusiones,"3 K y 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C"
-INFORME_SENS2.md,329,10.0,en_conclusiones," 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C1). En"
-INFORME_SENS2.md,329,20.9,en_conclusiones," < 5 K (4.0, 10.0 y 20.9 % en C1). En la pro"
-INFORME_SENS2.md,329,0.47,en_conclusiones,"K baja P(KALINA) de 0.47 a 0.15 en C1, de 0."
-INFORME_SENS2.md,329,0.15,en_conclusiones,"P(KALINA) de 0.47 a 0.15 en C1, de 0.85 a 0."
-INFORME_SENS2.md,329,0.85,en_conclusiones,"47 a 0.15 en C1, de 0.85 a 0.57 en C4 y de 1"
-INFORME_SENS2.md,329,0.57,en_conclusiones,"15 en C1, de 0.85 a 0.57 en C4 y de 1.00 a 0"
-INFORME_SENS2.md,329,1.00,en_conclusiones,5 a 0.57 en C4 y de 1.00 a 0.93 en C3; en C2
-INFORME_SENS2.md,329,0.93,en_conclusiones,7 en C4 y de 1.00 a 0.93 en C3; en C2 se man
-INFORME_SENS2.md,329,0.99,en_conclusiones,n C2 se mantiene en 0.99. Con ε_cond fija en
-INFORME_SENS2.md,329,0.95,en_conclusiones, Con ε_cond fija en 0.95 y exigiendo m_O2 ≥ 
-INFORME_SENS2.md,329,0.79,en_conclusiones,"≥ 3 K, P(KALINA) es 0.79 en C1 y 1.00 en C2,"
-INFORME_SENS2.md,329,1.00,en_conclusiones,"NA) es 0.79 en C1 y 1.00 en C2, 1.00 en C3 y"
-INFORME_SENS2.md,329,1.00,en_conclusiones,"en C1 y 1.00 en C2, 1.00 en C3 y 1.00 en C4:"
-INFORME_SENS2.md,329,1.00,en_conclusiones,"en C2, 1.00 en C3 y 1.00 en C4: la pérdida d"
-INFORME_SENS2.md,330,0.47,en_conclusiones,ado de Húsavík (P = 0.47) depende de aceptar
-INFORME_SENS2.md,334,91,en_conclusiones,aña anterior en C2 (91 %) y no en C3 (35 %
-INFORME_SENS2.md,334,35,en_conclusiones," (91 %) y no en C3 (35 %: 23 puntos, 15 de"
-INFORME_SENS2.md,336,0.15,en_conclusiones,viejo a distancia ≤ 0.15 de un centro (punto
-INFORME_SENS2.md,336,85.0,en_conclusiones,"ns2 no tenía), 181 (85.0 %) caen dentro de l"
-INFORME_SENS2.md,336,90.7,en_conclusiones,"C1 7/7, C2 165/182 (90.7 %), C3 8/23 (34.8 %"
-INFORME_SENS2.md,336,34.8,en_conclusiones," (90.7 %), C3 8/23 (34.8 %) y C4 1/1; el tot"
-INFORME_SENS2.md,336,392.5,en_conclusiones,n T_fuente de 390 a 392.5 K (mínimo de Sens2 
-INFORME_SENS2.md,336,393.15,en_conclusiones, K (mínimo de Sens2 393.15 K) y 15 de C3 que c
-INFORME_SENS2.md,336,0.8418,en_conclusiones,co valor de ε_cond (0.8418; mínimo de Sens2 0.
-INFORME_SENS2.md,336,0.85,en_conclusiones,"18; mínimo de Sens2 0.85), es decir, un solo"
-INFORME_SENS2.md,337,0.8418,en_conclusiones,"vada es algo menor (0.8418), sin definir un ra"
-INFORME_SENS2.md,343,0.561,en_conclusiones,n n ≥ 5 acuerdan en 0.561 (2 619 evaluaciones
-INFORME_SENS2.md,343,0.10,en_conclusiones,"as 5 eficiencias a ±0.10 del centro, 11 fron"
-INFORME_SENS2.md,343,0.478,en_conclusiones,"onteras acuerdan en 0.478 (665 evaluaciones),"
-INFORME_SENS2.md,343,0.598,en_conclusiones, mismo subconjunto (0.598); el resultado depe
-INFORME_SENS2.md,343,0.683,en_conclusiones,edice con exactitud 0.683 frente a 0.647 de l
-INFORME_SENS2.md,343,0.647,en_conclusiones,itud 0.683 frente a 0.647 de la clase mayorit
-INFORME_SENS2.md,343,0.29,en_conclusiones,"Sens2 cercano (L1 ≤ 0.29, primer cuartil) es"
-INFORME_SENS2.md,343,0.682,en_conclusiones," primer cuartil) es 0.682 frente a 0.568, y l"
-INFORME_SENS2.md,343,0.568,en_conclusiones,") es 0.682 frente a 0.568, y lejos (L1 > 1.09"
-INFORME_SENS2.md,343,1.09,en_conclusiones,".568, y lejos (L1 > 1.09) 0.748 frente a 0.8"
-INFORME_SENS2.md,343,0.748,en_conclusiones,y lejos (L1 > 1.09) 0.748 frente a 0.890.
-INFORME_SENS2.md,343,0.890,en_conclusiones,.09) 0.748 frente a 0.890.
-INFORME_SENS2.md,357,2.47,en_conclusiones,"ncia sin parear de +2.47 puntos de η, que me"
-INFORME_SENS2.md,357,96,en_conclusiones,"s del espacio), L1 (96 % por O2) y L2 (res"
-INFORME_SENS2.md,357,0.43,en_conclusiones,LINA más cercano es 0.43 puntos menor y 0.56
-INFORME_SENS2.md,357,0.56,en_conclusiones,0.43 puntos menor y 0.56 si el vecino está a
-INFORME_SENS2.md,357,0.2,en_conclusiones, vecino está a L1 ≤ 0.2). Los CORREGIBLE ap
-INFORME_SENS2.md,361,14,en_conclusiones,r los NO_CONVERGIO (14 % de los puntos; 24
-INFORME_SENS2.md,361,24,en_conclusiones,14 % de los puntos; 24 % en los LHS de C3 
-INFORME_SENS2.md,364,2.5,en_conclusiones,_fuente con paso de 2.5 K en los techos de 
-INFORME_SENS2.md,364,440.65,en_conclusiones,"hos de cada bloque (440.65, 468.15, 568.15 y 5"
-INFORME_SENS2.md,364,468.15,en_conclusiones,"ada bloque (440.65, 468.15, 568.15 y 528.15 K)"
-INFORME_SENS2.md,364,568.15,en_conclusiones,"ue (440.65, 468.15, 568.15 y 528.15 K)."
-INFORME_SENS2.md,364,528.15,en_conclusiones,"5, 468.15, 568.15 y 528.15 K)."
-INFORME_SENS2.md,373,15,en_conclusiones,- El 15 % de los KALINA est
-INFORME_SENS2.md,377,13.2,en_conclusiones, de T_fuente en C2 (13.2) está sobre una ram
-INFORME_SENS2.md,378,10,en_conclusiones,- El «10 % de mayor η» tiene
-INFORME_SENS2.md,379,3.1,en_conclusiones,"rsión sobre LHS (η +3.1 puntos, IC [+2.46, "
-INFORME_SENS2.md,379,2.46,en_conclusiones,"η +3.1 puntos, IC [+2.46, +3.65]) es la meno"
-INFORME_SENS2.md,379,3.65,en_conclusiones,"puntos, IC [+2.46, +3.65]) es la menos expue"
-INFORME_SENS2.md,383,0.05,en_conclusiones, a F3 significa q < 0.05 de Benjamini–Hochbe
-INFORME_SENS2.md,384,0.05,en_conclusiones, P con 48 puntos de 0.05 a 0.07; JCGM 101) y
-INFORME_SENS2.md,384,0.07,en_conclusiones,48 puntos de 0.05 a 0.07; JCGM 101) y la ban
-INFORME_SENS2.md,384,0.7,en_conclusiones,lo de propiedades (±0.7 pp) se suma de form
-INFORME_SENS2.md,385,14,en_conclusiones,- NO_CONVERGIO (14 % de los puntos) se
+INFORME_SENS2.md,167,0.25,en_conclusiones,udal volumétrico de 0.25 a 1.69 L/s a la ent
+INFORME_SENS2.md,167,1.69,en_conclusiones,lumétrico de 0.25 a 1.69 L/s a la entrada y 
+INFORME_SENS2.md,167,0.93,en_conclusiones,s a la entrada y de 0.93 a 4.01 L/s a la sal
+INFORME_SENS2.md,167,4.01,en_conclusiones,entrada y de 0.93 a 4.01 L/s a la salida (P5
+INFORME_SENS2.md,167,0.56,en_conclusiones,"(P5 a P95; medianas 0.56 y 1.48), y la bomba"
+INFORME_SENS2.md,167,1.48,en_conclusiones,"95; medianas 0.56 y 1.48), y la bomba mueve "
+INFORME_SENS2.md,167,0.015,en_conclusiones,"), y la bomba mueve 0.015 a 0.244 L/s con una"
+INFORME_SENS2.md,167,0.244,en_conclusiones,bomba mueve 0.015 a 0.244 L/s con una altura 
+INFORME_SENS2.md,169,0.00,en_conclusiones, (diferencia máxima 0.00 pp). Densidades (P5
+INFORME_SENS2.md,169,11.1,en_conclusiones,"trada de la turbina 11.1 a 31.0 kg/m³, salid"
+INFORME_SENS2.md,169,31.0,en_conclusiones,"e la turbina 11.1 a 31.0 kg/m³, salida de la"
+INFORME_SENS2.md,169,3.8,en_conclusiones,alida de la turbina 3.8 a 11.1 kg/m³ (bifás
+INFORME_SENS2.md,169,11.1,en_conclusiones,de la turbina 3.8 a 11.1 kg/m³ (bifásica en 
+INFORME_SENS2.md,169,1.59,en_conclusiones,rbina (V4/V3) va de 1.59 a 4.73 (mediana 2.7
+INFORME_SENS2.md,169,4.73,en_conclusiones,V4/V3) va de 1.59 a 4.73 (mediana 2.72).
+INFORME_SENS2.md,169,2.72,en_conclusiones,.59 a 4.73 (mediana 2.72).
+INFORME_SENS2.md,174,3.3,en_csv,### 3.3 MÁXIMA EFICIENCIA (
+INFORME_SENS2.md,176,14.82,en_conclusiones,yor η muestreada es 14.82 % con la fuente a 1
+INFORME_SENS2.md,176,14.53,en_conclusiones,dentro del rango es 14.53 %.
+INFORME_SENS2.md,178,14.82,en_conclusiones,"- Evidencia: 14.82 %: fuente 443.15 K,"
+INFORME_SENS2.md,178,443.15,en_conclusiones,"ia: 14.82 %: fuente 443.15 K, P_alta 4550 kPa,"
+INFORME_SENS2.md,178,0.73,en_conclusiones,"P_baja 610 kPa, x_b 0.73 (N1-T170-14). 14.53"
+INFORME_SENS2.md,178,14.53,en_conclusiones," 0.73 (N1-T170-14). 14.53 %: fuente 423.15 K,"
+INFORME_SENS2.md,178,423.15,en_conclusiones,"4). 14.53 %: fuente 423.15 K, P_alta 6000 kPa,"
+INFORME_SENS2.md,178,0.75,en_conclusiones,"P_baja 650 kPa, x_b 0.75, η_t 0.85, ε_reg 0."
+INFORME_SENS2.md,178,0.85,en_conclusiones," kPa, x_b 0.75, η_t 0.85, ε_reg 0.75, ε_cond"
+INFORME_SENS2.md,178,0.75,en_conclusiones,"75, η_t 0.85, ε_reg 0.75, ε_cond 0.95 (N10-C"
+INFORME_SENS2.md,178,0.95,en_conclusiones," ε_reg 0.75, ε_cond 0.95 (N10-C3-0016). Medi"
+INFORME_SENS2.md,178,7.7,en_conclusiones,iana de η en KALINA 7.7 % (5.5 % en el mues
+INFORME_SENS2.md,178,5.5,en_conclusiones, η en KALINA 7.7 % (5.5 % en el muestreo LH
+INFORME_SENS2.md,178,11.5,en_conclusiones,de del diseño); P90 11.5 %. Son los mayores 
+INFORME_SENS2.md,178,0.7,en_conclusiones,avitación es m_O2 = 0.7 K en el de 14.82 % 
+INFORME_SENS2.md,178,14.82,en_conclusiones,O2 = 0.7 K en el de 14.82 % y 6.7 K en el de 
+INFORME_SENS2.md,178,6.7,en_conclusiones, en el de 14.82 % y 6.7 K en el de 14.53 %.
+INFORME_SENS2.md,178,14.53,en_conclusiones, % y 6.7 K en el de 14.53 %.
+INFORME_SENS2.md,179,14.5,en_conclusiones,streados llegan a ≈ 14.5 % con P_alta alta (
+INFORME_SENS2.md,179,0.95,en_conclusiones,"ta 6000 kPa, ε_cond 0.95), de modo que el te"
+INFORME_SENS2.md,179,14.8,en_conclusiones, mayor; la cifra de 14.8 % necesita 170 °C. 
+INFORME_SENS2.md,179,0.29,en_conclusiones, y fuera del rango (0.29 puntos) es menor qu
+INFORME_SENS2.md,179,0.7,en_conclusiones,lo de propiedades (±0.7 puntos).
+INFORME_SENS2.md,183,14.0,en_conclusiones, muestreado llega a 14.0 % subiendo P_alta a
+INFORME_SENS2.md,183,2.0,en_conclusiones,"aja a 600 kPa, unos 2.0 puntos sobre el cen"
+INFORME_SENS2.md,185,394.15,en_conclusiones,"dencia: C1-B3-0127: 394.15 K, P_alta 5000, P_b"
+INFORME_SENS2.md,185,0.82,en_conclusiones,"00, P_baja 600, x_b 0.82, η_t 0.85, ε_reg 0."
+INFORME_SENS2.md,185,0.85,en_conclusiones," 600, x_b 0.82, η_t 0.85, ε_reg 0.75, ε_cond"
+INFORME_SENS2.md,185,0.75,en_conclusiones,"82, η_t 0.85, ε_reg 0.75, ε_cond 0.95: η 14."
+INFORME_SENS2.md,185,0.95,en_conclusiones," ε_reg 0.75, ε_cond 0.95: η 14.01 %, dentro "
+INFORME_SENS2.md,185,14.01,en_conclusiones,".75, ε_cond 0.95: η 14.01 %, dentro del rango"
+INFORME_SENS2.md,185,0.95,en_conclusiones," P_baja 690, ε_cond 0.95) es KALINA con η 12"
+INFORME_SENS2.md,185,12.00,en_conclusiones,95) es KALINA con η 12.00 %.
+INFORME_SENS2.md,186,2.0,en_conclusiones," de 121 °C, ganar ≈ 2.0 puntos exige más pr"
+INFORME_SENS2.md,186,0.82,en_conclusiones,"baja (600 kPa a x_b 0.82, D8); su margen de "
+INFORME_SENS2.md,186,3.7,en_conclusiones,avitación es m_O2 = 3.7 K (L7).
+INFORME_SENS2.md,190,0.95,en_conclusiones,"pos (η_t y ε_reg en 0.95), el punto muestrea"
+INFORME_SENS2.md,190,13.95,en_conclusiones, de Húsavík llega a 13.95 % sin cambiar las p
+INFORME_SENS2.md,192,0.95,en_conclusiones,ia: C1-B5-0228: η_t 0.95 y ε_reg 0.95 con P_
+INFORME_SENS2.md,192,0.95,en_conclusiones,8: η_t 0.95 y ε_reg 0.95 con P_alta 3300 y P
+INFORME_SENS2.md,192,13.95,en_conclusiones,"300 y P_baja 690: η 13.95 %, W_net 124.9 kW p"
+INFORME_SENS2.md,192,124.9,en_conclusiones,"0: η 13.95 %, W_net 124.9 kW por kg/s."
+INFORME_SENS2.md,197,13.2,en_conclusiones,ros dos bloques son 13.2 % (C4) y 12.4 % (C2
+INFORME_SENS2.md,197,12.4,en_conclusiones,"s son 13.2 % (C4) y 12.4 % (C2, dentro del r"
+INFORME_SENS2.md,199,423.15,en_conclusiones,"4-B1-045 con fuente 423.15 K, P_alta 3880, P_b"
+INFORME_SENS2.md,199,0.88,en_conclusiones,"80, P_baja 800, x_b 0.88: 13.23 %. C2: C2-LH"
+INFORME_SENS2.md,199,13.23,en_conclusiones,"baja 800, x_b 0.88: 13.23 %. C2: C2-LHS-0005 "
+INFORME_SENS2.md,199,436.5,en_conclusiones,"C2: C2-LHS-0005 con 436.5 K, P_alta 3090, P_b"
+INFORME_SENS2.md,199,0.47,en_conclusiones,"90, P_baja 660, x_b 0.47, η_t 0.95: 12.37 % "
+INFORME_SENS2.md,199,0.95,en_conclusiones," 660, x_b 0.47, η_t 0.95: 12.37 % (13.12 % f"
+INFORME_SENS2.md,199,12.37,en_conclusiones,"x_b 0.47, η_t 0.95: 12.37 % (13.12 % fuera de"
+INFORME_SENS2.md,199,13.12,en_conclusiones, η_t 0.95: 12.37 % (13.12 % fuera del rango).
+INFORME_SENS2.md,199,0.2,en_conclusiones,n casi nulo (m_O2 = 0.2 K) y el de C2 3.9 K
+INFORME_SENS2.md,199,3.9,en_conclusiones,= 0.2 K) y el de C2 3.9 K.
+INFORME_SENS2.md,206,−0.63,en_conclusiones, subir P_baja (PRCC −0.63 en C1) y P_baja tie
+INFORME_SENS2.md,206,10,en_conclusiones,"odos los puntos, el 10 % de mayor η está a"
+INFORME_SENS2.md,206,0.14,en_conclusiones,% de mayor η está a 0.14 de la frontera fren
+INFORME_SENS2.md,206,0.37,en_conclusiones,a frontera frente a 0.37 en el resto (KS 0.3
+INFORME_SENS2.md,206,0.357,en_conclusiones,".37 en el resto (KS 0.357), con 121 de 207 a "
+INFORME_SENS2.md,206,0.62,en_conclusiones,"ignificativa en C1 (0.62 frente a 0.75, p = "
+INFORME_SENS2.md,206,0.75,en_conclusiones,"n C1 (0.62 frente a 0.75, p = 0.016; 0.064 c"
+INFORME_SENS2.md,206,0.016,en_conclusiones," frente a 0.75, p = 0.016; 0.064 con Bonferro"
+INFORME_SENS2.md,206,0.064,en_conclusiones," a 0.75, p = 0.016; 0.064 con Bonferroni por "
+INFORME_SENS2.md,206,0.79,en_conclusiones,"loques) y no en C2 (0.79 frente a 0.83, p = "
+INFORME_SENS2.md,206,0.83,en_conclusiones,"n C2 (0.79 frente a 0.83, p = 0.63), C3 (0.8"
+INFORME_SENS2.md,206,0.63,en_conclusiones," frente a 0.83, p = 0.63), C3 (0.82 frente a"
+INFORME_SENS2.md,206,0.82,en_conclusiones,".83, p = 0.63), C3 (0.82 frente a 0.90, p = "
+INFORME_SENS2.md,206,0.90,en_conclusiones,", C3 (0.82 frente a 0.90, p = 0.09) ni C4 (0"
+INFORME_SENS2.md,206,0.09,en_conclusiones," frente a 0.90, p = 0.09) ni C4 (0.83 frente"
+INFORME_SENS2.md,206,0.83,en_conclusiones,"0, p = 0.09) ni C4 (0.83 frente a 0.81, p = "
+INFORME_SENS2.md,206,0.81,en_conclusiones,"i C4 (0.83 frente a 0.81, p = 0.48). Si la d"
+INFORME_SENS2.md,206,0.48,en_conclusiones," frente a 0.81, p = 0.48). Si la distancia s"
+INFORME_SENS2.md,206,0.086,en_conclusiones," LHS, C1 pasa a p = 0.086 y C3 a p = 0.003 (0"
+INFORME_SENS2.md,206,0.003,en_conclusiones, = 0.086 y C3 a p = 0.003 (0.010 con Bonferro
+INFORME_SENS2.md,206,0.010,en_conclusiones,6 y C3 a p = 0.003 (0.010 con Bonferroni): cu
+INFORME_SENS2.md,206,0.029,en_conclusiones,"ación completa (p = 0.029) y C1 (p = 0.044), "
+INFORME_SENS2.md,206,0.044,en_conclusiones," = 0.029) y C1 (p = 0.044), pero ninguna salv"
+INFORME_SENS2.md,213,0.96,en_conclusiones,_alta×P_baja; R² de 0.96 a 1.00): el máximo 
+INFORME_SENS2.md,213,1.00,en_conclusiones,_baja; R² de 0.96 a 1.00): el máximo del aju
+INFORME_SENS2.md,213,15.1,en_conclusiones,"NA. Por ejemplo C1: 15.1 % a 500 kPa, mientr"
+INFORME_SENS2.md,213,13.3,en_conclusiones,LINA de la malla es 13.3 %. Validación cruza
+INFORME_SENS2.md,213,0.91,en_conclusiones, celda fuera: R² de 0.91 a 1.00 (caída máxim
+INFORME_SENS2.md,213,1.00,en_conclusiones,fuera: R² de 0.91 a 1.00 (caída máxima 0.05 
+INFORME_SENS2.md,213,0.05,en_conclusiones, 1.00 (caída máxima 0.05 respecto del R² en 
+INFORME_SENS2.md,218,7.0,en_conclusiones, la banda de 77 °C (7.0 %) y no muestra una
+INFORME_SENS2.md,218,12.1,en_conclusiones," entre 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 "
+INFORME_SENS2.md,218,14.0,en_conclusiones," 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 %); de"
+INFORME_SENS2.md,218,13.3,en_conclusiones,"157 °C (12.1, 14.0, 13.3 y 14.5 %); desde ≈ "
+INFORME_SENS2.md,218,14.5,en_conclusiones,"(12.1, 14.0, 13.3 y 14.5 %); desde ≈ 160 °C "
+INFORME_SENS2.md,220,7.0,en_conclusiones,"rango de la banda): 7.0 % (77; 17), 12.1 (9"
+INFORME_SENS2.md,220,12.1,en_conclusiones,"a): 7.0 % (77; 17), 12.1 (97; 171), 14.0 (11"
+INFORME_SENS2.md,220,14.0,en_conclusiones,"7), 12.1 (97; 171), 14.0 (117; 681), 13.3 (1"
+INFORME_SENS2.md,220,13.3,en_conclusiones,"), 14.0 (117; 681), 13.3 (137; 480), 14.5 (1"
+INFORME_SENS2.md,220,14.5,en_conclusiones,"), 13.3 (137; 480), 14.5 (157; 369) y 12.3 ("
+INFORME_SENS2.md,220,12.3,en_conclusiones,", 14.5 (157; 369) y 12.3 (177; 17); las band"
+INFORME_SENS2.md,220,84,en_conclusiones," rango (284 de 340, 84 %), de modo que la "
+INFORME_SENS2.md,220,12.3,en_conclusiones, dentro del rango a 12.3 % en la banda de 17
+INFORME_SENS2.md,220,14.82,en_conclusiones,"; el máximo global (14.82 %) está a 170 °C, f"
+INFORME_SENS2.md,220,0.16,en_conclusiones,onvergió (P(KALINA) 0.16; 0.81 si se excluye
+INFORME_SENS2.md,220,0.81,en_conclusiones,ió (P(KALINA) 0.16; 0.81 si se excluyen los 
+INFORME_SENS2.md,225,3.4,en_csv,### 3.4 FLUCTUACIÓN (hoja F
+INFORME_SENS2.md,229,1.2,en_conclusiones,por bloque): C1 η_t 1.2; C2 η_t 1.3; C3 P_a
+INFORME_SENS2.md,229,1.3,en_conclusiones, C1 η_t 1.2; C2 η_t 1.3; C3 P_alta 2.0 y x_
+INFORME_SENS2.md,229,2.0,en_conclusiones, η_t 1.3; C3 P_alta 2.0 y x_b 2.2; C4 P_alt
+INFORME_SENS2.md,229,2.2,en_conclusiones,C3 P_alta 2.0 y x_b 2.2; C4 P_alta 1.8 y x_
+INFORME_SENS2.md,229,1.8,en_conclusiones, x_b 2.2; C4 P_alta 1.8 y x_b 2.7. PRCC de 
+INFORME_SENS2.md,229,2.7,en_conclusiones,C4 P_alta 1.8 y x_b 2.7. PRCC de η_t en C1 
+INFORME_SENS2.md,229,0.74,en_conclusiones, PRCC de η_t en C1 +0.74; P_baja −0.63. Con 
+INFORME_SENS2.md,229,−0.63,en_conclusiones,en C1 +0.74; P_baja −0.63. Con 2000 permutaci
+INFORME_SENS2.md,229,0.05,en_conclusiones,amini–Hochberg (q < 0.05 en al menos 2 métod
+INFORME_SENS2.md,229,0.05,en_conclusiones,e las dummy dan p < 0.05 en el 3.5 % de los 
+INFORME_SENS2.md,229,3.5,en_conclusiones, dan p < 0.05 en el 3.5 % de los casos.
+INFORME_SENS2.md,236,1.0,en_conclusiones,"_fuente rango medio 1.0 (C1, C2) y 1.8 (C3)"
+INFORME_SENS2.md,236,1.8,en_conclusiones,"edio 1.0 (C1, C2) y 1.8 (C3); x_b 1.3 (C4)."
+INFORME_SENS2.md,236,1.3,en_conclusiones,C2) y 1.8 (C3); x_b 1.3 (C4). Le siguen η_t
+INFORME_SENS2.md,243,1.0,en_conclusiones,"(1 = mayor): C1 x_b 1.0, P_baja 2.6, ε_cond"
+INFORME_SENS2.md,243,2.6,en_conclusiones," C1 x_b 1.0, P_baja 2.6, ε_cond 2.8; C2 ε_c"
+INFORME_SENS2.md,243,2.8,en_conclusiones," P_baja 2.6, ε_cond 2.8; C2 ε_cond 1.6, P_b"
+INFORME_SENS2.md,243,1.6,en_conclusiones,"cond 2.8; C2 ε_cond 1.6, P_baja 1.8, x_b 2."
+INFORME_SENS2.md,243,1.8,en_conclusiones," ε_cond 1.6, P_baja 1.8, x_b 2.6; C3 P_baja"
+INFORME_SENS2.md,243,2.6,en_conclusiones,".6, P_baja 1.8, x_b 2.6; C3 P_baja 1.0; C4 "
+INFORME_SENS2.md,243,1.0,en_conclusiones," x_b 2.6; C3 P_baja 1.0; C4 T_fuente 1.0, P"
+INFORME_SENS2.md,243,1.0,en_conclusiones,"ja 1.0; C4 T_fuente 1.0, P_baja 2.0. Con 20"
+INFORME_SENS2.md,243,2.0,en_conclusiones,"_fuente 1.0, P_baja 2.0. Con 2000 permutaci"
+INFORME_SENS2.md,243,0.05,en_conclusiones,amini–Hochberg (q < 0.05 en al menos 2 métod
+INFORME_SENS2.md,250,1.03,en_conclusiones,el punto base): η_t 1.03 a 1.15 en los cuatr
+INFORME_SENS2.md,250,1.15,en_conclusiones,o base): η_t 1.03 a 1.15 en los cuatro bloqu
+INFORME_SENS2.md,250,−0.60,en_conclusiones,tro bloques; P_baja −0.60 a −0.79; T_fuente 1
+INFORME_SENS2.md,250,−0.79,en_conclusiones,ues; P_baja −0.60 a −0.79; T_fuente 1.02 (C1)
+INFORME_SENS2.md,250,1.02,en_conclusiones,"0 a −0.79; T_fuente 1.02 (C1), 1.28 (C4), 0."
+INFORME_SENS2.md,250,1.28,en_conclusiones,"T_fuente 1.02 (C1), 1.28 (C4), 0.25 (C3). En"
+INFORME_SENS2.md,250,0.25,en_conclusiones,"02 (C1), 1.28 (C4), 0.25 (C3). En C2 T_fuent"
+INFORME_SENS2.md,250,13.2,en_conclusiones,. En C2 T_fuente da 13.2 porque el punto bas
+INFORME_SENS2.md,251,1.2,en_conclusiones, Un punto de η_t (≈ 1.2 % relativo) equival
+INFORME_SENS2.md,251,1.2,en_conclusiones,ativo) equivale a ≈ 1.2 a 1.4 % relativo de
+INFORME_SENS2.md,251,1.4,en_conclusiones, equivale a ≈ 1.2 a 1.4 % relativo de η; su
+INFORME_SENS2.md,251,14,en_conclusiones,r P_baja 100 kPa (≈ 14 % en C1) baja η ≈ 9
+INFORME_SENS2.md,251,9,en_conclusiones,4 % en C1) baja η ≈ 9 % en términos relat
+INFORME_SENS2.md,257,0.26,en_conclusiones,ndicador KALINA: B2 0.26 a 0.52 y B4 0.33 a 
+INFORME_SENS2.md,257,0.52,en_conclusiones,r KALINA: B2 0.26 a 0.52 y B4 0.33 a 0.52 (C
+INFORME_SENS2.md,257,0.33,en_conclusiones,B2 0.26 a 0.52 y B4 0.33 a 0.52 (C1 a C4). S
+INFORME_SENS2.md,257,0.52,en_conclusiones, a 0.52 y B4 0.33 a 0.52 (C1 a C4). Sobre η:
+INFORME_SENS2.md,257,0.00,en_conclusiones,C4). Sobre η: entre 0.00 y 0.18 en casi todo
+INFORME_SENS2.md,257,0.18,en_conclusiones,bre η: entre 0.00 y 0.18 en casi todos los p
+INFORME_SENS2.md,257,0.05,en_conclusiones," pares (aditivos, < 0.05, en B1, B3 y B5 sal"
+INFORME_SENS2.md,257,0.08,en_conclusiones,o B1 y B3 en C2 con 0.08 y 0.05); fuertes so
+INFORME_SENS2.md,257,0.05,en_conclusiones,B3 en C2 con 0.08 y 0.05); fuertes solo B6 e
+INFORME_SENS2.md,257,0.28,en_conclusiones,rtes solo B6 en C1 (0.28) y B4 en C4 (0.28).
+INFORME_SENS2.md,257,0.28,en_conclusiones, (0.28) y B4 en C4 (0.28).
+INFORME_SENS2.md,264,10.2,en_conclusiones,as sin parear de η: 10.2 % frente a 7.7 % (+
+INFORME_SENS2.md,264,7.7,en_conclusiones," η: 10.2 % frente a 7.7 % (+2.47 puntos, IC"
+INFORME_SENS2.md,264,2.47,en_conclusiones," % frente a 7.7 % (+2.47 puntos, IC 95 % [+2"
+INFORME_SENS2.md,264,95,en_conclusiones,"% (+2.47 puntos, IC 95 % [+2.18, +2.70]); "
+INFORME_SENS2.md,264,2.18,en_conclusiones,"7 puntos, IC 95 % [+2.18, +2.70]); dentro de"
+INFORME_SENS2.md,264,2.70,en_conclusiones,"s, IC 95 % [+2.18, +2.70]); dentro de cada b"
+INFORME_SENS2.md,264,1.4,en_conclusiones,"a diferencia va de +1.4 a +3.2 puntos, y lo"
+INFORME_SENS2.md,264,3.2,en_conclusiones,"encia va de +1.4 a +3.2 puntos, y los punto"
+INFORME_SENS2.md,264,4.4,en_conclusiones,o elevan el total (+4.4). Solo con el muest
+INFORME_SENS2.md,264,3.1,en_conclusiones,"n el muestreo LHS: +3.1 puntos (IC [+2.46, "
+INFORME_SENS2.md,264,2.46,en_conclusiones,": +3.1 puntos (IC [+2.46, +3.65]). W_net por"
+INFORME_SENS2.md,264,3.65,en_conclusiones,"puntos (IC [+2.46, +3.65]). W_net por kg/s: "
+INFORME_SENS2.md,264,82.7,en_conclusiones,]). W_net por kg/s: 82.7 frente a 57.9 (+24.
+INFORME_SENS2.md,264,57.9,en_conclusiones,"kg/s: 82.7 frente a 57.9 (+24.8, IC [+19.0, "
+INFORME_SENS2.md,264,24.8,en_conclusiones,"2.7 frente a 57.9 (+24.8, IC [+19.0, +29.7];"
+INFORME_SENS2.md,264,19.0,en_conclusiones,"a 57.9 (+24.8, IC [+19.0, +29.7]; LHS +40.9)"
+INFORME_SENS2.md,264,29.7,en_conclusiones,"(+24.8, IC [+19.0, +29.7]; LHS +40.9). Empar"
+INFORME_SENS2.md,264,40.9,en_conclusiones,"+19.0, +29.7]; LHS +40.9). Emparejando cada "
+INFORME_SENS2.md,264,0.43,en_conclusiones, vecino es menor en 0.43 puntos (L2).
+INFORME_SENS2.md,271,0.98,en_conclusiones,"del centro/ ≤ 1 pp: 0.98 en C1, 0.95 en C3, "
+INFORME_SENS2.md,271,0.95,en_conclusiones,"≤ 1 pp: 0.98 en C1, 0.95 en C3, 0.96 en C4 y"
+INFORME_SENS2.md,271,0.96,en_conclusiones," en C1, 0.95 en C3, 0.96 en C4 y 0.66 en C2."
+INFORME_SENS2.md,271,0.66,en_conclusiones,"en C3, 0.96 en C4 y 0.66 en C2. η P5–P95: C1"
+INFORME_SENS2.md,271,11.1,en_conclusiones,en C2. η P5–P95: C1 11.1 a 12.9 % (centro 12
+INFORME_SENS2.md,271,12.9,en_conclusiones,"η P5–P95: C1 11.1 a 12.9 % (centro 12.0), C3"
+INFORME_SENS2.md,271,12.0,en_conclusiones,".1 a 12.9 % (centro 12.0), C3 8.8 a 10.4 % ("
+INFORME_SENS2.md,271,8.8,en_conclusiones,"% (centro 12.0), C3 8.8 a 10.4 % (9.45), C4"
+INFORME_SENS2.md,271,10.4,en_conclusiones,"tro 12.0), C3 8.8 a 10.4 % (9.45), C4 10.5 a"
+INFORME_SENS2.md,271,9.45,en_conclusiones,"), C3 8.8 a 10.4 % (9.45), C4 10.5 a 12.1 % "
+INFORME_SENS2.md,271,10.5,en_conclusiones,"a 10.4 % (9.45), C4 10.5 a 12.1 % (11.15), C"
+INFORME_SENS2.md,271,12.1,en_conclusiones,"% (9.45), C4 10.5 a 12.1 % (11.15), C2 6.3 a"
+INFORME_SENS2.md,271,11.15,en_conclusiones,", C4 10.5 a 12.1 % (11.15), C2 6.3 a 9.3 % (7"
+INFORME_SENS2.md,271,6.3,en_conclusiones," 12.1 % (11.15), C2 6.3 a 9.3 % (7.94). En "
+INFORME_SENS2.md,271,9.3,en_conclusiones,"% (11.15), C2 6.3 a 9.3 % (7.94). En B la d"
+INFORME_SENS2.md,271,7.94,en_conclusiones,"5), C2 6.3 a 9.3 % (7.94). En B la dispersió"
+INFORME_SENS2.md,271,2.6,en_conclusiones,ersión crece (C2 de 2.6 a 10.6 %). La banda
+INFORME_SENS2.md,271,10.6,en_conclusiones, crece (C2 de 2.6 a 10.6 %). La banda del mo
+INFORME_SENS2.md,271,0.7,en_conclusiones,lo de propiedades (±0.7 pp) se suma de form
+INFORME_SENS2.md,276,3.5,en_conclusiones,### 3.5 LÍMITES KALINA (hoj
+INFORME_SENS2.md,278,96,en_conclusiones,fianza Media].** El 96 % de los CORREGIBLE
+INFORME_SENS2.md,278,4,en_conclusiones,avitación (O2) y el 4 % por título de sal
+INFORME_SENS2.md,280,96,en_conclusiones,"lación dominante O2 96 %, O1 4 %; D median"
+INFORME_SENS2.md,280,4,en_conclusiones,"minante O2 96 %, O1 4 %; D mediana 1.17 ("
+INFORME_SENS2.md,280,1.17,en_conclusiones,", O1 4 %; D mediana 1.17 (P90 10.1). En la b"
+INFORME_SENS2.md,280,10.1,en_conclusiones,D mediana 1.17 (P90 10.1). En la base cruda 
+INFORME_SENS2.md,280,0.278,en_conclusiones," son zona gris (D ≤ 0.278), 249 de ellos por "
+INFORME_SENS2.md,281,96,en_conclusiones,ayor resolución. El 96 % es un conteo del 
+INFORME_SENS2.md,285,68,en_conclusiones,n un solo cambio en 68 % de los CORREGIBLE
+INFORME_SENS2.md,285,0,en_conclusiones,ridos y mallas y en 0 % de los del muestr
+INFORME_SENS2.md,285,49,en_conclusiones,ables a la vez): el 49 % global es un cont
+INFORME_SENS2.md,287,49,en_conclusiones,- Evidencia: 49 % de los 968 CORREG
+INFORME_SENS2.md,287,68,en_conclusiones," un KALINA, pero es 68 % en los 706 de bar"
+INFORME_SENS2.md,287,0,en_conclusiones,barridos y mallas y 0 % en los 262 del mu
+INFORME_SENS2.md,287,24,en_conclusiones,"diseño (P_baja sube 24 %, ε_cond sube 16 %"
+INFORME_SENS2.md,287,16,en_conclusiones,"e 24 %, ε_cond sube 16 %, x_b baja 3 %, T_"
+INFORME_SENS2.md,287,3,en_conclusiones,"sube 16 %, x_b baja 3 %, T_fuente baja 3 "
+INFORME_SENS2.md,287,3,en_conclusiones," 3 %, T_fuente baja 3 %). Distancia L1 me"
+INFORME_SENS2.md,287,0.365,en_conclusiones,istancia L1 mediana 0.365; mediana de 2 varia
+INFORME_SENS2.md,287,-0.43,en_conclusiones,"no − CORREGIBLE) es -0.43 puntos (IC [-0.55, "
+INFORME_SENS2.md,287,-0.55,en_conclusiones,"s -0.43 puntos (IC [-0.55, -0.36], n = 734; l"
+INFORME_SENS2.md,287,-0.36,en_conclusiones," puntos (IC [-0.55, -0.36], n = 734; la media"
+INFORME_SENS2.md,287,-0.33,en_conclusiones," = 734; la media es -0.33 [-0.53, -0.13] y en"
+INFORME_SENS2.md,287,-0.53,en_conclusiones," la media es -0.33 [-0.53, -0.13] y en C1 y C"
+INFORME_SENS2.md,287,-0.13,en_conclusiones,"ia es -0.33 [-0.53, -0.13] y en C1 y C4 su IC"
+INFORME_SENS2.md,287,-0.56,en_conclusiones," su IC incluye 0) y -0.56 puntos (IC [-0.69, "
+INFORME_SENS2.md,287,-0.69,en_conclusiones,"y -0.56 puntos (IC [-0.69, -0.44], n = 214) s"
+INFORME_SENS2.md,287,-0.44,en_conclusiones," puntos (IC [-0.69, -0.44], n = 214) si el ve"
+INFORME_SENS2.md,287,0.2,en_conclusiones, vecino está a L1 ≤ 0.2. Por diseño: -0.28 
+INFORME_SENS2.md,287,-0.28,en_conclusiones, ≤ 0.2. Por diseño: -0.28 en barridos y malla
+INFORME_SENS2.md,287,-1.72,en_conclusiones,vecinos cercanos) y -1.72 en el muestreo LHS 
+INFORME_SENS2.md,287,0.5,en_conclusiones,"os lejanos); a L1 > 0.5, entre los puntos q"
+INFORME_SENS2.md,287,1.00,en_conclusiones,"S, la diferencia es 1.00 [0.72, 1.38] (n = 8"
+INFORME_SENS2.md,287,0.72,en_conclusiones,"diferencia es 1.00 [0.72, 1.38] (n = 87), de"
+INFORME_SENS2.md,287,1.38,en_conclusiones,"ncia es 1.00 [0.72, 1.38] (n = 87), de signo"
+INFORME_SENS2.md,287,-1.19,en_conclusiones,"a distancia cero da -1.19 [-1.48, -0.88] en b"
+INFORME_SENS2.md,287,-1.48,en_conclusiones,"ncia cero da -1.19 [-1.48, -0.88] en barridos"
+INFORME_SENS2.md,287,-0.88,en_conclusiones,"ro da -1.19 [-1.48, -0.88] en barridos y mall"
+INFORME_SENS2.md,287,-1.84,en_conclusiones,"barridos y mallas y -1.84 [-3.56, -0.34] en e"
+INFORME_SENS2.md,287,-3.56,en_conclusiones,"s y mallas y -1.84 [-3.56, -0.34] en el LHS, "
+INFORME_SENS2.md,287,-0.34,en_conclusiones,"las y -1.84 [-3.56, -0.34] en el LHS, y el va"
+INFORME_SENS2.md,287,-0.03,en_conclusiones, y el valor global (-0.03) sale de mezclar su
+INFORME_SENS2.md,287,-0.64,en_conclusiones,o» la mediana sería -0.64 con n = 968; no se 
+INFORME_SENS2.md,288,0.2,en_conclusiones,ecino KALINA a L1 ≤ 0.2 la mediana de η es 
+INFORME_SENS2.md,288,0.56,en_conclusiones, la mediana de η es 0.56 puntos menor (todas
+INFORME_SENS2.md,288,-0.56,en_conclusiones,"a con la distancia (-0.56 a L1 ≤ 0.2, -0.19 e"
+INFORME_SENS2.md,288,0.2,en_conclusiones,"ancia (-0.56 a L1 ≤ 0.2, -0.19 entre 0.2 y "
+INFORME_SENS2.md,288,-0.19,en_conclusiones," (-0.56 a L1 ≤ 0.2, -0.19 entre 0.2 y 0.5 y -"
+INFORME_SENS2.md,288,0.2,en_conclusiones," ≤ 0.2, -0.19 entre 0.2 y 0.5 y -0.87 por e"
+INFORME_SENS2.md,288,0.5,en_conclusiones,", -0.19 entre 0.2 y 0.5 y -0.87 por encima "
+INFORME_SENS2.md,288,-0.87,en_conclusiones,"9 entre 0.2 y 0.5 y -0.87 por encima de 0.5, "
+INFORME_SENS2.md,288,0.5,en_conclusiones,"-0.87 por encima de 0.5, mezclando diseños;"
+INFORME_SENS2.md,288,0.5,en_conclusiones,están por encima de 0.5 la mediana es posit
+INFORME_SENS2.md,288,-1.72,en_conclusiones,"del muestreo LHS es -1.72 y, cuando la violac"
+INFORME_SENS2.md,288,1.34,en_conclusiones,"ón dominante es O1, 1.34 (IC [-0.25, 1.71], "
+INFORME_SENS2.md,288,-0.25,en_conclusiones,"te es O1, 1.34 (IC [-0.25, 1.71], n = 25). La"
+INFORME_SENS2.md,288,1.71,en_conclusiones,"1, 1.34 (IC [-0.25, 1.71], n = 25). La cifra"
+INFORME_SENS2.md,288,0.30,en_conclusiones,istancia (Spearman +0.30).
+INFORME_SENS2.md,294,0.072,en_conclusiones, ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). 
+INFORME_SENS2.md,294,0.785,en_conclusiones, ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay reglas p
+INFORME_SENS2.md,294,0.785,en_conclusiones,no-KALINA: C1 x_b > 0.785 y ε_cond ≤ 0.875 (n
+INFORME_SENS2.md,294,0.875,en_conclusiones," > 0.785 y ε_cond ≤ 0.875 (n = 51, 6 % KALINA"
+INFORME_SENS2.md,294,6,en_conclusiones,"nd ≤ 0.875 (n = 51, 6 % KALINA); C4 T_fue"
+INFORME_SENS2.md,294,366.25,en_conclusiones,INA); C4 T_fuente ≤ 366.25 K y P_alta > 2800 k
+INFORME_SENS2.md,294,3,en_conclusiones,"> 2800 kPa (n = 32, 3 % KALINA)."
+INFORME_SENS2.md,299,15,en_conclusiones,nfianza Alta].** El 15 % de los KALINA mue
+INFORME_SENS2.md,301,15,en_conclusiones,LINA (total) con η: 15 % fuera. El máximo 
+INFORME_SENS2.md,301,14.82,en_conclusiones,. El máximo global (14.82 %) está fuera; el m
+INFORME_SENS2.md,301,14.53,en_conclusiones,dentro del rango es 14.53 %. La marca empieza
+INFORME_SENS2.md,302,15,en_conclusiones,muestran aparte. El 15 % es un conteo del 
+INFORME_SENS2.md,308,0.05,en_conclusiones,«distinguible» (q < 0.05 en al menos 2 métod
+INFORME_SENS2.md,308,95,en_conclusiones,variables dummy (IC 95 % de Wilson 0.5 a 1
+INFORME_SENS2.md,308,0.5,en_conclusiones," (IC 95 % de Wilson 0.5 a 14.2 %) y, al jun"
+INFORME_SENS2.md,308,14.2,en_conclusiones,"5 % de Wilson 0.5 a 14.2 %) y, al juntar tod"
+INFORME_SENS2.md,308,3.1,en_conclusiones,"e el muestreo LHS (+3.1 puntos de η, IC [+2"
+INFORME_SENS2.md,308,2.46,en_conclusiones,"1 puntos de η, IC [+2.46, +3.65]) es la más "
+INFORME_SENS2.md,308,3.65,en_conclusiones,"s de η, IC [+2.46, +3.65]) es la más defendi"
+INFORME_SENS2.md,308,0.05,en_conclusiones,de P con 48 puntos: 0.05 en C4 y 0.07 en C1)
+INFORME_SENS2.md,308,0.07,en_conclusiones,untos: 0.05 en C4 y 0.07 en C1); NO_CONVERGI
+INFORME_SENS2.md,315,71,en_conclusiones,"riable 67, 70, 84 y 71 %; 2 variables 66, "
+INFORME_SENS2.md,315,57,en_conclusiones,"iables 66, 63, 71 y 57 %; 7 a 9 variables "
+INFORME_SENS2.md,315,59,en_conclusiones,"iables 47, 52, 51 y 59 %. En las mallas de"
+INFORME_SENS2.md,315,6,en_conclusiones,"deja KALINA solo el 6 % (C1), 67 % (C2), "
+INFORME_SENS2.md,315,67,en_conclusiones,"A solo el 6 % (C1), 67 % (C2), 16 % (C3) y"
+INFORME_SENS2.md,315,16,en_conclusiones," % (C1), 67 % (C2), 16 % (C3) y 10 % (C4);"
+INFORME_SENS2.md,315,10,en_conclusiones,"% (C2), 16 % (C3) y 10 % (C4); la de ε_reg"
+INFORME_SENS2.md,315,100,en_conclusiones, la de ε_reg×η_t es 100 % KALINA en C1 y C2
+INFORME_SENS2.md,320,0.92,en_conclusiones,r (frontera local ≈ 0.92 en C1 y ≈ 0.906 en 
+INFORME_SENS2.md,320,0.906,en_conclusiones,"al ≈ 0.92 en C1 y ≈ 0.906 en C4), pero no la "
+INFORME_SENS2.md,322,5,en_conclusiones,"K, P_alta y P_baja ±5 %, x_b ±0.02, η_t, "
+INFORME_SENS2.md,322,0.02,en_conclusiones,"y P_baja ±5 %, x_b ±0.02, η_t, η_p, ε_HRVG, "
+INFORME_SENS2.md,322,0.05,en_conclusiones,"VG, ε_reg y ε_cond ±0.05, esta última recort"
+INFORME_SENS2.md,322,0.90,en_conclusiones,"última recortada a [0.90, 0.95] porque el ce"
+INFORME_SENS2.md,322,0.95,en_conclusiones," recortada a [0.90, 0.95] porque el centro ("
+INFORME_SENS2.md,322,0.95,en_conclusiones,] porque el centro (0.95) es el tope y solo 
+INFORME_SENS2.md,322,0.47,en_conclusiones,"a abajo): P(KALINA) 0.47 en C1 [0.37, 0.57],"
+INFORME_SENS2.md,322,0.37,en_conclusiones,"KALINA) 0.47 en C1 [0.37, 0.57], 0.99 en C2 "
+INFORME_SENS2.md,322,0.57,en_conclusiones,") 0.47 en C1 [0.37, 0.57], 0.99 en C2 [0.94,"
+INFORME_SENS2.md,322,0.99,en_conclusiones,"en C1 [0.37, 0.57], 0.99 en C2 [0.94, 1.00],"
+INFORME_SENS2.md,322,0.94,en_conclusiones," 0.57], 0.99 en C2 [0.94, 1.00], 1.00 en C3 "
+INFORME_SENS2.md,322,1.00,en_conclusiones,", 0.99 en C2 [0.94, 1.00], 1.00 en C3 [0.96,"
+INFORME_SENS2.md,322,1.00,en_conclusiones,"en C2 [0.94, 1.00], 1.00 en C3 [0.96, 1.00] "
+INFORME_SENS2.md,322,0.96,en_conclusiones," 1.00], 1.00 en C3 [0.96, 1.00] y 0.85 en C4"
+INFORME_SENS2.md,322,1.00,en_conclusiones,", 1.00 en C3 [0.96, 1.00] y 0.85 en C4 [0.77"
+INFORME_SENS2.md,322,0.85,en_conclusiones,"n C3 [0.96, 1.00] y 0.85 en C4 [0.77, 0.91];"
+INFORME_SENS2.md,322,0.77,en_conclusiones,"1.00] y 0.85 en C4 [0.77, 0.91]; los dos lot"
+INFORME_SENS2.md,322,0.91,en_conclusiones,"y 0.85 en C4 [0.77, 0.91]; los dos lotes dif"
+INFORME_SENS2.md,322,0.00,en_conclusiones,s lotes difieren en 0.00 a 0.02 (/z/ ≤ 1.0):
+INFORME_SENS2.md,322,0.02,en_conclusiones, difieren en 0.00 a 0.02 (/z/ ≤ 1.0): son co
+INFORME_SENS2.md,322,1.0,en_conclusiones," 0.00 a 0.02 (/z/ ≤ 1.0): son compatibles, "
+INFORME_SENS2.md,322,0.05,en_conclusiones,"rror típico de P es 0.05 (C4) a 0.07 (C1), a"
+INFORME_SENS2.md,322,0.07,en_conclusiones,"de P es 0.05 (C4) a 0.07 (C1), así que esa c"
+INFORME_SENS2.md,322,0.29,en_conclusiones,lotes de 48 puntos: 0.29 en el peor caso). E
+INFORME_SENS2.md,322,0.95,en_conclusiones, con ε_cond fija en 0.95): P(KALINA) = 1.00 
+INFORME_SENS2.md,322,1.00,en_conclusiones, 0.95): P(KALINA) = 1.00 en los cuatro bloqu
+INFORME_SENS2.md,322,0.93,en_conclusiones,"ques (48 de 48, IC [0.93, 1.00]) y PRCC de ε"
+INFORME_SENS2.md,322,1.00,en_conclusiones,"48 de 48, IC [0.93, 1.00]) y PRCC de ε_cond "
+INFORME_SENS2.md,322,1.00,en_conclusiones, y PRCC de ε_cond = 1.00. Barrido fino de ε_
+INFORME_SENS2.md,322,0.90,en_conclusiones,"cond (10 niveles de 0.90 a 0.95, resto en el"
+INFORME_SENS2.md,322,0.95,en_conclusiones,"0 niveles de 0.90 a 0.95, resto en el centro"
+INFORME_SENS2.md,322,0.922,en_conclusiones,KALINA desde ε_cond 0.922 (CORREGIBLE con m_O
+INFORME_SENS2.md,322,−0.1,en_conclusiones,"CORREGIBLE con m_O2 −0.1 K en 0.911), C4 des"
+INFORME_SENS2.md,322,0.911,en_conclusiones," con m_O2 −0.1 K en 0.911), C4 desde 0.906 (m"
+INFORME_SENS2.md,322,0.906,en_conclusiones,"en 0.911), C4 desde 0.906 (m_O2 −0.0 K en 0.9"
+INFORME_SENS2.md,322,−0.0,en_conclusiones,"4 desde 0.906 (m_O2 −0.0 K en 0.900), y C2 y"
+INFORME_SENS2.md,322,0.900,en_conclusiones,"906 (m_O2 −0.0 K en 0.900), y C2 y C3 lo son "
+INFORME_SENS2.md,322,0.95,en_conclusiones,". m_O2 con ε_cond = 0.95: 5.5 K (C1), 11.8 K"
+INFORME_SENS2.md,322,5.5,en_conclusiones," con ε_cond = 0.95: 5.5 K (C1), 11.8 K (C2)"
+INFORME_SENS2.md,322,11.8,en_conclusiones,"= 0.95: 5.5 K (C1), 11.8 K (C2), 14.9 K (C3)"
+INFORME_SENS2.md,322,14.9,en_conclusiones," (C1), 11.8 K (C2), 14.9 K (C3) y 8.1 K (C4)"
+INFORME_SENS2.md,322,8.1,en_conclusiones,"(C2), 14.9 K (C3) y 8.1 K (C4); entre ε_con"
+INFORME_SENS2.md,322,0.92,en_conclusiones, (C4); entre ε_cond 0.92 y 0.95 el margen ca
+INFORME_SENS2.md,322,0.95,en_conclusiones,entre ε_cond 0.92 y 0.95 el margen cae ≈ 1.9
+INFORME_SENS2.md,322,1.9,en_conclusiones,.95 el margen cae ≈ 1.9 K por cada −0.01 en
+INFORME_SENS2.md,322,−0.01,en_conclusiones,ae ≈ 1.9 K por cada −0.01 en C1 y ≈ 1.8 K en 
+INFORME_SENS2.md,322,1.8,en_conclusiones,ada −0.01 en C1 y ≈ 1.8 K en C4 (promedio d
+INFORME_SENS2.md,322,1.2,en_conclusiones,de todo el barrido: 1.2 y 1.7 K; la relació
+INFORME_SENS2.md,322,1.7,en_conclusiones,o el barrido: 1.2 y 1.7 K; la relación no e
+INFORME_SENS2.md,322,0.922,en_conclusiones,. Pero con ε_cond ≥ 0.922 en C1 todavía 11 de
+INFORME_SENS2.md,322,279.0,en_conclusiones,"a, T_sumidero desde 279.0 K y x_b desde 0.82;"
+INFORME_SENS2.md,322,0.82,en_conclusiones,279.0 K y x_b desde 0.82; es una descripción
+INFORME_SENS2.md,322,0.906,en_conclusiones,más) y con ε_cond ≥ 0.906 en C4 8 de 84; con 
+INFORME_SENS2.md,322,0.93,en_conclusiones,cificación de U4 (≥ 0.93 en C1 y ≥ 0.91 en C
+INFORME_SENS2.md,322,0.91,en_conclusiones,4 (≥ 0.93 en C1 y ≥ 0.91 en C4) se pierden 6
+INFORME_SENS2.md,323,0.47,en_conclusiones,cación: P(KALINA) = 0.47 en C1 no es un ries
+INFORME_SENS2.md,323,53,en_conclusiones,esgo de pérdida del 53 %: sale de muestrea
+INFORME_SENS2.md,323,1.00,en_conclusiones,(con ε_cond fija da 1.00). El factor dominan
+INFORME_SENS2.md,323,0.95,en_conclusiones, x_b. Con ε_cond en 0.95 los cuatro centros 
+INFORME_SENS2.md,323,0.93,en_conclusiones," de 48, IC inferior 0.93); el margen de ε_co"
+INFORME_SENS2.md,323,0.028,en_conclusiones," salir de KALINA es 0.028 en C1, 0.044 en C4 "
+INFORME_SENS2.md,323,0.044,en_conclusiones,"INA es 0.028 en C1, 0.044 en C4 y ≥ 0.05 en C"
+INFORME_SENS2.md,323,0.05,en_conclusiones,"C1, 0.044 en C4 y ≥ 0.05 en C2 y C3. Las tol"
+INFORME_SENS2.md,327,42,en_conclusiones,C1 y C4 caen a 17 y 42 %.
+INFORME_SENS2.md,329,0.17,en_conclusiones,"cias ×2): P(KALINA) 0.17 en C1 [0.09, 0.30],"
+INFORME_SENS2.md,329,0.09,en_conclusiones,"KALINA) 0.17 en C1 [0.09, 0.30], 0.90 en C2 "
+INFORME_SENS2.md,329,0.30,en_conclusiones,") 0.17 en C1 [0.09, 0.30], 0.90 en C2 [0.78,"
+INFORME_SENS2.md,329,0.90,en_conclusiones,"en C1 [0.09, 0.30], 0.90 en C2 [0.78, 0.95],"
+INFORME_SENS2.md,329,0.78,en_conclusiones," 0.30], 0.90 en C2 [0.78, 0.95], 0.65 en C3 "
+INFORME_SENS2.md,329,0.95,en_conclusiones,", 0.90 en C2 [0.78, 0.95], 0.65 en C3 [0.50,"
+INFORME_SENS2.md,329,0.65,en_conclusiones,"en C2 [0.78, 0.95], 0.65 en C3 [0.50, 0.77] "
+INFORME_SENS2.md,329,0.50,en_conclusiones," 0.95], 0.65 en C3 [0.50, 0.77] y 0.42 en C4"
+INFORME_SENS2.md,329,0.77,en_conclusiones,", 0.65 en C3 [0.50, 0.77] y 0.42 en C4 [0.29"
+INFORME_SENS2.md,329,0.42,en_conclusiones,"n C3 [0.50, 0.77] y 0.42 en C4 [0.29, 0.56]."
+INFORME_SENS2.md,329,0.29,en_conclusiones,"0.77] y 0.42 en C4 [0.29, 0.56]. De 90 punto"
+INFORME_SENS2.md,329,0.56,en_conclusiones,"y 0.42 en C4 [0.29, 0.56]. De 90 puntos que "
+INFORME_SENS2.md,329,0.83,en_conclusiones,). PRCC: C3 ε_cond +0.83 y T_sumidero −0.47;
+INFORME_SENS2.md,329,−0.47,en_conclusiones," +0.83 y T_sumidero −0.47; C4 ε_cond +0.79, T"
+INFORME_SENS2.md,329,0.79,en_conclusiones,"o −0.47; C4 ε_cond +0.79, T_sumidero −0.66 y"
+INFORME_SENS2.md,329,−0.66,en_conclusiones,"d +0.79, T_sumidero −0.66 y x_b −0.47. En B ε"
+INFORME_SENS2.md,329,−0.47,en_conclusiones,umidero −0.66 y x_b −0.47. En B ε_cond se mue
+INFORME_SENS2.md,329,0.85,en_conclusiones,"ond se muestrea en [0.85, 0.95], también de "
+INFORME_SENS2.md,329,0.95,en_conclusiones," muestrea en [0.85, 0.95], también de forma "
+INFORME_SENS2.md,329,0.90,en_conclusiones,"a unilateral (media 0.90), de modo que la pé"
+INFORME_SENS2.md,336,2.6,en_conclusiones,"1 (con duplicados), 2.6 % tienen m_O2 < 1 K"
+INFORME_SENS2.md,336,7.0,en_conclusiones," tienen m_O2 < 1 K, 7.0 % < 3 K y 13.2 % < "
+INFORME_SENS2.md,336,13.2,en_conclusiones," 1 K, 7.0 % < 3 K y 13.2 % < 5 K (4.0, 10.0 "
+INFORME_SENS2.md,336,4.0,en_conclusiones,"3 K y 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C"
+INFORME_SENS2.md,336,10.0,en_conclusiones," 13.2 % < 5 K (4.0, 10.0 y 20.9 % en C1). En"
+INFORME_SENS2.md,336,20.9,en_conclusiones," < 5 K (4.0, 10.0 y 20.9 % en C1). En la pro"
+INFORME_SENS2.md,336,0.47,en_conclusiones,"K baja P(KALINA) de 0.47 a 0.15 en C1, de 0."
+INFORME_SENS2.md,336,0.15,en_conclusiones,"P(KALINA) de 0.47 a 0.15 en C1, de 0.85 a 0."
+INFORME_SENS2.md,336,0.85,en_conclusiones,"47 a 0.15 en C1, de 0.85 a 0.57 en C4 y de 1"
+INFORME_SENS2.md,336,0.57,en_conclusiones,"15 en C1, de 0.85 a 0.57 en C4 y de 1.00 a 0"
+INFORME_SENS2.md,336,1.00,en_conclusiones,5 a 0.57 en C4 y de 1.00 a 0.93 en C3; en C2
+INFORME_SENS2.md,336,0.93,en_conclusiones,7 en C4 y de 1.00 a 0.93 en C3; en C2 se man
+INFORME_SENS2.md,336,0.99,en_conclusiones,n C2 se mantiene en 0.99. Con ε_cond fija en
+INFORME_SENS2.md,336,0.95,en_conclusiones, Con ε_cond fija en 0.95 y exigiendo m_O2 ≥ 
+INFORME_SENS2.md,336,0.79,en_conclusiones,"≥ 3 K, P(KALINA) es 0.79 en C1 y 1.00 en C2,"
+INFORME_SENS2.md,336,1.00,en_conclusiones,"NA) es 0.79 en C1 y 1.00 en C2, 1.00 en C3 y"
+INFORME_SENS2.md,336,1.00,en_conclusiones,"en C1 y 1.00 en C2, 1.00 en C3 y 1.00 en C4:"
+INFORME_SENS2.md,336,1.00,en_conclusiones,"en C2, 1.00 en C3 y 1.00 en C4: la pérdida d"
+INFORME_SENS2.md,337,0.47,en_conclusiones,ado de Húsavík (P = 0.47) depende de aceptar
+INFORME_SENS2.md,341,91,en_conclusiones,aña anterior en C2 (91 %) y no en C3 (35 %
+INFORME_SENS2.md,341,35,en_conclusiones," (91 %) y no en C3 (35 %: 23 puntos, 15 de"
+INFORME_SENS2.md,343,0.15,en_conclusiones,viejo a distancia ≤ 0.15 de un centro (punto
+INFORME_SENS2.md,343,85.0,en_conclusiones,"ns2 no tenía), 181 (85.0 %) caen dentro de l"
+INFORME_SENS2.md,343,90.7,en_conclusiones,"C1 7/7, C2 165/182 (90.7 %), C3 8/23 (34.8 %"
+INFORME_SENS2.md,343,34.8,en_conclusiones," (90.7 %), C3 8/23 (34.8 %) y C4 1/1; el tot"
+INFORME_SENS2.md,343,392.5,en_conclusiones,n T_fuente de 390 a 392.5 K (mínimo de Sens2 
+INFORME_SENS2.md,343,393.15,en_conclusiones, K (mínimo de Sens2 393.15 K) y 15 de C3 que c
+INFORME_SENS2.md,343,0.8418,en_conclusiones,co valor de ε_cond (0.8418; mínimo de Sens2 0.
+INFORME_SENS2.md,343,0.85,en_conclusiones,"18; mínimo de Sens2 0.85), es decir, un solo"
+INFORME_SENS2.md,344,0.8418,en_conclusiones,"vada es algo menor (0.8418), sin definir un ra"
+INFORME_SENS2.md,350,0.561,en_conclusiones,n n ≥ 5 acuerdan en 0.561 (2 619 evaluaciones
+INFORME_SENS2.md,350,0.10,en_conclusiones,"as 5 eficiencias a ±0.10 del centro, 11 fron"
+INFORME_SENS2.md,350,0.478,en_conclusiones,"onteras acuerdan en 0.478 (665 evaluaciones),"
+INFORME_SENS2.md,350,0.598,en_conclusiones, mismo subconjunto (0.598); el resultado depe
+INFORME_SENS2.md,350,0.683,en_conclusiones,edice con exactitud 0.683 frente a 0.647 de l
+INFORME_SENS2.md,350,0.647,en_conclusiones,itud 0.683 frente a 0.647 de la clase mayorit
+INFORME_SENS2.md,350,0.29,en_conclusiones,"Sens2 cercano (L1 ≤ 0.29, primer cuartil) es"
+INFORME_SENS2.md,350,0.682,en_conclusiones," primer cuartil) es 0.682 frente a 0.568, y l"
+INFORME_SENS2.md,350,0.568,en_conclusiones,") es 0.682 frente a 0.568, y lejos (L1 > 1.09"
+INFORME_SENS2.md,350,1.09,en_conclusiones,".568, y lejos (L1 > 1.09) 0.748 frente a 0.8"
+INFORME_SENS2.md,350,0.748,en_conclusiones,y lejos (L1 > 1.09) 0.748 frente a 0.890.
+INFORME_SENS2.md,350,0.890,en_conclusiones,.09) 0.748 frente a 0.890.
+INFORME_SENS2.md,364,2.47,en_conclusiones,"ncia sin parear de +2.47 puntos de η, que me"
+INFORME_SENS2.md,364,96,en_conclusiones,"s del espacio), L1 (96 % por O2) y L2 (res"
+INFORME_SENS2.md,364,0.43,en_conclusiones,LINA más cercano es 0.43 puntos menor y 0.56
+INFORME_SENS2.md,364,0.56,en_conclusiones,0.43 puntos menor y 0.56 si el vecino está a
+INFORME_SENS2.md,364,0.2,en_conclusiones, vecino está a L1 ≤ 0.2). Los CORREGIBLE ap
+INFORME_SENS2.md,368,14,en_conclusiones,r los NO_CONVERGIO (14 % de los puntos; 24
+INFORME_SENS2.md,368,24,en_conclusiones,14 % de los puntos; 24 % en los LHS de C3 
+INFORME_SENS2.md,371,2.5,en_conclusiones,_fuente con paso de 2.5 K en los techos de 
+INFORME_SENS2.md,371,440.65,en_conclusiones,"hos de cada bloque (440.65, 468.15, 568.15 y 5"
+INFORME_SENS2.md,371,468.15,en_conclusiones,"ada bloque (440.65, 468.15, 568.15 y 528.15 K)"
+INFORME_SENS2.md,371,568.15,en_conclusiones,"ue (440.65, 468.15, 568.15 y 528.15 K)."
+INFORME_SENS2.md,371,528.15,en_conclusiones,"5, 468.15, 568.15 y 528.15 K)."
+INFORME_SENS2.md,380,15,en_conclusiones,- El 15 % de los KALINA est
+INFORME_SENS2.md,384,13.2,en_conclusiones, de T_fuente en C2 (13.2) está sobre una ram
+INFORME_SENS2.md,385,10,en_conclusiones,- El «10 % de mayor η» tiene
+INFORME_SENS2.md,386,3.1,en_conclusiones,"rsión sobre LHS (η +3.1 puntos, IC [+2.46, "
+INFORME_SENS2.md,386,2.46,en_conclusiones,"η +3.1 puntos, IC [+2.46, +3.65]) es la meno"
+INFORME_SENS2.md,386,3.65,en_conclusiones,"puntos, IC [+2.46, +3.65]) es la menos expue"
+INFORME_SENS2.md,390,0.05,en_conclusiones, a F3 significa q < 0.05 de Benjamini–Hochbe
+INFORME_SENS2.md,391,0.05,en_conclusiones, P con 48 puntos de 0.05 a 0.07; JCGM 101) y
+INFORME_SENS2.md,391,0.07,en_conclusiones,48 puntos de 0.05 a 0.07; JCGM 101) y la ban
+INFORME_SENS2.md,391,0.7,en_conclusiones,lo de propiedades (±0.7 pp) se suma de form
+INFORME_SENS2.md,392,14,en_conclusiones,- NO_CONVERGIO (14 % de los puntos) se
 VALIDACION_SENS2.md,12,2.5,en_conclusiones,"bro: evaluación 1 = 2.5, 2.5, 2.5, 3.5, 3.0"
 VALIDACION_SENS2.md,12,2.5,en_conclusiones,"evaluación 1 = 2.5, 2.5, 2.5, 3.5, 3.0, 3.5"
 VALIDACION_SENS2.md,12,2.5,en_conclusiones,"ación 1 = 2.5, 2.5, 2.5, 3.5, 3.0, 3.5;"
@@ -724,9 +740,9 @@ VALIDACION_SENS2.md,13,3.5,en_conclusiones,"SENS2_MEJORA.md`) = 3.5, 3.0, 3.0, 3
 VALIDACION_SENS2.md,13,3.0,en_conclusiones,"_MEJORA.md`) = 3.5, 3.0, 3.0, 3.5, 3.8, 3.8"
 VALIDACION_SENS2.md,13,3.0,en_conclusiones,"RA.md`) = 3.5, 3.0, 3.0, 3.5, 3.8, 3.8; eva"
 VALIDACION_SENS2.md,13,3.5,en_conclusiones,"`) = 3.5, 3.0, 3.0, 3.5, 3.8, 3.8; evaluaci"
-VALIDACION_SENS2.md,13,3.8,en_csv,"3.5, 3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 "
-VALIDACION_SENS2.md,13,3.8,en_csv,"3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 = 3.8"
-VALIDACION_SENS2.md,13,3.8,en_csv,"3.8; evaluación 3 = 3.8, 3.5, 3.5, 3.5, 4.2"
+VALIDACION_SENS2.md,13,3.8,en_conclusiones,"3.5, 3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 "
+VALIDACION_SENS2.md,13,3.8,en_conclusiones,"3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 = 3.8"
+VALIDACION_SENS2.md,13,3.8,en_conclusiones,"3.8; evaluación 3 = 3.8, 3.5, 3.5, 3.5, 4.2"
 VALIDACION_SENS2.md,13,3.5,en_conclusiones,"evaluación 3 = 3.8, 3.5, 3.5, 3.5, 4.2, 4.0"
 VALIDACION_SENS2.md,13,3.5,en_conclusiones,"ación 3 = 3.8, 3.5, 3.5, 3.5, 4.2, 4.0;"
 VALIDACION_SENS2.md,13,3.5,en_conclusiones," 3 = 3.8, 3.5, 3.5, 3.5, 4.2, 4.0;"
@@ -735,22 +751,22 @@ VALIDACION_SENS2.md,13,4.0,en_conclusiones,"3.5, 3.5, 3.5, 4.2, 4.0;"
 VALIDACION_SENS2.md,14,3.9,en_conclusiones,"evaluación 4 = 3.9, 3.7, 3.6, 3.8, 4.1"
 VALIDACION_SENS2.md,14,3.7,en_conclusiones,"evaluación 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1"
 VALIDACION_SENS2.md,14,3.6,en_conclusiones,"ación 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1; eva"
-VALIDACION_SENS2.md,14,3.8,en_csv," 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1; evaluaci"
+VALIDACION_SENS2.md,14,3.8,en_conclusiones," 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1; evaluaci"
 VALIDACION_SENS2.md,14,4.1,en_csv,"3.9, 3.7, 3.6, 3.8, 4.1, 4.1; evaluación 5 "
 VALIDACION_SENS2.md,14,4.1,en_csv,"3.7, 3.6, 3.8, 4.1, 4.1; evaluación 5 = 4.0"
 VALIDACION_SENS2.md,14,4.0,en_conclusiones,"4.1; evaluación 5 = 4.0, 3.8, 3.8, 3.9, 3.8"
-VALIDACION_SENS2.md,14,3.8,en_csv,"evaluación 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2"
-VALIDACION_SENS2.md,14,3.8,en_csv,"ación 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2; eva"
+VALIDACION_SENS2.md,14,3.8,en_conclusiones,"evaluación 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2"
+VALIDACION_SENS2.md,14,3.8,en_conclusiones,"ación 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2; eva"
 VALIDACION_SENS2.md,14,3.9,en_conclusiones," 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2; evaluaci"
-VALIDACION_SENS2.md,14,3.8,en_csv,"4.0, 3.8, 3.8, 3.9, 3.8, 4.2; evaluación 6 "
+VALIDACION_SENS2.md,14,3.8,en_conclusiones,"4.0, 3.8, 3.8, 3.9, 3.8, 4.2; evaluación 6 "
 VALIDACION_SENS2.md,14,4.2,en_csv,"3.8, 3.8, 3.9, 3.8, 4.2; evaluación 6 = 4.0"
 VALIDACION_SENS2.md,14,4.0,en_conclusiones,"4.2; evaluación 6 = 4.0, 3.8, 3.7, 3.9, 3.9"
-VALIDACION_SENS2.md,14,3.8,en_csv,"evaluación 6 = 4.0, 3.8, 3.7, 3.9, 3.9, 4.2"
+VALIDACION_SENS2.md,14,3.8,en_conclusiones,"evaluación 6 = 4.0, 3.8, 3.7, 3.9, 3.9, 4.2"
 VALIDACION_SENS2.md,14,3.7,en_conclusiones,"ación 6 = 4.0, 3.8, 3.7, 3.9, 3.9, 4.2. La "
 VALIDACION_SENS2.md,14,3.9,en_conclusiones," 6 = 4.0, 3.8, 3.7, 3.9, 3.9, 4.2. La cober"
 VALIDACION_SENS2.md,14,3.9,en_conclusiones,"4.0, 3.8, 3.7, 3.9, 3.9, 4.2. La cobertura "
 VALIDACION_SENS2.md,14,4.2,en_csv,"3.8, 3.7, 3.9, 3.9, 4.2. La cobertura de la"
-VALIDACION_SENS2.md,14,3.8,en_csv,io que no sube de ≈ 3.8 sin el motor.
+VALIDACION_SENS2.md,14,3.8,en_conclusiones,io que no sube de ≈ 3.8 sin el motor.
 VALIDACION_SENS2.md,23,49,en_conclusiones,a última ronda: el «49 % a una sola variab
 VALIDACION_SENS2.md,23,68,en_conclusiones," conteo del diseño, 68 % en barridos y mal"
 VALIDACION_SENS2.md,23,0,en_conclusiones,barridos y mallas y 0 % en el LHS; el aju
@@ -790,4 +806,29 @@ VALIDACION_SENS2.md,68,0.006,en_conclusiones,l/m_b cae de 0.81 a 0.006.
 VALIDACION_SENS2.md,70,0.40,en_conclusiones,"_reg se muestrea de 0.40 a 0.95, y el pinch "
 VALIDACION_SENS2.md,70,0.95,en_conclusiones," muestrea de 0.40 a 0.95, y el pinch y el UA"
 VALIDACION_SENS2.md,78,0.01,en_conclusiones, (P3): verificado (±0.01 por el bootstrap).
-VALIDACION_SENS2.md,95,15,en_conclusiones,- El 15 % de los KALINA est
+VALIDACION_SENS2.md,94,0.05,en_conclusiones,“distinguible” (q < 0.05 en al menos 2 métod
+VALIDACION_SENS2.md,94,2.8,en_conclusiones,"de 36 evaluaciones (2.8 %, intervalo de Wil"
+VALIDACION_SENS2.md,94,95,en_conclusiones,ervalo de Wilson de 95 % entre 0.5 y 14.2 
+VALIDACION_SENS2.md,94,0.5,en_conclusiones,ilson de 95 % entre 0.5 y 14.2 %). Con solo
+VALIDACION_SENS2.md,94,14.2,en_conclusiones,de 95 % entre 0.5 y 14.2 %). Con solo 36 eva
+VALIDACION_SENS2.md,94,2.8,en_conclusiones,"pendientes, así que 2.8 % es una estimación"
+VALIDACION_SENS2.md,95,49,en_conclusiones,2. **«El 49 % de rescate con un
+VALIDACION_SENS2.md,95,68,en_conclusiones,na sola variable es 68 % en barridos y mal
+VALIDACION_SENS2.md,95,0,en_conclusiones,barridos y mallas y 0 % en el LHS. ¿Qué n
+VALIDACION_SENS2.md,95,49,en_conclusiones,* Ninguno único. El 49 % es un conteo del 
+VALIDACION_SENS2.md,95,0.2,en_conclusiones,ALINA cercano (L1 ≤ 0.2) rescatar cuesta un
+VALIDACION_SENS2.md,95,0.56,en_conclusiones,esta una mediana de 0.56 puntos de η (n = 21
+VALIDACION_SENS2.md,95,1.72,en_conclusiones,"os lejanos del LHS, 1.72 (n = 262); la media"
+VALIDACION_SENS2.md,95,0.43,en_conclusiones,a global pareada es 0.43 (n = 734). El costo
+VALIDACION_SENS2.md,96,0.47,en_conclusiones,3. **«P(KALINA) = 0.47 en C1 sale de pertu
+VALIDACION_SENS2.md,96,0.95,en_conclusiones,jo desde el tope de 0.95. ¿Por qué ese escen
+VALIDACION_SENS2.md,96,0.95,en_conclusiones,d no puede pasar de 0.95 (regla del proyecto
+VALIDACION_SENS2.md,96,0.95,en_conclusiones, Con ε_cond fija en 0.95 la probabilidad es 
+VALIDACION_SENS2.md,96,1.00,en_conclusiones," la probabilidad es 1.00, y el barrido fino "
+VALIDACION_SENS2.md,96,0.92,en_conclusiones, frontera local en ≈0.92 (C1) y ≈0.906 (C4).
+VALIDACION_SENS2.md,96,0.906,en_conclusiones,al en ≈0.92 (C1) y ≈0.906 (C4). Una perturbac
+VALIDACION_SENS2.md,97,0.47,en_conclusiones,tencia en C1 cae de 0.47 a 0.15 (U1). Un NPS
+VALIDACION_SENS2.md,97,0.15,en_conclusiones,en C1 cae de 0.47 a 0.15 (U1). Un NPSH neces
+VALIDACION_SENS2.md,98,28,en_conclusiones,te? ¿Y el sesgo del 28 % de NO_CONVERGIO d
+VALIDACION_SENS2.md,98,41,en_conclusiones,mina poco (poder de 41 %: una cifra invent
+VALIDACION_SENS2.md,103,15,en_conclusiones,- El 15 % de los KALINA est

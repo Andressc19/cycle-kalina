@@ -112,3 +112,18 @@ def extra5(chk, ev, sub, P):
     chk("L", "L10", sub(t, nc, "%d") and sub(t, len(r), "%d") and sub(t, ctrl, "%d") and sub(t, err, "%d"),
         "REINT0 crudo: %d NO_CONVERGIO de %d (control %d, error de motor %d)" % (nc, len(r), ctrl, err))
     chk("D", "D9", sub(ev("D9"), len(p), "%d"), "PISOS crudo: %d puntos" % len(p))
+
+
+def extra6(chk, ev, sub, P):
+    """E10 (etapa B): percentiles de caudal de turbina, bomba y altura recalculados desde las filas crudas del motor (s2b_dens_filas.csv)."""
+    import numpy as np
+    d = pd.read_csv(P("2026-10-18_sens2_B", "s2b_dens_filas.csv"))
+    k = d[(d["clasificacion"] == "KALINA") & ~d["fuera_rango"].astype(bool)]
+    t = ev("E10", "afirmacion") + " " + ev("E10")
+    v3 = 1000.0 * k["V3_m3s"] / k["Wnet"]
+    v4 = 1000.0 * k["V4_m3s"] / k["Wnet"]
+    h = k["H_bomba_m"]
+    ok = (sub(t, float(np.percentile(v3, 5)), "%.2f") and sub(t, float(np.percentile(v3, 95)), "%.2f") and sub(t, float(np.percentile(v4, 50)), "%.2f")
+          and sub(t, float(np.percentile(h, 5)), "%.0f") and sub(t, float(np.percentile(h, 95)), "%.0f") and sub(t, len(k), "%d"))
+    chk("E", "E10", ok, "V3 P5-P95 %.2f-%.2f; V4 P50 %.2f; H %.0f-%.0f m; n = %d" % (np.percentile(v3, 5), np.percentile(v3, 95), np.percentile(v4, 50),
+                                                                           np.percentile(h, 5), np.percentile(h, 95), len(k)))

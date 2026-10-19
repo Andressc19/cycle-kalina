@@ -44,3 +44,4 @@ M6,inferencia,1,17,pendiente,parcial,no,no,no,"mayor valor muestreado por banda 
 E9,inferencia,1,2047,na,parcial,no,no,si,aritmetica sobre las cifras por kg/s de los KALINA de diseños mezclados (p6_equipos_kw); depende del diseño como E1 a E7
 D9,determinista,2,2,pendiente,acotado,na,no,si,"malla de 100 a 150 kPa y puntos de 25 kPa; 2 a 5 puntos por combinacion; los NO_CONVERGIO cortan la secuencia"
 L10,recuento,1,90,na,parcial,na,no,no,"90 de 515 NO_CONVERGIO reintentados (75 lentos y 15 de control); ninguno recuperado"
+E10,inferencia,1,30,na,parcial,si,no,si,"150 KALINA elegidos en 5 ambitos (30 cada uno); envolventes del muestreo y no de toda la campana"

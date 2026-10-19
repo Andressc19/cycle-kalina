@@ -2,11 +2,11 @@
 
 Cada cifra se busca solo en los CSV de la columna `fuente` de su conclusion (y en los valores de `p5_hechos`, que alimentan los marcadores, y en `p5_trazado_permitidos.csv`).
 
-- total de numeros: 1083
-- trazados contra su fuente: 974 (89.9 %)
+- total de numeros: 1108
+- trazados contra su fuente: 999 (90.2 %)
 - triviales: 109
 - no trazados (escritos a mano sin respaldo directo en la fuente citada): 0 (0.0 %)
-- poder del control: una cifra inventada de dos decimales se habria trazado en el 41.0 % de los casos con esta restriccion (con todos los CSV: 100 %).
+- poder del control: una cifra inventada de dos decimales se habria trazado en el 38.3 % de los casos con esta restriccion (con todos los CSV: 100 %).
 
 Los no trazados no son necesariamente erroneos (rangos redondeados, cifras de la literatura, constantes de diseno), pero no tienen respaldo automatico: las mas importantes se vigilan con `p5_cifras_check*.py`.
 
@@ -29,7 +29,7 @@ Porcentaje de cifras inventadas de dos decimales que se trazarian contra las fue
 | D6 | 6 | no |
 | E1 | 20 | no |
 | E2 | 16 | no |
-| E3 | 26 | no |
+| E3 | 27 | no |
 | E4 | 26 | no |
 | E5 | 22 | no |
 | E6 | 22 | no |
@@ -42,8 +42,8 @@ Porcentaje de cifras inventadas de dos decimales que se trazarian contra las fue
 | F1 | 64 | no |
 | F2 | 10 | no |
 | F3 | 10 | no |
-| F4 | 8 | no |
-| F5 | 7 | no |
+| F4 | 10 | no |
+| F5 | 8 | no |
 | F6 | 20 | no |
 | L1 | 86 | si |
 | L2 | 12 | no |
@@ -66,3 +66,4 @@ Porcentaje de cifras inventadas de dos decimales que se trazarian contra las fue
 | E9 | 14 | no |
 | D9 | 7 | no |
 | L10 | 10 | no |
+| E10 | 9 | no |

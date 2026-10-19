@@ -8,7 +8,7 @@ sesión). Fecha: 2026-10-17. Rama `test/anal_terremoto`.
 ## Actualización 2026-10-18 (evaluaciones tipo profesor y plan de mejora)
 
 El libro actual tiene 43 conclusiones y 808 puntos nuevos del motor (F5 Incertidumbre, corridos por el director, no por OpenCode) y el
-contraste con la campaña anterior (F6, L8 y L9): (29 hojas, 90 gráficos). Cuatro revisores independientes lo evaluaron como un profesor
+contraste con la campaña anterior (F6, L8 y L9): (30 hojas, 92 gráficos). Cuatro revisores independientes lo evaluaron como un profesor
 exigente. Notas (0 a 5) en el orden rigor, coherencia, sobre-afirmaciones, cobertura, trazabilidad y libro: evaluación 1 = 2.5, 2.5, 2.5, 3.5, 3.0, 3.5;
 evaluación 2 (tras la etapa A del plan `docs/PLAN_SENS2_MEJORA.md`) = 3.5, 3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 = 3.8, 3.5, 3.5, 3.5, 4.2, 4.0;
 evaluación 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1; evaluación 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2; evaluación 6 = 4.0, 3.8, 3.7, 3.9, 3.9, 4.2. La cobertura de las preguntas 3 y 4 del profesor es el criterio que no sube de ≈ 3.8 sin el motor.
@@ -88,6 +88,14 @@ parten de cero salvo las de elasticidad y coeficientes (con signo, con escala pr
 (1) los gráficos de P(KALINA) por banda usan el número de cuantil en el eje, no el valor de la variable (el valor
 está en la tabla); (2) la paleta verde/rojo no es óptima para daltonismo (se mantiene la del libro 1; las series
 siempre llevan leyenda); (3) los títulos describen la métrica y no enuncian el hallazgo.
+
+## Preguntas difíciles de una defensa y qué responder (evaluación 7)
+
+1. **«¿Cuál es la tasa de falsos positivos de su regla “distinguible” (q < 0.05 en al menos 2 métodos)?»** Medida con las variables dummy (columnas de números aleatorios sin relación con la respuesta): la regla marca 1 de 36 evaluaciones (2.8 %, intervalo de Wilson de 95 % entre 0.5 y 14.2 %). Con solo 36 evaluaciones el intervalo es ancho, y los métodos no son independientes, así que 2.8 % es una estimación y no una tasa nominal. Al juntar todas las pruebas de los cuatro bloques y las tres respuestas en una sola familia de Benjamini–Hochberg, las variables reales distinguibles pasan de 55 a 54 de 108: la regla casi no cambia. Fuente: `p6_calibra_regla.csv`, hoja «F7 Nulo y correccion FDR».
+2. **«El 49 % de rescate con una sola variable es 68 % en barridos y mallas y 0 % en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que sí se puede decir: con un vecino KALINA cercano (L1 ≤ 0.2) rescatar cuesta una mediana de 0.56 puntos de η (n = 214); con vecinos lejanos del LHS, 1.72 (n = 262); la mediana global pareada es 0.43 (n = 734). El costo crece con la distancia al KALINA más cercano y depende del conjunto de puntos.
+3. **«P(KALINA) = 0.47 en C1 sale de perturbar ε_cond solo hacia abajo desde el tope de 0.95. ¿Por qué ese escenario?»** Porque la efectividad no puede pasar de 0.95 (regla del proyecto) y el centro está en el tope. Con ε_cond fija en 0.95 la probabilidad es 1.00, y el barrido fino de ε_cond ubica la frontera local en ≈0.92 (C1) y ≈0.906 (C4). Una perturbación simétrica alrededor de un centro más bajo queda pendiente de una corrida del motor (ver el plan).
+4. **«Su criterio de cavitación es margen cero, no NPSH. ¿Qué piso de P_baja sirve para diseño?»** El piso es el de margen cero (m_O2 ≥ 0); con la malla de 100 a 150 kPa sobrestimaba el piso hasta 125 kPa, y el paso de 25 kPa lo afina (conclusión D9). Con un margen de 3 K la existencia en C1 cae de 0.47 a 0.15 (U1). Un NPSH necesita datos de la bomba que el modelo no tiene: el piso debe tomarse como cota inferior y sumarle el margen que pida el fabricante.
+5. **«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo del 28 % de NO_CONVERGIO del LHS?»** El trazado contra la fuente citada discrimina poco (poder de 41 %: una cifra inventada de dos decimales se trazaría en 4 de cada 10 casos); el respaldo real son los controles independientes (85: 73 de cifras y 12 de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO con el triple de presupuesto y no se recuperó ninguno (L10), así que el sesgo de los umbrales inferiores de T_fuente (D3, F3) no se puede corregir con más tiempo; queda declarado como límite.
 
 ## Caveats obligatorios para quien lea el libro
 

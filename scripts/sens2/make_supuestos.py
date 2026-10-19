@@ -14,6 +14,9 @@ sys.path.insert(0, AQUI)
 sys.path.insert(0, os.path.join(RAIZ, "scripts", "sens1"))
 
 import p3_comun as P3  # noqa: E402
+import p6_comun as K6  # noqa: E402
+import s2b_opt_T as OT  # noqa: E402
+import s2b_puntos as PB  # noqa: E402
 import r1_filtro as RF  # noqa: E402
 import r2_eficiencias as RE  # noqa: E402
 import r2_vecinos as RV  # noqa: E402
@@ -44,12 +47,18 @@ def supuestos():
     pon("banda_modelo_pp", UA.BANDA_MODELO, M % "u1_analisis")
     pon("semilla_f1", 20261018, PLAN)
     pon("q_fdr", 0.05, PLAN)
-    pon("n_permutaciones_f1", 500, PLAN)
+    pon("n_permutaciones_f1", K6.B_PERM, M % "p6_comun")
+    pon("pisos_paso_kpa", PB.PASO, M % "s2b_puntos")
+    pon("pisos_x_b_por_centro", PB.XB_PISOS, M % "s2b_puntos")
+    pon("reintento_nc", {"presupuesto_original_s": 300, "tope_original_s": 600, "presupuesto_s": 900, "tope_s": 1100, "lentos": "t_s >= 250", "control": "t_s < 100 (15, semilla %d)" % PB.SEMILLA}, M % "s2b_puntos")
+    pon("optimo_T_fuente", {"bandas_K": [round(b, 2) for b in OT.BANDAS], "variables_libres": list(OT.LIM), "limites": OT.LIM, "variables_fijas": OT.FIJAS, "paso_inicial": OT.PASO0, "max_eval_por_banda": OT.MAX_EVAL}, M % "s2b_opt_T")
     pon("n_min_confianza", 30, PLAN)
     pon("auc_minimo", 0.8, PLAN)
     pon("procedencia", {
         "u1_808_puntos": "corridos por el director con u1_corrida.py (OpenCode no arrancó)",
-        "r1": "OpenCode con vigilante; r2: director"}, PLAN)
+        "r1": "OpenCode con vigilante; r2: director",
+        "etapa_B_pisos_y_reintento": "OpenCode con vigilante (B3, 139 puntos del motor)",
+        "etapa_B_densidades_y_optimo_T": "OpenCode con vigilante (B4); el director escribio los scripts y los probo en un punto"}, PLAN)
     return s
 
 
