@@ -23,7 +23,7 @@ def hoja_pisos_reintento(wb, datos):
     f = condiciones(ws, f, [
         "Base: centro de cada bloque con x_b y P_baja cambiados; T_fuente, T_sumidero, P_alta y las eficiencias en el centro.",
         "Pisos: P_baja entre el ultimo nivel sin KALINA y el primero con KALINA de la malla P_baja x x_b (resolucion 100 a 150 kPa), con paso de 25 kPa (49 puntos).",
-        "Reintento: 90 NO_CONVERGIO originales (75 que agotaron el presupuesto de 300 s y 15 rapidos de control) con presupuesto 900 s y tope 1100 s.",
+        "Reintento: 90 NO_CONVERGIO originales (75 con 250 s o mas de tiempo original y 15 rapidos de control) con presupuesto 900 s y tope 1100 s.",
         "Fuente: resultados/2026-10-18_sens2_B (s2b_filas.csv) y resultados/2026-10-18_sens2_F1 (p6_pisos25.csv, p6_reintento_nc.csv)."])
     f = subtitulo(ws, f, "1. Piso de P_baja: malla de 100 a 150 kPa frente a paso de 25 kPa")
     p["etiqueta"] = p["centro"] + " x_b " + p["x_b"].map(lambda v: "%.2f" % v)

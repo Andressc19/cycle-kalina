@@ -2,11 +2,11 @@
 
 Cifras de `p5_conclusiones.csv` buscadas en los CSV de resultados y en `p5_trazado_permitidos.csv`.
 
-- total de numeros: 1193
-- trazados: 1084
+- total de numeros: 1217
+- trazados: 1108
 - triviales: 109
 - no trazados: 0
-- porcentaje de trazados (sobre el total): 90.9 %
+- porcentaje de trazados (sobre el total): 91.0 %
 
 ## No trazados
 
@@ -19,8 +19,8 @@ una cifra inventada con dos decimales se habría trazado en el 100.0 % de los ca
 
 ## Cobertura de marcadores
 
-- numeros dentro de marcadores: 511
-- numeros fuera de marcadores: 701
+- numeros dentro de marcadores: 524
+- numeros fuera de marcadores: 712
 
 ### 10 conclusiones con mas numeros fuera de marcadores
 
@@ -29,10 +29,10 @@ una cifra inventada con dos decimales se habría trazado en el 100.0 % de los ca
 | E8 | 0 | 57 |
 | U1 | 37 | 55 |
 | D8 | 0 | 45 |
+| M7 | 28 | 34 |
 | M1 | 5 | 31 |
-| M7 | 23 | 30 |
 | D7 | 0 | 24 |
 | E1 | 15 | 23 |
 | E4 | 0 | 23 |
+| D9 | 24 | 21 |
 | L6 | 0 | 21 |
-| D9 | 24 | 20 |

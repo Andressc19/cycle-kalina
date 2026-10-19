@@ -1,5 +1,5 @@
 {
-  "commit": "e588b5392cad95d0cefaccfbf52611cd50abccba",
+  "commit": "1ec6f638bbb85e18ba33df76aa4d5e5c1a5bd49b",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -15,79 +15,79 @@
     {
       "nombre": "p5_generar",
       "estado": "ok",
-      "segundos": 2.31,
+      "segundos": 2.45,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado",
       "estado": "ok",
-      "segundos": 3.08,
+      "segundos": 3.51,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado_fuente",
       "estado": "ok",
-      "segundos": 6.55,
+      "segundos": 6.63,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check",
       "estado": "ok",
-      "segundos": 4.42,
+      "segundos": 4.66,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check_c",
       "estado": "ok",
-      "segundos": 0.97,
+      "segundos": 0.99,
       "codigo": 0
     },
     {
       "nombre": "s2_construir",
       "estado": "ok",
-      "segundos": 10.42,
+      "segundos": 10.64,
       "codigo": 0
     },
     {
       "nombre": "s2_verificar",
       "estado": "ok",
-      "segundos": 22.66,
+      "segundos": 23.56,
       "codigo": 0
     },
     {
       "nombre": "s2_informe",
       "estado": "ok",
-      "segundos": 2.65,
+      "segundos": 2.75,
       "codigo": 0
     },
     {
       "nombre": "p5_lint_texto",
       "estado": "ok",
-      "segundos": 0.96,
+      "segundos": 0.98,
       "codigo": 0
     },
     {
       "nombre": "p5_docs_check",
       "estado": "ok",
-      "segundos": 2.27,
+      "segundos": 2.23,
       "codigo": 0
     },
     {
       "nombre": "s2_figuras",
       "estado": "ok",
-      "segundos": 3.63,
+      "segundos": 3.66,
       "codigo": 0
     },
     {
       "nombre": "s2_informe_pdf",
       "estado": "ok",
-      "segundos": 2.93,
+      "segundos": 3.95,
       "codigo": 0
     },
     {
       "nombre": "pruebas",
       "estado": "ok",
-      "segundos": 6.0,
+      "segundos": 6.03,
       "codigo": 0
     }
   ]

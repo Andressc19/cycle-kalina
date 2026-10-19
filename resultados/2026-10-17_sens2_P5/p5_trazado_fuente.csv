@@ -1062,6 +1062,7 @@ D9,evidencia,639,si,p6_pisos25.csv:piso_refinado,2
 D9,evidencia,0.88,si,p6_pisos25.csv:x_b,2
 D9,evidencia,0.83,si,p6_pisos25.csv:x_b,2
 D9,evidencia,0.50,si,p6_pisos25.csv:x_b,2
+D9,evidencia,375,si,p5_hechos,2
 D9,evidencia,400,si,p6_pisos25.csv:piso_malla,2
 D9,evidencia,49,si,p5_hechos,2
 D9,evidencia,2,trivial,trivial,2
@@ -1072,11 +1073,14 @@ L10,afirmacion,88,si,p5_hechos,1
 L10,afirmacion,90,si,p6_reintento_nc.csv:t_s_original,1
 L10,afirmacion,2,trivial,trivial,1
 L10,afirmacion,15,si,p6_reintento_nc.csv:t_s_nuevo,1
+L10,afirmacion,554,si,p6_reintento_nc.csv:t_s_nuevo,1
+L10,afirmacion,900,si,p5_hechos,1
 L10,evidencia,900,si,p5_hechos,1
 L10,evidencia,1 100,si,p5_hechos,1
 L10,evidencia,300,si,"permitido: presupuesto original del resolutor (PRESUPUESTO_S), citado tal cual",1
 L10,evidencia,600,si,p6_reintento_nc.csv:t_s_original,1
 L10,evidencia,75,si,p5_hechos,1
+L10,evidencia,250,si,p6_reintento_nc.csv:t_s_nuevo,1
 L10,evidencia,15,si,p6_reintento_nc.csv:t_s_nuevo,1
 L10,evidencia,88,si,p5_hechos,1
 L10,evidencia,38,si,p5_hechos,1
@@ -1084,6 +1088,9 @@ L10,evidencia,30,si,p5_hechos,1
 L10,evidencia,12,si,p6_reintento_nc.csv:t_s_original,1
 L10,evidencia,8,trivial,trivial,1
 L10,evidencia,0,trivial,trivial,1
+L10,evidencia,230,si,p6_reintento_nc.csv:t_s_nuevo,1
+L10,evidencia,554,si,p6_reintento_nc.csv:t_s_nuevo,1
+L10,evidencia,1 100,si,p5_hechos,1
 L10,evidencia,90,si,p6_reintento_nc.csv:t_s_original,1
 L10,evidencia,515,si,p5_hechos,1
 E10,afirmacion,0.25,si,p6_dens.csv:p5,1
@@ -1107,6 +1114,8 @@ E10,evidencia,150,si,p6_dens.csv:n,1
 E10,evidencia,150,si,p6_dens.csv:n,1
 E10,evidencia,656,si,p6_dens.csv:p5,1
 E10,evidencia,832,si,p6_dens.csv:p95,1
+E10,evidencia,0.2,si,p6_dens.csv:p5,1
+E10,evidencia,5.5,si,p6_dens.csv:p5,1
 E10,evidencia,1.59,si,p6_dens.csv:p5,1
 E10,evidencia,4.73,si,p6_dens.csv:p95,1
 E10,evidencia,2.72,si,p6_dens.csv:p50,1
@@ -1139,6 +1148,12 @@ U5,evidencia,0.93,si,u1_filas.csv:val1,5
 U5,evidencia,0.92,si,u1_filas.csv:val1,5
 U5,evidencia,0.906,si,u1_filas.csv:val1,5
 U5,evidencia,0.90,si,u1_filas.csv:val1,5
+U5,evidencia,72,si,u1_filas.csv:Wnet,5
+U5,evidencia,56,si,u1_filas.csv:q2,5
+U5,evidencia,48,si,u1_filas.csv:x_b,5
+U5,evidencia,48,si,u1_filas.csv:x_b,5
+U5,evidencia,96,si,u1_filas.csv:eta,5
+U5,evidencia,47,si,u1_filas.csv:x_b,5
 M7,afirmacion,11.0,si,p6_opt_T.csv:n_kalina,1
 M7,afirmacion,80,si,p6_opt_T.csv:T_fuente_C,1
 M7,afirmacion,16.8,si,p6_opt_T.csv:eta_max_pct,1
@@ -1147,11 +1162,14 @@ M7,afirmacion,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,afirmacion,13.4,si,p6_opt_T.csv:eta_max_pct,1
 M7,afirmacion,16.7,si,p6_opt_T.csv:eta_max_pct,1
 M7,afirmacion,300,si,p6_opt_T.csv:T_fuente_C,1
+M7,afirmacion,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,12,si,p6_opt_T.csv:n_kalina,1
 M7,evidencia,80,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,300,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,20,si,p5_hechos,1
 M7,evidencia,30,si,p6_opt_T.csv:n_eval,1
+M7,evidencia,21,si,p6_opt_T.csv:n_eval,1
+M7,evidencia,32,si,p6_opt_T.csv:n_eval,1
 M7,evidencia,347,si,p5_hechos,1
 M7,evidencia,205,si,p5_hechos,1
 M7,evidencia,0.85,si,p5_hechos,1
@@ -1175,7 +1193,13 @@ M7,evidencia,710,si,p6_opt_T.csv:P_baja,1
 M7,evidencia,0.77,si,p6_opt_T.csv:x_b,1
 M7,evidencia,0.93,si,p5_hechos,1
 M7,evidencia,-0.12,si,p6_opt_T.csv:mejora_pp,1
-M7,evidencia,1.95,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,4.37,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,12,si,p6_opt_T.csv:n_kalina,1
+M7,evidencia,-0.12,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,0.74,si,p6_opt_T.csv:x_b,1
+M7,evidencia,140,si,p6_opt_T.csv:T_fuente_C,1
+M7,evidencia,2.20,si,p6_opt_T.csv:mejora_dentro_pp,1
+M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,80,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,-0.12,si,p6_opt_T.csv:mejora_pp,1
 M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1

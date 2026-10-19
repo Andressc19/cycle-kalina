@@ -389,6 +389,7 @@ def _ronda9(h):
     h["pisos.n_puntos"] = float(p["n_puntos"].sum())
     r = pd.read_csv(os.path.join(F1, "p6_reintento_nc.csv"))
     h["reint.n"] = float(len(r))
+    h["reint.tmax"], h["reint.tmean"] = float(r["t_s_nuevo"].max()), float(r["t_s_nuevo"].mean())
     h["reint.n_lento"], h["reint.n_ctrl"] = float((r["grupo"] == "lento").sum()), float((r["grupo"] == "control").sum())
     h["reint.conv"] = float((~r["clase_nueva"].isin(["NO_CONVERGIO", "ERROR_MOTOR"])).sum())
     h["reint.n_nc"], h["reint.n_err"] = float((r["clase_nueva"] == "NO_CONVERGIO").sum()), float((r["clase_nueva"] == "ERROR_MOTOR").sum())
@@ -409,6 +410,9 @@ def _ronda12(h):
     b = t[t["T_fuente_C"] < 165]
     h["opt.pb.min"], h["opt.pb.max"] = float(b["P_baja"].min()), float(b["P_baja"].max())
     h["opt.xb.min"], h["opt.xb.max"] = float(b["x_b"].min()), float(b["x_b"].max())
+    h["opt.mej.min"], h["opt.mej.max"] = float(t["mejora_pp"].min()), float(t["mejora_pp"].max())
+    h["opt.160.mejd"] = float(t[t["T_fuente_C"].round() == 160]["mejora_dentro_pp"].iloc[0])
+    h["opt.neval.min"], h["opt.neval.max"] = float(t["n_eval"].min()), float(t["n_eval"].max())
     h["opt.n_eval"], h["opt.n_kalina"] = float(t["n_eval"].sum()), float(t["n_kalina"].sum())
     h["opt.eta.min_alta"], h["opt.eta.max_alta"] = float(t[t["T_fuente_C"] > 165]["eta_max_pct"].min()), float(t[t["T_fuente_C"] > 165]["eta_max_pct"].max())
 
@@ -419,6 +423,10 @@ def _ronda11(h):
         k = "simb.%s.%s" % (x.centro, "s" if x.escenario.startswith("SIM") else "u")
         h[k + ".p"], h[k + ".lo"], h[k + ".hi"] = float(x.p_kalina), float(x.ic_lo), float(x.ic_hi)
         h[k + ".n"], h[k + ".k"] = float(x.n), float(x.n_kalina)
+    sc = pd.read_csv(os.path.join(R, "2026-10-17_sens2_U1", "u1_scan_eps_cond.csv"))
+    for c in ("C1", "C4"):
+        fr = float(sc[(sc["centro"] == c) & (sc["clasificacion"] == "KALINA")]["eps_cond"].min())
+        h["simb.%s.fr" % c] = 100.0 * (fr - 0.85) / 0.10
 
 
 def _ronda10(h):
@@ -433,6 +441,7 @@ def _ronda10(h):
         h["dens.n"] = float(x.n)
     d = pd.read_csv(os.path.join(R, "2026-10-18_sens2_B", "s2b_dens_filas.csv"))
     h["dens.n_filas"] = float(len(d))
+    h["dens.wnet_min"], h["dens.eta_med"] = float(d["Wnet"].min()), float(100.0 * d["eta"].median())
     h["dens.n_bifasico"] = float((d["fase4"] == "bifasico").sum())
     h["dens.repro_pp"] = float((100.0 * d["eta"] - d["val1"]).abs().max())
 

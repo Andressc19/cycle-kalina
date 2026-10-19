@@ -1062,6 +1062,7 @@ D9,evidencia,639,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 D9,evidencia,0.88,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 D9,evidencia,0.83,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 D9,evidencia,0.50,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+D9,evidencia,375,0,si,2026-10-17_sens2_P1/p1_dataset.csv:T_fuente
 D9,evidencia,400,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 D9,evidencia,49,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 D9,evidencia,2,0,trivial,trivial
@@ -1072,11 +1073,14 @@ L10,afirmacion,88,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L10,afirmacion,90,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L10,afirmacion,2,0,trivial,trivial
 L10,afirmacion,15,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
+L10,afirmacion,554,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+L10,afirmacion,900,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,900,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,1 100,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,300,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,600,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,75,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+L10,evidencia,250,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 L10,evidencia,15,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,88,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L10,evidencia,38,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
@@ -1084,6 +1088,9 @@ L10,evidencia,30,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L10,evidencia,12,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L10,evidencia,8,0,trivial,trivial
 L10,evidencia,0,0,trivial,trivial
+L10,evidencia,230,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
+L10,evidencia,554,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+L10,evidencia,1 100,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,90,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L10,evidencia,515,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 E10,afirmacion,0.25,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
@@ -1107,6 +1114,8 @@ E10,evidencia,150,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 E10,evidencia,150,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 E10,evidencia,656,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 E10,evidencia,832,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+E10,evidencia,0.2,1,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+E10,evidencia,5.5,1,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 E10,evidencia,1.59,2,si,2026-10-17_sens2_P1/p1_dataset.csv:Wnet
 E10,evidencia,4.73,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 E10,evidencia,2.72,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
@@ -1139,6 +1148,12 @@ U5,evidencia,0.93,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 U5,evidencia,0.92,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 U5,evidencia,0.906,3,si,2026-10-17_sens2_P1/p1_dataset.csv:q4
 U5,evidencia,0.90,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+U5,evidencia,72,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+U5,evidencia,56,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+U5,evidencia,48,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+U5,evidencia,48,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+U5,evidencia,96,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+U5,evidencia,47,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,afirmacion,11.0,1,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 M7,afirmacion,80,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,afirmacion,16.8,1,si,2026-10-17_sens2_P1/p1_dataset.csv:Wnet
@@ -1147,11 +1162,14 @@ M7,afirmacion,160,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 M7,afirmacion,13.4,1,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 M7,afirmacion,16.7,1,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 M7,afirmacion,300,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
+M7,afirmacion,160,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 M7,evidencia,12,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,evidencia,80,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,evidencia,300,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 M7,evidencia,20,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,evidencia,30,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+M7,evidencia,21,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+M7,evidencia,32,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,evidencia,347,0,si,2026-10-17_sens2_P1/p1_dataset.csv:T_fuente
 M7,evidencia,205,0,si,2026-10-17_sens2_P1/p1_dataset.csv:Wnet
 M7,evidencia,0.85,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
@@ -1175,7 +1193,13 @@ M7,evidencia,710,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 M7,evidencia,0.77,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,evidencia,0.93,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,evidencia,-0.12,2,si,2026-10-17_sens2_P1/p1_reglas.csv:coef
-M7,evidencia,1.95,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+M7,evidencia,4.37,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+M7,evidencia,12,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+M7,evidencia,-0.12,2,si,2026-10-17_sens2_P1/p1_reglas.csv:coef
+M7,evidencia,0.74,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+M7,evidencia,140,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
+M7,evidencia,2.20,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+M7,evidencia,160,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 M7,evidencia,80,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M7,evidencia,-0.12,2,si,2026-10-17_sens2_P1/p1_reglas.csv:coef
 M7,evidencia,160,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja

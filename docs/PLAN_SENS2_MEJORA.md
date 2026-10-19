@@ -128,6 +128,8 @@ criterio queda por debajo de 4 y no hay hallazgos críticos ni importantes abier
 
 ## 6. Revisión del plan tras estudiar la etapa A (2026-10-18)
 
+*Sección histórica: los estados «hoy», «sin hacer» y «sin commit» de esta sección corresponden al 2026-10-18 y están superados por la sección 7.*
+
 ### 6.1 Qué se hizo y qué se aprendió
 
 | Pieza | Estado | Qué mostró |

@@ -97,7 +97,8 @@ def hoja_leeme(wb, datos):
     f = subtitulo(ws, f, "Que es este libro y de que campana viene")
     for linea in [
             "Este libro analiza los 3 921 puntos de la campana de Sensibilidad 1 (libro 1) y anade 808 puntos nuevos del motor "
-            "para la propagacion de incertidumbre (F5 Incertidumbre; los corrio el director, no OpenCode) y un contraste con "
+            "para la propagacion de incertidumbre (F5 Incertidumbre; los corrio el director, no OpenCode), 828 puntos de la etapa B "
+            "(F3 Pisos 25 kPa y reintento, F4 Caudales y bomba, F4 Optimo vs T_fuente, F5 Incertidumbre simetrica) y un contraste con "
             "la campana anterior M1-M10b (F6). El resto de las hojas no usa corridas nuevas.",
             "Se quitan los duplicados exactos (mismas 10 entradas y mismo centro): quedan 3 663 "
             "puntos, que son los que usa el analisis.",
@@ -106,7 +107,7 @@ def hoja_leeme(wb, datos):
             "Cavitacion (O2) = margen m_O2 = T_burbuja(P_baja, x_b) - T9 >= 0 (el liquido a la entrada de la bomba no supera su "
             "temperatura de burbuja; margen de seguridad CERO, la tolerancia de 1 K solo normaliza el indice D); no es un "
             "calculo de NPSH. La confianza (Alta, Media, Baja) de cada conclusion se calcula por codigo con la regla de la hoja Confianza y mide solidez dentro del modelo teqp, no validacion fisica.",
-            "Los numeros salen de los CSV de resultados/ (P1 a P4, U1, R1 y R2). p5_conclusiones.csv se genera con "
+            "Los numeros salen de los CSV de resultados/ (P1 a P4, U1, R1, R2, F1 y la etapa B en resultados/2026-10-18_sens2_B). p5_conclusiones.csv se genera con "
             "p5_generar.py desde p5_conclusiones_base.csv: las cifras con marcador no se escriben a mano; las demas se comprueban contra las "
             "fuentes que cada conclusion cita (p5_trazado_fuente.py, cuyo poder sobre cifras inventadas de prueba se informa en p5_trazado_fuente.md) y las mas importantes con "
             "controles independientes (p5_cifras_check*.py).",

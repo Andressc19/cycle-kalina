@@ -92,7 +92,7 @@ def main():
          "alta; la mayor η muestreada es %.2f %% dentro del rango experimental (%.2f %% fuera); una búsqueda local por banda de T_fuente encuentra hasta %.1f %% dentro del rango (M7), sin ser un óptimo global.** "
          "La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización." % (n_in, n_out, H["opt.160.dentro"]), "",
          "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (%d hojas, %d gráficos). Las cifras salen de los CSV de `resultados/` "
-         "(P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`." % libro_conteos(), "",
+         "(P1 a P4, U1, R1, F1 y la etapa B en `resultados/2026-10-18_sens2_B/`) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`." % libro_conteos(), "",
          "## 1. Resumen ejecutivo", "",
          "- %d puntos sin duplicados (de 3 921); %.1f %% son KALINA (total)." % (
              len(d), 100.0 * len(k) / len(d)),
@@ -112,6 +112,9 @@ def main():
          "umbral todavía se pierden puntos por P_baja bajo, T_sumidero alto y x_b alto (U1, U2, U4)." % (
              H["u1p.C1.pct"], H["u1p.C2.pct"], H["u1p.C3.pct"], H["u1p.C4.pct"],
              H["u1b.C1.pct"], H["u1b.C2.pct"], H["u1b.C3.pct"], H["u1b.C4.pct"], H["u1p.C1.pierde"]),
+         "- Etapa B (motor): el piso de P_baja con paso de 25 kPa baja hasta %.0f kPa frente a la malla (D9); reintentar los NO_CONVERGIO con el triple de presupuesto no recupera ninguno (L10); "
+         "con ε_cond centrado en 0.90 y perturbado de forma simétrica P(KALINA) es %.2f, %.2f, %.2f y %.2f en C1 a C4 (U5); por kW neto la turbina maneja %.2f a %.2f L/s a la entrada (E10)." % (
+             H["pisos.mejora.max"], H["simb.C1.s.p"], H["simb.C2.s.p"], H["simb.C3.s.p"], H["simb.C4.s.p"], H["dens.V3_kW.p5"], H["dens.V3_kW.p95"]),
          "- El piso de P_baja sube con x_b y la superficie de η apunta hacia el menor P_baja (D8, R1).",
          "- En el estudio 4 (presiones y x_b fijos) el regenerador pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C, solo 2 KALINA) a 0.013 "
          "(300 °C) y UA de 9.5 a 0.34 kW/K por kg/s; no se reoptimizó el ciclo en cada temperatura (E8).",
