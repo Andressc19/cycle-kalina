@@ -1112,15 +1112,13 @@ U5,afirmacion,0.05,si,u1_filas.csv:eta,5
 U5,afirmacion,0.25,si,u1_filas.csv:q2,5
 U5,afirmacion,0.98,si,u1_filas.csv:m_O2,5
 U5,afirmacion,0.62,si,u1_filas.csv:q2,5
-U5,afirmacion,0.51,si,u1_filas.csv:x_b,5
+U5,afirmacion,0.50,si,u1_filas.csv:x_b,5
 U5,afirmacion,0.48,si,u1_filas.csv:x_b,5
 U5,afirmacion,0.98,si,u1_filas.csv:m_O2,5
 U5,afirmacion,1.00,si,u1_filas.csv:convergio,5
 U5,afirmacion,0.85,si,u1_filas.csv:x_b,5
 U5,afirmacion,0.95,si,u1_filas.csv:val1,5
 U5,evidencia,48,si,u1_filas.csv:x_b,5
-U5,evidencia,47,si,u1_filas.csv:x_b,5
-U5,evidencia,1.3,si,u1_filas.csv:m_O1,5
 U5,evidencia,95,si,u1_filas.csv:val1,5
 U5,evidencia,0.15,si,u1_filas.csv:eta,5
 U5,evidencia,0.39,si,u1_filas.csv:m_O2,5
@@ -1130,8 +1128,8 @@ U5,evidencia,0.48,si,u1_filas.csv:x_b,5
 U5,evidencia,0.75,si,u1_filas.csv:x_b,5
 U5,evidencia,0.93,si,u1_filas.csv:val1,5
 U5,evidencia,1.00,si,u1_filas.csv:convergio,5
-U5,evidencia,0.37,si,u1_filas.csv:m_O2,5
-U5,evidencia,0.65,si,u1_filas.csv:eta_p,5
+U5,evidencia,0.36,si,u1_filas.csv:m_O5,5
+U5,evidencia,0.64,si,u1_filas.csv:q2,5
 U5,evidencia,0.73,si,u1_filas.csv:x_b,5
 U5,evidencia,0.93,si,u1_filas.csv:val1,5
 U5,evidencia,0.92,si,u1_filas.csv:val1,5

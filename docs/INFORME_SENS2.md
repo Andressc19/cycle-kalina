@@ -359,9 +359,9 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Fuente: F1 p6_reintento_nc.csv
 - Criterio de confianza: recuento que depende del diseño de muestreo
 
-**U5 [LÍMITES KALINA, fase C, confianza Media].** La probabilidad de KALINA bajo incertidumbre depende de dónde se centre ε_cond: con ε_cond centrado en 0.90 y perturbado ±0.05 (simétrico) es 0.25 en C1, 0.98 en C2, 0.62 en C3 y 0.51 en C4, frente a 0.48, 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar.
+**U5 [LÍMITES KALINA, fase C, confianza Media].** La probabilidad de KALINA bajo incertidumbre depende de dónde se centre ε_cond: con ε_cond centrado en 0.90 y perturbado ±0.05 (simétrico) es 0.25 en C1, 0.98 en C2, 0.62 en C3 y 0.50 en C4, frente a 0.48, 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar.
 
-- Evidencia: Se corrieron 48 puntos por centro (47 en C4 por el filtro P_alta ≥ 1.3 P_baja) con las otras nueve variables perturbadas como en el escenario A de U1. Intervalos de Wilson de 95 %: C1 0.15 a 0.39 frente a 0.34 a 0.62; C3 0.48 a 0.75 frente a 0.93 a 1.00; C4 0.37 a 0.65 frente a 0.73 a 0.93; C2 no cambia. La frontera local de ε_cond es ≈ 0.92 en C1 y ≈ 0.906 en C4 (U4), así que un centro de 0.90 deja casi todo el intervalo por debajo de la frontera en esos dos bloques.
+- Evidencia: Se corrieron 48 puntos por centro (LHS) con las otras nueve variables perturbadas como en el escenario A de U1. Intervalos de Wilson de 95 %: C1 0.15 a 0.39 frente a 0.34 a 0.62; C3 0.48 a 0.75 frente a 0.93 a 1.00; C4 0.36 a 0.64 frente a 0.73 a 0.93; C2 no cambia. La frontera local de ε_cond es ≈ 0.92 en C1 y ≈ 0.906 en C4 (U4), así que un centro de 0.90 deja casi todo el intervalo por debajo de la frontera en esos dos bloques.
 - Implicación: La P(KALINA) de U1 no es una propiedad del ciclo ni un riesgo: es el resultado de un escenario. Para diseñar hay que fijar ε_cond por encima de la frontera local del bloque (U4) y garantizar esa tolerancia, no leer la P como probabilidad de falla.
 - Fuente: F1 p6_sim.csv; U1 u1_filas.csv; Excel 2 hoja F5 Incertidumbre simetrica
 - Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial

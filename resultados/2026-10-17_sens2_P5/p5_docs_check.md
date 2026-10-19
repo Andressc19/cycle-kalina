@@ -2,8 +2,8 @@
 
 Numeros con decimales o con `%` de `INFORME_SENS2.md` y `VALIDACION_SENS2.md` buscados en todo el texto de `p5_conclusiones.csv`, en los CSV de `resultados/2026-10-17_sens2_P*` y `resultados/2026-10-18_sens2_*` y en `p5_trazado_permitidos.csv`.
 
-- total de numeros: 861
-- en_conclusiones: 850
+- total de numeros: 871
+- en_conclusiones: 860
 - en_csv: 11
 - permitido: 0
 - trivial: 0

@@ -10,5 +10,5 @@ SIM centra eps_cond en 0.90 y lo perturba +-0.05 (uniforme); las otras nueve var
 | C2 | U1A (eps_cond 0.95 solo hacia abajo) | 48 | 47 | 0.98 | 0.89 a 1.00 | 0 | 0 | 1 |
 | C3 | SIM (eps_cond 0.90 +-0.05) | 48 | 30 | 0.62 | 0.48 a 0.75 | 18 | 0 | 0 |
 | C3 | U1A (eps_cond 0.95 solo hacia abajo) | 48 | 48 | 1.00 | 0.93 a 1.00 | 0 | 0 | 0 |
-| C4 | SIM (eps_cond 0.90 +-0.05) | 47 | 24 | 0.51 | 0.37 a 0.65 | 23 | 0 | 0 |
+| C4 | SIM (eps_cond 0.90 +-0.05) | 48 | 24 | 0.50 | 0.36 a 0.64 | 23 | 0 | 1 |
 | C4 | U1A (eps_cond 0.95 solo hacia abajo) | 48 | 41 | 0.85 | 0.73 a 0.93 | 7 | 0 | 0 |

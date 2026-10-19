@@ -2,8 +2,8 @@
 
 Cada cifra se busca solo en los CSV de la columna `fuente` de su conclusion (y en los valores de `p5_hechos`, que alimentan los marcadores, y en `p5_trazado_permitidos.csv`).
 
-- total de numeros: 1138
-- trazados contra su fuente: 1029 (90.4 %)
+- total de numeros: 1136
+- trazados contra su fuente: 1027 (90.4 %)
 - triviales: 109
 - no trazados (escritos a mano sin respaldo directo en la fuente citada): 0 (0.0 %)
 - poder del control: una cifra inventada de dos decimales se habria trazado en el 42.3 % de los casos con esta restriccion (con todos los CSV: 100 %).
@@ -44,12 +44,12 @@ Porcentaje de cifras inventadas de dos decimales que se trazarian contra las fue
 | F3 | 10 | no |
 | F4 | 10 | no |
 | F5 | 8 | no |
-| F6 | 20 | no |
+| F6 | 21 | no |
 | L1 | 86 | si |
 | L2 | 12 | no |
 | L3 | 10 | no |
 | L4 | 81 | si |
-| L5 | 29 | no |
+| L5 | 30 | no |
 | D7 | 90 | si |
 | E8 | 76 | no |
 | L6 | 90 | si |
