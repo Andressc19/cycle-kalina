@@ -58,4 +58,29 @@ def hoja_pisos_reintento(wb, datos):
     return ws
 
 
+def hoja_sim(wb, datos):
+    t = pd.read_csv(os.path.join(F1, "p6_sim.csv"))
+    ws = wb.create_sheet("F5 Incertidumbre simetrica")
+    f = titulo(ws, 1, "F5 Incertidumbre con eps_cond simetrico (corrida nueva del motor)", ancho=10)
+    f = condiciones(ws, f, [
+        "Base: LHS de 48 puntos por centro; las nueve variables distintas de eps_cond se perturban como en el escenario A de U1 (tolerancias supuestas, uniformes).",
+        "SIM: eps_cond centrado en 0.90 y perturbado +-0.05 (intervalo simetrico 0.85 a 0.95). U1A: eps_cond centrado en el tope 0.95, solo puede bajar.",
+        "Los NO_CONVERGIO cuentan como no KALINA. Intervalos de Wilson de 95 %.",
+        "Fuente: resultados/2026-10-18_sens2_B (s2b_sim_filas.csv) y resultados/2026-10-17_sens2_U1 (u1_filas.csv); tabla en p6_sim.csv."])
+    f = subtitulo(ws, f, "1. P(KALINA) segun el centro de eps_cond")
+    sim, u = t[t["escenario"].str.startswith("SIM")], t[t["escenario"].str.startswith("U1A")]
+    fl = [[c, float(sim[sim["centro"] == c]["p_kalina"].iloc[0]), float(u[u["centro"] == c]["p_kalina"].iloc[0])] for c in ("C1", "C2", "C3", "C4")]
+    f = bloque(ws, f, titulo="P(KALINA) con eps_cond centrado en 0.90 (simetrico) y en 0.95 (solo hacia abajo)",
+               encabezados=["Bloque", "SIM: centro 0.90 +-0.05", "U1A: centro 0.95 hacia abajo"], filas=fl, x="Bloque", y="P(KALINA)",
+               nota_txt="Fuente: p6_sim.csv. La probabilidad cambia con el centro de eps_cond: es el resultado de un escenario, no una propiedad del ciclo.")
+    cab = ["Bloque", "Escenario", "n", "KALINA", "P(KALINA)", "IC 95 % inferior", "IC 95 % superior", "CORREGIBLE", "INVIABLE", "NO_CONVERGIO"]
+    fl = [[r.centro, r.escenario, int(r.n), int(r.n_kalina), float(r.p_kalina), float(r.ic_lo), float(r.ic_hi), int(r.n_corregible), int(r.n_inviable),
+           int(r.n_no_convergio)] for r in t.itertuples()]
+    _, f, _ = tabla(ws, f, cab, fl, anchos=[8, 36, 6, 9, 11, 14, 14, 13, 10, 14])
+    descripcion(ws, f + 2, ["P(KALINA) con eps_cond perturbado de forma simetrica frente a la perturbacion solo hacia abajo de U1.",
+                            "Sirve para no leer la probabilidad de U1 como un riesgo del ciclo."])
+    return ws
+
+
 HOJAS_FB = [hoja_pisos_reintento]
+HOJAS_FB_SIM = [hoja_sim]

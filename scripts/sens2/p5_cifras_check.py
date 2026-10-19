@@ -155,6 +155,7 @@ def main():
     B.extra4(chk, ev, sub, P)
     B.extra5(chk, ev, sub, P)
     B.extra6(chk, ev, sub, P)
+    B.extra7(chk, ev, sub, P)
     import p5_cifras_check_d as D6
     D6.extra6(chk, ev, sub, P)
 

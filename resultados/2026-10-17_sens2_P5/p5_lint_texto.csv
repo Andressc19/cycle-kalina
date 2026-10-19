@@ -58,6 +58,7 @@ p5_conclusiones.csv,D9,implicacion,único,PSH. El piso depende de x_b y del bloq
 p5_conclusiones.csv,L10,afirmacion,ninguno,ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango
 p5_conclusiones.csv,L10,evidencia,todos,"erados: 0. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
 p5_conclusiones.csv,E10,evidencia,todos,"e estudios, en posiciones equiespaciadas del orden por η) y todos reprodujeron su η original (diferencia máxima 0.00 pp). Den"
+p5_conclusiones.csv,U5,afirmacion,solo,", 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar."
 INFORME_SENS2.md,3,,solo,s de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección p
 INFORME_SENS2.md,12,,todos,"°C y sin poder evaluarse por encima de ≈ 160 °C, donde casi todos los KALINA salen del rango experimental) y de los requisito"
 INFORME_SENS2.md,12,,ninguno,erimental) y de los requisitos de equipos por kW neto (E9); ninguno es un óptimo.
@@ -126,16 +127,17 @@ INFORME_SENS2.md,343,,único,".5 K (mínimo de Sens2 393.15 K) y 15 de C3 que co
 INFORME_SENS2.md,350,,siempre,"cuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resu"
 INFORME_SENS2.md,355,,ninguno,ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango
 INFORME_SENS2.md,357,,todos,"erados: 0. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
-INFORME_SENS2.md,369,,solo," optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé"
-INFORME_SENS2.md,375,,solo,"8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal."
-INFORME_SENS2.md,379,,solo,"- Solo motor teqp, sin validación experimental propia del ciclo; e"
-INFORME_SENS2.md,380,,siempre,fuera del rango experimental (líquido > 420 K); se muestran siempre aparte.
-INFORME_SENS2.md,381,,solo,vel dependen del diseño; los índices globales se calcularon solo sobre el LHS de cada bloque.
-INFORME_SENS2.md,382,,solo,"- η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases "
-INFORME_SENS2.md,384,,solo,- Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sob
-INFORME_SENS2.md,385,,todos, distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); e
-INFORME_SENS2.md,386,,todos,- Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mal
-INFORME_SENS2.md,390,,solo,"M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1."
+INFORME_SENS2.md,362,,solo,", 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar."
+INFORME_SENS2.md,376,,solo," optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé"
+INFORME_SENS2.md,382,,solo,"8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal."
+INFORME_SENS2.md,386,,solo,"- Solo motor teqp, sin validación experimental propia del ciclo; e"
+INFORME_SENS2.md,387,,siempre,fuera del rango experimental (líquido > 420 K); se muestran siempre aparte.
+INFORME_SENS2.md,388,,solo,vel dependen del diseño; los índices globales se calcularon solo sobre el LHS de cada bloque.
+INFORME_SENS2.md,389,,solo,"- η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases "
+INFORME_SENS2.md,391,,solo,- Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sob
+INFORME_SENS2.md,392,,todos, distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); e
+INFORME_SENS2.md,393,,todos,- Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mal
+INFORME_SENS2.md,397,,solo,"M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1."
 VALIDACION_SENS2.md,25,,solo,afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativ
 VALIDACION_SENS2.md,25,,solo,stica donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible
 VALIDACION_SENS2.md,41,,solo,- **Métricas.** η y W_net/m_b solo existen en puntos convergidos. W_net se divide entre m_b po

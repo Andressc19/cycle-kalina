@@ -2,13 +2,13 @@
 
 Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra completa) en `p5_conclusiones.csv`, `INFORME_SENS2.md` y `VALIDACION_SENS2.md`.
 
-- total de apariciones: 172
+- total de apariciones: 174
 
 ## Conteo por palabra
 
 | palabra | apariciones |
 |---|---:|
-| solo | 87 |
+| solo | 89 |
 | todos | 30 |
 | único | 15 |
 | todas | 14 |
@@ -33,13 +33,13 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 
 | archivo | apariciones |
 |---|---:|
-| INFORME_SENS2.md | 78 |
-| p5_conclusiones.csv | 59 |
+| INFORME_SENS2.md | 79 |
+| p5_conclusiones.csv | 60 |
 | VALIDACION_SENS2.md | 35 |
 
 ## Lista por palabra
 
-### solo (87)
+### solo (89)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
@@ -70,6 +70,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | p5_conclusiones.csv | L7 | evidencia | _O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los  |
 | p5_conclusiones.csv | L8 | evidencia | alor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, un solo aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba |
 | p5_conclusiones.csv | L8 | evidencia | aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba solo mira que los KALINA caigan dentro del mínimo-máximo; no cue |
+| p5_conclusiones.csv | U5 | afirmacion | , 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar. |
 | INFORME_SENS2.md | 3 |  | s de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección p |
 | INFORME_SENS2.md | 15 |  | tor por bloque, con la efectividad del condensador variando solo por debajo de su centro 0.95), con tolerancias nominales se |
 | INFORME_SENS2.md | 17 |  | or pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C, solo 2 KALINA) a 0.013 (300 °C) y UA de 9.5 a 0.34 kW/K por kg/s |
@@ -102,13 +103,14 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 336 |  | _O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los  |
 | INFORME_SENS2.md | 343 |  | alor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, un solo aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba |
 | INFORME_SENS2.md | 343 |  | aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba solo mira que los KALINA caigan dentro del mínimo-máximo; no cue |
-| INFORME_SENS2.md | 369 |  |  optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé |
-| INFORME_SENS2.md | 375 |  | 8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal. |
-| INFORME_SENS2.md | 379 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
-| INFORME_SENS2.md | 381 |  | vel dependen del diseño; los índices globales se calcularon solo sobre el LHS de cada bloque. |
-| INFORME_SENS2.md | 382 |  | - η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases  |
-| INFORME_SENS2.md | 384 |  | - Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sob |
-| INFORME_SENS2.md | 390 |  | M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1. |
+| INFORME_SENS2.md | 362 |  | , 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar. |
+| INFORME_SENS2.md | 376 |  |  optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé |
+| INFORME_SENS2.md | 382 |  | 8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal. |
+| INFORME_SENS2.md | 386 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
+| INFORME_SENS2.md | 388 |  | vel dependen del diseño; los índices globales se calcularon solo sobre el LHS de cada bloque. |
+| INFORME_SENS2.md | 389 |  | - η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases  |
+| INFORME_SENS2.md | 391 |  | - Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sob |
+| INFORME_SENS2.md | 397 |  | M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1. |
 | VALIDACION_SENS2.md | 25 |  | afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativ |
 | VALIDACION_SENS2.md | 25 |  | stica donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible |
 | VALIDACION_SENS2.md | 41 |  | - **Métricas.** η y W_net/m_b solo existen en puntos convergidos. W_net se divide entre m_b po |
@@ -159,8 +161,8 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 322 |  | ε_cond ≥ 0.922 en C1 todavía 11 de 54 puntos no son KALINA (todos CORREGIBLE, con P_baja de 661 a 712 kPa, T_sumidero desde 2 |
 | INFORME_SENS2.md | 336 |  | e 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tien |
 | INFORME_SENS2.md | 357 |  | erados: 0. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
-| INFORME_SENS2.md | 385 |  |  distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); e |
-| INFORME_SENS2.md | 386 |  | - Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mal |
+| INFORME_SENS2.md | 392 |  |  distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); e |
+| INFORME_SENS2.md | 393 |  | - Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mal |
 | VALIDACION_SENS2.md | 43 |  | mparación justa.** CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS, |
 | VALIDACION_SENS2.md | 52 |  | / 2 / Alta / Conclusión F5 decía que casi todos los pares son aditivos sobre η; los datos dan 0.00–0.18 (fu |
 | VALIDACION_SENS2.md | 58 |  |  8 / Media / Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que no se cumple (barridos |
@@ -215,7 +217,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 250 |  | asticidades locales (secantes entre dos niveles vecinos, no siempre simétricos alrededor del punto base): η_t 1.03 a 1.15 en lo |
 | INFORME_SENS2.md | 302 |  | - Implicación: Citar siempre el máximo dentro del rango; los puntos fuera son resultados |
 | INFORME_SENS2.md | 350 |  | cuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resu |
-| INFORME_SENS2.md | 380 |  | fuera del rango experimental (líquido > 420 K); se muestran siempre aparte. |
+| INFORME_SENS2.md | 387 |  | fuera del rango experimental (líquido > 420 K); se muestran siempre aparte. |
 | VALIDACION_SENS2.md | 90 |  | siempre llevan leyenda); (3) los títulos describen la métrica y no  |
 
 ### ninguno (6)

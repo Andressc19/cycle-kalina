@@ -20,7 +20,7 @@ D,D4c2,OK,C2 ancla A* eps_cond min=0.6500
 D,D4c3,OK,C3 caliente 150 C eps_cond min=0.8500
 D,D4c4,OK,C4 frio 110 C eps_cond min=0.8500
 F,F6medianas,OK,medianas cor=10.20 kal=7.73
-GLOBAL,Gn,OK,conclusiones=46
+GLOBAL,Gn,OK,conclusiones=47
 GLOBAL,Gterm,OK,terminos prohibidos en conclusiones: ninguno
 U,U1,OK,P(KALINA) C1=0.47 C2=0.99 C3=1.00 C4=0.85
 L,L7,OK,m_O2<3 K = 7.0 % en evidencia L7
@@ -42,6 +42,7 @@ L,L5c,OK,dummy marcadas 1 de 36; reales distinguibles con una sola familia (real
 L,L10,OK,"REINT0 crudo: 88 NO_CONVERGIO de 90 (control 15, error de motor 2)"
 D,D9,OK,PISOS crudo: 49 puntos
 E,E10,OK,V3 P5-P95 0.25-1.69; V4 P50 1.48; H 102-503 m; n = 150
+U,U5,FALLA,SIM crudo: P(KALINA) C1 0.25 C2 0.98 C3 0.62 C4 0.50; n C4 = 48
 E,E1rp,OK,r_P P5/P50/P95 = 1.70/3.47/5.51
 E,E1dh,OK,dh_turb P5/P50/P95 = 65.3/152.7/230.4 kJ/kg
 E,E1top_rp,OK,10 pct mayor eta (n=205): r_P P5/P95 = 4.26/7.25

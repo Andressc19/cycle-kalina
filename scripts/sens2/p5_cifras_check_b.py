@@ -127,3 +127,13 @@ def extra6(chk, ev, sub, P):
           and sub(t, float(np.percentile(h, 5)), "%.0f") and sub(t, float(np.percentile(h, 95)), "%.0f") and sub(t, len(k), "%d"))
     chk("E", "E10", ok, "V3 P5-P95 %.2f-%.2f; V4 P50 %.2f; H %.0f-%.0f m; n = %d" % (np.percentile(v3, 5), np.percentile(v3, 95), np.percentile(v4, 50),
                                                                            np.percentile(h, 5), np.percentile(h, 95), len(k)))
+
+
+def extra7(chk, ev, sub, P):
+    """U5 (etapa B): P(KALINA) con eps_cond simetrico recalculada desde las filas crudas del motor (s2b_sim_filas.csv)."""
+    d = pd.read_csv(P("2026-10-18_sens2_B", "s2b_sim_filas.csv"))
+    t = ev("U5", "afirmacion") + " " + ev("U5")
+    ps = {c: float((d[d["centro"] == c]["clasificacion"] == "KALINA").mean()) for c in ("C1", "C2", "C3", "C4")}
+    n4 = int((d["centro"] == "C4").sum())
+    chk("U", "U5", all(sub(t, p, "%.2f") for p in ps.values()) and sub(t, n4, "%d"),
+        "SIM crudo: P(KALINA) " + " ".join("%s %.2f" % kv for kv in ps.items()) + "; n C4 = %d" % n4)

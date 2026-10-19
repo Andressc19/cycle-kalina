@@ -51,6 +51,7 @@ GUIA = [
     ("F4 Ciclo vs T_fuente", "Mejor eta muestreada y sus condiciones por banda de T_fuente de 20 K (datos ya calculados; no es un optimo)."),
     ("F4 Equipos por kW", "Requisitos de equipos por kW neto en lugar de por kg/s de fluido: calores, trabajos, UA y caudal de fluido por kW."),
     ("F4 Caudales y bomba", "Caudal volumetrico de la turbina (entrada y salida), de la bomba y altura de la bomba por kW neto, con densidades del modelo (corrida nueva del motor)."),
+    ("F5 Incertidumbre simetrica", "P(KALINA) con eps_cond centrado en 0.90 y perturbado de forma simetrica, frente a la perturbacion solo hacia abajo de U1 (corrida nueva del motor)."),
     ("F5 Superficies de respuesta", "Mapas de calor de eta en las mallas P_baja x x_b y P_alta x P_baja y ajuste cuadratico."),
     ("F5 Incertidumbre", "Propagacion de incertidumbre: P(KALINA) y eta al perturbar las 10 variables alrededor de cada centro (808 puntos del motor)."),
     ("F6 Respaldo libro viejo", "Contraste fuera de muestra con la campaña M1-M10b: rangos, fronteras de una variable, vecinos de Sens2, aportes y cobertura."),

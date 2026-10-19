@@ -398,6 +398,14 @@ def _ronda9(h):
     h["reint.c_otras"] = float(len(c)) - h["reint.c_bracket"] - h["reint.c_balance"] - h["reint.c_lazo"]
 
 
+def _ronda11(h):
+    t = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_sim.csv"))
+    for x in t.itertuples():
+        k = "simb.%s.%s" % (x.centro, "s" if x.escenario.startswith("SIM") else "u")
+        h[k + ".p"], h[k + ".lo"], h[k + ".hi"] = float(x.p_kalina), float(x.ic_lo), float(x.ic_hi)
+        h[k + ".n"], h[k + ".k"] = float(x.n), float(x.n_kalina)
+
+
 def _ronda10(h):
     b = pd.read_csv(os.path.join(R, "2026-10-17_sens2_P4", "p4_bandas.csv"))
     b = b[b["centro"] == "todos"].set_index("banda")
@@ -416,7 +424,7 @@ def _ronda10(h):
 
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8, _ronda9, _ronda10):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8, _ronda9, _ronda10, _ronda11):
         f(h)
     return h
 

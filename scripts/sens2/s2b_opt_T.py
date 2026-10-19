@@ -58,7 +58,7 @@ def banda(T):
         with open(ruta, encoding="utf-8", newline="") as fh:
             for r in csv.DictReader(fh):
                 cache[(round(float(r["P_alta"]), 1), round(float(r["P_baja"]), 1), round(float(r["x_b"]), 4))] = r
-    nuevo = not ruta.exists()
+    nuevo = (not ruta.exists()) or ruta.stat().st_size == 0
     fh = open(ruta, "a", encoding="utf-8", newline="")
     esc = csv.DictWriter(fh, fieldnames=cols, extrasaction="ignore")
     if nuevo:
@@ -72,7 +72,10 @@ def banda(T):
         else:
             combo = dict(c, T_fuente=T, **FIJAS)
             n[0] += 1
-            r = comun.evaluar_punto(combo, motor="teqp", tag="OT-%d-%03d" % (round(T), n[0]), t_amb_diseno=FIJAS["T_sumidero"], extra=True)
+            try:
+                r = comun.evaluar_punto(combo, motor="teqp", tag="OT-%d-%03d" % (round(T), n[0]), t_amb_diseno=FIJAS["T_sumidero"], extra=True)
+            except Exception as exc:                        # noqa: BLE001  (p. ej. PropertyRangeError del motor fuera de su dominio)
+                r = dict(combo, clasificacion="ERROR_MOTOR", mensaje=("%s: %s" % (type(exc).__name__, exc))[:300], t_s=0.0)
             r.update(id_punto="OT-%d-%03d" % (round(T), n[0]), banda=T, n_eval=n[0], paso=paso)
             esc.writerow({k2: r.get(k2) for k2 in cols})
             fh.flush()

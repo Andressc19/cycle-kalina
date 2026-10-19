@@ -29,7 +29,7 @@ TODO = ["p1_dataset", "p1_existencia", "p1_fronteras", "p1_reglas", "p2_comparac
         "p3_interaccion", "p3_resumen", "p4_envolventes", "p4_dependencias", "p4_bandas",
         "u1_analisis", "r1_filtro", "r1_contraste", "r2_eficiencias", "r2_vecinos", "r2_agregado"]
 BASE = ["p6_mO2", "p6_nulo", "p6_nc", "p6_pareado", "p6_pareado_dist", "p6_equipos_diseno", "p6_equipos_ic", "p6_equipos_kw",
-        "p6_ciclo_T", "p6_potencia_u1", "p6_fronteras_ic", "p6_superficies_cv", "p6_m5_lhs", "p6_calibra_regla", "p6_m5_pruebas", "p6_pisos25", "p6_reintento_nc", "p6_dens", "p5_generar", "p5_trazado", "p5_trazado_fuente", "p5_cifras_check",
+        "p6_ciclo_T", "p6_potencia_u1", "p6_fronteras_ic", "p6_superficies_cv", "p6_m5_lhs", "p6_calibra_regla", "p6_m5_pruebas", "p6_pisos25", "p6_reintento_nc", "p6_dens", "p6_sim", "p5_generar", "p5_trazado", "p5_trazado_fuente", "p5_cifras_check",
         "p5_cifras_check_c", "s2_construir", "s2_verificar", "s2_informe", "p5_lint_texto", "p5_docs_check", "s2_figuras", "s2_informe_pdf"]
 ORDEN = TODO + BASE + [PRUEBAS]
 
