@@ -42,6 +42,10 @@ def globales(con_libro=True):
     cc = _filas(os.path.join(P5, "p5_cifras_check.csv"))
     cb = _filas(os.path.join(P5, "p5_cifras_check_c.csv"))
     g["controles_cifras"], g["controles_bh"], g["controles_total"] = (cc, "p5_cifras_check.csv"), (cb, "p5_cifras_check_c.csv"), (cc + cb, "p5_cifras_check*.csv")
+    cr = os.path.join(P5, "p5_cruce.md")
+    if os.path.exists(cr):
+        with open(cr, encoding="utf-8") as fh:
+            g["candidatos_cruce"] = (sum(1 for ln in fh if ln.startswith("### ")), "p5_cruce.md")
     with open(os.path.join(P5, "p5_trazado_fuente.md"), encoding="utf-8") as fh:
         m = re.search(r"se habria trazado en el ([0-9.]+) %", fh.read())
     g["poder_trazado_pct"] = (float(m.group(1)) if m else float("nan"), "p5_trazado_fuente.md")

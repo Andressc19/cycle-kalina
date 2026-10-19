@@ -148,6 +148,7 @@ INFORME_SENS2.md,405,,solo,"M5 (óptimos cerca de la frontera) no se sostiene co
 VALIDACION_SENS2.md,25,,solo,afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativ
 VALIDACION_SENS2.md,25,,solo,stica donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible
 VALIDACION_SENS2.md,28,,ninguno,"eintento de NO_CONVERGIO con el triple de presupuesto (L10: ninguno recuperado), caudales de turbina y altura de bomba por kW n"
+VALIDACION_SENS2.md,28,,ninguno,ruce-->18<!--/g--> grupos candidatos; se revisaron a mano y ninguno es una contradicción (son cantidades distintas con las mism
 VALIDACION_SENS2.md,40,,solo,- **Métricas.** η y W_net/m_b solo existen en puntos convergidos. W_net se divide entre m_b po
 VALIDACION_SENS2.md,42,,solo,"CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS,"
 VALIDACION_SENS2.md,42,,todos,"mparación justa.** CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS,"

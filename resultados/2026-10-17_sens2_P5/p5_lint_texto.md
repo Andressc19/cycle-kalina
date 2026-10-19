@@ -2,7 +2,7 @@
 
 Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra completa) en `p5_conclusiones.csv`, `INFORME_SENS2.md` y `VALIDACION_SENS2.md`.
 
-- total de apariciones: 182
+- total de apariciones: 183
 
 ## Conteo por palabra
 
@@ -12,7 +12,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | todos | 32 |
 | único | 15 |
 | todas | 14 |
-| ninguno | 8 |
+| ninguno | 9 |
 | siempre | 8 |
 | única | 6 |
 | ninguna | 5 |
@@ -35,7 +35,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 |---|---:|
 | INFORME_SENS2.md | 83 |
 | p5_conclusiones.csv | 63 |
-| VALIDACION_SENS2.md | 36 |
+| VALIDACION_SENS2.md | 37 |
 
 ## Lista por palabra
 
@@ -209,7 +209,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 93 |  | ue 2.8 % es una estimación y no una tasa nominal. Al juntar todas las pruebas de los cuatro bloques y las tres respuestas en  |
 | VALIDACION_SENS2.md | 97 |  | >12<!--/g--> de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO |
 
-### ninguno (8)
+### ninguno (9)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
@@ -219,6 +219,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 19 |  | _net en los cuatro bloques y P_alta no lo es sobre W_net en ninguno (F1, F2). |
 | INFORME_SENS2.md | 363 |  | ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango |
 | VALIDACION_SENS2.md | 28 |  | eintento de NO_CONVERGIO con el triple de presupuesto (L10: ninguno recuperado), caudales de turbina y altura de bomba por kW n |
+| VALIDACION_SENS2.md | 28 |  | ruce-->18<!--/g--> grupos candidatos; se revisaron a mano y ninguno es una contradicción (son cantidades distintas con las mism |
 | VALIDACION_SENS2.md | 94 |  | as y 0 % en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que s |
 | VALIDACION_SENS2.md | 97 |  |  NO_CONVERGIO con el triple de presupuesto y no se recuperó ninguno (L10), así que el sesgo de los umbrales inferiores de T_fue |
 
