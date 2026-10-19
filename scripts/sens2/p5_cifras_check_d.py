@@ -45,13 +45,13 @@ def extra6(chk, ev, sub, P):
     b1 = k[(k["rp"] >= 1) & (k["rp"] < 1.5)]
     b6 = k[(k["rp"] >= 6) & (k["rp"] < 10)]
     chk("E", "E2dh1", sub(t, b1["dh_turb"].median(), "%.0f"),
-        "dh mediana [1,1.5) = %.2f kJ/kg (texto: 46)" % b1["dh_turb"].median())
+        "dh mediana [1,1.5) = %.2f kJ/kg (texto: 47)" % b1["dh_turb"].median())
     chk("E", "E2dh6", sub(t, b6["dh_turb"].median(), "%.0f"),
         "dh mediana [6,10) = %.2f kJ/kg (texto: 236)" % b6["dh_turb"].median())
     chk("E", "E2eta1", sub(t, b1["eta_pct"].median(), "%.1f"),
         "eta mediana [1,1.5) = %.3f %% (texto: 2.5)" % b1["eta_pct"].median())
     chk("E", "E2eta6", sub(t, b6["eta_pct"].median(), "%.1f"),
-        "eta mediana [6,10) = %.3f %% (texto: 10.2)" % b6["eta_pct"].median())
+        "eta mediana [6,10) = %.3f %% (texto: 10.1)" % b6["eta_pct"].median())
 
     # E3: titulo de salida q4 en KALINA, 10 pct de mayor eta y margen 0.90
     t = ev("E3")

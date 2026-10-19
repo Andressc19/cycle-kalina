@@ -31,7 +31,9 @@ CAMPOS = ("afirmacion", "evidencia", "implicacion")
 FRASES = ("queda pendiente", "quedan pendientes", "siguen abiertos", "sigue abierto",
           "pendiente de", "no se corrió", "no se corrio", "sin hacer", "por hacer",
           "etapa C", "requiere el motor", "requieren el motor", "necesita el motor",
-          "falta el motor", "aún no", "todavía no", "sin commit")
+          "falta el motor", "aún no", "todavía no", "sin commit",
+          "con el motor)", "hasta reintentar", "falta la evaluación", "faltan flujo", "reintentar con el modo", "calcular el ciclo frente",
+          "refinar p_baja", "se obtendrían", "se obtendria")
 TEMAS = ("reintent", "piso", "densidad", "caudal", "bomba", "simétric", "simetric",
          "T_fuente", "optimiz", "NO_CONVERGIO")
 CSV_TEMA = {"reintent": "p6_reintento_nc.csv", "NO_CONVERGIO": "p6_reintento_nc.csv",

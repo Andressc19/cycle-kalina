@@ -12,6 +12,11 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RAIZ = os.path.dirname(os.path.dirname(AQUI))
 sys.path.insert(0, AQUI)
 from s2_cargar import conclusiones  # noqa: E402
+import p5_globales as _G  # noqa: E402
+from p5_hechos import hechos  # noqa: E402
+
+PM = _G.puntos_motor()
+HH = hechos()
 
 FIG = os.path.join(RAIZ, "docs", "figuras_sens2")
 HTML = os.path.join(RAIZ, "docs", "INFORME_TECNICO_SENS2.html")
@@ -64,12 +69,12 @@ def construir():
     c = conclusiones()
     h = ["<html><head><meta charset='utf-8'><title>Informe técnico de Sensibilidad 2</title><style>%s</style></head><body>" % CSS]
     h.append("<h1>Análisis de sensibilidad del ciclo Kalina KSC-11 (NH₃–H₂O)</h1><p class='n'>Informe técnico de la campaña «Sensibilidad 2»: "
-             "análisis de 3 921 puntos de Sensibilidad 1 y de 384 + 424 puntos nuevos de propagación de incertidumbre. Rama "
+             "análisis de 3 921 puntos de Sensibilidad 1 y de %d puntos nuevos del motor (%d de propagación de incertidumbre y %d de la etapa B). Rama " % (sum(PM[1].values()) + PM[0], PM[0], sum(PM[1].values())) +
              "<code>test/anal_terremoto</code>. Todo número sale de los CSV de <code>resultados/</code>; libro de apoyo "
-             "<code>datos/Kalina_anal_sensible_2.xlsx</code> (incluye las hojas F4 Ciclo vs T_fuente y F4 Equipos por kW).</p>")
+             "<code>datos/Kalina_anal_sensible_2.xlsx</code> (incluye las hojas F3 Pisos 25 kPa y reintento, F4 Ciclo vs T_fuente, F4 Equipos por kW, F4 Caudales y bomba, F4 Optimo vs T_fuente y F5 Incertidumbre simetrica).</p>")
     h.append("<h2>1. Resumen</h2><ul><li>La región KALINA depende del bloque y del lado frío del ciclo (los barridos de una variable la hallan con fuentes de 90 a 165 °C en C1, 120 a 190 °C en C2, 90 a 290 °C en C3 y 90 a 250 °C en C4): "
              "el piso de P_baja (cavitación), la efectividad del condensador y x_b.</li>"
-             "<li>La eficiencia máxima es 14.53 % dentro del rango experimental y 14.82 % fuera (fuente de 170 °C).</li>"
+             "<li>La mayor eficiencia muestreada es 14.53 %% dentro del rango experimental y 14.82 %% fuera (fuente de 170 °C); una búsqueda local por banda de T_fuente encuentra hasta %.1f %% dentro del rango (M7), sin ser un óptimo global.</li>" % HH["opt.160.dentro"] +
              "<li>El regenerador pierde peso al subir la temperatura de la fuente.</li>"
              "<li>Los resultados valen para margen de cavitación cero; con 3 K de margen la región KALINA se reduce de forma importante (sección 6).</li>"
              "<li>Solo se usó el motor teqp: no hay validación experimental propia del ciclo.</li></ul>")
@@ -83,9 +88,9 @@ def construir():
              "Índices globales sobre el LHS de cada bloque con tres variables dummy como piso de ruido, bootstrap y, para F1 a F3, 2 000 permutaciones con corrección de Benjamini–Hochberg; superficies de respuesta sobre las mallas de pares; propagación de "
              "incertidumbre con LHS de las 10 variables alrededor de cada centro (tolerancias uniformes supuestas: T_fuente ±5 K, T_sumidero ±3 K, P ±5 %, x_b ±0.02, "
              "η y ε ±0.05; escenario B el doble). Eficiencias y efectividades en [0.40, 0.95]; T_sumidero de 5 a 30 °C igual a la temperatura ambiente de diseño; m_b = 1.</p>")
-    h.append("<h2>4. Resultados</h2><h3>4.1 Dónde existe KALINA</h3>" + parrafos(c, ["D1", "D2", "D3", "D4", "D5", "D6", "D8"]))
+    h.append("<h2>4. Resultados</h2><h3>4.1 Dónde existe KALINA</h3>" + parrafos(c, ["D1", "D2", "D3", "D4", "D5", "D6", "D8", "D9"]))
     h.append(img("f1_piso_pbaja.png", "Piso de P_baja (menor P_baja con KALINA) en cada columna de x_b de las mallas P_baja × x_b."))
-    h.append("<h3>4.2 Qué pasa al mover variables desde un KALINA</h3>" + parrafos(c, ["D7", "L6", "U1", "U4", "U2", "U3"]))
+    h.append("<h3>4.2 Qué pasa al mover variables desde un KALINA</h3>" + parrafos(c, ["D7", "L6", "U1", "U4", "U2", "U3", "U5"]))
     h.append(tabla_u1())
     if os.path.exists(os.path.join(FIG, "f7_incertidumbre.png")):
         h.append(img("f7_incertidumbre.png", "Probabilidad de seguir siendo KALINA al perturbar las 10 variables a la vez."))
@@ -94,9 +99,9 @@ def construir():
     h.append(img("f4_margenes.png", "Margen de operación desde el centro, una variable cada vez (C1 y C4)."))
     h.append("<h3>4.3 CORREGIBLE frente a KALINA</h3>" + parrafos(c, ["F6", "L1", "L2", "L3"]))
     h.append(img("f5_corregibles.png", "η mediana de KALINA y CORREGIBLE por bloque."))
-    h.append("<h3>4.4 Regenerador frente a la temperatura de la fuente</h3>" + parrafos(c, ["E8", "E4"]))
+    h.append("<h3>4.4 Regenerador frente a la temperatura de la fuente</h3>" + parrafos(c, ["E8", "E4", "M6", "M7"]))
     h.append(img("f3_regenerador.png", "Q_reg/Q_i de los KALINA en los barridos de T_fuente de una variable."))
-    h.append("<h3>4.5 Datos para preseleccionar equipos</h3>" + parrafos(c, ["E1", "E2", "E3", "E5", "E6", "E7"]))
+    h.append("<h3>4.5 Datos para preseleccionar equipos</h3>" + parrafos(c, ["E1", "E2", "E3", "E5", "E6", "E7", "E9", "E10"]))
     h.append("<h3>4.6 Eficiencia, sensibilidad e interacciones</h3>" + parrafos(c, ["M1", "M2", "M3", "M4", "M5", "R1", "F1", "F2", "F3", "F4", "F5"]))
     h.append(img("f2_eta_pbaja.png", "η frente a P_baja por nivel de x_b; cada curva empieza donde empieza la región KALINA."))
     h.append("<h2>5. Contraste con la literatura</h2><table><tr><th>Fuente</th><th>Dato de la fuente</th><th>Este trabajo</th><th>Lectura</th></tr>"
@@ -112,10 +117,10 @@ def construir():
     h.append("<h2>6. Amenazas a la validez</h2>" + parrafos(c, ["L7", "L4", "L5"]))
     h.append(img("f6_margen_o2.png", "Distribución del margen de cavitación m_O2 de los KALINA."))
     h.append("<h2>7. Conclusiones restantes</h2>" + parrafos(c, [i for i in c["id"] if i not in set(
-        ["D1", "D2", "D3", "D4", "D5", "D6", "D8", "D7", "L6", "U1", "U2", "U3", "F6", "L1", "L2", "L3", "E8", "E4", "E1", "E2", "E3", "E5", "E6", "E7",
+        ["D1", "D2", "D3", "D4", "D5", "D6", "D8", "D9", "D7", "L6", "U1", "U2", "U3", "U5", "F6", "L1", "L2", "L3", "E8", "E4", "M6", "M7", "E1", "E2", "E3", "E5", "E6", "E7", "E9", "E10",
          "M1", "M2", "M3", "M4", "M5", "R1", "F1", "F2", "F3", "F4", "F5", "L7", "L4", "L5"])]))
     h.append("<h2>8. Trabajo futuro</h2><ol><li>Validar con el motor real los 7 puntos atípicos y los óptimos.</li><li>Repetir la propagación con tolerancias medidas o acordadas "
-             "y con más de 200 puntos por celda.</li><li>Explicar con un balance termodinámico por qué el regenerador pierde peso al subir T_fuente.</li>"
+             "y con más de 200 puntos por celda.</li><li>Repetir la búsqueda local de M7 con varios puntos de partida por banda, resolver los NO_CONVERGIO con otro método y calcular un NPSH con datos de la bomba.</li>"
              "<li>Contrastar con más plantas reales cuando se consigan sus datos.</li></ol>")
     h.append("<h2>Anexo. Reproducibilidad</h2><p>Scripts en <code>scripts/sens2/</code> (p1–p4, u1, s2_*), semilla 20261017, motor teqp, intérprete del proyecto. "
              "Informe de validación: <code>docs/VALIDACION_SENS2.md</code>.</p></body></html>")

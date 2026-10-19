@@ -26,6 +26,15 @@ Apariciones (sin distinguir mayusculas) de las frases de estado pedidas en `INFO
 | aún no | 0 |
 | todavía no | 0 |
 | sin commit | 0 |
+| con el motor) | 0 |
+| hasta reintentar | 0 |
+| falta la evaluación | 0 |
+| faltan flujo | 0 |
+| reintentar con el modo | 0 |
+| calcular el ciclo frente | 0 |
+| refinar p_baja | 0 |
+| se obtendrían | 0 |
+| se obtendria | 0 |
 
 ## Conteo por archivo
 

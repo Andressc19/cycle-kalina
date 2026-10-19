@@ -2,9 +2,9 @@
 
 Numeros con unidad de `p5_conclusiones.csv` agrupados por (unidad, dos palabras previas). Un grupo con al menos 2 conclusiones distintas y al menos 2 valores distintos (a 2 decimales) es un candidato a contradiccion. La lista es para revision manual: un candidato no es un error.
 
-- apariciones: 393
-- claves (pares clave, unidad): 338
-- candidatos: 18
+- apariciones: 403
+- claves (pares clave, unidad): 345
+- candidatos: 19
 
 ## Candidatos
 
@@ -17,6 +17,16 @@ Numeros con unidad de `p5_conclusiones.csv` agrupados por (unidad, dos palabras 
 |---|---|---:|---|
 | M1 | evidencia | 14.82 | 14.82 %: fuente 443.15 K, P_alta 4550 kPa, P_baja 610 kPa, x_b 0.73 |
 | L2 | evidencia | 49.0 | 49 % de los 968 CORREGIBLE está a una sola variable de un KALINA |
+
+### 550 y | kPa
+
+- conclusiones: D1, M7
+- valores (2 decimales): 350, 710
+
+| id | campo | valor | contexto |
+|---|---|---:|---|
+| D1 | evidencia | 350.0 | n C2 (x_b 0.50), por encima de esas fronteras de 550, 550 y 350 kPa, que quedan en zona CORREGIBLE: para fijar P_baja usar D9). |
+| M7 | evidencia | 710.0 | 16.8 % a 80, 100, 120, 140 y 160 °C, con P_baja entre 550 y 710 kPa (del orden de los pisos de D9, que dependen de x_b y de T_s |
 
 ### c3 y | K
 
@@ -92,7 +102,7 @@ Numeros con unidad de `p5_conclusiones.csv` agrupados por (unidad, dos palabras 
 | id | campo | valor | contexto |
 |---|---|---:|---|
 | M1 | evidencia | 0.7 | cuentra valores mayores). Su margen de cavitación es m_O2 = 0.7 K en el de 14.82 % y 6.7 K en el de 14.53 %. |
-| M2 | implicacion | 3.7 | (600 kPa a x_b 0.82, D8); su margen de cavitación es m_O2 = 3.7 K (L7). |
+| M2 | implicacion | 3.7 |  con paso de 25 kPa, D9); su margen de cavitación es m_O2 = 3.7 K (L7). |
 
 ### frente a | %
 

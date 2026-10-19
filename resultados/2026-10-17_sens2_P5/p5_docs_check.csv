@@ -34,7 +34,9 @@ INFORME_SENS2.md,18,0.013,en_conclusiones,"C, solo 2 KALINA) a 0.013 (300 °C) y
 INFORME_SENS2.md,18,9.5,en_conclusiones,13 (300 °C) y UA de 9.5 a 0.34 kW/K por kg/
 INFORME_SENS2.md,18,0.34,en_conclusiones,0 °C) y UA de 9.5 a 0.34 kW/K por kg/s; no s
 INFORME_SENS2.md,31,3.1,en_conclusiones,### 3.1 DISEÑO REAL (hoja F
-INFORME_SENS2.md,35,0.82,en_conclusiones,"el piso de C1 a x_b 0.82 es 600 kPa, D8). En"
+INFORME_SENS2.md,35,0.82,en_conclusiones,"el piso de C1 a x_b 0.82 es 600 kPa, D8; con"
+INFORME_SENS2.md,35,0.75,en_conclusiones, 600 kPa en C3 (x_b 0.75) y 400 kPa en C2 (x
+INFORME_SENS2.md,35,0.50,en_conclusiones," 400 kPa en C2 (x_b 0.50), por encima de esa"
 INFORME_SENS2.md,35,24,en_conclusiones,CORREGIBLE rescata (24 % de los 968 quedan
 INFORME_SENS2.md,35,0.97,en_conclusiones,"38, 765] en C1 (AUC 0.97) y 635 kPa [393, 85"
 INFORME_SENS2.md,35,0.93,en_conclusiones,"93, 852] en C3 (AUC 0.93), consistente con l"
@@ -150,6 +152,7 @@ INFORME_SENS2.md,98,0.60,en_conclusiones, → 875; C2 a 0.55 y 0.60: 564 → 525
 INFORME_SENS2.md,98,0.88,en_conclusiones, → 639. En C3 a x_b 0.88 y en C4 a 0.83 ning
 INFORME_SENS2.md,98,0.83,en_conclusiones, x_b 0.88 y en C4 a 0.83 ningún nivel interm
 INFORME_SENS2.md,98,0.50,en_conclusiones,"lla), y en C2 a x_b 0.50 el piso queda entre"
+INFORME_SENS2.md,98,0.95,en_conclusiones,ALINA). En C4 a x_b 0.95 hay un KALINA a 825
 INFORME_SENS2.md,103,3.2,en_conclusiones,### 3.2 EQUIPOS (hoja F4 de
 INFORME_SENS2.md,105,1.7,en_conclusiones,iones de presión de 1.7 a 5.5 (P5–P95) y ca
 INFORME_SENS2.md,105,5.5,en_conclusiones,de presión de 1.7 a 5.5 (P5–P95) y caídas d
@@ -350,7 +353,7 @@ INFORME_SENS2.md,186,14.01,en_conclusiones,".75, ε_cond 0.95: η 14.01 %, dentr
 INFORME_SENS2.md,186,0.95,en_conclusiones," P_baja 690, ε_cond 0.95) es KALINA con η 12"
 INFORME_SENS2.md,186,12.00,en_conclusiones,95) es KALINA con η 12.00 %.
 INFORME_SENS2.md,187,2.0,en_conclusiones," de 121 °C, ganar ≈ 2.0 puntos exige más pr"
-INFORME_SENS2.md,187,0.82,en_conclusiones,"baja (600 kPa a x_b 0.82, D8); su margen de "
+INFORME_SENS2.md,187,0.82,en_conclusiones,"baja (600 kPa a x_b 0.82 con la malla, D8, y"
 INFORME_SENS2.md,187,3.7,en_conclusiones,avitación es m_O2 = 3.7 K (L7).
 INFORME_SENS2.md,191,0.95,en_conclusiones,"pos (η_t y ε_reg en 0.95), el punto muestrea"
 INFORME_SENS2.md,191,13.95,en_conclusiones, de Húsavík llega a 13.95 % sin cambiar las p
@@ -418,8 +421,8 @@ INFORME_SENS2.md,221,0.16,en_conclusiones,onvergió (P(KALINA) 0.16; 0.81 si se 
 INFORME_SENS2.md,221,0.81,en_conclusiones,ió (P(KALINA) 0.16; 0.81 si se excluyen los 
 INFORME_SENS2.md,226,11.0,en_conclusiones,ube con T_fuente de 11.0 % a 80 °C a 16.8 % 
 INFORME_SENS2.md,226,16.8,en_conclusiones,de 11.0 % a 80 °C a 16.8 % a 160 °C y por en
-INFORME_SENS2.md,226,13.4,en_conclusiones,iendo: oscila entre 13.4 y 16.7 % hasta 300 
-INFORME_SENS2.md,226,16.7,en_conclusiones,"oscila entre 13.4 y 16.7 % hasta 300 °C, sin"
+INFORME_SENS2.md,226,13.4,en_conclusiones,clara: oscila entre 13.4 y 16.7 % hasta 300 
+INFORME_SENS2.md,226,16.7,en_conclusiones,"oscila entre 13.4 y 16.7 % hasta 300 °C, com"
 INFORME_SENS2.md,228,0.85,en_conclusiones,"ariables fijas (η_t 0.85, η_p 0.80, ε_HRVG 0"
 INFORME_SENS2.md,228,0.80,en_conclusiones,"ijas (η_t 0.85, η_p 0.80, ε_HRVG 0.85, ε_reg"
 INFORME_SENS2.md,228,0.85,en_conclusiones,"5, η_p 0.80, ε_HRVG 0.85, ε_reg 0.75, ε_cond"
@@ -844,10 +847,16 @@ VALIDACION_SENS2.md,14,4.1,en_csv,"4.1, 3.9, 3.9, 3.9, 4.1, 4.2; evaluación 8 "
 VALIDACION_SENS2.md,14,4.2,en_csv,"3.9, 3.9, 3.9, 4.1, 4.2; evaluación 8 (tras"
 VALIDACION_SENS2.md,14,4.2,en_csv,"(tras la etapa B) = 4.2, 3.8, 4.0, 4.3, 4.0"
 VALIDACION_SENS2.md,14,3.8,en_conclusiones," la etapa B) = 4.2, 3.8, 4.0, 4.3, 4.0, 4.2"
-VALIDACION_SENS2.md,14,4.0,en_conclusiones,"tapa B) = 4.2, 3.8, 4.0, 4.3, 4.0, 4.2. La "
-VALIDACION_SENS2.md,14,4.3,en_conclusiones,"B) = 4.2, 3.8, 4.0, 4.3, 4.0, 4.2. La cober"
-VALIDACION_SENS2.md,14,4.0,en_conclusiones,"4.2, 3.8, 4.0, 4.3, 4.0, 4.2. La cobertura "
-VALIDACION_SENS2.md,14,4.2,en_csv,"3.8, 4.0, 4.3, 4.0, 4.2. La cobertura de la"
+VALIDACION_SENS2.md,14,4.0,en_conclusiones,"tapa B) = 4.2, 3.8, 4.0, 4.3, 4.0, 4.2; eva"
+VALIDACION_SENS2.md,14,4.3,en_conclusiones,"B) = 4.2, 3.8, 4.0, 4.3, 4.0, 4.2; evaluaci"
+VALIDACION_SENS2.md,14,4.0,en_conclusiones,"4.2, 3.8, 4.0, 4.3, 4.0, 4.2; evaluación 9 "
+VALIDACION_SENS2.md,14,4.2,en_csv,"3.8, 4.0, 4.3, 4.0, 4.2; evaluación 9 = 4.2"
+VALIDACION_SENS2.md,14,4.2,en_csv,"4.2; evaluación 9 = 4.2, 3.8, 4.0, 4.3, 4.1"
+VALIDACION_SENS2.md,14,3.8,en_conclusiones,"evaluación 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1"
+VALIDACION_SENS2.md,14,4.0,en_conclusiones,"ación 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1, con"
+VALIDACION_SENS2.md,14,4.3,en_conclusiones," 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1, con la c"
+VALIDACION_SENS2.md,14,4.1,en_csv,"4.2, 3.8, 4.0, 4.3, 4.1, 4.1, con la cohere"
+VALIDACION_SENS2.md,14,4.1,en_csv,"3.8, 4.0, 4.3, 4.1, 4.1, con la coherencia "
 VALIDACION_SENS2.md,14,4.3,en_conclusiones,el profesor subió a 4.3 con las corridas de
 VALIDACION_SENS2.md,23,49,en_conclusiones,a última ronda: el «49 % a una sola variab
 VALIDACION_SENS2.md,23,68,en_conclusiones," conteo del diseño, 68 % en barridos y mal"
@@ -915,11 +924,15 @@ VALIDACION_SENS2.md,95,0.25,en_conclusiones,"): P(KALINA) pasa a 0.25 en C1, 0.9
 VALIDACION_SENS2.md,95,0.98,en_conclusiones," pasa a 0.25 en C1, 0.98 en C2, 0.62 en C3 y"
 VALIDACION_SENS2.md,95,0.62,en_conclusiones," en C1, 0.98 en C2, 0.62 en C3 y 0.50 en C4 "
 VALIDACION_SENS2.md,95,0.50,en_conclusiones,"en C2, 0.62 en C3 y 0.50 en C4 (con el centr"
-VALIDACION_SENS2.md,95,0.95,en_conclusiones,"4 (con el centro en 0.95: 0.48, 0.98, 1.00 y"
-VALIDACION_SENS2.md,95,0.48,en_conclusiones," el centro en 0.95: 0.48, 0.98, 1.00 y 0.85)"
-VALIDACION_SENS2.md,95,0.98,en_conclusiones,"ntro en 0.95: 0.48, 0.98, 1.00 y 0.85). La p"
-VALIDACION_SENS2.md,95,1.00,en_conclusiones,"n 0.95: 0.48, 0.98, 1.00 y 0.85). La probabi"
-VALIDACION_SENS2.md,95,0.85,en_conclusiones," 0.48, 0.98, 1.00 y 0.85). La probabilidad d"
+VALIDACION_SENS2.md,95,0.95,en_conclusiones,4 (con el centro en 0.95 y el lote A de 48 p
+VALIDACION_SENS2.md,95,0.48,en_conclusiones,"tos que compara U5: 0.48, 0.98, 1.00 y 0.85;"
+VALIDACION_SENS2.md,95,0.98,en_conclusiones,"e compara U5: 0.48, 0.98, 1.00 y 0.85; el ti"
+VALIDACION_SENS2.md,95,1.00,en_conclusiones,"ara U5: 0.48, 0.98, 1.00 y 0.85; el titular "
+VALIDACION_SENS2.md,95,0.85,en_conclusiones," 0.48, 0.98, 1.00 y 0.85; el titular de U1, "
+VALIDACION_SENS2.md,95,0.47,en_conclusiones,", con 96 puntos, es 0.47, 0.99, 1.00 y 0.85)"
+VALIDACION_SENS2.md,95,0.99,en_conclusiones,"96 puntos, es 0.47, 0.99, 1.00 y 0.85). La p"
+VALIDACION_SENS2.md,95,1.00,en_conclusiones,"tos, es 0.47, 0.99, 1.00 y 0.85). La probabi"
+VALIDACION_SENS2.md,95,0.85,en_conclusiones," 0.47, 0.99, 1.00 y 0.85). La probabilidad d"
 VALIDACION_SENS2.md,96,0.47,en_conclusiones,tencia en C1 cae de 0.47 a 0.15 (U1). Un NPS
 VALIDACION_SENS2.md,96,0.15,en_conclusiones,en C1 cae de 0.47 a 0.15 (U1). Un NPSH neces
 VALIDACION_SENS2.md,97,28,en_conclusiones,te? ¿Y el sesgo del 28 % de NO_CONVERGIO d

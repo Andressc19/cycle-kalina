@@ -64,7 +64,7 @@ p5_conclusiones.csv,E10,evidencia,todos,"e estudios, en posiciones equiespaciada
 p5_conclusiones.csv,U5,afirmacion,solo,", 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar."
 INFORME_SENS2.md,3,,solo,s de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección p
 INFORME_SENS2.md,12,,todos,"°C y sin poder evaluarse por encima de ≈ 160 °C, donde casi todos los KALINA salen del rango experimental) y de los requisito"
-INFORME_SENS2.md,12,,ninguno,erimental) y de los requisitos de equipos por kW neto (E9); ninguno es un óptimo.
+INFORME_SENS2.md,12,,ninguno,"tal) y de los requisitos de equipos por kW neto (E9 y E10); ninguno es un óptimo, y la η máxima por T_fuente de M7 es un máximo"
 INFORME_SENS2.md,15,,solo,"tor por bloque, con la efectividad del condensador variando solo por debajo de su centro 0.95), con tolerancias nominales se"
 INFORME_SENS2.md,16,,ninguno,r los NO_CONVERGIO con el triple de presupuesto no recupera ninguno (L10); con ε_cond centrado en 0.90 y perturbado de forma si
 INFORME_SENS2.md,18,,solo,"or pierde peso al subir T_fuente: Q_reg/Q_i de 0.59 (70 °C, solo 2 KALINA) a 0.013 (300 °C) y UA de 9.5 a 0.34 kW/K por kg/s"
@@ -135,7 +135,7 @@ INFORME_SENS2.md,363,,causa,"ún reintento superó 554 s con un presupuesto de 9
 INFORME_SENS2.md,365,,todos," la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
 INFORME_SENS2.md,365,,causa," o lazo frío sin convergencia): el corte de 600 s no era la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
 INFORME_SENS2.md,370,,solo,", 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar."
-INFORME_SENS2.md,384,,solo," optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé"
+INFORME_SENS2.md,383,,ninguno,ión: reintentarlos con el triple de presupuesto no recupera ninguno (L10). Es lo que falta para separar «no existe» de «no conv
 INFORME_SENS2.md,390,,solo,"8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal."
 INFORME_SENS2.md,394,,solo,"- Solo motor teqp, sin validación experimental propia del ciclo; e"
 INFORME_SENS2.md,395,,siempre,fuera del rango experimental (líquido > 420 K); se muestran siempre aparte.
@@ -148,7 +148,7 @@ INFORME_SENS2.md,405,,solo,"M5 (óptimos cerca de la frontera) no se sostiene co
 VALIDACION_SENS2.md,25,,solo,afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativ
 VALIDACION_SENS2.md,25,,solo,stica donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible
 VALIDACION_SENS2.md,28,,ninguno,"eintento de NO_CONVERGIO con el triple de presupuesto (L10: ninguno recuperado), caudales de turbina y altura de bomba por kW n"
-VALIDACION_SENS2.md,28,,ninguno,ruce-->18<!--/g--> grupos candidatos; se revisaron a mano y ninguno es una contradicción (son cantidades distintas con las mism
+VALIDACION_SENS2.md,28,,ninguno,ruce-->19<!--/g--> grupos candidatos; se revisaron a mano y ninguno es una contradicción (son cantidades distintas con las mism
 VALIDACION_SENS2.md,40,,solo,- **Métricas.** η y W_net/m_b solo existen en puntos convergidos. W_net se divide entre m_b po
 VALIDACION_SENS2.md,42,,solo,"CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS,"
 VALIDACION_SENS2.md,42,,todos,"mparación justa.** CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS,"
@@ -169,6 +169,7 @@ VALIDACION_SENS2.md,65,,solo,aron el sesgo del tope 0.95: la pérdida de clase n
 VALIDACION_SENS2.md,65,,prueba que,"≤ 1.0), son compatibles, pero con 48 puntos por lote eso no prueba que el muestreo sea estable; un escenario con ε_cond fija en 0."
 VALIDACION_SENS2.md,66,,solo, ruido con 3 dummy es débil.»** Cierto: se declara y se usa solo con 3 a 8 métodos concordantes.
 VALIDACION_SENS2.md,70,,solo,mparables entre sí.»** Declarado; los índices globales usan solo el LHS.
+VALIDACION_SENS2.md,83,,ninguno," B, se auditaron con Excel real el 2026-10-19: 94 gráficos, ninguno vacío, solapado ni tapado)"
 VALIDACION_SENS2.md,89,,siempre,siempre llevan leyenda); (3) los títulos describen la métrica y no 
 VALIDACION_SENS2.md,93,,solo,"2.8 %, intervalo de Wilson de 95 % entre 0.5 y 14.2 %). Con solo 36 evaluaciones el intervalo es ancho, y los métodos no son"
 VALIDACION_SENS2.md,93,,todas,ue 2.8 % es una estimación y no una tasa nominal. Al juntar todas las pruebas de los cuatro bloques y las tres respuestas en 

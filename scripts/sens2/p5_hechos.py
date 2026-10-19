@@ -384,6 +384,7 @@ def _ronda9(h):
     for x in p.itertuples():
         k = "pisos.%s.%03d" % (x.centro, round(x.x_b * 100))
         h[k + ".ref"], h[k + ".malla"] = float(x.piso_refinado), float(x.piso_malla)
+        h[k + ".minK"] = float(x.minimo_kalina_observado)
     h["pisos.n"], h["pisos.n_mejora"] = float(len(p)), float((p["mejora_kpa"] > 0).sum())
     h["pisos.mejora.max"], h["pisos.mejora.med"] = float(p["mejora_kpa"].max()), float(p["mejora_kpa"].median())
     h["pisos.n_puntos"] = float(p["n_puntos"].sum())

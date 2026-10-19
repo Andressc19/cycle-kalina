@@ -49,10 +49,10 @@ E,E1dh,OK,dh_turb P5/P50/P95 = 65.3/152.7/230.4 kJ/kg
 E,E1top_rp,OK,10 pct mayor eta (n=205): r_P P5/P95 = 4.26/7.25
 E,E1top_dh,OK,10 pct mayor eta: dh P5/P95 = 171.7/248.7 kJ/kg
 E,E2reg,OK,pendiente = 30.2; R2 = 0.65; n = 507 (LHS)
-E,E2dh1,OK,"dh mediana [1,1.5) = 46.54 kJ/kg (texto: 46)"
+E,E2dh1,OK,"dh mediana [1,1.5) = 46.54 kJ/kg (texto: 47)"
 E,E2dh6,OK,"dh mediana [6,10) = 236.11 kJ/kg (texto: 236)"
 E,E2eta1,OK,"eta mediana [1,1.5) = 2.483 % (texto: 2.5)"
-E,E2eta6,OK,"eta mediana [6,10) = 10.147 % (texto: 10.2)"
+E,E2eta6,OK,"eta mediana [6,10) = 10.147 % (texto: 10.1)"
 E,E3min,OK,q4 minimo KALINA = 0.9014
 E,E3med,OK,q4 mediana KALINA = 0.9499
 E,E3top,OK,q4 top10 P5/P50 = 0.9101/0.9355

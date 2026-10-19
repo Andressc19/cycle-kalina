@@ -102,6 +102,8 @@ Cada falla tiene una causa de raíz; arreglar la causa evita que reaparezcan.
 
 ## 3. Orden, esfuerzo y nota esperada
 
+*Plan original: las etapas B y C se ejecutaron juntas como «etapa B» (sección 7).*
+
 | Etapa | Contenido | Motor | Esfuerzo | Notas que mueve |
 |---|---|---|---|---|
 | **A** | F0 + F1 + F2 + F4 + F5 + 3.1 + 3.2 | No | 8–10 días de trabajo | (a) 2.5→3.5–4, (b) 2.5→4.5, (c) 2.5→4, (e) 3→4, (f) 3.5→4, (d) 3.5→3.8 |
@@ -181,4 +183,4 @@ Con autorización expresa del usuario se corrieron <!--g:puntos_b_total-->828<!-
 
 Resultados: el piso de P_baja de la malla sobrestimaba hasta 125 kPa; reintentar con 3 veces el presupuesto no recupera ningún NO_CONVERGIO (0 de 88); por kW neto la turbina maneja 0.25 a 1.69 L/s a la entrada y la bomba 102 a 503 m; P(KALINA) depende del centro de ε_cond (C1 0.25 con centro 0.90 frente a 0.48 con 0.95); la η máxima encontrada por búsqueda local llega a 16.8 % a 160 °C y no sigue subiendo después.
 
-Sigue fuera de alcance: un método de resolución distinto para los NO_CONVERGIO, el NPSH real y la validación experimental propia del ciclo. Falta la evaluación independiente posterior a la etapa B.
+Sigue fuera de alcance: un método de resolución distinto para los NO_CONVERGIO, el NPSH real y la validación experimental propia del ciclo. Evaluaciones independientes posteriores a la etapa B: 8 y 9 (notas y hallazgos en `docs/VALIDACION_SENS2.md`).

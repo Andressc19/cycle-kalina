@@ -52,10 +52,10 @@ GUIA = [
     ("F4 Ciclo vs T_fuente", "Mejor eta muestreada y sus condiciones por banda de T_fuente de 20 K (datos ya calculados; no es un optimo)."),
     ("F4 Equipos por kW", "Requisitos de equipos por kW neto en lugar de por kg/s de fluido: calores, trabajos, UA y caudal de fluido por kW."),
     ("F4 Caudales y bomba", "Caudal volumetrico de la turbina (entrada y salida), de la bomba y altura de la bomba por kW neto, con densidades del modelo (corrida nueva del motor)."),
-    ("F5 Incertidumbre simetrica", "P(KALINA) con eps_cond centrado en 0.90 y perturbado de forma simetrica, frente a la perturbacion solo hacia abajo de U1 (corrida nueva del motor)."),
     ("F4 Optimo vs T_fuente", "Eta maxima por banda de T_fuente (80 a 300 C) con busqueda local de P_alta, P_baja y x_b, frente al maximo muestreado (corrida nueva del motor)."),
     ("F5 Superficies de respuesta", "Mapas de calor de eta en las mallas P_baja x x_b y P_alta x P_baja y ajuste cuadratico."),
     ("F5 Incertidumbre", "Propagacion de incertidumbre: P(KALINA) y eta al perturbar las 10 variables alrededor de cada centro (808 puntos del motor)."),
+    ("F5 Incertidumbre simetrica", "P(KALINA) con eps_cond centrado en 0.90 y perturbado de forma simetrica, frente a la perturbacion solo hacia abajo de U1 (corrida nueva del motor)."),
     ("F6 Respaldo libro viejo", "Contraste fuera de muestra con la campaña M1-M10b: rangos, fronteras de una variable, vecinos de Sens2, aportes y cobertura."),
     ("F7 Rigor estadistico", "NO_CONVERGIO por estudio y por cuartil de T_fuente, comparacion pareada por distancia, equipos segun el diseño, fronteras con intervalo, validacion cruzada y potencia de U1."),
     ("F7 Nulo y correccion FDR", "Pruebas de permutacion y correccion de Benjamini-Hochberg de los indices globales (F1 a F3)."),
@@ -74,7 +74,7 @@ PREGUNTAS = [
      "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate; F5 Superficies de respuesta; F5 Incertidumbre"),
     ("Como se comporta el regenerador y el ciclo con la temperatura de la fuente?",
      "F4 Regenerador vs T_fuente; F4 Regenerador y condensador; F4 Ciclo vs T_fuente"),
-    ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion; F4 Equipos por kW"),
+    ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion; F4 Equipos por kW; F4 Caudales y bomba"),
 ]
 
 VARS_CENTRO = ["T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b", "eta_t", "eta_p",
@@ -131,8 +131,8 @@ def hoja_leeme(wb, datos):
 
     f = subtitulo(ws, f, "Los 4 centros de bloque y sus constantes")
     f = condiciones(ws, f, ["Que quedo fijo: las constantes de cada bloque (las mismas del libro 1).",
-                            "Que se barrio: el analisis de los 3 921 puntos no barre nada; solo F5 Incertidumbre usa "
-                            "puntos nuevos del motor alrededor de estos centros."])
+                            "Que se barrio: el analisis de los 3 921 puntos no barre nada; usan puntos nuevos del motor F5 Incertidumbre, "
+                            "F5 Incertidumbre simetrica, F3 Pisos 25 kPa y reintento, F4 Caudales y bomba y F4 Optimo vs T_fuente."])
     enc = ["Bloque"] + [v + " (" + u + ")" for v, u in (
         ("T_fuente", "K"), ("T_sumidero", "K"), ("P_alta", "kPa"), ("P_baja", "kPa"), ("x_b", "-"),
         ("eta_t", "-"), ("eta_p", "-"), ("eps_HRVG", "-"), ("eps_reg", "-"), ("eps_cond", "-"))]

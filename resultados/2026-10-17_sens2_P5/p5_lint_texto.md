@@ -2,17 +2,17 @@
 
 Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra completa) en `p5_conclusiones.csv`, `INFORME_SENS2.md` y `VALIDACION_SENS2.md`.
 
-- total de apariciones: 183
+- total de apariciones: 184
 
 ## Conteo por palabra
 
 | palabra | apariciones |
 |---|---:|
-| solo | 89 |
+| solo | 88 |
 | todos | 32 |
 | único | 15 |
 | todas | 14 |
-| ninguno | 9 |
+| ninguno | 11 |
 | siempre | 8 |
 | única | 6 |
 | ninguna | 5 |
@@ -35,11 +35,11 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 |---|---:|
 | INFORME_SENS2.md | 83 |
 | p5_conclusiones.csv | 63 |
-| VALIDACION_SENS2.md | 37 |
+| VALIDACION_SENS2.md | 38 |
 
 ## Lista por palabra
 
-### solo (89)
+### solo (88)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
@@ -104,7 +104,6 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 351 |  | alor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, un solo aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba |
 | INFORME_SENS2.md | 351 |  | aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba solo mira que los KALINA caigan dentro del mínimo-máximo; no cue |
 | INFORME_SENS2.md | 370 |  | , 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar. |
-| INFORME_SENS2.md | 384 |  |  optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé |
 | INFORME_SENS2.md | 390 |  | 8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal. |
 | INFORME_SENS2.md | 394 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
 | INFORME_SENS2.md | 396 |  | vel dependen del diseño; los índices globales se calcularon solo sobre el LHS de cada bloque. |
@@ -209,17 +208,19 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 93 |  | ue 2.8 % es una estimación y no una tasa nominal. Al juntar todas las pruebas de los cuatro bloques y las tres respuestas en  |
 | VALIDACION_SENS2.md | 97 |  | >12<!--/g--> de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO |
 
-### ninguno (9)
+### ninguno (11)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
 | p5_conclusiones.csv | L10 | afirmacion | ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango |
-| INFORME_SENS2.md | 12 |  | erimental) y de los requisitos de equipos por kW neto (E9); ninguno es un óptimo. |
+| INFORME_SENS2.md | 12 |  | tal) y de los requisitos de equipos por kW neto (E9 y E10); ninguno es un óptimo, y la η máxima por T_fuente de M7 es un máximo |
 | INFORME_SENS2.md | 16 |  | r los NO_CONVERGIO con el triple de presupuesto no recupera ninguno (L10); con ε_cond centrado en 0.90 y perturbado de forma si |
 | INFORME_SENS2.md | 19 |  | _net en los cuatro bloques y P_alta no lo es sobre W_net en ninguno (F1, F2). |
 | INFORME_SENS2.md | 363 |  | ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango |
+| INFORME_SENS2.md | 383 |  | ión: reintentarlos con el triple de presupuesto no recupera ninguno (L10). Es lo que falta para separar «no existe» de «no conv |
 | VALIDACION_SENS2.md | 28 |  | eintento de NO_CONVERGIO con el triple de presupuesto (L10: ninguno recuperado), caudales de turbina y altura de bomba por kW n |
-| VALIDACION_SENS2.md | 28 |  | ruce-->18<!--/g--> grupos candidatos; se revisaron a mano y ninguno es una contradicción (son cantidades distintas con las mism |
+| VALIDACION_SENS2.md | 28 |  | ruce-->19<!--/g--> grupos candidatos; se revisaron a mano y ninguno es una contradicción (son cantidades distintas con las mism |
+| VALIDACION_SENS2.md | 83 |  |  B, se auditaron con Excel real el 2026-10-19: 94 gráficos, ninguno vacío, solapado ni tapado) |
 | VALIDACION_SENS2.md | 94 |  | as y 0 % en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que s |
 | VALIDACION_SENS2.md | 97 |  |  NO_CONVERGIO con el triple de presupuesto y no se recuperó ninguno (L10), así que el sesgo de los umbrales inferiores de T_fue |
 

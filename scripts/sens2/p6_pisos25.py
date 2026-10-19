@@ -50,7 +50,8 @@ def main():
                     ref = float(p)
                 else:
                     break
-            filas.append(dict(centro=cod, x_b=xb, nivel_inferior_malla=lo, piso_malla=hi, n_puntos=len(g),
+            gk = g[g["clasificacion"] == "KALINA"]
+            filas.append(dict(centro=cod, x_b=xb, nivel_inferior_malla=lo, piso_malla=hi, minimo_kalina_observado=float(gk["P_baja"].min()) if len(gk) else float("nan"), n_puntos=len(g),
                               n_kalina=int((g["clasificacion"] == "KALINA").sum()), n_corregible=int((g["clasificacion"] == "CORREGIBLE").sum()),
                               n_no_convergio=int((g["clasificacion"] == "NO_CONVERGIO").sum()), piso_refinado=ref, mejora_kpa=hi - ref,
                               clases_por_P_baja=" ".join("%d:%s" % (round(p), c[0]) for p, c in zip(g["P_baja"], g["clasificacion"]))))

@@ -51,12 +51,11 @@ CAVEATS = [
     "no validación física.",
 ]
 PROXIMA = [
-    "Reintentar con el modo tolerante del motor los NO_CONVERGIO (14 % de los puntos; 24 % en los LHS de C3 y C4, concentrados en T_fuente baja) "
-    "para separar «no existe» de «no convergió»: es lo que falta para establecer el umbral inferior de T_fuente (D3).",
-    "Calcular el ciclo frente a T_fuente optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y "
-    "obtener el flujo volumétrico de la turbina y la altura de la bomba (los calores, trabajos y UA por kW neto ya están en la hoja F4 Equipos por kW).",
-    "Refinar P_baja cerca de su piso (paso de 25 kPa en C1 y C3, 550 kPa; C2 350 kPa; C4 750 kPa): es la "
-    "frontera que más puntos separa.",
+    "Resolver los NO_CONVERGIO (14 % de los puntos; 24 % en los LHS de C3 y C4, concentrados en T_fuente baja) con otro método de resolución: reintentarlos con el triple de "
+    "presupuesto no recupera ninguno (L10). Es lo que falta para separar «no existe» de «no convergió» y establecer el umbral inferior de T_fuente (D3).",
+    "Repetir la búsqueda local de M7 (η máxima frente a T_fuente) con varios puntos de partida por banda y respaldar o descartar la forma de la curva por encima de 160 °C; "
+    "el flujo volumétrico de la turbina y la altura de la bomba ya están en E10.",
+    "Comprobar el piso refinado de P_baja (D9, paso de 25 kPa) con un margen de cavitación acordado: el criterio actual es margen cero y un NPSH real necesita datos de la bomba.",
     "Barrer T_fuente con paso de 2.5 K en los techos de cada bloque (440.65, 468.15, 568.15 y 528.15 K).",
     "Repetir las mallas B2 (P_baja x x_b) y B4 (ε_cond x T_sumidero) con más niveles en C3 y C4, donde la "
     "no aditividad de la existencia es alta.",
@@ -101,7 +100,7 @@ def main():
          "- En barridos y mallas el %.0f %% de los CORREGIBLE está a una sola variable de un KALINA (0 %% en el muestreo LHS, que mueve las diez variables a la vez; %.0f %% global): "
          "es un conteo del diseño y no una propiedad de los CORREGIBLE; en esos diseños P_baja es la variable que más rescata." % (H["h1.nolhs"], H["h1.todos"]),
          "- Frente a T_fuente se dispone de la mayor η muestreada por banda de 20 K (M6: sin caída clara entre 97 y 157 °C y sin poder evaluarse por encima de ≈ 160 °C, donde casi todos los "
-         "KALINA salen del rango experimental) y de los requisitos de equipos por kW neto (E9); ninguno es un óptimo.",
+         "KALINA salen del rango experimental) y de los requisitos de equipos por kW neto (E9 y E10); ninguno es un óptimo, y la η máxima por T_fuente de M7 es un máximo local.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
          "- Desde el centro KALINA de cada bloque, C1 y C4 tienen muy poco margen de ε_cond (el barrido fino sitúa la frontera local en "
          "≈ 0.92 y ≈ 0.906, con las demás variables en el centro); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) (D7, U4, L6).",
