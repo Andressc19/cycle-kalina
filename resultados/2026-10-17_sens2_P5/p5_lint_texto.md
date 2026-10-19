@@ -2,7 +2,7 @@
 
 Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra completa) en `p5_conclusiones.csv`, `INFORME_SENS2.md` y `VALIDACION_SENS2.md`.
 
-- total de apariciones: 184
+- total de apariciones: 185
 
 ## Conteo por palabra
 
@@ -10,7 +10,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 |---|---:|
 | solo | 88 |
 | todos | 32 |
-| único | 15 |
+| único | 16 |
 | todas | 14 |
 | ninguno | 11 |
 | siempre | 8 |
@@ -35,7 +35,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 |---|---:|
 | INFORME_SENS2.md | 83 |
 | p5_conclusiones.csv | 63 |
-| VALIDACION_SENS2.md | 38 |
+| VALIDACION_SENS2.md | 39 |
 
 ## Lista por palabra
 
@@ -169,7 +169,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 57 |  |  8 / Media / Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que no se cumple (barridos |
 | VALIDACION_SENS2.md | 105 |  | - Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la  |
 
-### único (15)
+### único (16)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
@@ -188,6 +188,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 349 |  | n C2 (91 %) y no en C3 (35 %: 23 puntos, 15 de ellos con un único valor de ε_cond), y lo que sale del rango es una extensión  |
 | INFORME_SENS2.md | 351 |  | .5 K (mínimo de Sens2 393.15 K) y 15 de C3 que comparten un único valor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, u |
 | VALIDACION_SENS2.md | 94 |  |  en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que sí se p |
+| VALIDACION_SENS2.md | 94 |  | a mediana global pareada es 0.43 (n = 734). No hay un costo único: con un vecino cercano la mediana es de 0.56 puntos y con v |
 
 ### todas (14)
 
@@ -256,7 +257,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | p5_conclusiones.csv | L3 | afirmacion | Ninguna regla simple separa KALINA de no-KALINA: la región es multi |
 | INFORME_SENS2.md | 207 |  | a normalización completa (p = 0.029) y C1 (p = 0.044), pero ninguna salvo C3 con la normalización del LHS resiste Bonferroni: e |
 | INFORME_SENS2.md | 300 |  | **L3 [LÍMITES KALINA, fase A, confianza Media].** Ninguna regla simple separa KALINA de no-KALINA: la región es multi |
-| VALIDACION_SENS2.md | 97 |  | **«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo del 28 % de NO_CONVERGIO  |
+| VALIDACION_SENS2.md | 97 |  | **«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo de los NO_CONVERGIO del L |
 
 ### causa (4)
 

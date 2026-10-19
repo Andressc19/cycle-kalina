@@ -33,7 +33,7 @@ FRASES = ("queda pendiente", "quedan pendientes", "siguen abiertos", "sigue abie
           "etapa C", "requiere el motor", "requieren el motor", "necesita el motor",
           "falta el motor", "aún no", "todavía no", "sin commit",
           "con el motor)", "hasta reintentar", "falta la evaluación", "faltan flujo", "reintentar con el modo", "calcular el ciclo frente",
-          "refinar p_baja", "se obtendrían", "se obtendria")
+          "refinar p_baja", "se obtendrían", "se obtendria", "no hay optimizador", "sin optimizador", "un optimizador")
 TEMAS = ("reintent", "piso", "densidad", "caudal", "bomba", "simétric", "simetric",
          "T_fuente", "optimiz", "NO_CONVERGIO")
 CSV_TEMA = {"reintent": "p6_reintento_nc.csv", "NO_CONVERGIO": "p6_reintento_nc.csv",

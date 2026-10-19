@@ -22,7 +22,7 @@ TEXTO_RANGO = (
     "ecuación válida hasta el lugar crítico; la marca solo informa que en esa zona no hay datos "
     "experimentales con que contrastar el cálculo. Estos puntos forman parte de los resultados y "
     "de las conclusiones. El lugar crítico no se vigila en el motor (la guía advierte que su "
-    "ubicación es incierta); con P_alta <= 5 MPa en esta campaña no se espera cruzarlo, pero no se "
+    "ubicación es incierta); con P_alta <= 5 MPa en la campaña original no se espera cruzarlo (los titulares M1, con 6 000 kPa, y M7, con hasta 6 500 kPa, superan ese valor), pero no se "
     "comprobó punto por punto.")
 
 GUIA = [
@@ -69,11 +69,11 @@ GUIA = [
 ]
 
 PREGUNTAS = [
-    ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises"),
+    ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises; F3 Pisos 25 kPa y reintento"),
     ("Partiendo de un KALINA, que pasa si muevo una o dos variables?",
-     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate; F5 Superficies de respuesta; F5 Incertidumbre"),
+     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate; F5 Superficies de respuesta; F5 Incertidumbre; F5 Incertidumbre simetrica"),
     ("Como se comporta el regenerador y el ciclo con la temperatura de la fuente?",
-     "F4 Regenerador vs T_fuente; F4 Regenerador y condensador; F4 Ciclo vs T_fuente"),
+     "F4 Regenerador vs T_fuente; F4 Regenerador y condensador; F4 Ciclo vs T_fuente; F4 Optimo vs T_fuente"),
     ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion; F4 Equipos por kW; F4 Caudales y bomba"),
 ]
 

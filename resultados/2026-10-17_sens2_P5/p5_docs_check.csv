@@ -13,6 +13,7 @@ INFORME_SENS2.md,13,0.94,en_conclusiones,alida de turbina de 0.94 (límite 0.90)
 INFORME_SENS2.md,13,0.90,en_conclusiones,ina de 0.94 (límite 0.90).
 INFORME_SENS2.md,14,0.92,en_conclusiones,"frontera local en ≈ 0.92 y ≈ 0.906, con las "
 INFORME_SENS2.md,14,0.906,en_conclusiones,"local en ≈ 0.92 y ≈ 0.906, con las demás vari"
+INFORME_SENS2.md,14,0.88,en_conclusiones,"725 kPa en C4 a x_b 0.88 (D7, D9, U4, L6)."
 INFORME_SENS2.md,15,0.95,en_conclusiones,"debajo de su centro 0.95), con tolerancias n"
 INFORME_SENS2.md,15,47,en_conclusiones,"an siendo KALINA el 47 % (C1), 99 % (C2), "
 INFORME_SENS2.md,15,99,en_conclusiones,"ALINA el 47 % (C1), 99 % (C2), 100 % (C3) "
@@ -37,6 +38,7 @@ INFORME_SENS2.md,31,3.1,en_conclusiones,### 3.1 DISEÑO REAL (hoja F
 INFORME_SENS2.md,35,0.82,en_conclusiones,"el piso de C1 a x_b 0.82 es 600 kPa, D8; con"
 INFORME_SENS2.md,35,0.75,en_conclusiones, 600 kPa en C3 (x_b 0.75) y 400 kPa en C2 (x
 INFORME_SENS2.md,35,0.50,en_conclusiones," 400 kPa en C2 (x_b 0.50), por encima de esa"
+INFORME_SENS2.md,35,0.88,en_conclusiones,"REGIBLE; en C4 (x_b 0.88) el piso de D9, 725"
 INFORME_SENS2.md,35,24,en_conclusiones,CORREGIBLE rescata (24 % de los 968 quedan
 INFORME_SENS2.md,35,0.97,en_conclusiones,"38, 765] en C1 (AUC 0.97) y 635 kPa [393, 85"
 INFORME_SENS2.md,35,0.93,en_conclusiones,"93, 852] en C3 (AUC 0.93), consistente con l"
@@ -436,12 +438,13 @@ INFORME_SENS2.md,228,15.3,en_conclusiones,": 11.0, 13.0, 14.4, 15.3 y 16.8 % a 8
 INFORME_SENS2.md,228,16.8,en_conclusiones," 13.0, 14.4, 15.3 y 16.8 % a 80, 100, 120, 1"
 INFORME_SENS2.md,228,0.77,en_conclusiones,midero) y x_b entre 0.77 y 0.93. Frente al m
 INFORME_SENS2.md,228,0.93,en_conclusiones, y x_b entre 0.77 y 0.93. Frente al máximo d
-INFORME_SENS2.md,228,-0.12,en_conclusiones,"da, la mejora va de -0.12 a +4.37 puntos en l"
-INFORME_SENS2.md,228,4.37,en_conclusiones,jora va de -0.12 a +4.37 puntos en las 12 ba
-INFORME_SENS2.md,228,-0.12,en_conclusiones,s en las 12 bandas (-0.12 a +0.74 hasta 140 °
-INFORME_SENS2.md,228,0.74,en_conclusiones,"12 bandas (-0.12 a +0.74 hasta 140 °C, dentr"
+INFORME_SENS2.md,228,0.38,en_conclusiones,"a, la mejora va de +0.38 a +4.80 puntos en l"
+INFORME_SENS2.md,228,4.80,en_conclusiones,jora va de +0.38 a +4.80 puntos en las 12 ba
+INFORME_SENS2.md,228,0.38,en_conclusiones, en las 12 bandas (+0.38 a +4.01 hasta 140 °
+INFORME_SENS2.md,228,4.01,en_conclusiones,"12 bandas (+0.38 a +4.01 hasta 140 °C, dentr"
 INFORME_SENS2.md,228,2.20,en_conclusiones,"entro del rango, y +2.20 a 160 °C frente al "
-INFORME_SENS2.md,228,-0.12,en_conclusiones," máximo muestreado (-0.12), así que la búsque"
+INFORME_SENS2.md,228,4.01,en_conclusiones,"a mejora es mayor (+4.01), no hay KALINA mue"
+INFORME_SENS2.md,228,0.95,en_conclusiones,"guración (η_t hasta 0.95, otros T_sumidero),"
 INFORME_SENS2.md,228,16.7,en_conclusiones, máximo a 160 °C es 16.7 %.
 INFORME_SENS2.md,229,14.5,en_conclusiones,ión: La η máxima de 14.5 % dentro del rango 
 INFORME_SENS2.md,229,15.3,en_conclusiones,eda local encuentra 15.3 % a 140 °C y 16.7 %
@@ -853,10 +856,16 @@ VALIDACION_SENS2.md,14,4.0,en_conclusiones,"4.2, 3.8, 4.0, 4.3, 4.0, 4.2; evalua
 VALIDACION_SENS2.md,14,4.2,en_csv,"3.8, 4.0, 4.3, 4.0, 4.2; evaluación 9 = 4.2"
 VALIDACION_SENS2.md,14,4.2,en_csv,"4.2; evaluación 9 = 4.2, 3.8, 4.0, 4.3, 4.1"
 VALIDACION_SENS2.md,14,3.8,en_conclusiones,"evaluación 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1"
-VALIDACION_SENS2.md,14,4.0,en_conclusiones,"ación 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1, con"
-VALIDACION_SENS2.md,14,4.3,en_conclusiones," 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1, con la c"
-VALIDACION_SENS2.md,14,4.1,en_csv,"4.2, 3.8, 4.0, 4.3, 4.1, 4.1, con la cohere"
-VALIDACION_SENS2.md,14,4.1,en_csv,"3.8, 4.0, 4.3, 4.1, 4.1, con la coherencia "
+VALIDACION_SENS2.md,14,4.0,en_conclusiones,"ación 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1; eva"
+VALIDACION_SENS2.md,14,4.3,en_conclusiones," 9 = 4.2, 3.8, 4.0, 4.3, 4.1, 4.1; evaluaci"
+VALIDACION_SENS2.md,14,4.1,en_csv,"4.2, 3.8, 4.0, 4.3, 4.1, 4.1; evaluación 10"
+VALIDACION_SENS2.md,14,4.1,en_csv,"3.8, 4.0, 4.3, 4.1, 4.1; evaluación 10 = 4."
+VALIDACION_SENS2.md,14,4.2,en_csv,".1; evaluación 10 = 4.2, 3.9, 4.0, 4.3, 4.1"
+VALIDACION_SENS2.md,14,3.9,en_conclusiones,"valuación 10 = 4.2, 3.9, 4.0, 4.3, 4.1, 4.1"
+VALIDACION_SENS2.md,14,4.0,en_conclusiones,"ción 10 = 4.2, 3.9, 4.0, 4.3, 4.1, 4.1, con"
+VALIDACION_SENS2.md,14,4.3,en_conclusiones,"10 = 4.2, 3.9, 4.0, 4.3, 4.1, 4.1, con la c"
+VALIDACION_SENS2.md,14,4.1,en_csv,"4.2, 3.9, 4.0, 4.3, 4.1, 4.1, con la cohere"
+VALIDACION_SENS2.md,14,4.1,en_csv,"3.9, 4.0, 4.3, 4.1, 4.1, con la coherencia "
 VALIDACION_SENS2.md,14,4.3,en_conclusiones,el profesor subió a 4.3 con las corridas de
 VALIDACION_SENS2.md,23,49,en_conclusiones,a última ronda: el «49 % a una sola variab
 VALIDACION_SENS2.md,23,68,en_conclusiones," conteo del diseño, 68 % en barridos y mal"
@@ -910,7 +919,9 @@ VALIDACION_SENS2.md,94,49,en_conclusiones,* Ninguno único. El 49 % es un conteo
 VALIDACION_SENS2.md,94,0.2,en_conclusiones,ALINA cercano (L1 ≤ 0.2) rescatar cuesta un
 VALIDACION_SENS2.md,94,0.56,en_conclusiones,esta una mediana de 0.56 puntos de η (n = 21
 VALIDACION_SENS2.md,94,1.72,en_conclusiones,"os lejanos del LHS, 1.72 (n = 262); la media"
-VALIDACION_SENS2.md,94,0.43,en_conclusiones,a global pareada es 0.43 (n = 734). El costo
+VALIDACION_SENS2.md,94,0.43,en_conclusiones,a global pareada es 0.43 (n = 734). No hay u
+VALIDACION_SENS2.md,94,0.56,en_conclusiones,no la mediana es de 0.56 puntos y con vecino
+VALIDACION_SENS2.md,94,1.72,en_conclusiones," lejanos del LHS de 1.72, pero no crece de f"
 VALIDACION_SENS2.md,95,0.47,en_conclusiones,3. **«P(KALINA) = 0.47 en C1 sale de pertu
 VALIDACION_SENS2.md,95,0.95,en_conclusiones,jo desde el tope de 0.95. ¿Por qué ese escen
 VALIDACION_SENS2.md,95,0.95,en_conclusiones,d no puede pasar de 0.95 (regla del proyecto
@@ -935,6 +946,5 @@ VALIDACION_SENS2.md,95,1.00,en_conclusiones,"tos, es 0.47, 0.99, 1.00 y 0.85). L
 VALIDACION_SENS2.md,95,0.85,en_conclusiones," 0.47, 0.99, 1.00 y 0.85). La probabilidad d"
 VALIDACION_SENS2.md,96,0.47,en_conclusiones,tencia en C1 cae de 0.47 a 0.15 (U1). Un NPS
 VALIDACION_SENS2.md,96,0.15,en_conclusiones,en C1 cae de 0.47 a 0.15 (U1). Un NPSH neces
-VALIDACION_SENS2.md,97,28,en_conclusiones,te? ¿Y el sesgo del 28 % de NO_CONVERGIO d
-VALIDACION_SENS2.md,97,39.3,en_csv,"poder_trazado_pct-->39.3<!--/g--> %, valor v"
+VALIDACION_SENS2.md,97,39.7,en_csv,"poder_trazado_pct-->39.7<!--/g--> %, valor v"
 VALIDACION_SENS2.md,102,15,en_conclusiones,- El 15 % de los KALINA est

@@ -44,7 +44,7 @@ def bluf(datos):
         ("n de puntos (sin duplicados)", n,
          "p2_dataset_dedup.csv (de 3921 en la campana, p1_dataset.csv)"),
         ("% KALINA (total)", pct_kal, "p2_dataset_dedup.csv"),
-        ("eta maxima dentro / fuera del rango experimental (%)",
+        ("eta maxima muestreada dentro / fuera del rango experimental (%)",
          "%s / %s" % (eta_in, eta_out), "p2_dataset_dedup.csv (solo KALINA (total))"),
         ("% de CORREGIBLE por cavitacion (viol_O2 dominante)", pct_o2,
          "p2_violaciones.csv (centro todos)"),

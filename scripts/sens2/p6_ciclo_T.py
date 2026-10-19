@@ -84,8 +84,8 @@ def tablas(d):
 def markdown(tab):
     l = ["# Sens2 F1 - A7t: eficiencia del ciclo frente a T_fuente", "",
          "Bandas de T_fuente de 20 K sobre los %d puntos de `p2_dataset_dedup.csv`." % int(tab["n"].sum()),
-         "eta en % y P(KALINA) = KALINA/n. El maximo es el mayor valor muestreado (no hay",
-         "optimizador: no se busca el optimo, solo se describe lo ya calculado).", "",
+         "eta en % y P(KALINA) = KALINA/n. El maximo es el mayor valor muestreado (esta tabla",
+         "describe lo ya calculado; el optimo por banda esta en p6_opt_T.md).", "",
          "## Mejor eta dentro del rango experimental por banda", "",
          "| Banda (T_centro, C) | n | P(KALINA) | eta maxima dentro del rango (%) |"
          " P_alta del maximo (kPa) | x_b del maximo (-) |",

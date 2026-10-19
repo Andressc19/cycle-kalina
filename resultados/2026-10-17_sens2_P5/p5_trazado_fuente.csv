@@ -15,6 +15,9 @@ D1,evidencia,0.50,si,p1_fronteras.csv:valor_anterior,2
 D1,evidencia,550,si,p1_fronteras.csv:valor_frontera,2
 D1,evidencia,550,si,p1_fronteras.csv:valor_frontera,2
 D1,evidencia,350,si,p1_fronteras.csv:valor_frontera,2
+D1,evidencia,0.88,si,p1_fronteras.csv:valor_frontera,2
+D1,evidencia,725,si,p5_hechos,2
+D1,evidencia,750,si,p1_fronteras.csv:valor_frontera,2
 D1,evidencia,24,si,p2_distancia_resumen.csv:n,2
 D1,evidencia,968,si,p2_distancia_resumen.csv:n,2
 D1,evidencia,9,trivial,trivial,2
@@ -59,6 +62,8 @@ D3,evidencia,440.65,si,p1_fronteras.csv:valor_frontera,1
 D3,evidencia,468.15,si,p1_fronteras.csv:valor_frontera,1
 D3,evidencia,568.15,si,p1_fronteras.csv:valor_frontera,1
 D3,evidencia,528.15,si,p1_fronteras.csv:valor_frontera,1
+D3,implicacion,90,si,p1_fronteras.csv:valor_anterior,1
+D3,implicacion,515,si,p5_hechos,1
 D3,implicacion,5,trivial,trivial,1
 D4,evidencia,0.80,si,p1_existencia_rangos.csv:min_kalina,3
 D4,evidencia,0.65,si,p1_existencia_rangos.csv:min_kalina,3
@@ -357,6 +362,8 @@ F3,evidencia,2.0,si,p3_ranking.csv:rango_medio,1
 F3,evidencia,2000,si,p5_hechos,1
 F3,evidencia,0.05,si,p5_hechos,1
 F3,evidencia,2,trivial,trivial,1
+F3,implicacion,90,si,p5_hechos,1
+F3,implicacion,515,si,p5_hechos,1
 F4,evidencia,1.03,si,p3_elasticidad.csv:elasticidad,1
 F4,evidencia,1.15,si,p3_elasticidad.csv:deta,1
 F4,evidencia,−0.60,si,p3_elasticidad.csv:elasticidad,1
@@ -522,9 +529,15 @@ L5,evidencia,0.05,si,p1_existencia_prob.csv:p_kalina,3
 L5,evidencia,0.07,si,p1_existencia_prob.csv:wilson_lo,3
 L5,evidencia,515,si,p5_hechos,3
 L5,evidencia,3663,si,p5_hechos,3
+L5,evidencia,150,si,p5_hechos,3
+L5,evidencia,49,si,p1_existencia_prob.csv:n_kalina,3
+L5,evidencia,90,si,p1_existencia_prob.csv:n_kalina,3
+L5,evidencia,515,si,p5_hechos,3
 L5,implicacion,7,trivial,trivial,3
 D7,evidencia,600,si,p1_dataset.csv:estudio,7
 D7,evidencia,690,si,p1_dataset.csv:P_baja,7
+D7,evidencia,25,si,p1_dataset.csv:x_b,7
+D7,evidencia,575,si,p1_dataset.csv:eta_pct,7
 D7,evidencia,0.95,si,p1_dataset.csv:x_b,7
 D7,evidencia,0.90,si,p1_dataset.csv:x_b,7
 D7,evidencia,283.15,si,p1_dataset.csv:T_sumidero,7
@@ -1113,6 +1126,7 @@ L10,evidencia,554,si,p6_reintento_nc.csv:t_s_nuevo,1
 L10,evidencia,600,si,p6_reintento_nc.csv:t_s_original,1
 L10,evidencia,90,si,p6_reintento_nc.csv:t_s_original,1
 L10,evidencia,515,si,p5_hechos,1
+E10,afirmacion,150,si,p6_dens.csv:n,1
 E10,afirmacion,0.25,si,p6_dens.csv:p5,1
 E10,afirmacion,1.69,si,p6_dens.csv:p95,1
 E10,afirmacion,0.93,si,p6_dens.csv:p5,1
@@ -1186,7 +1200,7 @@ M7,afirmacion,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,12,si,p6_opt_T.csv:n_kalina,1
 M7,evidencia,80,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,300,si,p6_opt_T.csv:T_fuente_C,1
-M7,evidencia,20,si,p5_hechos,1
+M7,evidencia,20,si,p6_opt_T.csv:n_muestreo,1
 M7,evidencia,30,si,p6_opt_T.csv:n_eval,1
 M7,evidencia,21,si,p6_opt_T.csv:n_eval,1
 M7,evidencia,32,si,p6_opt_T.csv:n_eval,1
@@ -1196,10 +1210,10 @@ M7,evidencia,0.85,si,p5_hechos,1
 M7,evidencia,0.80,si,p6_opt_T.csv:x_b,1
 M7,evidencia,0.85,si,p5_hechos,1
 M7,evidencia,0.75,si,p5_hechos,1
-M7,evidencia,0.95,si,p5_hechos,1
+M7,evidencia,0.95,si,p6_opt_T.csv:mejora_pp,1
 M7,evidencia,280.5,si,"permitido: constante de diseno o limite del criterio, citada tal cual",1
 M7,evidencia,11.0,si,p6_opt_T.csv:n_kalina,1
-M7,evidencia,13.0,si,p6_opt_T.csv:eta_max_muestreo_pct,1
+M7,evidencia,13.0,si,p6_opt_T.csv:n_muestreo,1
 M7,evidencia,14.4,si,p6_opt_T.csv:eta_max_pct,1
 M7,evidencia,15.3,si,p6_opt_T.csv:eta_max_pct,1
 M7,evidencia,16.8,si,p6_opt_T.csv:eta_max_pct,1
@@ -1212,16 +1226,18 @@ M7,evidencia,550,si,p6_opt_T.csv:P_baja,1
 M7,evidencia,710,si,p6_opt_T.csv:P_baja,1
 M7,evidencia,0.77,si,p6_opt_T.csv:x_b,1
 M7,evidencia,0.93,si,p5_hechos,1
-M7,evidencia,-0.12,si,p6_opt_T.csv:mejora_pp,1
-M7,evidencia,4.37,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,0.38,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,4.80,si,p6_opt_T.csv:mejora_pp,1
 M7,evidencia,12,si,p6_opt_T.csv:n_kalina,1
-M7,evidencia,-0.12,si,p6_opt_T.csv:mejora_pp,1
-M7,evidencia,0.74,si,p6_opt_T.csv:x_b,1
+M7,evidencia,0.38,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,4.01,si,p6_opt_T.csv:mejora_pp,1
 M7,evidencia,140,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,2.20,si,p6_opt_T.csv:mejora_dentro_pp,1
 M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,80,si,p6_opt_T.csv:T_fuente_C,1
-M7,evidencia,-0.12,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,4.01,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,10,si,p5_hechos,1
+M7,evidencia,0.95,si,p6_opt_T.csv:mejora_pp,1
 M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,420,si,"permitido: constante de diseno o limite del criterio, citada tal cual",1
 M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1

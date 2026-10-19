@@ -1,5 +1,5 @@
 {
-  "commit": "289363c143f5e6fcfa1aa7d6063494ddada3dc69",
+  "commit": "b4bfb4e2ce97e9a649023f180b28be3eadcdbe15",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -13,27 +13,105 @@
   },
   "pasos": [
     {
+      "nombre": "p5_generar",
+      "estado": "ok",
+      "segundos": 2.46,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_trazado",
+      "estado": "ok",
+      "segundos": 3.2,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_trazado_fuente",
+      "estado": "ok",
+      "segundos": 6.76,
+      "codigo": 0
+    },
+    {
       "nombre": "p5_cifras_check",
       "estado": "ok",
-      "segundos": 6.51,
+      "segundos": 4.76,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_cifras_check_c",
+      "estado": "ok",
+      "segundos": 1.06,
+      "codigo": 0
+    },
+    {
+      "nombre": "s2_construir",
+      "estado": "ok",
+      "segundos": 11.8,
+      "codigo": 0
+    },
+    {
+      "nombre": "s2_verificar",
+      "estado": "ok",
+      "segundos": 27.65,
+      "codigo": 0
+    },
+    {
+      "nombre": "s2_informe",
+      "estado": "ok",
+      "segundos": 2.9,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_lint_estado",
+      "estado": "ok",
+      "segundos": 1.07,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_cruce",
+      "estado": "ok",
+      "segundos": 0.95,
       "codigo": 0
     },
     {
       "nombre": "p5_globales",
       "estado": "ok",
-      "segundos": 4.0,
+      "segundos": 2.98,
       "codigo": 0
     },
     {
       "nombre": "docs_sync",
       "estado": "ok",
-      "segundos": 3.96,
+      "segundos": 2.96,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_lint_texto",
+      "estado": "ok",
+      "segundos": 1.04,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_docs_check",
+      "estado": "ok",
+      "segundos": 2.37,
+      "codigo": 0
+    },
+    {
+      "nombre": "s2_figuras",
+      "estado": "ok",
+      "segundos": 3.98,
+      "codigo": 0
+    },
+    {
+      "nombre": "s2_informe_pdf",
+      "estado": "ok",
+      "segundos": 2.82,
       "codigo": 0
     },
     {
       "nombre": "pruebas",
       "estado": "ok",
-      "segundos": 15.88,
+      "segundos": 11.61,
       "codigo": 0
     }
   ]

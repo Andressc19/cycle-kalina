@@ -76,6 +76,7 @@ def construir():
              "el piso de P_baja (cavitación), la efectividad del condensador y x_b.</li>"
              "<li>La mayor eficiencia muestreada es 14.53 %% dentro del rango experimental y 14.82 %% fuera (fuente de 170 °C); una búsqueda local por banda de T_fuente encuentra hasta %.1f %% dentro del rango (M7), sin ser un óptimo global.</li>" % HH["opt.160.dentro"] +
              "<li>El regenerador pierde peso al subir la temperatura de la fuente.</li>"
+             "<li>Etapa B (motor): el piso de P_baja con paso de 25 kPa baja hasta %.0f kPa frente a la malla (D9); reintentar los NO_CONVERGIO con el triple de presupuesto no recupera ninguno (L10); la probabilidad de KALINA depende de dónde se centre ε_cond (U5); por kW neto la turbina maneja %.2f a %.2f L/s a la entrada (E10).</li>" % (HH["pisos.mejora.max"], HH["dens.V3_kW.p5"], HH["dens.V3_kW.p95"]) +
              "<li>Los resultados valen para margen de cavitación cero; con 3 K de margen la región KALINA se reduce de forma importante (sección 6).</li>"
              "<li>Solo se usó el motor teqp: no hay validación experimental propia del ciclo.</li></ul>")
     h.append("<h2>2. Preguntas del profesor y dónde se responden</h2><table><tr><th>Pregunta</th><th>Sección</th></tr>"
@@ -118,7 +119,7 @@ def construir():
     h.append(img("f6_margen_o2.png", "Distribución del margen de cavitación m_O2 de los KALINA."))
     h.append("<h2>7. Conclusiones restantes</h2>" + parrafos(c, [i for i in c["id"] if i not in set(
         ["D1", "D2", "D3", "D4", "D5", "D6", "D8", "D9", "D7", "L6", "U1", "U2", "U3", "U5", "F6", "L1", "L2", "L3", "E8", "E4", "M6", "M7", "E1", "E2", "E3", "E5", "E6", "E7", "E9", "E10",
-         "M1", "M2", "M3", "M4", "M5", "R1", "F1", "F2", "F3", "F4", "F5", "L7", "L4", "L5"])]))
+         "M1", "M2", "M3", "M4", "M5", "R1", "F1", "F2", "F3", "F4", "F5", "L7", "L4", "L5", "U4"])]))
     h.append("<h2>8. Trabajo futuro</h2><ol><li>Validar con el motor real los 7 puntos atípicos y los óptimos.</li><li>Repetir la propagación con tolerancias medidas o acordadas "
              "y con más de 200 puntos por celda.</li><li>Repetir la búsqueda local de M7 con varios puntos de partida por banda, resolver los NO_CONVERGIO con otro método y calcular un NPSH con datos de la bomba.</li>"
              "<li>Contrastar con más plantas reales cuando se consigan sus datos.</li></ol>")

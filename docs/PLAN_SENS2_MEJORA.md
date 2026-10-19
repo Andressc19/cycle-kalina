@@ -14,6 +14,8 @@
 
 ## 1. Diagnóstico: por qué se pierden los puntos
 
+*Sección histórica (2026-10-18): las notas «hoy» y los riesgos R1 a R8 describen el estado antes de las etapas A y B; el estado actual está en la sección 7.*
+
 Cada falla tiene una causa de raíz; arreglar la causa evita que reaparezcan.
 
 | Causa de raíz | Qué produce | Evidencia |
@@ -183,4 +185,4 @@ Con autorización expresa del usuario se corrieron <!--g:puntos_b_total-->828<!-
 
 Resultados: el piso de P_baja de la malla sobrestimaba hasta 125 kPa; reintentar con 3 veces el presupuesto no recupera ningún NO_CONVERGIO (0 de 88); por kW neto la turbina maneja 0.25 a 1.69 L/s a la entrada y la bomba 102 a 503 m; P(KALINA) depende del centro de ε_cond (C1 0.25 con centro 0.90 frente a 0.48 con 0.95); la η máxima encontrada por búsqueda local llega a 16.8 % a 160 °C y no sigue subiendo después.
 
-Sigue fuera de alcance: un método de resolución distinto para los NO_CONVERGIO, el NPSH real y la validación experimental propia del ciclo. Evaluaciones independientes posteriores a la etapa B: 8 y 9 (notas y hallazgos en `docs/VALIDACION_SENS2.md`).
+Sigue fuera de alcance: un método de resolución distinto para los NO_CONVERGIO, el NPSH real y la validación experimental propia del ciclo. Evaluaciones independientes posteriores a la etapa B: 8, 9 y 10 (notas y hallazgos en `docs/VALIDACION_SENS2.md`). Criterio de cierre de la sección 5 («ningún criterio por debajo de 4»): no alcanzado en coherencia (3.8 a 3.9 en las evaluaciones 8 a 10); el resto de los criterios está en 4.0 o más.

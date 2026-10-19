@@ -414,6 +414,8 @@ def _ronda12(h):
     h["opt.pb.min"], h["opt.pb.max"] = float(b["P_baja"].min()), float(b["P_baja"].max())
     h["opt.xb.min"], h["opt.xb.max"] = float(b["x_b"].min()), float(b["x_b"].max())
     h["opt.mej.min"], h["opt.mej.max"] = float(t["mejora_pp"].min()), float(t["mejora_pp"].max())
+    b140 = t[t["T_fuente_C"] < 145]["mejora_pp"]
+    h["opt.mej140.min"], h["opt.mej140.max"] = float(b140.min()), float(b140.max())
     h["opt.160.mejd"] = float(t[t["T_fuente_C"].round() == 160]["mejora_dentro_pp"].iloc[0])
     h["opt.neval.min"], h["opt.neval.max"] = float(t["n_eval"].min()), float(t["n_eval"].max())
     h["opt.n_eval"], h["opt.n_kalina"] = float(t["n_eval"].sum()), float(t["n_kalina"].sum())

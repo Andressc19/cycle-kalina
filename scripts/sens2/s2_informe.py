@@ -29,7 +29,7 @@ CAVEATS = [
     "Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sobre una rampa.",
     "El «10 % de mayor η» tiene n = 207 en P2 (M5) y n = 205 en P4 (E3, E4, E9): son dos cortes ligeramente distintos del mismo percentil. "
     "El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); el trazado contra las fuentes que cita cada conclusión "
-    "sí (`p5_trazado_fuente.md`) y deja una lista corta de cifras sin respaldo directo; los controles independientes cubren las más importantes.",
+    "sí (`p5_trazado_fuente.md`) y no deja cifras sin respaldo en la fuente citada, aunque su poder es bajo (una cifra inventada se trazaría en cerca de 4 de cada 10 casos); los controles independientes cubren las más importantes.",
     "Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y "
     "las mallas no cumplen; la versión sobre LHS (η +3.1 puntos, IC [+2.46, +3.65]) es la menos expuesta a la mezcla de diseños, pero sigue sin parear.",
     "Los índices de D en C4 (n = 28) son indicativos.",
@@ -103,7 +103,7 @@ def main():
          "KALINA salen del rango experimental) y de los requisitos de equipos por kW neto (E9 y E10); ninguno es un óptimo, y la η máxima por T_fuente de M7 es un máximo local.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
          "- Desde el centro KALINA de cada bloque, C1 y C4 tienen muy poco margen de ε_cond (el barrido fino sitúa la frontera local en "
-         "≈ 0.92 y ≈ 0.906, con las demás variables en el centro); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) (D7, U4, L6).",
+         "≈ 0.92 y ≈ 0.906, con las demás variables en el centro); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) con la malla de 100 a 150 kPa; con paso de 25 kPa (D9) el piso es 575 kPa en C1 y 725 kPa en C4 a x_b 0.88 (D7, D9, U4, L6).",
          "- Al perturbar las 10 variables a la vez (96 puntos del motor por bloque, con la efectividad del condensador variando "
          "solo por debajo de su centro 0.95), con tolerancias nominales seguirían siendo KALINA el %.0f %% (C1), %.0f %% (C2), "
          "%.0f %% (C3) y %.0f %% (C4); con el doble, %.0f, %.0f, %.0f y %.0f %%; con ε_cond fija en 0.95 el 100 %% en los "

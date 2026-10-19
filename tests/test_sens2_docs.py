@@ -77,3 +77,14 @@ def test_guia_del_leeme_sigue_el_orden_real_de_las_hojas():
     import s2_leeme
     real = load_workbook(G.LIBRO, read_only=True).sheetnames
     assert [n for n, _ in s2_leeme.GUIA] == real
+
+
+def test_tabla_de_preguntas_del_leeme_y_de_la_consolidada_incluyen_la_etapa_b():
+    """Cada pregunta del profesor lista las hojas de la etapa B que la responden (la tabla de preguntas, no solo la guia de hojas)."""
+    import s2_conclusion
+    import s2_leeme
+    exigidas = {0: ["F3 Pisos 25 kPa y reintento"], 1: ["F5 Incertidumbre simetrica"], 2: ["F4 Optimo vs T_fuente"], 3: ["F4 Caudales y bomba"]}
+    for nombre, tabla in (("LEEME", s2_leeme.PREGUNTAS), ("consolidada", s2_conclusion.PREGUNTAS)):
+        for i, hojas in exigidas.items():
+            for h in hojas:
+                assert h in tabla[i][1], "%s: la pregunta %d no lista %r" % (nombre, i + 1, h)

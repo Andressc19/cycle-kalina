@@ -55,7 +55,7 @@ def hoja_f4_ciclo_T(wb, datos):
     f = condiciones(ws, f, [
         "Base: %d puntos de p2_dataset_dedup.csv (todos los estudios); sin corridas nuevas del motor." % int(d["n"].sum()),
         "Bandas de T_fuente de 20 K ([340, 360) a [560, 580)); KALINA (total) con eta valida.",
-        "El maximo por banda es el mayor valor muestreado, no el optimo: no hay optimizador.",
+        "El maximo por banda es el mayor valor muestreado, no el optimo; la busqueda local de la hoja F4 Optimo vs T_fuente (conclusion M7) lo busca con el motor.",
         "Dentro del rango experimental = fuera_rango == False (liquido > 420 K).",
         "Fuente: resultados/2026-10-18_sens2_F1/p6_ciclo_T.csv."])
     f = subtitulo(ws, f, "1. Tabla completa por banda de T_fuente")
@@ -81,8 +81,8 @@ def hoja_f4_ciclo_T(wb, datos):
                nota_txt="Fuente: p6_ciclo_T.csv. NO_CONVERGIO sesga hacia abajo la P(KALINA); "
                         "p_kalina_si_convergio usa (n - NO_CONVERGIO) como denominador y se separa mas "
                         "en las bandas frias.")
-    f = nota(ws, f, "El maximo por banda es el mayor valor muestreado y no el optimo del ciclo (no hay "
-                    "optimizador). El panorama de eta frente a T_fuente se aplana desde aproximadamente "
+    f = nota(ws, f, "El maximo por banda es el mayor valor muestreado y no el optimo del ciclo (la busqueda local de la hoja "
+                    "F4 Optimo vs T_fuente lo busca con el motor). El panorama de eta frente a T_fuente se aplana desde aproximadamente "
                     "150 C segun los barridos de una variable (conclusion E8).")
     descripcion(ws, f, ["Eficiencia del ciclo frente a la temperatura de la fuente, por bandas de 20 K,",
                         "sobre los puntos ya calculados. El maximo es el mayor valor muestreado."])

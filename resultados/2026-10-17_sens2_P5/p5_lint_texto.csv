@@ -174,11 +174,12 @@ VALIDACION_SENS2.md,89,,siempre,siempre llevan leyenda); (3) los títulos descri
 VALIDACION_SENS2.md,93,,solo,"2.8 %, intervalo de Wilson de 95 % entre 0.5 y 14.2 %). Con solo 36 evaluaciones el intervalo es ancho, y los métodos no son"
 VALIDACION_SENS2.md,93,,todas,ue 2.8 % es una estimación y no una tasa nominal. Al juntar todas las pruebas de los cuatro bloques y las tres respuestas en 
 VALIDACION_SENS2.md,94,,único, en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que sí se p
+VALIDACION_SENS2.md,94,,único,a mediana global pareada es 0.43 (n = 734). No hay un costo único: con un vecino cercano la mediana es de 0.56 puntos y con v
 VALIDACION_SENS2.md,94,,ninguno,as y 0 % en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que s
 VALIDACION_SENS2.md,95,,solo,3. **«P(KALINA) = 0.47 en C1 sale de perturbar ε_cond solo hacia abajo desde el tope de 0.95. ¿Por qué ese escenario?»
 VALIDACION_SENS2.md,97,,todas,">12<!--/g--> de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO"
 VALIDACION_SENS2.md,97,,ninguno," NO_CONVERGIO con el triple de presupuesto y no se recuperó ninguno (L10), así que el sesgo de los umbrales inferiores de T_fue"
-VALIDACION_SENS2.md,97,,ninguna,**«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo del 28 % de NO_CONVERGIO 
+VALIDACION_SENS2.md,97,,ninguna,**«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo de los NO_CONVERGIO del L
 VALIDACION_SENS2.md,101,,solo,"- Solo motor teqp, sin validación experimental propia del ciclo; e"
 VALIDACION_SENS2.md,104,,solo,- η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar
 VALIDACION_SENS2.md,105,,todos,- Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la 

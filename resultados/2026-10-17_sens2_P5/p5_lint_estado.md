@@ -35,6 +35,9 @@ Apariciones (sin distinguir mayusculas) de las frases de estado pedidas en `INFO
 | refinar p_baja | 0 |
 | se obtendrían | 0 |
 | se obtendria | 0 |
+| no hay optimizador | 0 |
+| sin optimizador | 0 |
+| un optimizador | 0 |
 
 ## Conteo por archivo
 
