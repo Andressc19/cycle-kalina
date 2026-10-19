@@ -12,7 +12,7 @@ from x2_formato import (BORDE, anchos_col, condiciones, descripcion, encabezado,
                         fila_datos, nota, subtitulo, tabla, titulo)
 from x5_graficos import bloque  # noqa: E402
 
-ANCHOS_CONCL = [6, 6, 40, 62, 44, 10, 38]
+ANCHOS_CONCL = [6, 6, 40, 90, 44, 10, 38]
 ENC_CONCL = ["id", "fase", "afirmacion", "evidencia", "implicacion", "confianza", "fuente"]
 
 PREGUNTAS = [
@@ -59,7 +59,7 @@ def _alturas(ws, f, filas, anchos):
         for j, v in enumerate(fila):
             if isinstance(v, str) and anchos[j]:
                 lineas = max(lineas, len(v) // max(anchos[j] - 2, 4) + 1)
-        ws.row_dimensions[f].height = 13 * lineas + 4
+        ws.row_dimensions[f].height = min(300, 13 * lineas + 4)
         f += 1
 
 

@@ -153,6 +153,7 @@ def main():
     B.extra2(chk, ev, sub, P)
     B.extra3(chk, ev, sub, P)
     B.extra4(chk, ev, sub, P)
+    B.extra5(chk, ev, sub, P)
 
     # --- Salidas ---
     n = len(FILAS)

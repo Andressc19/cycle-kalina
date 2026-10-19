@@ -42,6 +42,7 @@ GUIA = [
     ("F3 Indices globales", "Indices de sensibilidad global por bloque (PRCC, KS, PAWN, delta, HSIC) con piso de ruido."),
     ("F3 Interacciones", "No aditividad de los pares de variables."),
     ("F3 Elasticidades", "Elasticidades locales de eta en el punto base."),
+    ("F3 Pisos 25 kPa y reintento", "Piso de P_baja con paso de 25 kPa frente a la malla de 100 a 150 kPa, y reintento de los NO_CONVERGIO con mayor presupuesto (corridas nuevas del motor)."),
     ("F4 Turbina", "Envolventes, bandas de r_P y dependencias de la turbina."),
     ("F4 Regenerador y condensador", "Envolventes y dependencias del regenerador, el condensador, "
                                      "el HRVG y la bomba; restricciones activas."),

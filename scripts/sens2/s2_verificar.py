@@ -19,7 +19,7 @@ from s2_construir import SALIDA  # noqa: E402
 ERRORES = []
 ORDEN = ["LEEME", "Conclusion consolidada", "F1 Existencia", "F1 Reglas y zonas grises",
          "F1 Margenes de operacion", "F2 CORREGIBLE vs KALINA", "F2 Distancia y rescate", "F3 Indices globales",
-         "F3 Interacciones", "F3 Elasticidades", "F4 Turbina", "F4 Regenerador y condensador",
+         "F3 Interacciones", "F3 Elasticidades", "F3 Pisos 25 kPa y reintento", "F4 Turbina", "F4 Regenerador y condensador",
          "F4 Preseleccion", "F4 Regenerador vs T_fuente", "F4 Ciclo vs T_fuente", "F4 Equipos por kW", "F5 Superficies de respuesta", "F5 Incertidumbre", "F6 Respaldo libro viejo", "F7 Rigor estadistico", "F7 Nulo y correccion FDR", "Confianza", "D1 Datos puntos", "D2 Datos fronteras", "D3 Datos zonas grises",
          "D4 Datos distancia", "D5 Datos indices", "D6 Datos equipos"]
 PROHIBIDOS = ["confiable", "no citable", "fuera de rango del motor", "sin respaldo", "indicio",

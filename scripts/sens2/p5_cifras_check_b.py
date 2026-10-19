@@ -99,3 +99,16 @@ def extra4(chk, ev, sub, P):
     t = ev("L5")
     chk("L", "L5c", sub(t, "%d de %d variables dummy" % (marc, nd), "%s") and sub(t, int((sg >= 2).sum()), "%d"),
         "dummy marcadas %d de %d; reales distinguibles con una sola familia (reales y dummy mezcladas): %d" % (marc, nd, int((sg >= 2).sum())))
+
+
+def extra5(chk, ev, sub, P):
+    """D9 y L10 (etapa B): conteos recalculados desde las filas crudas del motor (s2b_filas.csv)."""
+    d = pd.read_csv(P("2026-10-18_sens2_B", "s2b_filas.csv"))
+    r, p = d[d["barrido"] == "REINT0"], d[d["barrido"] == "PISOS"]
+    nc = int((r["clasificacion"] == "NO_CONVERGIO").sum())
+    ctrl = int(r["id_punto"].str.startswith("RN-control-").sum())
+    err = int(r["clasificacion"].isna().sum())
+    t = ev("L10")
+    chk("L", "L10", sub(t, nc, "%d") and sub(t, len(r), "%d") and sub(t, ctrl, "%d") and sub(t, err, "%d"),
+        "REINT0 crudo: %d NO_CONVERGIO de %d (control %d, error de motor %d)" % (nc, len(r), ctrl, err))
+    chk("D", "D9", sub(ev("D9"), len(p), "%d"), "PISOS crudo: %d puntos" % len(p))

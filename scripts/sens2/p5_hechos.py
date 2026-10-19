@@ -378,9 +378,29 @@ def _ronda8(h):
     h["m5.ks.n_sig"] = float((m["p_ks"] < 0.05).sum())
 
 
+def _ronda9(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    p = pd.read_csv(os.path.join(F1, "p6_pisos25.csv"))
+    for x in p.itertuples():
+        k = "pisos.%s.%03d" % (x.centro, round(x.x_b * 100))
+        h[k + ".ref"], h[k + ".malla"] = float(x.piso_refinado), float(x.piso_malla)
+    h["pisos.n"], h["pisos.n_mejora"] = float(len(p)), float((p["mejora_kpa"] > 0).sum())
+    h["pisos.mejora.max"], h["pisos.mejora.med"] = float(p["mejora_kpa"].max()), float(p["mejora_kpa"].median())
+    h["pisos.n_puntos"] = float(p["n_puntos"].sum())
+    r = pd.read_csv(os.path.join(F1, "p6_reintento_nc.csv"))
+    h["reint.n"] = float(len(r))
+    h["reint.n_lento"], h["reint.n_ctrl"] = float((r["grupo"] == "lento").sum()), float((r["grupo"] == "control").sum())
+    h["reint.conv"] = float((~r["clase_nueva"].isin(["NO_CONVERGIO", "ERROR_MOTOR"])).sum())
+    h["reint.n_nc"], h["reint.n_err"] = float((r["clase_nueva"] == "NO_CONVERGIO").sum()), float((r["clase_nueva"] == "ERROR_MOTOR").sum())
+    c = r[r["clase_nueva"] == "NO_CONVERGIO"]["causa_nueva"].fillna("")
+    h["reint.c_bracket"], h["reint.c_balance"] = float(c.str.startswith("sin dos extremos").sum()), float(c.str.startswith("N2").sum())
+    h["reint.c_lazo"] = float(c.str.startswith("lazo interior").sum())
+    h["reint.c_otras"] = float(len(c)) - h["reint.c_bracket"] - h["reint.c_balance"] - h["reint.c_lazo"]
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8, _ronda9):
         f(h)
     return h
 

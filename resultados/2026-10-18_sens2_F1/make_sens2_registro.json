@@ -1,5 +1,5 @@
 {
-  "commit": "cda7624a08cc84fffdceffa3d373f663364d36bc",
+  "commit": "e1416130bff7d4a9edba8960d877dfedb4f4197b",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -13,93 +13,15 @@
   },
   "pasos": [
     {
-      "nombre": "p6_calibra_regla",
-      "estado": "ok",
-      "segundos": 1.03,
-      "codigo": 0
-    },
-    {
-      "nombre": "p6_m5_pruebas",
-      "estado": "ok",
-      "segundos": 2.54,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_generar",
-      "estado": "ok",
-      "segundos": 2.74,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_trazado",
-      "estado": "ok",
-      "segundos": 3.73,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_trazado_fuente",
-      "estado": "ok",
-      "segundos": 6.55,
-      "codigo": 0
-    },
-    {
       "nombre": "p5_cifras_check",
       "estado": "ok",
-      "segundos": 4.77,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_cifras_check_c",
-      "estado": "ok",
-      "segundos": 1.08,
-      "codigo": 0
-    },
-    {
-      "nombre": "s2_construir",
-      "estado": "ok",
-      "segundos": 11.6,
-      "codigo": 0
-    },
-    {
-      "nombre": "s2_verificar",
-      "estado": "ok",
-      "segundos": 25.16,
-      "codigo": 0
-    },
-    {
-      "nombre": "s2_informe",
-      "estado": "ok",
-      "segundos": 2.85,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_lint_texto",
-      "estado": "ok",
-      "segundos": 1.03,
-      "codigo": 0
-    },
-    {
-      "nombre": "p5_docs_check",
-      "estado": "ok",
-      "segundos": 1.77,
-      "codigo": 0
-    },
-    {
-      "nombre": "s2_figuras",
-      "estado": "ok",
-      "segundos": 3.85,
-      "codigo": 0
-    },
-    {
-      "nombre": "s2_informe_pdf",
-      "estado": "ok",
-      "segundos": 3.53,
+      "segundos": 6.51,
       "codigo": 0
     },
     {
       "nombre": "pruebas",
       "estado": "ok",
-      "segundos": 6.43,
+      "segundos": 8.24,
       "codigo": 0
     }
   ]

@@ -1,0 +1,91 @@
+id_original,grupo,centro,t_s_original,t_s_nuevo,clase_nueva,eta,causa_nueva
+C1-LHS-0160,lento,C1 Husavik,306.1795112999971,229.45025840000017,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+C1-LHS-0132,lento,C1 Husavik,358.8720414999989,239.49605090002296,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+C1-LHS-0202,lento,C1 Husavik,312.0227193000028,246.3063168000081,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+C1-LHS-0083,lento,C1 Husavik,338.1105981999972,294.6521368999965,NO_CONVERGIO,0.0244046591983373,N2: el balance global de energía no cierra dentro de la tole
+C1-LHS-0209,lento,C1 Husavik,600.0,151.67587189999176,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+C1-T_fuente-0002,lento,C1 Husavik,303.37818040000275,419.71194800001103,NO_CONVERGIO,-0.6683037155797212,N2: el balance global de energía no cierra dentro de la tole
+C1-LHS-0227,lento,C1 Husavik,257.6121933999966,185.34277659998045,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+C1-LHS-0208,lento,C1 Husavik,311.32695210000384,,ERROR_MOTOR,,"error_worker: PropertyRangeError: bubble_point(P, x): el mot"
+N1-T090-02,lento,Sin centro (muestreo o malla),268.2480205000011,201.9544268999598,NO_CONVERGIO,-1.5085515291723637,N2: el balance global de energía no cierra dentro de la tole
+N1-T070-05,lento,Sin centro (muestreo o malla),306.4715684999992,325.00413480005227,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N1-T090-11,lento,Sin centro (muestreo o malla),302.2560552999985,226.95834179996743,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N1-T090-13,lento,Sin centro (muestreo o malla),308.34570650000023,319.5857071999926,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N1-T090-14,lento,Sin centro (muestreo o malla),314.4623164000004,238.71470000001136,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N1-T090-26,lento,Sin centro (muestreo o malla),288.8037237000008,219.37188059999608,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N2-002,lento,Sin centro (muestreo o malla),303.4567920000045,237.71077250002415,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N1-T090-19,lento,Sin centro (muestreo o malla),323.4367495999996,372.6269495000015,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N2-006,lento,Sin centro (muestreo o malla),307.62940890000027,224.82244089996675,NO_CONVERGIO,-1.59942872884597,N2: el balance global de energía no cierra dentro de la tole
+N2-050,lento,Sin centro (muestreo o malla),311.35823170000367,234.30961759999627,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N2-143,lento,Sin centro (muestreo o malla),254.18326199999865,284.1857390999794,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N6-C1-11,lento,C1 Husavik,251.03625749999628,245.2934283000068,NO_CONVERGIO,0.0475449343392078,N2: el balance global de energía no cierra dentro de la tole
+N7A-C4-eps_hrvg-002,lento,C4 frio 110 C,282.7974621999965,186.77484879997792,NO_CONVERGIO,0.0888187724043377,N2: el balance global de energía no cierra dentro de la tole
+N6-C1-20,lento,C1 Husavik,250.9626155000005,252.11118750000605,NO_CONVERGIO,0.0634066850673009,N2: el balance global de energía no cierra dentro de la tole
+N7A-C3-T_fuente-002,lento,C3 caliente 150 C,324.29235509999853,311.4021308000083,NO_CONVERGIO,-1.565851242450352,N2: el balance global de energía no cierra dentro de la tole
+N7A-C4-eps_hrvg-004,lento,C4 frio 110 C,357.83404359999986,242.9600021999795,NO_CONVERGIO,0.0199401596750941,N2: el balance global de energía no cierra dentro de la tole
+N7B-C4-B1-005,lento,C4 frio 110 C,253.7975007000059,179.98485820001224,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N7A-C4-eps_cond-004,lento,C4 frio 110 C,513.6968053000019,400.1524200999993,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N7A-C4-eps_cond-006,lento,C4 frio 110 C,537.784192500003,430.8468934000121,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N7B-C4-B3-009,lento,C4 frio 110 C,426.1462755999965,305.67728639999405,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N7B-C4-B3-037,lento,C4 frio 110 C,407.8979481999995,295.61489269998856,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N7A-C4-eps_cond-005,lento,C4 frio 110 C,600.0,553.9142395999515,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N8-C3-0045,lento,C3 caliente 150 C,293.74935670002014,203.77980229997772,NO_CONVERGIO,-0.602814917843528,N2: el balance global de energía no cierra dentro de la tole
+N7B-C4-B4-004,lento,C4 frio 110 C,394.4188586999953,271.9655294999829,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N7B-C4-B4-041,lento,C4 frio 110 C,408.4711016999936,302.13115419994574,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N7B-C4-B4-032,lento,C4 frio 110 C,523.6268751000025,303.5553040999803,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N8-C3-0080,lento,C3 caliente 150 C,320.3529454000236,251.12277509999691,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N7B-C4-B4-006,lento,C4 frio 110 C,600.0,505.91869489999954,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N8-C3-0102,lento,C3 caliente 150 C,302.1385483999911,243.9104315000004,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N8-C3-0133,lento,C3 caliente 150 C,274.2056511999981,216.73101819999283,NO_CONVERGIO,0.1140320441208989,N2: el balance global de energía no cierra dentro de la tole
+N8-C3-0134,lento,C3 caliente 150 C,401.5417037000007,305.1703570000245,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N8-C3-0140,lento,C3 caliente 150 C,308.3611225000059,229.72795510001012,NO_CONVERGIO,-1.0357314767470214,N2: el balance global de energía no cierra dentro de la tole
+N8-C4-0047,lento,C4 frio 110 C,270.5191229000048,172.13129649998154,NO_CONVERGIO,-0.9392567157264314,N2: el balance global de energía no cierra dentro de la tole
+N8-C4-0053,lento,C4 frio 110 C,302.77950959999,215.3174722000258,NO_CONVERGIO,,"extremos [342.0000, 358.0000] K sin cambio de signo de F (F("
+N8-C4-0057,lento,C4 frio 110 C,262.3102560999978,164.86325749999378,NO_CONVERGIO,-0.1306110011374609,N2: el balance global de energía no cierra dentro de la tole
+N8-C4-0108,lento,C4 frio 110 C,300.8638711999811,193.0154571000021,NO_CONVERGIO,-2.808283864660878,N2: el balance global de energía no cierra dentro de la tole
+N8-C4-0055,lento,C4 frio 110 C,333.39202120000846,243.7702875000541,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N8-C4-0066,lento,C4 frio 110 C,306.31954730002326,247.86141010001305,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N8-C3-0186,lento,C3 caliente 150 C,600.0,480.23970650002593,NO_CONVERGIO,,lazo interior (frio) no convergio tras max_iter_frio
+N8-C4-0132,lento,C4 frio 110 C,301.8207999999868,,ERROR_MOTOR,,"error_worker: PropertyRangeError: bubble_point(P, x): el mot"
+N8-C4-0150,lento,C4 frio 110 C,289.6619142999989,192.6020118999877,NO_CONVERGIO,,"extremos [360.5000, 362.0000] K sin cambio de signo de F (F("
+N8-C4-0184,lento,C4 frio 110 C,294.4061443999817,212.2052296000184,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N8-C4-0211,lento,C4 frio 110 C,300.75387819999014,229.54672320000827,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N9-C4-B6-0036,lento,C4 frio 110 C,311.7443382999918,268.3893401999958,NO_CONVERGIO,0.0200316642990181,N2: el balance global de energía no cierra dentro de la tole
+N9-C4-B6-0035,lento,C4 frio 110 C,320.37469689999125,270.4707322999602,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0023,lento,C1 Husavik,301.3158739999926,283.2049243999645,NO_CONVERGIO,-0.2366814864892845,N2: el balance global de energía no cierra dentro de la tole
+N10-C1-0024,lento,C1 Husavik,302.34520049998537,226.1825380999944,NO_CONVERGIO,-0.2286435508565169,N2: el balance global de energía no cierra dentro de la tole
+N10-C1-0022,lento,C1 Husavik,307.3375895000063,332.6902831000043,NO_CONVERGIO,-0.2472706903759752,N2: el balance global de energía no cierra dentro de la tole
+N9-C4-B6-0042,lento,C4 frio 110 C,314.0324842000264,429.384032699978,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0025,lento,C1 Husavik,309.95058699999936,236.12910850002663,NO_CONVERGIO,-0.2193948877588465,N2: el balance global de energía no cierra dentro de la tole
+N10-C1-0026,lento,C1 Husavik,301.86850169999525,251.363971600018,NO_CONVERGIO,-0.2081613227421688,N2: el balance global de energía no cierra dentro de la tole
+N10-C1-0027,lento,C1 Husavik,324.0775413000083,243.61383410001872,NO_CONVERGIO,-0.198112743108227,N2: el balance global de energía no cierra dentro de la tole
+N10-C1-0029,lento,C1 Husavik,306.7850676999951,255.92200650001175,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0028,lento,C1 Husavik,318.2977897999808,235.47743299999277,NO_CONVERGIO,-0.1860732351569577,N2: el balance global de energía no cierra dentro de la tole
+N10-C1-0030,lento,C1 Husavik,302.34317209999426,266.8208673999761,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0032,lento,C1 Husavik,302.6533551999892,278.43103219999466,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0033,lento,C1 Husavik,301.7339471000014,285.4966717999778,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0031,lento,C1 Husavik,309.3856184000033,288.64290430000983,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C4-0022,lento,C4 frio 110 C,283.82156440001563,212.75652100000295,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0034,lento,C1 Husavik,305.3027221999946,258.18638840003405,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C4-0024,lento,C4 frio 110 C,321.19382000001497,245.82925469998736,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C4-0023,lento,C4 frio 110 C,312.71619549999014,250.22057470004077,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C1-0035,lento,C1 Husavik,318.877416000003,298.5095906999777,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+C2-T_fuente-0005,control,C2 ancla A*,62.98283670004457,66.14840279996861,NO_CONVERGIO,-0.5539461189549543,N2: el balance global de energía no cierra dentro de la tole
+C2-T_fuente-0006,control,C2 ancla A*,54.65215189999435,55.60172009997768,NO_CONVERGIO,-0.2241052522116968,N2: el balance global de energía no cierra dentro de la tole
+N1-T150-21,control,Sin centro (muestreo o malla),38.88752960000056,39.01363890001085,NO_CONVERGIO,-0.1865433146779342,N2: el balance global de energía no cierra dentro de la tole
+N10-C4-0025,lento,C4 frio 110 C,316.67164459999185,261.5866662999615,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N10-C4-0026,lento,C4 frio 110 C,300.9806194000121,267.27167279995047,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N2-112,control,Sin centro (muestreo o malla),19.772368099998857,14.02403739996953,NO_CONVERGIO,,"extremos [301.5000, 347.5000] K sin cambio de signo de F (F("
+N2-133,control,Sin centro (muestreo o malla),20.09534700000222,14.652472399990074,NO_CONVERGIO,,"extremos [291.5000, 360.0000] K sin cambio de signo de F (F("
+N10-C4-0028,lento,C4 frio 110 C,282.4889940000139,264.0983857999672,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N4-C2-0042,control,C2 ancla A*,63.95874229999936,45.76123119995464,NO_CONVERGIO,-0.4864357603025724,N2: el balance global de energía no cierra dentro de la tole
+N10-C4-0027,lento,C4 frio 110 C,305.8160971000034,275.04348009999376,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N5-T110-S30-01,control,Sin centro (muestreo o malla),12.403752999998687,9.178054999967571,NO_CONVERGIO,,"extremos [304.1500, 382.1500] K sin cambio de signo de F (F("
+N7A-C4-P_baja-001,control,C4 frio 110 C,28.47834639999928,19.50552979996428,NO_CONVERGIO,,"extremos [283.5000, 382.1500] K sin cambio de signo de F (F("
+N7B-C3-B2-028,control,C3 caliente 150 C,19.452994799998123,12.737969000008889,NO_CONVERGIO,,punto interior no evaluable durante brentq (T=310.977387 K)
+N1-T250-23,control,Sin centro (muestreo o malla),89.59477379999953,89.51152570004342,NO_CONVERGIO,0.0293811386652141,N2: el balance global de energía no cierra dentro de la tole
+N10-C4-0034,control,C4 frio 110 C,0.7626916999870446,0.5562546000001021,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N7B-C4-B2-036,control,C4 frio 110 C,22.96099450001202,16.031712100026198,NO_CONVERGIO,,punto interior no evaluable durante brentq (T=304.276038 K)
+N2-142,control,Sin centro (muestreo o malla),59.953016799998295,47.78952360001858,NO_CONVERGIO,-0.2549533122387969,N2: el balance global de energía no cierra dentro de la tole
+N8-C3-0067,control,C3 caliente 150 C,52.04806780000217,27.58041359996423,NO_CONVERGIO,,sin dos extremos evaluables en el rango físico de T1 (replie
+N8-C3-0012,control,C3 caliente 150 C,66.58892410001135,42.49736740003573,NO_CONVERGIO,-0.1037504200349789,N2: el balance global de energía no cierra dentro de la tole

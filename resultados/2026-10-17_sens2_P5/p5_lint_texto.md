@@ -2,20 +2,20 @@
 
 Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra completa) en `p5_conclusiones.csv`, `INFORME_SENS2.md` y `VALIDACION_SENS2.md`.
 
-- total de apariciones: 156
+- total de apariciones: 162
 
 ## Conteo por palabra
 
 | palabra | apariciones |
 |---|---:|
 | solo | 85 |
-| todos | 26 |
+| todos | 28 |
+| único | 14 |
 | todas | 12 |
-| único | 12 |
 | siempre | 8 |
 | única | 6 |
 | ninguna | 4 |
-| ninguno | 2 |
+| ninguno | 4 |
 | prueba que | 1 |
 | causa | 0 |
 | claramente | 0 |
@@ -33,8 +33,8 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 
 | archivo | apariciones |
 |---|---:|
-| INFORME_SENS2.md | 74 |
-| p5_conclusiones.csv | 55 |
+| INFORME_SENS2.md | 77 |
+| p5_conclusiones.csv | 58 |
 | VALIDACION_SENS2.md | 27 |
 
 ## Lista por palabra
@@ -77,38 +77,38 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 34 |  | s variables libres la frontera de una variable se reproduce solo en parte (L9). |
 | INFORME_SENS2.md | 76 |  |  295.65 K. C2: P_baja hasta 400 kPa, ε_cond hasta 0.80, x_b solo de 0.45 a 0.55. El barrido fino de ε_cond sitúa la frontera |
 | INFORME_SENS2.md | 84 |  | a subir P_baja y se paga parte de lo ganado. La malla tiene solo 7 niveles de P_baja: el piso real está entre dos niveles. M |
-| INFORME_SENS2.md | 114 |  |  en el 10 % de mayor η su mediana es 0.036 (máximo 0.055) y solo el 5 % tiene 0.01 o menos. |
-| INFORME_SENS2.md | 139 |  | tre 2.4 % y 30 % (P5 a P95) del trabajo de la turbina, pero solo 2.7 a 7.8 % en los diseños óptimos. |
-| INFORME_SENS2.md | 149 |  |  190 °C. Sugiere dimensionarlo pequeño o evaluar suprimirlo solo con fuentes calientes y x_b alto (no se simuló un ciclo sin |
-| INFORME_SENS2.md | 190 |  | EFICIENCIA, fase C, confianza Media].** Con el muestreo LHS solo, la cercanía a la frontera de los diseños de mayor η es sig |
-| INFORME_SENS2.md | 192 |  | cla mallas y barridos que ponen puntos junto a la frontera. Solo con el muestreo LHS la diferencia es significativa en C1 (0 |
-| INFORME_SENS2.md | 194 |  | F1 p6_m5_lhs.csv; F1 p6_m5_pruebas.csv; revisión final (LHS solo, recalculado) |
-| INFORME_SENS2.md | 197 |  | IA, fase B, confianza Media].** La superficie de η ajustada solo con celdas KALINA apunta hacia el menor P_baja de las 8 mal |
-| INFORME_SENS2.md | 197 |  |  el óptimo con restricciones queda en el piso de cavitación solo si el polinomio se extiende hasta ahí (el máximo cae en el  |
-| INFORME_SENS2.md | 213 |  | tos, sin orden claro entre ellas; el rango medio se calcula solo con las filas del muestreo LHS; las pruebas de permutación  |
-| INFORME_SENS2.md | 213 |  |  con las filas del muestreo LHS; las pruebas de permutación solo dicen que son distinguibles del ruido, no el orden entre el |
-| INFORME_SENS2.md | 215 |  | Evidencia: Rango medio entre 6 métodos (1 = mayor; η existe solo en los KALINA: 118 a 137 puntos por bloque): C1 η_t 1.2; C2 |
-| INFORME_SENS2.md | 243 |  | n B1, B3 y B5 salvo B1 y B3 en C2 con 0.08 y 0.05); fuertes solo B6 en C1 (0.28) y B4 en C4 (0.28). |
-| INFORME_SENS2.md | 250 |  | ntos de muestreo o malla sin centro elevan el total (+4.4). Solo con el muestreo LHS: +3.1 puntos (IC [+2.46, +3.65]). W_net |
-| INFORME_SENS2.md | 271 |  | onfianza Media].** Rescatar un CORREGIBLE es posible con un solo cambio en 68 % de los CORREGIBLE de barridos y mallas y en  |
-| INFORME_SENS2.md | 274 |  | , 1.71], n = 25). La cifra de F6 no lo sustituye. D predice solo débilmente la distancia (Spearman +0.30). |
-| INFORME_SENS2.md | 280 |  | rte único tiene ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay reglas puras para no-KALINA: C1 x_b > 0.785 y ε_cond ≤  |
-| INFORME_SENS2.md | 288 |  | 5 % es un conteo del muestreo (las fuentes de más de 150 °C solo vienen de estudios dirigidos), no una propiedad del ciclo. |
-| INFORME_SENS2.md | 294 |  | - Evidencia: Solo se usó el motor teqp, sin validación experimental propia de |
-| INFORME_SENS2.md | 301 |  |  En las mallas de pares la de ε_cond×T_sumidero deja KALINA solo el 6 % (C1), 67 % (C2), 16 % (C3) y 10 % (C4); la de ε_reg× |
-| INFORME_SENS2.md | 308 |  | cortada a [0.90, 0.95] porque el centro (0.95) es el tope y solo puede variar hacia abajo): P(KALINA) 0.47 en C1 [0.37, 0.57 |
-| INFORME_SENS2.md | 309 |  |  es un riesgo de pérdida del 53 %: sale de muestrear ε_cond solo por debajo del centro (con ε_cond fija da 1.00). El factor  |
-| INFORME_SENS2.md | 313 |  | INA, fase C, confianza Media].** Con el doble de tolerancia solo C2 y C3 conservan la clase en la mayoría de los casos; C1 y |
-| INFORME_SENS2.md | 322 |  | _O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los  |
-| INFORME_SENS2.md | 329 |  | alor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, un solo aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba |
-| INFORME_SENS2.md | 329 |  | aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba solo mira que los KALINA caigan dentro del mínimo-máximo; no cue |
-| INFORME_SENS2.md | 348 |  |  optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé |
-| INFORME_SENS2.md | 354 |  | 8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal. |
-| INFORME_SENS2.md | 358 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
-| INFORME_SENS2.md | 360 |  | vel dependen del diseño; los índices globales se calcularon solo sobre el LHS de cada bloque. |
-| INFORME_SENS2.md | 361 |  | - η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases  |
-| INFORME_SENS2.md | 363 |  | - Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sob |
-| INFORME_SENS2.md | 369 |  | M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1. |
+| INFORME_SENS2.md | 121 |  |  en el 10 % de mayor η su mediana es 0.036 (máximo 0.055) y solo el 5 % tiene 0.01 o menos. |
+| INFORME_SENS2.md | 146 |  | tre 2.4 % y 30 % (P5 a P95) del trabajo de la turbina, pero solo 2.7 a 7.8 % en los diseños óptimos. |
+| INFORME_SENS2.md | 156 |  |  190 °C. Sugiere dimensionarlo pequeño o evaluar suprimirlo solo con fuentes calientes y x_b alto (no se simuló un ciclo sin |
+| INFORME_SENS2.md | 197 |  | EFICIENCIA, fase C, confianza Media].** Con el muestreo LHS solo, la cercanía a la frontera de los diseños de mayor η es sig |
+| INFORME_SENS2.md | 199 |  | cla mallas y barridos que ponen puntos junto a la frontera. Solo con el muestreo LHS la diferencia es significativa en C1 (0 |
+| INFORME_SENS2.md | 201 |  | F1 p6_m5_lhs.csv; F1 p6_m5_pruebas.csv; revisión final (LHS solo, recalculado) |
+| INFORME_SENS2.md | 204 |  | IA, fase B, confianza Media].** La superficie de η ajustada solo con celdas KALINA apunta hacia el menor P_baja de las 8 mal |
+| INFORME_SENS2.md | 204 |  |  el óptimo con restricciones queda en el piso de cavitación solo si el polinomio se extiende hasta ahí (el máximo cae en el  |
+| INFORME_SENS2.md | 220 |  | tos, sin orden claro entre ellas; el rango medio se calcula solo con las filas del muestreo LHS; las pruebas de permutación  |
+| INFORME_SENS2.md | 220 |  |  con las filas del muestreo LHS; las pruebas de permutación solo dicen que son distinguibles del ruido, no el orden entre el |
+| INFORME_SENS2.md | 222 |  | Evidencia: Rango medio entre 6 métodos (1 = mayor; η existe solo en los KALINA: 118 a 137 puntos por bloque): C1 η_t 1.2; C2 |
+| INFORME_SENS2.md | 250 |  | n B1, B3 y B5 salvo B1 y B3 en C2 con 0.08 y 0.05); fuertes solo B6 en C1 (0.28) y B4 en C4 (0.28). |
+| INFORME_SENS2.md | 257 |  | ntos de muestreo o malla sin centro elevan el total (+4.4). Solo con el muestreo LHS: +3.1 puntos (IC [+2.46, +3.65]). W_net |
+| INFORME_SENS2.md | 278 |  | onfianza Media].** Rescatar un CORREGIBLE es posible con un solo cambio en 68 % de los CORREGIBLE de barridos y mallas y en  |
+| INFORME_SENS2.md | 281 |  | , 1.71], n = 25). La cifra de F6 no lo sustituye. D predice solo débilmente la distancia (Spearman +0.30). |
+| INFORME_SENS2.md | 287 |  | rte único tiene ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay reglas puras para no-KALINA: C1 x_b > 0.785 y ε_cond ≤  |
+| INFORME_SENS2.md | 295 |  | 5 % es un conteo del muestreo (las fuentes de más de 150 °C solo vienen de estudios dirigidos), no una propiedad del ciclo. |
+| INFORME_SENS2.md | 301 |  | - Evidencia: Solo se usó el motor teqp, sin validación experimental propia de |
+| INFORME_SENS2.md | 308 |  |  En las mallas de pares la de ε_cond×T_sumidero deja KALINA solo el 6 % (C1), 67 % (C2), 16 % (C3) y 10 % (C4); la de ε_reg× |
+| INFORME_SENS2.md | 315 |  | cortada a [0.90, 0.95] porque el centro (0.95) es el tope y solo puede variar hacia abajo): P(KALINA) 0.47 en C1 [0.37, 0.57 |
+| INFORME_SENS2.md | 316 |  |  es un riesgo de pérdida del 53 %: sale de muestrear ε_cond solo por debajo del centro (con ε_cond fija da 1.00). El factor  |
+| INFORME_SENS2.md | 320 |  | INA, fase C, confianza Media].** Con el doble de tolerancia solo C2 y C3 conservan la clase en la mayoría de los casos; C1 y |
+| INFORME_SENS2.md | 329 |  | _O2 = T_burbuja(P_baja, x_b) − T9 ≥ 0 (la tolerancia de 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los  |
+| INFORME_SENS2.md | 336 |  | alor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, un solo aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba |
+| INFORME_SENS2.md | 336 |  | aporte repetido. C1 y C4 tienen muy pocos KALINA. La prueba solo mira que los KALINA caigan dentro del mínimo-máximo; no cue |
+| INFORME_SENS2.md | 362 |  |  optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé |
+| INFORME_SENS2.md | 368 |  | 8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal. |
+| INFORME_SENS2.md | 372 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
+| INFORME_SENS2.md | 374 |  | vel dependen del diseño; los índices globales se calcularon solo sobre el LHS de cada bloque. |
+| INFORME_SENS2.md | 375 |  | - η, W_net y los márgenes existen solo en puntos convergidos: las comparaciones de η entre clases  |
+| INFORME_SENS2.md | 377 |  | - Las elasticidades salen de solo dos estudios (1 y 10); la de T_fuente en C2 (13.2) está sob |
+| INFORME_SENS2.md | 383 |  | M5 (óptimos cerca de la frontera) no se sostiene con el LHS solo, salvo en C1. |
 | VALIDACION_SENS2.md | 25 |  | afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativ |
 | VALIDACION_SENS2.md | 25 |  | stica donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible |
 | VALIDACION_SENS2.md | 41 |  | - **Métricas.** η y W_net/m_b solo existen en puntos convergidos. W_net se divide entre m_b po |
@@ -129,7 +129,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 97 |  | - η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar |
 | VALIDACION_SENS2.md | 107 |  |    puntos, solo cambia la variable de rescate). |
 
-### todos (26)
+### todos (28)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
@@ -142,23 +142,44 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | p5_conclusiones.csv | E9 | evidencia | KALINA (total), n = 2047, ámbito todos, P5 a P95 (mediana): Q_i 8.2 a 38.7 kW por kW neto (12.9);  |
 | p5_conclusiones.csv | E9 | evidencia |  por kg/s entre W_net por kg/s; Q_i por kW neto es 100/η en todos los puntos (2 047 de 2 047 dentro del 1 %). |
 | p5_conclusiones.csv | E9 | implicacion | condensador de 635 a 761 kW y fluido de 0.6 a 1.3 kg/s. Con todos los KALINA muestreados y 100 kW netos: HRVG de 818 a 3871 k |
+| p5_conclusiones.csv | L10 | evidencia | erados: 0. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
 | INFORME_SENS2.md | 12 |  | °C y sin poder evaluarse por encima de ≈ 160 °C, donde casi todos los KALINA salen del rango experimental) y de los requisito |
 | INFORME_SENS2.md | 22 |  | on Morris, Sobol y FAST (exigen corridas nuevas y salida en todos los puntos). Fase A: existencia y fronteras (P1). Fase C: C |
-| INFORME_SENS2.md | 155 |  | - Evidencia: KALINA (total), n = 2047, ámbito todos, P5 a P95 (mediana): Q_i 8.2 a 38.7 kW por kW neto (12.9);  |
-| INFORME_SENS2.md | 155 |  |  por kg/s entre W_net por kg/s; Q_i por kW neto es 100/η en todos los puntos (2 047 de 2 047 dentro del 1 %). |
-| INFORME_SENS2.md | 156 |  | condensador de 635 a 761 kW y fluido de 0.6 a 1.3 kg/s. Con todos los KALINA muestreados y 100 kW netos: HRVG de 818 a 3871 k |
-| INFORME_SENS2.md | 192 |  | C −0.63 en C1) y P_baja tiene piso por cavitación (D1). Con todos los puntos, el 10 % de mayor η está a 0.14 de la frontera f |
-| INFORME_SENS2.md | 243 |  | 4 0.33 a 0.52 (C1 a C4). Sobre η: entre 0.00 y 0.18 en casi todos los pares (aditivos, < 0.05, en B1, B3 y B5 salvo B1 y B3 e |
-| INFORME_SENS2.md | 294 |  | la calibración es gruesa); los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas  |
-| INFORME_SENS2.md | 306 |  |  ε_cond sobre ese umbral todavía se pierden algunos puntos (todos CORREGIBLE por cavitación). |
-| INFORME_SENS2.md | 308 |  | ε_cond ≥ 0.922 en C1 todavía 11 de 54 puntos no son KALINA (todos CORREGIBLE, con P_baja de 661 a 712 kPa, T_sumidero desde 2 |
-| INFORME_SENS2.md | 322 |  | e 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tien |
-| INFORME_SENS2.md | 364 |  |  distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); e |
-| INFORME_SENS2.md | 365 |  | - Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mal |
+| INFORME_SENS2.md | 162 |  | - Evidencia: KALINA (total), n = 2047, ámbito todos, P5 a P95 (mediana): Q_i 8.2 a 38.7 kW por kW neto (12.9);  |
+| INFORME_SENS2.md | 162 |  |  por kg/s entre W_net por kg/s; Q_i por kW neto es 100/η en todos los puntos (2 047 de 2 047 dentro del 1 %). |
+| INFORME_SENS2.md | 163 |  | condensador de 635 a 761 kW y fluido de 0.6 a 1.3 kg/s. Con todos los KALINA muestreados y 100 kW netos: HRVG de 818 a 3871 k |
+| INFORME_SENS2.md | 199 |  | C −0.63 en C1) y P_baja tiene piso por cavitación (D1). Con todos los puntos, el 10 % de mayor η está a 0.14 de la frontera f |
+| INFORME_SENS2.md | 250 |  | 4 0.33 a 0.52 (C1 a C4). Sobre η: entre 0.00 y 0.18 en casi todos los pares (aditivos, < 0.05, en B1, B3 y B5 salvo B1 y B3 e |
+| INFORME_SENS2.md | 301 |  | la calibración es gruesa); los p-valores e intervalos sobre todos los puntos suponen independencia que los barridos y mallas  |
+| INFORME_SENS2.md | 313 |  |  ε_cond sobre ese umbral todavía se pierden algunos puntos (todos CORREGIBLE por cavitación). |
+| INFORME_SENS2.md | 315 |  | ε_cond ≥ 0.922 en C1 todavía 11 de 54 puntos no son KALINA (todos CORREGIBLE, con P_baja de 661 a 712 kPa, T_sumidero desde 2 |
+| INFORME_SENS2.md | 329 |  | e 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tien |
+| INFORME_SENS2.md | 350 |  | erados: 0. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
+| INFORME_SENS2.md | 378 |  |  distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); e |
+| INFORME_SENS2.md | 379 |  | - Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mal |
 | VALIDACION_SENS2.md | 43 |  | mparación justa.** CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS, |
 | VALIDACION_SENS2.md | 52 |  | / 2 / Alta / Conclusión F5 decía que casi todos los pares son aditivos sobre η; los datos dan 0.00–0.18 (fu |
 | VALIDACION_SENS2.md | 58 |  |  8 / Media / Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que no se cumple (barridos |
 | VALIDACION_SENS2.md | 98 |  | - Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la  |
+
+### único (14)
+
+| archivo | id | campo | contexto |
+|---|---|---|---|
+| p5_conclusiones.csv | D2 | implicacion | No existe un x_b único: elegirlo junto con P_baja y la efectividad del condensador |
+| p5_conclusiones.csv | D4 | implicacion | No dimensionar con un ε_cond mínimo único: partir de U4 (≥ 0.93 en C1 y ≥ 0.91 en C4, orientativo) y  |
+| p5_conclusiones.csv | L2 | implicacion |  este párrafo son medianas), pero el efecto no es un número único ni crece de forma monótona con la distancia (-0.56 a L1 ≤ 0 |
+| p5_conclusiones.csv | L3 | evidencia | En el muestreo LHS el mejor corte único tiene ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay  |
+| p5_conclusiones.csv | L8 | afirmacion | n C2 (91 %) y no en C3 (35 %: 23 puntos, 15 de ellos con un único valor de ε_cond), y lo que sale del rango es una extensión  |
+| p5_conclusiones.csv | L8 | evidencia | .5 K (mínimo de Sens2 393.15 K) y 15 de C3 que comparten un único valor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, u |
+| p5_conclusiones.csv | D9 | implicacion | PSH. El piso depende de x_b y del bloque; no sirve un valor único. |
+| INFORME_SENS2.md | 42 |  | - Implicación: No existe un x_b único: elegirlo junto con P_baja y la efectividad del condensador |
+| INFORME_SENS2.md | 56 |  | - Implicación: No dimensionar con un ε_cond mínimo único: partir de U4 (≥ 0.93 en C1 y ≥ 0.91 en C4, orientativo) y  |
+| INFORME_SENS2.md | 98 |  | PSH. El piso depende de x_b y del bloque; no sirve un valor único. |
+| INFORME_SENS2.md | 281 |  |  este párrafo son medianas), pero el efecto no es un número único ni crece de forma monótona con la distancia (-0.56 a L1 ≤ 0 |
+| INFORME_SENS2.md | 287 |  | - Evidencia: En el muestreo LHS el mejor corte único tiene ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay  |
+| INFORME_SENS2.md | 334 |  | n C2 (91 %) y no en C3 (35 %: 23 puntos, 15 de ellos con un único valor de ε_cond), y lo que sale del rango es una extensión  |
+| INFORME_SENS2.md | 336 |  | .5 K (mínimo de Sens2 393.15 K) y 15 de C3 que comparten un único valor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, u |
 
 ### todas (12)
 
@@ -172,27 +193,10 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 74 |  | e el centro KALINA de cada bloque hay margen amplio en casi todas las variables, pero no en el condensador ni, en C2, en x_b. |
 | INFORME_SENS2.md | 88 |  | rar ≈ 0.92 en Húsavík y ≈ 0.906 en el bloque frío, y cuando todas las variables se mueven la especificación robusta es más al |
 | INFORME_SENS2.md | 90 |  | el barrido fino (en C4 su intervalo no es informativo). Con todas las variables moviéndose (U1), la especificación de ≥ 0.93  |
-| INFORME_SENS2.md | 274 |  | ino KALINA a L1 ≤ 0.2 la mediana de η es 0.56 puntos menor (todas las cifras de este párrafo son medianas), pero el efecto no |
-| INFORME_SENS2.md | 294 |  | riables dummy (IC 95 % de Wilson 0.5 a 14.2 %) y, al juntar todas las pruebas (reales y dummy) de las 12 familias en una sola |
+| INFORME_SENS2.md | 281 |  | ino KALINA a L1 ≤ 0.2 la mediana de η es 0.56 puntos menor (todas las cifras de este párrafo son medianas), pero el efecto no |
+| INFORME_SENS2.md | 301 |  | riables dummy (IC 95 % de Wilson 0.5 a 14.2 %) y, al juntar todas las pruebas (reales y dummy) de las 12 familias en una sola |
 | VALIDACION_SENS2.md | 51 |  |  El BLUF del libro daba η máxima 17.37 / 18.68 % (máximo de todas las clases); lo correcto es 14.53 / 14.82 % (solo KALINA).  |
 | VALIDACION_SENS2.md | 55 |  | ue sí tienen ganancia (solo se tomaban los 5 mejores) / Usa todas las variables; 0 solo si la variable es constante en el blo |
-
-### único (12)
-
-| archivo | id | campo | contexto |
-|---|---|---|---|
-| p5_conclusiones.csv | D2 | implicacion | No existe un x_b único: elegirlo junto con P_baja y la efectividad del condensador |
-| p5_conclusiones.csv | D4 | implicacion | No dimensionar con un ε_cond mínimo único: partir de U4 (≥ 0.93 en C1 y ≥ 0.91 en C4, orientativo) y  |
-| p5_conclusiones.csv | L2 | implicacion |  este párrafo son medianas), pero el efecto no es un número único ni crece de forma monótona con la distancia (-0.56 a L1 ≤ 0 |
-| p5_conclusiones.csv | L3 | evidencia | En el muestreo LHS el mejor corte único tiene ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay  |
-| p5_conclusiones.csv | L8 | afirmacion | n C2 (91 %) y no en C3 (35 %: 23 puntos, 15 de ellos con un único valor de ε_cond), y lo que sale del rango es una extensión  |
-| p5_conclusiones.csv | L8 | evidencia | .5 K (mínimo de Sens2 393.15 K) y 15 de C3 que comparten un único valor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, u |
-| INFORME_SENS2.md | 42 |  | - Implicación: No existe un x_b único: elegirlo junto con P_baja y la efectividad del condensador |
-| INFORME_SENS2.md | 56 |  | - Implicación: No dimensionar con un ε_cond mínimo único: partir de U4 (≥ 0.93 en C1 y ≥ 0.91 en C4, orientativo) y  |
-| INFORME_SENS2.md | 274 |  |  este párrafo son medianas), pero el efecto no es un número único ni crece de forma monótona con la distancia (-0.56 a L1 ≤ 0 |
-| INFORME_SENS2.md | 280 |  | - Evidencia: En el muestreo LHS el mejor corte único tiene ganancia de Gini ≤ 0.072 (C1: x_b ≤ 0.785). Solo hay  |
-| INFORME_SENS2.md | 327 |  | n C2 (91 %) y no en C3 (35 %: 23 puntos, 15 de ellos con un único valor de ε_cond), y lo que sale del rango es una extensión  |
-| INFORME_SENS2.md | 329 |  | .5 K (mínimo de Sens2 393.15 K) y 15 de C3 que comparten un único valor de ε_cond (0.8418; mínimo de Sens2 0.85), es decir, u |
 
 ### siempre (8)
 
@@ -201,10 +205,10 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | p5_conclusiones.csv | F4 | evidencia | asticidades locales (secantes entre dos niveles vecinos, no siempre simétricos alrededor del punto base): η_t 1.03 a 1.15 en lo |
 | p5_conclusiones.csv | L4 | implicacion | Citar siempre el máximo dentro del rango; los puntos fuera son resultados |
 | p5_conclusiones.csv | L9 | evidencia | cuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resu |
-| INFORME_SENS2.md | 236 |  | asticidades locales (secantes entre dos niveles vecinos, no siempre simétricos alrededor del punto base): η_t 1.03 a 1.15 en lo |
-| INFORME_SENS2.md | 288 |  | - Implicación: Citar siempre el máximo dentro del rango; los puntos fuera son resultados |
-| INFORME_SENS2.md | 336 |  | cuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resu |
-| INFORME_SENS2.md | 359 |  | fuera del rango experimental (líquido > 420 K); se muestran siempre aparte. |
+| INFORME_SENS2.md | 243 |  | asticidades locales (secantes entre dos niveles vecinos, no siempre simétricos alrededor del punto base): η_t 1.03 a 1.15 en lo |
+| INFORME_SENS2.md | 295 |  | - Implicación: Citar siempre el máximo dentro del rango; los puntos fuera son resultados |
+| INFORME_SENS2.md | 343 |  | cuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resu |
+| INFORME_SENS2.md | 373 |  | fuera del rango experimental (líquido > 420 K); se muestran siempre aparte. |
 | VALIDACION_SENS2.md | 90 |  | siempre llevan leyenda); (3) los títulos describen la métrica y no  |
 
 ### única (6)
@@ -214,9 +218,9 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | p5_conclusiones.csv | F3 | afirmacion | _baja es distinguible del ruido en los cuatro bloques (y la única en C3); x_b y ε_cond lo son además en C1 y C2, y en C3 y C4 |
 | p5_conclusiones.csv | U1 | afirmacion | r (frontera local ≈ 0.92 en C1 y ≈ 0.906 en C4), pero no la única: con ε_cond sobre ese umbral todavía se pierden algunos pun |
 | p5_conclusiones.csv | U1 | implicacion | tor dominante de las pérdidas es el condensador, pero no la única: la tolerancia que se pueda garantizar en él es la primera  |
-| INFORME_SENS2.md | 227 |  | _baja es distinguible del ruido en los cuatro bloques (y la única en C3); x_b y ε_cond lo son además en C1 y C2, y en C3 y C4 |
-| INFORME_SENS2.md | 306 |  | r (frontera local ≈ 0.92 en C1 y ≈ 0.906 en C4), pero no la única: con ε_cond sobre ese umbral todavía se pierden algunos pun |
-| INFORME_SENS2.md | 309 |  | tor dominante de las pérdidas es el condensador, pero no la única: la tolerancia que se pueda garantizar en él es la primera  |
+| INFORME_SENS2.md | 234 |  | _baja es distinguible del ruido en los cuatro bloques (y la única en C3); x_b y ε_cond lo son además en C1 y C2, y en C3 y C4 |
+| INFORME_SENS2.md | 313 |  | r (frontera local ≈ 0.92 en C1 y ≈ 0.906 en C4), pero no la única: con ε_cond sobre ese umbral todavía se pierden algunos pun |
+| INFORME_SENS2.md | 316 |  | tor dominante de las pérdidas es el condensador, pero no la única: la tolerancia que se pueda garantizar en él es la primera  |
 
 ### ninguna (4)
 
@@ -224,15 +228,17 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 |---|---|---|---|
 | p5_conclusiones.csv | M5 | evidencia | a normalización completa (p = 0.029) y C1 (p = 0.044), pero ninguna salvo C3 con la normalización del LHS resiste Bonferroni: e |
 | p5_conclusiones.csv | L3 | afirmacion | Ninguna regla simple separa KALINA de no-KALINA: la región es multi |
-| INFORME_SENS2.md | 192 |  | a normalización completa (p = 0.029) y C1 (p = 0.044), pero ninguna salvo C3 con la normalización del LHS resiste Bonferroni: e |
-| INFORME_SENS2.md | 278 |  | **L3 [LÍMITES KALINA, fase A, confianza Media].** Ninguna regla simple separa KALINA de no-KALINA: la región es multi |
+| INFORME_SENS2.md | 199 |  | a normalización completa (p = 0.029) y C1 (p = 0.044), pero ninguna salvo C3 con la normalización del LHS resiste Bonferroni: e |
+| INFORME_SENS2.md | 285 |  | **L3 [LÍMITES KALINA, fase A, confianza Media].** Ninguna regla simple separa KALINA de no-KALINA: la región es multi |
 
-### ninguno (2)
+### ninguno (4)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
+| p5_conclusiones.csv | L10 | afirmacion | ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango |
 | INFORME_SENS2.md | 12 |  | erimental) y de los requisitos de equipos por kW neto (E9); ninguno es un óptimo. |
 | INFORME_SENS2.md | 18 |  | _net en los cuatro bloques y P_alta no lo es sobre W_net en ninguno (F1, F2). |
+| INFORME_SENS2.md | 348 |  | ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango |
 
 ### prueba que (1)
 

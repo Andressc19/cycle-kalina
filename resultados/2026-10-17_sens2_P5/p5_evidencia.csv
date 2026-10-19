@@ -42,3 +42,5 @@ R1,inferencia,1,49,pendiente,parcial,si,no,no,ajuste cuadratico con validacion c
 U4,determinista,3,10,si,parcial,na,no,no,el umbral de eps_cond vale con las demas variables en el centro; con todas moviendose la especificacion robusta es mas alta
 M6,inferencia,1,17,pendiente,parcial,no,no,no,"mayor valor muestreado por banda de T_fuente con al menos 10 KALINA dentro del rango (17 a 681); sin optimizador, con tamaños y diseños distintos por banda; la banda de 77 C casi no converge"
 E9,inferencia,1,2047,na,parcial,no,no,si,aritmetica sobre las cifras por kg/s de los KALINA de diseños mezclados (p6_equipos_kw); depende del diseño como E1 a E7
+D9,determinista,2,2,pendiente,acotado,na,no,si,"malla de 100 a 150 kPa y puntos de 25 kPa; 2 a 5 puntos por combinacion; los NO_CONVERGIO cortan la secuencia"
+L10,recuento,1,90,na,parcial,na,no,no,"90 de 515 NO_CONVERGIO reintentados (75 lentos y 15 de control); ninguno recuperado"

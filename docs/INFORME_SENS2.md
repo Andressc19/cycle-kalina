@@ -2,7 +2,7 @@
 
 > **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la mayor η muestreada es 14.53 % dentro del rango experimental (14.82 % fuera; no se corrió un optimizador).** La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (28 hojas, 88 gráficos). Las cifras salen de los CSV de `resultados/` (P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (29 hojas, 90 gráficos). Las cifras salen de los CSV de `resultados/` (P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -91,6 +91,13 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: Como punto de partida, pedir al condensador una efectividad garantizada de al menos 0.93 (C1) o 0.91 (C4), sabiendo que no basta si P_baja, T_sumidero o x_b se desvían (U1); un diseño que admita ε_cond menor necesita más P_baja o un sumidero más frío (PRCC de T_sumidero negativo, de P_baja positivo).
 - Fuente: Hoja F5 Incertidumbre (barrido fino, u1_scan_eps_cond.csv)
 - Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_diseno = parcial
+
+**D9 [DISEÑO REAL, fase C, confianza Media].** Con paso de 25 kPa el piso de P_baja baja hasta 125 kPa respecto del que daba la malla de 100 a 150 kPa (mediana 37 kPa): en 9 de 12 combinaciones de centro y x_b el piso refinado es menor que el de la malla.
+
+- Evidencia: Pisos de la malla frente a paso de 25 kPa (kPa): C1 a x_b 0.82, 0.90 y 0.95: 600 → 575, 690 → 675 y 800 → 740; C3 a 0.75 y 0.95: 650 → 600 y 950 → 825; C4 a 0.88 y 0.95: 800 → 725 y 910 → 875; C2 a 0.55 y 0.60: 564 → 525 y 700 → 639. En C3 a x_b 0.88 y en C4 a 0.83 ningún nivel intermedio es KALINA (el piso queda en el de la malla), y en C2 a x_b 0.50 el piso queda en o bajo 400 kPa, el límite de la malla. Son 49 puntos nuevos del motor, entre 2 y 5 por combinación; un NO_CONVERGIO corta la secuencia.
+- Implicación: El piso de la malla sobrestima el piso real hasta en 125 kPa: tomar el piso refinado como valor de partida y comprobarlo con el margen de cavitación (m_O2 ≥ 0), que no es un NPSH. El piso depende de x_b y del bloque; no sirve un valor único.
+- Fuente: F1 p6_pisos25.csv; Excel 2 hoja F3 Pisos 25 kPa y reintento
+- Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: robusto_nc = pendiente
 
 ### 3.2 EQUIPOS (hoja F4 del libro)
 
@@ -337,6 +344,13 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 - Implicación: Un diseño no debe leerse de una sola frontera: la frontera de una variable depende del valor de las demás (por ejemplo, el piso de P_baja sube con x_b). Para decidir un diseño hay que consultar los puntos de Sens2 más cercanos o recalcular con el motor.
 - Fuente: R1 r1_fronteras_contraste.csv; R2 r2_fronteras_eficiencias.csv; r2_vecinos_resumen.csv
 - Criterio de confianza: cumple 4 de 6 criterios (contando los que no aplican); falta: intervalo = no
+
+**L10 [LÍMITES KALINA, fase C, confianza Media].** Reintentar los NO_CONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango de propiedades), incluidos los 15 de control; el fallo es del método de resolución y no de falta de tiempo.
+
+- Evidencia: Presupuesto de 900 s y tope de 1 100 s frente a 300 s y 600 s originales, sobre 75 NO_CONVERGIO que habían agotado el presupuesto y 15 rápidos de control. Causas de los 88 que siguen: sin dos extremos evaluables en el bracket de T1 (38), balance global de energía que no cierra (30), lazo interior frío sin convergencia (12) y otras (8). Recuperados: 0. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos.
+- Implicación: Los umbrales inferiores de T_fuente en C3 y C4 (D3) y parte de F3 siguen sin separar «no existe» de «no convergió»: reintentar con más tiempo no los resuelve; haría falta otro método de resolución o otros arranques. Sigue siendo un límite del análisis.
+- Fuente: F1 p6_reintento_nc.csv
+- Criterio de confianza: recuento que depende del diseño de muestreo
 
 ## 4. CORREGIBLE frente a KALINA
 
