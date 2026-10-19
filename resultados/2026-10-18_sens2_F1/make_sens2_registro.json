@@ -1,5 +1,5 @@
 {
-  "commit": "5f247ccdd93a8665fd6d475dad93a5a463810117",
+  "commit": "1620db60054c792ffd2dd3000f45fa754ca98c71",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -21,139 +21,139 @@
     {
       "nombre": "p6_nulo",
       "estado": "ok",
-      "segundos": 420.76,
+      "segundos": 368.75,
       "codigo": 0
     },
     {
       "nombre": "p6_nc",
       "estado": "ok",
-      "segundos": 2.7,
+      "segundos": 2.13,
       "codigo": 0
     },
     {
       "nombre": "p6_pareado",
       "estado": "ok",
-      "segundos": 1.86,
+      "segundos": 1.54,
       "codigo": 0
     },
     {
       "nombre": "p6_pareado_dist",
       "estado": "ok",
-      "segundos": 1.69,
+      "segundos": 1.43,
       "codigo": 0
     },
     {
       "nombre": "p6_equipos_diseno",
       "estado": "ok",
-      "segundos": 2.28,
+      "segundos": 1.93,
       "codigo": 0
     },
     {
       "nombre": "p6_equipos_ic",
       "estado": "ok",
-      "segundos": 3.32,
+      "segundos": 2.54,
       "codigo": 0
     },
     {
       "nombre": "p6_equipos_kw",
       "estado": "ok",
-      "segundos": 1.83,
+      "segundos": 1.54,
       "codigo": 0
     },
     {
       "nombre": "p6_ciclo_T",
       "estado": "ok",
-      "segundos": 1.15,
+      "segundos": 0.96,
       "codigo": 0
     },
     {
       "nombre": "p6_potencia_u1",
       "estado": "ok",
-      "segundos": 1.12,
+      "segundos": 0.92,
       "codigo": 0
     },
     {
       "nombre": "p6_fronteras_ic",
       "estado": "ok",
-      "segundos": 7.63,
+      "segundos": 6.12,
       "codigo": 0
     },
     {
       "nombre": "p6_superficies_cv",
       "estado": "ok",
-      "segundos": 2.01,
+      "segundos": 1.57,
       "codigo": 0
     },
     {
       "nombre": "p6_m5_lhs",
       "estado": "ok",
-      "segundos": 2.61,
+      "segundos": 2.43,
       "codigo": 0
     },
     {
       "nombre": "p5_generar",
       "estado": "ok",
-      "segundos": 2.94,
+      "segundos": 2.42,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado",
       "estado": "ok",
-      "segundos": 3.75,
+      "segundos": 3.37,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado_fuente",
       "estado": "ok",
-      "segundos": 7.66,
+      "segundos": 6.2,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check",
       "estado": "ok",
-      "segundos": 4.21,
+      "segundos": 3.59,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check_c",
       "estado": "ok",
-      "segundos": 1.2,
+      "segundos": 1.01,
       "codigo": 0
     },
     {
       "nombre": "s2_construir",
       "estado": "ok",
-      "segundos": 12.76,
+      "segundos": 10.98,
       "codigo": 0
     },
     {
       "nombre": "s2_verificar",
       "estado": "ok",
-      "segundos": 31.68,
+      "segundos": 25.4,
       "codigo": 0
     },
     {
       "nombre": "s2_informe",
       "estado": "ok",
-      "segundos": 3.26,
+      "segundos": 2.9,
       "codigo": 0
     },
     {
       "nombre": "s2_figuras",
       "estado": "ok",
-      "segundos": 4.48,
+      "segundos": 3.76,
       "codigo": 0
     },
     {
       "nombre": "s2_informe_pdf",
       "estado": "ok",
-      "segundos": 4.89,
+      "segundos": 3.32,
       "codigo": 0
     },
     {
       "nombre": "pruebas",
       "estado": "ok",
-      "segundos": 7.35,
+      "segundos": 6.37,
       "codigo": 0
     }
   ]

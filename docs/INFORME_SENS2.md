@@ -261,12 +261,12 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 
 ### 3.5 LÍMITES KALINA (hoja F1 y F2 del libro)
 
-**L1 [LÍMITES KALINA, fase A, confianza Alta].** El 96 % de los CORREGIBLE muestreados falla por cavitación (O2) y el 4 % por título de salida (O1).
+**L1 [LÍMITES KALINA, fase A, confianza Media].** El 96 % de los CORREGIBLE muestreados falla por cavitación (O2) y el 4 % por título de salida (O1).
 
 - Evidencia: Entre 968 CORREGIBLE con vecino KALINA: violación dominante O2 96 %, O1 4 %; D mediana 1.17 (P90 10.1). En la base cruda (1 018 CORREGIBLE con duplicados) 255 son zona gris (D ≤ 0.278), 249 de ellos por O2.
 - Implicación: La frontera práctica de Kalina en este modelo es el criterio de cavitación, que depende a la vez del piso de P_baja y de la efectividad del condensador (m_O2 = T_burbuja(P_baja, x_b) − T9); es la que hay que explorar con mayor resolución. El 96 % es un conteo del muestreo.
 - Fuente: P1 p1_zonas_grises.csv; P1 p1_dataset.csv; P2 p2_violaciones.md
-- Criterio de confianza: recuento con n_min = 968
+- Criterio de confianza: recuento que depende del diseño de muestreo
 
 **L2 [LÍMITES KALINA, fase C, confianza Media].** Rescatar un CORREGIBLE es posible con un solo cambio en 68 % de los CORREGIBLE de barridos y mallas y en 0 % de los del muestreo LHS (que mueve las diez variables a la vez): el 49 % global es un conteo del muestreo; el efecto sobre η depende del conjunto de puntos y en C1 y C4 la media no se distingue de 0 (su mediana sí es negativa).
 

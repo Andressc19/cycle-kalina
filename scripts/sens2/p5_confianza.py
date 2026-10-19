@@ -56,6 +56,8 @@ def regla(x):
     if x["tipo"] == "limite":
         return "No aplica", "declaracion de limites del analisis, no una inferencia"
     if x["tipo"] == "recuento":
+        if x["robusto_diseno"] in ("parcial", "no"):
+            return "Media", "recuento que depende del diseño de muestreo"
         if x["n_min"] >= 30:
             return "Alta", "recuento con n_min = %d" % x["n_min"]
         return "Media", "n_min < 30"
