@@ -131,8 +131,8 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 107 |  | / η máxima frente a T_fuente: un solo punto de partida por banda, 21 a 32 evaluaciones / M7 / 3 a |
 | VALIDACION_SENS2.md | 109 |  | / Solo el motor teqp: sin validación experimental propia del ciclo |
 | VALIDACION_SENS2.md | 115 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
-| VALIDACION_SENS2.md | 118 |  | - η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar |
-| VALIDACION_SENS2.md | 128 |  |    puntos, solo cambia la variable de rescate). |
+| VALIDACION_SENS2.md | 119 |  | - η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar |
+| VALIDACION_SENS2.md | 129 |  |    puntos, solo cambia la variable de rescate). |
 
 ### todos (32)
 
@@ -169,7 +169,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 42 |  | mparación justa.** CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS, |
 | VALIDACION_SENS2.md | 51 |  | / 2 / Alta / Conclusión F5 decía que casi todos los pares son aditivos sobre η; los datos dan 0.00–0.18 (fu |
 | VALIDACION_SENS2.md | 57 |  |  8 / Media / Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que no se cumple (barridos |
-| VALIDACION_SENS2.md | 119 |  | - Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la  |
+| VALIDACION_SENS2.md | 120 |  | - Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la  |
 
 ### único (16)
 

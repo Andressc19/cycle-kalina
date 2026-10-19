@@ -125,7 +125,7 @@ def hoja_leeme(wb, datos):
 
     f = subtitulo(ws, f, "Los 4 centros de bloque y sus constantes")
     f = condiciones(ws, f, ["Que quedo fijo: las constantes de cada bloque (las mismas del libro 1).",
-                            "Que se barrio: el analisis de los 3 921 puntos no barre nada; usan puntos nuevos del motor F5 Incertidumbre, "
+                            "Que se barrio: el analisis de los 3 921 puntos no barre nada. Los puntos nuevos del motor estan en F5 Incertidumbre, "
                             "F5 Incertidumbre simetrica, F3 Pisos 25 kPa y reintento, F4 Caudales y bomba y F4 Optimo vs T_fuente."])
     enc = ["Bloque"] + [v + " (" + u + ")" for v, u in (
         ("T_fuente", "K"), ("T_sumidero", "K"), ("P_alta", "kPa"), ("P_baja", "kPa"), ("x_b", "-"),

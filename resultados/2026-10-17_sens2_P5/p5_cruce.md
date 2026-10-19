@@ -2,8 +2,8 @@
 
 Numeros con unidad de `p5_conclusiones.csv` agrupados por (unidad, dos palabras previas). Un grupo con al menos 2 conclusiones distintas y al menos 2 valores distintos (a 2 decimales) es un candidato a contradiccion. La lista es para revision manual: un candidato no es un error.
 
-- apariciones: 410
-- claves (pares clave, unidad): 351
+- apariciones: 412
+- claves (pares clave, unidad): 352
 - candidatos: 19
 
 ## Candidatos
@@ -27,6 +27,7 @@ Numeros con unidad de `p5_conclusiones.csv` agrupados por (unidad, dos palabras 
 |---|---|---:|---|
 | D1 | evidencia | 350.0 | n C2 (x_b 0.50), por encima de esas fronteras de 550, 550 y 350 kPa, que quedan en zona CORREGIBLE; en C4 (x_b 0.88) el piso de |
 | M7 | evidencia | 710.0 | 16.8 % a 80, 100, 120, 140 y 160 °C, con P_baja entre 550 y 710 kPa (del orden de los pisos de D9, que dependen de x_b y de T_s |
+| M7 | implicacion | 710.0 |  y 16.7 % a 160 °C dentro del rango, con P_baja entre 550 y 710 kPa (del orden de los pisos de D9) y P_alta de 5250 a 6500 kPa. |
 
 ### c3 y | K
 

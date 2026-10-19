@@ -1188,15 +1188,17 @@ U5,evidencia,48,si,u1_filas.csv:x_b,5
 U5,evidencia,48,si,u1_filas.csv:x_b,5
 U5,evidencia,96,si,u1_filas.csv:eta,5
 U5,evidencia,47,si,u1_filas.csv:x_b,5
-M7,afirmacion,11.0,si,p6_opt_T.csv:n_kalina,1
-M7,afirmacion,80,si,p6_opt_T.csv:T_fuente_C,1
-M7,afirmacion,16.8,si,p6_opt_T.csv:eta_max_pct,1
+M7,afirmacion,16.7,si,p6_opt_T.csv:eta_max_pct,1
 M7,afirmacion,160,si,p6_opt_T.csv:T_fuente_C,1
+M7,afirmacion,16.8,si,p6_opt_T.csv:eta_max_pct,1
 M7,afirmacion,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,afirmacion,13.4,si,p6_opt_T.csv:eta_max_pct,1
 M7,afirmacion,16.7,si,p6_opt_T.csv:eta_max_pct,1
 M7,afirmacion,300,si,p6_opt_T.csv:T_fuente_C,1
-M7,afirmacion,160,si,p6_opt_T.csv:T_fuente_C,1
+M7,afirmacion,11.0,si,p6_opt_T.csv:n_kalina,1
+M7,afirmacion,80,si,p6_opt_T.csv:T_fuente_C,1
+M7,afirmacion,21,si,p6_opt_T.csv:n_eval,1
+M7,afirmacion,32,si,p6_opt_T.csv:n_eval,1
 M7,evidencia,12,si,p6_opt_T.csv:n_kalina,1
 M7,evidencia,80,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,300,si,p6_opt_T.csv:T_fuente_C,1
@@ -1237,7 +1239,7 @@ M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,80,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,4.01,si,p6_opt_T.csv:mejora_pp,1
 M7,evidencia,10,si,p5_hechos,1
-M7,evidencia,0.95,si,p6_opt_T.csv:mejora_pp,1
+M7,evidencia,80,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1
 M7,evidencia,420,si,"permitido: constante de diseno o limite del criterio, citada tal cual",1
 M7,evidencia,160,si,p6_opt_T.csv:T_fuente_C,1
@@ -1247,6 +1249,8 @@ M7,implicacion,15.3,si,p6_opt_T.csv:eta_max_pct,1
 M7,implicacion,140,si,p6_opt_T.csv:T_fuente_C,1
 M7,implicacion,16.7,si,p6_opt_T.csv:eta_max_pct,1
 M7,implicacion,160,si,p6_opt_T.csv:T_fuente_C,1
+M7,implicacion,550,si,p6_opt_T.csv:P_baja,1
+M7,implicacion,710,si,p6_opt_T.csv:P_baja,1
 M7,implicacion,5250,si,p6_opt_T.csv:P_alta,1
 M7,implicacion,6500,si,p6_opt_T.csv:P_alta,1
 M7,implicacion,0.7,si,p6_opt_T.csv:x_b,1

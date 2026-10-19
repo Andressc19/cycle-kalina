@@ -103,7 +103,7 @@ def main():
          "KALINA salen del rango experimental) y de los requisitos de equipos por kW neto (E9 y E10); ninguno es un óptimo, y la η máxima por T_fuente de M7 es un máximo local.",
          "- Los diseños de mayor η operan con título de salida de turbina de 0.94 (límite 0.90).",
          "- Desde el centro KALINA de cada bloque, C1 y C4 tienen muy poco margen de ε_cond (el barrido fino sitúa la frontera local en "
-         "≈ 0.92 y ≈ 0.906, con las demás variables en el centro); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) con la malla de 100 a 150 kPa; con paso de 25 kPa (D9) el piso es 575 kPa en C1 y 725 kPa en C4 a x_b 0.88 (D7, D9, U4, L6).",
+         "≈ 0.92 y ≈ 0.906, con las demás variables en el centro); P_baja puede bajar hasta 600 kPa (C1) y 800 kPa (C4) con la malla de 100 a 150 kPa; con paso de 25 kPa (D9) el piso es 575 kPa en C1 (x_b 0.82) y 725 kPa en C4 (x_b 0.88) (D7, D9, U4, L6).",
          "- Al perturbar las 10 variables a la vez (96 puntos del motor por bloque, con la efectividad del condensador variando "
          "solo por debajo de su centro 0.95), con tolerancias nominales seguirían siendo KALINA el %.0f %% (C1), %.0f %% (C2), "
          "%.0f %% (C3) y %.0f %% (C4); con el doble, %.0f, %.0f, %.0f y %.0f %%; con ε_cond fija en 0.95 el 100 %% en los "

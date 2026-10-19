@@ -52,7 +52,7 @@ def main():
     md = ["# Sens2 etapa B - eta maxima frente a T_fuente con busqueda local", "",
           "Busqueda coordenada a coordenada de P_alta, P_baja y x_b por banda; solo cuentan los puntos KALINA. Es un maximo local con tope de evaluaciones, no un optimo global. "
           "Comparacion orientativa: eta maxima del conjunto muestreado (todos los KALINA) en la ventana [T-10, T+10) K, con y sin los puntos fuera del rango experimental (liquido > 420 K); "
-          "el muestreo mezcla eta_t hasta 0.95 y otras T_sumidero, mientras la busqueda fija eta_t = 0.85 y T_sumidero = 280.5 K, asi que la mejora no es una comparacion a igual configuracion.", "",
+          "el muestreo varia las demas variables (T_sumidero, presiones y eficiencias), mientras la busqueda fija las eficiencias y T_sumidero = 280.5 K, asi que la mejora no es una comparacion a igual configuracion.", "",
           "| T_fuente (C) | evaluaciones | KALINA | eta max (%) | P_alta | P_baja | x_b | fuera de rango | eta max dentro del rango (%) | eta max muestreo (%) | mejora (pp) | eta max muestreo dentro del rango (%) | mejora dentro del rango (pp) |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in t.itertuples():
         mu = "-" if pd.isna(r.eta_max_muestreo_pct) else "%.2f" % r.eta_max_muestreo_pct

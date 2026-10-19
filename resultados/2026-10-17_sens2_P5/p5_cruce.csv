@@ -35,7 +35,7 @@ clave,unidad,valor,id,campo,contexto
 106 a,puntos,1257.0,M6,evidencia,n conjunto crece con su tamaño y las bandas tienen de 106 a 1257 puntos y diseños de muestreo distintos (la de 117 °C contiene la m
 107 a,kW,145.9,E1,evidencia,= 2047: r_P mediana 3.47; Δh mediana 152.7 kJ/kg; Wt 10.7 a 145.9 kW por kg/s de m_b; T de entrada 361 a 443 K. Intervalos boots
 11 de,puntos,54.0,U1,evidencia,"2 no convergen. Pero con ε_cond ≥ 0.922 en C1 todavía 11 de 54 puntos no son KALINA (todos CORREGIBLE, con P_baja de 661 a 712 kP"
-110 a,°C,80.0,M7,afirmacion,encontrada por búsqueda local sube con T_fuente de 11.0 % a 80 °C a 16.8 % a 160 °C y por encima de 160 °C no muestra una sub
+110 a,°C,80.0,M7,afirmacion," % hasta 300 °C, sin tendencia clara; la subida de 11.0 % a 80 °C a ese valor es la de la búsqueda, con 21 a 32 evaluaciones "
 111 a,%,12.9,U3,evidencia,"1, 0.95 en C3, 0.96 en C4 y 0.66 en C2. η P5–P95: C1 11.1 a 12.9 % (centro 12.0), C3 8.8 a 10.4 % (9.45), C4 10.5 a 12.1 % (11"
 111 a,kg/m³,31.0,E10,evidencia,"sidades (P5 a P95): vapor a la entrada de la turbina 11.1 a 31.0 kg/m³, salida de la turbina 3.8 a 11.1 kg/m³ (bifásica en 150 de "
 118 a,puntos,137.0,F1,evidencia,re 6 métodos (1 = mayor; η existe solo en los KALINA: 118 a 137 puntos por bloque): C1 η_t 1.2; C2 η_t 1.3; C3 P_alta 2.0 y x_b 2.
@@ -44,7 +44,7 @@ clave,unidad,valor,id,campo,contexto
 120 y,°C,190.0,E8,evidencia,"23 y 12.32 %). KALINA aparece entre 90 y 165 °C (C1), 120 y 190 °C (C2), 90 y 290 °C (C3) y 90 y 250 °C (C4). Mecanismo (barri"
 1223 y,%,12.32,E8,evidencia,"ana desde ≈150 °C (C3 entre 9.28 y 9.47 %, C4 entre 12.23 y 12.32 %). KALINA aparece entre 90 y 165 °C (C1), 120 y 190 °C (C2),"
 133 y,%,14.5,M6,afirmacion,"estra una caída clara entre 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 %); desde ≈ 160 °C la mayoría de los KALINA muestreados está "
-134 y,%,16.7,M7,afirmacion," de 160 °C no muestra una subida clara: oscila entre 13.4 y 16.7 % hasta 300 °C, compatible con el ruido de una búsqueda local"
+134 y,%,16.7,M7,afirmacion,"e 160 °C (fuera del rango experimental) oscila entre 13.4 y 16.7 % hasta 300 °C, sin tendencia clara; la subida de 11.0 % a 80"
 136 a,K,40.0,E8,evidencia," a 0.013, UA de 9.53 a 0.34 kW/K por kg/s y pinch de 13.6 a 40.0 K. En los barridos de una variable la carga ya es baja a 150 "
 1395 w_net,kW,124.9,M3,evidencia,"y ε_reg 0.95 con P_alta 3300 y P_baja 690: η 13.95 %, W_net 124.9 kW por kg/s."
 14 a,puntos,3.2,F6,evidencia," +2.70]); dentro de cada bloque la diferencia va de +1.4 a +3.2 puntos, y los puntos de muestreo o malla sin centro elevan el tota"
@@ -58,14 +58,14 @@ clave,unidad,valor,id,campo,contexto
 150 de,puntos,150.0,E10,evidencia,", salida de la turbina 3.8 a 11.1 kg/m³ (bifásica en 150 de 150 puntos) y líquido a la entrada de la bomba 656 a 832 kg/m³. Las co"
 151 a,kPa,500.0,R1,evidencia,"y en C2 (P_alta×P_baja) es KALINA. Por ejemplo C1: 15.1 % a 500 kPa, mientras el mejor KALINA de la malla es 13.3 %. Validación"
 153 a,°C,140.0,M1,implicacion,puede ser mayor (la búsqueda local de M7 encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango); la cifra de 14.8 % nec
-153 a,°C,140.0,M7,implicacion,"o (M1) no es un techo: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja cerca del pi"
+153 a,°C,140.0,M7,implicacion,"o (M1) no es un techo: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja entre 550 y "
 153 y,%,16.8,M7,evidencia,"95, T_sumidero 280.5 K). η máxima: 11.0, 13.0, 14.4, 15.3 y 16.8 % a 80, 100, 120, 140 y 160 °C, con P_baja entre 550 y 710 kP"
 155 y,kPa,-343.0,D1,evidencia,demasiado ancho para informar (su límite inferior es -155 y -343 kPa) y no se usa. Con las otras variables libres la frontera de
+160 c,%,16.8,M7,afirmacion,"alcanza 16.7 % de η dentro del rango experimental a 160 °C (16.8 % en total), más que el máximo muestreado, y por encima de 16"
 1625 y,kPa,1875.0,D6,evidencia,a de 3875 kPa; C4 tiene una ventana sin KALINA entre 1625 y 1875 kPa.
 167 a,°C,160.0,M1,implicacion,a búsqueda local de M7 encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango); la cifra de 14.8 % necesita 170 °C. La d
-167 a,°C,160.0,M7,implicacion,"cho: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja cerca del piso y P_alta de 525"
-167 hasta,°C,300.0,M7,afirmacion," muestra una subida clara: oscila entre 13.4 y 16.7 % hasta 300 °C, compatible con el ruido de una búsqueda local sin repetici"
-168 a,°C,160.0,M7,afirmacion,squeda local sube con T_fuente de 11.0 % a 80 °C a 16.8 % a 160 °C y por encima de 160 °C no muestra una subida clara: oscila 
+167 a,°C,160.0,M7,implicacion,"cho: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja entre 550 y 710 kPa (del orden"
+167 hasta,°C,300.0,M7,afirmacion,"ra del rango experimental) oscila entre 13.4 y 16.7 % hasta 300 °C, sin tendencia clara; la subida de 11.0 % a 80 °C a ese val"
 17 y,%,42.0,U2,afirmacion,an la clase en la mayoría de los casos; C1 y C4 caen a 17 y 42 %.
 172 a,kJ/kg,249.0,E1,evidencia, por bloque. El 10 % de mayor η: r_P 4.26 a 7.25 y Δh 172 a 249 kJ/kg.
 1940 a,kPa,4500.0,E7,evidencia,diana 6.0 %; 10 % de mayor η: 2.7 a 7.8 %. P_alta de 1940 a 4500 kPa (P5–P95).
@@ -97,10 +97,11 @@ clave,unidad,valor,id,campo,contexto
 50 a,kPa,100.0,D1,evidencia,ivel sin KALINA y el primero con KALINA (resolución de 50 a 100 kPa; en la malla P_baja×x_b el piso de C1 a x_b 0.82 es 600 kPa
 51 y,%,59.0,L6,evidencia,"2 variables 66, 63, 71 y 57 %; 7 a 9 variables 47, 52, 51 y 59 %. En las mallas de pares la de ε_cond×T_sumidero deja KALINA"
 515 de,puntos,3663.0,L5,evidencia,n 48 puntos: 0.05 en C4 y 0.07 en C1); NO_CONVERGIO (515 de 3663 puntos) cuenta como «no KALINA» en los índices de existencia y en 
-5250 a,kPa,6500.0,M7,implicacion,"tro del rango, con P_baja cerca del piso y P_alta de 5250 a 6500 kPa. Con la banda del modelo de propiedades (±0.7 puntos) y el "
+5250 a,kPa,6500.0,M7,implicacion,y 710 kPa (del orden de los pisos de D9) y P_alta de 5250 a 6500 kPa. Con la banda del modelo de propiedades (±0.7 puntos) y el 
 542 a,kW,1275.0,E5,evidencia,iana: 721 kW por kg/s y 9.2 K. En el 10 % de mayor η: 542 a 1275 kW por kg/s. La carga la fija T_fuente (Spearman del muestreo 
 550 y,kPa,350.0,D1,evidencia,"n C2 (x_b 0.50), por encima de esas fronteras de 550, 550 y 350 kPa, que quedan en zona CORREGIBLE; en C4 (x_b 0.88) el piso de"
 550 y,kPa,710.0,M7,evidencia,"16.8 % a 80, 100, 120, 140 y 160 °C, con P_baja entre 550 y 710 kPa (del orden de los pisos de D9, que dependen de x_b y de T_s"
+550 y,kPa,710.0,M7,implicacion," y 16.7 % a 160 °C dentro del rango, con P_baja entre 550 y 710 kPa (del orden de los pisos de D9) y P_alta de 5250 a 6500 kPa."
 6 c1,%,67.0,L6,evidencia,"pares la de ε_cond×T_sumidero deja KALINA solo el 6 % (C1), 67 % (C2), 16 % (C3) y 10 % (C4); la de ε_reg×η_t es 100 % KALIN"
 63 a,%,9.3,U3,evidencia," C3 8.8 a 10.4 % (9.45), C4 10.5 a 12.1 % (11.15), C2 6.3 a 9.3 % (7.94). En B la dispersión crece (C2 de 2.6 a 10.6 %). La b"
 635 a,kW,761.0,E9,implicacion,"on 100 kW netos, HRVG de 735 a 861 kW, condensador de 635 a 761 kW y fluido de 0.6 a 1.3 kg/s. Con todos los KALINA muestreado"
@@ -151,12 +152,11 @@ banda de,°C,77.0,M6,evidencia,"al (14.82 %) está a 170 °C, fuera del rango. E
 bloque el,%,10.0,E1,evidencia,eces el ancho P5–P95 en el total y de 7 a 10 por bloque. El 10 % de mayor η: r_P 4.26 a 7.25 y Δh 172 a 249 kJ/kg.
 bloques son,%,13.2,M4,afirmacion,"os mayores valores muestreados de los otros dos bloques son 13.2 % (C4) y 12.4 % (C2, dentro del rango)."
 bootstrap al,%,95.0,E1,evidencia,"s de m_b; T de entrada 361 a 443 K. Intervalos bootstrap al 95 %: r_P P5 1.70 [1.65, 1.81] y P95 5.51 [5.40, 6.00]; Δh P5 65"
-c a,%,16.8,M7,afirmacion,da por búsqueda local sube con T_fuente de 11.0 % a 80 °C a 16.8 % a 160 °C y por encima de 160 °C no muestra una subida clara
 c cada,°C,20.0,M7,evidencia,"a, P_baja y x_b en 12 bandas de T_fuente (80 a 300 °C, cada 20 °C), con unas 30 evaluaciones por banda (entre 21 y 32; 347 pu"
 c es,%,16.7,M7,evidencia,l (líquido > 420 K); dentro del rango el máximo a 160 °C es 16.7 %.
 c ganar,puntos,2.0,M2,implicacion,"Con la misma fuente de 121 °C, ganar ≈ 2.0 puntos exige más presión y quedar cerca del piso de P_baja (600 kP"
 c y,%,16.7,M1,implicacion, mayor (la búsqueda local de M7 encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango); la cifra de 14.8 % necesita 170
-c y,%,16.7,M7,implicacion," es un techo: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja cerca del piso y P_al"
+c y,%,16.7,M7,implicacion," es un techo: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja entre 550 y 710 kPa ("
 c1 a,kPa,690.0,D8,implicacion,"baja fija la temperatura de burbuja baja al subir x_b (C1 a 690 kPa: 330 K con x_b 0.45, 309 K con 0.60, 296 K con 0.75 y 290 K"
 c1 de,kPa,500.0,D8,evidencia,"LINA en cada columna de x_b de las mallas P_baja×x_b: C1 de 500 kPa (x_b 0.55 a 0.75) a 600, 690 y 800 kPa (x_b 0.82, 0.90 y 0."
 c1 y,K,1.8,U1,evidencia, 0.92 y 0.95 el margen cae ≈ 1.9 K por cada −0.01 en C1 y ≈ 1.8 K en C4 (promedio de todo el barrido: 1.2 y 1.7 K; la relació
@@ -242,7 +242,7 @@ en el,%,3.5,F1,evidencia, 3 dummy) a 22; las pruebas de las dummy dan p < 0.05 e
 en kalina,%,7.7,M1,evidencia,"reg 0.75, ε_cond 0.95 (N10-C3-0016). Mediana de η en KALINA 7.7 % (5.5 % en el muestreo LHS, que depende del diseño); P90 11."
 encima de,K,284.4,D5,evidencia,"KALINA deja de existir al subir T_sumidero por encima de 284.4 K (C1), 296.9 K (C3) y 291.9 K (C4). En C2 (centro a 300.15 K"
 encima de,kPa,3875.0,D6,evidencia,C1 y C3 sin cambio de clase; C2 pierde KALINA por encima de 3875 kPa; C4 tiene una ventana sin KALINA entre 1625 y 1875 kPa.
-encima de,°C,160.0,M7,afirmacion,_fuente de 11.0 % a 80 °C a 16.8 % a 160 °C y por encima de 160 °C no muestra una subida clara: oscila entre 13.4 y 16.7 % has
+encima de,°C,160.0,M7,afirmacion," % en total), más que el máximo muestreado, y por encima de 160 °C (fuera del rango experimental) oscila entre 13.4 y 16.7 % h"
 encima de,°C,160.0,M7,implicacion,"untos) y el tope de 30 evaluaciones, la forma por encima de 160 °C no debe leerse como una curva."
 entrada desde,°C,150.0,E8,implicacion,"l regenerador mueve 12 % o menos del calor de entrada desde 150 °C (máximos 0.074, 0.121 y 0.048) y η ya no mejora; con x_b ba"
 entradas independientes,puntos,96.0,L5,evidencia,"tolerancias supuestas (uniformes, entradas independientes), 96 puntos por celda en el escenario A (dos lotes de 48) y 48 en B; do"
@@ -254,6 +254,7 @@ está a,°C,170.0,M6,evidencia,"C coincide con ese corte; el máximo global (14.
 está en,kPa,550.0,D1,evidencia,"En los barridos de una variable la frontera está en 550 kPa (C1 y C3), 350 kPa (C2) y 750 kPa (C4); cada una es el punt"
 exigiendo m_o2,K,3.0,L7,evidencia,"antiene en 0.99. Con ε_cond fija en 0.95 y exigiendo m_O2 ≥ 3 K, P(KALINA) es 0.79 en C1 y 1.00 en C2, 1.00 en C3 y 1.00 en"
 exigir m_o2,K,3.0,L7,evidencia,"tolerancias nominales (96 puntos por bloque), exigir m_O2 ≥ 3 K baja P(KALINA) de 0.47 a 0.15 en C1, de 0.85 a 0.57 en C4 y"
+experimental a,°C,160.0,M7,afirmacion,"a local alcanza 16.7 % de η dentro del rango experimental a 160 °C (16.8 % en total), más que el máximo muestreado, y por enci"
 experimental líquido,K,420.0,L4,afirmacion,NA muestreados está fuera del rango experimental (líquido > 420 K) y el máximo muestreado es uno de ellos.
 experimental líquido,K,420.0,M7,evidencia,l punto óptimo está fuera del rango experimental (líquido > 420 K); dentro del rango el máximo a 160 °C es 16.7 %.
 frente a,%,36.0,D3,evidencia," sí convergieron, el 95 % es KALINA en C4 [78, 99] frente a 36 % si NO_CONVERGIO cuenta como no KALINA. T_fuente es la varia"
@@ -295,7 +296,8 @@ llega a,%,14.0,M2,afirmacion,"Para Húsavík el mejor KALINA muestreado llega a 
 llega a,%,13.95,M3,afirmacion,"_t y ε_reg en 0.95), el punto muestreado de Húsavík llega a 13.95 % sin cambiar las presiones."
 llegan a,%,14.5,M1,implicacion,Para una fuente de 150 °C los puntos muestreados llegan a ≈ 14.5 % con P_alta alta (≥ 5000 kPa) y quedan en el borde de la caj
 lmtd mediana,K,37.7,E4,evidencia,10→1: pinch mediana 25.0 K (P5–P95 9.65–46.7); LMTD mediana 37.7 K; UA mediana 4.29 kW/K por kg/s (3.14 en el 10 % de mayor η)
-local encuentra,%,15.3,M7,implicacion," del rango (M1) no es un techo: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja cer"
+local alcanza,%,16.7,M7,afirmacion,La búsqueda local alcanza 16.7 % de η dentro del rango experimental a 160 °C (16.8 % en tota
+local encuentra,%,15.3,M7,implicacion," del rango (M1) no es un techo: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja ent"
 lotes de,puntos,48.0,U1,evidencia,"stabilidad (diferencia mínima detectable entre dos lotes de 48 puntos: 0.29 en el peor caso). Escenario C (igual, pero con ε_cond"
 límite de,K,420.0,M6,evidencia, dentro del rango y no se usan. Desde ≈ 160 °C el límite de 420 K del líquido deja la mayoría de los KALINA fuera del rango (
 m7 encuentra,%,15.3,M1,implicacion,cho real puede ser mayor (la búsqueda local de M7 encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango); la cifra de 1
@@ -344,7 +346,7 @@ pero es,%,68.0,L2,evidencia,"8 CORREGIBLE está a una sola variable de un KALINA
 pinch mediana,K,25.0,E4,evidencia,"Contraflujo, estados 5→6 y 10→1: pinch mediana 25.0 K (P5–P95 9.65–46.7); LMTD mediana 37.7 K; UA mediana 4.29 kW"
 piso refinado,kPa,875.0,D9,evidencia,n C4 a x_b 0.95 hay un KALINA a 825 kPa y el piso refinado (875 kPa) es conservador porque un NO_CONVERGIO a 850 kPa corta la s
 potencias hay,puntos,7.0,L5,evidencia, no se vigila; m_b no se barrió (escala las potencias); hay 7 puntos atípicos señalados en el libro 1 (Δh de turbina anormalment
-puntos a,°C,80.0,M7,evidencia,"ango experimental, donde el muestreo tiene pocos puntos); a 80 °C, donde la mejora es mayor (+4.01), no hay KALINA muestreado"
+puntos a,°C,80.0,M7,evidencia,"ango experimental, donde el muestreo tiene pocos puntos); a 80 °C, donde la mejora dentro del rango es la mayor (+4.01), no h"
 puntos el,%,10.0,M5,evidencia,"ja tiene piso por cavitación (D1). Con todos los puntos, el 10 % de mayor η está a 0.14 de la frontera frente a 0.37 en el r"
 puntos ic,%,95.0,F6,evidencia,"as sin parear de η: 10.2 % frente a 7.7 % (+2.47 puntos, IC 95 % [+2.18, +2.70]); dentro de cada bloque la diferencia va de "
 pérdida del,%,53.0,U1,implicacion,P(KALINA) = 0.47 en C1 no es un riesgo de pérdida del 53 %: sale de muestrear ε_cond solo por debajo del centro (con ε
@@ -357,7 +359,6 @@ rango es,%,14.53,L4,evidencia, global (14.82 %) está fuera; el máximo dentro d
 rango es,%,14.53,M1,afirmacion,"a 170 °C, fuera del rango experimental; dentro del rango es 14.53 %."
 reduce de,K,52.0,D8,implicacion,"K con 0.90), de modo que m_O2 = T_burbuja − T9 se reduce de 52 K a 0.9 K y hace falta más presión para recuperar el margen."
 regenerador mueve,%,12.0,E8,implicacion,"Con x_b alto (C1, C3, C4) el regenerador mueve 12 % o menos del calor de entrada desde 150 °C (máximos 0.074, 0"
-repeticiones desde,°C,160.0,M7,afirmacion,on el ruido de una búsqueda local sin repeticiones (desde ≈ 160 °C el óptimo cae fuera del rango experimental); es un máximo l
 resolución el,%,96.0,L1,implicacion, − T9); es la que hay que explorar con mayor resolución. El 96 % es un conteo del muestreo.
 s además,puntos,4.0,L10,evidencia,"230 s y el máximo 554 s, lejos del tope de 1 100 s. Además, 4 puntos que en la campaña original se cortaron en el tope duro de 6"
 se corrieron,puntos,48.0,U5,evidencia,Se corrieron 48 puntos por centro (LHS) con las otras nueve variables perturbadas 
@@ -366,9 +367,9 @@ sin converger,m,2.0,L10,afirmacion," tiempo no recupera ninguno: 88 de 90 siguen
 solo el,%,5.0,E3,implicacion,0 % de mayor η su mediana es 0.036 (máximo 0.055) y solo el 5 % tiene 0.01 o menos.
 solo el,%,6.0,L6,evidencia,"mallas de pares la de ε_cond×T_sumidero deja KALINA solo el 6 % (C1), 67 % (C2), 16 % (C3) y 10 % (C4); la de ε_reg×η_t es "
 sube hasta,K,283.15,D7,evidencia,"en (0.95; con 0.90 ya no hay KALINA), T_sumidero sube hasta 283.15 K (centro 278.15), x_b de 0.55 a 0.90, T_fuente de 363.15 a 4"
+subida de,%,11.0,M7,afirmacion,".4 y 16.7 % hasta 300 °C, sin tendencia clara; la subida de 11.0 % a 80 °C a ese valor es la de la búsqueda, con 21 a 32 evalu"
 subir p_baja,kPa,100.0,F4,implicacion,ativo) equivale a ≈ 1.2 a 1.4 % relativo de η; subir P_baja 100 kPa (≈ 14 % en C1) baja η ≈ 9 % en términos relativos.
 t_fuente baja,%,3.0,L2,evidencia,"ja sube 24 %, ε_cond sube 16 %, x_b baja 3 %, T_fuente baja 3 %). Distancia L1 mediana 0.365; mediana de 2 variables distin"
-t_fuente de,%,11.0,M7,afirmacion, mayor η encontrada por búsqueda local sube con T_fuente de 11.0 % a 80 °C a 16.8 % a 160 °C y por encima de 160 °C no muestra
 t_fuente de,K,20.0,M6,evidencia,eada dentro del rango experimental por banda de T_fuente de 20 K (centro en °C y KALINA dentro del rango de la banda): 7.0 %
 t_sumidero desde,K,279.0,U1,evidencia,"s CORREGIBLE, con P_baja de 661 a 712 kPa, T_sumidero desde 279.0 K y x_b desde 0.82; es una descripción de esos puntos, no una"
 t_sumidero hasta,K,290.65,D7,evidencia,": P_baja hasta 800 kPa, ε_cond sin margen, T_sumidero hasta 290.65 K. C3: P_baja hasta 600 kPa, ε_cond hasta 0.90, T_sumidero ha"
@@ -382,7 +383,8 @@ ua mediana,kW,4.29,E4,evidencia, 25.0 K (P5–P95 9.65–46.7); LMTD mediana 37.
 una variable,K,440.65,D3,evidencia,"(KS de 0.39 a 0.62). Techo en los barridos de una variable: 440.65 K (C1), 468.15 K (C2), 568.15 K (C3), 528.15 K (C4)."
 usan desde,°C,160.0,M6,evidencia, tienen 5 y 1 puntos dentro del rango y no se usan. Desde ≈ 160 °C el límite de 420 K del líquido deja la mayoría de los KALIN
 variables t_fuente,K,5.0,U1,evidencia,"es independientes de 48, LHS de las 10 variables; T_fuente ±5 K, T_sumidero ±3 K, P_alta y P_baja ±5 %, x_b ±0.02, η_t, η_p"
-ventana de,K,10.0,M7,evidencia, muestreado a esa temperatura y el máximo de la ventana de ±10 K viene de otra temperatura y de otra configuración (η_t hast
+ventana de,K,10.0,M7,evidencia, muestreado a esa temperatura y el máximo de la ventana de ±10 K viene de otra temperatura y de otra configuración (otra T_s
+ventana de,°C,80.0,M7,evidencia," presiones; en el punto que fija el máximo de la ventana de 80 °C las eficiencias coinciden con las de la búsqueda), así que "
 vez el,%,49.0,L2,afirmacion,el muestreo LHS (que mueve las diez variables a la vez): el 49 % global es un conteo del muestreo; el efecto sobre η depende
 w_net mínimo,kW,0.2,E10,evidencia,"s colas P95 vienen de puntos de baja potencia (W_net mínimo 0.2 kW por kg/s de fluido; η mediana de la muestra 5.5 %), no de l"
 w_pw_t mediana,%,6.0,E7,evidencia,W_p/W_t mediana 6.0 %; 10 % de mayor η: 2.7 a 7.8 %. P_alta de 1940 a 4500 kPa (P

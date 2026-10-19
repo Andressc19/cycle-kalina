@@ -57,7 +57,7 @@ def regla(x):
         return "No aplica", "declaracion de limites del analisis, no una inferencia"
     if x["tipo"] == "recuento":
         if x["robusto_diseno"] in ("parcial", "no"):
-            return "Media", "recuento que depende del diseño de muestreo"
+            return "Media", "cumple %d de 6 criterios (contando los que no aplican); falta: robusto_diseno = %s (recuento que depende de la muestra elegida)" % (puntaje(x), x["robusto_diseno"])
         if x["n_min"] >= 30:
             return "Alta", "recuento con n_min = %d" % x["n_min"]
         return "Media", "n_min < 30"
