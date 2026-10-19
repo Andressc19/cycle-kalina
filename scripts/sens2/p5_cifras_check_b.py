@@ -78,3 +78,24 @@ def extra3(chk, ev, sub, P):
     v = [100 * float(una.mean()), 100 * float(una[~lhs].mean()), 100 * float(una[lhs].mean())]
     t = ev("L2")
     chk("L", "L2c", all(sub(t, x, "%.0f") for x in v), "a una variable: global %.1f, barridos y mallas %.1f, LHS %.1f" % tuple(v))
+
+
+def extra4(chk, ev, sub, P):
+    """L5 y M5 (ronda 8): tasa de la regla en las dummy y familia global (BH propio) y p de Mann-Whitney de M5 recalculados."""
+    import numpy as np
+    from scipy.stats import mannwhitneyu
+    from p5_cifras_check_c import bh
+    n = pd.read_csv(P("2026-10-18_sens2_F1", "p6_nulo_perm.csv"))
+    n = n[n["caja"] == "no"].copy()
+    n["q"] = np.nan
+    for _, ix in n.groupby(["bloque", "respuesta"]).groups.items():
+        n.loc[ix, "q"] = bh(n.loc[ix, "p_perm"])
+    s = n[n["q"] < 0.05].groupby(["bloque", "respuesta", "variable", "tipo"]).size()
+    marc = int((s[s.index.get_level_values("tipo") == "dummy"] >= 2).sum())
+    nd = n[n["tipo"] == "dummy"].groupby(["bloque", "respuesta", "variable"]).ngroups
+    n["qg"] = bh(n["p_perm"])                      # una sola familia con todas las pruebas, reales y dummy
+    r = n[n["tipo"] == "real"]
+    sg = r[r["qg"] < 0.05].groupby(["bloque", "respuesta", "variable"]).size()
+    t = ev("L5")
+    chk("L", "L5c", sub(t, "%d de %d variables dummy" % (marc, nd), "%s") and sub(t, int((sg >= 2).sum()), "%d"),
+        "dummy marcadas %d de %d; reales distinguibles con una sola familia (reales y dummy mezcladas): %d" % (marc, nd, int((sg >= 2).sum())))

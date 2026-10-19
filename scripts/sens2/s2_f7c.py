@@ -57,6 +57,22 @@ def hoja_f7_fdr(wb, datos):
                       ", ".join(g[g["distinguible_p3"].fillna(False).astype(bool) & ~g["distinguible_fdr"].astype(bool)]["variable"]) or "-"])
     _, f, _ = tabla(ws, f, ["Bloque", "Respuesta", "n", "Variables (BH)", "Cuales", "Marcadas antes y que ya no pasan"], filas,
                     anchos=[8, 24, 8, 14, 58, 58])
+    cal = pd.read_csv(os.path.join(F1, "p6_calibra_regla.csv"))
+    f = subtitulo(ws, f + 1, "3. Calibracion de la regla 'distinguible' con las variables dummy")
+    a = cal[cal["tabla"] == "A_por_respuesta"]
+    fl = [[g, int(x["n_unidades"]), int(x["marcadas"]), "%.1f %%" % (100 * x["fraccion"]), "%.1f a %.1f %%" % (100 * x["ic_lo"], 100 * x["ic_hi"])]
+          for g, x in zip(a["grupo"], a.to_dict("records"))]
+    _, f, _ = tabla(ws, f, ["Respuesta", "Dummy evaluadas", "Marcadas por la regla", "Fraccion", "IC 95 % (Wilson)"], fl, anchos=[24, 16, 20, 12, 22])
+    f += 1
+    b = cal[cal["tabla"] == "B_curva_k"]
+    fl = [[int(k), "%.1f %%" % (100 * float(b[(b["k"] == k) & (b["grupo"] == "dummy")]["fraccion"].iloc[0])),
+           "%.1f %%" % (100 * float(b[(b["k"] == k) & (b["grupo"] == "real")]["fraccion"].iloc[0]))] for k in (1, 2, 3, 4)]
+    _, f, _ = tabla(ws, f, ["Metodos exigidos (k)", "Dummy marcadas", "Reales marcadas"], fl, anchos=[24, 16, 20])
+    g = cal[cal["tabla"] == "C_global"].iloc[-1]
+    f += 1
+    f = nota(ws, f, "Familia global: al juntar las pruebas de los 4 bloques y las 3 respuestas, las variables reales distinguibles pasan de %d (correccion por bloque) a %d (una sola familia, "
+                    "metodos mezclados) de %d. Solo hay 36 evaluaciones de dummy, asi que la tasa de falsos positivos de la regla es una estimacion gruesa (Fuente: p6_calibra_regla.csv)."
+             % (g["reales_bloque"], g["reales_global_mezcla"], g["n_unidades"]))
     f += 1
     f = nota(ws, f, "Caja comun de rangos (comparar magnitudes entre bloques): los 4 LHS tienen 1 a 9 puntos dentro del rango comun de las 9 variables, asi que "
                     "los indices no se comparan en magnitud entre bloques; solo se usan los rangos y las pruebas dentro de cada bloque.")

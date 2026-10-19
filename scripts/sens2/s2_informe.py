@@ -108,7 +108,7 @@ def main():
          "- Al perturbar las 10 variables a la vez (96 puntos del motor por bloque, con la efectividad del condensador variando "
          "solo por debajo de su centro 0.95), con tolerancias nominales seguirían siendo KALINA el %.0f %% (C1), %.0f %% (C2), "
          "%.0f %% (C3) y %.0f %% (C4); con el doble, %.0f, %.0f, %.0f y %.0f %%; con ε_cond fija en 0.95 el 100 %% en los "
-         "cuatro. No es un riesgo del %.0f %% en C1: la causa dominante de perder la clase es la cavitación ligada al condensador, aunque con ε_cond sobre el "
+         "cuatro. No es un riesgo del %.0f %% en C1: el factor dominante de perder la clase es la cavitación ligada al condensador, aunque con ε_cond sobre el "
          "umbral todavía se pierden puntos por P_baja bajo, T_sumidero alto y x_b alto (U1, U2, U4)." % (
              H["u1p.C1.pct"], H["u1p.C2.pct"], H["u1p.C3.pct"], H["u1p.C4.pct"],
              H["u1b.C1.pct"], H["u1b.C2.pct"], H["u1b.C3.pct"], H["u1b.C4.pct"], H["u1p.C1.pierde"]),

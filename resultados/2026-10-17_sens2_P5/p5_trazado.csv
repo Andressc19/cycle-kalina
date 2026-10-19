@@ -297,6 +297,11 @@ M5,evidencia,0.48,2,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 M5,evidencia,0.086,3,si,2026-10-17_sens2_P1/p1_dataset.csv:D
 M5,evidencia,0.003,3,si,2026-10-17_sens2_P1/p1_dataset.csv:D
 M5,evidencia,0.010,3,si,2026-10-17_sens2_P1/p1_dataset.csv:viol_O1
+M5,evidencia,4,0,trivial,trivial
+M5,evidencia,8,0,trivial,trivial
+M5,evidencia,2,0,trivial,trivial
+M5,evidencia,0.029,3,si,2026-10-17_sens2_P1/p1_dataset.csv:viol_O1
+M5,evidencia,0.044,3,si,2026-10-17_sens2_P1/p1_dataset.csv:qreg_qi
 F1,evidencia,6,0,trivial,trivial
 F1,evidencia,1,0,trivial,trivial
 F1,evidencia,118,0,si,2026-10-17_sens2_P1/p1_dataset.csv:Wnet
@@ -480,6 +485,17 @@ L4,implicacion,15,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L4,implicacion,150,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 L5,evidencia,7,0,trivial,trivial
 L5,evidencia,1,0,trivial,trivial
+L5,evidencia,0.05,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+L5,evidencia,2,0,trivial,trivial
+L5,evidencia,1,0,trivial,trivial
+L5,evidencia,36,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+L5,evidencia,95,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+L5,evidencia,0.5,1,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+L5,evidencia,14.2,1,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+L5,evidencia,12,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+L5,evidencia,108,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+L5,evidencia,54,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+L5,evidencia,55,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L5,evidencia,3.1,1,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 L5,evidencia,2.46,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 L5,evidencia,3.65,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
@@ -594,6 +610,7 @@ L6,evidencia,67,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L6,evidencia,16,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L6,evidencia,10,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L6,evidencia,100,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
+R1,afirmacion,8,0,trivial,trivial
 R1,evidencia,8,0,trivial,trivial
 R1,evidencia,0.96,2,si,2026-10-17_sens2_P1/p1_dataset.csv:qreg_qi
 R1,evidencia,1.00,2,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio

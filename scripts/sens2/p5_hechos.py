@@ -361,9 +361,26 @@ def _ronda6(h):
             h["m5.%s.%s.p" % (tag, b)], h["m5.%s.%s.pb" % (tag, b)] = float(x["p_ks"]), float(x["p_bonferroni4"])
 
 
+def _ronda8(h):
+    F1 = os.path.join(R, "2026-10-18_sens2_F1")
+    t = pd.read_csv(os.path.join(F1, "p6_calibra_regla.csv"))
+    x = t[(t["tabla"] == "A_por_respuesta") & (t["grupo"] == "Total")].iloc[0]
+    h["cal.dummy.n"], h["cal.dummy.marcadas"] = float(x["n_unidades"]), float(x["marcadas"])
+    h["cal.dummy.lo"], h["cal.dummy.hi"] = 100 * float(x["ic_lo"]), 100 * float(x["ic_hi"])
+    g = t[t["tabla"] == "C_global"].iloc[-1]
+    h["cal.global.bloque"], h["cal.global.mezcla"] = float(g["reales_bloque"]), float(g["reales_global_mezcla"])
+    h["cal.global.n"] = float(g["n_unidades"])
+    m = pd.read_csv(os.path.join(F1, "p6_m5_pruebas.csv"))
+    for norma, tag in (("completo", "c"), ("lhs", "l")):
+        for _, y in m[m["normalizacion"] == norma].iterrows():
+            h["m5.mw.%s.%s.p" % (tag, y["bloque"].split(" ")[0])] = float(y["p_mw"])
+    h["m5.mw.n_sig"] = float((m["p_mw"] < 0.05).sum())
+    h["m5.ks.n_sig"] = float((m["p_ks"] < 0.05).sum())
+
+
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8):
         f(h)
     return h
 

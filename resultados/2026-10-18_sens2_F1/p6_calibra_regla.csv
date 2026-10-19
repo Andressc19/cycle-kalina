@@ -1,0 +1,30 @@
+tabla,k,grupo,n_unidades,marcadas,fraccion,ic_lo,ic_hi,bloque,respuesta,reales_bloque,reales_global_metodo,reales_global_mezcla
+B_curva_k,1.0,dummy,36,1.0,0.027777777777777776,0.004920280295569679,0.141700337350308,,,,,
+B_curva_k,1.0,real,108,69.0,0.6388888888888888,0.5449705366692225,0.7232659692462865,,,,,
+B_curva_k_alt_dummy_solas,1.0,dummy,36,0.0,0.0,0.0,0.09642183044857634,,,,,
+B_curva_k,2.0,dummy,36,1.0,0.027777777777777776,0.004920280295569679,0.141700337350308,,,,,
+B_curva_k,2.0,real,108,54.0,0.5,0.407333152227769,0.592666847772231,,,,,
+B_curva_k_alt_dummy_solas,2.0,dummy,36,0.0,0.0,0.0,0.09642183044857634,,,,,
+B_curva_k,3.0,dummy,36,0.0,0.0,0.0,0.09642183044857634,,,,,
+B_curva_k,3.0,real,108,39.0,0.3611111111111111,0.2767340307537134,0.45502946333077743,,,,,
+B_curva_k_alt_dummy_solas,3.0,dummy,36,0.0,0.0,0.0,0.09642183044857634,,,,,
+B_curva_k,4.0,dummy,36,0.0,0.0,0.0,0.09642183044857634,,,,,
+B_curva_k,4.0,real,108,31.0,0.28703703703703703,0.21019243295848952,0.3785115913043965,,,,,
+B_curva_k_alt_dummy_solas,4.0,dummy,36,0.0,0.0,0.0,0.09642183044857634,,,,,
+A_por_respuesta,2.0,Y1 KALINA (total),12,0.0,0.0,0.0,0.2425007574992425,,,,,
+A_por_respuesta,2.0,Y2 eta (%),12,1.0,0.08333333333333333,0.014864709450773478,0.35388592179859524,,,,,
+A_por_respuesta,2.0,Y3 W_net/m_b,12,0.0,0.0,0.0,0.2425007574992425,,,,,
+A_por_respuesta,2.0,Total,36,1.0,0.027777777777777776,0.004920280295569679,0.141700337350308,,,,,
+C_global,,,9,,,,,E14 C3 caliente 150 C,Y1 KALINA (total),1.0,1.0,1.0
+C_global,,,9,,,,,E14 C3 caliente 150 C,Y2 eta (%),5.0,5.0,5.0
+C_global,,,9,,,,,E14 C3 caliente 150 C,Y3 W_net/m_b,5.0,5.0,5.0
+C_global,,,9,,,,,E14 C4 frio 110 C,Y1 KALINA (total),2.0,3.0,3.0
+C_global,,,9,,,,,E14 C4 frio 110 C,Y2 eta (%),6.0,6.0,5.0
+C_global,,,9,,,,,E14 C4 frio 110 C,Y3 W_net/m_b,5.0,5.0,5.0
+C_global,,,9,,,,,E3 C1 Husavik,Y1 KALINA (total),4.0,4.0,4.0
+C_global,,,9,,,,,E3 C1 Husavik,Y2 eta (%),6.0,6.0,6.0
+C_global,,,9,,,,,E3 C1 Husavik,Y3 W_net/m_b,5.0,5.0,4.0
+C_global,,,9,,,,,E3 C2 ancla A*,Y1 KALINA (total),5.0,5.0,5.0
+C_global,,,9,,,,,E3 C2 ancla A*,Y2 eta (%),5.0,5.0,5.0
+C_global,,,9,,,,,E3 C2 ancla A*,Y3 W_net/m_b,6.0,6.0,6.0
+C_global,,,108,,,,,TOTAL,todos,55.0,56.0,54.0
