@@ -74,3 +74,5 @@ L,L1n,OK,CORREGIBLE en dedup = 968
 L,L4pct,OK,KALINA fuera de rango = 14.95 %
 L,L4n,OK,KALINA con eta = 2047
 L,L5nc,OK,NO_CONVERGIO 515 de 3663 puntos
+D,D9b,OK,"mejora de los 12 pisos recalculada: maxima 125, mediana 37 kPa, 9 de 12 con mejora"
+M,M7b,OK,mejora frente al muestreado (ventana semiabierta): +0.38 a +4.80 puntos en 12 bandas

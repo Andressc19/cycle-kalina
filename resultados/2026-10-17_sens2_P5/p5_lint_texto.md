@@ -2,17 +2,17 @@
 
 Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra completa) en `p5_conclusiones.csv`, `INFORME_SENS2.md` y `VALIDACION_SENS2.md`.
 
-- total de apariciones: 185
+- total de apariciones: 188
 
 ## Conteo por palabra
 
 | palabra | apariciones |
 |---|---:|
-| solo | 88 |
+| solo | 90 |
 | todos | 32 |
 | único | 16 |
 | todas | 14 |
-| ninguno | 11 |
+| ninguno | 12 |
 | siempre | 8 |
 | única | 6 |
 | ninguna | 5 |
@@ -35,11 +35,11 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 |---|---:|
 | INFORME_SENS2.md | 83 |
 | p5_conclusiones.csv | 63 |
-| VALIDACION_SENS2.md | 39 |
+| VALIDACION_SENS2.md | 42 |
 
 ## Lista por palabra
 
-### solo (88)
+### solo (90)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
@@ -128,9 +128,11 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 70 |  | mparables entre sí.»** Declarado; los índices globales usan solo el LHS. |
 | VALIDACION_SENS2.md | 93 |  | 2.8 %, intervalo de Wilson de 95 % entre 0.5 y 14.2 %). Con solo 36 evaluaciones el intervalo es ancho, y los métodos no son |
 | VALIDACION_SENS2.md | 95 |  | 3. **«P(KALINA) = 0.47 en C1 sale de perturbar ε_cond solo hacia abajo desde el tope de 0.95. ¿Por qué ese escenario?» |
-| VALIDACION_SENS2.md | 101 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
-| VALIDACION_SENS2.md | 104 |  | - η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar |
-| VALIDACION_SENS2.md | 114 |  |    puntos, solo cambia la variable de rescate). |
+| VALIDACION_SENS2.md | 107 |  | / η máxima frente a T_fuente: un solo punto de partida por banda, 21 a 32 evaluaciones / M7 / 3 a |
+| VALIDACION_SENS2.md | 109 |  | / Solo el motor teqp: sin validación experimental propia del ciclo |
+| VALIDACION_SENS2.md | 115 |  | - Solo motor teqp, sin validación experimental propia del ciclo; e |
+| VALIDACION_SENS2.md | 118 |  | - η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar |
+| VALIDACION_SENS2.md | 128 |  |    puntos, solo cambia la variable de rescate). |
 
 ### todos (32)
 
@@ -167,7 +169,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 42 |  | mparación justa.** CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS, |
 | VALIDACION_SENS2.md | 51 |  | / 2 / Alta / Conclusión F5 decía que casi todos los pares son aditivos sobre η; los datos dan 0.00–0.18 (fu |
 | VALIDACION_SENS2.md | 57 |  |  8 / Media / Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que no se cumple (barridos |
-| VALIDACION_SENS2.md | 105 |  | - Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la  |
+| VALIDACION_SENS2.md | 119 |  | - Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la  |
 
 ### único (16)
 
@@ -209,7 +211,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 93 |  | ue 2.8 % es una estimación y no una tasa nominal. Al juntar todas las pruebas de los cuatro bloques y las tres respuestas en  |
 | VALIDACION_SENS2.md | 97 |  | >12<!--/g--> de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO |
 
-### ninguno (11)
+### ninguno (12)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
@@ -224,6 +226,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 83 |  |  B, se auditaron con Excel real el 2026-10-19: 94 gráficos, ninguno vacío, solapado ni tapado) |
 | VALIDACION_SENS2.md | 94 |  | as y 0 % en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que s |
 | VALIDACION_SENS2.md | 97 |  |  NO_CONVERGIO con el triple de presupuesto y no se recuperó ninguno (L10), así que el sesgo de los umbrales inferiores de T_fue |
+| VALIDACION_SENS2.md | 106 |  | n los NO_CONVERGIO (el reintento con más tiempo no recupera ninguno) / L10, D3, F3 / Otro método de resolución del motor / No e |
 
 ### siempre (8)
 

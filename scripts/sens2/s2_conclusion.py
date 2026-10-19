@@ -11,19 +11,12 @@ sys.path.insert(0, os.path.join(RAIZ, "scripts", "sens1"))
 from x2_formato import (BORDE, anchos_col, condiciones, descripcion, encabezado,  # noqa: E402
                         fila_datos, nota, subtitulo, tabla, titulo)
 from x5_graficos import bloque  # noqa: E402
+import s2_mapa  # noqa: E402
 
 ANCHOS_CONCL = [6, 6, 40, 90, 44, 10, 38]
 ENC_CONCL = ["id", "fase", "afirmacion", "evidencia", "implicacion", "confianza", "fuente"]
 
-PREGUNTAS = [
-    ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises; F3 Pisos 25 kPa y reintento", "D1 a D6; D8; D9"),
-    ("Partiendo de un KALINA, que pasa al mover una o dos variables?",
-     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate; F5 Superficies de respuesta; F5 Incertidumbre; F5 Incertidumbre simetrica", "D7; L6; L2; F6; F5; R1; D8; U1 a U5"),
-    ("Como se comporta el regenerador y el ciclo con la temperatura de la fuente?",
-     "F4 Regenerador vs T_fuente; F4 Regenerador y condensador; F4 Ciclo vs T_fuente; F4 Optimo vs T_fuente", "E8; E4; M6; M7"),
-    ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion; F4 Equipos por kW; F4 Caudales y bomba",
-     "E1 a E7; E9; E10"),
-]
+PREGUNTAS = s2_mapa.tabla_consolidada()
 
 
 def bluf(datos):

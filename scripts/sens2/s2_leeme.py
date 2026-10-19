@@ -11,6 +11,8 @@ sys.path.insert(0, os.path.join(RAIZ, "scripts", "sens1"))
 from x1_cargar import CENTROS  # noqa: E402
 from x2_formato import condiciones, nota, subtitulo, tabla, titulo  # noqa: E402
 import p5_globales as _PB  # noqa: E402
+import s2_mapa  # noqa: E402
+import s2_limites as _LIM  # noqa: E402
 
 # Parrafo de rango experimental, copiado del libro 1 (x7_construir). No se importa x7_construir
 # porque construye el libro entero al importarse.
@@ -68,15 +70,7 @@ GUIA = [
     ("D6 Datos equipos", "Turbina y regenerador por banda de r_P (p4_bandas.csv)."),
 ]
 
-PREGUNTAS = [
-    ("En que rangos hay KALINA (total)?", "F1 Existencia; F1 Reglas y zonas grises; F3 Pisos 25 kPa y reintento"),
-    ("Partiendo de un KALINA, que pasa si muevo una o dos variables?",
-     "F1 Margenes de operacion; F2 CORREGIBLE vs KALINA; F2 Distancia y rescate; F5 Superficies de respuesta; F5 Incertidumbre; F5 Incertidumbre simetrica"),
-    ("Como se comporta el regenerador y el ciclo con la temperatura de la fuente?",
-     "F4 Regenerador vs T_fuente; F4 Regenerador y condensador; F4 Ciclo vs T_fuente; F4 Optimo vs T_fuente"),
-    ("Que datos necesito para preseleccionar los equipos?", "F4 Preseleccion; F4 Equipos por kW; F4 Caudales y bomba"),
-]
-
+PREGUNTAS = s2_mapa.tabla_leeme()
 VARS_CENTRO = ["T_fuente", "T_sumidero", "P_alta", "P_baja", "x_b", "eta_t", "eta_p",
                "eps_hrvg", "eps_reg", "eps_cond"]
 
@@ -143,6 +137,11 @@ def hoja_leeme(wb, datos):
     f = subtitulo(ws, f, "Preguntas del profesor y donde se responden")
     _, f, _ = tabla(ws, f, ["Pregunta del profesor", "Hoja que la responde"], PREGUNTAS,
                     anchos=[60, 60])
+    f += 1
+
+    f = subtitulo(ws, f, "Limites declarados")
+    f = condiciones(ws, f, ["Fuente: scripts/sens2/s2_limites.py (misma lista que VALIDACION_SENS2.md).", "Que se lista: lo que el trabajo no resuelve y que lo resolveria."])
+    _, f, _ = tabla(ws, f, _LIM.ENCABEZADOS, [list(x) for x in _LIM.LIMITES], anchos=[70, 18, 50, 26])
     f += 1
 
     f = subtitulo(ws, f, "Limitaciones")

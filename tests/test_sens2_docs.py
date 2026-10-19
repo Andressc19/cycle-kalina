@@ -88,3 +88,42 @@ def test_tabla_de_preguntas_del_leeme_y_de_la_consolidada_incluyen_la_etapa_b():
         for i, hojas in exigidas.items():
             for h in hojas:
                 assert h in tabla[i][1], "%s: la pregunta %d no lista %r" % (nombre, i + 1, h)
+
+
+def test_mapa_asigna_cada_conclusion_y_cada_hoja():
+    """`s2_mapa` es la unica definicion del mapa de preguntas: ninguna conclusion ni hoja puede quedar sin asignar."""
+    import pandas as pd
+    import s2_mapa
+    from openpyxl import load_workbook
+    ids = list(pd.read_csv(os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5", "p5_conclusiones.csv"))["id"].astype(str))
+    sin = [i for i in ids if i not in set(s2_mapa.conclusiones_asignadas())]
+    assert not sin, "conclusiones sin asignar en s2_mapa: %s" % sin
+    desconocidas = [i for i in set(s2_mapa.conclusiones_asignadas()) if i not in ids]
+    assert not desconocidas, "s2_mapa cita conclusiones que no existen: %s" % desconocidas
+    hojas = load_workbook(G.LIBRO, read_only=True).sheetnames
+    sin_h = [h for h in hojas if h not in set(s2_mapa.hojas_asignadas())]
+    assert not sin_h, "hojas sin asignar en s2_mapa: %s" % sin_h
+    fantasmas = [h for h in set(s2_mapa.hojas_asignadas()) if h not in hojas]
+    assert not fantasmas, "s2_mapa cita hojas que no existen: %s" % fantasmas
+
+
+def test_pdf_incluye_cada_conclusion_una_vez():
+    """Cada una de las conclusiones del CSV aparece en el PDF (como bloque propio), sin repetirse."""
+    import pandas as pd
+    ids = list(pd.read_csv(os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5", "p5_conclusiones.csv"))["id"].astype(str))
+    with open(os.path.join(RAIZ, "docs", "INFORME_TECNICO_SENS2.html"), encoding="utf-8") as fh:
+        t = fh.read()
+    for cid in ids:
+        n = t.count('<div class="c"><b>%s</b> [' % cid)
+        assert n == 1, "la conclusion %s aparece %d veces en el PDF" % (cid, n)
+
+
+def test_limites_citan_conclusiones_que_existen_y_el_leeme_los_lista():
+    import pandas as pd
+    import s2_limites
+    ids = set(pd.read_csv(os.path.join(RAIZ, "resultados", "2026-10-17_sens2_P5", "p5_conclusiones.csv"))["id"].astype(str))
+    for cid in s2_limites.conclusiones_citadas():
+        assert cid in ids, "s2_limites cita %s, que no existe" % cid
+    texto = _texto_hoja("LEEME")
+    for limite, *_ in s2_limites.LIMITES:
+        assert limite in texto, "el LEEME no lista el limite %r" % limite[:60]

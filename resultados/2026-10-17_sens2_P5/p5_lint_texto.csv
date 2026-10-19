@@ -180,7 +180,10 @@ VALIDACION_SENS2.md,95,,solo,3. **«P(KALINA) = 0.47 en C1 sale de perturbar ε_
 VALIDACION_SENS2.md,97,,todas,">12<!--/g--> de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO"
 VALIDACION_SENS2.md,97,,ninguno," NO_CONVERGIO con el triple de presupuesto y no se recuperó ninguno (L10), así que el sesgo de los umbrales inferiores de T_fue"
 VALIDACION_SENS2.md,97,,ninguna,**«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo de los NO_CONVERGIO del L
-VALIDACION_SENS2.md,101,,solo,"- Solo motor teqp, sin validación experimental propia del ciclo; e"
-VALIDACION_SENS2.md,104,,solo,- η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar
-VALIDACION_SENS2.md,105,,todos,- Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la 
-VALIDACION_SENS2.md,114,,solo,"   puntos, solo cambia la variable de rescate)."
+VALIDACION_SENS2.md,106,,ninguno,"n los NO_CONVERGIO (el reintento con más tiempo no recupera ninguno) / L10, D3, F3 / Otro método de resolución del motor / No e"
+VALIDACION_SENS2.md,107,,solo,"/ η máxima frente a T_fuente: un solo punto de partida por banda, 21 a 32 evaluaciones / M7 / 3 a"
+VALIDACION_SENS2.md,109,,solo,/ Solo el motor teqp: sin validación experimental propia del ciclo
+VALIDACION_SENS2.md,115,,solo,"- Solo motor teqp, sin validación experimental propia del ciclo; e"
+VALIDACION_SENS2.md,118,,solo,- η y las potencias existen solo en puntos convergidos (sesgo de supervivencia en las compar
+VALIDACION_SENS2.md,119,,todos,- Los p-valores sobre todos los puntos suponen independencia que no se cumple; usar la 
+VALIDACION_SENS2.md,128,,solo,"   puntos, solo cambia la variable de rescate)."

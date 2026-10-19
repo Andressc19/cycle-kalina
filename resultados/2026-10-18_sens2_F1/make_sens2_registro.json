@@ -1,5 +1,5 @@
 {
-  "commit": "b4bfb4e2ce97e9a649023f180b28be3eadcdbe15",
+  "commit": "c9b52ab61f996cc71588f9b55bd1cef44a6abaaa",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -15,103 +15,103 @@
     {
       "nombre": "p5_generar",
       "estado": "ok",
-      "segundos": 2.46,
+      "segundos": 2.94,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado",
       "estado": "ok",
-      "segundos": 3.2,
+      "segundos": 3.79,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado_fuente",
       "estado": "ok",
-      "segundos": 6.76,
+      "segundos": 8.42,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check",
       "estado": "ok",
-      "segundos": 4.76,
+      "segundos": 5.69,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check_c",
       "estado": "ok",
-      "segundos": 1.06,
+      "segundos": 1.24,
       "codigo": 0
     },
     {
       "nombre": "s2_construir",
       "estado": "ok",
-      "segundos": 11.8,
+      "segundos": 13.3,
       "codigo": 0
     },
     {
       "nombre": "s2_verificar",
       "estado": "ok",
-      "segundos": 27.65,
+      "segundos": 33.33,
       "codigo": 0
     },
     {
       "nombre": "s2_informe",
       "estado": "ok",
-      "segundos": 2.9,
+      "segundos": 3.66,
       "codigo": 0
     },
     {
       "nombre": "p5_lint_estado",
       "estado": "ok",
-      "segundos": 1.07,
+      "segundos": 1.37,
       "codigo": 0
     },
     {
       "nombre": "p5_cruce",
       "estado": "ok",
-      "segundos": 0.95,
+      "segundos": 1.15,
       "codigo": 0
     },
     {
       "nombre": "p5_globales",
       "estado": "ok",
-      "segundos": 2.98,
+      "segundos": 3.97,
       "codigo": 0
     },
     {
       "nombre": "docs_sync",
       "estado": "ok",
-      "segundos": 2.96,
+      "segundos": 3.54,
       "codigo": 0
     },
     {
       "nombre": "p5_lint_texto",
       "estado": "ok",
-      "segundos": 1.04,
+      "segundos": 1.21,
       "codigo": 0
     },
     {
       "nombre": "p5_docs_check",
       "estado": "ok",
-      "segundos": 2.37,
+      "segundos": 2.75,
       "codigo": 0
     },
     {
       "nombre": "s2_figuras",
       "estado": "ok",
-      "segundos": 3.98,
+      "segundos": 4.57,
       "codigo": 0
     },
     {
       "nombre": "s2_informe_pdf",
       "estado": "ok",
-      "segundos": 2.82,
+      "segundos": 3.04,
       "codigo": 0
     },
     {
       "nombre": "pruebas",
       "estado": "ok",
-      "segundos": 11.61,
+      "segundos": 13.75,
       "codigo": 0
     }
   ]
