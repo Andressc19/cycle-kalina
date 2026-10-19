@@ -46,3 +46,4 @@ D9,determinista,2,2,pendiente,acotado,na,no,si,"malla de 100 a 150 kPa y puntos 
 L10,recuento,1,90,na,parcial,na,no,no,"90 de 515 NO_CONVERGIO reintentados (75 lentos y 15 de control); ninguno recuperado"
 E10,inferencia,1,30,na,parcial,si,no,si,"150 KALINA elegidos en 5 ambitos (30 cada uno); envolventes del muestreo y no de toda la campana"
 U5,inferencia,2,46,na,parcial,si,no,si,"48 puntos por centro con IC de Wilson; dos escenarios de centro de eps_cond (0.90 y 0.95); tolerancias supuestas"
+M7,inferencia,1,16,na,parcial,na,no,si,"busqueda local de 3 variables con tope de 30 evaluaciones por banda; 12 bandas; maximo local sin intervalo; variables restantes fijas"

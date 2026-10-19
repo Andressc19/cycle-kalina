@@ -398,6 +398,21 @@ def _ronda9(h):
     h["reint.c_otras"] = float(len(c)) - h["reint.c_bracket"] - h["reint.c_balance"] - h["reint.c_lazo"]
 
 
+def _ronda12(h):
+    t = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_opt_T.csv"))
+    for x in t.itertuples():
+        k = "opt.%d" % round(x.T_fuente_C)
+        h[k + ".eta"], h[k + ".pa"], h[k + ".pb"], h[k + ".xb"] = float(x.eta_max_pct), float(x.P_alta), float(x.P_baja), float(x.x_b)
+        h[k + ".dentro"] = float(x.eta_max_dentro_pct)
+        h[k + ".mej"] = float(x.mejora_pp)
+        h[k + ".n"], h[k + ".nk"] = float(x.n_eval), float(x.n_kalina)
+    b = t[t["T_fuente_C"] < 165]
+    h["opt.pb.min"], h["opt.pb.max"] = float(b["P_baja"].min()), float(b["P_baja"].max())
+    h["opt.xb.min"], h["opt.xb.max"] = float(b["x_b"].min()), float(b["x_b"].max())
+    h["opt.n_eval"], h["opt.n_kalina"] = float(t["n_eval"].sum()), float(t["n_kalina"].sum())
+    h["opt.eta.min_alta"], h["opt.eta.max_alta"] = float(t[t["T_fuente_C"] > 165]["eta_max_pct"].min()), float(t[t["T_fuente_C"] > 165]["eta_max_pct"].max())
+
+
 def _ronda11(h):
     t = pd.read_csv(os.path.join(R, "2026-10-18_sens2_F1", "p6_sim.csv"))
     for x in t.itertuples():
@@ -424,7 +439,7 @@ def _ronda10(h):
 
 def hechos():
     h = {}
-    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8, _ronda9, _ronda10, _ronda11):
+    for f in (_u1, _mo2, _nc, _f6, _r1, _rob, _f1, _pareado, _f1b, _fdr, _eqic, _ronda2, _ronda3, _ciclo, _kw, _ronda6, _ronda8, _ronda9, _ronda10, _ronda11, _ronda12):
         f(h)
     return h
 

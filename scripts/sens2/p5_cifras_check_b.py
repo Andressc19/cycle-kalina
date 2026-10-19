@@ -137,3 +137,16 @@ def extra7(chk, ev, sub, P):
     n4 = int((d["centro"] == "C4").sum())
     chk("U", "U5", all(sub(t, p, "%.2f") for p in ps.values()) and sub(t, n4, "%d"),
         "SIM crudo: P(KALINA) " + " ".join("%s %.2f" % kv for kv in ps.items()) + "; n C4 = %d" % n4)
+
+
+def extra8(chk, ev, sub, P):
+    """M7 (etapa B): eta maxima por banda recalculada desde las filas crudas de las 12 busquedas (s2b_opt_*.csv)."""
+    import glob
+    import os
+    f = glob.glob(P("2026-10-18_sens2_B", "s2b_opt_*.csv"))
+    o = pd.concat([pd.read_csv(x) for x in f], ignore_index=True)
+    k = o[o["clasificacion"] == "KALINA"]
+    mx = {round(b - 273.15): 100.0 * float(g["eta"].max()) for b, g in k.groupby("banda")}
+    t = ev("M7", "afirmacion") + " " + ev("M7")
+    ok = all(sub(t, mx[c], "%.1f") for c in (80, 100, 120, 140, 160)) and sub(t, len(o), "%d") and sub(t, len(k), "%d")
+    chk("M", "M7", ok, "eta max por banda: " + " ".join("%d:%.1f" % (c, v) for c, v in sorted(mx.items())) + "; %d puntos, %d KALINA" % (len(o), len(k)))

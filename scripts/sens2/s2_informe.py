@@ -89,8 +89,8 @@ def main():
     o2 = v[(v["seccion"] == "dominante") & (v["centro"] == "todos") & (v["clave"] == "viol_O2")]
     L = ["# Informe de Sensibilidad 2: análisis de los 3 921 puntos de Sensibilidad 1", "",
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
-         "alta; la mayor η muestreada es %.2f %% dentro del rango experimental (%.2f %% fuera; no se corrió un optimizador).** "
-         "La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización." % (n_in, n_out), "",
+         "alta; la mayor η muestreada es %.2f %% dentro del rango experimental (%.2f %% fuera); una búsqueda local por banda de T_fuente encuentra hasta %.1f %% dentro del rango (M7), sin ser un óptimo global.** "
+         "La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización." % (n_in, n_out, H["opt.160.dentro"]), "",
          "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (%d hojas, %d gráficos). Las cifras salen de los CSV de `resultados/` "
          "(P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`." % libro_conteos(), "",
          "## 1. Resumen ejecutivo", "",

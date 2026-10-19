@@ -1,8 +1,8 @@
 # Informe de Sensibilidad 2: análisis de los 3 921 puntos de Sensibilidad 1
 
-> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la mayor η muestreada es 14.53 % dentro del rango experimental (14.82 % fuera; no se corrió un optimizador).** La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización.
+> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es alta; la mayor η muestreada es 14.53 % dentro del rango experimental (14.82 % fuera); una búsqueda local por banda de T_fuente encuentra hasta 16.7 % dentro del rango (M7), sin ser un óptimo global.** La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización.
 
-Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (31 hojas, 93 gráficos). Las cifras salen de los CSV de `resultados/` (P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`.
+Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (32 hojas, 94 gráficos). Las cifras salen de los CSV de `resultados/` (P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`.
 
 ## 1. Resumen ejecutivo
 
@@ -176,7 +176,7 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 **M1 [MÁXIMA EFICIENCIA, fase B, confianza Media].** La mayor η muestreada es 14.82 % con la fuente a 170 °C, fuera del rango experimental; dentro del rango es 14.53 %.
 
 - Evidencia: 14.82 %: fuente 443.15 K, P_alta 4550 kPa, P_baja 610 kPa, x_b 0.73 (N1-T170-14). 14.53 %: fuente 423.15 K, P_alta 6000 kPa, P_baja 650 kPa, x_b 0.75, η_t 0.85, ε_reg 0.75, ε_cond 0.95 (N10-C3-0016). Mediana de η en KALINA 7.7 % (5.5 % en el muestreo LHS, que depende del diseño); P90 11.5 %. Son los mayores valores entre los puntos muestreados: no se corrió un optimizador. Su margen de cavitación es m_O2 = 0.7 K en el de 14.82 % y 6.7 K en el de 14.53 %.
-- Implicación: Para una fuente de 150 °C los puntos muestreados llegan a ≈ 14.5 % con P_alta alta (≥ 5000 kPa) y quedan en el borde de la caja muestreada (P_alta 6000 kPa, ε_cond 0.95), de modo que el techo real puede ser mayor; la cifra de 14.8 % necesita 170 °C. La diferencia entre el máximo dentro y fuera del rango (0.29 puntos) es menor que la banda del modelo de propiedades (±0.7 puntos).
+- Implicación: Para una fuente de 150 °C los puntos muestreados llegan a ≈ 14.5 % con P_alta alta (≥ 5000 kPa) y quedan en el borde de la caja muestreada (P_alta 6000 kPa, ε_cond 0.95), de modo que el techo real puede ser mayor (la búsqueda local de M7 encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango); la cifra de 14.8 % necesita 170 °C. La diferencia entre el máximo dentro y fuera del rango (0.29 puntos) es menor que la banda del modelo de propiedades (±0.7 puntos).
 - Fuente: P2 p2_robustez.md; p2_dataset_dedup.csv
 - Criterio de confianza: cumple 5 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia
 
@@ -218,9 +218,16 @@ Cada conclusión indica su fase (A existencia, B interior de KALINA, C comparaci
 **M6 [MÁXIMA EFICIENCIA, fase B, confianza Baja].** En los KALINA muestreados dentro del rango experimental, la mayor η por banda de T_fuente es menor en la banda de 77 °C (7.0 %) y no muestra una caída clara entre 97 y 157 °C (12.1, 14.0, 13.3 y 14.5 %); desde ≈ 160 °C la mayoría de los KALINA muestreados está fuera del rango experimental y no se puede evaluar.
 
 - Evidencia: Mayor η muestreada dentro del rango experimental por banda de T_fuente de 20 K (centro en °C y KALINA dentro del rango de la banda): 7.0 % (77; 17), 12.1 (97; 171), 14.0 (117; 681), 13.3 (137; 480), 14.5 (157; 369) y 12.3 (177; 17); las bandas de 197 y 217 °C tienen 5 y 1 puntos dentro del rango y no se usan. Desde ≈ 160 °C el límite de 420 K del líquido deja la mayoría de los KALINA fuera del rango (284 de 340, 84 %), de modo que la caída del máximo dentro del rango a 12.3 % en la banda de 177 °C coincide con ese corte; el máximo global (14.82 %) está a 170 °C, fuera del rango. En la banda de 77 °C la mayoría de los 106 puntos no convergió (P(KALINA) 0.16; 0.81 si se excluyen los NO_CONVERGIO). El máximo de un conjunto crece con su tamaño y las bandas tienen de 106 a 1257 puntos y diseños de muestreo distintos (la de 117 °C contiene la malla B3 diseñada cerca del óptimo): son mayores valores muestreados, no óptimos por temperatura.
-- Implicación: El panorama de η frente a T_fuente que se puede dar hoy es descriptivo; el máximo por temperatura exige optimizar P_alta, P_baja y x_b en cada banda con el motor (etapa C del plan).
+- Implicación: El panorama de η frente a T_fuente que se puede dar hoy es descriptivo; el máximo por temperatura se buscó con el motor optimizando P_alta, P_baja y x_b en cada banda (M7), como máximo local y no como óptimo global.
 - Fuente: P2 p2_dataset_dedup.csv; F1 p6_ciclo_T.csv; hoja F4 Ciclo vs T_fuente
 - Criterio de confianza: cumple 1 de 6 criterios
+
+**M7 [MÁXIMA EFICIENCIA, fase C, confianza Media].** La mayor η encontrada por búsqueda local sube con T_fuente de 11.0 % a 80 °C a 16.8 % a 160 °C y por encima de 160 °C no sigue subiendo: oscila entre 13.4 y 16.7 % hasta 300 °C, sin tendencia clara; es un máximo local por banda y no un óptimo global.
+
+- Evidencia: Búsqueda coordenada a coordenada de P_alta, P_baja y x_b en 12 bandas de T_fuente (80 a 300 °C, cada 20 °C), con hasta 30 evaluaciones por banda (347 puntos del motor, 205 KALINA) y el resto de variables fijas (η_t 0.85, η_p 0.80, ε_HRVG 0.85, ε_reg 0.75, ε_cond 0.95, T_sumidero 280.5 K). η máxima: 11.0, 13.0, 14.4, 15.3 y 16.8 % a 80, 100, 120, 140 y 160 °C, con P_baja entre 550 y 710 kPa (cerca del piso de cavitación, D9) y x_b entre 0.77 y 0.93. Frente al máximo del conjunto muestreado en la misma banda, la mejora es de -0.12 a +1.95 puntos; a 80 °C la búsqueda no alcanza el máximo muestreado (-0.12), así que la búsqueda local queda corta en esa banda. Desde ≈ 160 °C el punto óptimo está fuera del rango experimental (líquido > 420 K); dentro del rango el máximo a 160 °C es 16.7 %.
+- Implicación: La η máxima de 14.5 % dentro del rango (M1) no es un techo: la búsqueda local encuentra 15.3 % a 140 °C y 16.7 % a 160 °C dentro del rango, con P_baja cerca del piso y P_alta de 5250 a 6500 kPa. Con la banda del modelo de propiedades (±0.7 puntos) y el tope de 30 evaluaciones, la forma por encima de 160 °C no debe leerse como una curva.
+- Fuente: F1 p6_opt_T.csv; Excel 2 hoja F4 Optimo vs T_fuente
+- Criterio de confianza: cumple 3 de 6 criterios (contando los que no aplican); falta: una sola linea de evidencia; n_min < 30; robusto_diseno = parcial
 
 ### 3.4 FLUCTUACIÓN (hoja F3 del libro)
 

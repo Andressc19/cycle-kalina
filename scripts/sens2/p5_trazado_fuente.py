@@ -26,7 +26,7 @@ P = {k: os.path.join(R, v) for k, v in (("P1", "2026-10-17_sens2_P1"), ("P2", "2
                                         ("P4", "2026-10-17_sens2_P4"), ("U1", "2026-10-17_sens2_U1"), ("R1", "2026-10-18_sens2_R1"),
                                         ("F1", "2026-10-18_sens2_F1"), ("P5", "2026-10-17_sens2_P5"))}
 HOJAS = {"F1 Margenes": ["P1:", "P2:p2_dataset_dedup"], "F4 Regenerador vs T_fuente": ["P4:", "P2:p2_dataset_dedup"],
-         "F5 Superficies": ["P2:p2_dataset_dedup"], "F5 Incertidumbre": ["U1:"], "F4 Ciclo": ["F1:p6_ciclo"], "F5 Incertidumbre simetrica": ["F1:p6_sim", "U1:"], "F3 Pisos 25 kPa": ["F1:p6_pisos25", "F1:p6_reintento_nc"], "F4 Caudales": ["F1:p6_dens"], "F4 Equipos por kW": ["F1:p6_equipos_kw"],
+         "F5 Superficies": ["P2:p2_dataset_dedup"], "F5 Incertidumbre": ["U1:"], "F4 Ciclo": ["F1:p6_ciclo"], "F5 Incertidumbre simetrica": ["F1:p6_sim", "U1:"], "F3 Pisos 25 kPa": ["F1:p6_pisos25", "F1:p6_reintento_nc"], "F4 Optimo": ["F1:p6_opt_T"], "F4 Caudales": ["F1:p6_dens"], "F4 Equipos por kW": ["F1:p6_equipos_kw"],
          "Revisi": ["P2:p2_dataset_dedup", "U1:"], "p1 dataset": ["P1:p1_dataset"]}
 
 
