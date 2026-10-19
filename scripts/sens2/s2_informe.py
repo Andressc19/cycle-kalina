@@ -90,7 +90,7 @@ def main():
     L = ["# Informe de Sensibilidad 2: análisis de los 3 921 puntos de Sensibilidad 1", "",
          "> **KALINA existe donde P_baja supera su piso de cavitación y la efectividad del condensador es "
          "alta; la mayor η muestreada es %.2f %% dentro del rango experimental (%.2f %% fuera; no se corrió un optimizador).** "
-         "Los puntos de mayor η están cerca del piso de P_baja solo en C1 con el muestreo LHS (M5); con todos los puntos la cercanía depende del diseño." % (n_in, n_out), "",
+         "La cercanía de los puntos de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección por 4 bloques ni un cambio de normalización." % (n_in, n_out), "",
          "Libro asociado: `datos/Kalina_anal_sensible_2.xlsx` (%d hojas, %d gráficos). Las cifras salen de los CSV de `resultados/` "
          "(P1 a P4, U1, R1 y F1) y de los datos de Sensibilidad 1. Rama `test/anal_terremoto`." % libro_conteos(), "",
          "## 1. Resumen ejecutivo", "",

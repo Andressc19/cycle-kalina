@@ -450,6 +450,7 @@ L2,implicacion,0.2,1,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 L2,implicacion,0.5,1,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L2,implicacion,-0.87,2,si,2026-10-17_sens2_P1/p1_dataset.csv:Wnet
 L2,implicacion,0.5,1,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
+L2,implicacion,0.5,1,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L2,implicacion,-1.72,2,si,2026-10-17_sens2_P2/p2_distancia.csv:l1
 L2,implicacion,1.34,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 L2,implicacion,-0.25,2,si,2026-10-17_sens2_P1/p1_dataset.csv:qreg_qi
