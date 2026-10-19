@@ -90,7 +90,7 @@ def test_informe_y_validacion_dicen_hojas_y_graficos_reales():
     texto = "(%d hojas, %d gráficos)" % (n_hojas, n_graficos)
     for doc in (INFORME, VALIDACION):
         with open(doc, encoding="utf-8") as f:
-            contenido = f.read()
+            contenido = re.sub(r"<!--g:[a-z0-9_]+-->(.*?)<!--/g-->", lambda m: m.group(1), f.read())
         assert texto in contenido, "%s no contiene %r" % (os.path.basename(doc), texto)
 
 

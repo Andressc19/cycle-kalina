@@ -1,5 +1,5 @@
 {
-  "commit": "1ec6f638bbb85e18ba33df76aa4d5e5c1a5bd49b",
+  "commit": "e01411c4a580a507da99face51904b83317d8fcb",
   "versiones": {
     "python": "3.13.7",
     "numpy": "2.5.3",
@@ -15,79 +15,91 @@
     {
       "nombre": "p5_generar",
       "estado": "ok",
-      "segundos": 2.45,
+      "segundos": 3.39,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado",
       "estado": "ok",
-      "segundos": 3.51,
+      "segundos": 4.41,
       "codigo": 0
     },
     {
       "nombre": "p5_trazado_fuente",
       "estado": "ok",
-      "segundos": 6.63,
+      "segundos": 8.98,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check",
       "estado": "ok",
-      "segundos": 4.66,
+      "segundos": 6.61,
       "codigo": 0
     },
     {
       "nombre": "p5_cifras_check_c",
       "estado": "ok",
-      "segundos": 0.99,
+      "segundos": 1.42,
       "codigo": 0
     },
     {
       "nombre": "s2_construir",
       "estado": "ok",
-      "segundos": 10.64,
+      "segundos": 15.89,
+      "codigo": 0
+    },
+    {
+      "nombre": "p5_globales",
+      "estado": "ok",
+      "segundos": 4.35,
+      "codigo": 0
+    },
+    {
+      "nombre": "docs_sync",
+      "estado": "ok",
+      "segundos": 4.03,
       "codigo": 0
     },
     {
       "nombre": "s2_verificar",
       "estado": "ok",
-      "segundos": 23.56,
+      "segundos": 36.96,
       "codigo": 0
     },
     {
       "nombre": "s2_informe",
       "estado": "ok",
-      "segundos": 2.75,
+      "segundos": 3.64,
       "codigo": 0
     },
     {
       "nombre": "p5_lint_texto",
       "estado": "ok",
-      "segundos": 0.98,
+      "segundos": 1.38,
       "codigo": 0
     },
     {
       "nombre": "p5_docs_check",
       "estado": "ok",
-      "segundos": 2.23,
+      "segundos": 3.48,
       "codigo": 0
     },
     {
       "nombre": "s2_figuras",
       "estado": "ok",
-      "segundos": 3.66,
+      "segundos": 5.32,
       "codigo": 0
     },
     {
       "nombre": "s2_informe_pdf",
       "estado": "ok",
-      "segundos": 3.95,
+      "segundos": 1.47,
       "codigo": 0
     },
     {
       "nombre": "pruebas",
       "estado": "ok",
-      "segundos": 6.03,
+      "segundos": 15.71,
       "codigo": 0
     }
   ]

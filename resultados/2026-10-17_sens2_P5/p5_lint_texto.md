@@ -2,7 +2,7 @@
 
 Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra completa) en `p5_conclusiones.csv`, `INFORME_SENS2.md` y `VALIDACION_SENS2.md`.
 
-- total de apariciones: 180
+- total de apariciones: 182
 
 ## Conteo por palabra
 
@@ -16,7 +16,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | siempre | 8 |
 | única | 6 |
 | ninguna | 5 |
-| causa | 2 |
+| causa | 4 |
 | prueba que | 1 |
 | claramente | 0 |
 | confirma | 0 |
@@ -33,8 +33,8 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 
 | archivo | apariciones |
 |---|---:|
-| INFORME_SENS2.md | 82 |
-| p5_conclusiones.csv | 62 |
+| INFORME_SENS2.md | 83 |
+| p5_conclusiones.csv | 63 |
 | VALIDACION_SENS2.md | 36 |
 
 ## Lista por palabra
@@ -147,7 +147,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | p5_conclusiones.csv | E9 | evidencia | KALINA (total), n = 2047, ámbito todos, P5 a P95 (mediana): Q_i 8.2 a 38.7 kW por kW neto (12.9);  |
 | p5_conclusiones.csv | E9 | evidencia |  por kg/s entre W_net por kg/s; Q_i por kW neto es 100/η en todos los puntos (2 047 de 2 047 dentro del 1 %). |
 | p5_conclusiones.csv | E9 | implicacion | condensador de 635 a 761 kW y fluido de 0.6 a 1.3 kg/s. Con todos los KALINA muestreados y 100 kW netos: HRVG de 818 a 3871 k |
-| p5_conclusiones.csv | L10 | evidencia | e 1 100 s. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
+| p5_conclusiones.csv | L10 | evidencia |  la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
 | p5_conclusiones.csv | E10 | evidencia | e estudios, en posiciones equiespaciadas del orden por η) y todos reprodujeron su η original (diferencia máxima 0.00 pp). Den |
 | INFORME_SENS2.md | 12 |  | °C y sin poder evaluarse por encima de ≈ 160 °C, donde casi todos los KALINA salen del rango experimental) y de los requisito |
 | INFORME_SENS2.md | 23 |  | on Morris, Sobol y FAST (exigen corridas nuevas y salida en todos los puntos). Fase A: existencia y fronteras (P1). Fase C: C |
@@ -162,7 +162,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 328 |  |  ε_cond sobre ese umbral todavía se pierden algunos puntos (todos CORREGIBLE por cavitación). |
 | INFORME_SENS2.md | 330 |  | ε_cond ≥ 0.922 en C1 todavía 11 de 54 puntos no son KALINA (todos CORREGIBLE, con P_baja de 661 a 712 kPa, T_sumidero desde 2 |
 | INFORME_SENS2.md | 344 |  | e 1 K solo normaliza el índice D). Entre los 2243 KALINA de todos los estudios de Sensibilidad 1 (con duplicados), 2.6 % tien |
-| INFORME_SENS2.md | 365 |  | e 1 100 s. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
+| INFORME_SENS2.md | 365 |  |  la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
 | INFORME_SENS2.md | 400 |  |  distintos del mismo percentil. El trazado de cifras contra todos los CSV no discrimina (acepta cualquier cifra inventada); e |
 | INFORME_SENS2.md | 401 |  | - Los p-valores y los IC de la comparación sobre todos los puntos suponen independencia que los barridos y las mal |
 | VALIDACION_SENS2.md | 42 |  | mparación justa.** CORREGIBLE frente a KALINA se hace sobre todos los puntos y solo sobre el muestreo LHS, |
@@ -207,7 +207,7 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | VALIDACION_SENS2.md | 50 |  |  El BLUF del libro daba η máxima 17.37 / 18.68 % (máximo de todas las clases); lo correcto es 14.53 / 14.82 % (solo KALINA).  |
 | VALIDACION_SENS2.md | 54 |  | ue sí tienen ganancia (solo se tomaban los 5 mejores) / Usa todas las variables; 0 solo si la variable es constante en el blo |
 | VALIDACION_SENS2.md | 93 |  | ue 2.8 % es una estimación y no una tasa nominal. Al juntar todas las pruebas de los cuatro bloques y las tres respuestas en  |
-| VALIDACION_SENS2.md | 97 |  |  cifras y 12 de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO |
+| VALIDACION_SENS2.md | 97 |  | >12<!--/g--> de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO |
 
 ### ninguno (8)
 
@@ -256,12 +256,14 @@ Apariciones de palabras fuertes (sin distinguir mayusculas, como palabra complet
 | INFORME_SENS2.md | 300 |  | **L3 [LÍMITES KALINA, fase A, confianza Media].** Ninguna regla simple separa KALINA de no-KALINA: la región es multi |
 | VALIDACION_SENS2.md | 97 |  | **«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo del 28 % de NO_CONVERGIO  |
 
-### causa (2)
+### causa (4)
 
 | archivo | id | campo | contexto |
 |---|---|---|---|
 | p5_conclusiones.csv | L10 | afirmacion | ún reintento superó 554 s con un presupuesto de 900 s) y la causa, método de resolución o inexistencia física del estado, sig |
+| p5_conclusiones.csv | L10 | evidencia |  o lazo frío sin convergencia): el corte de 600 s no era la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
 | INFORME_SENS2.md | 363 |  | ún reintento superó 554 s con un presupuesto de 900 s) y la causa, método de resolución o inexistencia física del estado, sig |
+| INFORME_SENS2.md | 365 |  |  o lazo frío sin convergencia): el corte de 600 s no era la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos. |
 
 ### prueba que (1)
 

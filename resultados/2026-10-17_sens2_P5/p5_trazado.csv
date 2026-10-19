@@ -1091,6 +1091,11 @@ L10,evidencia,0,0,trivial,trivial
 L10,evidencia,230,0,si,2026-10-17_sens2_P1/p1_dataset.csv:P_baja
 L10,evidencia,554,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 L10,evidencia,1 100,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
+L10,evidencia,4,0,trivial,trivial
+L10,evidencia,600,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
+L10,evidencia,152,0,si,2026-10-17_sens2_P1/p1_dataset.csv:Wnet
+L10,evidencia,554,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
+L10,evidencia,600,0,si,2026-10-17_sens2_P1/p1_dataset.csv:estudio
 L10,evidencia,90,0,si,2026-10-17_sens2_P1/p1_dataset.csv:x_b
 L10,evidencia,515,0,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct
 E10,afirmacion,0.25,2,si,2026-10-17_sens2_P1/p1_dataset.csv:eta_pct

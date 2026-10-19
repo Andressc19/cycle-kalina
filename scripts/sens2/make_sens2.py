@@ -20,7 +20,7 @@ RAIZ = os.path.dirname(os.path.dirname(AQUI))
 SCRIPTS = os.path.join(RAIZ, "scripts", "sens2")
 REGISTRO_DEF = os.path.join("resultados", "2026-10-18_sens2_F1", "make_sens2_registro.json")
 PRUEBAS = "pruebas"
-ARCHIVOS = ["tests/test_sens2_libro.py", "tests/test_sens2_cifras.py", "tests/test_sens2_r1.py"]
+ARCHIVOS = ["tests/test_sens2_libro.py", "tests/test_sens2_cifras.py", "tests/test_sens2_r1.py", "tests/test_sens2_docs.py"]
 HUELLAS = ["resultados/2026-10-17_sens2_P2/p2_dataset_dedup.csv",
            "resultados/2026-10-17_sens2_U1/u1_filas.csv"]
 
@@ -30,7 +30,7 @@ TODO = ["p1_dataset", "p1_existencia", "p1_fronteras", "p1_reglas", "p2_comparac
         "u1_analisis", "r1_filtro", "r1_contraste", "r2_eficiencias", "r2_vecinos", "r2_agregado"]
 BASE = ["p6_mO2", "p6_nulo", "p6_nc", "p6_pareado", "p6_pareado_dist", "p6_equipos_diseno", "p6_equipos_ic", "p6_equipos_kw",
         "p6_ciclo_T", "p6_potencia_u1", "p6_fronteras_ic", "p6_superficies_cv", "p6_m5_lhs", "p6_calibra_regla", "p6_m5_pruebas", "p6_pisos25", "p6_reintento_nc", "p6_dens", "p6_sim", "p6_opt_T", "p5_generar", "p5_trazado", "p5_trazado_fuente", "p5_cifras_check",
-        "p5_cifras_check_c", "s2_construir", "s2_verificar", "s2_informe", "p5_lint_texto", "p5_docs_check", "s2_figuras", "s2_informe_pdf"]
+        "p5_cifras_check_c", "s2_construir", "p5_globales", "docs_sync", "s2_verificar", "s2_informe", "p5_lint_texto", "p5_docs_check", "s2_figuras", "s2_informe_pdf"]
 ORDEN = TODO + BASE + [PRUEBAS]
 
 

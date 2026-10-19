@@ -59,7 +59,7 @@ def hoja_opt(wb, datos):
         "Fuente: resultados/2026-10-18_sens2_B (s2b_opt_*.csv) y resultados/2026-10-18_sens2_F1 (p6_opt_T.csv)."])
     f = subtitulo(ws, f, "1. Eta maxima por banda de T_fuente")
     fl = [[float(r.T_fuente_C), float(r.eta_max_pct), float(r.eta_max_muestreo_pct) if pd.notna(r.eta_max_muestreo_pct) else 0.0] for r in t.itertuples()]
-    f = bloque(ws, f, titulo="Eta maxima (%) por banda: busqueda local y conjunto muestreado", encabezados=["T_fuente (C)", "Busqueda local (%)", "Maximo muestreado (%)"], filas=fl,
+    f = bloque(ws, f, titulo="Eta maxima (%) por banda de T_fuente (desde 160 C, fuera del rango experimental)", encabezados=["T_fuente (C)", "Busqueda local (%)", "Maximo muestreado (%)"], filas=fl,
                x="T_fuente (C)", y="Eta maxima (%)", tipo="linea", nota_txt="Fuente: p6_opt_T.csv. Un cero en 'Maximo muestreado' significa que no hay puntos KALINA muestreados en esa banda. "
                                                                           "Desde 160 C el optimo esta fuera del rango experimental.")
     cab = ["T_fuente (C)", "Evaluaciones", "KALINA", "Eta max (%)", "P_alta (kPa)", "P_baja (kPa)", "x_b", "Fuera de rango", "Eta max dentro del rango (%)", "Maximo muestreado (%)", "Mejora (pp)"]

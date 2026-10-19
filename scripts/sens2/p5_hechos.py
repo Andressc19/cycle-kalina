@@ -390,6 +390,8 @@ def _ronda9(h):
     r = pd.read_csv(os.path.join(F1, "p6_reintento_nc.csv"))
     h["reint.n"] = float(len(r))
     h["reint.tmax"], h["reint.tmean"] = float(r["t_s_nuevo"].max()), float(r["t_s_nuevo"].mean())
+    c6 = r[r["t_s_original"] >= 590]
+    h["reint.n600"], h["reint.n600.tmin"], h["reint.n600.tmax"] = float(len(c6)), float(c6["t_s_nuevo"].min()), float(c6["t_s_nuevo"].max())
     h["reint.n_lento"], h["reint.n_ctrl"] = float((r["grupo"] == "lento").sum()), float((r["grupo"] == "control").sum())
     h["reint.conv"] = float((~r["clase_nueva"].isin(["NO_CONVERGIO", "ERROR_MOTOR"])).sum())
     h["reint.n_nc"], h["reint.n_err"] = float((r["clase_nueva"] == "NO_CONVERGIO").sum()), float((r["clase_nueva"] == "ERROR_MOTOR").sum())

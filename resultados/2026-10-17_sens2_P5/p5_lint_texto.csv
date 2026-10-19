@@ -58,7 +58,8 @@ p5_conclusiones.csv,E9,implicacion,todos,condensador de 635 a 761 kW y fluido de
 p5_conclusiones.csv,D9,implicacion,único,PSH. El piso depende de x_b y del bloque; no sirve un valor único.
 p5_conclusiones.csv,L10,afirmacion,ninguno,ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango
 p5_conclusiones.csv,L10,afirmacion,causa,"ún reintento superó 554 s con un presupuesto de 900 s) y la causa, método de resolución o inexistencia física del estado, sig"
-p5_conclusiones.csv,L10,evidencia,todos,"e 1 100 s. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
+p5_conclusiones.csv,L10,evidencia,todos," la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
+p5_conclusiones.csv,L10,evidencia,causa," o lazo frío sin convergencia): el corte de 600 s no era la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
 p5_conclusiones.csv,E10,evidencia,todos,"e estudios, en posiciones equiespaciadas del orden por η) y todos reprodujeron su η original (diferencia máxima 0.00 pp). Den"
 p5_conclusiones.csv,U5,afirmacion,solo,", 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar."
 INFORME_SENS2.md,3,,solo,s de mayor η a la frontera de clase no es concluyente (M5): solo sale en C1 con el muestreo LHS y no resiste la corrección p
@@ -131,7 +132,8 @@ INFORME_SENS2.md,351,,único,".5 K (mínimo de Sens2 393.15 K) y 15 de C3 que co
 INFORME_SENS2.md,358,,siempre,"cuerdan en 0.478 (665 evaluaciones), por debajo de predecir siempre la clase mayoritaria del mismo subconjunto (0.598); el resu"
 INFORME_SENS2.md,363,,ninguno,ONVERGIO con el triple de presupuesto de tiempo no recupera ninguno: 88 de 90 siguen sin converger (2 más dan un error de rango
 INFORME_SENS2.md,363,,causa,"ún reintento superó 554 s con un presupuesto de 900 s) y la causa, método de resolución o inexistencia física del estado, sig"
-INFORME_SENS2.md,365,,todos,"e 1 100 s. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
+INFORME_SENS2.md,365,,todos," la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
+INFORME_SENS2.md,365,,causa," o lazo frío sin convergencia): el corte de 600 s no era la causa. Es una muestra de 90 de los 515 NO_CONVERGIO, no todos."
 INFORME_SENS2.md,370,,solo,", 0.98, 1.00 y 0.85 cuando el centro está en el tope 0.95 y solo puede bajar."
 INFORME_SENS2.md,384,,solo," optimizando P_alta, P_baja y x_b en cada temperatura (y no solo el regenerador a presiones fijas) y obtener el flujo volumé"
 INFORME_SENS2.md,390,,solo,"8. Barrer m_b (1, 5, 10, 15, 20) solo si el profesor pide dimensionar por caudal."
@@ -172,7 +174,7 @@ VALIDACION_SENS2.md,93,,todas,ue 2.8 % es una estimación y no una tasa nominal.
 VALIDACION_SENS2.md,94,,único, en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que sí se p
 VALIDACION_SENS2.md,94,,ninguno,as y 0 % en el LHS. ¿Qué número se le da a un diseñador?»** Ninguno único. El 49 % es un conteo del diseño muestreado. Lo que s
 VALIDACION_SENS2.md,95,,solo,3. **«P(KALINA) = 0.47 en C1 sale de perturbar ε_cond solo hacia abajo desde el tope de 0.95. ¿Por qué ese escenario?»
-VALIDACION_SENS2.md,97,,todas," cifras y 12 de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO"
+VALIDACION_SENS2.md,97,,todas,">12<!--/g--> de las variables distinguibles), que no cubren todas las cifras. Sobre el sesgo: se reintentaron 90 NO_CONVERGIO"
 VALIDACION_SENS2.md,97,,ninguno," NO_CONVERGIO con el triple de presupuesto y no se recuperó ninguno (L10), así que el sesgo de los umbrales inferiores de T_fue"
 VALIDACION_SENS2.md,97,,ninguna,**«¿Qué evita que una cifra escrita a mano esté mal sin que ninguna compuerta lo detecte? ¿Y el sesgo del 28 % de NO_CONVERGIO 
 VALIDACION_SENS2.md,101,,solo,"- Solo motor teqp, sin validación experimental propia del ciclo; e"

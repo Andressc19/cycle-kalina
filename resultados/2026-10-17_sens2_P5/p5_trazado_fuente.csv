@@ -1091,6 +1091,11 @@ L10,evidencia,0,trivial,trivial,1
 L10,evidencia,230,si,p6_reintento_nc.csv:t_s_nuevo,1
 L10,evidencia,554,si,p6_reintento_nc.csv:t_s_nuevo,1
 L10,evidencia,1 100,si,p5_hechos,1
+L10,evidencia,4,trivial,trivial,1
+L10,evidencia,600,si,p6_reintento_nc.csv:t_s_original,1
+L10,evidencia,152,si,p6_reintento_nc.csv:t_s_nuevo,1
+L10,evidencia,554,si,p6_reintento_nc.csv:t_s_nuevo,1
+L10,evidencia,600,si,p6_reintento_nc.csv:t_s_original,1
 L10,evidencia,90,si,p6_reintento_nc.csv:t_s_original,1
 L10,evidencia,515,si,p5_hechos,1
 E10,afirmacion,0.25,si,p6_dens.csv:p5,1

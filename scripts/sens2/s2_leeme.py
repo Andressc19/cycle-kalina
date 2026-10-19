@@ -10,6 +10,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(RAIZ, "scripts", "sens1"))
 from x1_cargar import CENTROS  # noqa: E402
 from x2_formato import condiciones, nota, subtitulo, tabla, titulo  # noqa: E402
+import p5_globales as _PB  # noqa: E402
 
 # Parrafo de rango experimental, copiado del libro 1 (x7_construir). No se importa x7_construir
 # porque construye el libro entero al importarse.
@@ -96,10 +97,10 @@ def hoja_leeme(wb, datos):
     f = titulo(ws, f, "Libro 2 - Analisis de sensibilidad sobre la campana de Sensibilidad 1", ancho=12)
     f = subtitulo(ws, f, "Que es este libro y de que campana viene")
     for linea in [
-            "Este libro analiza los 3 921 puntos de la campana de Sensibilidad 1 (libro 1) y anade 808 puntos nuevos del motor "
-            "para la propagacion de incertidumbre (F5 Incertidumbre; los corrio el director, no OpenCode), 828 puntos de la etapa B "
+            "Este libro analiza los 3 921 puntos de la campana de Sensibilidad 1 (libro 1) y anade %d puntos nuevos del motor "
+            "para la propagacion de incertidumbre (F5 Incertidumbre; los corrio el director, no OpenCode), %d puntos de la etapa B "
             "(F3 Pisos 25 kPa y reintento, F4 Caudales y bomba, F4 Optimo vs T_fuente, F5 Incertidumbre simetrica) y un contraste con "
-            "la campana anterior M1-M10b (F6). El resto de las hojas no usa corridas nuevas.",
+            "la campana anterior M1-M10b (F6). El resto de las hojas no usa corridas nuevas." % (_PB.puntos_motor()[0], sum(_PB.puntos_motor()[1].values())),
             "Se quitan los duplicados exactos (mismas 10 entradas y mismo centro): quedan 3 663 "
             "puntos, que son los que usa el analisis.",
             "Base por hoja: F1 usa los 3 921 puntos (con duplicados); F2, F3 y F4 usan los 3 663 sin "
