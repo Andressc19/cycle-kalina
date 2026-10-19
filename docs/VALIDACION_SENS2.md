@@ -7,8 +7,8 @@ sesión). Fecha: 2026-10-17. Rama `test/anal_terremoto`.
 
 ## Actualización 2026-10-18 (evaluaciones tipo profesor y plan de mejora)
 
-El libro actual tiene 43 conclusiones y 808 puntos nuevos del motor (F5 Incertidumbre, corridos por el director, no por OpenCode) y el
-contraste con la campaña anterior (F6, L8 y L9): (32 hojas, 94 gráficos). Cuatro revisores independientes lo evaluaron como un profesor
+El libro actual tiene 48 conclusiones, 32 hojas y 94 gráficos. Puntos nuevos del motor: 808 de F5 Incertidumbre (corridos por el director, no por OpenCode) y 828 de la etapa B (139 de pisos y reintento y 150 de densidades con OpenCode; 192 de ε_cond simétrico corridos por el director; 347 de η máxima por T_fuente, con OpenCode y terminados por el director tras tres caídas del script), más el
+contraste con la campaña anterior (F6, L8 y L9). Cuatro revisores independientes lo evaluaron como un profesor
 exigente. Notas (0 a 5) en el orden rigor, coherencia, sobre-afirmaciones, cobertura, trazabilidad y libro: evaluación 1 = 2.5, 2.5, 2.5, 3.5, 3.0, 3.5;
 evaluación 2 (tras la etapa A del plan `docs/PLAN_SENS2_MEJORA.md`) = 3.5, 3.0, 3.0, 3.5, 3.8, 3.8; evaluación 3 = 3.8, 3.5, 3.5, 3.5, 4.2, 4.0;
 evaluación 4 = 3.9, 3.7, 3.6, 3.8, 4.1, 4.1; evaluación 5 = 4.0, 3.8, 3.8, 3.9, 3.8, 4.2; evaluación 6 = 4.0, 3.8, 3.7, 3.9, 3.9, 4.2. La cobertura de las preguntas 3 y 4 del profesor es el criterio que no sube de ≈ 3.8 sin el motor.
@@ -25,8 +25,7 @@ pendiente del margen de cavitación ≈ 1.9 K por −0.01 entre 0.92 y 0.95); L2
 afirmar una dependencia con la distancia; D1 y D5 solo con la regresión logística donde su intervalo es informativo; F1 con 6 métodos y solo «distinguible
 del ruido»; M1 a M4 como valores muestreados; enunciados de E1, E4, E5 y E6 como lo observado en los KALINA muestreados; E2 limitada a Δh y con
 una sola línea; M6 limitada a las bandas con al menos 10 KALINA dentro del rango experimental; las tablas de preguntas del LEEME y de la conclusión consolidada
-con las hojas nuevas. Siguen abiertos, porque requieren el motor y autorización: reintentar NO_CONVERGIO, el ciclo frente a T_fuente optimizado por
-temperatura y el flujo volumétrico de la turbina y la altura de la bomba (etapas B y C del plan).
+con las hojas nuevas. Etapa B (hecha, con autorización expresa del usuario): pisos de P_baja a 25 kPa (D9), reintento de NO_CONVERGIO con el triple de presupuesto (L10: ninguno recuperado), caudales de turbina y altura de bomba por kW neto (E10), P(KALINA) con ε_cond simétrico (U5) y η máxima por banda de T_fuente con búsqueda local (M7, máximo local y no óptimo global); además 30 controles independientes nuevos (que corrigieron dos cifras de E2) y las respuestas a las cinco preguntas difíciles de la evaluación 7. Siguen abiertos: separar «no existe» de «no convergió» en los NO_CONVERGIO (necesita otro método de resolución), un NPSH real (necesita datos de bomba) y la evaluación independiente posterior a la etapa B.
 
 ## Evaluación global: compartir con caveats
 

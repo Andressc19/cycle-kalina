@@ -172,3 +172,11 @@ Tres hallazgos que cambian el plan:
 - **Definir «líneas de evidencia independientes» es un juicio.** La regla las cuenta por familia de método (correlación, dependencia, derivada local, campaña distinta), no por número de métodos; el criterio queda escrito en `p5_confianza.py` y en el libro.
 - **Reglas y umbrales (n ≥ 30, 500 barajados, q = 0.05, AUC ≥ 0.8) son decisiones mías**, declaradas en `sens2_supuestos.yaml`.
 - **Regla de trabajo:** no se lanzan corridas del motor sin autorización expresa; A2 y A3 son solo cálculo sobre datos existentes.
+
+## 7. Etapa B ejecutada (2026-10-18 y 2026-10-19)
+
+Con autorización expresa del usuario se corrieron 828 puntos del motor (más los 808 de U1). OpenCode (DeepSeek, una pestaña, con vigilante) corrió pisos, reintento, densidades y la optimización por T_fuente; el director corrió ε_cond simétrico y terminó la optimización tras tres caídas del script (error de rango de propiedades sin capturar y un archivo sin cabecera). Entregables: `s2b_puntos*.py`, `s2b_corrida*.py`, `s2b_dens.py`, `s2b_opt_T.py`, `p6_pisos25.py`, `p6_reintento_nc.py`, `p6_dens.py`, `p6_sim.py`, `p6_opt_T.py`; hojas F3 Pisos 25 kPa y reintento, F4 Caudales y bomba, F4 Optimo vs T_fuente y F5 Incertidumbre simetrica; conclusiones D9, L10, E10, U5 y M7.
+
+Resultados: el piso de P_baja de la malla sobrestimaba hasta 125 kPa; reintentar con 3 veces el presupuesto no recupera ningún NO_CONVERGIO (0 de 88); por kW neto la turbina maneja 0.25 a 1.69 L/s a la entrada y la bomba 102 a 503 m; P(KALINA) depende del centro de ε_cond (C1 0.25 con centro 0.90 frente a 0.48 con 0.95); la η máxima encontrada por búsqueda local llega a 16.8 % a 160 °C y no sigue subiendo después.
+
+Sigue fuera de alcance: un método de resolución distinto para los NO_CONVERGIO, el NPSH real y la validación experimental propia del ciclo. Falta la evaluación independiente posterior a la etapa B.
